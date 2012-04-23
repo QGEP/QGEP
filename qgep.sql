@@ -452,27 +452,15 @@ WITH (
  INSERT INTO qgep.vl_reach_point_elevation_accuracy (value_en) VALUES ('plusminus_1cm');
  INSERT INTO qgep.vl_reach_point_elevation_accuracy (value_de) VALUES ('plusminus_1cm');
  INSERT INTO qgep.vl_reach_point_elevation_accuracy (value_fr) VALUES ('plus_moins_1cm');
- ALTER TABLE qgep.od_reach_point ADD CONSTRAINT fkey_vl_reach_point_elevation_accuracy FOREIGN KEY (elevation_accuracy)
- REFERENCES qgep.vl_reach_point_elevation_accuracy (code) MATCH SIMPLE 
- ON UPDATE RESTRICT ON DELETE RESTRICT;
  INSERT INTO qgep.vl_reach_point_elevation_accuracy (value_en) VALUES ('plusminus_3cm');
  INSERT INTO qgep.vl_reach_point_elevation_accuracy (value_de) VALUES ('plusminus_3cm');
  INSERT INTO qgep.vl_reach_point_elevation_accuracy (value_fr) VALUES ('plus_moins_3cm');
- ALTER TABLE qgep.od_reach_point ADD CONSTRAINT fkey_vl_reach_point_elevation_accuracy FOREIGN KEY (elevation_accuracy)
- REFERENCES qgep.vl_reach_point_elevation_accuracy (code) MATCH SIMPLE 
- ON UPDATE RESTRICT ON DELETE RESTRICT;
  INSERT INTO qgep.vl_reach_point_elevation_accuracy (value_en) VALUES ('plusminus_6cm');
  INSERT INTO qgep.vl_reach_point_elevation_accuracy (value_de) VALUES ('plusminus_6cm');
  INSERT INTO qgep.vl_reach_point_elevation_accuracy (value_fr) VALUES ('plus_moins_6cm');
- ALTER TABLE qgep.od_reach_point ADD CONSTRAINT fkey_vl_reach_point_elevation_accuracy FOREIGN KEY (elevation_accuracy)
- REFERENCES qgep.vl_reach_point_elevation_accuracy (code) MATCH SIMPLE 
- ON UPDATE RESTRICT ON DELETE RESTRICT;
  INSERT INTO qgep.vl_reach_point_elevation_accuracy (value_en) VALUES ('more_than_6cm');
  INSERT INTO qgep.vl_reach_point_elevation_accuracy (value_de) VALUES ('groesser_6cm');
  INSERT INTO qgep.vl_reach_point_elevation_accuracy (value_fr) VALUES ('plusque_6cm');
- ALTER TABLE qgep.od_reach_point ADD CONSTRAINT fkey_vl_reach_point_elevation_accuracy FOREIGN KEY (elevation_accuracy)
- REFERENCES qgep.vl_reach_point_elevation_accuracy (code) MATCH SIMPLE 
- ON UPDATE RESTRICT ON DELETE RESTRICT;
  INSERT INTO qgep.vl_reach_point_elevation_accuracy (value_en) VALUES ('unknown');
  INSERT INTO qgep.vl_reach_point_elevation_accuracy (value_de) VALUES ('unbekannt');
  INSERT INTO qgep.vl_reach_point_elevation_accuracy (value_fr) VALUES ('inconnu');
