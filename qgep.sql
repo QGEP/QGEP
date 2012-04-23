@@ -35,7 +35,7 @@ WITH (
    OIDS = False
 );
 COMMENT ON COLUMN qgep.od_reach_point.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_reach_point ADD COLUMN elevation_accuracy  varchar(50) ;
+ ALTER TABLE qgep.od_reach_point ADD COLUMN elevation_accuracy integer ;
 COMMENT ON COLUMN qgep.od_reach_point.elevation_accuracy IS 'yyy_Quantifizierung der Genauigkeit der Höhenlage der Kote in Relation zum Höhenfixpunktnetz (z.B. Grundbuchvermessung oder Landesnivellement). / Quantifizierung der Genauigkeit der Höhenlage der Kote in Relation zum Höhenfixpunktnetz (z.B. Grundbuchverme';
  ALTER TABLE qgep.od_reach_point ADD COLUMN identifier  varchar(20) ;
  CREATE UNIQUE INDEX in_od_reach_point_identifier ON qgep.od_reach_point USING btree (identifier);
