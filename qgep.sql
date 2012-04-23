@@ -2365,3 +2365,6 @@ WITH (
  INSERT INTO qgep.vl_reach_material (value_de) VALUES ('Ton');
  INSERT INTO qgep.vl_reach_material (value_fr) VALUES ('argile');
  ALTER TABLE qgep.od_reach ADD CONSTRAINT fke
+
+
+COMMIT;
