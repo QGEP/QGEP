@@ -42,7 +42,7 @@ COMMENT ON COLUMN qgep.od_reach_point.elevation_accuracy IS 'yyy_Quantifizierung
 COMMENT ON COLUMN qgep.od_reach_point.identifier IS ' /  / ';
  ALTER TABLE qgep.od_reach_point ADD COLUMN level  decimal(4,3) ;
 COMMENT ON COLUMN qgep.od_reach_point.level IS 'yyy / Sohlenhöhe des Haltungsendes / Cote du radier de la fin du tronçon';
- ALTER TABLE qgep.od_reach_point ADD COLUMN outlet_shape  varchar(50) ;
+ ALTER TABLE qgep.od_reach_point ADD COLUMN outlet_shape  integer ;
 COMMENT ON COLUMN qgep.od_reach_point.outlet_shape IS 'yyy Art des Auslaufs / Art des Auslaufs / Types de sortie';
  ALTER TABLE qgep.od_reach_point ADD COLUMN position_of_connection  smallint ;
 COMMENT ON COLUMN qgep.od_reach_point.position_of_connection IS 'yyy / Anschlussstelle bezogen auf Querschnitt im Kanal; in Fliessrichtung  (für Haus- und Strassenanschlüsse) / Emplacement de raccordement Référence à la section transversale dans le canal dans le sens découlement (pour les raccordements domestiques et ';
