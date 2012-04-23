@@ -513,15 +513,9 @@ WITH (
  INSERT INTO qgep.vl_structure_part_renovation_demand (value_en) VALUES ('necessary');
  INSERT INTO qgep.vl_structure_part_renovation_demand (value_de) VALUES ('notwendig');
  INSERT INTO qgep.vl_structure_part_renovation_demand (value_fr) VALUES ('necessaire');
- ALTER TABLE qgep.od_structure_part ADD CONSTRAINT fkey_vl_structure_part_renovation_demand FOREIGN KEY (renovation_demand)
- REFERENCES qgep.vl_structure_part_renovation_demand (code) MATCH SIMPLE 
- ON UPDATE RESTRICT ON DELETE RESTRICT;
  INSERT INTO qgep.vl_structure_part_renovation_demand (value_en) VALUES ('not_necessary');
  INSERT INTO qgep.vl_structure_part_renovation_demand (value_de) VALUES ('nicht_notwendig');
  INSERT INTO qgep.vl_structure_part_renovation_demand (value_fr) VALUES ('pas_necessaire');
- ALTER TABLE qgep.od_structure_part ADD CONSTRAINT fkey_vl_structure_part_renovation_demand FOREIGN KEY (renovation_demand)
- REFERENCES qgep.vl_structure_part_renovation_demand (code) MATCH SIMPLE 
- ON UPDATE RESTRICT ON DELETE RESTRICT;
  INSERT INTO qgep.vl_structure_part_renovation_demand (value_en) VALUES ('unknown');
  INSERT INTO qgep.vl_structure_part_renovation_demand (value_de) VALUES ('unbekannt');
  INSERT INTO qgep.vl_structure_part_renovation_demand (value_fr) VALUES ('inconnu');
