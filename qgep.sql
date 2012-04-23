@@ -449,6 +449,12 @@ CONSTRAINT pkey_qgep_vl_reach_point_elevation_accuracy_code PRIMARY KEY (code)
 WITH (
    OIDS = False
 );
+ INSERT INTO qgep.vl_reach_point_elevation_accuracy (value_en) VALUES ('plusminus_1cm');
+ INSERT INTO qgep.vl_reach_point_elevation_accuracy (value_de) VALUES ('plusminus_1cm');
+ INSERT INTO qgep.vl_reach_point_elevation_accuracy (value_fr) VALUES ('plus_moins_1cm');
+ ALTER TABLE qgep.od_reach_point ADD CONSTRAINT fkey_vl_reach_point_elevation_accuracy FOREIGN KEY (elevation_accuracy)
+ REFERENCES qgep.vl_reach_point_elevation_accuracy (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
  INSERT INTO qgep.vl_reach_point_elevation_accuracy (value_en) VALUES ('plusminus_3cm');
  INSERT INTO qgep.vl_reach_point_elevation_accuracy (value_de) VALUES ('plusminus_3cm');
  INSERT INTO qgep.vl_reach_point_elevation_accuracy (value_fr) VALUES ('plus_moins_3cm');
