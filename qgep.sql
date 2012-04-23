@@ -482,27 +482,15 @@ WITH (
  INSERT INTO qgep.vl_reach_point_outlet_shape (value_en) VALUES ('round_edged');
  INSERT INTO qgep.vl_reach_point_outlet_shape (value_de) VALUES ('abgerundet');
  INSERT INTO qgep.vl_reach_point_outlet_shape (value_fr) VALUES ('arrondi');
- ALTER TABLE qgep.od_reach_point ADD CONSTRAINT fkey_vl_reach_point_outlet_shape FOREIGN KEY (outlet_shape)
- REFERENCES qgep.vl_reach_point_outlet_shape (code) MATCH SIMPLE 
- ON UPDATE RESTRICT ON DELETE RESTRICT;
  INSERT INTO qgep.vl_reach_point_outlet_shape (value_en) VALUES ('sharp_edged');
  INSERT INTO qgep.vl_reach_point_outlet_shape (value_de) VALUES ('scharfkantig');
  INSERT INTO qgep.vl_reach_point_outlet_shape (value_fr) VALUES ('aretes_vives');
- ALTER TABLE qgep.od_reach_point ADD CONSTRAINT fkey_vl_reach_point_outlet_shape FOREIGN KEY (outlet_shape)
- REFERENCES qgep.vl_reach_point_outlet_shape (code) MATCH SIMPLE 
- ON UPDATE RESTRICT ON DELETE RESTRICT;
  INSERT INTO qgep.vl_reach_point_outlet_shape (value_en) VALUES ('orifice');
  INSERT INTO qgep.vl_reach_point_outlet_shape (value_de) VALUES ('blendenfoermig');
  INSERT INTO qgep.vl_reach_point_outlet_shape (value_fr) VALUES ('en_forme_de_seuil_ou_diaphragme');
- ALTER TABLE qgep.od_reach_point ADD CONSTRAINT fkey_vl_reach_point_outlet_shape FOREIGN KEY (outlet_shape)
- REFERENCES qgep.vl_reach_point_outlet_shape (code) MATCH SIMPLE 
- ON UPDATE RESTRICT ON DELETE RESTRICT;
  INSERT INTO qgep.vl_reach_point_outlet_shape (value_en) VALUES ('unknown');
  INSERT INTO qgep.vl_reach_point_outlet_shape (value_de) VALUES ('unbekannt');
  INSERT INTO qgep.vl_reach_point_outlet_shape (value_fr) VALUES ('inconnu');
- ALTER TABLE qgep.od_reach_point ADD CONSTRAINT fkey_vl_reach_point_outlet_shape FOREIGN KEY (outlet_shape)
- REFERENCES qgep.vl_reach_point_outlet_shape (code) MATCH SIMPLE 
- ON UPDATE RESTRICT ON DELETE RESTRICT;
  INSERT INTO qgep.vl_reach_point_outlet_shape (value_en) VALUES ('no_cross_section_change');
  INSERT INTO qgep.vl_reach_point_outlet_shape (value_de) VALUES ('keine_Querschnittsaenderung');
  INSERT INTO qgep.vl_reach_point_outlet_shape (value_fr) VALUES ('pas_de_changement_de_section');
