@@ -9,20 +9,20 @@ CREATE TABLE qgep.od_organisation
 WITH (
    OIDS = False
 );
-COMMENT ON COLUMN qgep.od_organisation.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+COMMENT ON COLUMN qgep.od_organisation.obj_id IS 'INTERLIS STANDARD OID (with Postfix/PrÃ¤fix) or UUOID, see www.interlis.ch';
  ALTER TABLE qgep.od_organisation ADD COLUMN address  varchar(50) ;
-COMMENT ON COLUMN qgep.od_organisation.address IS 'yyy / Attribut zur Verknüpfung der Adressdaten von Organisationen aus Fremdsystemen. Die VSA-DSS bildet keine Adressinformationen ab. Diese sind genügend oft in anderen Systemen vorhanden – eine Referenzattribut reicht. / Attribut pour le lien des données';
+COMMENT ON COLUMN qgep.od_organisation.address IS 'yyy / Attribut zur VerknÃ¼pfung der Adressdaten von Organisationen aus Fremdsystemen. Die VSA-DSS bildet keine Adressinformationen ab. Diese sind genÃ¼gend oft in anderen Systemen vorhanden Â– eine Referenzattribut reicht. / Attribut pour le lien des donnÃ©es';
  ALTER TABLE qgep.od_organisation ADD COLUMN identifier  varchar(80) ;
  CREATE UNIQUE INDEX in_od_organisation_identifier ON qgep.od_organisation USING btree (identifier);
 COMMENT ON COLUMN qgep.od_organisation.identifier IS 'It is suggested to use real names, e.g. Sample_Community and not only Community. Or "Waste Water Association WWTP Example"and not only Waste Water Association because there will be multiple objects / Es wird empfohlen reale Namen zu nehmen, z.B. Mustergem';
  ALTER TABLE qgep.od_organisation ADD COLUMN remark  varchar(80) ;
-COMMENT ON COLUMN qgep.od_organisation.remark IS 'yyy Fehler bei Zuordnung / Allgemeine Bemerkungen / Remarques générales';
+COMMENT ON COLUMN qgep.od_organisation.remark IS 'yyy Fehler bei Zuordnung / Allgemeine Bemerkungen / Remarques gÃ©nÃ©rales';
  ALTER TABLE qgep.od_organisation ADD COLUMN uid  varchar(12) ;
-COMMENT ON COLUMN qgep.od_organisation.uid IS 'yyyReferenz zur Unternehmensidentifikation des Bundesamts fuer Statistik (www.uid.admin.ch), e.g. z.B. CHE123456789 / Referenz zur Unternehmensidentifikation des Bundesamts fuer Statistik (www.uid.admin.ch), z.B. CHE123456789 / Référence pour l’identifica';
+COMMENT ON COLUMN qgep.od_organisation.uid IS 'yyyReferenz zur Unternehmensidentifikation des Bundesamts fuer Statistik (www.uid.admin.ch), e.g. z.B. CHE123456789 / Referenz zur Unternehmensidentifikation des Bundesamts fuer Statistik (www.uid.admin.ch), z.B. CHE123456789 / RÃ©fÃ©rence pour lÂ’identifica';
  ALTER TABLE qgep.od_organisation ADD COLUMN last_modification timestamp without time zone ;
 COMMENT ON COLUMN qgep.od_organisation.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
  ALTER TABLE qgep.od_organisation ADD COLUMN datenherr varchar(50) ;
-COMMENT ON COLUMN qgep.od_organisation.datenherr IS 'Metaattribute Datenherr - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Gestionnaire données gestionnaire de données, qui estla personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
+COMMENT ON COLUMN qgep.od_organisation.datenherr IS 'Metaattribute Datenherr - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu lÃ¶schen, zu Ã¤ndern bzw. zu verwalten / Gestionnaire donnÃ©es gestionnaire de donnÃ©es, qui estla personne ou l''organisation autorisÃ©e pour gÃ©rer, modifier ou supprimer les donnÃ©es de cette table/classe';
  ALTER TABLE qgep.od_organisation ADD COLUMN datenlieferant varchar(50) ;
 COMMENT ON COLUMN qgep.od_organisation.datenlieferant IS 'Metaattribute Datenlieferant - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / xxx_Datenlieferant ';
 -------
@@ -34,26 +34,26 @@ CREATE TABLE qgep.od_reach_point
 WITH (
    OIDS = False
 );
-COMMENT ON COLUMN qgep.od_reach_point.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+COMMENT ON COLUMN qgep.od_reach_point.obj_id IS 'INTERLIS STANDARD OID (with Postfix/PrÃ¤fix) or UUOID, see www.interlis.ch';
  ALTER TABLE qgep.od_reach_point ADD COLUMN elevation_accuracy  varchar(50) ;
-COMMENT ON COLUMN qgep.od_reach_point.elevation_accuracy IS 'yyy_Quantifizierung der Genauigkeit der Höhenlage der Kote in Relation zum Höhenfixpunktnetz (z.B. Grundbuchvermessung oder Landesnivellement). / Quantifizierung der Genauigkeit der Höhenlage der Kote in Relation zum Höhenfixpunktnetz (z.B. Grundbuchverme';
+COMMENT ON COLUMN qgep.od_reach_point.elevation_accuracy IS 'yyy_Quantifizierung der Genauigkeit der HÃ¶henlage der Kote in Relation zum HÃ¶henfixpunktnetz (z.B. Grundbuchvermessung oder Landesnivellement). / Quantifizierung der Genauigkeit der HÃ¶henlage der Kote in Relation zum HÃ¶henfixpunktnetz (z.B. Grundbuchverme';
  ALTER TABLE qgep.od_reach_point ADD COLUMN identifier  varchar(20) ;
  CREATE UNIQUE INDEX in_od_reach_point_identifier ON qgep.od_reach_point USING btree (identifier);
 COMMENT ON COLUMN qgep.od_reach_point.identifier IS ' /  / ';
  ALTER TABLE qgep.od_reach_point ADD COLUMN level  decimal(4,3) ;
-COMMENT ON COLUMN qgep.od_reach_point.level IS 'yyy / Sohlenhöhe des Haltungsendes / Cote du radier de la fin du tronçon';
+COMMENT ON COLUMN qgep.od_reach_point.level IS 'yyy / SohlenhÃ¶he des Haltungsendes / Cote du radier de la fin du tronÃ§on';
  ALTER TABLE qgep.od_reach_point ADD COLUMN outlet_shape  varchar(50) ;
 COMMENT ON COLUMN qgep.od_reach_point.outlet_shape IS 'yyy Art des Auslaufs / Art des Auslaufs / Types de sortie';
  ALTER TABLE qgep.od_reach_point ADD COLUMN position_of_connection  smallint ;
-COMMENT ON COLUMN qgep.od_reach_point.position_of_connection IS 'yyy / Anschlussstelle bezogen auf Querschnitt im Kanal; in Fliessrichtung  (für Haus- und Strassenanschlüsse) / Emplacement de raccordement Référence à la section transversale dans le canal dans le sens d’écoulement (pour les raccordements domestiques et ';
+COMMENT ON COLUMN qgep.od_reach_point.position_of_connection IS 'yyy / Anschlussstelle bezogen auf Querschnitt im Kanal; in Fliessrichtung  (fÃ¼r Haus- und StrassenanschlÃ¼sse) / Emplacement de raccordement RÃ©fÃ©rence Ã  la section transversale dans le canal dans le sens dÂ’Ã©coulement (pour les raccordements domestiques et ';
  ALTER TABLE qgep.od_reach_point ADD COLUMN remark  varchar(80) ;
-COMMENT ON COLUMN qgep.od_reach_point.remark IS ' / Allgemeine Bemerkungen / Remarques générales';
+COMMENT ON COLUMN qgep.od_reach_point.remark IS ' / Allgemeine Bemerkungen / Remarques gÃ©nÃ©rales';
 SELECT AddGeometryColumn('qgep', 'od_reach_point', 'situation_geometry', 21781, 'POINT', 2);
-COMMENT ON COLUMN qgep.od_reach_point.situation_geometry IS 'national position coordinates (N,E) / Landeskoordinate Ost/Nord / Coordonnées nationales Est/Nord';
+COMMENT ON COLUMN qgep.od_reach_point.situation_geometry IS 'national position coordinates (N,E) / Landeskoordinate Ost/Nord / CoordonnÃ©es nationales Est/Nord';
  ALTER TABLE qgep.od_reach_point ADD COLUMN last_modification timestamp without time zone ;
 COMMENT ON COLUMN qgep.od_reach_point.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
  ALTER TABLE qgep.od_reach_point ADD COLUMN datenherr varchar(50) ;
-COMMENT ON COLUMN qgep.od_reach_point.datenherr IS 'Metaattribute Datenherr - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Gestionnaire données gestionnaire de données, qui estla personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
+COMMENT ON COLUMN qgep.od_reach_point.datenherr IS 'Metaattribute Datenherr - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu lÃ¶schen, zu Ã¤ndern bzw. zu verwalten / Gestionnaire donnÃ©es gestionnaire de donnÃ©es, qui estla personne ou l''organisation autorisÃ©e pour gÃ©rer, modifier ou supprimer les donnÃ©es de cette table/classe';
  ALTER TABLE qgep.od_reach_point ADD COLUMN datenlieferant varchar(50) ;
 COMMENT ON COLUMN qgep.od_reach_point.datenlieferant IS 'Metaattribute Datenlieferant - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / xxx_Datenlieferant ';
 -------
@@ -65,18 +65,18 @@ CREATE TABLE qgep.od_structure_part
 WITH (
    OIDS = False
 );
-COMMENT ON COLUMN qgep.od_structure_part.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+COMMENT ON COLUMN qgep.od_structure_part.obj_id IS 'INTERLIS STANDARD OID (with Postfix/PrÃ¤fix) or UUOID, see www.interlis.ch';
  ALTER TABLE qgep.od_structure_part ADD COLUMN identifier  varchar(20) ;
  CREATE UNIQUE INDEX in_od_structure_part_identifier ON qgep.od_structure_part USING btree (identifier);
 COMMENT ON COLUMN qgep.od_structure_part.identifier IS ' /  / ';
  ALTER TABLE qgep.od_structure_part ADD COLUMN remark  varchar(80) ;
-COMMENT ON COLUMN qgep.od_structure_part.remark IS ' / Allgemeine Bemerkungen / Remarques générales';
+COMMENT ON COLUMN qgep.od_structure_part.remark IS ' / Allgemeine Bemerkungen / Remarques gÃ©nÃ©rales';
  ALTER TABLE qgep.od_structure_part ADD COLUMN renovation_demand  varchar(50) ;
 COMMENT ON COLUMN qgep.od_structure_part.renovation_demand IS ' e';
  ALTER TABLE qgep.od_structure_part ADD COLUMN last_modification timestamp without time zone ;
 COMMENT ON COLUMN qgep.od_structure_part.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
  ALTER TABLE qgep.od_structure_part ADD COLUMN datenherr varchar(50) ;
-COMMENT ON COLUMN qgep.od_structure_part.datenherr IS 'Metaattribute Datenherr - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Gestionnaire données gestionnaire de données, qui estla personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
+COMMENT ON COLUMN qgep.od_structure_part.datenherr IS 'Metaattribute Datenherr - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu lÃ¶schen, zu Ã¤ndern bzw. zu verwalten / Gestionnaire donnÃ©es gestionnaire de donnÃ©es, qui estla personne ou l''organisation autorisÃ©e pour gÃ©rer, modifier ou supprimer les donnÃ©es de cette table/classe';
  ALTER TABLE qgep.od_structure_part ADD COLUMN datenlieferant varchar(50) ;
 COMMENT ON COLUMN qgep.od_structure_part.datenlieferant IS 'Metaattribute Datenlieferant - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / xxx_Datenlieferant ';
 -------
@@ -88,16 +88,16 @@ CREATE TABLE qgep.od_wastewater_networkelement
 WITH (
    OIDS = False
 );
-COMMENT ON COLUMN qgep.od_wastewater_networkelement.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+COMMENT ON COLUMN qgep.od_wastewater_networkelement.obj_id IS 'INTERLIS STANDARD OID (with Postfix/PrÃ¤fix) or UUOID, see www.interlis.ch';
  ALTER TABLE qgep.od_wastewater_networkelement ADD COLUMN identifier  varchar(20) ;
  CREATE UNIQUE INDEX in_od_wastewater_networkelement_identifier ON qgep.od_wastewater_networkelement USING btree (identifier);
 COMMENT ON COLUMN qgep.od_wastewater_networkelement.identifier IS ' /  / ';
  ALTER TABLE qgep.od_wastewater_networkelement ADD COLUMN remark  varchar(80) ;
-COMMENT ON COLUMN qgep.od_wastewater_networkelement.remark IS ' / Allgemeine Bemerkungen / Remarques générales';
+COMMENT ON COLUMN qgep.od_wastewater_networkelement.remark IS ' / Allgemeine Bemerkungen / Remarques gÃ©nÃ©rales';
  ALTER TABLE qgep.od_wastewater_networkelement ADD COLUMN last_modification timestamp without time zone ;
 COMMENT ON COLUMN qgep.od_wastewater_networkelement.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
  ALTER TABLE qgep.od_wastewater_networkelement ADD COLUMN datenherr varchar(50) ;
-COMMENT ON COLUMN qgep.od_wastewater_networkelement.datenherr IS 'Metaattribute Datenherr - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Gestionnaire données gestionnaire de données, qui estla personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
+COMMENT ON COLUMN qgep.od_wastewater_networkelement.datenherr IS 'Metaattribute Datenherr - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu lÃ¶schen, zu Ã¤ndern bzw. zu verwalten / Gestionnaire donnÃ©es gestionnaire de donnÃ©es, qui estla personne ou l''organisation autorisÃ©e pour gÃ©rer, modifier ou supprimer les donnÃ©es de cette table/classe';
  ALTER TABLE qgep.od_wastewater_networkelement ADD COLUMN datenlieferant varchar(50) ;
 COMMENT ON COLUMN qgep.od_wastewater_networkelement.datenlieferant IS 'Metaattribute Datenlieferant - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / xxx_Datenlieferant ';
 -------
@@ -109,20 +109,20 @@ CREATE TABLE qgep.od_pipe_profile
 WITH (
    OIDS = False
 );
-COMMENT ON COLUMN qgep.od_pipe_profile.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+COMMENT ON COLUMN qgep.od_pipe_profile.obj_id IS 'INTERLIS STANDARD OID (with Postfix/PrÃ¤fix) or UUOID, see www.interlis.ch';
  ALTER TABLE qgep.od_pipe_profile ADD COLUMN height_width_ratio  decimal(3,2) ;
-COMMENT ON COLUMN qgep.od_pipe_profile.height_width_ratio IS 'height-width ratio / Verhältnis der Höhe zur Breite / Rapport entre la hauteur et la largeur';
+COMMENT ON COLUMN qgep.od_pipe_profile.height_width_ratio IS 'height-width ratio / VerhÃ¤ltnis der HÃ¶he zur Breite / Rapport entre la hauteur et la largeur';
  ALTER TABLE qgep.od_pipe_profile ADD COLUMN identifier  varchar(20) ;
  CREATE UNIQUE INDEX in_od_pipe_profile_identifier ON qgep.od_pipe_profile USING btree (identifier);
 COMMENT ON COLUMN qgep.od_pipe_profile.identifier IS ' /  / ';
  ALTER TABLE qgep.od_pipe_profile ADD COLUMN profile_type  varchar(50) ;
 COMMENT ON COLUMN qgep.od_pipe_profile.profile_type IS 'Type of profile / Typ des Profils / Type du profil';
  ALTER TABLE qgep.od_pipe_profile ADD COLUMN remark  varchar(80) ;
-COMMENT ON COLUMN qgep.od_pipe_profile.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
+COMMENT ON COLUMN qgep.od_pipe_profile.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques gÃ©nÃ©rales';
  ALTER TABLE qgep.od_pipe_profile ADD COLUMN last_modification timestamp without time zone ;
 COMMENT ON COLUMN qgep.od_pipe_profile.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
  ALTER TABLE qgep.od_pipe_profile ADD COLUMN datenherr varchar(50) ;
-COMMENT ON COLUMN qgep.od_pipe_profile.datenherr IS 'Metaattribute Datenherr - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Gestionnaire données gestionnaire de données, qui estla personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
+COMMENT ON COLUMN qgep.od_pipe_profile.datenherr IS 'Metaattribute Datenherr - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu lÃ¶schen, zu Ã¤ndern bzw. zu verwalten / Gestionnaire donnÃ©es gestionnaire de donnÃ©es, qui estla personne ou l''organisation autorisÃ©e pour gÃ©rer, modifier ou supprimer les donnÃ©es de cette table/classe';
  ALTER TABLE qgep.od_pipe_profile ADD COLUMN datenlieferant varchar(50) ;
 COMMENT ON COLUMN qgep.od_pipe_profile.datenlieferant IS 'Metaattribute Datenlieferant - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / xxx_Datenlieferant ';
 -------
@@ -134,19 +134,19 @@ CREATE TABLE qgep.od_wastewater_structure
 WITH (
    OIDS = False
 );
-COMMENT ON COLUMN qgep.od_wastewater_structure.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+COMMENT ON COLUMN qgep.od_wastewater_structure.obj_id IS 'INTERLIS STANDARD OID (with Postfix/PrÃ¤fix) or UUOID, see www.interlis.ch';
  ALTER TABLE qgep.od_wastewater_structure ADD COLUMN accessibility  varchar(50) ;
 COMMENT ON COLUMN qgep.od_wastewater_structure.accessibility IS ' t';
  ALTER TABLE qgep.od_wastewater_structure ADD COLUMN contract_section  varchar(50) ;
-COMMENT ON COLUMN qgep.od_wastewater_structure.contract_section IS ' / Nummer des Bauloses / Numéro du lot de construction';
+COMMENT ON COLUMN qgep.od_wastewater_structure.contract_section IS ' / Nummer des Bauloses / NumÃ©ro du lot de construction';
 SELECT AddGeometryColumn('qgep', 'od_wastewater_structure', 'detail_geometry_geometry', 21781, 'POLYGON', 2);
-COMMENT ON COLUMN qgep.od_wastewater_structure.detail_geometry_geometry IS ' / Detaillierte Geometrie insbesondere bei Spezialbauwerken. Bei Normschächten mit Dimension1 und 2 arbeiten. Dito bei normierten Versickerungsanlagen. In INTERLIS OPTIONAL gesetzt, da nicht bei allen Abwasserbauwerken zwingend. Kanäle haben normalerweise';
+COMMENT ON COLUMN qgep.od_wastewater_structure.detail_geometry_geometry IS ' / Detaillierte Geometrie insbesondere bei Spezialbauwerken. Bei NormschÃ¤chten mit Dimension1 und 2 arbeiten. Dito bei normierten Versickerungsanlagen. In INTERLIS OPTIONAL gesetzt, da nicht bei allen Abwasserbauwerken zwingend. KanÃ¤le haben normalerweise';
 SELECT AddGeometryColumn('qgep', 'od_wastewater_structure', 'detail_geometry3d_geometry', 21781, 'POLYGON', 2);
-COMMENT ON COLUMN qgep.od_wastewater_structure.detail_geometry3d_geometry IS 'yyy / Detaillierte Geometrie (3D) insbesondere bei Spezialbauwerken. Bei Normschächten mit Dimension1 und 2 arbeiten. Dito bei normierten Versickerungsanlagen. In INTERLIS / GEOMETRIE_DETAILLEE3D: Géométrie détaillée particulièrement pour un OUVRAGE_SPECI';
+COMMENT ON COLUMN qgep.od_wastewater_structure.detail_geometry3d_geometry IS 'yyy / Detaillierte Geometrie (3D) insbesondere bei Spezialbauwerken. Bei NormschÃ¤chten mit Dimension1 und 2 arbeiten. Dito bei normierten Versickerungsanlagen. In INTERLIS / GEOMETRIE_DETAILLEE3D: GÃ©omÃ©trie dÃ©taillÃ©e particuliÃ¨rement pour un OUVRAGE_SPECI';
  ALTER TABLE qgep.od_wastewater_structure ADD COLUMN disposition_state  varchar(50) ;
 COMMENT ON COLUMN qgep.od_wastewater_structure.disposition_state IS 'yyy / Betriebs- und Planungszustand in dem sich das Abwasserbauwerk befindet / Etat de fonctionnement et de planification';
  ALTER TABLE qgep.od_wastewater_structure ADD COLUMN gross_costs  decimal(8,2) ;
-COMMENT ON COLUMN qgep.od_wastewater_structure.gross_costs IS ' / Brutto Erstellungskosten / Coûts bruts des travaux de construction.';
+COMMENT ON COLUMN qgep.od_wastewater_structure.gross_costs IS ' / Brutto Erstellungskosten / CoÃ»ts bruts des travaux de construction.';
  ALTER TABLE qgep.od_wastewater_structure ADD COLUMN identifier  varchar(20) ;
  CREATE UNIQUE INDEX in_od_wastewater_structure_identifier ON qgep.od_wastewater_structure USING btree (identifier);
 COMMENT ON COLUMN qgep.od_wastewater_structure.identifier IS ' /  / ';
@@ -155,27 +155,27 @@ COMMENT ON COLUMN qgep.od_wastewater_structure.inspection_interval IS ' )';
  ALTER TABLE qgep.od_wastewater_structure ADD COLUMN location_name  varchar(50) ;
 COMMENT ON COLUMN qgep.od_wastewater_structure.location_name IS ' e';
  ALTER TABLE qgep.od_wastewater_structure ADD COLUMN remark  varchar(80) ;
-COMMENT ON COLUMN qgep.od_wastewater_structure.remark IS ' / Allgemeine Bemerkungen / Remarques générales';
+COMMENT ON COLUMN qgep.od_wastewater_structure.remark IS ' / Allgemeine Bemerkungen / Remarques gÃ©nÃ©rales';
  ALTER TABLE qgep.od_wastewater_structure ADD COLUMN renovation_demand  varchar(50) ;
-COMMENT ON COLUMN qgep.od_wastewater_structure.renovation_demand IS ' / Dringlichkeitsstufen und Zeithorizont für bauliche Massnahmen / 	Degrés d’urgence et délai de réalisation des mesures constructives';
+COMMENT ON COLUMN qgep.od_wastewater_structure.renovation_demand IS ' / Dringlichkeitsstufen und Zeithorizont fÃ¼r bauliche Massnahmen / 	DegrÃ©s dÂ’urgence et dÃ©lai de rÃ©alisation des mesures constructives';
  ALTER TABLE qgep.od_wastewater_structure ADD COLUMN replacement_value  decimal(8,2) ;
 COMMENT ON COLUMN qgep.od_wastewater_structure.replacement_value IS 'y.';
  ALTER TABLE qgep.od_wastewater_structure ADD COLUMN rv_base_year  smallint ;
-COMMENT ON COLUMN qgep.od_wastewater_structure.rv_base_year IS ' / Basisjahr für die Kalkulation des Wiederbeschaffungswertes (siehe auch Wiederbeschaffungswert) / TO DO';
+COMMENT ON COLUMN qgep.od_wastewater_structure.rv_base_year IS ' / Basisjahr fÃ¼r die Kalkulation des Wiederbeschaffungswertes (siehe auch Wiederbeschaffungswert) / TO DO';
  ALTER TABLE qgep.od_wastewater_structure ADD COLUMN rv_construction_type  varchar(50) ;
-COMMENT ON COLUMN qgep.od_wastewater_structure.rv_construction_type IS 'yyy / Grobe Einteilung der Bauart des Abwasserbauwerkes als Inputwert für die Berechnung des Wiederbeschaffungswertes. / Valeur de remplacement du type de construction';
+COMMENT ON COLUMN qgep.od_wastewater_structure.rv_construction_type IS 'yyy / Grobe Einteilung der Bauart des Abwasserbauwerkes als Inputwert fÃ¼r die Berechnung des Wiederbeschaffungswertes. / Valeur de remplacement du type de construction';
  ALTER TABLE qgep.od_wastewater_structure ADD COLUMN structure_condition  varchar(50) ;
 COMMENT ON COLUMN qgep.od_wastewater_structure.structure_condition IS ' a';
  ALTER TABLE qgep.od_wastewater_structure ADD COLUMN subsidies  decimal(8,2) ;
-COMMENT ON COLUMN qgep.od_wastewater_structure.subsidies IS ' / Staats- und Bundesbeiträge / Contributions des cantons et de la confédération';
+COMMENT ON COLUMN qgep.od_wastewater_structure.subsidies IS ' / Staats- und BundesbeitrÃ¤ge / Contributions des cantons et de la confÃ©dÃ©ration';
  ALTER TABLE qgep.od_wastewater_structure ADD COLUMN year_of_construction  smallint ;
-COMMENT ON COLUMN qgep.od_wastewater_structure.year_of_construction IS ' / Jahr der Inbetriebsetzung (Schlussabnahme). Falls unbekannt = 1800 setzen (tiefster Wert des Wertebereiches) / Année de mise en service (réception finale).';
+COMMENT ON COLUMN qgep.od_wastewater_structure.year_of_construction IS ' / Jahr der Inbetriebsetzung (Schlussabnahme). Falls unbekannt = 1800 setzen (tiefster Wert des Wertebereiches) / AnnÃ©e de mise en service (rÃ©ception finale).';
  ALTER TABLE qgep.od_wastewater_structure ADD COLUMN year_of_replacement  smallint ;
 COMMENT ON COLUMN qgep.od_wastewater_structure.year_of_replacement IS ' e';
  ALTER TABLE qgep.od_wastewater_structure ADD COLUMN last_modification timestamp without time zone ;
 COMMENT ON COLUMN qgep.od_wastewater_structure.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
  ALTER TABLE qgep.od_wastewater_structure ADD COLUMN datenherr varchar(50) ;
-COMMENT ON COLUMN qgep.od_wastewater_structure.datenherr IS 'Metaattribute Datenherr - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Gestionnaire données gestionnaire de données, qui estla personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
+COMMENT ON COLUMN qgep.od_wastewater_structure.datenherr IS 'Metaattribute Datenherr - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu lÃ¶schen, zu Ã¤ndern bzw. zu verwalten / Gestionnaire donnÃ©es gestionnaire de donnÃ©es, qui estla personne ou l''organisation autorisÃ©e pour gÃ©rer, modifier ou supprimer les donnÃ©es de cette table/classe';
  ALTER TABLE qgep.od_wastewater_structure ADD COLUMN datenlieferant varchar(50) ;
 COMMENT ON COLUMN qgep.od_wastewater_structure.datenlieferant IS 'Metaattribute Datenlieferant - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / xxx_Datenlieferant ';
 -------
@@ -187,7 +187,7 @@ CREATE TABLE qgep.od_benching
 WITH (
    OIDS = False
 );
-COMMENT ON COLUMN qgep.od_benching.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+COMMENT ON COLUMN qgep.od_benching.obj_id IS 'INTERLIS STANDARD OID (with Postfix/PrÃ¤fix) or UUOID, see www.interlis.ch';
  ALTER TABLE qgep.od_benching ADD COLUMN type  varchar(50) ;
 COMMENT ON COLUMN qgep.od_benching.type IS ' /  / ';
 -------
@@ -199,9 +199,9 @@ CREATE TABLE qgep.od_dryweather_flume
 WITH (
    OIDS = False
 );
-COMMENT ON COLUMN qgep.od_dryweather_flume.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+COMMENT ON COLUMN qgep.od_dryweather_flume.obj_id IS 'INTERLIS STANDARD OID (with Postfix/PrÃ¤fix) or UUOID, see www.interlis.ch';
  ALTER TABLE qgep.od_dryweather_flume ADD COLUMN material  varchar(50) ;
-COMMENT ON COLUMN qgep.od_dryweather_flume.material IS ' / Material der Ausbildung oder Auskleidung der Trockenwetterrinne / Materiau de fabrication ou de revêtement de la cunette de débit temps sec';
+COMMENT ON COLUMN qgep.od_dryweather_flume.material IS ' / Material der Ausbildung oder Auskleidung der Trockenwetterrinne / Materiau de fabrication ou de revÃªtement de la cunette de dÃ©bit temps sec';
 -------
 CREATE TABLE qgep.od_cover
 (
@@ -211,23 +211,23 @@ CREATE TABLE qgep.od_cover
 WITH (
    OIDS = False
 );
-COMMENT ON COLUMN qgep.od_cover.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+COMMENT ON COLUMN qgep.od_cover.obj_id IS 'INTERLIS STANDARD OID (with Postfix/PrÃ¤fix) or UUOID, see www.interlis.ch';
  ALTER TABLE qgep.od_cover ADD COLUMN brand  varchar(50) ;
 COMMENT ON COLUMN qgep.od_cover.brand IS ' n';
  ALTER TABLE qgep.od_cover ADD COLUMN cover_shape  varchar(50) ;
 COMMENT ON COLUMN qgep.od_cover.cover_shape IS ' / Form des Deckels / Forme du couvercle';
  ALTER TABLE qgep.od_cover ADD COLUMN depth  smallint ;
-COMMENT ON COLUMN qgep.od_cover.depth IS 'yyyredundantes Funktionsattribut Maechtigkeit. Numerisch [mm]. Funktion (berechneter Wert) = zugehöriger Deckel.Kote minus Abwasserknoten.Sohlenkote.(falls die Sohlenkote nicht separat erfasst, dann ist es die tiefer liegende Hal-tungspunkt.Kote) / redund';
+COMMENT ON COLUMN qgep.od_cover.depth IS 'yyyredundantes Funktionsattribut Maechtigkeit. Numerisch [mm]. Funktion (berechneter Wert) = zugehÃ¶riger Deckel.Kote minus Abwasserknoten.Sohlenkote.(falls die Sohlenkote nicht separat erfasst, dann ist es die tiefer liegende Hal-tungspunkt.Kote) / redund';
  ALTER TABLE qgep.od_cover ADD COLUMN diameter  smallint ;
 COMMENT ON COLUMN qgep.od_cover.diameter IS ' / Abmessung des Deckels (bei eckigen Deckeln minimale Abmessung) / Dimension du couvercle (dimension minimale pour couvercle anguleux)';
  ALTER TABLE qgep.od_cover ADD COLUMN fastening  varchar(50) ;
 COMMENT ON COLUMN qgep.od_cover.fastening IS ' / Befestigungsart des Deckels / Genre de fixation du couvercle';
  ALTER TABLE qgep.od_cover ADD COLUMN level  decimal(4,3) ;
-COMMENT ON COLUMN qgep.od_cover.level IS ' / Deckelhöhe / Cote du couvercle';
+COMMENT ON COLUMN qgep.od_cover.level IS ' / DeckelhÃ¶he / Cote du couvercle';
  ALTER TABLE qgep.od_cover ADD COLUMN location_accuracy  varchar(50) ;
-COMMENT ON COLUMN qgep.od_cover.location_accuracy IS ' / Quantifizierung der Genauigkeit der Lage einer Koordinate. / Plage de précision des coordonnées planimétriques du couvercle.';
+COMMENT ON COLUMN qgep.od_cover.location_accuracy IS ' / Quantifizierung der Genauigkeit der Lage einer Koordinate. / Plage de prÃ©cision des coordonnÃ©es planimÃ©triques du couvercle.';
  ALTER TABLE qgep.od_cover ADD COLUMN material  varchar(50) ;
-COMMENT ON COLUMN qgep.od_cover.material IS ' / Deckelmaterial / Matériau du couvercle';
+COMMENT ON COLUMN qgep.od_cover.material IS ' / Deckelmaterial / MatÃ©riau du couvercle';
 SELECT AddGeometryColumn('qgep', 'od_cover', 'situation_geometry', 21781, 'POINT', 2);
 COMMENT ON COLUMN qgep.od_cover.situation_geometry IS 'Situation of cover (cover hole) / Lage des Deckels (Pickelloch) / xxx_Situation du couvercle (Pickelloch)';
  ALTER TABLE qgep.od_cover ADD COLUMN sludge_bucket  varchar(50) ;
@@ -243,7 +243,7 @@ CREATE TABLE qgep.od_access_aid
 WITH (
    OIDS = False
 );
-COMMENT ON COLUMN qgep.od_access_aid.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+COMMENT ON COLUMN qgep.od_access_aid.obj_id IS 'INTERLIS STANDARD OID (with Postfix/PrÃ¤fix) or UUOID, see www.interlis.ch';
  ALTER TABLE qgep.od_access_aid ADD COLUMN type  varchar(50) ;
 COMMENT ON COLUMN qgep.od_access_aid.type IS ' e';
 -------
@@ -255,7 +255,7 @@ CREATE TABLE qgep.od_dryweather_downspout
 WITH (
    OIDS = False
 );
-COMMENT ON COLUMN qgep.od_dryweather_downspout.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+COMMENT ON COLUMN qgep.od_dryweather_downspout.obj_id IS 'INTERLIS STANDARD OID (with Postfix/PrÃ¤fix) or UUOID, see www.interlis.ch';
  ALTER TABLE qgep.od_dryweather_downspout ADD COLUMN diameter  smallint ;
 COMMENT ON COLUMN qgep.od_dryweather_downspout.diameter IS ' /  / ';
 -------
@@ -267,25 +267,25 @@ CREATE TABLE qgep.od_channel
 WITH (
    OIDS = False
 );
-COMMENT ON COLUMN qgep.od_channel.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+COMMENT ON COLUMN qgep.od_channel.obj_id IS 'INTERLIS STANDARD OID (with Postfix/PrÃ¤fix) or UUOID, see www.interlis.ch';
  ALTER TABLE qgep.od_channel ADD COLUMN bedding_encasement  varchar(50) ;
-COMMENT ON COLUMN qgep.od_channel.bedding_encasement IS 'yyy / Art und Weise der unmittelbaren Rohrumgebung im Boden: Bettungsschicht (Unterlage der Leitung),  Verdämmung (seitliche Auffüllung), Schutzschicht / Lit de pose (assise de la conduite), bourrage latéral (remblai latéral), couche de protection';
+COMMENT ON COLUMN qgep.od_channel.bedding_encasement IS 'yyy / Art und Weise der unmittelbaren Rohrumgebung im Boden: Bettungsschicht (Unterlage der Leitung),  VerdÃ¤mmung (seitliche AuffÃ¼llung), Schutzschicht / Lit de pose (assise de la conduite), bourrage latÃ©ral (remblai latÃ©ral), couche de protection';
  ALTER TABLE qgep.od_channel ADD COLUMN connection_type  varchar(50) ;
 COMMENT ON COLUMN qgep.od_channel.connection_type IS 'Types of connection / Verbindungstypen / Types de raccordement';
  ALTER TABLE qgep.od_channel ADD COLUMN function_amelioration  varchar(50) ;
-COMMENT ON COLUMN qgep.od_channel.function_amelioration IS ' / Zur Unterscheidung der Funktion einer Leitung bei Meliorationen (Entwässerungen), Modellerweiterung TG / ';
+COMMENT ON COLUMN qgep.od_channel.function_amelioration IS ' / Zur Unterscheidung der Funktion einer Leitung bei Meliorationen (EntwÃ¤sserungen), Modellerweiterung TG / ';
  ALTER TABLE qgep.od_channel ADD COLUMN function_hierarchic  varchar(50) ;
 COMMENT ON COLUMN qgep.od_channel.function_hierarchic IS 'yn';
  ALTER TABLE qgep.od_channel ADD COLUMN function_hydraulic  varchar(50) ;
-COMMENT ON COLUMN qgep.od_channel.function_hydraulic IS 'yyy / Art des Kanals hinsichtlich hydraulischer Ausführung (baulich) / Genre de canalisation par rapport à sa fonction hydraulique';
+COMMENT ON COLUMN qgep.od_channel.function_hydraulic IS 'yyy / Art des Kanals hinsichtlich hydraulischer AusfÃ¼hrung (baulich) / Genre de canalisation par rapport Ã  sa fonction hydraulique';
  ALTER TABLE qgep.od_channel ADD COLUMN jetting_interval  decimal(2,2) ;
-COMMENT ON COLUMN qgep.od_channel.jetting_interval IS ' / Abstände in welchen der Kanal gespült werden sollte / Fréquence à laquelle une canalisation devrait subir un curage (années)';
+COMMENT ON COLUMN qgep.od_channel.jetting_interval IS ' / AbstÃ¤nde in welchen der Kanal gespÃ¼lt werden sollte / FrÃ©quence Ã  laquelle une canalisation devrait subir un curage (annÃ©es)';
  ALTER TABLE qgep.od_channel ADD COLUMN pipe_length  decimal(5,2) ;
-COMMENT ON COLUMN qgep.od_channel.pipe_length IS ' / Baulänge der Einzelrohre oder Fugenabstände bei Ortsbetonkanälen / Longueur de chaque tuyau ou distance des joints pour les canalisations en béton coulé sur place';
+COMMENT ON COLUMN qgep.od_channel.pipe_length IS ' / BaulÃ¤nge der Einzelrohre oder FugenabstÃ¤nde bei OrtsbetonkanÃ¤len / Longueur de chaque tuyau ou distance des joints pour les canalisations en bÃ©ton coulÃ© sur place';
  ALTER TABLE qgep.od_channel ADD COLUMN seepage  varchar(50) ;
-COMMENT ON COLUMN qgep.od_channel.seepage IS 'yyy Beschreibung des oberliegenden Materials bei Saugern / Beschreibung des oberliegenden Materials bei Saugern / Description du matériau de remplissage';
+COMMENT ON COLUMN qgep.od_channel.seepage IS 'yyy Beschreibung des oberliegenden Materials bei Saugern / Beschreibung des oberliegenden Materials bei Saugern / Description du matÃ©riau de remplissage';
  ALTER TABLE qgep.od_channel ADD COLUMN usage_current  varchar(50) ;
-COMMENT ON COLUMN qgep.od_channel.usage_current IS ' / Für Primäre Abwasseranlagen gilt: heute zulässige Nutzung. Für Sekundäre Abwasseranlagen gilt: heute tatsächliche Nutzung. / Pour les ouvrages du réseau primaire: utilisation actuelle autorisée pour les ouvrages du réseau secondaire: utilisation actuel';
+COMMENT ON COLUMN qgep.od_channel.usage_current IS ' / FÃ¼r PrimÃ¤re Abwasseranlagen gilt: heute zulÃ¤ssige Nutzung. FÃ¼r SekundÃ¤re Abwasseranlagen gilt: heute tatsÃ¤chliche Nutzung. / Pour les ouvrages du rÃ©seau primaire: utilisation actuelle autorisÃ©e pour les ouvrages du rÃ©seau secondaire: utilisation actuel';
  ALTER TABLE qgep.od_channel ADD COLUMN usage_planned  varchar(50) ;
 COMMENT ON COLUMN qgep.od_channel.usage_planned IS ' .';
 -------
@@ -297,11 +297,11 @@ CREATE TABLE qgep.od_discharge_point
 WITH (
    OIDS = False
 );
-COMMENT ON COLUMN qgep.od_discharge_point.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+COMMENT ON COLUMN qgep.od_discharge_point.obj_id IS 'INTERLIS STANDARD OID (with Postfix/PrÃ¤fix) or UUOID, see www.interlis.ch';
  ALTER TABLE qgep.od_discharge_point ADD COLUMN depth  smallint ;
 COMMENT ON COLUMN qgep.od_discharge_point.depth IS ' /  / ';
  ALTER TABLE qgep.od_discharge_point ADD COLUMN highwater_level  decimal(4,3) ;
-COMMENT ON COLUMN qgep.od_discharge_point.highwater_level IS ' / Massgebliche Hochwasserkote des Vorflutereinlaufs / Cote de crue déterminante au point de rejet';
+COMMENT ON COLUMN qgep.od_discharge_point.highwater_level IS ' / Massgebliche Hochwasserkote des Vorflutereinlaufs / Cote de crue dÃ©terminante au point de rejet';
  ALTER TABLE qgep.od_discharge_point ADD COLUMN upper_elevation  decimal(4,3) ;
 COMMENT ON COLUMN qgep.od_discharge_point.upper_elevation IS ' e';
  ALTER TABLE qgep.od_discharge_point ADD COLUMN waterlevel_hydraulic  decimal(4,3) ;
@@ -315,11 +315,11 @@ CREATE TABLE qgep.od_manhole
 WITH (
    OIDS = False
 );
-COMMENT ON COLUMN qgep.od_manhole.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+COMMENT ON COLUMN qgep.od_manhole.obj_id IS 'INTERLIS STANDARD OID (with Postfix/PrÃ¤fix) or UUOID, see www.interlis.ch';
  ALTER TABLE qgep.od_manhole ADD COLUMN dimension1  smallint ;
-COMMENT ON COLUMN qgep.od_manhole.dimension1 IS ' / Dimension1 des Schachtes (grösstes Innenmass). / Dimension1 de la chambre (plus grande mesure intérieure).';
+COMMENT ON COLUMN qgep.od_manhole.dimension1 IS ' / Dimension1 des Schachtes (grÃ¶sstes Innenmass). / Dimension1 de la chambre (plus grande mesure intÃ©rieure).';
  ALTER TABLE qgep.od_manhole ADD COLUMN dimension2  smallint ;
-COMMENT ON COLUMN qgep.od_manhole.dimension2 IS ' / Dimension2 des Schachtes (kleinstes Innenmass). Bei runden Schächten wird Dimension2 leer gelassen, bei ovalen abgefüllt. Für eckige Schächte Detailgeometrie verwenden. / Dimension2 de la chambre (plus petite mesure intérieure).';
+COMMENT ON COLUMN qgep.od_manhole.dimension2 IS ' / Dimension2 des Schachtes (kleinstes Innenmass). Bei runden SchÃ¤chten wird Dimension2 leer gelassen, bei ovalen abgefÃ¼llt. FÃ¼r eckige SchÃ¤chte Detailgeometrie verwenden. / Dimension2 de la chambre (plus petite mesure intÃ©rieure).';
  ALTER TABLE qgep.od_manhole ADD COLUMN function  varchar(50) ;
 COMMENT ON COLUMN qgep.od_manhole.function IS ' n';
  ALTER TABLE qgep.od_manhole ADD COLUMN material  varchar(50) ;
@@ -335,9 +335,9 @@ CREATE TABLE qgep.od_special_structure
 WITH (
    OIDS = False
 );
-COMMENT ON COLUMN qgep.od_special_structure.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+COMMENT ON COLUMN qgep.od_special_structure.obj_id IS 'INTERLIS STANDARD OID (with Postfix/PrÃ¤fix) or UUOID, see www.interlis.ch';
  ALTER TABLE qgep.od_special_structure ADD COLUMN bypass  varchar(50) ;
-COMMENT ON COLUMN qgep.od_special_structure.bypass IS ' / Bypass zur Umleitung des Wassers (z.B. während Unterhalt oder  im Havariefall) / Bypass pour détourner les eaux (par exemple durant des opérations de maintenance ou en cas d’avaries)';
+COMMENT ON COLUMN qgep.od_special_structure.bypass IS ' / Bypass zur Umleitung des Wassers (z.B. wÃ¤hrend Unterhalt oder  im Havariefall) / Bypass pour dÃ©tourner les eaux (par exemple durant des opÃ©rations de maintenance ou en cas dÂ’avaries)';
  ALTER TABLE qgep.od_special_structure ADD COLUMN depth  smallint ;
 COMMENT ON COLUMN qgep.od_special_structure.depth IS ' /  / ';
  ALTER TABLE qgep.od_special_structure ADD COLUMN function  varchar(50) ;
@@ -345,7 +345,7 @@ COMMENT ON COLUMN qgep.od_special_structure.function IS ' n';
  ALTER TABLE qgep.od_special_structure ADD COLUMN stormwatertank_arrangement  varchar(50) ;
 COMMENT ON COLUMN qgep.od_special_structure.stormwatertank_arrangement IS ' N';
  ALTER TABLE qgep.od_special_structure ADD COLUMN upper_elevation  decimal(4,3) ;
-COMMENT ON COLUMN qgep.od_special_structure.upper_elevation IS ' / Höchster Punkt des Bauwerks (Decke), aussen / Point le plus élevé de la construction';
+COMMENT ON COLUMN qgep.od_special_structure.upper_elevation IS ' / HÃ¶chster Punkt des Bauwerks (Decke), aussen / Point le plus Ã©levÃ© de la construction';
 -------
 CREATE TABLE qgep.od_infiltration_installation
 (
@@ -355,17 +355,17 @@ CREATE TABLE qgep.od_infiltration_installation
 WITH (
    OIDS = False
 );
-COMMENT ON COLUMN qgep.od_infiltration_installation.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+COMMENT ON COLUMN qgep.od_infiltration_installation.obj_id IS 'INTERLIS STANDARD OID (with Postfix/PrÃ¤fix) or UUOID, see www.interlis.ch';
  ALTER TABLE qgep.od_infiltration_installation ADD COLUMN absorption_capacity  decimal(5,3) ;
 COMMENT ON COLUMN qgep.od_infiltration_installation.absorption_capacity IS ' l';
  ALTER TABLE qgep.od_infiltration_installation ADD COLUMN defects  varchar(50) ;
 COMMENT ON COLUMN qgep.od_infiltration_installation.defects IS ' .';
  ALTER TABLE qgep.od_infiltration_installation ADD COLUMN depth  smallint ;
-COMMENT ON COLUMN qgep.od_infiltration_installation.depth IS 'yyy_Funktion (berechneter Wert) = repräsentative Abwasserknoten.Sohlenkote minus zugehörige Deckenkote des Bauwerks falls Detailgeometrie vorhanden, sonst Funktion (berechneter Wert) = Abwasserknoten.Sohlenkote minus zugehörige Deckel.Kote des Bauwerks / ';
+COMMENT ON COLUMN qgep.od_infiltration_installation.depth IS 'yyy_Funktion (berechneter Wert) = reprÃ¤sentative Abwasserknoten.Sohlenkote minus zugehÃ¶rige Deckenkote des Bauwerks falls Detailgeometrie vorhanden, sonst Funktion (berechneter Wert) = Abwasserknoten.Sohlenkote minus zugehÃ¶rige Deckel.Kote des Bauwerks / ';
  ALTER TABLE qgep.od_infiltration_installation ADD COLUMN dimension1  smallint ;
-COMMENT ON COLUMN qgep.od_infiltration_installation.dimension1 IS ' / Dimension1 der Versickerungsanlage (grösstes Innenmass) bei der Verwendung von Normbauteilen. Sonst leer lassen und mit Detailgeometrie beschreiben. / Dimension1 de l’installation d’infiltration (plus grande mesure intérieure) lorsqu’elle est utilisée ';
+COMMENT ON COLUMN qgep.od_infiltration_installation.dimension1 IS ' / Dimension1 der Versickerungsanlage (grÃ¶sstes Innenmass) bei der Verwendung von Normbauteilen. Sonst leer lassen und mit Detailgeometrie beschreiben. / Dimension1 de lÂ’installation dÂ’infiltration (plus grande mesure intÃ©rieure) lorsquÂ’elle est utilisÃ©e ';
  ALTER TABLE qgep.od_infiltration_installation ADD COLUMN dimension2  smallint ;
-COMMENT ON COLUMN qgep.od_infiltration_installation.dimension2 IS ' / Dimension2 der Versickerungsanlage (kleinstes Innenmass) bei der Verwendung von Normbauteilen. Sonst leer lassen und mit Detailgeometrie beschreiben. / Dimension2 de la chambre (plus petite mesure intérieure). La dimension2 est à saisir pour des chambr';
+COMMENT ON COLUMN qgep.od_infiltration_installation.dimension2 IS ' / Dimension2 der Versickerungsanlage (kleinstes Innenmass) bei der Verwendung von Normbauteilen. Sonst leer lassen und mit Detailgeometrie beschreiben. / Dimension2 de la chambre (plus petite mesure intÃ©rieure). La dimension2 est Ã  saisir pour des chambr';
  ALTER TABLE qgep.od_infiltration_installation ADD COLUMN distance_to_aquifer  decimal(5,2) ;
 COMMENT ON COLUMN qgep.od_infiltration_installation.distance_to_aquifer IS ' .';
  ALTER TABLE qgep.od_infiltration_installation ADD COLUMN effective_area  decimal(6,2) ;
@@ -381,11 +381,11 @@ COMMENT ON COLUMN qgep.od_infiltration_installation.seepage_utilization IS ' .';
  ALTER TABLE qgep.od_infiltration_installation ADD COLUMN type  varchar(50) ;
 COMMENT ON COLUMN qgep.od_infiltration_installation.type IS ' .';
  ALTER TABLE qgep.od_infiltration_installation ADD COLUMN upper_elevation  decimal(4,3) ;
-COMMENT ON COLUMN qgep.od_infiltration_installation.upper_elevation IS ' / Höchster Punkt des Bauwerks (Decke), aussen / Point le plus élevé de la construction';
+COMMENT ON COLUMN qgep.od_infiltration_installation.upper_elevation IS ' / HÃ¶chster Punkt des Bauwerks (Decke), aussen / Point le plus Ã©levÃ© de la construction';
  ALTER TABLE qgep.od_infiltration_installation ADD COLUMN vehicle_access  varchar(50) ;
 COMMENT ON COLUMN qgep.od_infiltration_installation.vehicle_access IS ' t';
  ALTER TABLE qgep.od_infiltration_installation ADD COLUMN watertightness  varchar(50) ;
-COMMENT ON COLUMN qgep.od_infiltration_installation.watertightness IS ' / Wasserdichtheit gegen Oberflächenwasser.  Nur bei Anlagen mit Schächten. / Etanchéité contre des eaux superficielles. Uniquement pour des installations avec chambres.';
+COMMENT ON COLUMN qgep.od_infiltration_installation.watertightness IS ' / Wasserdichtheit gegen OberflÃ¤chenwasser.  Nur bei Anlagen mit SchÃ¤chten. / EtanchÃ©itÃ© contre des eaux superficielles. Uniquement pour des installations avec chambres.';
 -------
 CREATE TABLE qgep.od_reach
 (
@@ -395,31 +395,31 @@ CREATE TABLE qgep.od_reach
 WITH (
    OIDS = False
 );
-COMMENT ON COLUMN qgep.od_reach.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+COMMENT ON COLUMN qgep.od_reach.obj_id IS 'INTERLIS STANDARD OID (with Postfix/PrÃ¤fix) or UUOID, see www.interlis.ch';
  ALTER TABLE qgep.od_reach ADD COLUMN clear_height  smallint ;
-COMMENT ON COLUMN qgep.od_reach.clear_height IS 'yyy_Maximale Innenhöhe des Kanalprofiles / Maximale Innenhöhe des Kanalprofiles / Hauteur intérieure maximale du profil';
+COMMENT ON COLUMN qgep.od_reach.clear_height IS 'yyy_Maximale InnenhÃ¶he des Kanalprofiles / Maximale InnenhÃ¶he des Kanalprofiles / Hauteur intÃ©rieure maximale du profil';
  ALTER TABLE qgep.od_reach ADD COLUMN coefficient_of_friction  smallint ;
-COMMENT ON COLUMN qgep.od_reach.coefficient_of_friction IS 'yyy http://www.linguee.com/english-german/search?source=auto&query=reibungsbeiwert / Hydraulische Kenngrösse zur Beschreibung der Beschaffenheit der Kanalwandung. Beiwert für die Formeln nach Manning-Strickler (K oder kstr) / Constante de rugosité selon M';
+COMMENT ON COLUMN qgep.od_reach.coefficient_of_friction IS 'yyy http://www.linguee.com/english-german/search?source=auto&query=reibungsbeiwert / Hydraulische KenngrÃ¶sse zur Beschreibung der Beschaffenheit der Kanalwandung. Beiwert fÃ¼r die Formeln nach Manning-Strickler (K oder kstr) / Constante de rugositÃ© selon M';
  ALTER TABLE qgep.od_reach ADD COLUMN elevation_determination  varchar(50) ;
 COMMENT ON COLUMN qgep.od_reach.elevation_determination IS ' .';
  ALTER TABLE qgep.od_reach ADD COLUMN horizontal_positioning  varchar(50) ;
 COMMENT ON COLUMN qgep.od_reach.horizontal_positioning IS 'y.';
  ALTER TABLE qgep.od_reach ADD COLUMN inside_coating  varchar(50) ;
-COMMENT ON COLUMN qgep.od_reach.inside_coating IS ' / Schutz der Innenwände des Kanals / Protection de la paroi intérieur de la canalisation';
+COMMENT ON COLUMN qgep.od_reach.inside_coating IS ' / Schutz der InnenwÃ¤nde des Kanals / Protection de la paroi intÃ©rieur de la canalisation';
  ALTER TABLE qgep.od_reach ADD COLUMN length_effective  decimal(5,2) ;
-COMMENT ON COLUMN qgep.od_reach.length_effective IS ' / Tatsächliche Länge einer Haltung inklusive Kanalkrümmungen / Longueur effective (par ex. pour conduites incurvées)';
+COMMENT ON COLUMN qgep.od_reach.length_effective IS ' / TatsÃ¤chliche LÃ¤nge einer Haltung inklusive KanalkrÃ¼mmungen / Longueur effective (par ex. pour conduites incurvÃ©es)';
  ALTER TABLE qgep.od_reach ADD COLUMN material  varchar(50) ;
-COMMENT ON COLUMN qgep.od_reach.material IS ' / Rohrmaterial / Matériau du tuyau.';
+COMMENT ON COLUMN qgep.od_reach.material IS ' / Rohrmaterial / MatÃ©riau du tuyau.';
 SELECT AddGeometryColumn('qgep', 'od_reach', 'progression_geometry', 21781, 'LINESTRING', 2);
-COMMENT ON COLUMN qgep.od_reach.progression_geometry IS 'yyy_Reihenfolge von Punkten die den genauen Verlauf eines Kanals beschreiben, insbesondere dann, wenn keine direkte Verbindung zwischen zwei Schächten. / Reihenfolge von Punkten die den genauen Verlauf eines Kanals beschreiben, insbesondere dann, wenn kei';
+COMMENT ON COLUMN qgep.od_reach.progression_geometry IS 'yyy_Reihenfolge von Punkten die den genauen Verlauf eines Kanals beschreiben, insbesondere dann, wenn keine direkte Verbindung zwischen zwei SchÃ¤chten. / Reihenfolge von Punkten die den genauen Verlauf eines Kanals beschreiben, insbesondere dann, wenn kei';
 SELECT AddGeometryColumn('qgep', 'od_reach', 'progression3d_geometry', 21781, 'LINESTRING', 2);
-COMMENT ON COLUMN qgep.od_reach.progression3d_geometry IS 'yy_Reihenfolge von Punkten die den genauen Verlauf eines Kanals beschreiben, insbesondere dann, wenn keine direkte Verbindung zwischen zwei Schächten. / Reihenfolge von Punkten (3D Koordinaten) die den genauen Verlauf eines Kanals beschreiben, insbesonder';
+COMMENT ON COLUMN qgep.od_reach.progression3d_geometry IS 'yy_Reihenfolge von Punkten die den genauen Verlauf eines Kanals beschreiben, insbesondere dann, wenn keine direkte Verbindung zwischen zwei SchÃ¤chten. / Reihenfolge von Punkten (3D Koordinaten) die den genauen Verlauf eines Kanals beschreiben, insbesonder';
  ALTER TABLE qgep.od_reach ADD COLUMN ring_stiffness  smallint ;
-COMMENT ON COLUMN qgep.od_reach.ring_stiffness IS 'yyy Ringsteifigkeitsklasse - Druckfestigkeit gegen Belastungen von aussen (gemäss ISO 13966 ) / Ringsteifigkeitsklasse - Druckfestigkeit gegen Belastungen von aussen (gemäss ISO 13966 ) / Rigidité annulaire pour des pressions extérieures (selon ISO 13966)';
+COMMENT ON COLUMN qgep.od_reach.ring_stiffness IS 'yyy Ringsteifigkeitsklasse - Druckfestigkeit gegen Belastungen von aussen (gemÃ¤ss ISO 13966 ) / Ringsteifigkeitsklasse - Druckfestigkeit gegen Belastungen von aussen (gemÃ¤ss ISO 13966 ) / RigiditÃ© annulaire pour des pressions extÃ©rieures (selon ISO 13966)';
  ALTER TABLE qgep.od_reach ADD COLUMN slope_building_plan  smallint ;
-COMMENT ON COLUMN qgep.od_reach.slope_building_plan IS 'yyy / Auf dem alten Plan eingezeichnetes Plangefälle. Nicht kontrolliert im Feld. Kann nicht für die hydraulische Berechnungen übernommen werden. Für Liegenschaftsentwässerung und Meliorationsleitungen. Darstellung als z.B. 3.5%oP auf Plänen. / Pente indi';
+COMMENT ON COLUMN qgep.od_reach.slope_building_plan IS 'yyy / Auf dem alten Plan eingezeichnetes PlangefÃ¤lle. Nicht kontrolliert im Feld. Kann nicht fÃ¼r die hydraulische Berechnungen Ã¼bernommen werden. FÃ¼r LiegenschaftsentwÃ¤sserung und Meliorationsleitungen. Darstellung als z.B. 3.5%oP auf PlÃ¤nen. / Pente indi';
  ALTER TABLE qgep.od_reach ADD COLUMN wall_roughness  decimal(3,2) ;
-COMMENT ON COLUMN qgep.od_reach.wall_roughness IS 'yyy Hydraulische Kenngrösse zur Beschreibung der Beschaffenheit der Kanalwandung. Beiwert für die Formeln nach Prandtl-Colebrook (ks oder kb) / Hydraulische Kenngrösse zur Beschreibung der Beschaffenheit der Kanalwandung. Beiwert für die Formeln nach Pran';
+COMMENT ON COLUMN qgep.od_reach.wall_roughness IS 'yyy Hydraulische KenngrÃ¶sse zur Beschreibung der Beschaffenheit der Kanalwandung. Beiwert fÃ¼r die Formeln nach Prandtl-Colebrook (ks oder kb) / Hydraulische KenngrÃ¶sse zur Beschreibung der Beschaffenheit der Kanalwandung. Beiwert fÃ¼r die Formeln nach Pran';
 -------
 CREATE TABLE qgep.od_wastewater_node
 (
@@ -429,13 +429,13 @@ CREATE TABLE qgep.od_wastewater_node
 WITH (
    OIDS = False
 );
-COMMENT ON COLUMN qgep.od_wastewater_node.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+COMMENT ON COLUMN qgep.od_wastewater_node.obj_id IS 'INTERLIS STANDARD OID (with Postfix/PrÃ¤fix) or UUOID, see www.interlis.ch';
  ALTER TABLE qgep.od_wastewater_node ADD COLUMN backflow_level  decimal(4,3) ;
-COMMENT ON COLUMN qgep.od_wastewater_node.backflow_level IS ' / 1. Massgebende Rückstaukote bezogen auf den Berechnungsregen (dss)  2. Höhe, unter der innerhalb der Grundstücksentwässerung besondere Massnahmen gegen Rückstau zu treffen sind. (DIN 4045) / Cote de refoulement déterminante calculée à partir des pluies';
+COMMENT ON COLUMN qgep.od_wastewater_node.backflow_level IS ' / 1. Massgebende RÃ¼ckstaukote bezogen auf den Berechnungsregen (dss)  2. HÃ¶he, unter der innerhalb der GrundstÃ¼cksentwÃ¤sserung besondere Massnahmen gegen RÃ¼ckstau zu treffen sind. (DIN 4045) / Cote de refoulement dÃ©terminante calculÃ©e Ã  partir des pluies';
  ALTER TABLE qgep.od_wastewater_node ADD COLUMN bottom_level  decimal(4,3) ;
 COMMENT ON COLUMN qgep.od_wastewater_node.bottom_level IS ' / Tiefster Punkt des Abwasserbauwerkes / Point le plus bas du noeud';
 SELECT AddGeometryColumn('qgep', 'od_wastewater_node', 'situation_geometry', 21781, 'POINT', 2);
-COMMENT ON COLUMN qgep.od_wastewater_node.situation_geometry IS 'Situation of node. Decisive reference point for sewer network simulation /  Lage des Knotens, massgebender Bezugspunkt für die Kanalnetzberechnung / Situation du noeud. Point de référence déterminant pour le calcul de réseau de canalisations';
+COMMENT ON COLUMN qgep.od_wastewater_node.situation_geometry IS 'Situation of node. Decisive reference point for sewer network simulation /  Lage des Knotens, massgebender Bezugspunkt fÃ¼r die Kanalnetzberechnung / Situation du noeud. Point de rÃ©fÃ©rence dÃ©terminant pour le calcul de rÃ©seau de canalisations';
 ------------ Relationships and Value Tables ----------- 
 CREATE TABLE qgep.vl_reach_point_elevation_accuracy
 (
