@@ -431,7 +431,7 @@ COMMENT ON COLUMN qgep.od_wastewater_node.situation_geometry IS 'Situation of no
 ------------ Relationships and Value Tables ----------- 
 CREATE TABLE qgep.vl_structure_part_renovation_demand
 (
-code integer NOT NULL,
+code character varying(50),
 value_en character varying(50),
 value_de character varying(50),
 value_fr character varying(50),
@@ -445,7 +445,7 @@ WITH (
  INSERT INTO qgep.vl_structure_part_renovation_demand (code, value_en, value_de, value_fr) VALUES ('138','not_necessary','nicht_notwendig','pas_necessaire');
  INSERT INTO qgep.vl_structure_part_renovation_demand (code, value_en, value_de, value_fr) VALUES ('3042','unknown','unbekannt','inconnu');
  ALTER TABLE qgep.od_structure_part ADD CONSTRAINT fkey_vl_structure_part_renovation_demand FOREIGN KEY (renovation_demand)
- REFERENCES qgep.vl_structure_part_renovation_demand MATCH SIMPLE 
+ REFERENCES qgep.vl_structure_part_renovation_demand (code) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
 ALTER TABLE qgep.od_structure_part ADD COLUMN wastewater_structure varchar (36);
 ALTER TABLE qgep.od_structure_part ADD CONSTRAINT rel_OD_BAUWERKSTEIL_OD_ABWASSERBAUWERK FOREIGN KEY (qgep.fs_wastewater_structure) REFERENCES qgep.od_wastewater_structure(obj_id);
