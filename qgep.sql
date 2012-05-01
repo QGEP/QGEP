@@ -114,7 +114,7 @@ SELECT AddGeometryColumn('qgep', 'od_wastewater_structure', 'detail_geometry_geo
 COMMENT ON COLUMN qgep.od_wastewater_structure.detail_geometry_geometry IS ' / Detaillierte Geometrie insbesondere bei Spezialbauwerken. Bei Normschächten mit Dimension1 und 2 arbeiten. Dito bei normierten Versickerungsanlagen. In INTERLIS OPTIONAL gesetzt, da nicht bei allen Abwasserbauwerken zwingend. Kanäle haben normalerweise';
 SELECT AddGeometryColumn('qgep', 'od_wastewater_structure', 'detail_geometry3d_geometry', 21781, 'POLYGON', 2);
 COMMENT ON COLUMN qgep.od_wastewater_structure.detail_geometry3d_geometry IS 'yyy / Detaillierte Geometrie (3D) insbesondere bei Spezialbauwerken. Bei Normschächten mit Dimension1 und 2 arbeiten. Dito bei normierten Versickerungsanlagen. In INTERLIS / GEOMETRIE_DETAILLEE3D: Géométrie détaillée particulièrement pour un OUVRAGE_SPECI';
- ALTER TABLE qgep.od_wastewater_structure ADD COLUMN disposition_state  LIST ;
+ ALTER TABLE qgep.od_wastewater_structure ADD COLUMN disposition_state  varchar(50) ;
 COMMENT ON COLUMN qgep.od_wastewater_structure.disposition_state IS 'yyy_Betriebs- und Planungszustand in dem sich das Abwasserbauwerk befindet / Betriebs- und Planungszustand in dem sich das Abwasserbauwerk befindet / Etat de fonctionnement et de planification';
  ALTER TABLE qgep.od_wastewater_structure ADD COLUMN gross_costs  decimal(8,2) ;
 COMMENT ON COLUMN qgep.od_wastewater_structure.gross_costs IS ' / Brutto Erstellungskosten / Coûts bruts des travaux de construction.';
@@ -441,25 +441,16 @@ CONSTRAINT pkey_qgep_vl_structure_part_renovation_demand_code PRIMARY KEY (code)
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_structure_part_renovation_demand (code) VALUES ('137');
- INSERT INTO qgep.vl_structure_part_renovation_demand (value_en) VALUES ('necessary');
- INSERT INTO qgep.vl_structure_part_renovation_demand (value_de) VALUES ('notwendig');
- INSERT INTO qgep.vl_structure_part_renovation_demand (value_fr) VALUES ('necessaire');
- INSERT INTO qgep.vl_structure_part_renovation_demand (code) VALUES ('138');
- INSERT INTO qgep.vl_structure_part_renovation_demand (value_en) VALUES ('not_necessary');
- INSERT INTO qgep.vl_structure_part_renovation_demand (value_de) VALUES ('nicht_notwendig');
- INSERT INTO qgep.vl_structure_part_renovation_demand (value_fr) VALUES ('pas_necessaire');
- INSERT INTO qgep.vl_structure_part_renovation_demand (code) VALUES ('3042');
- INSERT INTO qgep.vl_structure_part_renovation_demand (value_en) VALUES ('unknown');
- INSERT INTO qgep.vl_structure_part_renovation_demand (value_de) VALUES ('unbekannt');
- INSERT INTO qgep.vl_structure_part_renovation_demand (value_fr) VALUES ('inconnu');
+ INSERT INTO qgep.vl_structure_part_renovation_demand (code, value_en, value_de, value_fr) VALUES ('137','necessary','notwendig','necessaire');
+ INSERT INTO qgep.vl_structure_part_renovation_demand (code, value_en, value_de, value_fr) VALUES ('138','not_necessary','nicht_notwendig','pas_necessaire');
+ INSERT INTO qgep.vl_structure_part_renovation_demand (code, value_en, value_de, value_fr) VALUES ('3042','unknown','unbekannt','inconnu');
  ALTER TABLE qgep.od_structure_part ADD CONSTRAINT fkey_vl_structure_part_renovation_demand FOREIGN KEY (renovation_demand)
- REFERENCES qgep.vl_structure_part_renovation_demand (code) MATCH SIMPLE 
+ REFERENCES qgep.vl_structure_part_renovation_demand MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_structure_part ADD COLUMN qgep.fs_wastewater_structure varchar (36);
-ALTER TABLE qgep.od_structure_part ADD CONSTRAINT rel18 FOREIGN KEY (qgep.fs_wastewater_structure) REFERENCES qgep.od_wastewater_structure(obj_id);
-ALTER TABLE qgep.od_wastewater_networkelement ADD COLUMN qgep.fs_wastewater_structure varchar (36);
-ALTER TABLE qgep.od_wastewater_networkelement ADD CONSTRAINT rel21 FOREIGN KEY (qgep.fs_wastewater_structure) REFERENCES qgep.od_wastewater_structure(obj_id);
+ALTER TABLE qgep.od_structure_part ADD COLUMN wastewater_structure varchar (36);
+ALTER TABLE qgep.od_structure_part ADD CONSTRAINT rel_OD_BAUWERKSTEIL_OD_ABWASSERBAUWERK FOREIGN KEY (qgep.fs_wastewater_structure) REFERENCES qgep.od_wastewater_structure(obj_id);
+ALTER TABLE qgep.od_wastewater_networkelement ADD COLUMN wastewater_structure varchar (36);
+ALTER TABLE qgep.od_wastewater_networkelement ADD CONSTRAINT rel_OD_ABWASSERNETZELEMENT_OD_ABWASSERBAUWERK FOREIGN KEY (qgep.fs_wastewater_structure) REFERENCES qgep.od_wastewater_structure(obj_id);
 CREATE TABLE qgep.vl_pipe_profile_profile_type
 (
 code integer NOT NULL,
@@ -472,40 +463,16 @@ CONSTRAINT pkey_qgep_vl_pipe_profile_profile_type_code PRIMARY KEY (code)
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_pipe_profile_profile_type (code) VALUES ('3350');
- INSERT INTO qgep.vl_pipe_profile_profile_type (value_en) VALUES ('circular_profile');
- INSERT INTO qgep.vl_pipe_profile_profile_type (value_de) VALUES ('Kreisprofil');
- INSERT INTO qgep.vl_pipe_profile_profile_type (value_fr) VALUES ('circulaire');
- INSERT INTO qgep.vl_pipe_profile_profile_type (code) VALUES ('3351');
- INSERT INTO qgep.vl_pipe_profile_profile_type (value_en) VALUES ('egg_profile');
- INSERT INTO qgep.vl_pipe_profile_profile_type (value_de) VALUES ('Eiprofil');
- INSERT INTO qgep.vl_pipe_profile_profile_type (value_fr) VALUES ('ovoide');
- INSERT INTO qgep.vl_pipe_profile_profile_type (code) VALUES ('3352');
- INSERT INTO qgep.vl_pipe_profile_profile_type (value_en) VALUES ('mouth_profile');
- INSERT INTO qgep.vl_pipe_profile_profile_type (value_de) VALUES ('Maulprofil');
- INSERT INTO qgep.vl_pipe_profile_profile_type (value_fr) VALUES ('profil_en_voute');
- INSERT INTO qgep.vl_pipe_profile_profile_type (code) VALUES ('3353');
- INSERT INTO qgep.vl_pipe_profile_profile_type (value_en) VALUES ('rectangular_profile');
- INSERT INTO qgep.vl_pipe_profile_profile_type (value_de) VALUES ('Rechteckprofil');
- INSERT INTO qgep.vl_pipe_profile_profile_type (value_fr) VALUES ('rectangulaire');
- INSERT INTO qgep.vl_pipe_profile_profile_type (code) VALUES ('3354');
- INSERT INTO qgep.vl_pipe_profile_profile_type (value_en) VALUES ('open_profile');
- INSERT INTO qgep.vl_pipe_profile_profile_type (value_de) VALUES ('offenes_Profil');
- INSERT INTO qgep.vl_pipe_profile_profile_type (value_fr) VALUES ('profil_ouvert');
- INSERT INTO qgep.vl_pipe_profile_profile_type (code) VALUES ('3355');
- INSERT INTO qgep.vl_pipe_profile_profile_type (value_en) VALUES ('special_profile');
- INSERT INTO qgep.vl_pipe_profile_profile_type (value_de) VALUES ('Spezialprofil');
- INSERT INTO qgep.vl_pipe_profile_profile_type (value_fr) VALUES ('profil_special');
- INSERT INTO qgep.vl_pipe_profile_profile_type (code) VALUES ('3356');
- INSERT INTO qgep.vl_pipe_profile_profile_type (value_en) VALUES ('other');
- INSERT INTO qgep.vl_pipe_profile_profile_type (value_de) VALUES ('andere');
- INSERT INTO qgep.vl_pipe_profile_profile_type (value_fr) VALUES ('autres');
- INSERT INTO qgep.vl_pipe_profile_profile_type (code) VALUES ('3357');
- INSERT INTO qgep.vl_pipe_profile_profile_type (value_en) VALUES ('unknown');
- INSERT INTO qgep.vl_pipe_profile_profile_type (value_de) VALUES ('unbekannt');
- INSERT INTO qgep.vl_pipe_profile_profile_type (value_fr) VALUES ('inconnu');
+ INSERT INTO qgep.vl_pipe_profile_profile_type (code, value_en, value_de, value_fr) VALUES ('3350','circular_profile','Kreisprofil','circulaire');
+ INSERT INTO qgep.vl_pipe_profile_profile_type (code, value_en, value_de, value_fr) VALUES ('3351','egg_profile','Eiprofil','ovoide');
+ INSERT INTO qgep.vl_pipe_profile_profile_type (code, value_en, value_de, value_fr) VALUES ('3352','mouth_profile','Maulprofil','profil_en_voute');
+ INSERT INTO qgep.vl_pipe_profile_profile_type (code, value_en, value_de, value_fr) VALUES ('3353','rectangular_profile','Rechteckprofil','rectangulaire');
+ INSERT INTO qgep.vl_pipe_profile_profile_type (code, value_en, value_de, value_fr) VALUES ('3354','open_profile','offenes_Profil','profil_ouvert');
+ INSERT INTO qgep.vl_pipe_profile_profile_type (code, value_en, value_de, value_fr) VALUES ('3355','special_profile','Spezialprofil','profil_special');
+ INSERT INTO qgep.vl_pipe_profile_profile_type (code, value_en, value_de, value_fr) VALUES ('3356','other','andere','autres');
+ INSERT INTO qgep.vl_pipe_profile_profile_type (code, value_en, value_de, value_fr) VALUES ('3357','unknown','unbekannt','inconnu');
  ALTER TABLE qgep.od_pipe_profile ADD CONSTRAINT fkey_vl_pipe_profile_profile_type FOREIGN KEY (profile_type)
- REFERENCES qgep.vl_pipe_profile_profile_type (code) MATCH SIMPLE 
+ REFERENCES qgep.vl_pipe_profile_profile_type varchar(36) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
 CREATE TABLE qgep.vl_wastewater_structure_accessibility
 (
@@ -519,24 +486,12 @@ CONSTRAINT pkey_qgep_vl_wastewater_structure_accessibility_code PRIMARY KEY (cod
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_wastewater_structure_accessibility (code) VALUES ('3444');
- INSERT INTO qgep.vl_wastewater_structure_accessibility (value_en) VALUES ('covered');
- INSERT INTO qgep.vl_wastewater_structure_accessibility (value_de) VALUES ('ueberdeckt');
- INSERT INTO qgep.vl_wastewater_structure_accessibility (value_fr) VALUES ('couvert');
- INSERT INTO qgep.vl_wastewater_structure_accessibility (code) VALUES ('3445');
- INSERT INTO qgep.vl_wastewater_structure_accessibility (value_en) VALUES ('accessible');
- INSERT INTO qgep.vl_wastewater_structure_accessibility (value_de) VALUES ('zugaenglich');
- INSERT INTO qgep.vl_wastewater_structure_accessibility (value_fr) VALUES ('accessible');
- INSERT INTO qgep.vl_wastewater_structure_accessibility (code) VALUES ('3446');
- INSERT INTO qgep.vl_wastewater_structure_accessibility (value_en) VALUES ('inaccessible');
- INSERT INTO qgep.vl_wastewater_structure_accessibility (value_de) VALUES ('unzugaenglich');
- INSERT INTO qgep.vl_wastewater_structure_accessibility (value_fr) VALUES ('inaccessible');
- INSERT INTO qgep.vl_wastewater_structure_accessibility (code) VALUES ('3447');
- INSERT INTO qgep.vl_wastewater_structure_accessibility (value_en) VALUES ('unknown');
- INSERT INTO qgep.vl_wastewater_structure_accessibility (value_de) VALUES ('unbekannt');
- INSERT INTO qgep.vl_wastewater_structure_accessibility (value_fr) VALUES ('inconnu');
+ INSERT INTO qgep.vl_wastewater_structure_accessibility (code, value_en, value_de, value_fr) VALUES ('3444','covered','ueberdeckt','couvert');
+ INSERT INTO qgep.vl_wastewater_structure_accessibility (code, value_en, value_de, value_fr) VALUES ('3445','accessible','zugaenglich','accessible');
+ INSERT INTO qgep.vl_wastewater_structure_accessibility (code, value_en, value_de, value_fr) VALUES ('3446','inaccessible','unzugaenglich','inaccessible');
+ INSERT INTO qgep.vl_wastewater_structure_accessibility (code, value_en, value_de, value_fr) VALUES ('3447','unknown','unbekannt','inconnu');
  ALTER TABLE qgep.od_wastewater_structure ADD CONSTRAINT fkey_vl_wastewater_structure_accessibility FOREIGN KEY (accessibility)
- REFERENCES qgep.vl_wastewater_structure_accessibility (code) MATCH SIMPLE 
+ REFERENCES qgep.vl_wastewater_structure_accessibility varchar(36) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
 CREATE TABLE qgep.vl_wastewater_structure_disposition_state
 (
@@ -550,52 +505,19 @@ CONSTRAINT pkey_qgep_vl_wastewater_structure_disposition_state_code PRIMARY KEY 
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (code) VALUES ('10');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (value_en) VALUES ('tentative');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (value_de) VALUES ('provisorisch');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (value_fr) VALUES ('provisoire');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (code) VALUES ('2683');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (value_en) VALUES ('will_be_suspended');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (value_de) VALUES ('wird_aufgehoben');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (value_fr) VALUES ('sera_supprime');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (code) VALUES ('2763');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (value_en) VALUES ('calculation_alternative');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (value_de) VALUES ('Berechnungsvariante');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (value_fr) VALUES ('variante_de_calcul');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (code) VALUES ('2764');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (value_en) VALUES ('planned');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (value_de) VALUES ('geplant');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (value_fr) VALUES ('planifie');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (code) VALUES ('3027');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (value_en) VALUES ('unknown');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (value_de) VALUES ('unbekannt');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (value_fr) VALUES ('inconnu');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (code) VALUES ('3325');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (value_en) VALUES ('suspended_unknown');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (value_de) VALUES ('aufgehoben_unbekannt');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (value_fr) VALUES ('supprime_inconnu');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (code) VALUES ('3633');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (value_en) VALUES ('nonoperational');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (value_de) VALUES ('ausser_Betrieb');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (value_fr) VALUES ('hors_service');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (code) VALUES ('3634');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (value_en) VALUES ('operational');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (value_de) VALUES ('in_Betrieb');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (value_fr) VALUES ('en_service');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (code) VALUES ('3653');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (value_en) VALUES ('project');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (value_de) VALUES ('Projekt');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (value_fr) VALUES ('projet');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (code) VALUES ('7');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (value_en) VALUES ('suspended_not_filled');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (value_de) VALUES ('aufgehoben_nicht_verfuellt');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (value_fr) VALUES ('supprime_non_demoli');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (code) VALUES ('8');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (value_en) VALUES ('filled');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (value_de) VALUES ('verfuellt');
- INSERT INTO qgep.vl_wastewater_structure_disposition_state (value_fr) VALUES ('demoli');
+ INSERT INTO qgep.vl_wastewater_structure_disposition_state (code, value_en, value_de, value_fr) VALUES ('10','tentative','provisorisch','provisoire');
+ INSERT INTO qgep.vl_wastewater_structure_disposition_state (code, value_en, value_de, value_fr) VALUES ('2683','will_be_suspended','wird_aufgehoben','sera_supprime');
+ INSERT INTO qgep.vl_wastewater_structure_disposition_state (code, value_en, value_de, value_fr) VALUES ('2763','calculation_alternative','Berechnungsvariante','variante_de_calcul');
+ INSERT INTO qgep.vl_wastewater_structure_disposition_state (code, value_en, value_de, value_fr) VALUES ('2764','planned','geplant','planifie');
+ INSERT INTO qgep.vl_wastewater_structure_disposition_state (code, value_en, value_de, value_fr) VALUES ('3027','unknown','unbekannt','inconnu');
+ INSERT INTO qgep.vl_wastewater_structure_disposition_state (code, value_en, value_de, value_fr) VALUES ('3325','suspended_unknown','aufgehoben_unbekannt','supprime_inconnu');
+ INSERT INTO qgep.vl_wastewater_structure_disposition_state (code, value_en, value_de, value_fr) VALUES ('3633','nonoperational','ausser_Betrieb','hors_service');
+ INSERT INTO qgep.vl_wastewater_structure_disposition_state (code, value_en, value_de, value_fr) VALUES ('3634','operational','in_Betrieb','en_service');
+ INSERT INTO qgep.vl_wastewater_structure_disposition_state (code, value_en, value_de, value_fr) VALUES ('3653','project','Projekt','projet');
+ INSERT INTO qgep.vl_wastewater_structure_disposition_state (code, value_en, value_de, value_fr) VALUES ('7','suspended_not_filled','aufgehoben_nicht_verfuellt','supprime_non_demoli');
+ INSERT INTO qgep.vl_wastewater_structure_disposition_state (code, value_en, value_de, value_fr) VALUES ('8','filled','verfuellt','demoli');
  ALTER TABLE qgep.od_wastewater_structure ADD CONSTRAINT fkey_vl_wastewater_structure_disposition_state FOREIGN KEY (disposition_state)
- REFERENCES qgep.vl_wastewater_structure_disposition_state (code) MATCH SIMPLE 
+ REFERENCES qgep.vl_wastewater_structure_disposition_state varchar(36) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
 CREATE TABLE qgep.vl_wastewater_structure_renovation_demand
 (
@@ -609,32 +531,14 @@ CONSTRAINT pkey_qgep_vl_wastewater_structure_renovation_demand_code PRIMARY KEY 
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_wastewater_structure_renovation_demand (code) VALUES ('1');
- INSERT INTO qgep.vl_wastewater_structure_renovation_demand (value_en) VALUES ('urgent');
- INSERT INTO qgep.vl_wastewater_structure_renovation_demand (value_de) VALUES ('dringend');
- INSERT INTO qgep.vl_wastewater_structure_renovation_demand (value_fr) VALUES ('urgent');
- INSERT INTO qgep.vl_wastewater_structure_renovation_demand (code) VALUES ('2');
- INSERT INTO qgep.vl_wastewater_structure_renovation_demand (value_en) VALUES ('short_term');
- INSERT INTO qgep.vl_wastewater_structure_renovation_demand (value_de) VALUES ('kurzfristig');
- INSERT INTO qgep.vl_wastewater_structure_renovation_demand (value_fr) VALUES ('a_court_terme');
- INSERT INTO qgep.vl_wastewater_structure_renovation_demand (code) VALUES ('3');
- INSERT INTO qgep.vl_wastewater_structure_renovation_demand (value_en) VALUES ('medium_term');
- INSERT INTO qgep.vl_wastewater_structure_renovation_demand (value_de) VALUES ('mittelfristig');
- INSERT INTO qgep.vl_wastewater_structure_renovation_demand (value_fr) VALUES ('a_moyen_terme');
- INSERT INTO qgep.vl_wastewater_structure_renovation_demand (code) VALUES ('3023');
- INSERT INTO qgep.vl_wastewater_structure_renovation_demand (value_en) VALUES ('unknown');
- INSERT INTO qgep.vl_wastewater_structure_renovation_demand (value_de) VALUES ('unbekannt');
- INSERT INTO qgep.vl_wastewater_structure_renovation_demand (value_fr) VALUES ('inconnu');
- INSERT INTO qgep.vl_wastewater_structure_renovation_demand (code) VALUES ('4');
- INSERT INTO qgep.vl_wastewater_structure_renovation_demand (value_en) VALUES ('long_term');
- INSERT INTO qgep.vl_wastewater_structure_renovation_demand (value_de) VALUES ('langfristig');
- INSERT INTO qgep.vl_wastewater_structure_renovation_demand (value_fr) VALUES ('a_long_terme');
- INSERT INTO qgep.vl_wastewater_structure_renovation_demand (code) VALUES ('5');
- INSERT INTO qgep.vl_wastewater_structure_renovation_demand (value_en) VALUES ('no');
- INSERT INTO qgep.vl_wastewater_structure_renovation_demand (value_de) VALUES ('keiner');
- INSERT INTO qgep.vl_wastewater_structure_renovation_demand (value_fr) VALUES ('aucun');
+ INSERT INTO qgep.vl_wastewater_structure_renovation_demand (code, value_en, value_de, value_fr) VALUES ('1','urgent','dringend','urgent');
+ INSERT INTO qgep.vl_wastewater_structure_renovation_demand (code, value_en, value_de, value_fr) VALUES ('2','short_term','kurzfristig','a_court_terme');
+ INSERT INTO qgep.vl_wastewater_structure_renovation_demand (code, value_en, value_de, value_fr) VALUES ('3','medium_term','mittelfristig','a_moyen_terme');
+ INSERT INTO qgep.vl_wastewater_structure_renovation_demand (code, value_en, value_de, value_fr) VALUES ('3023','unknown','unbekannt','inconnu');
+ INSERT INTO qgep.vl_wastewater_structure_renovation_demand (code, value_en, value_de, value_fr) VALUES ('4','long_term','langfristig','a_long_terme');
+ INSERT INTO qgep.vl_wastewater_structure_renovation_demand (code, value_en, value_de, value_fr) VALUES ('5','no','keiner','aucun');
  ALTER TABLE qgep.od_wastewater_structure ADD CONSTRAINT fkey_vl_wastewater_structure_renovation_demand FOREIGN KEY (renovation_demand)
- REFERENCES qgep.vl_wastewater_structure_renovation_demand (code) MATCH SIMPLE 
+ REFERENCES qgep.vl_wastewater_structure_renovation_demand varchar(36) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
 CREATE TABLE qgep.vl_wastewater_structure_structure_condition
 (
@@ -648,37 +552,19 @@ CONSTRAINT pkey_qgep_vl_wastewater_structure_structure_condition_code PRIMARY KE
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_wastewater_structure_structure_condition (code) VALUES ('3037');
- INSERT INTO qgep.vl_wastewater_structure_structure_condition (value_en) VALUES ('unknown');
- INSERT INTO qgep.vl_wastewater_structure_structure_condition (value_de) VALUES ('unbekannt');
- INSERT INTO qgep.vl_wastewater_structure_structure_condition (value_fr) VALUES ('inconnu');
- INSERT INTO qgep.vl_wastewater_structure_structure_condition (code) VALUES ('3359');
- INSERT INTO qgep.vl_wastewater_structure_structure_condition (value_en) VALUES ('Z1');
- INSERT INTO qgep.vl_wastewater_structure_structure_condition (value_de) VALUES ('Z1');
- INSERT INTO qgep.vl_wastewater_structure_structure_condition (value_fr) VALUES ('Z1');
- INSERT INTO qgep.vl_wastewater_structure_structure_condition (code) VALUES ('3360');
- INSERT INTO qgep.vl_wastewater_structure_structure_condition (value_en) VALUES ('Z2');
- INSERT INTO qgep.vl_wastewater_structure_structure_condition (value_de) VALUES ('Z2');
- INSERT INTO qgep.vl_wastewater_structure_structure_condition (value_fr) VALUES ('Z2');
- INSERT INTO qgep.vl_wastewater_structure_structure_condition (code) VALUES ('3361');
- INSERT INTO qgep.vl_wastewater_structure_structure_condition (value_en) VALUES ('Z3');
- INSERT INTO qgep.vl_wastewater_structure_structure_condition (value_de) VALUES ('Z3');
- INSERT INTO qgep.vl_wastewater_structure_structure_condition (value_fr) VALUES ('Z3');
- INSERT INTO qgep.vl_wastewater_structure_structure_condition (code) VALUES ('3362');
- INSERT INTO qgep.vl_wastewater_structure_structure_condition (value_en) VALUES ('Z4');
- INSERT INTO qgep.vl_wastewater_structure_structure_condition (value_de) VALUES ('Z4');
- INSERT INTO qgep.vl_wastewater_structure_structure_condition (value_fr) VALUES ('Z4');
- INSERT INTO qgep.vl_wastewater_structure_structure_condition (code) VALUES ('3363');
- INSERT INTO qgep.vl_wastewater_structure_structure_condition (value_en) VALUES ('Z0');
- INSERT INTO qgep.vl_wastewater_structure_structure_condition (value_de) VALUES ('Z0');
- INSERT INTO qgep.vl_wastewater_structure_structure_condition (value_fr) VALUES ('Z0');
+ INSERT INTO qgep.vl_wastewater_structure_structure_condition (code, value_en, value_de, value_fr) VALUES ('3037','unknown','unbekannt','inconnu');
+ INSERT INTO qgep.vl_wastewater_structure_structure_condition (code, value_en, value_de, value_fr) VALUES ('3359','Z1','Z1','Z1');
+ INSERT INTO qgep.vl_wastewater_structure_structure_condition (code, value_en, value_de, value_fr) VALUES ('3360','Z2','Z2','Z2');
+ INSERT INTO qgep.vl_wastewater_structure_structure_condition (code, value_en, value_de, value_fr) VALUES ('3361','Z3','Z3','Z3');
+ INSERT INTO qgep.vl_wastewater_structure_structure_condition (code, value_en, value_de, value_fr) VALUES ('3362','Z4','Z4','Z4');
+ INSERT INTO qgep.vl_wastewater_structure_structure_condition (code, value_en, value_de, value_fr) VALUES ('3363','Z0','Z0','Z0');
  ALTER TABLE qgep.od_wastewater_structure ADD CONSTRAINT fkey_vl_wastewater_structure_structure_condition FOREIGN KEY (structure_condition)
- REFERENCES qgep.vl_wastewater_structure_structure_condition (code) MATCH SIMPLE 
+ REFERENCES qgep.vl_wastewater_structure_structure_condition varchar(36) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_wastewater_structure ADD COLUMN qgep.fs_owner varchar (36);
-ALTER TABLE qgep.od_wastewater_structure ADD CONSTRAINT rel46 FOREIGN KEY (qgep.fs_owner) REFERENCES qgep.od_organisation(obj_id);
-ALTER TABLE qgep.od_wastewater_structure ADD COLUMN qgep.fs_operator varchar (36);
-ALTER TABLE qgep.od_wastewater_structure ADD CONSTRAINT rel47 FOREIGN KEY (qgep.fs_operator) REFERENCES qgep.od_organisation(obj_id);
+ALTER TABLE qgep.od_wastewater_structure ADD COLUMN owner varchar (36);
+ALTER TABLE qgep.od_wastewater_structure ADD CONSTRAINT rel_OD_ABWASSERBAUWERK_OD_ORGANISATION FOREIGN KEY (qgep.fs_owner) REFERENCES qgep.od_organisation(obj_id);
+ALTER TABLE qgep.od_wastewater_structure ADD COLUMN operator varchar (36);
+ALTER TABLE qgep.od_wastewater_structure ADD CONSTRAINT rel_OD_ABWASSERBAUWERK_OD_ORGANISATION FOREIGN KEY (qgep.fs_operator) REFERENCES qgep.od_organisation(obj_id);
 CREATE TABLE qgep.vl_reach_point_elevation_accuracy
 (
 code integer NOT NULL,
@@ -691,28 +577,13 @@ CONSTRAINT pkey_qgep_vl_reach_point_elevation_accuracy_code PRIMARY KEY (code)
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_reach_point_elevation_accuracy (code) VALUES ('3245');
- INSERT INTO qgep.vl_reach_point_elevation_accuracy (value_en) VALUES ('plusminus_1cm');
- INSERT INTO qgep.vl_reach_point_elevation_accuracy (value_de) VALUES ('plusminus_1cm');
- INSERT INTO qgep.vl_reach_point_elevation_accuracy (value_fr) VALUES ('plus_moins_1cm');
- INSERT INTO qgep.vl_reach_point_elevation_accuracy (code) VALUES ('3246');
- INSERT INTO qgep.vl_reach_point_elevation_accuracy (value_en) VALUES ('plusminus_3cm');
- INSERT INTO qgep.vl_reach_point_elevation_accuracy (value_de) VALUES ('plusminus_3cm');
- INSERT INTO qgep.vl_reach_point_elevation_accuracy (value_fr) VALUES ('plus_moins_3cm');
- INSERT INTO qgep.vl_reach_point_elevation_accuracy (code) VALUES ('3247');
- INSERT INTO qgep.vl_reach_point_elevation_accuracy (value_en) VALUES ('plusminus_6cm');
- INSERT INTO qgep.vl_reach_point_elevation_accuracy (value_de) VALUES ('plusminus_6cm');
- INSERT INTO qgep.vl_reach_point_elevation_accuracy (value_fr) VALUES ('plus_moins_6cm');
- INSERT INTO qgep.vl_reach_point_elevation_accuracy (code) VALUES ('3248');
- INSERT INTO qgep.vl_reach_point_elevation_accuracy (value_en) VALUES ('more_than_6cm');
- INSERT INTO qgep.vl_reach_point_elevation_accuracy (value_de) VALUES ('groesser_6cm');
- INSERT INTO qgep.vl_reach_point_elevation_accuracy (value_fr) VALUES ('plusque_6cm');
- INSERT INTO qgep.vl_reach_point_elevation_accuracy (code) VALUES ('3327');
- INSERT INTO qgep.vl_reach_point_elevation_accuracy (value_en) VALUES ('unknown');
- INSERT INTO qgep.vl_reach_point_elevation_accuracy (value_de) VALUES ('unbekannt');
- INSERT INTO qgep.vl_reach_point_elevation_accuracy (value_fr) VALUES ('inconnu');
+ INSERT INTO qgep.vl_reach_point_elevation_accuracy (code, value_en, value_de, value_fr) VALUES ('3245','plusminus_1cm','plusminus_1cm','plus_moins_1cm');
+ INSERT INTO qgep.vl_reach_point_elevation_accuracy (code, value_en, value_de, value_fr) VALUES ('3246','plusminus_3cm','plusminus_3cm','plus_moins_3cm');
+ INSERT INTO qgep.vl_reach_point_elevation_accuracy (code, value_en, value_de, value_fr) VALUES ('3247','plusminus_6cm','plusminus_6cm','plus_moins_6cm');
+ INSERT INTO qgep.vl_reach_point_elevation_accuracy (code, value_en, value_de, value_fr) VALUES ('3248','more_than_6cm','groesser_6cm','plusque_6cm');
+ INSERT INTO qgep.vl_reach_point_elevation_accuracy (code, value_en, value_de, value_fr) VALUES ('3327','unknown','unbekannt','inconnu');
  ALTER TABLE qgep.od_reach_point ADD CONSTRAINT fkey_vl_reach_point_elevation_accuracy FOREIGN KEY (elevation_accuracy)
- REFERENCES qgep.vl_reach_point_elevation_accuracy (code) MATCH SIMPLE 
+ REFERENCES qgep.vl_reach_point_elevation_accuracy varchar(36) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
 CREATE TABLE qgep.vl_reach_point_outlet_shape
 (
@@ -726,32 +597,17 @@ CONSTRAINT pkey_qgep_vl_reach_point_outlet_shape_code PRIMARY KEY (code)
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_reach_point_outlet_shape (code) VALUES ('285');
- INSERT INTO qgep.vl_reach_point_outlet_shape (value_en) VALUES ('round_edged');
- INSERT INTO qgep.vl_reach_point_outlet_shape (value_de) VALUES ('abgerundet');
- INSERT INTO qgep.vl_reach_point_outlet_shape (value_fr) VALUES ('arrondi');
- INSERT INTO qgep.vl_reach_point_outlet_shape (code) VALUES ('286');
- INSERT INTO qgep.vl_reach_point_outlet_shape (value_en) VALUES ('sharp_edged');
- INSERT INTO qgep.vl_reach_point_outlet_shape (value_de) VALUES ('scharfkantig');
- INSERT INTO qgep.vl_reach_point_outlet_shape (value_fr) VALUES ('aretes_vives');
- INSERT INTO qgep.vl_reach_point_outlet_shape (code) VALUES ('298');
- INSERT INTO qgep.vl_reach_point_outlet_shape (value_en) VALUES ('orifice');
- INSERT INTO qgep.vl_reach_point_outlet_shape (value_de) VALUES ('blendenfoermig');
- INSERT INTO qgep.vl_reach_point_outlet_shape (value_fr) VALUES ('en_forme_de_seuil_ou_diaphragme');
- INSERT INTO qgep.vl_reach_point_outlet_shape (code) VALUES ('3074');
- INSERT INTO qgep.vl_reach_point_outlet_shape (value_en) VALUES ('unknown');
- INSERT INTO qgep.vl_reach_point_outlet_shape (value_de) VALUES ('unbekannt');
- INSERT INTO qgep.vl_reach_point_outlet_shape (value_fr) VALUES ('inconnu');
- INSERT INTO qgep.vl_reach_point_outlet_shape (code) VALUES ('3358');
- INSERT INTO qgep.vl_reach_point_outlet_shape (value_en) VALUES ('no_cross_section_change');
- INSERT INTO qgep.vl_reach_point_outlet_shape (value_de) VALUES ('keine_Querschnittsaenderung');
- INSERT INTO qgep.vl_reach_point_outlet_shape (value_fr) VALUES ('pas_de_changement_de_section');
+ INSERT INTO qgep.vl_reach_point_outlet_shape (code, value_en, value_de, value_fr) VALUES ('285','round_edged','abgerundet','arrondi');
+ INSERT INTO qgep.vl_reach_point_outlet_shape (code, value_en, value_de, value_fr) VALUES ('286','sharp_edged','scharfkantig','aretes_vives');
+ INSERT INTO qgep.vl_reach_point_outlet_shape (code, value_en, value_de, value_fr) VALUES ('298','orifice','blendenfoermig','en_forme_de_seuil_ou_diaphragme');
+ INSERT INTO qgep.vl_reach_point_outlet_shape (code, value_en, value_de, value_fr) VALUES ('3074','unknown','unbekannt','inconnu');
+ INSERT INTO qgep.vl_reach_point_outlet_shape (code, value_en, value_de, value_fr) VALUES ('3358','no_cross_section_change','keine_Querschnittsaenderung','pas_de_changement_de_section');
  ALTER TABLE qgep.od_reach_point ADD CONSTRAINT fkey_vl_reach_point_outlet_shape FOREIGN KEY (outlet_shape)
- REFERENCES qgep.vl_reach_point_outlet_shape (code) MATCH SIMPLE 
+ REFERENCES qgep.vl_reach_point_outlet_shape varchar(36) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_reach_point ADD COLUMN qgep.fs_wastewater_networkelement varchar (36);
-ALTER TABLE qgep.od_reach_point ADD CONSTRAINT rel55 FOREIGN KEY (qgep.fs_wastewater_networkelement) REFERENCES qgep.od_wastewater_networkelement(obj_id);
-ALTER TABLE qgep.od_dryweather_flume ADD CONSTRAINT oorel58 FOREIGN KEY (obj_id) REFERENCES qgep.od_structure_part(obj_id);
+ALTER TABLE qgep.od_reach_point ADD COLUMN wastewater_networkelement varchar (36);
+ALTER TABLE qgep.od_reach_point ADD CONSTRAINT rel_OD_HALTUNGSPUNKT_OD_ABWASSERNETZELEMENT FOREIGN KEY (qgep.fs_wastewater_networkelement) REFERENCES qgep.od_wastewater_networkelement(obj_id);
+ALTER TABLE qgep.od_dryweather_flume ADD CONSTRAINT oorel_od_dryweather_flume_structure_part FOREIGN KEY (obj_id) REFERENCES qgep.od_structure_part(obj_id);
 CREATE TABLE qgep.vl_dryweather_flume_material
 (
 code integer NOT NULL,
@@ -764,34 +620,16 @@ CONSTRAINT pkey_qgep_vl_dryweather_flume_material_code PRIMARY KEY (code)
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_dryweather_flume_material (code) VALUES ('237');
- INSERT INTO qgep.vl_dryweather_flume_material (value_en) VALUES ('cement_mortar');
- INSERT INTO qgep.vl_dryweather_flume_material (value_de) VALUES ('Zementmoertel');
- INSERT INTO qgep.vl_dryweather_flume_material (value_fr) VALUES ('mortier_de_ciment');
- INSERT INTO qgep.vl_dryweather_flume_material (code) VALUES ('238');
- INSERT INTO qgep.vl_dryweather_flume_material (value_en) VALUES ('stoneware');
- INSERT INTO qgep.vl_dryweather_flume_material (value_de) VALUES ('Steinzeug');
- INSERT INTO qgep.vl_dryweather_flume_material (value_fr) VALUES ('gres');
- INSERT INTO qgep.vl_dryweather_flume_material (code) VALUES ('239');
- INSERT INTO qgep.vl_dryweather_flume_material (value_en) VALUES ('plastic');
- INSERT INTO qgep.vl_dryweather_flume_material (value_de) VALUES ('Kunststoff');
- INSERT INTO qgep.vl_dryweather_flume_material (value_fr) VALUES ('plastique');
- INSERT INTO qgep.vl_dryweather_flume_material (code) VALUES ('3017');
- INSERT INTO qgep.vl_dryweather_flume_material (value_en) VALUES ('unknown');
- INSERT INTO qgep.vl_dryweather_flume_material (value_de) VALUES ('unbekannt');
- INSERT INTO qgep.vl_dryweather_flume_material (value_fr) VALUES ('inconnu');
- INSERT INTO qgep.vl_dryweather_flume_material (code) VALUES ('3221');
- INSERT INTO qgep.vl_dryweather_flume_material (value_en) VALUES ('other');
- INSERT INTO qgep.vl_dryweather_flume_material (value_de) VALUES ('andere');
- INSERT INTO qgep.vl_dryweather_flume_material (value_fr) VALUES ('autres');
- INSERT INTO qgep.vl_dryweather_flume_material (code) VALUES ('354');
- INSERT INTO qgep.vl_dryweather_flume_material (value_en) VALUES ('combined');
- INSERT INTO qgep.vl_dryweather_flume_material (value_de) VALUES ('kombiniert');
- INSERT INTO qgep.vl_dryweather_flume_material (value_fr) VALUES ('combine');
+ INSERT INTO qgep.vl_dryweather_flume_material (code, value_en, value_de, value_fr) VALUES ('237','cement_mortar','Zementmoertel','mortier_de_ciment');
+ INSERT INTO qgep.vl_dryweather_flume_material (code, value_en, value_de, value_fr) VALUES ('238','stoneware','Steinzeug','gres');
+ INSERT INTO qgep.vl_dryweather_flume_material (code, value_en, value_de, value_fr) VALUES ('239','plastic','Kunststoff','plastique');
+ INSERT INTO qgep.vl_dryweather_flume_material (code, value_en, value_de, value_fr) VALUES ('3017','unknown','unbekannt','inconnu');
+ INSERT INTO qgep.vl_dryweather_flume_material (code, value_en, value_de, value_fr) VALUES ('3221','other','andere','autres');
+ INSERT INTO qgep.vl_dryweather_flume_material (code, value_en, value_de, value_fr) VALUES ('354','combined','kombiniert','combine');
  ALTER TABLE qgep.od_dryweather_flume ADD CONSTRAINT fkey_vl_dryweather_flume_material FOREIGN KEY (material)
- REFERENCES qgep.vl_dryweather_flume_material (code) MATCH SIMPLE 
+ REFERENCES qgep.vl_dryweather_flume_material varchar(36) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_cover ADD CONSTRAINT oorel61 FOREIGN KEY (obj_id) REFERENCES qgep.od_structure_part(obj_id);
+ALTER TABLE qgep.od_cover ADD CONSTRAINT oorel_od_cover_structure_part FOREIGN KEY (obj_id) REFERENCES qgep.od_structure_part(obj_id);
 CREATE TABLE qgep.vl_cover_cover_shape
 (
 code integer NOT NULL,
@@ -804,24 +642,12 @@ CONSTRAINT pkey_qgep_vl_cover_cover_shape_code PRIMARY KEY (code)
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_cover_cover_shape (code) VALUES ('3498');
- INSERT INTO qgep.vl_cover_cover_shape (value_en) VALUES ('round');
- INSERT INTO qgep.vl_cover_cover_shape (value_de) VALUES ('rund');
- INSERT INTO qgep.vl_cover_cover_shape (value_fr) VALUES ('rond');
- INSERT INTO qgep.vl_cover_cover_shape (code) VALUES ('3499');
- INSERT INTO qgep.vl_cover_cover_shape (value_en) VALUES ('rectangular');
- INSERT INTO qgep.vl_cover_cover_shape (value_de) VALUES ('eckig');
- INSERT INTO qgep.vl_cover_cover_shape (value_fr) VALUES ('anguleux');
- INSERT INTO qgep.vl_cover_cover_shape (code) VALUES ('3500');
- INSERT INTO qgep.vl_cover_cover_shape (value_en) VALUES ('other');
- INSERT INTO qgep.vl_cover_cover_shape (value_de) VALUES ('andere');
- INSERT INTO qgep.vl_cover_cover_shape (value_fr) VALUES ('autres');
- INSERT INTO qgep.vl_cover_cover_shape (code) VALUES ('3501');
- INSERT INTO qgep.vl_cover_cover_shape (value_en) VALUES ('unknown');
- INSERT INTO qgep.vl_cover_cover_shape (value_de) VALUES ('unbekannt');
- INSERT INTO qgep.vl_cover_cover_shape (value_fr) VALUES ('inconnu');
+ INSERT INTO qgep.vl_cover_cover_shape (code, value_en, value_de, value_fr) VALUES ('3498','round','rund','rond');
+ INSERT INTO qgep.vl_cover_cover_shape (code, value_en, value_de, value_fr) VALUES ('3499','rectangular','eckig','anguleux');
+ INSERT INTO qgep.vl_cover_cover_shape (code, value_en, value_de, value_fr) VALUES ('3500','other','andere','autres');
+ INSERT INTO qgep.vl_cover_cover_shape (code, value_en, value_de, value_fr) VALUES ('3501','unknown','unbekannt','inconnu');
  ALTER TABLE qgep.od_cover ADD CONSTRAINT fkey_vl_cover_cover_shape FOREIGN KEY (cover_shape)
- REFERENCES qgep.vl_cover_cover_shape (code) MATCH SIMPLE 
+ REFERENCES qgep.vl_cover_cover_shape varchar(36) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
 CREATE TABLE qgep.vl_cover_fastening
 (
@@ -835,20 +661,11 @@ CONSTRAINT pkey_qgep_vl_cover_fastening_code PRIMARY KEY (code)
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_cover_fastening (code) VALUES ('174');
- INSERT INTO qgep.vl_cover_fastening (value_en) VALUES ('bolted');
- INSERT INTO qgep.vl_cover_fastening (value_de) VALUES ('verschraubt');
- INSERT INTO qgep.vl_cover_fastening (value_fr) VALUES ('visse');
- INSERT INTO qgep.vl_cover_fastening (code) VALUES ('175');
- INSERT INTO qgep.vl_cover_fastening (value_en) VALUES ('not_bolted');
- INSERT INTO qgep.vl_cover_fastening (value_de) VALUES ('nicht_verschraubt');
- INSERT INTO qgep.vl_cover_fastening (value_fr) VALUES ('non_visse');
- INSERT INTO qgep.vl_cover_fastening (code) VALUES ('3090');
- INSERT INTO qgep.vl_cover_fastening (value_en) VALUES ('unknown');
- INSERT INTO qgep.vl_cover_fastening (value_de) VALUES ('unbekannt');
- INSERT INTO qgep.vl_cover_fastening (value_fr) VALUES ('inconnu');
+ INSERT INTO qgep.vl_cover_fastening (code, value_en, value_de, value_fr) VALUES ('174','bolted','verschraubt','visse');
+ INSERT INTO qgep.vl_cover_fastening (code, value_en, value_de, value_fr) VALUES ('175','not_bolted','nicht_verschraubt','non_visse');
+ INSERT INTO qgep.vl_cover_fastening (code, value_en, value_de, value_fr) VALUES ('3090','unknown','unbekannt','inconnu');
  ALTER TABLE qgep.od_cover ADD CONSTRAINT fkey_vl_cover_fastening FOREIGN KEY (fastening)
- REFERENCES qgep.vl_cover_fastening (code) MATCH SIMPLE 
+ REFERENCES qgep.vl_cover_fastening varchar(36) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
 CREATE TABLE qgep.vl_cover_location_accuracy
 (
@@ -862,28 +679,13 @@ CONSTRAINT pkey_qgep_vl_cover_location_accuracy_code PRIMARY KEY (code)
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_cover_location_accuracy (code) VALUES ('3236');
- INSERT INTO qgep.vl_cover_location_accuracy (value_en) VALUES ('plusminus_3cm');
- INSERT INTO qgep.vl_cover_location_accuracy (value_de) VALUES ('plusminus_3cm');
- INSERT INTO qgep.vl_cover_location_accuracy (value_fr) VALUES ('plus_moins_3cm');
- INSERT INTO qgep.vl_cover_location_accuracy (code) VALUES ('3241');
- INSERT INTO qgep.vl_cover_location_accuracy (value_en) VALUES ('plusminus_10cm');
- INSERT INTO qgep.vl_cover_location_accuracy (value_de) VALUES ('plusminus_10cm');
- INSERT INTO qgep.vl_cover_location_accuracy (value_fr) VALUES ('plus_moins_10cm');
- INSERT INTO qgep.vl_cover_location_accuracy (code) VALUES ('3242');
- INSERT INTO qgep.vl_cover_location_accuracy (value_en) VALUES ('plusminus_50cm');
- INSERT INTO qgep.vl_cover_location_accuracy (value_de) VALUES ('plusminus_50cm');
- INSERT INTO qgep.vl_cover_location_accuracy (value_fr) VALUES ('plus_moins_50cm');
- INSERT INTO qgep.vl_cover_location_accuracy (code) VALUES ('3243');
- INSERT INTO qgep.vl_cover_location_accuracy (value_en) VALUES ('more_than_50cm');
- INSERT INTO qgep.vl_cover_location_accuracy (value_de) VALUES ('groesser_50cm');
- INSERT INTO qgep.vl_cover_location_accuracy (value_fr) VALUES ('plusque_50cm');
- INSERT INTO qgep.vl_cover_location_accuracy (code) VALUES ('3326');
- INSERT INTO qgep.vl_cover_location_accuracy (value_en) VALUES ('unknown');
- INSERT INTO qgep.vl_cover_location_accuracy (value_de) VALUES ('unbekannt');
- INSERT INTO qgep.vl_cover_location_accuracy (value_fr) VALUES ('inconnu');
+ INSERT INTO qgep.vl_cover_location_accuracy (code, value_en, value_de, value_fr) VALUES ('3236','plusminus_3cm','plusminus_3cm','plus_moins_3cm');
+ INSERT INTO qgep.vl_cover_location_accuracy (code, value_en, value_de, value_fr) VALUES ('3241','plusminus_10cm','plusminus_10cm','plus_moins_10cm');
+ INSERT INTO qgep.vl_cover_location_accuracy (code, value_en, value_de, value_fr) VALUES ('3242','plusminus_50cm','plusminus_50cm','plus_moins_50cm');
+ INSERT INTO qgep.vl_cover_location_accuracy (code, value_en, value_de, value_fr) VALUES ('3243','more_than_50cm','groesser_50cm','plusque_50cm');
+ INSERT INTO qgep.vl_cover_location_accuracy (code, value_en, value_de, value_fr) VALUES ('3326','unknown','unbekannt','inconnu');
  ALTER TABLE qgep.od_cover ADD CONSTRAINT fkey_vl_cover_location_accuracy FOREIGN KEY (location_accuracy)
- REFERENCES qgep.vl_cover_location_accuracy (code) MATCH SIMPLE 
+ REFERENCES qgep.vl_cover_location_accuracy varchar(36) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
 CREATE TABLE qgep.vl_cover_material
 (
@@ -897,32 +699,14 @@ CONSTRAINT pkey_qgep_vl_cover_material_code PRIMARY KEY (code)
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_cover_material (code) VALUES ('233');
- INSERT INTO qgep.vl_cover_material (value_en) VALUES ('cast_iron');
- INSERT INTO qgep.vl_cover_material (value_de) VALUES ('Guss');
- INSERT INTO qgep.vl_cover_material (value_fr) VALUES ('fonte');
- INSERT INTO qgep.vl_cover_material (code) VALUES ('234');
- INSERT INTO qgep.vl_cover_material (value_en) VALUES ('concrete');
- INSERT INTO qgep.vl_cover_material (value_de) VALUES ('Beton');
- INSERT INTO qgep.vl_cover_material (value_fr) VALUES ('beton');
- INSERT INTO qgep.vl_cover_material (code) VALUES ('235');
- INSERT INTO qgep.vl_cover_material (value_en) VALUES ('cast_iron_with_conrete_filling');
- INSERT INTO qgep.vl_cover_material (value_de) VALUES ('Guss_mit_Betonfuellung');
- INSERT INTO qgep.vl_cover_material (value_fr) VALUES ('fonte_avec_remplissage_en_beton');
- INSERT INTO qgep.vl_cover_material (code) VALUES ('236');
- INSERT INTO qgep.vl_cover_material (value_en) VALUES ('cast_iron_with_pavement_filling');
- INSERT INTO qgep.vl_cover_material (value_de) VALUES ('Guss_mit_Belagsfuellung');
- INSERT INTO qgep.vl_cover_material (value_fr) VALUES ('fonte_avec_remplissage_enrobe');
- INSERT INTO qgep.vl_cover_material (code) VALUES ('2976');
- INSERT INTO qgep.vl_cover_material (value_en) VALUES ('other');
- INSERT INTO qgep.vl_cover_material (value_de) VALUES ('andere');
- INSERT INTO qgep.vl_cover_material (value_fr) VALUES ('autres');
- INSERT INTO qgep.vl_cover_material (code) VALUES ('3015');
- INSERT INTO qgep.vl_cover_material (value_en) VALUES ('unknown');
- INSERT INTO qgep.vl_cover_material (value_de) VALUES ('unbekannt');
- INSERT INTO qgep.vl_cover_material (value_fr) VALUES ('inconnu');
+ INSERT INTO qgep.vl_cover_material (code, value_en, value_de, value_fr) VALUES ('233','cast_iron','Guss','fonte');
+ INSERT INTO qgep.vl_cover_material (code, value_en, value_de, value_fr) VALUES ('234','concrete','Beton','beton');
+ INSERT INTO qgep.vl_cover_material (code, value_en, value_de, value_fr) VALUES ('235','cast_iron_with_conrete_filling','Guss_mit_Betonfuellung','fonte_avec_remplissage_en_beton');
+ INSERT INTO qgep.vl_cover_material (code, value_en, value_de, value_fr) VALUES ('236','cast_iron_with_pavement_filling','Guss_mit_Belagsfuellung','fonte_avec_remplissage_enrobe');
+ INSERT INTO qgep.vl_cover_material (code, value_en, value_de, value_fr) VALUES ('2976','other','andere','autres');
+ INSERT INTO qgep.vl_cover_material (code, value_en, value_de, value_fr) VALUES ('3015','unknown','unbekannt','inconnu');
  ALTER TABLE qgep.od_cover ADD CONSTRAINT fkey_vl_cover_material FOREIGN KEY (material)
- REFERENCES qgep.vl_cover_material (code) MATCH SIMPLE 
+ REFERENCES qgep.vl_cover_material varchar(36) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
 CREATE TABLE qgep.vl_cover_sludge_bucket
 (
@@ -936,20 +720,11 @@ CONSTRAINT pkey_qgep_vl_cover_sludge_bucket_code PRIMARY KEY (code)
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_cover_sludge_bucket (code) VALUES ('3066');
- INSERT INTO qgep.vl_cover_sludge_bucket (value_en) VALUES ('unknown');
- INSERT INTO qgep.vl_cover_sludge_bucket (value_de) VALUES ('unbekannt');
- INSERT INTO qgep.vl_cover_sludge_bucket (value_fr) VALUES ('inconnu');
- INSERT INTO qgep.vl_cover_sludge_bucket (code) VALUES ('422');
- INSERT INTO qgep.vl_cover_sludge_bucket (value_en) VALUES ('existent');
- INSERT INTO qgep.vl_cover_sludge_bucket (value_de) VALUES ('vorhanden');
- INSERT INTO qgep.vl_cover_sludge_bucket (value_fr) VALUES ('existant');
- INSERT INTO qgep.vl_cover_sludge_bucket (code) VALUES ('423');
- INSERT INTO qgep.vl_cover_sludge_bucket (value_en) VALUES ('inexistent');
- INSERT INTO qgep.vl_cover_sludge_bucket (value_de) VALUES ('nicht_vorhanden');
- INSERT INTO qgep.vl_cover_sludge_bucket (value_fr) VALUES ('inexistant');
+ INSERT INTO qgep.vl_cover_sludge_bucket (code, value_en, value_de, value_fr) VALUES ('3066','unknown','unbekannt','inconnu');
+ INSERT INTO qgep.vl_cover_sludge_bucket (code, value_en, value_de, value_fr) VALUES ('422','existent','vorhanden','existant');
+ INSERT INTO qgep.vl_cover_sludge_bucket (code, value_en, value_de, value_fr) VALUES ('423','inexistent','nicht_vorhanden','inexistant');
  ALTER TABLE qgep.od_cover ADD CONSTRAINT fkey_vl_cover_sludge_bucket FOREIGN KEY (sludge_bucket)
- REFERENCES qgep.vl_cover_sludge_bucket (code) MATCH SIMPLE 
+ REFERENCES qgep.vl_cover_sludge_bucket varchar(36) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
 CREATE TABLE qgep.vl_cover_venting
 (
@@ -963,22 +738,13 @@ CONSTRAINT pkey_qgep_vl_cover_venting_code PRIMARY KEY (code)
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_cover_venting (code) VALUES ('229');
- INSERT INTO qgep.vl_cover_venting (value_en) VALUES ('vented');
- INSERT INTO qgep.vl_cover_venting (value_de) VALUES ('entlueftet');
- INSERT INTO qgep.vl_cover_venting (value_fr) VALUES ('aere');
- INSERT INTO qgep.vl_cover_venting (code) VALUES ('230');
- INSERT INTO qgep.vl_cover_venting (value_en) VALUES ('not_vented');
- INSERT INTO qgep.vl_cover_venting (value_de) VALUES ('nicht_entlueftet');
- INSERT INTO qgep.vl_cover_venting (value_fr) VALUES ('non_aere');
- INSERT INTO qgep.vl_cover_venting (code) VALUES ('3092');
- INSERT INTO qgep.vl_cover_venting (value_en) VALUES ('unknown');
- INSERT INTO qgep.vl_cover_venting (value_de) VALUES ('unbekannt');
- INSERT INTO qgep.vl_cover_venting (value_fr) VALUES ('inconnu');
+ INSERT INTO qgep.vl_cover_venting (code, value_en, value_de, value_fr) VALUES ('229','vented','entlueftet','aere');
+ INSERT INTO qgep.vl_cover_venting (code, value_en, value_de, value_fr) VALUES ('230','not_vented','nicht_entlueftet','non_aere');
+ INSERT INTO qgep.vl_cover_venting (code, value_en, value_de, value_fr) VALUES ('3092','unknown','unbekannt','inconnu');
  ALTER TABLE qgep.od_cover ADD CONSTRAINT fkey_vl_cover_venting FOREIGN KEY (venting)
- REFERENCES qgep.vl_cover_venting (code) MATCH SIMPLE 
+ REFERENCES qgep.vl_cover_venting varchar(36) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_access_aid ADD CONSTRAINT oorel74 FOREIGN KEY (obj_id) REFERENCES qgep.od_structure_part(obj_id);
+ALTER TABLE qgep.od_access_aid ADD CONSTRAINT oorel_od_access_aid_structure_part FOREIGN KEY (obj_id) REFERENCES qgep.od_structure_part(obj_id);
 CREATE TABLE qgep.vl_access_aid_type
 (
 code integer NOT NULL,
@@ -991,46 +757,19 @@ CONSTRAINT pkey_qgep_vl_access_aid_type_code PRIMARY KEY (code)
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_access_aid_type (code) VALUES ('240');
- INSERT INTO qgep.vl_access_aid_type (value_en) VALUES ('ladder');
- INSERT INTO qgep.vl_access_aid_type (value_de) VALUES ('Leiter');
- INSERT INTO qgep.vl_access_aid_type (value_fr) VALUES ('echelle');
- INSERT INTO qgep.vl_access_aid_type (code) VALUES ('241');
- INSERT INTO qgep.vl_access_aid_type (value_en) VALUES ('step_iron');
- INSERT INTO qgep.vl_access_aid_type (value_de) VALUES ('Steigeisen');
- INSERT INTO qgep.vl_access_aid_type (value_fr) VALUES ('echelons');
- INSERT INTO qgep.vl_access_aid_type (code) VALUES ('243');
- INSERT INTO qgep.vl_access_aid_type (value_en) VALUES ('pressurized_door');
- INSERT INTO qgep.vl_access_aid_type (value_de) VALUES ('Drucktuere');
- INSERT INTO qgep.vl_access_aid_type (value_fr) VALUES ('porte_etanche');
- INSERT INTO qgep.vl_access_aid_type (code) VALUES ('2977');
- INSERT INTO qgep.vl_access_aid_type (value_en) VALUES ('other');
- INSERT INTO qgep.vl_access_aid_type (value_de) VALUES ('andere');
- INSERT INTO qgep.vl_access_aid_type (value_fr) VALUES ('autres');
- INSERT INTO qgep.vl_access_aid_type (code) VALUES ('3048');
- INSERT INTO qgep.vl_access_aid_type (value_en) VALUES ('unknown');
- INSERT INTO qgep.vl_access_aid_type (value_de) VALUES ('unbekannt');
- INSERT INTO qgep.vl_access_aid_type (value_fr) VALUES ('inconnu');
- INSERT INTO qgep.vl_access_aid_type (code) VALUES ('3230');
- INSERT INTO qgep.vl_access_aid_type (value_en) VALUES ('door');
- INSERT INTO qgep.vl_access_aid_type (value_de) VALUES ('Tuere');
- INSERT INTO qgep.vl_access_aid_type (value_fr) VALUES ('porte');
- INSERT INTO qgep.vl_access_aid_type (code) VALUES ('3473');
- INSERT INTO qgep.vl_access_aid_type (value_en) VALUES ('staircase');
- INSERT INTO qgep.vl_access_aid_type (value_de) VALUES ('Treppe');
- INSERT INTO qgep.vl_access_aid_type (value_fr) VALUES ('escalier');
- INSERT INTO qgep.vl_access_aid_type (code) VALUES ('91');
- INSERT INTO qgep.vl_access_aid_type (value_en) VALUES ('footstep_niches');
- INSERT INTO qgep.vl_access_aid_type (value_de) VALUES ('Trittnischen');
- INSERT INTO qgep.vl_access_aid_type (value_fr) VALUES ('marchepieds');
- INSERT INTO qgep.vl_access_aid_type (code) VALUES ('92');
- INSERT INTO qgep.vl_access_aid_type (value_en) VALUES ('no');
- INSERT INTO qgep.vl_access_aid_type (value_de) VALUES ('keine');
- INSERT INTO qgep.vl_access_aid_type (value_fr) VALUES ('aucun_equipement_d_acces');
+ INSERT INTO qgep.vl_access_aid_type (code, value_en, value_de, value_fr) VALUES ('240','ladder','Leiter','echelle');
+ INSERT INTO qgep.vl_access_aid_type (code, value_en, value_de, value_fr) VALUES ('241','step_iron','Steigeisen','echelons');
+ INSERT INTO qgep.vl_access_aid_type (code, value_en, value_de, value_fr) VALUES ('243','pressurized_door','Drucktuere','porte_etanche');
+ INSERT INTO qgep.vl_access_aid_type (code, value_en, value_de, value_fr) VALUES ('2977','other','andere','autres');
+ INSERT INTO qgep.vl_access_aid_type (code, value_en, value_de, value_fr) VALUES ('3048','unknown','unbekannt','inconnu');
+ INSERT INTO qgep.vl_access_aid_type (code, value_en, value_de, value_fr) VALUES ('3230','door','Tuere','porte');
+ INSERT INTO qgep.vl_access_aid_type (code, value_en, value_de, value_fr) VALUES ('3473','staircase','Treppe','escalier');
+ INSERT INTO qgep.vl_access_aid_type (code, value_en, value_de, value_fr) VALUES ('91','footstep_niches','Trittnischen','marchepieds');
+ INSERT INTO qgep.vl_access_aid_type (code, value_en, value_de, value_fr) VALUES ('92','none','keine','aucun_equipement_d_acces');
  ALTER TABLE qgep.od_access_aid ADD CONSTRAINT fkey_vl_access_aid_type FOREIGN KEY (type)
- REFERENCES qgep.vl_access_aid_type (code) MATCH SIMPLE 
+ REFERENCES qgep.vl_access_aid_type varchar(36) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_benching ADD CONSTRAINT oorel77 FOREIGN KEY (obj_id) REFERENCES qgep.od_structure_part(obj_id);
+ALTER TABLE qgep.od_benching ADD CONSTRAINT oorel_od_benching_structure_part FOREIGN KEY (obj_id) REFERENCES qgep.od_structure_part(obj_id);
 CREATE TABLE qgep.vl_benching_type
 (
 code integer NOT NULL,
@@ -1043,30 +782,15 @@ CONSTRAINT pkey_qgep_vl_benching_type_code PRIMARY KEY (code)
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_benching_type (code) VALUES ('3033');
- INSERT INTO qgep.vl_benching_type (value_en) VALUES ('unknown');
- INSERT INTO qgep.vl_benching_type (value_de) VALUES ('unbekannt');
- INSERT INTO qgep.vl_benching_type (value_fr) VALUES ('inconnu');
- INSERT INTO qgep.vl_benching_type (code) VALUES ('3211');
- INSERT INTO qgep.vl_benching_type (value_en) VALUES ('other');
- INSERT INTO qgep.vl_benching_type (value_de) VALUES ('andere');
- INSERT INTO qgep.vl_benching_type (value_fr) VALUES ('autres');
- INSERT INTO qgep.vl_benching_type (code) VALUES ('3231');
- INSERT INTO qgep.vl_benching_type (value_en) VALUES ('no');
- INSERT INTO qgep.vl_benching_type (value_de) VALUES ('kein');
- INSERT INTO qgep.vl_benching_type (value_fr) VALUES ('aucun');
- INSERT INTO qgep.vl_benching_type (code) VALUES ('93');
- INSERT INTO qgep.vl_benching_type (value_en) VALUES ('onesided');
- INSERT INTO qgep.vl_benching_type (value_de) VALUES ('einseitig');
- INSERT INTO qgep.vl_benching_type (value_fr) VALUES ('simple');
- INSERT INTO qgep.vl_benching_type (code) VALUES ('94');
- INSERT INTO qgep.vl_benching_type (value_en) VALUES ('double_sided');
- INSERT INTO qgep.vl_benching_type (value_de) VALUES ('beidseitig');
- INSERT INTO qgep.vl_benching_type (value_fr) VALUES ('double');
+ INSERT INTO qgep.vl_benching_type (code, value_en, value_de, value_fr) VALUES ('3033','unknown','unbekannt','inconnu');
+ INSERT INTO qgep.vl_benching_type (code, value_en, value_de, value_fr) VALUES ('3211','other','andere','autres');
+ INSERT INTO qgep.vl_benching_type (code, value_en, value_de, value_fr) VALUES ('3231','no','kein','aucun');
+ INSERT INTO qgep.vl_benching_type (code, value_en, value_de, value_fr) VALUES ('93','onesided','einseitig','simple');
+ INSERT INTO qgep.vl_benching_type (code, value_en, value_de, value_fr) VALUES ('94','double_sided','beidseitig','double');
  ALTER TABLE qgep.od_benching ADD CONSTRAINT fkey_vl_benching_type FOREIGN KEY (type)
- REFERENCES qgep.vl_benching_type (code) MATCH SIMPLE 
+ REFERENCES qgep.vl_benching_type varchar(36) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_manhole ADD CONSTRAINT oorel80 FOREIGN KEY (obj_id) REFERENCES qgep.od_wastewater_structure(obj_id);
+ALTER TABLE qgep.od_manhole ADD CONSTRAINT oorel_od_manhole_wastewater_structure FOREIGN KEY (obj_id) REFERENCES qgep.od_wastewater_structure(obj_id);
 CREATE TABLE qgep.vl_manhole_function
 (
 code integer NOT NULL,
@@ -1079,72 +803,24 @@ CONSTRAINT pkey_qgep_vl_manhole_function_code PRIMARY KEY (code)
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_manhole_function (code) VALUES ('1008');
- INSERT INTO qgep.vl_manhole_function (value_en) VALUES ('oil_separator');
- INSERT INTO qgep.vl_manhole_function (value_de) VALUES ('Oelabscheider');
- INSERT INTO qgep.vl_manhole_function (value_fr) VALUES ('separateur_d_hydrocarbures');
- INSERT INTO qgep.vl_manhole_function (code) VALUES ('204');
- INSERT INTO qgep.vl_manhole_function (value_en) VALUES ('manhole');
- INSERT INTO qgep.vl_manhole_function (value_de) VALUES ('Kontrollschacht');
- INSERT INTO qgep.vl_manhole_function (value_fr) VALUES ('regard_de_visite');
- INSERT INTO qgep.vl_manhole_function (code) VALUES ('228');
- INSERT INTO qgep.vl_manhole_function (value_en) VALUES ('rail_track_gully');
- INSERT INTO qgep.vl_manhole_function (value_de) VALUES ('Geleiseschacht');
- INSERT INTO qgep.vl_manhole_function (value_fr) VALUES ('evacuation_des_eaux_des_voies_ferrees');
- INSERT INTO qgep.vl_manhole_function (code) VALUES ('2742');
- INSERT INTO qgep.vl_manhole_function (value_en) VALUES ('slurry_collector');
- INSERT INTO qgep.vl_manhole_function (value_de) VALUES ('Schlammsammler');
- INSERT INTO qgep.vl_manhole_function (value_fr) VALUES ('depotoir');
- INSERT INTO qgep.vl_manhole_function (code) VALUES ('3266');
- INSERT INTO qgep.vl_manhole_function (value_en) VALUES ('gully');
- INSERT INTO qgep.vl_manhole_function (value_de) VALUES ('Einlaufschacht');
- INSERT INTO qgep.vl_manhole_function (value_fr) VALUES ('chambre_avec_grille_d_entree');
- INSERT INTO qgep.vl_manhole_function (code) VALUES ('3267');
- INSERT INTO qgep.vl_manhole_function (value_en) VALUES ('rain_water_manhole');
- INSERT INTO qgep.vl_manhole_function (value_de) VALUES ('Dachwasserschacht');
- INSERT INTO qgep.vl_manhole_function (value_fr) VALUES ('chambre_recolte_eaux_toitures');
- INSERT INTO qgep.vl_manhole_function (code) VALUES ('2989');
- INSERT INTO qgep.vl_manhole_function (value_en) VALUES ('other');
- INSERT INTO qgep.vl_manhole_function (value_de) VALUES ('andere');
- INSERT INTO qgep.vl_manhole_function (value_fr) VALUES ('autres');
- INSERT INTO qgep.vl_manhole_function (code) VALUES ('3006');
- INSERT INTO qgep.vl_manhole_function (value_en) VALUES ('unknown');
- INSERT INTO qgep.vl_manhole_function (value_de) VALUES ('unbekannt');
- INSERT INTO qgep.vl_manhole_function (value_fr) VALUES ('inconnu');
- INSERT INTO qgep.vl_manhole_function (code) VALUES ('3332');
- INSERT INTO qgep.vl_manhole_function (value_en) VALUES ('floating_material_separator');
- INSERT INTO qgep.vl_manhole_function (value_de) VALUES ('Schwimmstoffabscheider');
- INSERT INTO qgep.vl_manhole_function (value_fr) VALUES ('separateur_materiaux_flottants');
- INSERT INTO qgep.vl_manhole_function (code) VALUES ('3472');
- INSERT INTO qgep.vl_manhole_function (value_en) VALUES ('drainage_channel');
- INSERT INTO qgep.vl_manhole_function (value_de) VALUES ('Entwaesserungsrinne');
- INSERT INTO qgep.vl_manhole_function (value_fr) VALUES ('rigole_de_drainage');
- INSERT INTO qgep.vl_manhole_function (code) VALUES ('4532');
- INSERT INTO qgep.vl_manhole_function (value_en) VALUES ('drop_structure');
- INSERT INTO qgep.vl_manhole_function (value_de) VALUES ('Absturzbauwerk');
- INSERT INTO qgep.vl_manhole_function (value_fr) VALUES ('ouvrage_de_chute');
- INSERT INTO qgep.vl_manhole_function (code) VALUES ('4533');
- INSERT INTO qgep.vl_manhole_function (value_en) VALUES ('venting');
- INSERT INTO qgep.vl_manhole_function (value_de) VALUES ('Be_Entlueftung');
- INSERT INTO qgep.vl_manhole_function (value_fr) VALUES ('aeration');
- INSERT INTO qgep.vl_manhole_function (code) VALUES ('4534');
- INSERT INTO qgep.vl_manhole_function (value_en) VALUES ('flood_relief');
- INSERT INTO qgep.vl_manhole_function (value_de) VALUES ('Hochwasserentlastung');
- INSERT INTO qgep.vl_manhole_function (value_fr) VALUES ('deversoir_orage');
- INSERT INTO qgep.vl_manhole_function (code) VALUES ('4535');
- INSERT INTO qgep.vl_manhole_function (value_en) VALUES ('septic_tank');
- INSERT INTO qgep.vl_manhole_function (value_de) VALUES ('Klaergrube');
- INSERT INTO qgep.vl_manhole_function (value_fr) VALUES ('fosse_septique');
- INSERT INTO qgep.vl_manhole_function (code) VALUES ('4536');
- INSERT INTO qgep.vl_manhole_function (value_en) VALUES ('pump_station');
- INSERT INTO qgep.vl_manhole_function (value_de) VALUES ('Pumpwerk');
- INSERT INTO qgep.vl_manhole_function (value_fr) VALUES ('station_de_pompage');
- INSERT INTO qgep.vl_manhole_function (code) VALUES ('4537');
- INSERT INTO qgep.vl_manhole_function (value_en) VALUES ('jetting_manhole');
- INSERT INTO qgep.vl_manhole_function (value_de) VALUES ('Spuelschacht');
- INSERT INTO qgep.vl_manhole_function (value_fr) VALUES ('chambre_de_chasse');
+ INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr) VALUES ('1008','oil_separator','Oelabscheider','separateur_d_hydrocarbures');
+ INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr) VALUES ('204','manhole','Kontrollschacht','regard_de_visite');
+ INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr) VALUES ('228','rail_track_gully','Geleiseschacht','evacuation_des_eaux_des_voies_ferrees');
+ INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr) VALUES ('2742','slurry_collector','Schlammsammler','depotoir');
+ INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr) VALUES ('3266','gully','Einlaufschacht','chambre_avec_grille_d_entree');
+ INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr) VALUES ('3267','rain_water_manhole','Dachwasserschacht','chambre_recolte_eaux_toitures');
+ INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr) VALUES ('2989','other','andere','autres');
+ INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr) VALUES ('3006','unknown','unbekannt','inconnu');
+ INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr) VALUES ('3332','floating_material_separator','Schwimmstoffabscheider','separateur_materiaux_flottants');
+ INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr) VALUES ('3472','drainage_channel','Entwaesserungsrinne','rigole_de_drainage');
+ INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr) VALUES ('4532','drop_structure','Absturzbauwerk','ouvrage_de_chute');
+ INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr) VALUES ('4533','venting','Be_Entlueftung','aeration');
+ INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr) VALUES ('4534','spill_way','Hochwasserentlastung','deversoir_orage');
+ INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr) VALUES ('4535','septic_tank','Klaergrube','fosse_septique');
+ INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr) VALUES ('4536','pump_station','Pumpwerk','station_de_pompage');
+ INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr) VALUES ('4537','jetting_manhole','Spuelschacht','chambre_de_chasse');
  ALTER TABLE qgep.od_manhole ADD CONSTRAINT fkey_vl_manhole_function FOREIGN KEY (function)
- REFERENCES qgep.vl_manhole_function (code) MATCH SIMPLE 
+ REFERENCES qgep.vl_manhole_function varchar(36) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
 CREATE TABLE qgep.vl_manhole_material
 (
@@ -1158,24 +834,12 @@ CONSTRAINT pkey_qgep_vl_manhole_material_code PRIMARY KEY (code)
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_manhole_material (code) VALUES ('4540');
- INSERT INTO qgep.vl_manhole_material (value_en) VALUES ('other');
- INSERT INTO qgep.vl_manhole_material (value_de) VALUES ('andere');
- INSERT INTO qgep.vl_manhole_material (value_fr) VALUES ('autre');
- INSERT INTO qgep.vl_manhole_material (code) VALUES ('4541');
- INSERT INTO qgep.vl_manhole_material (value_en) VALUES ('concrete');
- INSERT INTO qgep.vl_manhole_material (value_de) VALUES ('Beton');
- INSERT INTO qgep.vl_manhole_material (value_fr) VALUES ('beton');
- INSERT INTO qgep.vl_manhole_material (code) VALUES ('4542');
- INSERT INTO qgep.vl_manhole_material (value_en) VALUES ('plastic');
- INSERT INTO qgep.vl_manhole_material (value_de) VALUES ('Kunststoff');
- INSERT INTO qgep.vl_manhole_material (value_fr) VALUES ('matiere_plastique');
- INSERT INTO qgep.vl_manhole_material (code) VALUES ('4543');
- INSERT INTO qgep.vl_manhole_material (value_en) VALUES ('unknown');
- INSERT INTO qgep.vl_manhole_material (value_de) VALUES ('unbekannt');
- INSERT INTO qgep.vl_manhole_material (value_fr) VALUES ('inconnu');
+ INSERT INTO qgep.vl_manhole_material (code, value_en, value_de, value_fr) VALUES ('4540','other','andere','autre');
+ INSERT INTO qgep.vl_manhole_material (code, value_en, value_de, value_fr) VALUES ('4541','concrete','Beton','beton');
+ INSERT INTO qgep.vl_manhole_material (code, value_en, value_de, value_fr) VALUES ('4542','plastic','Kunststoff','matiere_plastique');
+ INSERT INTO qgep.vl_manhole_material (code, value_en, value_de, value_fr) VALUES ('4543','unknown','unbekannt','inconnu');
  ALTER TABLE qgep.od_manhole ADD CONSTRAINT fkey_vl_manhole_material FOREIGN KEY (material)
- REFERENCES qgep.vl_manhole_material (code) MATCH SIMPLE 
+ REFERENCES qgep.vl_manhole_material varchar(36) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
 CREATE TABLE qgep.vl_manhole_surface_inflow
 (
@@ -1189,30 +853,15 @@ CONSTRAINT pkey_qgep_vl_manhole_surface_inflow_code PRIMARY KEY (code)
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_manhole_surface_inflow (code) VALUES ('2739');
- INSERT INTO qgep.vl_manhole_surface_inflow (value_en) VALUES ('grid');
- INSERT INTO qgep.vl_manhole_surface_inflow (value_de) VALUES ('Rost');
- INSERT INTO qgep.vl_manhole_surface_inflow (value_fr) VALUES ('grille_d_ecoulement');
- INSERT INTO qgep.vl_manhole_surface_inflow (code) VALUES ('2740');
- INSERT INTO qgep.vl_manhole_surface_inflow (value_en) VALUES ('intake_from_side');
- INSERT INTO qgep.vl_manhole_surface_inflow (value_de) VALUES ('Zulauf_seitlich');
- INSERT INTO qgep.vl_manhole_surface_inflow (value_fr) VALUES ('arrivee_laterale');
- INSERT INTO qgep.vl_manhole_surface_inflow (code) VALUES ('2741');
- INSERT INTO qgep.vl_manhole_surface_inflow (value_en) VALUES ('no');
- INSERT INTO qgep.vl_manhole_surface_inflow (value_de) VALUES ('keiner');
- INSERT INTO qgep.vl_manhole_surface_inflow (value_fr) VALUES ('aucune');
- INSERT INTO qgep.vl_manhole_surface_inflow (code) VALUES ('3062');
- INSERT INTO qgep.vl_manhole_surface_inflow (value_en) VALUES ('unknown');
- INSERT INTO qgep.vl_manhole_surface_inflow (value_de) VALUES ('unbekannt');
- INSERT INTO qgep.vl_manhole_surface_inflow (value_fr) VALUES ('inconnu');
- INSERT INTO qgep.vl_manhole_surface_inflow (code) VALUES ('3218');
- INSERT INTO qgep.vl_manhole_surface_inflow (value_en) VALUES ('other');
- INSERT INTO qgep.vl_manhole_surface_inflow (value_de) VALUES ('andere');
- INSERT INTO qgep.vl_manhole_surface_inflow (value_fr) VALUES ('autres');
+ INSERT INTO qgep.vl_manhole_surface_inflow (code, value_en, value_de, value_fr) VALUES ('2739','grid','Rost','grille_d_ecoulement');
+ INSERT INTO qgep.vl_manhole_surface_inflow (code, value_en, value_de, value_fr) VALUES ('2740','intake_from_side','Zulauf_seitlich','arrivee_laterale');
+ INSERT INTO qgep.vl_manhole_surface_inflow (code, value_en, value_de, value_fr) VALUES ('2741','no','keiner','aucune');
+ INSERT INTO qgep.vl_manhole_surface_inflow (code, value_en, value_de, value_fr) VALUES ('3062','unknown','unbekannt','inconnu');
+ INSERT INTO qgep.vl_manhole_surface_inflow (code, value_en, value_de, value_fr) VALUES ('3218','other','andere','autres');
  ALTER TABLE qgep.od_manhole ADD CONSTRAINT fkey_vl_manhole_surface_inflow FOREIGN KEY (surface_inflow)
- REFERENCES qgep.vl_manhole_surface_inflow (code) MATCH SIMPLE 
+ REFERENCES qgep.vl_manhole_surface_inflow varchar(36) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_channel ADD CONSTRAINT oorel88 FOREIGN KEY (obj_id) REFERENCES qgep.od_wastewater_structure(obj_id);
+ALTER TABLE qgep.od_channel ADD CONSTRAINT oorel_od_channel_wastewater_structure FOREIGN KEY (obj_id) REFERENCES qgep.od_wastewater_structure(obj_id);
 CREATE TABLE qgep.vl_channel_bedding_encasement
 (
 code integer NOT NULL,
@@ -1225,60 +874,21 @@ CONSTRAINT pkey_qgep_vl_channel_bedding_encasement_code PRIMARY KEY (code)
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_channel_bedding_encasement (code) VALUES ('12');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_en) VALUES ('sand');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_de) VALUES ('Sand');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_fr) VALUES ('sable');
- INSERT INTO qgep.vl_channel_bedding_encasement (code) VALUES ('158');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_en) VALUES ('in_soil');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_de) VALUES ('erdverlegt');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_fr) VALUES ('enterre');
- INSERT INTO qgep.vl_channel_bedding_encasement (code) VALUES ('18');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_en) VALUES ('in_channel_suspended');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_de) VALUES ('in_Kanal_aufgehaengt');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_fr) VALUES ('suspendu_dans_le_canal');
- INSERT INTO qgep.vl_channel_bedding_encasement (code) VALUES ('2765');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_en) VALUES ('in_channel_concrete_casted');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_de) VALUES ('in_Kanal_einbetoniert');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_fr) VALUES ('betonne_dans_le_canal');
- INSERT INTO qgep.vl_channel_bedding_encasement (code) VALUES ('2766');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_en) VALUES ('in_jacking_pipe_concrete');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_de) VALUES ('in_Vortriebsrohr_Beton');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_fr) VALUES ('en_pousse_tube_en_beton');
- INSERT INTO qgep.vl_channel_bedding_encasement (code) VALUES ('2767');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_en) VALUES ('in_jacking_pipe_steel');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_de) VALUES ('in_Vortriebsrohr_Stahl');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_fr) VALUES ('en_pousse_tube_en_acier');
- INSERT INTO qgep.vl_channel_bedding_encasement (code) VALUES ('2986');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_en) VALUES ('other');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_de) VALUES ('andere');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_fr) VALUES ('autres');
- INSERT INTO qgep.vl_channel_bedding_encasement (code) VALUES ('3084');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_en) VALUES ('unknown');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_de) VALUES ('unbekannt');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_fr) VALUES ('inconnu');
- INSERT INTO qgep.vl_channel_bedding_encasement (code) VALUES ('3424');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_en) VALUES ('SIA_type_1');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_de) VALUES ('SIA_Typ1');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_fr) VALUES ('SIA_type_1');
- INSERT INTO qgep.vl_channel_bedding_encasement (code) VALUES ('3425');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_en) VALUES ('SIA_type_2');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_de) VALUES ('SIA_Typ2');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_fr) VALUES ('SIA_type_2');
- INSERT INTO qgep.vl_channel_bedding_encasement (code) VALUES ('3426');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_en) VALUES ('SIA_type_3');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_de) VALUES ('SIA_Typ3');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_fr) VALUES ('SIA_type_3');
- INSERT INTO qgep.vl_channel_bedding_encasement (code) VALUES ('3427');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_en) VALUES ('SIA_type_4');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_de) VALUES ('SIA_Typ4');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_fr) VALUES ('SIA_type_4');
- INSERT INTO qgep.vl_channel_bedding_encasement (code) VALUES ('3636');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_en) VALUES ('in_walk_in_passage');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_de) VALUES ('in_Leitungsgang');
- INSERT INTO qgep.vl_channel_bedding_encasement (value_fr) VALUES ('en_galerie');
+ INSERT INTO qgep.vl_channel_bedding_encasement (code, value_en, value_de, value_fr) VALUES ('12','sand','Sand','sable');
+ INSERT INTO qgep.vl_channel_bedding_encasement (code, value_en, value_de, value_fr) VALUES ('158','in_soil','erdverlegt','enterre');
+ INSERT INTO qgep.vl_channel_bedding_encasement (code, value_en, value_de, value_fr) VALUES ('18','in_channel_suspended','in_Kanal_aufgehaengt','suspendu_dans_le_canal');
+ INSERT INTO qgep.vl_channel_bedding_encasement (code, value_en, value_de, value_fr) VALUES ('2765','in_channel_concrete_casted','in_Kanal_einbetoniert','betonne_dans_le_canal');
+ INSERT INTO qgep.vl_channel_bedding_encasement (code, value_en, value_de, value_fr) VALUES ('2766','in_jacking_pipe_concrete','in_Vortriebsrohr_Beton','en_pousse_tube_en_beton');
+ INSERT INTO qgep.vl_channel_bedding_encasement (code, value_en, value_de, value_fr) VALUES ('2767','in_jacking_pipe_steel','in_Vortriebsrohr_Stahl','en_pousse_tube_en_acier');
+ INSERT INTO qgep.vl_channel_bedding_encasement (code, value_en, value_de, value_fr) VALUES ('2986','other','andere','autres');
+ INSERT INTO qgep.vl_channel_bedding_encasement (code, value_en, value_de, value_fr) VALUES ('3084','unknown','unbekannt','inconnu');
+ INSERT INTO qgep.vl_channel_bedding_encasement (code, value_en, value_de, value_fr) VALUES ('3424','SIA_type_1','SIA_Typ1','SIA_type_1');
+ INSERT INTO qgep.vl_channel_bedding_encasement (code, value_en, value_de, value_fr) VALUES ('3425','SIA_type_2','SIA_Typ2','SIA_type_2');
+ INSERT INTO qgep.vl_channel_bedding_encasement (code, value_en, value_de, value_fr) VALUES ('3426','SIA_type_3','SIA_Typ3','SIA_type_3');
+ INSERT INTO qgep.vl_channel_bedding_encasement (code, value_en, value_de, value_fr) VALUES ('3427','SIA_type_4','SIA_Typ4','SIA_type_4');
+ INSERT INTO qgep.vl_channel_bedding_encasement (code, value_en, value_de, value_fr) VALUES ('3636','in_walk_in_passage','in_Leitungsgang','en_galerie');
  ALTER TABLE qgep.od_channel ADD CONSTRAINT fkey_vl_channel_bedding_encasement FOREIGN KEY (bedding_encasement)
- REFERENCES qgep.vl_channel_bedding_encasement (code) MATCH SIMPLE 
+ REFERENCES qgep.vl_channel_bedding_encasement varchar(36) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
 CREATE TABLE qgep.vl_channel_connection_type
 (
@@ -1292,60 +902,21 @@ CONSTRAINT pkey_qgep_vl_channel_connection_type_code PRIMARY KEY (code)
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_channel_connection_type (code) VALUES ('185');
- INSERT INTO qgep.vl_channel_connection_type (value_en) VALUES ('bell_shaped_sleeves');
- INSERT INTO qgep.vl_channel_connection_type (value_de) VALUES ('Glockenmuffen');
- INSERT INTO qgep.vl_channel_connection_type (value_fr) VALUES ('emboitement_a_cloche');
- INSERT INTO qgep.vl_channel_connection_type (code) VALUES ('186');
- INSERT INTO qgep.vl_channel_connection_type (value_en) VALUES ('beaked_sleeves');
- INSERT INTO qgep.vl_channel_connection_type (value_de) VALUES ('Spitzmuffen');
- INSERT INTO qgep.vl_channel_connection_type (value_fr) VALUES ('emboitement_simple');
- INSERT INTO qgep.vl_channel_connection_type (code) VALUES ('187');
- INSERT INTO qgep.vl_channel_connection_type (value_en) VALUES ('flat_sleeves');
- INSERT INTO qgep.vl_channel_connection_type (value_de) VALUES ('Flachmuffen');
- INSERT INTO qgep.vl_channel_connection_type (value_fr) VALUES ('manchon_plat');
- INSERT INTO qgep.vl_channel_connection_type (code) VALUES ('188');
- INSERT INTO qgep.vl_channel_connection_type (value_en) VALUES ('slip_on_sleeves');
- INSERT INTO qgep.vl_channel_connection_type (value_de) VALUES ('Ueberschiebmuffen');
- INSERT INTO qgep.vl_channel_connection_type (value_fr) VALUES ('manchon_coulissant');
- INSERT INTO qgep.vl_channel_connection_type (code) VALUES ('189');
- INSERT INTO qgep.vl_channel_connection_type (value_en) VALUES ('butt_welded');
- INSERT INTO qgep.vl_channel_connection_type (value_de) VALUES ('spiegelgeschweisst');
- INSERT INTO qgep.vl_channel_connection_type (value_fr) VALUES ('manchon_soude_au_miroir');
- INSERT INTO qgep.vl_channel_connection_type (code) VALUES ('190');
- INSERT INTO qgep.vl_channel_connection_type (value_en) VALUES ('electric_welded_sleeves');
- INSERT INTO qgep.vl_channel_connection_type (value_de) VALUES ('Elektroschweissmuffen');
- INSERT INTO qgep.vl_channel_connection_type (value_fr) VALUES ('manchon_electrosoudable');
- INSERT INTO qgep.vl_channel_connection_type (code) VALUES ('191');
- INSERT INTO qgep.vl_channel_connection_type (value_en) VALUES ('push_fit_sleeves');
- INSERT INTO qgep.vl_channel_connection_type (value_de) VALUES ('Steckmuffen');
- INSERT INTO qgep.vl_channel_connection_type (value_fr) VALUES ('raccord_a_serrage');
- INSERT INTO qgep.vl_channel_connection_type (code) VALUES ('192');
- INSERT INTO qgep.vl_channel_connection_type (value_en) VALUES ('coupling');
- INSERT INTO qgep.vl_channel_connection_type (value_de) VALUES ('Kupplung');
- INSERT INTO qgep.vl_channel_connection_type (value_fr) VALUES ('raccord');
- INSERT INTO qgep.vl_channel_connection_type (code) VALUES ('193');
- INSERT INTO qgep.vl_channel_connection_type (value_en) VALUES ('flange');
- INSERT INTO qgep.vl_channel_connection_type (value_de) VALUES ('Flansch');
- INSERT INTO qgep.vl_channel_connection_type (value_fr) VALUES ('bride');
- INSERT INTO qgep.vl_channel_connection_type (code) VALUES ('194');
- INSERT INTO qgep.vl_channel_connection_type (value_en) VALUES ('screwed_sleeves');
- INSERT INTO qgep.vl_channel_connection_type (value_de) VALUES ('Schraubmuffen');
- INSERT INTO qgep.vl_channel_connection_type (value_fr) VALUES ('manchon_visse');
- INSERT INTO qgep.vl_channel_connection_type (code) VALUES ('2988');
- INSERT INTO qgep.vl_channel_connection_type (value_en) VALUES ('other');
- INSERT INTO qgep.vl_channel_connection_type (value_de) VALUES ('andere');
- INSERT INTO qgep.vl_channel_connection_type (value_fr) VALUES ('autres');
- INSERT INTO qgep.vl_channel_connection_type (code) VALUES ('3036');
- INSERT INTO qgep.vl_channel_connection_type (value_en) VALUES ('unknown');
- INSERT INTO qgep.vl_channel_connection_type (value_de) VALUES ('unbekannt');
- INSERT INTO qgep.vl_channel_connection_type (value_fr) VALUES ('inconnu');
- INSERT INTO qgep.vl_channel_connection_type (code) VALUES ('3666');
- INSERT INTO qgep.vl_channel_connection_type (value_en) VALUES ('jacking_pipe_coupling');
- INSERT INTO qgep.vl_channel_connection_type (value_de) VALUES ('Vortriebsrohrkupplung');
- INSERT INTO qgep.vl_channel_connection_type (value_fr) VALUES ('raccord_pour_tube_de_pousse_tube');
+ INSERT INTO qgep.vl_channel_connection_type (code, value_en, value_de, value_fr) VALUES ('185','bell_shaped_sleeves','Glockenmuffen','emboitement_a_cloche');
+ INSERT INTO qgep.vl_channel_connection_type (code, value_en, value_de, value_fr) VALUES ('186','beaked_sleeves','Spitzmuffen','emboitement_simple');
+ INSERT INTO qgep.vl_channel_connection_type (code, value_en, value_de, value_fr) VALUES ('187','flat_sleeves','Flachmuffen','manchon_plat');
+ INSERT INTO qgep.vl_channel_connection_type (code, value_en, value_de, value_fr) VALUES ('188','slip_on_sleeves','Ueberschiebmuffen','manchon_coulissant');
+ INSERT INTO qgep.vl_channel_connection_type (code, value_en, value_de, value_fr) VALUES ('189','butt_welded','spiegelgeschweisst','manchon_soude_au_miroir');
+ INSERT INTO qgep.vl_channel_connection_type (code, value_en, value_de, value_fr) VALUES ('190','electric_welded_sleeves','Elektroschweissmuffen','manchon_electrosoudable');
+ INSERT INTO qgep.vl_channel_connection_type (code, value_en, value_de, value_fr) VALUES ('191','push_fit_sleeves','Steckmuffen','raccord_a_serrage');
+ INSERT INTO qgep.vl_channel_connection_type (code, value_en, value_de, value_fr) VALUES ('192','coupling','Kupplung','raccord');
+ INSERT INTO qgep.vl_channel_connection_type (code, value_en, value_de, value_fr) VALUES ('193','flange','Flansch','bride');
+ INSERT INTO qgep.vl_channel_connection_type (code, value_en, value_de, value_fr) VALUES ('194','screwed_sleeves','Schraubmuffen','manchon_visse');
+ INSERT INTO qgep.vl_channel_connection_type (code, value_en, value_de, value_fr) VALUES ('2988','other','andere','autres');
+ INSERT INTO qgep.vl_channel_connection_type (code, value_en, value_de, value_fr) VALUES ('3036','unknown','unbekannt','inconnu');
+ INSERT INTO qgep.vl_channel_connection_type (code, value_en, value_de, value_fr) VALUES ('3666','jacking_pipe_coupling','Vortriebsrohrkupplung','raccord_pour_tube_de_pousse_tube');
  ALTER TABLE qgep.od_channel ADD CONSTRAINT fkey_vl_channel_connection_type FOREIGN KEY (connection_type)
- REFERENCES qgep.vl_channel_connection_type (code) MATCH SIMPLE 
+ REFERENCES qgep.vl_channel_connection_type varchar(36) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
 CREATE TABLE qgep.vl_channel_function_hydraulic
 (
@@ -1359,52 +930,19 @@ CONSTRAINT pkey_qgep_vl_channel_function_hydraulic_code PRIMARY KEY (code)
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_channel_function_hydraulic (code) VALUES ('144');
- INSERT INTO qgep.vl_channel_function_hydraulic (value_en) VALUES ('jetting_pipe');
- INSERT INTO qgep.vl_channel_function_hydraulic (value_de) VALUES ('Spuelleitung');
- INSERT INTO qgep.vl_channel_function_hydraulic (value_fr) VALUES ('conduite_de_rincage');
- INSERT INTO qgep.vl_channel_function_hydraulic (code) VALUES ('145');
- INSERT INTO qgep.vl_channel_function_hydraulic (value_en) VALUES ('seepage_water_drain');
- INSERT INTO qgep.vl_channel_function_hydraulic (value_de) VALUES ('Sickerleitung');
- INSERT INTO qgep.vl_channel_function_hydraulic (value_fr) VALUES ('conduite_de_drainage');
- INSERT INTO qgep.vl_channel_function_hydraulic (code) VALUES ('21');
- INSERT INTO qgep.vl_channel_function_hydraulic (value_en) VALUES ('retention_pipe');
- INSERT INTO qgep.vl_channel_function_hydraulic (value_de) VALUES ('Speicherleitung');
- INSERT INTO qgep.vl_channel_function_hydraulic (value_fr) VALUES ('conduite_de_retention');
- INSERT INTO qgep.vl_channel_function_hydraulic (code) VALUES ('22');
- INSERT INTO qgep.vl_channel_function_hydraulic (value_en) VALUES ('restriction_pipe');
- INSERT INTO qgep.vl_channel_function_hydraulic (value_de) VALUES ('Drosselleitung');
- INSERT INTO qgep.vl_channel_function_hydraulic (value_fr) VALUES ('conduite_d_etranglement');
- INSERT INTO qgep.vl_channel_function_hydraulic (code) VALUES ('23');
- INSERT INTO qgep.vl_channel_function_hydraulic (value_en) VALUES ('pump_pressure_pipe');
- INSERT INTO qgep.vl_channel_function_hydraulic (value_de) VALUES ('Pumpendruckleitung');
- INSERT INTO qgep.vl_channel_function_hydraulic (value_fr) VALUES ('conduite_de_refoulement');
- INSERT INTO qgep.vl_channel_function_hydraulic (code) VALUES ('2546');
- INSERT INTO qgep.vl_channel_function_hydraulic (value_en) VALUES ('drainage_transportation_pipe');
- INSERT INTO qgep.vl_channel_function_hydraulic (value_de) VALUES ('Drainagetransportleitung');
- INSERT INTO qgep.vl_channel_function_hydraulic (value_fr) VALUES ('conduite_de_transport_pour_le_drainage');
- INSERT INTO qgep.vl_channel_function_hydraulic (code) VALUES ('3012');
- INSERT INTO qgep.vl_channel_function_hydraulic (value_en) VALUES ('unknown');
- INSERT INTO qgep.vl_channel_function_hydraulic (value_de) VALUES ('unbekannt');
- INSERT INTO qgep.vl_channel_function_hydraulic (value_fr) VALUES ('inconnu');
- INSERT INTO qgep.vl_channel_function_hydraulic (code) VALUES ('3214');
- INSERT INTO qgep.vl_channel_function_hydraulic (value_en) VALUES ('other');
- INSERT INTO qgep.vl_channel_function_hydraulic (value_de) VALUES ('andere');
- INSERT INTO qgep.vl_channel_function_hydraulic (value_fr) VALUES ('autres');
- INSERT INTO qgep.vl_channel_function_hydraulic (code) VALUES ('3610');
- INSERT INTO qgep.vl_channel_function_hydraulic (value_en) VALUES ('inverted_syphon');
- INSERT INTO qgep.vl_channel_function_hydraulic (value_de) VALUES ('Duekerleitung');
- INSERT INTO qgep.vl_channel_function_hydraulic (value_fr) VALUES ('siphon_inverse');
- INSERT INTO qgep.vl_channel_function_hydraulic (code) VALUES ('3655');
- INSERT INTO qgep.vl_channel_function_hydraulic (value_en) VALUES ('vacuum_pipe');
- INSERT INTO qgep.vl_channel_function_hydraulic (value_de) VALUES ('Vakuumleitung');
- INSERT INTO qgep.vl_channel_function_hydraulic (value_fr) VALUES ('conduite_sous_vide');
- INSERT INTO qgep.vl_channel_function_hydraulic (code) VALUES ('367');
- INSERT INTO qgep.vl_channel_function_hydraulic (value_en) VALUES ('gravity_pipe');
- INSERT INTO qgep.vl_channel_function_hydraulic (value_de) VALUES ('Freispiegelleitung');
- INSERT INTO qgep.vl_channel_function_hydraulic (value_fr) VALUES ('conduite_a_ecoulement_gravitaire');
+ INSERT INTO qgep.vl_channel_function_hydraulic (code, value_en, value_de, value_fr) VALUES ('144','jetting_pipe','Spuelleitung','conduite_de_rincage');
+ INSERT INTO qgep.vl_channel_function_hydraulic (code, value_en, value_de, value_fr) VALUES ('145','seepage_water_drain','Sickerleitung','conduite_de_drainage');
+ INSERT INTO qgep.vl_channel_function_hydraulic (code, value_en, value_de, value_fr) VALUES ('21','retention_pipe','Speicherleitung','conduite_de_retention');
+ INSERT INTO qgep.vl_channel_function_hydraulic (code, value_en, value_de, value_fr) VALUES ('22','restriction_pipe','Drosselleitung','conduite_d_etranglement');
+ INSERT INTO qgep.vl_channel_function_hydraulic (code, value_en, value_de, value_fr) VALUES ('23','pump_pressure_pipe','Pumpendruckleitung','conduite_de_refoulement');
+ INSERT INTO qgep.vl_channel_function_hydraulic (code, value_en, value_de, value_fr) VALUES ('2546','drainage_transportation_pipe','Drainagetransportleitung','conduite_de_transport_pour_le_drainage');
+ INSERT INTO qgep.vl_channel_function_hydraulic (code, value_en, value_de, value_fr) VALUES ('3012','unknown','unbekannt','inconnu');
+ INSERT INTO qgep.vl_channel_function_hydraulic (code, value_en, value_de, value_fr) VALUES ('3214','other','andere','autres');
+ INSERT INTO qgep.vl_channel_function_hydraulic (code, value_en, value_de, value_fr) VALUES ('3610','inverted_syphon','Duekerleitung','siphon_inverse');
+ INSERT INTO qgep.vl_channel_function_hydraulic (code, value_en, value_de, value_fr) VALUES ('3655','vacuum_pipe','Vakuumleitung','conduite_sous_vide');
+ INSERT INTO qgep.vl_channel_function_hydraulic (code, value_en, value_de, value_fr) VALUES ('367','gravity_pipe','Freispiegelleitung','conduite_a_ecoulement_gravitaire');
  ALTER TABLE qgep.od_channel ADD CONSTRAINT fkey_vl_channel_function_hydraulic FOREIGN KEY (function_hydraulic)
- REFERENCES qgep.vl_channel_function_hydraulic (code) MATCH SIMPLE 
+ REFERENCES qgep.vl_channel_function_hydraulic varchar(36) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
 CREATE TABLE qgep.vl_channel_usage_current
 (
@@ -1418,44 +956,17 @@ CONSTRAINT pkey_qgep_vl_channel_usage_current_code PRIMARY KEY (code)
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_channel_usage_current (code) VALUES ('4514');
- INSERT INTO qgep.vl_channel_usage_current (value_en) VALUES ('clean_wastewater');
- INSERT INTO qgep.vl_channel_usage_current (value_de) VALUES ('Reinabwasser');
- INSERT INTO qgep.vl_channel_usage_current (value_fr) VALUES ('eaux_claires');
- INSERT INTO qgep.vl_channel_usage_current (code) VALUES ('4516');
- INSERT INTO qgep.vl_channel_usage_current (value_en) VALUES ('discharged_wastewater');
- INSERT INTO qgep.vl_channel_usage_current (value_de) VALUES ('entlastetes_Mischabwasser');
- INSERT INTO qgep.vl_channel_usage_current (value_fr) VALUES ('eaux_mixtes_deversees');
- INSERT INTO qgep.vl_channel_usage_current (code) VALUES ('4518');
- INSERT INTO qgep.vl_channel_usage_current (value_en) VALUES ('creek_water');
- INSERT INTO qgep.vl_channel_usage_current (value_de) VALUES ('Bachwasser');
- INSERT INTO qgep.vl_channel_usage_current (value_fr) VALUES ('eaux_cours_d_eau');
- INSERT INTO qgep.vl_channel_usage_current (code) VALUES ('4520');
- INSERT INTO qgep.vl_channel_usage_current (value_en) VALUES ('rain_wastewater');
- INSERT INTO qgep.vl_channel_usage_current (value_de) VALUES ('Regenabwasser');
- INSERT INTO qgep.vl_channel_usage_current (value_fr) VALUES ('eaux_pluviales');
- INSERT INTO qgep.vl_channel_usage_current (code) VALUES ('4522');
- INSERT INTO qgep.vl_channel_usage_current (value_en) VALUES ('combined_wastewater');
- INSERT INTO qgep.vl_channel_usage_current (value_de) VALUES ('Mischabwasser');
- INSERT INTO qgep.vl_channel_usage_current (value_fr) VALUES ('eaux_mixtes');
- INSERT INTO qgep.vl_channel_usage_current (code) VALUES ('4524');
- INSERT INTO qgep.vl_channel_usage_current (value_en) VALUES ('industrial_wastewater');
- INSERT INTO qgep.vl_channel_usage_current (value_de) VALUES ('Industrieabwasser');
- INSERT INTO qgep.vl_channel_usage_current (value_fr) VALUES ('eaux_industrielles');
- INSERT INTO qgep.vl_channel_usage_current (code) VALUES ('4526');
- INSERT INTO qgep.vl_channel_usage_current (value_en) VALUES ('wastewater');
- INSERT INTO qgep.vl_channel_usage_current (value_de) VALUES ('Schmutzabwasser');
- INSERT INTO qgep.vl_channel_usage_current (value_fr) VALUES ('eaux_usees');
- INSERT INTO qgep.vl_channel_usage_current (code) VALUES ('4570');
- INSERT INTO qgep.vl_channel_usage_current (value_en) VALUES ('other');
- INSERT INTO qgep.vl_channel_usage_current (value_de) VALUES ('andere');
- INSERT INTO qgep.vl_channel_usage_current (value_fr) VALUES ('autres');
- INSERT INTO qgep.vl_channel_usage_current (code) VALUES ('4571');
- INSERT INTO qgep.vl_channel_usage_current (value_en) VALUES ('unknown');
- INSERT INTO qgep.vl_channel_usage_current (value_de) VALUES ('unbekannt');
- INSERT INTO qgep.vl_channel_usage_current (value_fr) VALUES ('inconnu');
+ INSERT INTO qgep.vl_channel_usage_current (code, value_en, value_de, value_fr) VALUES ('4514','clean_wastewater','Reinabwasser','eaux_claires');
+ INSERT INTO qgep.vl_channel_usage_current (code, value_en, value_de, value_fr) VALUES ('4516','discharged_wastewater','entlastetes_Mischabwasser','eaux_mixtes_deversees');
+ INSERT INTO qgep.vl_channel_usage_current (code, value_en, value_de, value_fr) VALUES ('4518','creek_water','Bachwasser','eaux_cours_d_eau');
+ INSERT INTO qgep.vl_channel_usage_current (code, value_en, value_de, value_fr) VALUES ('4520','rain_wastewater','Regenabwasser','eaux_pluviales');
+ INSERT INTO qgep.vl_channel_usage_current (code, value_en, value_de, value_fr) VALUES ('4522','combined_wastewater','Mischabwasser','eaux_mixtes');
+ INSERT INTO qgep.vl_channel_usage_current (code, value_en, value_de, value_fr) VALUES ('4524','industrial_wastewater','Industrieabwasser','eaux_industrielles');
+ INSERT INTO qgep.vl_channel_usage_current (code, value_en, value_de, value_fr) VALUES ('4526','wastewater','Schmutzabwasser','eaux_usees');
+ INSERT INTO qgep.vl_channel_usage_current (code, value_en, value_de, value_fr) VALUES ('4570','other','andere','autres');
+ INSERT INTO qgep.vl_channel_usage_current (code, value_en, value_de, value_fr) VALUES ('4571','unknown','unbekannt','inconnu');
  ALTER TABLE qgep.od_channel ADD CONSTRAINT fkey_vl_channel_usage_current FOREIGN KEY (usage_current)
- REFERENCES qgep.vl_channel_usage_current (code) MATCH SIMPLE 
+ REFERENCES qgep.vl_channel_usage_current varchar(36) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
 CREATE TABLE qgep.vl_channel_usage_planned
 (
@@ -1469,47 +980,20 @@ CONSTRAINT pkey_qgep_vl_channel_usage_planned_code PRIMARY KEY (code)
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_channel_usage_planned (code) VALUES ('4515');
- INSERT INTO qgep.vl_channel_usage_planned (value_en) VALUES ('clean_wastewater');
- INSERT INTO qgep.vl_channel_usage_planned (value_de) VALUES ('Reinabwasser');
- INSERT INTO qgep.vl_channel_usage_planned (value_fr) VALUES ('eaux_claires');
- INSERT INTO qgep.vl_channel_usage_planned (code) VALUES ('4517');
- INSERT INTO qgep.vl_channel_usage_planned (value_en) VALUES ('discharged_combined_wastewater');
- INSERT INTO qgep.vl_channel_usage_planned (value_de) VALUES ('entlastetes_Mischabwasser');
- INSERT INTO qgep.vl_channel_usage_planned (value_fr) VALUES ('eaux_mixtes_deversees');
- INSERT INTO qgep.vl_channel_usage_planned (code) VALUES ('4519');
- INSERT INTO qgep.vl_channel_usage_planned (value_en) VALUES ('creek_water');
- INSERT INTO qgep.vl_channel_usage_planned (value_de) VALUES ('Bachwasser');
- INSERT INTO qgep.vl_channel_usage_planned (value_fr) VALUES ('eaux_cours_d_eau');
- INSERT INTO qgep.vl_channel_usage_planned (code) VALUES ('4521');
- INSERT INTO qgep.vl_channel_usage_planned (value_en) VALUES ('rain_wastewater');
- INSERT INTO qgep.vl_channel_usage_planned (value_de) VALUES ('Regenabwasser');
- INSERT INTO qgep.vl_channel_usage_planned (value_fr) VALUES ('eaux_pluviales');
- INSERT INTO qgep.vl_channel_usage_planned (code) VALUES ('4523');
- INSERT INTO qgep.vl_channel_usage_planned (value_en) VALUES ('combined_wastewater');
- INSERT INTO qgep.vl_channel_usage_planned (value_de) VALUES ('Mischabwasser');
- INSERT INTO qgep.vl_channel_usage_planned (value_fr) VALUES ('eaux_mixtes');
- INSERT INTO qgep.vl_channel_usage_planned (code) VALUES ('4525');
- INSERT INTO qgep.vl_channel_usage_planned (value_en) VALUES ('industrial_wastewater');
- INSERT INTO qgep.vl_channel_usage_planned (value_de) VALUES ('Industrieabwasser');
- INSERT INTO qgep.vl_channel_usage_planned (value_fr) VALUES ('eaux_industrielles');
- INSERT INTO qgep.vl_channel_usage_planned (code) VALUES ('4527');
- INSERT INTO qgep.vl_channel_usage_planned (value_en) VALUES ('wastewater');
- INSERT INTO qgep.vl_channel_usage_planned (value_de) VALUES ('Schmutzabwasser');
- INSERT INTO qgep.vl_channel_usage_planned (value_fr) VALUES ('eaux_usees');
- INSERT INTO qgep.vl_channel_usage_planned (code) VALUES ('4568');
- INSERT INTO qgep.vl_channel_usage_planned (value_en) VALUES ('other');
- INSERT INTO qgep.vl_channel_usage_planned (value_de) VALUES ('andere');
- INSERT INTO qgep.vl_channel_usage_planned (value_fr) VALUES ('autres');
- INSERT INTO qgep.vl_channel_usage_planned (code) VALUES ('4569');
- INSERT INTO qgep.vl_channel_usage_planned (value_en) VALUES ('unknown');
- INSERT INTO qgep.vl_channel_usage_planned (value_de) VALUES ('unbekannt');
- INSERT INTO qgep.vl_channel_usage_planned (value_fr) VALUES ('inconnu');
+ INSERT INTO qgep.vl_channel_usage_planned (code, value_en, value_de, value_fr) VALUES ('4515','clean_wastewater','Reinabwasser','eaux_claires');
+ INSERT INTO qgep.vl_channel_usage_planned (code, value_en, value_de, value_fr) VALUES ('4517','discharged_combined_wastewater','entlastetes_Mischabwasser','eaux_mixtes_deversees');
+ INSERT INTO qgep.vl_channel_usage_planned (code, value_en, value_de, value_fr) VALUES ('4519','creek_water','Bachwasser','eaux_cours_d_eau');
+ INSERT INTO qgep.vl_channel_usage_planned (code, value_en, value_de, value_fr) VALUES ('4521','rain_wastewater','Regenabwasser','eaux_pluviales');
+ INSERT INTO qgep.vl_channel_usage_planned (code, value_en, value_de, value_fr) VALUES ('4523','combined_wastewater','Mischabwasser','eaux_mixtes');
+ INSERT INTO qgep.vl_channel_usage_planned (code, value_en, value_de, value_fr) VALUES ('4525','industrial_wastewater','Industrieabwasser','eaux_industrielles');
+ INSERT INTO qgep.vl_channel_usage_planned (code, value_en, value_de, value_fr) VALUES ('4527','wastewater','Schmutzabwasser','eaux_usees');
+ INSERT INTO qgep.vl_channel_usage_planned (code, value_en, value_de, value_fr) VALUES ('4568','other','andere','autres');
+ INSERT INTO qgep.vl_channel_usage_planned (code, value_en, value_de, value_fr) VALUES ('4569','unknown','unbekannt','inconnu');
  ALTER TABLE qgep.od_channel ADD CONSTRAINT fkey_vl_channel_usage_planned FOREIGN KEY (usage_planned)
- REFERENCES qgep.vl_channel_usage_planned (code) MATCH SIMPLE 
+ REFERENCES qgep.vl_channel_usage_planned varchar(36) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_discharge_point ADD CONSTRAINT oorel100 FOREIGN KEY (obj_id) REFERENCES qgep.od_wastewater_structure(obj_id);
-ALTER TABLE qgep.od_special_structure ADD CONSTRAINT oorel107 FOREIGN KEY (obj_id) REFERENCES qgep.od_wastewater_structure(obj_id);
+ALTER TABLE qgep.od_discharge_point ADD CONSTRAINT oorel_od_discharge_point_wastewater_structure FOREIGN KEY (obj_id) REFERENCES qgep.od_wastewater_structure(obj_id);
+ALTER TABLE qgep.od_special_structure ADD CONSTRAINT oorel_od_special_structure_wastewater_structure FOREIGN KEY (obj_id) REFERENCES qgep.od_wastewater_structure(obj_id);
 CREATE TABLE qgep.vl_special_structure_bypass
 (
 code integer NOT NULL,
@@ -1522,20 +1006,11 @@ CONSTRAINT pkey_qgep_vl_special_structure_bypass_code PRIMARY KEY (code)
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_special_structure_bypass (code) VALUES ('2681');
- INSERT INTO qgep.vl_special_structure_bypass (value_en) VALUES ('existent');
- INSERT INTO qgep.vl_special_structure_bypass (value_de) VALUES ('vorhanden');
- INSERT INTO qgep.vl_special_structure_bypass (value_fr) VALUES ('existant');
- INSERT INTO qgep.vl_special_structure_bypass (code) VALUES ('2682');
- INSERT INTO qgep.vl_special_structure_bypass (value_en) VALUES ('inexistent');
- INSERT INTO qgep.vl_special_structure_bypass (value_de) VALUES ('nicht_vorhanden');
- INSERT INTO qgep.vl_special_structure_bypass (value_fr) VALUES ('inexistant');
- INSERT INTO qgep.vl_special_structure_bypass (code) VALUES ('3055');
- INSERT INTO qgep.vl_special_structure_bypass (value_en) VALUES ('unknown');
- INSERT INTO qgep.vl_special_structure_bypass (value_de) VALUES ('unbekannt');
- INSERT INTO qgep.vl_special_structure_bypass (value_fr) VALUES ('inconnu');
+ INSERT INTO qgep.vl_special_structure_bypass (code, value_en, value_de, value_fr) VALUES ('2681','existent','vorhanden','existant');
+ INSERT INTO qgep.vl_special_structure_bypass (code, value_en, value_de, value_fr) VALUES ('2682','inexistent','nicht_vorhanden','inexistant');
+ INSERT INTO qgep.vl_special_structure_bypass (code, value_en, value_de, value_fr) VALUES ('3055','unknown','unbekannt','inconnu');
  ALTER TABLE qgep.od_special_structure ADD CONSTRAINT fkey_vl_special_structure_bypass FOREIGN KEY (bypass)
- REFERENCES qgep.vl_special_structure_bypass (code) MATCH SIMPLE 
+ REFERENCES qgep.vl_special_structure_bypass varchar(36) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
 CREATE TABLE qgep.vl_special_structure_function
 (
@@ -1549,98 +1024,32 @@ CONSTRAINT pkey_qgep_vl_special_structure_function_code PRIMARY KEY (code)
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_special_structure_function (code) VALUES ('227');
- INSERT INTO qgep.vl_special_structure_function (value_en) VALUES ('jetting_manhole');
- INSERT INTO qgep.vl_special_structure_function (value_de) VALUES ('Spuelschacht');
- INSERT INTO qgep.vl_special_structure_function (value_fr) VALUES ('chambre_de_chasse');
- INSERT INTO qgep.vl_special_structure_function (code) VALUES ('245');
- INSERT INTO qgep.vl_special_structure_function (value_en) VALUES ('drop_structure');
- INSERT INTO qgep.vl_special_structure_function (value_de) VALUES ('Absturzbauwerk');
- INSERT INTO qgep.vl_special_structure_function (value_fr) VALUES ('ouvrage_de_chute');
- INSERT INTO qgep.vl_special_structure_function (code) VALUES ('246');
- INSERT INTO qgep.vl_special_structure_function (value_en) VALUES ('pump_station');
- INSERT INTO qgep.vl_special_structure_function (value_de) VALUES ('Pumpwerk');
- INSERT INTO qgep.vl_special_structure_function (value_fr) VALUES ('station_de_pompage');
- INSERT INTO qgep.vl_special_structure_function (code) VALUES ('247');
- INSERT INTO qgep.vl_special_structure_function (value_en) VALUES ('septic_tank');
- INSERT INTO qgep.vl_special_structure_function (value_de) VALUES ('Klaergrube');
- INSERT INTO qgep.vl_special_structure_function (value_fr) VALUES ('fosse_septique');
- INSERT INTO qgep.vl_special_structure_function (code) VALUES ('2744');
- INSERT INTO qgep.vl_special_structure_function (value_en) VALUES ('cesspit');
- INSERT INTO qgep.vl_special_structure_function (value_de) VALUES ('Jauchegrube');
- INSERT INTO qgep.vl_special_structure_function (value_fr) VALUES ('fosse_a_purin');
- INSERT INTO qgep.vl_special_structure_function (code) VALUES ('2745');
- INSERT INTO qgep.vl_special_structure_function (value_en) VALUES ('vortex_manhole');
- INSERT INTO qgep.vl_special_structure_function (value_de) VALUES ('Wirbelfallschacht');
- INSERT INTO qgep.vl_special_structure_function (value_fr) VALUES ('chambre_de_chute_a_vortex');
- INSERT INTO qgep.vl_special_structure_function (code) VALUES ('2768');
- INSERT INTO qgep.vl_special_structure_function (value_en) VALUES ('oil_separator');
- INSERT INTO qgep.vl_special_structure_function (value_de) VALUES ('Oelabscheider');
- INSERT INTO qgep.vl_special_structure_function (value_fr) VALUES ('separateur_d_hydrocarbures');
- INSERT INTO qgep.vl_special_structure_function (code) VALUES ('2998');
- INSERT INTO qgep.vl_special_structure_function (value_en) VALUES ('manhole');
- INSERT INTO qgep.vl_special_structure_function (value_de) VALUES ('Kontrollschacht');
- INSERT INTO qgep.vl_special_structure_function (value_fr) VALUES ('regard_de_visite');
- INSERT INTO qgep.vl_special_structure_function (code) VALUES ('3008');
- INSERT INTO qgep.vl_special_structure_function (value_en) VALUES ('unknown');
- INSERT INTO qgep.vl_special_structure_function (value_de) VALUES ('unbekannt');
- INSERT INTO qgep.vl_special_structure_function (value_fr) VALUES ('inconnu');
- INSERT INTO qgep.vl_special_structure_function (code) VALUES ('3202');
- INSERT INTO qgep.vl_special_structure_function (value_en) VALUES ('other');
- INSERT INTO qgep.vl_special_structure_function (value_de) VALUES ('andere');
- INSERT INTO qgep.vl_special_structure_function (value_fr) VALUES ('autres');
- INSERT INTO qgep.vl_special_structure_function (code) VALUES ('3233');
- INSERT INTO qgep.vl_special_structure_function (value_en) VALUES ('spill_way');
- INSERT INTO qgep.vl_special_structure_function (value_de) VALUES ('Hochwasserentlastung');
- INSERT INTO qgep.vl_special_structure_function (value_fr) VALUES ('deversoir_orage');
- INSERT INTO qgep.vl_special_structure_function (code) VALUES ('3234');
- INSERT INTO qgep.vl_special_structure_function (value_en) VALUES ('inverse_syphon_chamber');
- INSERT INTO qgep.vl_special_structure_function (value_de) VALUES ('Duekerkammer');
- INSERT INTO qgep.vl_special_structure_function (value_fr) VALUES ('chambre_avec_siphon_inverse');
- INSERT INTO qgep.vl_special_structure_function (code) VALUES ('3331');
- INSERT INTO qgep.vl_special_structure_function (value_en) VALUES ('floating_material_separator');
- INSERT INTO qgep.vl_special_structure_function (value_de) VALUES ('Schwimmstoffabscheider');
- INSERT INTO qgep.vl_special_structure_function (value_fr) VALUES ('separateur_materiaux_flottants');
- INSERT INTO qgep.vl_special_structure_function (code) VALUES ('3348');
- INSERT INTO qgep.vl_special_structure_function (value_en) VALUES ('terrain_depression');
- INSERT INTO qgep.vl_special_structure_function (value_de) VALUES ('Gelaendemulde');
- INSERT INTO qgep.vl_special_structure_function (value_fr) VALUES ('depression_de_terrain');
- INSERT INTO qgep.vl_special_structure_function (code) VALUES ('336');
- INSERT INTO qgep.vl_special_structure_function (value_en) VALUES ('bolders_bedload_catchement_dam');
- INSERT INTO qgep.vl_special_structure_function (value_de) VALUES ('Geschiebefang');
- INSERT INTO qgep.vl_special_structure_function (value_fr) VALUES ('depotoir_pour_alluvions');
- INSERT INTO qgep.vl_special_structure_function (code) VALUES ('3673');
- INSERT INTO qgep.vl_special_structure_function (value_en) VALUES ('stormwater_tank_with_overflow');
- INSERT INTO qgep.vl_special_structure_function (value_de) VALUES ('Regenbecken_Durchlaufbecken');
- INSERT INTO qgep.vl_special_structure_function (value_fr) VALUES ('BEP_decantation');
- INSERT INTO qgep.vl_special_structure_function (code) VALUES ('3674');
- INSERT INTO qgep.vl_special_structure_function (value_en) VALUES ('stormwater_tank_retaining_first_flush');
- INSERT INTO qgep.vl_special_structure_function (value_de) VALUES ('Regenbecken_Fangbecken');
- INSERT INTO qgep.vl_special_structure_function (value_fr) VALUES ('BEP_retention');
- INSERT INTO qgep.vl_special_structure_function (code) VALUES ('3675');
- INSERT INTO qgep.vl_special_structure_function (value_en) VALUES ('stormwater_sedimentation_tank');
- INSERT INTO qgep.vl_special_structure_function (value_de) VALUES ('Regenbecken_Regenklaerbecken');
- INSERT INTO qgep.vl_special_structure_function (value_fr) VALUES ('BEP_clarification');
- INSERT INTO qgep.vl_special_structure_function (code) VALUES ('3676');
- INSERT INTO qgep.vl_special_structure_function (value_en) VALUES ('stormwater_retention_tank');
- INSERT INTO qgep.vl_special_structure_function (value_de) VALUES ('Regenbecken_Regenrueckhaltebecken');
- INSERT INTO qgep.vl_special_structure_function (value_fr) VALUES ('BEP_accumulation');
- INSERT INTO qgep.vl_special_structure_function (code) VALUES ('3677');
- INSERT INTO qgep.vl_special_structure_function (value_en) VALUES ('stormwater_composite_tank');
- INSERT INTO qgep.vl_special_structure_function (value_de) VALUES ('Regenbecken_Verbundbecken');
- INSERT INTO qgep.vl_special_structure_function (value_fr) VALUES ('BEP_combine');
- INSERT INTO qgep.vl_special_structure_function (code) VALUES ('383');
- INSERT INTO qgep.vl_special_structure_function (value_en) VALUES ('side_access');
- INSERT INTO qgep.vl_special_structure_function (value_de) VALUES ('seitlicherZugang');
- INSERT INTO qgep.vl_special_structure_function (value_fr) VALUES ('acces_lateral');
- INSERT INTO qgep.vl_special_structure_function (code) VALUES ('386');
- INSERT INTO qgep.vl_special_structure_function (value_en) VALUES ('venting');
- INSERT INTO qgep.vl_special_structure_function (value_de) VALUES ('Be_Entlueftung');
- INSERT INTO qgep.vl_special_structure_function (value_fr) VALUES ('aeration');
+ INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr) VALUES ('227','jetting_manhole','Spuelschacht','chambre_de_chasse');
+ INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr) VALUES ('245','drop_structure','Absturzbauwerk','ouvrage_de_chute');
+ INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr) VALUES ('246','pump_station','Pumpwerk','station_de_pompage');
+ INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr) VALUES ('247','septic_tank','Klaergrube','fosse_septique');
+ INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr) VALUES ('2744','cesspit','Jauchegrube','fosse_a_purin');
+ INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr) VALUES ('2745','vortex_manhole','Wirbelfallschacht','chambre_de_chute_a_vortex');
+ INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr) VALUES ('2768','oil_separator','Oelabscheider','separateur_d_hydrocarbures');
+ INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr) VALUES ('2998','manhole','Kontrollschacht','regard_de_visite');
+ INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr) VALUES ('3008','unknown','unbekannt','inconnu');
+ INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr) VALUES ('3202','other','andere','autres');
+ INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr) VALUES ('3233','spill_way','Hochwasserentlastung','deversoir_orage');
+ INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr) VALUES ('3234','inverse_syphon_chamber','Duekerkammer','chambre_avec_siphon_inverse');
+ INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr) VALUES ('3331','floating_material_separator','Schwimmstoffabscheider','separateur_materiaux_flottants');
+ INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr) VALUES ('3348','terrain_depression','Gelaendemulde','depression_de_terrain');
+ INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr) VALUES ('336','bolders_bedload_catchement_dam','Geschiebefang','depotoir_pour_alluvions');
+ INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr) VALUES ('3673','stormwater_tank_with_overflow','Regenbecken_Durchlaufbecken','BEP_decantation');
+ INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr) VALUES ('3674','stormwater_tank_retaining_first_flush','Regenbecken_Fangbecken','BEP_retention');
+ INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr) VALUES ('3675','stormwater_sedimentation_tank','Regenbecken_Regenklaerbecken','BEP_clarification');
+ INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr) VALUES ('3676','stormwater_retention_tank','Regenbecken_Regenrueckhaltebecken','BEP_accumulation');
+ INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr) VALUES ('3677','stormwater_composite_tank','Regenbecken_Verbundbecken','BEP_combine');
+ INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr) VALUES ('383','side_access','seitlicherZugang','acces_lateral');
+ INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr) VALUES ('386','venting','Be_Entlueftung','aeration');
  ALTER TABLE qgep.od_special_structure ADD CONSTRAINT fkey_vl_special_structure_function FOREIGN KEY (function)
- REFERENCES qgep.vl_special_structure_function (code) MATCH SIMPLE 
+ REFERENCES qgep.vl_special_structure_function varchar(36) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_infiltration_installation ADD CONSTRAINT oorel114 FOREIGN KEY (obj_id) REFERENCES qgep.od_wastewater_structure(obj_id);
+ALTER TABLE qgep.od_infiltration_installation ADD CONSTRAINT oorel_od_infiltration_installation_wastewater_structure FOREIGN KEY (obj_id) REFERENCES qgep.od_wastewater_structure(obj_id);
 CREATE TABLE qgep.vl_infiltration_installation_defects
 (
 code integer NOT NULL,
@@ -1653,20 +1062,11 @@ CONSTRAINT pkey_qgep_vl_infiltration_installation_defects_code PRIMARY KEY (code
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_infiltration_installation_defects (code) VALUES ('3274');
- INSERT INTO qgep.vl_infiltration_installation_defects (value_en) VALUES ('none');
- INSERT INTO qgep.vl_infiltration_installation_defects (value_de) VALUES ('keine');
- INSERT INTO qgep.vl_infiltration_installation_defects (value_fr) VALUES ('aucune');
- INSERT INTO qgep.vl_infiltration_installation_defects (code) VALUES ('3275');
- INSERT INTO qgep.vl_infiltration_installation_defects (value_en) VALUES ('substantial');
- INSERT INTO qgep.vl_infiltration_installation_defects (value_de) VALUES ('wesentliche');
- INSERT INTO qgep.vl_infiltration_installation_defects (value_fr) VALUES ('importantes');
- INSERT INTO qgep.vl_infiltration_installation_defects (code) VALUES ('3276');
- INSERT INTO qgep.vl_infiltration_installation_defects (value_en) VALUES ('marginal');
- INSERT INTO qgep.vl_infiltration_installation_defects (value_de) VALUES ('unwesentliche');
- INSERT INTO qgep.vl_infiltration_installation_defects (value_fr) VALUES ('modestes');
+ INSERT INTO qgep.vl_infiltration_installation_defects (code, value_en, value_de, value_fr) VALUES ('3274','none','keine','aucune');
+ INSERT INTO qgep.vl_infiltration_installation_defects (code, value_en, value_de, value_fr) VALUES ('3275','substantial','wesentliche','importantes');
+ INSERT INTO qgep.vl_infiltration_installation_defects (code, value_en, value_de, value_fr) VALUES ('3276','marginal','unwesentliche','modestes');
  ALTER TABLE qgep.od_infiltration_installation ADD CONSTRAINT fkey_vl_infiltration_installation_defects FOREIGN KEY (defects)
- REFERENCES qgep.vl_infiltration_installation_defects (code) MATCH SIMPLE 
+ REFERENCES qgep.vl_infiltration_installation_defects varchar(36) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
 CREATE TABLE qgep.vl_infiltration_installation_emergency_spillway
 (
@@ -1680,32 +1080,14 @@ CONSTRAINT pkey_qgep_vl_infiltration_installation_emergency_spillway_code PRIMAR
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_infiltration_installation_emergency_spillway (code) VALUES ('3303');
- INSERT INTO qgep.vl_infiltration_installation_emergency_spillway (value_en) VALUES ('none');
- INSERT INTO qgep.vl_infiltration_installation_emergency_spillway (value_de) VALUES ('keiner');
- INSERT INTO qgep.vl_infiltration_installation_emergency_spillway (value_fr) VALUES ('aucun');
- INSERT INTO qgep.vl_infiltration_installation_emergency_spillway (code) VALUES ('3304');
- INSERT INTO qgep.vl_infiltration_installation_emergency_spillway (value_en) VALUES ('in_water_body');
- INSERT INTO qgep.vl_infiltration_installation_emergency_spillway (value_de) VALUES ('inVorfluter');
- INSERT INTO qgep.vl_infiltration_installation_emergency_spillway (value_fr) VALUES ('au_cours_d_eau_recepteur');
- INSERT INTO qgep.vl_infiltration_installation_emergency_spillway (code) VALUES ('3305');
- INSERT INTO qgep.vl_infiltration_installation_emergency_spillway (value_en) VALUES ('surface_discharge');
- INSERT INTO qgep.vl_infiltration_installation_emergency_spillway (value_de) VALUES ('oberflaechlichausmuendend');
- INSERT INTO qgep.vl_infiltration_installation_emergency_spillway (value_fr) VALUES ('deversement_en_surface');
- INSERT INTO qgep.vl_infiltration_installation_emergency_spillway (code) VALUES ('3306');
- INSERT INTO qgep.vl_infiltration_installation_emergency_spillway (value_en) VALUES ('in_combined_waste_water_drain');
- INSERT INTO qgep.vl_infiltration_installation_emergency_spillway (value_de) VALUES ('inMischwasserkanalisation');
- INSERT INTO qgep.vl_infiltration_installation_emergency_spillway (value_fr) VALUES ('dans_egouts_eaux_mixtes');
- INSERT INTO qgep.vl_infiltration_installation_emergency_spillway (code) VALUES ('3307');
- INSERT INTO qgep.vl_infiltration_installation_emergency_spillway (value_en) VALUES ('in_rain_waste_water_drain');
- INSERT INTO qgep.vl_infiltration_installation_emergency_spillway (value_de) VALUES ('inRegenwasserkanalisation');
- INSERT INTO qgep.vl_infiltration_installation_emergency_spillway (value_fr) VALUES ('dans_canalisation_eaux_pluviales');
- INSERT INTO qgep.vl_infiltration_installation_emergency_spillway (code) VALUES ('3308');
- INSERT INTO qgep.vl_infiltration_installation_emergency_spillway (value_en) VALUES ('unknown');
- INSERT INTO qgep.vl_infiltration_installation_emergency_spillway (value_de) VALUES ('unbekannt');
- INSERT INTO qgep.vl_infiltration_installation_emergency_spillway (value_fr) VALUES ('inconnu');
+ INSERT INTO qgep.vl_infiltration_installation_emergency_spillway (code, value_en, value_de, value_fr) VALUES ('3303','none','keiner','aucun');
+ INSERT INTO qgep.vl_infiltration_installation_emergency_spillway (code, value_en, value_de, value_fr) VALUES ('3304','in_water_body','inVorfluter','au_cours_d_eau_recepteur');
+ INSERT INTO qgep.vl_infiltration_installation_emergency_spillway (code, value_en, value_de, value_fr) VALUES ('3305','surface_discharge','oberflaechlichausmuendend','deversement_en_surface');
+ INSERT INTO qgep.vl_infiltration_installation_emergency_spillway (code, value_en, value_de, value_fr) VALUES ('3306','in_combined_waste_water_drain','inMischwasserkanalisation','dans_egouts_eaux_mixtes');
+ INSERT INTO qgep.vl_infiltration_installation_emergency_spillway (code, value_en, value_de, value_fr) VALUES ('3307','in_rain_waste_water_drain','inRegenwasserkanalisation','dans_canalisation_eaux_pluviales');
+ INSERT INTO qgep.vl_infiltration_installation_emergency_spillway (code, value_en, value_de, value_fr) VALUES ('3308','unknown','unbekannt','inconnu');
  ALTER TABLE qgep.od_infiltration_installation ADD CONSTRAINT fkey_vl_infiltration_installation_emergency_spillway FOREIGN KEY (emergency_spillway)
- REFERENCES qgep.vl_infiltration_installation_emergency_spillway (code) MATCH SIMPLE 
+ REFERENCES qgep.vl_infiltration_installation_emergency_spillway varchar(36) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
 CREATE TABLE qgep.vl_infiltration_installation_labeling
 (
@@ -1719,20 +1101,11 @@ CONSTRAINT pkey_qgep_vl_infiltration_installation_labeling_code PRIMARY KEY (cod
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_infiltration_installation_labeling (code) VALUES ('3328');
- INSERT INTO qgep.vl_infiltration_installation_labeling (value_en) VALUES ('labeled');
- INSERT INTO qgep.vl_infiltration_installation_labeling (value_de) VALUES ('beschriftet');
- INSERT INTO qgep.vl_infiltration_installation_labeling (value_fr) VALUES ('signale');
- INSERT INTO qgep.vl_infiltration_installation_labeling (code) VALUES ('3329');
- INSERT INTO qgep.vl_infiltration_installation_labeling (value_en) VALUES ('not_labeled');
- INSERT INTO qgep.vl_infiltration_installation_labeling (value_de) VALUES ('nichtbeschriftet');
- INSERT INTO qgep.vl_infiltration_installation_labeling (value_fr) VALUES ('non_signale');
- INSERT INTO qgep.vl_infiltration_installation_labeling (code) VALUES ('3330');
- INSERT INTO qgep.vl_infiltration_installation_labeling (value_en) VALUES ('unknown');
- INSERT INTO qgep.vl_infiltration_installation_labeling (value_de) VALUES ('unbekannt');
- INSERT INTO qgep.vl_infiltration_installation_labeling (value_fr) VALUES ('inconnu');
+ INSERT INTO qgep.vl_infiltration_installation_labeling (code, value_en, value_de, value_fr) VALUES ('3328','labeled','beschriftet','signale');
+ INSERT INTO qgep.vl_infiltration_installation_labeling (code, value_en, value_de, value_fr) VALUES ('3329','not_labeled','nichtbeschriftet','non_signale');
+ INSERT INTO qgep.vl_infiltration_installation_labeling (code, value_en, value_de, value_fr) VALUES ('3330','unknown','unbekannt','inconnu');
  ALTER TABLE qgep.od_infiltration_installation ADD CONSTRAINT fkey_vl_infiltration_installation_labeling FOREIGN KEY (labeling)
- REFERENCES qgep.vl_infiltration_installation_labeling (code) MATCH SIMPLE 
+ REFERENCES qgep.vl_infiltration_installation_labeling varchar(36) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
 CREATE TABLE qgep.vl_infiltration_installation_seepage_utilization
 (
@@ -1746,20 +1119,11 @@ CONSTRAINT pkey_qgep_vl_infiltration_installation_seepage_utilization_code PRIMA
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_infiltration_installation_seepage_utilization (code) VALUES ('273');
- INSERT INTO qgep.vl_infiltration_installation_seepage_utilization (value_en) VALUES ('clean_water');
- INSERT INTO qgep.vl_infiltration_installation_seepage_utilization (value_de) VALUES ('Reinabwasser');
- INSERT INTO qgep.vl_infiltration_installation_seepage_utilization (value_fr) VALUES ('eaux_claires');
- INSERT INTO qgep.vl_infiltration_installation_seepage_utilization (code) VALUES ('274');
- INSERT INTO qgep.vl_infiltration_installation_seepage_utilization (value_en) VALUES ('rain_water');
- INSERT INTO qgep.vl_infiltration_installation_seepage_utilization (value_de) VALUES ('Regenabwasser');
- INSERT INTO qgep.vl_infiltration_installation_seepage_utilization (value_fr) VALUES ('eaux_pluviales');
- INSERT INTO qgep.vl_infiltration_installation_seepage_utilization (code) VALUES ('3086');
- INSERT INTO qgep.vl_infiltration_installation_seepage_utilization (value_en) VALUES ('unknown');
- INSERT INTO qgep.vl_infiltration_installation_seepage_utilization (value_de) VALUES ('unbekannt');
- INSERT INTO qgep.vl_infiltration_installation_seepage_utilization (value_fr) VALUES ('inconnu');
+ INSERT INTO qgep.vl_infiltration_installation_seepage_utilization (code, value_en, value_de, value_fr) VALUES ('273','clean_water','Reinabwasser','eaux_claires');
+ INSERT INTO qgep.vl_infiltration_installation_seepage_utilization (code, value_en, value_de, value_fr) VALUES ('274','rain_water','Regenabwasser','eaux_pluviales');
+ INSERT INTO qgep.vl_infiltration_installation_seepage_utilization (code, value_en, value_de, value_fr) VALUES ('3086','unknown','unbekannt','inconnu');
  ALTER TABLE qgep.od_infiltration_installation ADD CONSTRAINT fkey_vl_infiltration_installation_seepage_utilization FOREIGN KEY (seepage_utilization)
- REFERENCES qgep.vl_infiltration_installation_seepage_utilization (code) MATCH SIMPLE 
+ REFERENCES qgep.vl_infiltration_installation_seepage_utilization varchar(36) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
 CREATE TABLE qgep.vl_infiltration_installation_type
 (
@@ -1773,52 +1137,19 @@ CONSTRAINT pkey_qgep_vl_infiltration_installation_type_code PRIMARY KEY (code)
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_infiltration_installation_type (code) VALUES ('3279');
- INSERT INTO qgep.vl_infiltration_installation_type (value_en) VALUES ('surface_percolation');
- INSERT INTO qgep.vl_infiltration_installation_type (value_de) VALUES ('Flaechenfoermige_Versickerung');
- INSERT INTO qgep.vl_infiltration_installation_type (value_fr) VALUES ('infiltration_superficielle_sur_place');
- INSERT INTO qgep.vl_infiltration_installation_type (code) VALUES ('3280');
- INSERT INTO qgep.vl_infiltration_installation_type (value_en) VALUES ('percolation_over_the_shoulder');
- INSERT INTO qgep.vl_infiltration_installation_type (value_de) VALUES ('Versickerung_ueber_die_Schulter');
- INSERT INTO qgep.vl_infiltration_installation_type (value_fr) VALUES ('infiltration_par_les_bas_cotes');
- INSERT INTO qgep.vl_infiltration_installation_type (code) VALUES ('276');
- INSERT INTO qgep.vl_infiltration_installation_type (value_en) VALUES ('percolation_basin');
- INSERT INTO qgep.vl_infiltration_installation_type (value_de) VALUES ('Versickerungsbecken');
- INSERT INTO qgep.vl_infiltration_installation_type (value_fr) VALUES ('bassin_d_infiltration');
- INSERT INTO qgep.vl_infiltration_installation_type (code) VALUES ('277');
- INSERT INTO qgep.vl_infiltration_installation_type (value_en) VALUES ('gravel_formation');
- INSERT INTO qgep.vl_infiltration_installation_type (value_de) VALUES ('Kieskoerper');
- INSERT INTO qgep.vl_infiltration_installation_type (value_fr) VALUES ('corps_de_gravier');
- INSERT INTO qgep.vl_infiltration_installation_type (code) VALUES ('278');
- INSERT INTO qgep.vl_infiltration_installation_type (value_en) VALUES ('percolation_manhole');
- INSERT INTO qgep.vl_infiltration_installation_type (value_de) VALUES ('Versickerungsschacht');
- INSERT INTO qgep.vl_infiltration_installation_type (value_fr) VALUES ('puits_d_infiltration');
- INSERT INTO qgep.vl_infiltration_installation_type (code) VALUES ('3087');
- INSERT INTO qgep.vl_infiltration_installation_type (value_en) VALUES ('unknown');
- INSERT INTO qgep.vl_infiltration_installation_type (value_de) VALUES ('unbekannt');
- INSERT INTO qgep.vl_infiltration_installation_type (value_fr) VALUES ('inconnu');
- INSERT INTO qgep.vl_infiltration_installation_type (code) VALUES ('3281');
- INSERT INTO qgep.vl_infiltration_installation_type (value_en) VALUES ('depression_percolation');
- INSERT INTO qgep.vl_infiltration_installation_type (value_de) VALUES ('MuldenRigolenversickerung');
- INSERT INTO qgep.vl_infiltration_installation_type (value_fr) VALUES ('cuvettes_rigoles_filtrantes');
- INSERT INTO qgep.vl_infiltration_installation_type (code) VALUES ('3282');
- INSERT INTO qgep.vl_infiltration_installation_type (value_en) VALUES ('with_soil_passage');
- INSERT INTO qgep.vl_infiltration_installation_type (value_de) VALUES ('andere_mit_Bodenpassage');
- INSERT INTO qgep.vl_infiltration_installation_type (value_fr) VALUES ('autre_avec_passage_a_travers_sol');
- INSERT INTO qgep.vl_infiltration_installation_type (code) VALUES ('3283');
- INSERT INTO qgep.vl_infiltration_installation_type (value_en) VALUES ('percolation_gallery');
- INSERT INTO qgep.vl_infiltration_installation_type (value_de) VALUES ('Versickerungsstrang_Galerie');
- INSERT INTO qgep.vl_infiltration_installation_type (value_fr) VALUES ('bande_infiltration_galerie');
- INSERT INTO qgep.vl_infiltration_installation_type (code) VALUES ('3284');
- INSERT INTO qgep.vl_infiltration_installation_type (value_en) VALUES ('combination_manhole_pipe');
- INSERT INTO qgep.vl_infiltration_installation_type (value_de) VALUES ('Kombination_Schacht_Strang');
- INSERT INTO qgep.vl_infiltration_installation_type (value_fr) VALUES ('combinaison_puits_bande');
- INSERT INTO qgep.vl_infiltration_installation_type (code) VALUES ('3285');
- INSERT INTO qgep.vl_infiltration_installation_type (value_en) VALUES ('without_soil_passage');
- INSERT INTO qgep.vl_infiltration_installation_type (value_de) VALUES ('andere_ohne_Bodenpassage');
- INSERT INTO qgep.vl_infiltration_installation_type (value_fr) VALUES ('autre_sans_passage_a_travers_sol');
+ INSERT INTO qgep.vl_infiltration_installation_type (code, value_en, value_de, value_fr) VALUES ('3279','surface_percolation','Flaechenfoermige_Versickerung','infiltration_superficielle_sur_place');
+ INSERT INTO qgep.vl_infiltration_installation_type (code, value_en, value_de, value_fr) VALUES ('3280','percolation_over_the_shoulder','Versickerung_ueber_die_Schulter','infiltration_par_les_bas_cotes');
+ INSERT INTO qgep.vl_infiltration_installation_type (code, value_en, value_de, value_fr) VALUES ('276','percolation_basin','Versickerungsbecken','bassin_d_infiltration');
+ INSERT INTO qgep.vl_infiltration_installation_type (code, value_en, value_de, value_fr) VALUES ('277','gravel_formation','Kieskoerper','corps_de_gravier');
+ INSERT INTO qgep.vl_infiltration_installation_type (code, value_en, value_de, value_fr) VALUES ('278','percolation_manhole','Versickerungsschacht','puits_d_infiltration');
+ INSERT INTO qgep.vl_infiltration_installation_type (code, value_en, value_de, value_fr) VALUES ('3087','unknown','unbekannt','inconnu');
+ INSERT INTO qgep.vl_infiltration_installation_type (code, value_en, value_de, value_fr) VALUES ('3281','depression_percolation','MuldenRigolenversickerung','cuvettes_rigoles_filtrantes');
+ INSERT INTO qgep.vl_infiltration_installation_type (code, value_en, value_de, value_fr) VALUES ('3282','with_soil_passage','andere_mit_Bodenpassage','autre_avec_passage_a_travers_sol');
+ INSERT INTO qgep.vl_infiltration_installation_type (code, value_en, value_de, value_fr) VALUES ('3283','percolation_gallery','Versickerungsstrang_Galerie','bande_infiltration_galerie');
+ INSERT INTO qgep.vl_infiltration_installation_type (code, value_en, value_de, value_fr) VALUES ('3284','combination_manhole_pipe','Kombination_Schacht_Strang','combinaison_puits_bande');
+ INSERT INTO qgep.vl_infiltration_installation_type (code, value_en, value_de, value_fr) VALUES ('3285','without_soil_passage','andere_ohne_Bodenpassage','autre_sans_passage_a_travers_sol');
  ALTER TABLE qgep.od_infiltration_installation ADD CONSTRAINT fkey_vl_infiltration_installation_type FOREIGN KEY (type)
- REFERENCES qgep.vl_infiltration_installation_type (code) MATCH SIMPLE 
+ REFERENCES qgep.vl_infiltration_installation_type varchar(36) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
 CREATE TABLE qgep.vl_infiltration_installation_vehicle_access
 (
@@ -1832,20 +1163,11 @@ CONSTRAINT pkey_qgep_vl_infiltration_installation_vehicle_access_code PRIMARY KE
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_infiltration_installation_vehicle_access (code) VALUES ('3287');
- INSERT INTO qgep.vl_infiltration_installation_vehicle_access (value_en) VALUES ('accessible');
- INSERT INTO qgep.vl_infiltration_installation_vehicle_access (value_de) VALUES ('zugaenglich');
- INSERT INTO qgep.vl_infiltration_installation_vehicle_access (value_fr) VALUES ('accessible');
- INSERT INTO qgep.vl_infiltration_installation_vehicle_access (code) VALUES ('3288');
- INSERT INTO qgep.vl_infiltration_installation_vehicle_access (value_en) VALUES ('inaccessible');
- INSERT INTO qgep.vl_infiltration_installation_vehicle_access (value_de) VALUES ('unzugaenglich');
- INSERT INTO qgep.vl_infiltration_installation_vehicle_access (value_fr) VALUES ('inaccessible');
- INSERT INTO qgep.vl_infiltration_installation_vehicle_access (code) VALUES ('3289');
- INSERT INTO qgep.vl_infiltration_installation_vehicle_access (value_en) VALUES ('unknown');
- INSERT INTO qgep.vl_infiltration_installation_vehicle_access (value_de) VALUES ('unbekannt');
- INSERT INTO qgep.vl_infiltration_installation_vehicle_access (value_fr) VALUES ('inconnu');
+ INSERT INTO qgep.vl_infiltration_installation_vehicle_access (code, value_en, value_de, value_fr) VALUES ('3287','accessible','zugaenglich','accessible');
+ INSERT INTO qgep.vl_infiltration_installation_vehicle_access (code, value_en, value_de, value_fr) VALUES ('3288','inaccessible','unzugaenglich','inaccessible');
+ INSERT INTO qgep.vl_infiltration_installation_vehicle_access (code, value_en, value_de, value_fr) VALUES ('3289','unknown','unbekannt','inconnu');
  ALTER TABLE qgep.od_infiltration_installation ADD CONSTRAINT fkey_vl_infiltration_installation_vehicle_access FOREIGN KEY (vehicle_access)
- REFERENCES qgep.vl_infiltration_installation_vehicle_access (code) MATCH SIMPLE 
+ REFERENCES qgep.vl_infiltration_installation_vehicle_access varchar(36) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
 CREATE TABLE qgep.vl_infiltration_installation_watertightness
 (
@@ -1859,22 +1181,13 @@ CONSTRAINT pkey_qgep_vl_infiltration_installation_watertightness_code PRIMARY KE
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_infiltration_installation_watertightness (code) VALUES ('3294');
- INSERT INTO qgep.vl_infiltration_installation_watertightness (value_en) VALUES ('watertight');
- INSERT INTO qgep.vl_infiltration_installation_watertightness (value_de) VALUES ('wasserdicht');
- INSERT INTO qgep.vl_infiltration_installation_watertightness (value_fr) VALUES ('etanche');
- INSERT INTO qgep.vl_infiltration_installation_watertightness (code) VALUES ('3295');
- INSERT INTO qgep.vl_infiltration_installation_watertightness (value_en) VALUES ('not_watertight');
- INSERT INTO qgep.vl_infiltration_installation_watertightness (value_de) VALUES ('nichtwasserdicht');
- INSERT INTO qgep.vl_infiltration_installation_watertightness (value_fr) VALUES ('non_etanche');
- INSERT INTO qgep.vl_infiltration_installation_watertightness (code) VALUES ('3296');
- INSERT INTO qgep.vl_infiltration_installation_watertightness (value_en) VALUES ('unknown');
- INSERT INTO qgep.vl_infiltration_installation_watertightness (value_de) VALUES ('unbekannt');
- INSERT INTO qgep.vl_infiltration_installation_watertightness (value_fr) VALUES ('inconnu');
+ INSERT INTO qgep.vl_infiltration_installation_watertightness (code, value_en, value_de, value_fr) VALUES ('3294','watertight','wasserdicht','etanche');
+ INSERT INTO qgep.vl_infiltration_installation_watertightness (code, value_en, value_de, value_fr) VALUES ('3295','not_watertight','nichtwasserdicht','non_etanche');
+ INSERT INTO qgep.vl_infiltration_installation_watertightness (code, value_en, value_de, value_fr) VALUES ('3296','unknown','unbekannt','inconnu');
  ALTER TABLE qgep.od_infiltration_installation ADD CONSTRAINT fkey_vl_infiltration_installation_watertightness FOREIGN KEY (watertightness)
- REFERENCES qgep.vl_infiltration_installation_watertightness (code) MATCH SIMPLE 
+ REFERENCES qgep.vl_infiltration_installation_watertightness varchar(36) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_reach ADD CONSTRAINT oorel132 FOREIGN KEY (obj_id) REFERENCES qgep.od_wastewater_networkelement(obj_id);
+ALTER TABLE qgep.od_reach ADD CONSTRAINT oorel_od_reach_wastewater_networkelement FOREIGN KEY (obj_id) REFERENCES qgep.od_wastewater_networkelement(obj_id);
 CREATE TABLE qgep.vl_reach_horizontal_positioning
 (
 code integer NOT NULL,
@@ -1887,20 +1200,11 @@ CONSTRAINT pkey_qgep_vl_reach_horizontal_positioning_code PRIMARY KEY (code)
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_reach_horizontal_positioning (code) VALUES ('3630');
- INSERT INTO qgep.vl_reach_horizontal_positioning (value_en) VALUES ('accurate');
- INSERT INTO qgep.vl_reach_horizontal_positioning (value_de) VALUES ('genau');
- INSERT INTO qgep.vl_reach_horizontal_positioning (value_fr) VALUES ('precis');
- INSERT INTO qgep.vl_reach_horizontal_positioning (code) VALUES ('3631');
- INSERT INTO qgep.vl_reach_horizontal_positioning (value_en) VALUES ('inaccurate');
- INSERT INTO qgep.vl_reach_horizontal_positioning (value_de) VALUES ('ungenau');
- INSERT INTO qgep.vl_reach_horizontal_positioning (value_fr) VALUES ('imprecis');
- INSERT INTO qgep.vl_reach_horizontal_positioning (code) VALUES ('3632');
- INSERT INTO qgep.vl_reach_horizontal_positioning (value_en) VALUES ('unknown');
- INSERT INTO qgep.vl_reach_horizontal_positioning (value_de) VALUES ('unbekannt');
- INSERT INTO qgep.vl_reach_horizontal_positioning (value_fr) VALUES ('inconnu');
+ INSERT INTO qgep.vl_reach_horizontal_positioning (code, value_en, value_de, value_fr) VALUES ('3630','accurate','genau','precis');
+ INSERT INTO qgep.vl_reach_horizontal_positioning (code, value_en, value_de, value_fr) VALUES ('3631','inaccurate','ungenau','imprecis');
+ INSERT INTO qgep.vl_reach_horizontal_positioning (code, value_en, value_de, value_fr) VALUES ('3632','unknown','unbekannt','inconnu');
  ALTER TABLE qgep.od_reach ADD CONSTRAINT fkey_vl_reach_horizontal_positioning FOREIGN KEY (horizontal_positioning)
- REFERENCES qgep.vl_reach_horizontal_positioning (code) MATCH SIMPLE 
+ REFERENCES qgep.vl_reach_horizontal_positioning varchar(36) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
 CREATE TABLE qgep.vl_reach_inside_coating
 (
@@ -1914,32 +1218,14 @@ CONSTRAINT pkey_qgep_vl_reach_inside_coating_code PRIMARY KEY (code)
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_reach_inside_coating (code) VALUES ('248');
- INSERT INTO qgep.vl_reach_inside_coating (value_en) VALUES ('coating');
- INSERT INTO qgep.vl_reach_inside_coating (value_de) VALUES ('Anstrich_Beschichtung');
- INSERT INTO qgep.vl_reach_inside_coating (value_fr) VALUES ('peinture_revetement');
- INSERT INTO qgep.vl_reach_inside_coating (code) VALUES ('249');
- INSERT INTO qgep.vl_reach_inside_coating (value_en) VALUES ('cement_mortar_lining');
- INSERT INTO qgep.vl_reach_inside_coating (value_de) VALUES ('Zementmoertelauskleidung');
- INSERT INTO qgep.vl_reach_inside_coating (value_fr) VALUES ('revetement_en_mortier_de_ciment');
- INSERT INTO qgep.vl_reach_inside_coating (code) VALUES ('250');
- INSERT INTO qgep.vl_reach_inside_coating (value_en) VALUES ('brick_lining');
- INSERT INTO qgep.vl_reach_inside_coating (value_de) VALUES ('Kanalklinkerauskleidung');
- INSERT INTO qgep.vl_reach_inside_coating (value_fr) VALUES ('revetement_en_brique');
- INSERT INTO qgep.vl_reach_inside_coating (code) VALUES ('251');
- INSERT INTO qgep.vl_reach_inside_coating (value_en) VALUES ('stoneware_lining');
- INSERT INTO qgep.vl_reach_inside_coating (value_de) VALUES ('Steinzeugauskleidung');
- INSERT INTO qgep.vl_reach_inside_coating (value_fr) VALUES ('revetement_en_gres');
- INSERT INTO qgep.vl_reach_inside_coating (code) VALUES ('2984');
- INSERT INTO qgep.vl_reach_inside_coating (value_en) VALUES ('other');
- INSERT INTO qgep.vl_reach_inside_coating (value_de) VALUES ('andere');
- INSERT INTO qgep.vl_reach_inside_coating (value_fr) VALUES ('autres');
- INSERT INTO qgep.vl_reach_inside_coating (code) VALUES ('3044');
- INSERT INTO qgep.vl_reach_inside_coating (value_en) VALUES ('unknown');
- INSERT INTO qgep.vl_reach_inside_coating (value_de) VALUES ('unbekannt');
- INSERT INTO qgep.vl_reach_inside_coating (value_fr) VALUES ('inconnu');
+ INSERT INTO qgep.vl_reach_inside_coating (code, value_en, value_de, value_fr) VALUES ('248','coating','Anstrich_Beschichtung','peinture_revetement');
+ INSERT INTO qgep.vl_reach_inside_coating (code, value_en, value_de, value_fr) VALUES ('249','cement_mortar_lining','Zementmoertelauskleidung','revetement_en_mortier_de_ciment');
+ INSERT INTO qgep.vl_reach_inside_coating (code, value_en, value_de, value_fr) VALUES ('250','brick_lining','Kanalklinkerauskleidung','revetement_en_brique');
+ INSERT INTO qgep.vl_reach_inside_coating (code, value_en, value_de, value_fr) VALUES ('251','stoneware_lining','Steinzeugauskleidung','revetement_en_gres');
+ INSERT INTO qgep.vl_reach_inside_coating (code, value_en, value_de, value_fr) VALUES ('2984','other','andere','autres');
+ INSERT INTO qgep.vl_reach_inside_coating (code, value_en, value_de, value_fr) VALUES ('3044','unknown','unbekannt','inconnu');
  ALTER TABLE qgep.od_reach ADD CONSTRAINT fkey_vl_reach_inside_coating FOREIGN KEY (inside_coating)
- REFERENCES qgep.vl_reach_inside_coating (code) MATCH SIMPLE 
+ REFERENCES qgep.vl_reach_inside_coating varchar(36) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
 CREATE TABLE qgep.vl_reach_material
 (
@@ -1953,86 +1239,32 @@ CONSTRAINT pkey_qgep_vl_reach_material_code PRIMARY KEY (code)
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_reach_material (code) VALUES ('147');
- INSERT INTO qgep.vl_reach_material (value_en) VALUES ('fiber_cement');
- INSERT INTO qgep.vl_reach_material (value_de) VALUES ('Faserzement');
- INSERT INTO qgep.vl_reach_material (value_fr) VALUES ('fibrociment');
- INSERT INTO qgep.vl_reach_material (code) VALUES ('148');
- INSERT INTO qgep.vl_reach_material (value_en) VALUES ('cast_ductile_iron');
- INSERT INTO qgep.vl_reach_material (value_de) VALUES ('Guss_duktil');
- INSERT INTO qgep.vl_reach_material (value_fr) VALUES ('fonte_ductile');
- INSERT INTO qgep.vl_reach_material (code) VALUES ('153');
- INSERT INTO qgep.vl_reach_material (value_en) VALUES ('steel');
- INSERT INTO qgep.vl_reach_material (value_de) VALUES ('Stahl');
- INSERT INTO qgep.vl_reach_material (value_fr) VALUES ('acier');
- INSERT INTO qgep.vl_reach_material (code) VALUES ('154');
- INSERT INTO qgep.vl_reach_material (value_en) VALUES ('stoneware');
- INSERT INTO qgep.vl_reach_material (value_de) VALUES ('Steinzeug');
- INSERT INTO qgep.vl_reach_material (value_fr) VALUES ('gres');
- INSERT INTO qgep.vl_reach_material (code) VALUES ('3256');
- INSERT INTO qgep.vl_reach_material (value_en) VALUES ('concrete_unknown');
- INSERT INTO qgep.vl_reach_material (value_de) VALUES ('Beton_unbekannt');
- INSERT INTO qgep.vl_reach_material (value_fr) VALUES ('beton_inconnu');
- INSERT INTO qgep.vl_reach_material (code) VALUES ('3258');
- INSERT INTO qgep.vl_reach_material (value_en) VALUES ('plastic_unknown');
- INSERT INTO qgep.vl_reach_material (value_de) VALUES ('Kunststoff_unbekannt');
- INSERT INTO qgep.vl_reach_material (value_fr) VALUES ('plastique_inconnu');
- INSERT INTO qgep.vl_reach_material (code) VALUES ('2754');
- INSERT INTO qgep.vl_reach_material (value_en) VALUES ('asbestos_cement');
- INSERT INTO qgep.vl_reach_material (value_de) VALUES ('Asbestzement');
- INSERT INTO qgep.vl_reach_material (value_fr) VALUES ('amiante_ciment');
- INSERT INTO qgep.vl_reach_material (code) VALUES ('2755');
- INSERT INTO qgep.vl_reach_material (value_en) VALUES ('bricks');
- INSERT INTO qgep.vl_reach_material (value_de) VALUES ('Gebrannte_Steine');
- INSERT INTO qgep.vl_reach_material (value_fr) VALUES ('terre_cuite');
- INSERT INTO qgep.vl_reach_material (code) VALUES ('2761');
- INSERT INTO qgep.vl_reach_material (value_en) VALUES ('clay');
- INSERT INTO qgep.vl_reach_material (value_de) VALUES ('Ton');
- INSERT INTO qgep.vl_reach_material (value_fr) VALUES ('argile');
- INSERT INTO qgep.vl_reach_material (code) VALUES ('2762');
- INSERT INTO qgep.vl_reach_material (value_en) VALUES ('cement');
- INSERT INTO qgep.vl_reach_material (value_de) VALUES ('Zement');
- INSERT INTO qgep.vl_reach_material (value_fr) VALUES ('ciment');
- INSERT INTO qgep.vl_reach_material (code) VALUES ('2985');
- INSERT INTO qgep.vl_reach_material (value_en) VALUES ('other');
- INSERT INTO qgep.vl_reach_material (value_de) VALUES ('andere');
- INSERT INTO qgep.vl_reach_material (value_fr) VALUES ('autres');
- INSERT INTO qgep.vl_reach_material (code) VALUES ('3016');
- INSERT INTO qgep.vl_reach_material (value_en) VALUES ('unknown');
- INSERT INTO qgep.vl_reach_material (value_de) VALUES ('unbekannt');
- INSERT INTO qgep.vl_reach_material (value_fr) VALUES ('inconnu');
- INSERT INTO qgep.vl_reach_material (code) VALUES ('3638');
- INSERT INTO qgep.vl_reach_material (value_en) VALUES ('concrete_normal');
- INSERT INTO qgep.vl_reach_material (value_de) VALUES ('Beton_Normalbeton');
- INSERT INTO qgep.vl_reach_material (value_fr) VALUES ('beton_normal');
- INSERT INTO qgep.vl_reach_material (code) VALUES ('3639');
- INSERT INTO qgep.vl_reach_material (value_en) VALUES ('concrete_insitu');
- INSERT INTO qgep.vl_reach_material (value_de) VALUES ('Beton_Ortsbeton');
- INSERT INTO qgep.vl_reach_material (value_fr) VALUES ('beton_coule_sur_place');
- INSERT INTO qgep.vl_reach_material (code) VALUES ('3640');
- INSERT INTO qgep.vl_reach_material (value_en) VALUES ('concrete_presspipe');
- INSERT INTO qgep.vl_reach_material (value_de) VALUES ('Beton_Pressrohrbeton');
- INSERT INTO qgep.vl_reach_material (value_fr) VALUES ('beton_pousse_tube');
- INSERT INTO qgep.vl_reach_material (code) VALUES ('3641');
- INSERT INTO qgep.vl_reach_material (value_en) VALUES ('concrete_special');
- INSERT INTO qgep.vl_reach_material (value_de) VALUES ('Beton_Spezialbeton');
- INSERT INTO qgep.vl_reach_material (value_fr) VALUES ('beton_special');
- INSERT INTO qgep.vl_reach_material (code) VALUES ('3648');
- INSERT INTO qgep.vl_reach_material (value_en) VALUES ('cast_gray_iron');
- INSERT INTO qgep.vl_reach_material (value_de) VALUES ('Guss_Grauguss');
- INSERT INTO qgep.vl_reach_material (value_fr) VALUES ('fonte_grise');
- INSERT INTO qgep.vl_reach_material (code) VALUES ('3654');
- INSERT INTO qgep.vl_reach_material (value_en) VALUES ('steel_stainless');
- INSERT INTO qgep.vl_reach_material (value_de) VALUES ('Stahl_rostfrei');
- INSERT INTO qgep.vl_reach_material (value_fr) VALUES ('acier_inoxydable');
+ INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr) VALUES ('147','fiber_cement','Faserzement','fibrociment');
+ INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr) VALUES ('148','cast_ductile_iron','Guss_duktil','fonte_ductile');
+ INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr) VALUES ('153','steel','Stahl','acier');
+ INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr) VALUES ('154','stoneware','Steinzeug','gres');
+ INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr) VALUES ('3256','concrete_unknown','Beton_unbekannt','beton_inconnu');
+ INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr) VALUES ('3258','plastic_unknown','Kunststoff_unbekannt','plastique_inconnu');
+ INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr) VALUES ('2754','asbestos_cement','Asbestzement','amiante_ciment');
+ INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr) VALUES ('2755','bricks','Gebrannte_Steine','terre_cuite');
+ INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr) VALUES ('2761','clay','Ton','argile');
+ INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr) VALUES ('2762','cement','Zement','ciment');
+ INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr) VALUES ('2985','other','andere','autres');
+ INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr) VALUES ('3016','unknown','unbekannt','inconnu');
+ INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr) VALUES ('3638','concrete_normal','Beton_Normalbeton','beton_normal');
+ INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr) VALUES ('3639','concrete_insitu','Beton_Ortsbeton','beton_coule_sur_place');
+ INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr) VALUES ('3640','concrete_presspipe','Beton_Pressrohrbeton','beton_pousse_tube');
+ INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr) VALUES ('3641','concrete_special','Beton_Spezialbeton','beton_special');
+ INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr) VALUES ('3648','cast_gray_iron','Guss_Grauguss','fonte_grise');
+ INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr) VALUES ('3654','steel_stainless','Stahl_rostfrei','acier_inoxydable');
  ALTER TABLE qgep.od_reach ADD CONSTRAINT fkey_vl_reach_material FOREIGN KEY (material)
- REFERENCES qgep.vl_reach_material (code) MATCH SIMPLE 
+ REFERENCES qgep.vl_reach_material varchar(36) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_reach ADD COLUMN qgep.fs_reach_point_from varchar (36);
-ALTER TABLE qgep.od_reach ADD CONSTRAINT rel146 FOREIGN KEY (qgep.fs_reach_point_from) REFERENCES qgep.od_reach_point(obj_id);
-ALTER TABLE qgep.od_reach ADD COLUMN qgep.fs_reach_point_to varchar (36);
-ALTER TABLE qgep.od_reach ADD CONSTRAINT rel147 FOREIGN KEY (qgep.fs_reach_point_to) REFERENCES qgep.od_reach_point(obj_id);
-ALTER TABLE qgep.od_reach ADD COLUMN qgep.fs_pipe_profile varchar (36);
-ALTER TABLE qgep.od_reach ADD CONSTRAINT rel148 FOREIGN KEY (qgep.fs_pipe_profile) REFERENCES qgep.od_pipe_profile(obj_id);
-ALTER TABLE qgep.od_wastewater_node ADD CONSTRAINT oorel149 FOREIGN KEY (obj_id) REFERENCES qgep.od_wastewater_networkelement(obj_id);
+ALTER TABLE qgep.od_reach ADD COLUMN reach_point_from varchar (36);
+ALTER TABLE qgep.od_reach ADD CONSTRAINT rel_OD_HALTUNG_OD_HALTUNGSPUNKT FOREIGN KEY (qgep.fs_reach_point_from) REFERENCES qgep.od_reach_point(obj_id);
+ALTER TABLE qgep.od_reach ADD COLUMN reach_point_to varchar (36);
+ALTER TABLE qgep.od_reach ADD CONSTRAINT rel_OD_HALTUNG_OD_HALTUNGSPUNKT FOREIGN KEY (qgep.fs_reach_point_to) REFERENCES qgep.od_reach_point(obj_id);
+ALTER TABLE qgep.od_reach ADD COLUMN pipe_profile varchar (36);
+ALTER TABLE qgep.od_reach ADD CONSTRAINT rel_OD_HALTUNG_OD_ROHRPROFIL FOREIGN KEY (qgep.fs_pipe_profile) REFERENCES qgep.od_pipe_profile(obj_id);
+ALTER TABLE qgep.od_wastewater_node ADD CONSTRAINT oorel_od_wastewater_node_wastewater_networkelement FOREIGN KEY (obj_id) REFERENCES qgep.od_wastewater_networkelement(obj_id);
 COMMIT;
