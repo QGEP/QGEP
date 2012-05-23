@@ -1,0 +1,2268 @@
+﻿!! VSA_DSS_2008_1_d.ili
+!! Stand 15.07.2008
+!! http://dss.vsa.ch
+
+TRANSFER VSA_DSS;
+
+MODEL DSS_2008
+
+!! Copyright 2002-2008
+!! Verband Schweizer Abwasser- und Gewässerschutzfachleute (VSA), Zürich
+!! www.vsa.ch
+!! Die Nutzung dieser INTERLIS-Datei ist lizenzpflichtig!
+!! Änderungen und Ergänzungen dürfen zum Eigengebrauch getätigt werden. 
+!! Sie müssen innerhalb der Datei so dokumentiert sein, dass sichtbar wird, 
+!! welche Änderungen getätigt wurden (Einfügen von INTERLIS Kommentar). 
+!! Die Originalmodelldatei  und darauf basierende 
+!! abgeänderte Versionen dürfen nicht weiterverkauft werden. 
+!! Die Weitergabe der Originaldatei (als Ganzes oder Teile davon) ist nur 
+!! zusammen mit dem Erwerb einer Lizenz beim VSA durch den Empfänger erlaubt. 
+
+!! Freigegeben für öffentlichen Gebrauch und kommerzielle Anwendung mit Lizenz.
+!! INTERLIS Modell-Datei geprüft mit INTERLIS-Compiler ili2c 
+!! Version 3.6.5. vom 17.4.2008 (www.interlis.ch)
+
+DOMAIN
+
+!! Definition Datentypen nach INTERLIS 1.0
+
+LKoord = COORD2 480000.000 70000.000 840000.000 300000.000 ;    !! Schweizer Landeskoordinaten
+!! Analog zu AVS (DM.01-AV-CH_23d.ili)
+!! Abwasserknoten.Lage
+!! Badestelle.Lage
+!! Brunnen.Lage
+!! Deckel.Lage
+!! Gebaeude.Referenzpunkt
+!! Gefahrenquelle.Lage
+!! Gewaesserabschnitt.bis
+!! Gewaesserabschnitt.Von
+!! Gewaesserverbauung.Lage
+!! Haltungspunkt.Lage
+!! Messstelle.Lage
+!! Reservoir.Lage
+!! Steuerungszentrale.Lage
+!! Unfall.Lage
+!! Wasserfassung.Lage
+Hoehe = DIM1 0.000 5000.000 ;    !! Meter über Meer [M.ü.M.]
+!! Analog zu AVS (DM.01-AV-CH_23d.ili)
+!! Abwasserknoten.Rueckstaukote
+!! Abwasserknoten.Sohlenkote
+!! Deckel.Kote
+!! FoerderAggregat.KoteStart
+!! FoerderAggregat.KoteStop
+!! Gemeinde.Hoehe
+!! Grundwasserleiter.MaxGWSpiegel
+!! Grundwasserleiter.MinGWSpiegel
+!! Grundwasserleiter.MittlererGWSpiegel
+!! Haltungspunkt.Kote
+!! HQ_Relation.Hoehe
+!! Streichwehr.KoteMax
+!! Streichwehr.KoteMin
+!! Vorflutereinlauf.Hochwasserkote
+Linienzug = POLYLINE WITH (STRAIGHTS, ARCS) VERTEX LKoord ;    !! Punkte mit Schweizer Landeskoordinaten
+!! 
+!! Gewaessersektor.Verlauf
+!! Haltung.Verlauf
+Gebietseinteilung = AREA WITH (STRAIGHTS,ARCS) VERTEX LKoord WITHOUT OVERLAPS > 0.050;    !! Punkte mit Schweizer Landeskoordinaten
+!! Flächen dürfen sich nicht überlappen
+!! Gemeinde.Perimeter
+!! Kanton.Perimeter
+!! Planungszone.Perimeter
+!! See.Perimeter
+!! Versickerungsbereich.Perimeter
+Einzelflaechen = SURFACE WITH (STRAIGHTS, ARCS) VERTEX LKoord ;    !! Punkte mit Schweizer Landeskoordinaten
+!! Flächen dürfen sich überlappen
+!! Abwasserbauwerk.Detailgeometrie
+!! Einzelflaeche.Perimeter
+!! Einzugsgebiet.Perimeter
+!! Entwaesserungssystem.Perimeter
+!! Gebaeude.Perimeter
+!! Gewaesserschutzbereich.Perimeter
+!! Grundwasserleiter.Perimeter
+!! Grundwasserschutzareal.Perimeter
+!! Grundwasserschutzzone.Perimeter
+Datum = DATE ;    !! Interlis1 Date
+!! 
+!! Erhaltungsereignis.Zeitpunkt
+!! Messresultat.Zeit
+!! Unfall.Datum
+Number = [-99999999.9999 ..  99999999.9999];    !! 
+!! 
+!! FoerderAggregat.Aggregatezahl
+!! Messresultat.Wert
+!! Rohrprofil_Geometrie.Position
+!! Rohrprofil_Geometrie.x
+!! Rohrprofil_Geometrie.y
+!! Ueberlauf.Ueberlaufhaeufigkeit
+Verhaeltnis_H_B = [0.01 .. 100.00];    !! Verhältnis Höhe zu Breite, ohne Einheit
+!! 
+!! Rohrprofil.HoehenBreitenverhaeltnis
+Flaecheninhalt = DIM2 0.00 100000.00 ;    !! Quadratmeter [m2]
+!! 
+!! Absperr_Drosselorgan.Querschnitt
+!! Absperr_Drosselorgan.Wirksamer_QS
+!! EZG_PARAMETER_ALLG.Flaeche
+!! EZG_PARAMETER_MOUSE1.Flaeche
+!! Hydr_GeomRelation.BenetzteQuerschnittsflaeche
+!! Hydr_GeomRelation.Wasseroberflaeche
+!! Versickerungsanlage.Wirksameflaeche
+Hektare = DIM2 0.00 100000.00;    !! Hektare [ha]
+!! 
+!! Gemeinde.Flaeche
+Rauminhalt = DIM2 0.00 1000000.00;    !! Kubikmeter [m3]
+!! 
+!! FoerderAggregat.Arbeitspunkt
+!! Retentionskoerper.Retention_Volumen
+!! Schlammbehandlung.EntwaessertKlaerschlammstapelung
+!! Schlammbehandlung.Fluessigklaerschlammstapelung
+!! Schlammbehandlung.Mischschlammvoreindickung
+!! Schlammbehandlung.PrimaerschlammVoreindickung
+!! Schlammbehandlung.Ueberschusschalmmvoreindickung
+!! Ueberlauf.Ueberlaufmenge
+Jahr = [1800 .. 2100] ;    !! 
+!! 
+!! Abwasserbauwerk.Baujahr
+!! Abwasserbauwerk.Ersatzjahr
+!! Abwasserreinigungsanlage.Inbetriebnahme
+!! ElektrischeEinrichtung.Ersatzjahr
+!! ElektromechanischeAusruestung.Ersatzjahr
+!! Gemeinde.GEP_Jahr
+Tage = [0 .. 10000];    !! Tage
+!! 
+!! Erhaltungsereignis.Dauer
+Stunden = [0.0 .. 10000.0];    !! Stunden [h]
+!! 
+!! Ueberlauf.Ueberlaufdauer
+Sekunden = [0 .. 1000000];    !! Sekunden [s]
+!! 
+!! Messresultat.Messdauer
+Intervall = [0.00 .. 20.00];    !! Jahre
+!! 
+!! Abwasserbauwerk.Inspektionsintervall
+!! Kanal.Spuelintervall
+Laenge = DIM1 0.00 30000.00 ;    !! Einheit Meter [m], 2 Dezimalstellen
+!! 
+!! EZG_PARAMETER_ALLG.Fliessweglaenge
+!! EZG_PARAMETER_MOUSE1.Fliessweglaenge
+!! Fischpass.Absturzhoehe
+!! Geschiebesperre.Absturzhoehe
+!! Gewaesserabschnitt.Sohlenbreite
+!! GewaesserAbsturz.Absturzhoehe
+!! Gewaessersektor.RefLaenge
+!! Gewaessersohle.Breite
+!! GewaesserWehr.Absturzhoehe
+!! Haltung.LaengeEffektiv
+!! Hydr_GeomRelation.Wassertiefe
+!! Kanal.Rohrlaenge
+!! Kanalschaden.Distanz
+!! Leapingwehr.Breite
+!! Leapingwehr.Laenge
+!! Normschachtschaden.Distanz
+!! Schleuse.Absturzhoehe
+!! Sohlrampe.Absturzhoehe
+!! Streichwehr.HydrUeberfallaenge
+!! Ufer.Breite
+!! Untersuchung.Inspizierte_Laenge
+!! Versickerungsanlage.GWDistanz
+Abmessung = DIM1 0 99999;    !! Einheit Milimeter [mm]
+!! 
+!! Deckel.Durchmesser
+!! Haltung.Lichte_Hoehe
+!! Normschacht.Dimension1
+!! Normschacht.Dimension2
+!! Trockenwetterfallrohr.Durchmesser
+!! Versickerungsanlage.Dimension1
+!! Versickerungsanlage.Dimension2
+Kilometrierung = DIM1 0.000 999999.999;    !! Kilometer oder Kilometrierung [km]
+!! 
+!! Gewaessersektor.KilomO
+!! Gewaessersektor.KilomU
+M3H = [0.00 .. 10000.00];    !! Kubikmeter pro Stunde [m3/h]
+!! 
+!! Schlammbehandlung.Entwaesserung
+!! Schlammbehandlung.Faulschlammverbrennung
+!! Schlammbehandlung.Frischschlammverbrennung
+!! Schlammbehandlung.Hygienisierung
+!! Schlammbehandlung.Kompostierung
+!! Schlammbehandlung.Trocknung
+M3S = [0.000 .. 10000.000];    !! Kubikmeter pro Sekunde [m3/s]
+!! Genauigkeit bis 1 Liter
+!! HQ_Relation.Durchfluss
+!! Ueberlauf.Qan_dim
+!! Ueberlauf.Qan_ist
+!! Versickerungsanlage.Schluckvermoegen
+LS = [0.000 .. 100000.000];    !! Liter pro Sekunde [l/s]
+!! Genauigkeit bis 0.001 Liter
+!! Anschlussobjekt.Fremdwasseranfall
+!! EZG_PARAMETER_ALLG.Trockenwetteranfall
+!! EZG_PARAMETER_MOUSE1.Trockenwetteranfall
+Kilowatt = [0 .. 1000000];    !! Kilowatt [kW]
+!! 
+!! ARAEnergienutzung.Gasmotor
+!! ARAEnergienutzung.Turbinierung
+!! ARAEnergienutzung.Waermepumpe
+Promill = [0 .. 1000];    !! Einheit Promill [%o]
+!! 
+!! Einzelflaeche.Neigung
+!! EZG_PARAMETER_ALLG.Fliessweggefaelle
+!! EZG_PARAMETER_MOUSE1.Fliessweggefaelle
+Prozent = [0 .. 100] ;    !! Einheit Prozent [%]
+!! 
+!! Abwasserreinigungsanlage.EliminationCSB
+!! Abwasserreinigungsanlage.EliminationN
+!! Abwasserreinigungsanlage.EliminationNH4
+!! Abwasserreinigungsanlage.EliminationP
+!! Einzugsgebiet.Abflussbeiwert
+!! Einzugsgebiet.Befestigungsgrad
+Strickler = [0 .. 999];    !! Einheit Manning-Strickler K oder kstr [m^(1/3)/s]
+!! 
+!! Haltung.Reibungsbeiwert
+Prandtl = [0.00 .. 100.00];    !! Wandrauhigkeitsbeiwert nach Prandtl Colebrook (ks) Einheit Milimeter [mm]
+!! 
+!! Haltung.Wandrauhigkeit
+Strahler = [0 .. 99] ;    !! Ordnungszahl nach Strahler
+!! 
+!! Gewaesserabschnitt.Groesse
+CHF = [0.00 .. 99999999.99];    !! Schweizer Franken CHF
+!! 
+!! Absperr_Drosselorgan.BruttoKosten
+!! Absperr_Drosselorgan.Subventionen
+!! Abwasserbauwerk.Bruttokosten
+!! Abwasserbauwerk.Subventionen
+!! ElektrischeEinrichtung.BruttoKosten
+!! ElektromechanischeAusruestung.BruttoKosten
+!! Erhaltungsereignis.Kosten
+!! Ueberlauf.BruttoKosten
+!! Ueberlauf.Subventionen
+BSB5 = [0 .. 1000];    !! Biochemischer Sauerstoffbedarf in 5 Tagen [gBSB5/m3]
+!! Dimensionierungswert BSB5 Ablauf Vorklärung
+!! Abwasserreinigungsanlage.BSB5
+CSB = [0 .. 1000];    !! Chemischer Sauerstoffbedarf [gCSB/m3]
+!! 
+!! Abwasserreinigungsanlage.CSB
+NH4 = [0 .. 1000];    !! NH4 [gNH4/m3]
+!! 
+!! Abwasserreinigungsanlage.NH4
+Fracht = [0 .. 1000000];    !! [kg/Jahr]
+!! 
+!! Ueberlauf.Ueberlauffracht
+Einwohnerdichte = [0 .. 10000];    !! [Einwohner / ha]
+!! 
+!! Einzugsgebiet.Einwohnerdichte
+EGW = [0 .. 300000];    !! Einwohnergleichwert [EGW]
+!! 
+!! EZG_PARAMETER_ALLG.Einwohnergleichwert
+!! EZG_PARAMETER_MOUSE1.Einwohnergleichwert
+!! Gemeinde.Einwohner
+Verlust = [0.0 .. 500.0];    !! Einheit Milimeter [mm]
+!! 
+!! Oberflaechenabflussparameter.Benetzungsverlust
+!! Oberflaechenabflussparameter.Muldenverlust
+!! Oberflaechenabflussparameter.Verdunstungsverlust
+!! Oberflaechenabflussparameter.Versickerungsverlust
+GemeindeNr = [1 .. 9999];    !! 
+!! 
+!! Gemeinde.Gemeindenummer
+ARANr = [1 .. 999999];    !! 
+!! 
+!! Abwasserreinigungsanlage.Anlagenummer
+Ziffernblatt = [0..12];    !! 
+!! gemäss Richtlinie
+!! Haltungspunkt.Lage_Anschluss
+!! Kanalschaden.SchadenlageAnfang
+!! Kanalschaden.SchadenlageEnde
+!! Normschachtschaden.SchadenlageAnfang
+!! Normschachtschaden.SchadenlageEnde
+KanalQuantifizierung = [0 .. 100000];    !! [mm] oder [%], je nach EN Schadencode
+!! 
+!! Kanalschaden.Quantifizierung1
+!! Kanalschaden.Quantifizierung2
+XMLVideozaehlerstand = TEXT*11;    !! [hh:mm:ss:ff]
+!! 
+!! Kanalschaden.Videozaehlerstand
+!! Normschachtschaden.Videozaehlerstand
+Relativpfad = TEXT*200;    !! 
+!! 
+!! Datei.Relativpfad
+Pfad = TEXT*100;    !! 
+!! 
+!! Datentraeger.Pfad
+
+Plantyp =   (Leitungskataster,
+            Werkplan,
+            Uebersichtsplan);
+Orientierung    =   DEGREES  0.0  360.0;
+
+TOPIC Siedlungsentwaesserung =
+
+TABLE MUTATION =  
+  OBJ_ID: TEXT*20;  
+  OBJEKT: TEXT*20;  !! OBJ_ID des Objektes
+  KLASSE: TEXT*50; !! Klassenname des gewählten Objektes (Ergänzung zu 02i 1.00)
+  ATTRIBUT: TEXT*50; !! Attributname des gewählten Objektes
+  LETZTER_WERT: OPTIONAL TEXT*80;  !!  Letzter Wert umgewandelt in Text. Nur bei ART=geaendert oder geloescht
+  ART: (   !! Art der Mutation
+    erstellt,
+    geaendert,
+    geloescht
+    );
+  AUFNAHMEDATUM: OPTIONAL Datum;  !!  Datum/Zeit der Aufnahme im Feld falls vorhanden bei erstellt. Sonst Datum/Uhrzeit der Erstellung auf dem System. 
+  AUFNEHMER: OPTIONAL TEXT*30;  !!  Name des Aufnehmers im Feld
+  MUTATIONSDATUM: OPTIONAL Datum;  !! Bei geaendert Datum/Zeit der Änderung. Bei gelöscht Datum/Zeit der Löschung 
+  SYSTEMBENUTZER: OPTIONAL TEXT*30; !! Name des Systembenutzers
+  BEMERKUNG: OPTIONAL TEXT*80;
+IDENT
+  OBJ_ID;
+END MUTATION;
+
+TABLE Messgeraet =  
+!! Gerät mit welchem gemessen wird
+   OBJ_ID: TEXT*20;
+   Art: OPTIONAL TEXT*50;  !!  Typ des Messgerätes
+   Bemerkung: OPTIONAL TEXT*80;  !!  Allgemeine Bemerkungen
+   Bezeichnung: TEXT*20;
+   Fabrikat: OPTIONAL TEXT*50;  !!  Name des Herstellers
+   Seriennummer: OPTIONAL TEXT*50;
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END Messgeraet;
+
+TABLE Organisation =  
+!! Superklasse für in der Entwässerungsplanung relevante organisatorische Einheiten (z.B. Gemeinde, Kanton, etc.)
+   OBJ_ID: TEXT*20;
+   Bemerkung: OPTIONAL TEXT*80;  !!  Allgemeine Bemerkungen
+   Bezeichnung: TEXT*20;
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END Organisation;
+
+TABLE Organisation_Hierarchie =
+   OBJ_ID: TEXT*20;
+   Organisation: -> Organisation;
+   Teil_von: -> Organisation;
+IDENT 
+   OBJ_ID;
+END Organisation_Hierarchie;
+
+TABLE Abwasserbauwerk =  
+!! Bauwerk in einem Entwässerungsnetz (dss)
+   OBJ_ID: TEXT*20;
+   Eigentuemer: OPTIONAL -> Organisation;
+   Betreiber: OPTIONAL -> Organisation;
+   Baujahr: OPTIONAL Jahr;  !!  Jahr der Inbetriebsetzung (Schlussabnahme)
+   BaulicherZustand: OPTIONAL (     !! Zustandsklassen. Beschreibung des baulichen Zustand des Kanals. Nicht zu verwechseln mit den Sanierungsstufen, welche die Prioritäten der Massnahmen bezeichnen (Attribut Sanierungsbedarf).
+      unbekannt,
+      Z0,  !! Nicht mehr funktionstüchtig: Der Kanal ist bereits oder demnächst nicht mehr durchgängig: Kanal eingestürzt, totale Verwurzelung oder andere Abflusshindernisse. Der Kanal verliert Wasser (Exfiltration / mögliche Grundwasserverschmutzung).
+      Z1,  !! Starke Mängel: Bauliche Schäden, bei welchen die statische Sicherheit, Hydraulik oder Dichtheit nicht mehr gewährleistet ist: Rohrbrüche axial oder radial, Rohrdeformationen, visuell sichtbare Wassereintritte oder Wasseraustritte, Löcher in der Rohrwand, stark vorstehende seitliche Anschlüsse, starke Verwurzelungen, Rohrwand stark ausgewaschen. Ungeeignetes Rohrmaterial.
+      Z2,  !! Mittlere Mängel: Bauliche Mängel, welche die Statik, Hydraulik oder Dichtheit beeinträchtigen: breite Rohrfugen, nicht verputzte Einläufe, Risse, leichte Abflusshindernisse wie Verkalkungen, vorstehende seitliche Anschlüsse, leichte Rohrwandbeschädigungen, einzelne Wurzeleinwüchse, Rohrwand ausgewaschen usw.
+      Z3,  !! Leichte Mängel: Bauliche Mängel oder Vorkommnisse, welche für die Dichtheit, Hydraulik oder Rohrstatik einen unbedeutenden Einfluss haben: breite Rohrfugen, schlecht verputzte seitlichen Anschlüsse, leichte Deformation bei Kunststoffleitungen, leichte Auswaschungen etc.
+      Z4  !! Keine Mängel
+    );
+   Baulos: OPTIONAL TEXT*50;  !!  Nummer des Bauloses
+   Bemerkung: OPTIONAL TEXT*80;  !!  Allgemeine Bemerkungen
+   Bezeichnung: TEXT*20;
+   Bruttokosten: OPTIONAL CHF;  !!  Brutto Erstellungskosten
+   Detailgeometrie: OPTIONAL Einzelflaechen;  !!  Detaillierte Geometrie insbesondere bei Spezialbauwerken. Bei Normschächten mit Dimension1 und 2 arbeiten. Dito bei normierten Versickerungsanlagen.
+   Ersatzjahr: OPTIONAL Jahr;  !!  Jahr, in dem die Lebensdauer des Bauwerks voraussichtlich abläuft
+   Inspektionsintervall: OPTIONAL Intervall;  !!  Abstände, in welchen das Abwasserbauwerk inspiziert werden sollte (Jahre)
+   Sanierungsbedarf: OPTIONAL (     !! Dringlichkeitsstufen und Zeithorizont für bauliche Massnahmen
+      dringend,  !! Die Massnahmen sind dringend auszuführen. Sofortmassnahmen wie bei Stufe 0 (kurzfristig) sind zu prüfen. Zeithorizont 3-4 Jahre.
+      keiner,  !! Es sind keine Massnahmen bis zur nächsten Zustandserfassung und Zustandsbeurteilung erforderlich. Zeithorizont >= 10 Jahre.
+      kurzfristig,  !! Die Massnahmen sind sehr dringend und kurzfristig auszuführen. Im Sinne von Sofortmassnahmen können durch provisorische lokale Reparaturen weitere Schäden temporär verhindert werden. Zeithorizont <= 2 Jahre
+      langfristig,  !! Die Massnahmen können längerfristig geplant werden. Zeithorizont 7-10 Jahre.
+      mittelfristig,  !! Die Massnahmen sind mittelfristig erforderlich. Zeithorizont 5-7 Jahre.
+      unbekannt
+    );
+   Standortname: OPTIONAL TEXT*50;  !!  Strassenname oder Ortsbezeichnung  zum Bauwerk
+   Status: OPTIONAL (     !! Betriebs- und Planungszustand in dem sich das Abwasserbauwerk befindet
+      aufgehoben_nicht_verfuellt,
+      aufgehoben_unbekannt,  !! Das Abwasserbauwerk ist aufgehoben, aber es ist nicht bekannt, ob es verfüllt ist oder nicht.
+      ausser_Betrieb,
+      Berechnungsvariante,
+      geplant,
+      in_Betrieb,
+      Projekt,
+      provisorisch,  !! provisorisches Bauwerk, welches temporär ein anderes ersetzt (z.B. nach Schadensfall)
+      unbekannt,
+      verfuellt,  !! Das Abwasserbauwerk ist verfüllt und aufgehoben
+      wird_aufgehoben
+    );
+   Subventionen: OPTIONAL CHF;  !!  Staats- und Bundesbeiträge
+   Zugaenglichkeit: OPTIONAL (     !! Möglichkeit der Zugänglichkeit zum Abwasserbauwerk
+      ueberdeckt,  !! hier muss man z.B. zuerst graben, bis man  z.B. den Deckel öffnen kann
+      unbekannt,
+      unzugaenglich,
+      zugaenglich  !! Zugänglich für eine Person (und nicht unbedingt ein Fahrzeug)
+    );
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END Abwasserbauwerk;
+
+TABLE Abwasserbauwerk_Text  =
+   AbwasserbauwerkRef:  -> Abwasserbauwerk; !! 1-mc 
+   Textinhalt:   TEXT*80;    !! aus Attributen berechneter oder zusammengesetzter Wert
+   TextPos:    LKoord;
+   TextOri:    OPTIONAL Orientierung; !! Default: 90.0
+   TextHAli:   OPTIONAL HALIGNMENT; !! Default: Center
+   TextVAli:   OPTIONAL VALIGNMENT; !! Default: Half
+   Plantyp:    Plantyp; !! Default: Werkplan
+   Bemerkung: OPTIONAL TEXT*80; !! für bilaterale weitere Spezifikationen
+NO IDENT
+END Abwasserbauwerk_Text;
+
+TABLE Kanal =  
+!! Offenes oder geschlossenes Gerinne zur Ableitung von Abwasser zwischen zwei Abwasserbauwerken.
+   OBJ_ID: TEXT*20;
+   Superclass: -> Abwasserbauwerk;  !! 1-1 Beziehung / relation
+   Bettung_Umhuellung: OPTIONAL (     !! Art und Weise der unmittelbaren Rohrumgebung im Boden: Bettungsschicht (Unterlage der Leitung),  Verdämmung (seitliche Auffüllung), Schutzschicht
+      andere,
+      erdverlegt,  !! entweder im Aushubmaterial gebettet oder Press-/Schlagvortrieb
+      in_Kanal_aufgehaengt,
+      in_Kanal_einbetoniert,
+      in_Leitungsgang,  !! SIA405 1998: inKulisse IKU
+      in_Vortriebsrohr_Beton,
+      in_Vortriebsrohr_Stahl,
+      Sand,
+      SIA_Typ1,  !! gemäss Definition SIA Norm 190, Ausgabe 2000
+      SIA_Typ2,  !! gemäss Definition SIA Norm 190, Ausgabe 2000
+      SIA_Typ3,  !! gemäss Definition SIA Norm 190, Ausgabe 2000
+      SIA_Typ4,  !! gemäss Definition SIA Norm 190, Ausgabe 2000
+      unbekannt
+    );
+   FunktionHierarchisch: OPTIONAL (     !! Art des Kanals hinsichtlich Bedeutung im Entwässerungssystem
+      andere,
+      Arealentwaesserung,  !! Entwässerung eines Gebietes, welches aufgrund seiner Abflussmenge hydraulisch relevant ist (Grundstück und Strasse).
+      Gewaesser,  !! Erfassung aus Kanalperspektive (z.B. weil hydraulische Berechnung notwendig)
+      Hauptsammelkanal,  !! Übergeordneter Sammelkanal. Kann je nach Netzhierarchie vorgenommen werden.
+      Hauptsammelkanal_regional,  !! Hauptsammelkanal mit regionaler Bedeutung zur Gliederung des Netzes bei Regionalem GEP z.B. auf regionalem Übersichtsplan, da dies z.T. nicht über die Beziehung Eigentümer gelöst werden kann.
+      Liegenschaftsentwaesserung,  !! Sammelbegriff für Gebäude- und Grundstückentwässerung. Liegenschaftsentwässerung (hydraulisch nicht relevant, sonst Arealentwässerung). Abgrenzung gemäss Norm "Planung und Erstellung von Anlagen für die Liegenschaftsentwässerung SN592000"
+      Sammelkanal,  !! Kanal der das Abwasser aus Liegenschaft- Strassen- oder Arealentwässerung aufnimmt.
+      Sanierungsleitung,  !! Entwässerungsleitung zum abwassertechnischen Anschluss von abgelegenen Liegenschaften an die Kanalisation, bei deren Planung und Erstellung gewisse Vereinfachungen zulässig sind
+      Strassenentwaesserung,  !! Entwässerung von Strassen (hydraulisch nicht relevant, sonst Arealentwässerung)
+      unbekannt
+    );
+   FunktionHydraulisch: OPTIONAL (     !! Art des Kanals hinsichtlich hydraulischer Ausführung (baulich)
+      andere,
+      Drainagetransportleitung,  !! Kanal welcher Wasser aus Drainageleitungen transportiert
+      Drosselleitung,  !! Kanal mit vermindertem Querschnitt zur bewussten Begrenzung, resp. Verminderung des Abflusses. Die Funktionsweise basiert auf Abflussverhältnissen unter Druck.
+      Duekerleitung,  !! Geschlossenes Leitungssystem zur Unterfahrung eines Hindernisses als Abwasserdruckleitung (siehe Skizze).
+      Freispiegelleitung,  !! Die Freispiegelleitung ist eine Rohrleitung, in der das Wasser gemäss dem Gesetz der Schwerkraft von einem höher gelegenen Anfangspunkt zu einem tiefer gelegenen Endpunkt gelangt. (arb)
+      Pumpendruckleitung,  !! Steigleitungen im Anschluss an ein Förderaggregats
+      Sickerleitung,  !! 1. Erdverlegte Leitung zur Sammlung und Ableitung von Hang- und Sickerwasser (SN 592000) 2. Drainageleitung mit undichten Stossfugen, geschlitzten Rohren oder wasserdurchlässigem Rohrmaterial zur Entwässerung des Baugrundes. (arb)
+      Speicherleitung,  !! Zur bewussten Rückhaltung von Abwassermengen dimensionierte Leitung
+      Spuelleitung,  !! Leitung mit spezieller Funktion zum Spülen einer Entwässerungsanlage
+      unbekannt,
+      Vakuumleitung
+    );
+   Nutzungsart_geplant: OPTIONAL (     !! Durch das Konzept vorgesehene Nutzung (vergleiche auch Nutzungsart_Ist)
+      andere,  !! z.B. auch Zugang, Be- und Entlüftung
+      Bachwasser,  !! Wasser eines Fliessgewässers, das gemäss seinem natürlichen Zustand oberflächlich, aber an einigen Orten auch in unterirdischen Leitungen abfliesst.
+      entlastetes_Mischabwasser,  !! Wasser aus einem Entlastungsbauwerk, welches zum Vorfluter geführt wird. In diesen Kanal darf kein Schmutzabwasser eingeleitet werden.
+      Industrieabwasser,  !! Unter Industrieabwasser werden alle Abwässer verstanden, die bei Produktions- und Verarbeitungsprozessen in der Industrie anfallen.Industrieabwässer müssen i.d.R. vorbehandelt werden, bevor sie in öffentliche Kläranlagen eingeleitet werden können (siehe Indirekteinleiter). Bei direkter Einleitung in Gewässer (siehe Direkteinleiter) ist eine umfangreiche Reinigung in speziellen werkseigenen Kläranlagen erforderlich.
+      Mischabwasser,  !! 1. Mischung von Schmutz- und Regenabwasser, die gemeinsam abgeleitet werden 2. Abwasser welches aus einer Mischung von Schmutzabwasser und Regenabwasser besteht
+      Regenabwasser,  !! Wasser aus natürlichem Niederschalg, das nicht durch Gebrauch verunreinigt wurde. Die Zuordnung zu verschmutztem oder unverschmutztem Abwasser erfolgt nach der Gewässerschutzgesetzgebung bzw. nach Anleitung der Richtlinie "Regenwasserentsorgung"
+      Reinabwasser,  !! Sicker-, Grund-, Quell- und Brunnenwasser sowie Kühlwasser aus Durchlaufkühlungen. Gemäss Gewässerschutzgesetz gilt Reinabwasser als unverschmutztes Abwasser. (SN 592'000)
+      Schmutzabwasser,  !! Durch Gebrauch verändertres Wasser (häusliches, gewerbliches oder industrielles Abwasser), das in eine Entwässerungsanlage eingeleitet und einer Abwasserbehandlung zugeführt werden muss. Schmutzabwasser gilt als verschmutztes Abwasser im Sinne des Gewässerschutzgesetzes (SN 592 000)
+      unbekannt
+    );
+   Nutzungsart_Ist: OPTIONAL (     !! Für Primäre Abwasseranlagen gilt: heute zulässige Nutzung. Für Sekundäre Abwasseranlagen gilt: heute tatsächliche Nutzung.
+      andere,  !! z.B. auch Zugang, Be- und Entlüftung
+      Bachwasser,  !! Wasser eines Fliessgewässers, das gemäss seinem natürlichen Zustand oberflächlich, aber an einigen Orten auch in unterirdischen Leitungen abfliesst.
+      entlastetes_Mischabwasser,  !! Wasser aus einem Entlastungsbauwerk, welches zum Vorfluter geführt wird. In diesen Kanal darf kein Schmutzabwasser eingeleitet werden.
+      Industrieabwasser,  !! Unter Industrieabwasser werden alle Abwässer verstanden, die bei Produktions- und Verarbeitungsprozessen in der Industrie anfallen.Industrieabwässer müssen i.d.R. vorbehandelt werden, bevor sie in öffentliche Kläranlagen eingeleitet werden können (siehe Indirekteinleiter). Bei direkter Einleitung in Gewässer (siehe Direkteinleiter) ist eine umfangreiche Reinigung in speziellen werkseigenen Kläranlagen erforderlich.
+      Mischabwasser,  !! 1. Mischung von Schmutz- und Regenabwasser, die gemeinsam abgeleitet werden 2. Abwasser welches aus einer Mischung von Schmutzabwasser und Regenabwasser besteht
+      Regenabwasser,  !! Wasser aus natürlichem Niederschalg, das nicht durch Gebrauch verunreinigt wurde. Die Zuordnung zu verschmutztem oder unverschmutztem Abwasser erfolgt nach der Gewässerschutzgesetzgebung bzw. nach Anleitung der Richtlinie "Regenwasserentsorgung"
+      Reinabwasser,  !! Sicker-, Grund-, Quell- und Brunnenwasser sowie Kühlwasser aus Durchlaufkühlungen. Gemäss Gewässerschutzgesetz gilt Reinabwasser als unverschmutztes Abwasser. (SN 592'000)
+      Schmutzabwasser,  !! Durch Gebrauch verändertres Wasser (häusliches, gewerbliches oder industrielles Abwasser), das in eine Entwässerungsanlage eingeleitet und einer Abwasserbehandlung zugeführt werden muss. Schmutzabwasser gilt als verschmutztes Abwasser im Sinne des Gewässerschutzgesetzes (SN 592 000)
+      unbekannt
+    );
+   Rohrlaenge: OPTIONAL Laenge;  !!  Baulänge der Einzelrohre oder Fugenabstände bei Ortsbetonkanälen
+   Spuelintervall: OPTIONAL Intervall;  !!  Abstände in welchen der Kanal gespült werden sollte
+   Verbindungsart: OPTIONAL (     !! Verbindungstypen
+      andere,
+      Elektroschweissmuffen,
+      Flachmuffen,
+      Flansch,
+      Glockenmuffen,
+      Kupplung,
+      Schraubmuffen,
+      spiegelgeschweisst,
+      Spitzmuffen,
+      Steckmuffen,
+      Ueberschiebmuffen,
+      unbekannt,
+      Vortriebsrohrkupplung
+    );
+IDENT 
+   OBJ_ID;
+END Kanal;
+
+TABLE Erhaltungsereignis =  
+!! Aussagen zu betrieblichem und baulichem Unterhalt eines Abwasserbauwerkes
+   OBJ_ID: TEXT*20;
+   Abwasserbauwerk: OPTIONAL -> Abwasserbauwerk;
+   Art: OPTIONAL (     !! Art des Ereignisses
+      andere,
+      Erneuerung,  !! Herstellung neuer Abwasserkanäle in der bisherigen oder anderer Linienführung, wobei die neuen Anlagen die Funktion der ursprünglichen Abwasserkanäle einbeziehen (SN EN 752).
+      Reinigung,
+      Renovierung,  !! Massnahmen zur Verbesserung der aktuellen Funktionsfähigkeit von Abwasserkanälen unter vollständiger oder teilweiser Einbezug ihrer ursprünglichen Substanz  (SN EN 752). In älteren Normen und Richtlinien wird diese Massnahme mit "Sanierung" bezeichnet.
+      Reparatur,  !! Massnahmen zur Behebung örtlich begrenzter Schäden (SN EN 752). In älteren Normen und Richtlinien wird diese Massnahme mit "Instandsetzung" bezeichnet.
+      Sanierung,  !! Alle Massnahmen zur Wiederherstellung oder Verbesserung von vorhandenen Entwässerungsanlagen. Die Massnahmen umfassen Reparatur, Renovierung und Erneuerung  (SN EN 752). In älteren Normen und Richtlinien wird dieser Begriff mit "Erhaltung" bezeichnet.
+      unbekannt,
+      Untersuchung
+    );
+   Ausfuehrender: OPTIONAL TEXT*50;  !!  Ausführende Firma oder Verwaltung
+   Bemerkung: OPTIONAL TEXT*80;  !!  Allgemeine Bemerkungen
+   Bezeichnung: TEXT*20;
+   Datengrundlage: OPTIONAL TEXT*50;  !!  z.B. Schadensprotokoll
+   Dauer: OPTIONAL Tage;  !!  Dauer des Ereignisses in Tagen
+   Detaildaten: OPTIONAL TEXT*50;  !!  Ort, wo sich weitere Detailinformationen zum Ereigniss finden (z.B. Nr. eines Videobandes)
+   Ergebnis: OPTIONAL TEXT*50;  !!  Resultat des Ereignisses
+   Grund: OPTIONAL TEXT*50;  !!  Ursache für das Ereigniss
+   Kosten: OPTIONAL CHF;
+   Status: OPTIONAL (     !! Phase in der sich das Erhaltungsereignis befindet
+      ausgefuehrt,
+      geplant,
+      nicht_moeglich,  !! Falls eine geplante Untersuchung nicht durchgeführt werden konnte.
+      unbekannt
+    );
+   Zeitpunkt: OPTIONAL Datum;  !!  Zeitpunkt des Ereignisses
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END Erhaltungsereignis;
+
+TABLE Zone =  
+!! Für bestimmte Zwecke ausgeschiedene Bereiche
+   OBJ_ID: TEXT*20;
+   Bemerkung: OPTIONAL TEXT*80;  !!  Allgemeine Bemerkungen
+   Bezeichnung: TEXT*20;
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END Zone;
+
+TABLE Amt =  
+!! Teil einer Organisation (z.B. Amt für Umweltschutz, Amt für Abwasserentsorgung)
+   OBJ_ID: TEXT*20;
+   Superclass: -> Organisation;  !! 1-1 Beziehung / relation
+IDENT 
+   OBJ_ID;
+END Amt;
+
+TABLE Abwasserreinigungsanlage =  
+!! Abwassreinigungsanlage
+   OBJ_ID: TEXT*20;
+   Superclass: -> Organisation;  !! 1-1 Beziehung / relation
+   Anlagenummer: OPTIONAL ARANr;  !!  ARA-Nummer gemäss BUWAL
+   Art: OPTIONAL TEXT*50;
+   BSB5: OPTIONAL BSB5;  !!  Biochemischer Sauerstoffbedarf nach 5 Tagen Messzeit und bei einer Temperatur vom 20 Grad Celsius. Er stellt den Verbrauch an gelöstem Sauerstoff durch die Lebensvorgänge der im Wasser oder Abwasser enthaltenen Mikroorganismen (Bakterienprotozoen) beim  Abbau organischer Substanzen dar. Der Wert stellt eine wichtige Grösse zur Beurteilung der  aerob abbaufähigen Substanzen dar. Der BSB5 wird in den Einheiten mg/l oder g/m3 angegeben. Ausser dem BSB5 wird der biochemische Sauerstoffbedarf auch an 20 Tagen und mehr bestimmt. Dann spricht man z.B. vom BSB20 usw. Siehe Sapromat, Winklerprobe, Verdünnungsmethode. (arb)
+   CSB: OPTIONAL CSB;  !!  Abkürzung für den chemischen Sauerstoffbedarf. Die englische Abkürzung lautet COD. Mit einem starken Oxydationsmittel wird mehr oder weniger erfolgreich versucht, die organischen Verbindungen der Abwasserprobe zu CO2 und H2O zu oxydieren. Als Oxydationsmittel eignen sich Chromverbindungen verschiedener Wertigkeit (z.B. Kalium-Dichromat K2Cr2O7) und Manganverbindungen (z.B. KmnO4), wobei man unter dem CSB im Allgemeinen den chemischen Sauerstoffbedarf nach der Kalium-Dichromat-Methode) versteht. Das Resultat kann als Chromatverbrauch oder Kaliumpermanaganatverbrauch ausgedrückt werden (z.B. mg CrO4 2-/l oder mg KMnO4/l). Im allgemeinen ergibt die Kalium-Dichromat-Methode höhere Werte als mit Kaliumpermanganat. Das Verhältnis des CSB zum BSB5 gilt als Hinweis auf die Abbaubarkeit der organischen Abwasserinhaltsstoffe. Leicht abbaubare häusliche Abwässer haben einen DSB/BSB5-Verhältnis von 1 bis 1,5. Schweres abbaubares, industrielles Abwasser ein Verhältnis von über 2. (arb)
+   EliminationCSB: OPTIONAL Prozent;  !!  Dimensionierungswert Eliminationsrate in %
+   EliminationN: OPTIONAL Prozent;  !!  Denitrifikation bei einer Abwassertemperatur von > 10 Grad
+   EliminationNH4: OPTIONAL Prozent;  !!  Dimensionierungswert: Eliminationsrate in %
+   EliminationP: OPTIONAL Prozent;  !!  Dimensionierungswert Eliminationsrate in %
+   Inbetriebnahme: OPTIONAL Jahr;  !!  Jahr der Inbetriebnahme
+   NH4: OPTIONAL NH4;  !!  Dimensionierungswert Ablauf Vorklärung. NH4 [gNH4/m3]
+IDENT 
+   OBJ_ID;
+END Abwasserreinigungsanlage;
+
+TABLE ARAEnergienutzung =  
+!! Betriebsdaten zur Energienutzung auf der ARA
+   OBJ_ID: TEXT*20;
+   Abwasserreinigungsanlage: OPTIONAL -> Abwasserreinigungsanlage;
+   Bemerkung: OPTIONAL TEXT*80;  !!  Allgemeine Bemerkungen
+   Bezeichnung: TEXT*20;
+   Gasmotor: OPTIONAL Kilowatt;  !!  elektrische Leistung
+   Turbinierung: OPTIONAL Kilowatt;  !!  Energienutzung aufgrund des Gasanfalls auf der ARA
+   Waermepumpe: OPTIONAL Kilowatt;  !!  Energienutzung aufgrund des Wärmeanfalls auf der ARA
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END ARAEnergienutzung;
+
+TABLE Abwasserbehandlung =  
+!! Gezielte Veränderung der Abwasserbeschaffenheit z.B. durch Reinigen, Neutralisation auf einer ARA
+   OBJ_ID: TEXT*20;
+   Abwasserreinigungsanlage: OPTIONAL -> Abwasserreinigungsanlage;
+   Art: OPTIONAL (     !! Verfahren für die Abwasserbehandlung
+      andere,
+      biologisch,
+      chemisch,
+      Filtration,
+      mechanisch,
+      unbekannt
+    );
+   Bemerkung: OPTIONAL TEXT*80;  !!  Allgemeine Bemerkungen
+   Bezeichnung: TEXT*20;
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END Abwasserbehandlung;
+
+TABLE Schlammbehandlung =  
+!! Daten zur Schlammbehandlung auf der ARA
+   OBJ_ID: TEXT*20;
+   Abwasserreinigungsanlage: OPTIONAL -> Abwasserreinigungsanlage;
+   Bemerkung: OPTIONAL TEXT*80;  !!  Allgemeine Bemerkungen
+   Bezeichnung: TEXT*20;
+   EntwaessertKlaerschlammstapelung: OPTIONAL Rauminhalt;  !!  Dimensionierungswert
+   Entwaesserung: OPTIONAL M3H;  !!  Dimensionierungswert
+   Faulschlammverbrennung: OPTIONAL M3H;  !!  Dimensionierungswert der Verbrennungsanlage
+   Fluessigklaerschlammstapelung: OPTIONAL Rauminhalt;  !!  Dimensionierungswert
+   Frischschlammverbrennung: OPTIONAL M3H;  !!  Dimensionierungswert der Verbrennungsanlage
+   Hygienisierung: OPTIONAL M3H;  !!  Dimensionierungswert
+   Kompostierung: OPTIONAL M3H;  !!  Dimensionierungswert
+   Mischschlammvoreindickung: OPTIONAL Rauminhalt;  !!  Dimensionierungswert
+   PrimaerschlammVoreindickung: OPTIONAL Rauminhalt;  !!  Dimensionierungswert
+   Stabilisierung: OPTIONAL (     !! Art der Schlammstabilisierung
+      aerobkalt,
+      aerobthermophil,
+      anaerobkalt,
+      anaerobmesophil,
+      anaerobthermophil,
+      andere,
+      unbekannt
+    );
+   Trocknung: OPTIONAL M3H;  !!  Leistung thermische Trocknung
+   Ueberschusschalmmvoreindickung: OPTIONAL Rauminhalt;  !!  Dimensionierungswert
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END Schlammbehandlung;
+
+TABLE Oberflaechengewaesser =  
+!! In der Natur fliessendes oder stehendes Wasser einschliesslich Gewässerbett
+   OBJ_ID: TEXT*20;
+   Bemerkung: OPTIONAL TEXT*80;  !!  Allgemeine Bemerkungen
+   Bezeichnung: TEXT*20;
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END Oberflaechengewaesser;
+
+TABLE Steuerungszentrale =  
+!! Gegenstelle zu Absperr_Drosselorgan / Ueberlauf  (Hydr_Einbaute) mit Signalübermittlung
+   OBJ_ID: TEXT*20;
+   Bezeichnung: TEXT*20;
+   Lage: OPTIONAL LKoord;  !!  Landeskoordinate Ost/Nord
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END Steuerungszentrale;
+
+TABLE Fliessgewaesser =  
+!! Ständig oder zeitweise fliessendes oberirdisches Gewässer
+   OBJ_ID: TEXT*20;
+   Superclass: -> Oberflaechengewaesser;  !! 1-1 Beziehung / relation
+   Art: OPTIONAL (     !! Art des Fliessgewässers. Klassifizierung nach GEWISS
+      Gletscherbach,
+      Moorbach,
+      Seeausfluss,
+      Travertinbach,
+      unbekannt
+    );
+IDENT 
+   OBJ_ID;
+END Fliessgewaesser;
+
+TABLE Gewaesserabschnitt =  
+!! Aus gewässermorphologischer Sicht homogener Teil eines Gewässers
+   OBJ_ID: TEXT*20;
+   Fliessgewaesser: OPTIONAL -> Fliessgewaesser;
+   Abflussregime: OPTIONAL (     !! Grad der antropogenen Beeinflussung des charakteristischen Ganges des Abflusses.
+      beeintraechtigt,
+      kuenstlich,
+      naturfern,
+      naturnah,
+      unbekannt
+    );
+   Algenbewuchs: OPTIONAL (     !! Bewuchs mit Algen
+      kein_gering,
+      maessig_stark,
+      uebermaessig_wuchernd,
+      unbekannt
+    );
+   Art: OPTIONAL ( 
+      eingedolt,
+      offen,
+      unbekannt
+    );
+   Bemerkung: OPTIONAL TEXT*80;  !!  Allgemeine Bemerkungen
+   Bezeichnung: TEXT*20;
+   bis: OPTIONAL LKoord;  !!  Lage Abschnitt-Ende im Gewässerverlauf
+   Breitenvariabilitaet: OPTIONAL (     !! Breitenvariabilität des Wasserspiegels bei niedrigem bis mittlerem Abfluss
+      ausgepraegt,
+      eingeschraenkt,
+      keine,
+      unbekannt
+    );
+   Gefaelle: OPTIONAL (     !! Mittleres Gefälle des Gewässerabschnittes
+      flach,
+      mittel,
+      steil,
+      unbekannt
+    );
+   Groesse: OPTIONAL Strahler;  !!  Ordnungszahl nach Strahler
+   Hoehenstufe: OPTIONAL (     !! Höhenstufentypen eines Gewässers
+      alpin,
+      kollin,
+      montan,
+      subalpin,
+      unbekannt
+    );
+   Laengsprofil: OPTIONAL (     !! Charakterisierung des Gewässerlängsprofil
+      kaskadenartig,
+      Schnellen_Kolke,
+      stetig,
+      unbekannt
+    );
+   Linienfuehrung: OPTIONAL (     !! Linienführung eines Gewässerabschnittes
+      gerade,
+      leichtbogig,
+      maeandrierend,
+      starkbogig,
+      unbekannt
+    );
+   Makrophytenbewuchs: OPTIONAL (     !! Bewuchs mit Makrophyten
+      kein_gering,
+      maessig_stark,
+      uebermaessig_wuchernd,
+      unbekannt
+    );
+   Nutzung: OPTIONAL (     !! Primäre Nutzung des Gewässerabschnittes
+      Erholung,
+      Fischerei,
+      Stauanlage,
+      unbekannt
+    );
+   Oekom_Klassifizierung: OPTIONAL (     !! Summenattribut aus der ökomorphologischen Klassifizierung nach Stufe F
+      eingedolt,
+      kuenstlich_naturfremd,
+      natuerlich_naturnah,
+      nicht_klassiert,
+      stark_beeintraechtigt,
+      wenig_beeintraechtigt
+    );
+   Sohlenbreite: OPTIONAL Laenge;  !!  mittlere Sohlenbreite
+   Tiefenvariabilitaet: OPTIONAL (     !! Variabilität der Gewässertiefe
+      ausgepraegt,
+      keine,
+      maessig,
+      unbekannt
+    );
+   Totholz: OPTIONAL (     !! Ansammlungen von Totholz im Gewässerabschnitt
+      Ansammlungen,
+      kein_vereinzelt,
+      unbekannt,
+      zerstreut
+    );
+   Von: OPTIONAL LKoord;  !!  Lage des Abschnittanfangs  im Gewässerverlauf
+   Wasserhaerte: OPTIONAL (     !! Chemische Wasserhärte
+      Kalk,
+      Silikat,
+      unbekannt
+    );
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END Gewaesserabschnitt;
+
+TABLE See =  
+!! Oberirdisches Gewässer mit stehendem oder nahezu stehendem Wasser
+   OBJ_ID: TEXT*20;
+   Superclass: -> Oberflaechengewaesser;  !! 1-1 Beziehung / relation
+   Perimeter: OPTIONAL Gebietseinteilung;  !!  Begrenzungspunkte der Fläche
+IDENT 
+   OBJ_ID;
+END See;
+
+TABLE Grundwasserleiter =  
+!! Abgegrenztes Grundwasservorkommen oder abgegrenzter Teil davon
+   OBJ_ID: TEXT*20;
+   Bemerkung: OPTIONAL TEXT*80;  !!  Allgemeine Bemerkungen
+   Bezeichnung: TEXT*20;
+   MaxGWSpiegel: OPTIONAL Hoehe;  !!  Maximale Lage des Grundwasserspiegels
+   MinGWSpiegel: OPTIONAL Hoehe;  !!  Minimale Lage des Grundwasserspiegels
+   MittlererGWSpiegel: OPTIONAL Hoehe;  !!  Höhe des mittleren Grundwasserspiegels
+   Perimeter: OPTIONAL Einzelflaechen;  !!  Begrenzungspunkte der Fläche
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END Grundwasserleiter;
+
+TABLE Wasserfassung =  
+!! Entnahme von Grundwasser durch technische Massnahmen
+   OBJ_ID: TEXT*20;
+   Grundwasserleiter: OPTIONAL -> Grundwasserleiter;
+   Oberflaechengewaesser: OPTIONAL -> Oberflaechengewaesser;
+   Art: OPTIONAL (     !! Art der Trinkwasserfassung
+      Brauchwasser,
+      Trinkwasser,
+      unbekannt
+    );
+   Bemerkung: OPTIONAL TEXT*80;  !!  Allgemeine Bemerkungen
+   Bezeichnung: TEXT*20;
+   Lage: OPTIONAL LKoord;  !!  Landeskoordinate Ost/Nord
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END Wasserfassung;
+
+TABLE Ufer =  
+!! Ans Gewässer angrenzende Zone
+   OBJ_ID: TEXT*20;
+   Gewaesserabschnitt: OPTIONAL -> Gewaesserabschnitt;
+   Bemerkung: OPTIONAL TEXT*80;  !!  Allgemeine Bemerkungen
+   Bezeichnung: TEXT*20;
+   Breite: OPTIONAL Laenge;  !!  Breite des Bereiches oberhalb des Böschungsfusses bis zum Gebiet mit "intensiver Landnutzung"
+   Seite: OPTIONAL (     !! Linke oder rechte Uferseite in Fliessrichtung
+      links,
+      rechts,
+      unbekannt
+    );
+   Uferbereich: OPTIONAL (     !! Beschaffenheit des Bereiches oberhalb des Böschungsfusses
+      gewaesserfremd,
+      gewaessergerecht,
+      kuenstlich,
+      unbekannt
+    );
+   Umlandnutzung: OPTIONAL (     !! Nutzung des Gewässerumlandes
+      Bebauungen,
+      Gruenland,
+      unbekannt,
+      Wald
+    );
+   Vegetation: OPTIONAL ( 
+      fehlend,
+      standorttypisch,
+      standortuntypisch,
+      unbekannt
+    );
+   Verbauungsart: OPTIONAL (     !! Verbauungsart des Böschungsfusses
+      andere_dicht,  !! (dicht)
+      Betongitterstein_dicht,  !! (dicht)
+      Holz_durchlaessig,  !! (durchlässig)
+      keine_Verbauung,  !! (durchlässig)
+      Lebendverbau_durchlaessig,  !! (durchlässig)
+      Mauer_dicht,  !! (dicht)
+      Naturstein_dicht,  !! (dicht)
+      Naturstein_locker_durchlaessig,  !! (durchlässig)
+      unbekannt  !! (durchlässig)
+    );
+   Verbauungsgrad: OPTIONAL (     !! Flächenhafter Verbauungsgrad des Böschungsfusses in %. Aufteilung in Klassen.
+      keine,  !! keine (0%)
+      maessig,  !! mässig (10 - 30 %)
+      stark,  !! stark (30 - 60 %)
+      ueberwiegend,  !! ueberwiegend (> 60 %)
+      unbekannt,
+      vereinzelt,  !! vereinzelt (<10%)
+      vollstaendig  !! vollständig (100 %)
+    );
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END Ufer;
+
+TABLE Gewaessersektor =  
+!! Teilstück aus welchen sich ein  Gewässers aufbaut
+   OBJ_ID: TEXT*20;
+   Oberflaechengewaesser: OPTIONAL -> Oberflaechengewaesser;
+   Art: OPTIONAL (     !! Ufer oder Gewässerlinie. Zur Unterscheidung der Seesektoren wichtig.
+      Gewaesser,  !! Ansammlung von Wasser auf und unter der Erdoberfläche, die als stehendes oder fliessendes Gewässer bezeichnet werden. Man unterscheidet ausserdem ober- und unterirdische Gewässer. Zu den Gewässern rechnet man sämtliche, natürliche Wasseransammlungen, die oberirdisch oder unterirdisch einen Wasserspiegel, einen freien oder gespannten, haben und auch nach Aufhören eines Niederschlages in dem betreffenden Gebiet zeitweilig oder dauernd bestehen. Dazu gehören Bäche, Flüsse, Teiche, Seen, Sümpfe, Meere und Grundwasserbestände jeglicher Art. (arb)
+      ParallelerAbschnitt,
+      Seetraverse,
+      Ufer,
+      unbekannt
+    );
+   Bemerkung: OPTIONAL TEXT*80;  !!  Allgemeine Bemerkungen
+   Bezeichnung: TEXT*20;
+   BWG_Code: OPTIONAL TEXT*50;  !!  Code gemäss Format des Bundesamtes für Wasser und Geologie (BWG)
+   KilomO: OPTIONAL Kilometrierung;  !!  Adresskilometer beim Sektorende (nur definieren, falls es sich um den letzten Sektor handelt oder ein Sprung in der Adresskilometrierung von einem Sektor zum nächsten  existiert)
+   KilomU: OPTIONAL Kilometrierung;  !!  Adresskilometer beim Sektorbeginn
+   RefLaenge: OPTIONAL Laenge;  !!  Basislänge in Zusammenhang mit der Gewässerkilometrierung (siehe GEWISS - SYSEAU)
+   Verlauf: OPTIONAL Linienzug;  !!  Reihenfolge von Punkten die den Verlauf eines Gewässersektors beschreiben
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END Gewaessersektor;
+
+TABLE Gewaessersektor_Hierarchie =
+   OBJ_ID: TEXT*20;
+   Gewaessersektor: -> Gewaessersektor;
+   VorherigerSektor: -> Gewaessersektor;
+IDENT 
+   OBJ_ID;
+END Gewaessersektor_Hierarchie;
+
+TABLE Gewaessersohle =  
+!! Bei Hochwasser umgelagerter Bereich eines Gewässers
+   OBJ_ID: TEXT*20;
+   Gewaesserabschnitt: OPTIONAL -> Gewaesserabschnitt;
+   Art: OPTIONAL (     !! Sohlentyp
+      hart,
+      unbekannt,
+      weich
+    );
+   Bemerkung: OPTIONAL TEXT*80;  !!  Allgemeine Bemerkungen
+   Bezeichnung: TEXT*20;
+   Breite: OPTIONAL Laenge;  !!  Bei Hochwasser umgelagerter Bereich (frei von höheren Wasserpflanzen)
+   Verbauungsart: OPTIONAL (     !! Art des Sohlenverbaus
+      andere_dicht,  !! (dicht)
+      Betongittersteine,  !! (dicht)
+      Holz,  !! (dicht)
+      keine_Verbauung,  !! (durchlässig)
+      Steinschuettung_Blockwurf,  !! (durchlässig)
+      unbekannt  !! (durchlässig)
+    );
+   Verbauungsgrad: OPTIONAL (     !! Flächenhafter Verbauungsgrad der Gewässersohle in %. Aufteilung in Klassen.
+      keine,  !! keine (0%)
+      maessig,  !! mässig (10 - 30 %)
+      stark,  !! stark (30 - 60 %)
+      ueberwiegend,  !! ueberwiegend (> 60 %)
+      unbekannt,
+      vereinzelt,  !! vereinzelt (<10%)
+      vollstaendig  !! vollständig (100 %)
+    );
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END Gewaessersohle;
+
+TABLE Gewaesserverbauung =  
+!! Punktuelle Verbauung am oder im Gewässer wie Schwellen etc.
+   OBJ_ID: TEXT*20;
+   Gewaesserabschnitt: OPTIONAL -> Gewaesserabschnitt;
+   Bemerkung: OPTIONAL TEXT*80;  !!  Allgemeine Bemerkungen
+   Bezeichnung: TEXT*20;
+   Lage: OPTIONAL LKoord;  !!  Landeskoordinate Ost/Nord
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END Gewaesserverbauung;
+
+TABLE Fischpass =  
+!! Anlage, die Fischen das Überwinden einer Sohlenstufe ermöglicht
+   OBJ_ID: TEXT*20;
+   Gewaesserverbauung: OPTIONAL -> Gewaesserverbauung;
+   Absturzhoehe: OPTIONAL Laenge;  !!  Differenz des Wasserspiegels vor und nach dem Fischpass
+   Bemerkung: OPTIONAL TEXT*80;  !!  Allgemeine Bemerkungen
+   Bezeichnung: TEXT*20;
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END Fischpass;
+
+TABLE Badestelle =  
+!! Badestelle eines Gewässers
+   OBJ_ID: TEXT*20;
+   Oberflaechengewaesser: OPTIONAL -> Oberflaechengewaesser;
+   Bemerkung: OPTIONAL TEXT*80;  !!  Allgemeine Bemerkungen
+   Bezeichnung: TEXT*20;
+   Lage: OPTIONAL LKoord;  !!  Landeskoordinate Ost/Nord
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END Badestelle;
+
+TABLE Abwassernetzelement =  
+!! Modelltechnischer Begriff für Abwasserknoten und Haltungen in der VSA-DSS
+   OBJ_ID: TEXT*20;
+   Abwasserbauwerk: OPTIONAL -> Abwasserbauwerk;
+   Bemerkung: OPTIONAL TEXT*80;  !!  Allgemeine Bemerkungen
+   Bezeichnung: TEXT*20;
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END Abwassernetzelement;
+
+TABLE Haltungspunkt =  
+!! Anfangs- oder Endpunkt einer Haltung mit Detailinformationen zur Verbindung zwischen Abwassernetzelementen.
+   OBJ_ID: TEXT*20;
+   Abwassernetzelement: OPTIONAL -> Abwassernetzelement;
+   Auslaufform: OPTIONAL (     !! Art des Auslaufs
+      abgerundet,
+      blendenfoermig,
+      keine_Querschnittsaenderung,
+      scharfkantig,
+      unbekannt
+    );
+   Bemerkung: OPTIONAL TEXT*80;  !!  Allgemeine Bemerkungen
+   Bezeichnung: TEXT*20;
+   Hoehengenauigkeit: OPTIONAL (     !! Quantifizierung der Genauigkeit der Höhenlage der Kote in Relation zum Höhenfixpunktnetz (z.B. Grundbuchvermessung oder Landesnivellement).
+      groesser_6cm,  !! Dies ist der Bereich der Höhengenauigkeit aller Punkte, die nur geschätzt sind
+      plusminus_1cm,  !! Dies ist der Bereich der Höhengenauigkeit eines nivellierten Punktes
+      plusminus_3cm,  !! Dies ist der Bereich der Höhengenauigkeit eines mit GPS eingemessenen Punktes
+      plusminus_6cm,  !! Dies ist die Höhengenauigkeit eines mit Vermessungswerkzeugen (Theodolit) eingemessenen Punktes
+      unbekannt
+    );
+   Kote: OPTIONAL Hoehe;  !!  Sohlenhöhe des Haltungsendes
+   Lage: OPTIONAL LKoord;  !!  Landeskoordinate Ost/Nord
+   Lage_Anschluss: OPTIONAL Ziffernblatt;  !!  Anschlussstelle bezogen auf Querschnitt im Kanal; in Fliessrichtung  (für Haus- und Strassenanschlüsse)
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END Haltungspunkt;
+
+TABLE Hydr_Geometrie =  
+!! Beschreibt die hydrologische Geometrie eines Knotens
+   OBJ_ID: TEXT*20;
+   Bemerkung: OPTIONAL TEXT*80;  !!  Allgemeine Bemerkungen
+   Bezeichnung: TEXT*20;
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END Hydr_Geometrie;
+
+TABLE Hydr_GeomRelation =  
+!! Tripel aus benetztem Querschnitt, benetzter Fläche und Kote
+   OBJ_ID: TEXT*20;
+   Hydr_Geometrie: OPTIONAL -> Hydr_Geometrie;
+   BenetzteQuerschnittsflaeche: OPTIONAL Flaecheninhalt;  !!  Hydraulisch wirksamer Querschnitt für Verlustberechnungen
+   Wasseroberflaeche: OPTIONAL Flaecheninhalt;  !!  freie Wasserspiegelfläche; für Speicherfunktionen massgebend
+   Wassertiefe: OPTIONAL Laenge;  !!  Massgebende Wassertiefe
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END Hydr_GeomRelation;
+
+TABLE Rohrprofil =  
+!! Form des Fliessquerschnittes mit Angabe der Dimension
+   OBJ_ID: TEXT*20;
+   Bemerkung: OPTIONAL TEXT*80;  !!  Allgemeine Bemerkungen
+   Bezeichnung: TEXT*20;
+   HoehenBreitenverhaeltnis: OPTIONAL Verhaeltnis_H_B;  !!  Verhältnis der Höhe zur Breite
+   Profiltyp: OPTIONAL (     !! Typ des Profils
+      andere,
+      Eiprofil,
+      Kreisprofil,
+      Maulprofil,
+      offenes_Profil,
+      Rechteckprofil,
+      Spezialprofil,
+      unbekannt
+    );
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END Rohrprofil;
+
+TABLE Versickerungsanlage =  
+!! Einbringen von Reinabwasser und wenig verschmutztem Regenabwasser in den Untergrund (Definition gemäss VSA Richtlinie Regenwasserentsorgung 2002)
+   OBJ_ID: TEXT*20;
+   Superclass: -> Abwasserbauwerk;  !! 1-1 Beziehung / relation
+   Grundwasserleiter: OPTIONAL -> Grundwasserleiter;
+   Art: OPTIONAL (     !! Arten von Versickerungsmethoden.
+      andere_mit_Bodenpassage,
+      andere_ohne_Bodenpassage,
+      Flaechenfoermige_Versickerung,
+      Kieskoerper,
+      Kombination_Schacht_Strang,
+      MuldenRigolenversickerung,
+      unbekannt,
+      Versickerung_ueber_die_Schulter,
+      Versickerungsbecken,
+      Versickerungsschacht,
+      Versickerungsstrang_Galerie
+    );
+   Beschriftung: OPTIONAL (     !! Kennzeichnung der Schachtdeckel der Anlage als Versickerungsanlage.  Nur bei Anlagen mit Schächten.
+      beschriftet,
+      nichtbeschriftet,
+      unbekannt
+    );
+   Dimension1: OPTIONAL Abmessung;  !!  Dimension1 der Versickerungsanlage (grösstes Innenmass) bei der Verwendung von Normbauteilen. Sonst leer lassen und mit Detailgeometrie beschreiben.
+   Dimension2: OPTIONAL Abmessung;  !!  Dimension1 der Versickerungsanlage (kleinstes Innenmass) bei der Verwendung von Normbauteilen. Sonst leer lassen und mit Detailgeometrie beschreiben.
+   GWDistanz: OPTIONAL Laenge;  !!  Flurabstand (Vertikale Distanz Terrainoberfläche zum Grundwasserleiter).
+   Maengel: OPTIONAL (     !! Gibt die aktuellen Mängel der Versickerungsanlage an (IST-Zustand).
+      keine,
+      unwesentliche,  !! unwesentliche heisst, dass keine Nachkontrolle nötig ist
+      wesentliche  !! wesentliche heisst, dass eine Nachkontrolle nötig ist
+    );
+   Notueberlauf: OPTIONAL (     !! Endpunkt allfälliger Verrohrung des Notüberlaufes der Versickerungsanlage.
+      inMischwasserkanalisation,  !! inMischwasserkanalisation heisst, dass die Versickerung direkt verrohrt ist und nicht frei über das Gelände läuft zwischendurch (unerwünschter Zustand)
+      inRegenwasserkanalisation,  !! inRegenwasserkanalisation heisst, dass die Versickerung direkt verrohrt ist und nicht frei über das Gelände läuft zwischendurch (unerwünschter Zustand)
+      inVorfluter,  !! direkte Rohrverbindung zu einem Vorfluter (unerwünschte Konstruktion)
+      keiner,
+      oberflaechlichausmuendend,  !! Das Wasser überfliesst beim Einstau über die Versickerungsanlage hinaus an die Oberfläche (gewünschter Zustand / Hinweis auf verstopfte Anlage).
+      unbekannt
+    );
+   Saugwagen: OPTIONAL (     !! Zugänglichkeit für Saugwagen. Sie bezieht sich auf die gesamte Versickerungsanlage / Vorbehandlungsanlagen und kann in den Bemerkungen weiter spezifiziert werden.
+      unbekannt,
+      unzugaenglich,
+      zugaenglich
+    );
+   Schluckvermoegen: OPTIONAL M3S;  !!  Schluckvermögen des Bodens.
+   Versickerungswasser: OPTIONAL (     !! Arten des zu versickernden Wassers.
+      Regenabwasser,  !! Wasser aus natürlichem Niederschalg, das nicht durch Gebrauch verunreinigt wurde. Die Zuordnung zu verschmutztem oder unverschmutztem Abwasser erfolgt nach der Gewässerschutzgesetzgebung bzw. nach Anleitung der Richtlinie "Regenwasserentsorgung"
+      Reinabwasser,
+      unbekannt
+    );
+   Wasserdichtheit: OPTIONAL (     !! Wasserdichtheit gegen Oberflächenwasser.  Nur bei Anlagen mit Schächten.
+      nichtwasserdicht,
+      unbekannt,
+      wasserdicht
+    );
+   Wirksameflaeche: OPTIONAL Flaecheninhalt;  !!  Für den Abfluss wirksame Fläche
+IDENT 
+   OBJ_ID;
+END Versickerungsanlage;
+
+TABLE MechanischeVorreinigung =  
+!! Behandlungsanlage von Versickerungsanlage (gemäss VSA Richtlinie Regenwasserentsorgung 2002)
+   OBJ_ID: TEXT*20;
+   Versickerungsanlage: OPTIONAL -> Versickerungsanlage;
+   Abwasserbauwerk: OPTIONAL -> Abwasserbauwerk;
+   Art: OPTIONAL (     !! Arten der mechanischen Vorreinigung / Behandlung (gemäss VSA Richtlinie Regenwasserentsorgung (2002))
+      Filtersack,
+      KuenstlicherAdsorber,
+      MuldenRigolenSystem,  !! Versickerunganlage, in der das unverschmutzte Regenabwasser in einer Mulde gesammelt und anschliessend über eine humusietre Bodenschicht in eine tieferliegende Sickerleitung versickert wird. (gemäss VSA Richtlinie Regenwasserentsorgung (Ausgabe 2002))
+      Schlammsammler,  !! 3. Bei Versickerungsanlage gemäss VSA Richtlinie Regenwasserentsorgung (Ausgabe 2002)
+      Schwimmstoffabscheider,  !! Baute zum Abscheiden von Schwimmstoffen (gemäss VSA Richtlinie Regenwasserentsorgung (Ausgabe 2002))
+      unbekannt
+    );
+   Bemerkung: OPTIONAL TEXT*80;  !!  Allgemeine Bemerkungen
+   Bezeichnung: TEXT*20;
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END MechanischeVorreinigung;
+
+TABLE Ueberlaufcharakteristik =  
+!! Quantitative Angaben zum Ueberlauf
+   OBJ_ID: TEXT*20;
+   Bemerkung: OPTIONAL TEXT*80;  !!  Allgemeine Bemerkungen
+   Bezeichnung: TEXT*20;
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END Ueberlaufcharakteristik;
+
+TABLE Retentionskoerper =  
+!! Retentionskörper einer Versickerungsanlage
+   OBJ_ID: TEXT*20;
+   Versickerungsanlage: OPTIONAL -> Versickerungsanlage;
+   Art: OPTIONAL (     !! Arten der Retention
+      andere,
+      Biotop,
+      Dachretention,
+      Parkplatz,
+      Staukanal,
+      unbekannt
+    );
+   Bemerkung: OPTIONAL TEXT*80;  !!  Allgemeine Bemerkungen
+   Bezeichnung: TEXT*20;
+   Retention_Volumen: OPTIONAL Rauminhalt;  !!  Nutzbares Volumen des Retentionskörpers
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END Retentionskoerper;
+
+TABLE HQ_Relation =  
+!! Korrelation von Wasserspiegelhöhe in Funktion des Abflusses
+   OBJ_ID: TEXT*20;
+   Ueberlaufcharakteristik: OPTIONAL -> Ueberlaufcharakteristik;
+   Durchfluss: OPTIONAL M3S;  !!  Abflussmenge
+   Hoehe: OPTIONAL Hoehe;  !!  Zum Abfluss korrelierender Wasserspiegel
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END HQ_Relation;
+
+TABLE BauwerksTeil =  
+!! Bauliche Bestandteile und Einrichtungen eines Abwasserbauwerkes
+   OBJ_ID: TEXT*20;
+   Abwasserbauwerk: OPTIONAL -> Abwasserbauwerk;
+   Bemerkung: OPTIONAL TEXT*80;  !!  Allgemeine Bemerkungen
+   Bezeichnung: TEXT*20;
+   Instandstellung: OPTIONAL (     !! Zustandsinformation zum Bauwerksteil
+      nicht_notwendig,
+      notwendig,
+      unbekannt
+    );
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END BauwerksTeil;
+
+TABLE Anschlussobjekt =  
+!! Sammelbegriff für an die Kanalisation angeschlossenen Objekte
+   OBJ_ID: TEXT*20;
+   Abwassernetzelement: OPTIONAL -> Abwassernetzelement;
+   Eigentuemer: OPTIONAL -> Organisation;
+   Betreiber: OPTIONAL -> Organisation;
+   Bemerkung: OPTIONAL TEXT*80;  !!  Allgemeine Bemerkungen
+   Bezeichnung: TEXT*20;
+   Fremdwasseranfall: OPTIONAL LS;  !!  Durchschnittlicher Fremdwasseranfall für Fremdwasserquellen wie Laufbrunnen oder Reservoirüberlauf
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END Anschlussobjekt;
+
+TABLE Gefahrenquelle =  
+!! Quelle abwassergefährdender Soffe
+   OBJ_ID: TEXT*20;
+   Anschlussobjekt: OPTIONAL -> Anschlussobjekt;
+   Eigentuemer: OPTIONAL -> Organisation;
+   Bemerkung: OPTIONAL TEXT*80;  !!  Allgemeine Bemerkungen
+   Bezeichnung: TEXT*20;
+   Lage: OPTIONAL LKoord;  !!  Landeskoordinate Ost/Nord
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END Gefahrenquelle;
+
+TABLE Unfall =  
+!! Unfall, dessen Folgen das Grundwasser, das Gewässer, den ARA- und Kanalnetzbetrieb gefährden können
+   OBJ_ID: TEXT*20;
+   Gefahrenquelle: OPTIONAL -> Gefahrenquelle;
+   Bemerkung: OPTIONAL TEXT*80;  !!  Allgemeine Bemerkungen
+   Bezeichnung: TEXT*20;
+   Datum: OPTIONAL Datum;  !!  Datum des Ereignisses
+   Lage: OPTIONAL LKoord;  !!  Landeskoordinate Ost/Nord des Unfallortes
+   Ort: OPTIONAL TEXT*50;  !!  Adresse der Unfallstelle
+   Verursacher: OPTIONAL TEXT*50;  !!  Name Adresse des Verursachers
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END Unfall;
+
+TABLE Einzugsgebiet =  
+!! 1. Definiertes Gebiet, welches in einen bestimmten Abwasserknoten oder in eine bestimmte Haltung entwässert (Teileinzugsgebiet) . (dss) 2. Gebiet mit Abfluss zu einer Abwasserleitung, einem Abwasserkanal oder einem Gewässer. (DIN 752)
+   OBJ_ID: TEXT*20;
+   Abwassernetzelement: OPTIONAL -> Abwassernetzelement;
+   Abflussbeiwert: OPTIONAL Prozent;  !!  1. Verhältnis zwischen einer Blockregenintensität bei angenommenem Blockregen mit bestimmter Dauer zu maximalem Abfluss (Qmax). Kann aus dem Befestigungsgrad ermittelt werden mit dem Spitzenabflussfaktor. (dss) 2. Vom Einzugsgebiet abhängiger Faktor, mit dem die Regenmenge je Zeiteinheit multipliziert wird, um den zu erwartenden Regenabfluss zu erhalten, der in das Entwässerungssystem eingeleitet werden soll. (DIN 752)
+   Art: OPTIONAL (     !! Trockenwetter- und Regenwettereinzugsgebiet
+      Regen_und_Trockenwetter,
+      Regenwetter,
+      Trockenwetter,
+      unbekannt
+    );
+   Befestigungsgrad: OPTIONAL Prozent;  !!  Verhältnis der abflusswirksamen Fläche zur Gesamtfläche
+   Bemerkung: OPTIONAL TEXT*80;  !!  Allgemeine Bemerkungen
+   Bezeichnung: TEXT*20;
+   Einwohnerdichte: OPTIONAL Einwohnerdichte;  !!  Einwohner / ha
+   Perimeter: OPTIONAL Einzelflaechen;  !!  Begrenzungspunkte der Fläche
+   Status: OPTIONAL ( 
+      Ist_und_Planungszustand,
+      Ist_Zustand,
+      Planungszustand,
+      unbekannt
+    );
+   System: OPTIONAL (     !! Dieses Einzugsgebiet ist im Moment folgendem Entwässerungssystem zugeordnet (IST Zustand)
+      Mischsystem,  !! Im Mischsystem werden häusliches, gewerbliches und industrielles Schmutzwasser und das Niederschlagswasser im Gegensatz zur Trennkanalisation gemeinsam in einer Kanalisation abgeleitet. Aufgrund der begrenzten Leistungsfähigkeit der Kläranlage und um aus technischen und wirtschaftlichen Erfordernissen den Kanalquerschnitt zu begrenzen, werden im Mischsystem an geeigneten Stellen Regenentlastungsbauwerke oder Regenrückhalteräume angeordnet. Durch Regenüberläufe in den Hauptkanälen gelangen vor allem in der Anfangsphase von Starkniederschlägen wegen der Spülwirkung hohe Schmutzmengen in die Kläranlage. Deshalb werden verstärkt Regenrückhaltebecken gebaut, die diesen "Spülstoß" auffangen und allmählich an die Kläranlage abgeben sollen. Unverschmutztes Wasser - wie Abfluss von Außengebieten, Dränagewasser, Quellen, Brunnen, usw. - darf nicht in den Mischwasserkanal eingeleitet werden. Dies wird am Entstehungsort oder nach Ableitung verrieselt, versickert oder direkt in ein Oberflächengewässer eingeleitet.
+      ModifiziertesSystem,
+      nicht_angeschlossen,
+      Trennsystem,  !! Entwässerungssystem, üblicherweise bestehend aus zwei Leitungs-/Kanalsystemen für die getrennte Ableitung von Schmutz- und Regenwasser
+      unbekannt
+    );
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END Einzugsgebiet;
+
+TABLE Einzugsgebiet_Text  =
+   EinzugsgebietRef:  -> Einzugsgebiet; !! 1-mc 
+   Textinhalt:   TEXT*80;    !! aus Attributen berechneter oder zusammengesetzter Wert
+   TextPos:    LKoord;
+   TextOri:    OPTIONAL Orientierung; !! Default: 90.0
+   TextHAli:   OPTIONAL HALIGNMENT; !! Default: Center
+   TextVAli:   OPTIONAL VALIGNMENT; !! Default: Half
+   Plantyp:    Plantyp; !! Default: Werkplan
+   Bemerkung: OPTIONAL TEXT*80; !! für bilaterale weitere Spezifikationen
+NO IDENT
+END Einzugsgebiet_Text;
+
+TABLE Oberflaechenabflussparameter =  
+!! Kennzahl zur Beschreibung des Oberflächenabflusses wie z.B. Benutzungs- oder Muldenverluste
+   OBJ_ID: TEXT*20;
+   Einzugsgebiet: OPTIONAL -> Einzugsgebiet;
+   Bemerkung: OPTIONAL TEXT*80;  !!  Allgemeine Bemerkungen
+   Benetzungsverlust: OPTIONAL Verlust;  !!  Verlust durch Haftung des Niederschlages an Pflanzen- und andere Oberfläche
+   Bezeichnung: TEXT*20;
+   Muldenverlust: OPTIONAL Verlust;  !!  Verlust durch Muldenfüllung
+   Verdunstungsverlust: OPTIONAL Verlust;  !!  Verlust durch Verdunstung
+   Versickerungsverlust: OPTIONAL Verlust;  !!  Verlust durch Infiltration
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END Oberflaechenabflussparameter;
+
+TABLE Stoff =  
+!! Wassergefährdender Stoff
+   OBJ_ID: TEXT*20;
+   Gefahrenquelle: OPTIONAL -> Gefahrenquelle;
+   Art: OPTIONAL TEXT*50;  !!  Liste der wassergefährdenden Stoffe
+   Bemerkung: OPTIONAL TEXT*80;  !!  Allgemeine Bemerkungen
+   Bezeichnung: TEXT*20;
+   Lagerung: OPTIONAL TEXT*50;  !!  Art der Lagerung der abwassergefährdenden Stoffe
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END Stoff;
+
+TABLE Messstelle =  
+!! Ort an welchem zusammenhägende Messungen erhoben werden, z.B. benthosbiologische Untersuchungsstelle
+   OBJ_ID: TEXT*20;
+   Betreiber: OPTIONAL -> Organisation;
+   Abwasserreinigungsanlage: OPTIONAL -> Abwasserreinigungsanlage;
+   Abwasserbauwerk: OPTIONAL -> Abwasserbauwerk;
+   Gewaesserabschnitt: OPTIONAL -> Gewaesserabschnitt;
+   Art: OPTIONAL TEXT*50;  !!  Art der Untersuchungsstelle ( Regenmessungen, Abflussmessungen, etc.)
+   Bemerkung: OPTIONAL TEXT*80;  !!  Allgemeine Bemerkungen
+   Bezeichnung: TEXT*20;
+   Lage: OPTIONAL LKoord;  !!  Landeskoordinate Ost/Nord
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END Messstelle;
+
+TABLE Messstelle_Hierarchie =
+   OBJ_ID: TEXT*20;
+   Messstelle: -> Messstelle;
+   Referenzstelle: -> Messstelle;
+IDENT 
+   OBJ_ID;
+END Messstelle_Hierarchie;
+
+TABLE Messreihe =  
+!! Zusammenfassung von Messresultaten eines bestimmten Types  (z.B. Abflussmessungen im Schacht NS234.)
+   OBJ_ID: TEXT*20;
+   Messstelle: OPTIONAL -> Messstelle;
+   Art: OPTIONAL (     !! Art der Messreihe
+      andere,
+      kontinuierlich,
+      Regenwetter,
+      unbekannt
+    );
+   Bemerkung: OPTIONAL TEXT*80;  !!  Allgemeine Bemerkungen
+   Bezeichnung: TEXT*20;
+   Dimension: OPTIONAL TEXT*50;  !!  Messtypen
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END Messreihe;
+
+TABLE Messresultat =  
+!! Ergebnis einer Messung
+   OBJ_ID: TEXT*20;
+   Messgeraet: OPTIONAL -> Messgeraet;
+   Messreihe: OPTIONAL -> Messreihe;
+   Bemerkung: OPTIONAL TEXT*80;  !!  Allgemeine Bemerkungen
+   Bezeichnung: TEXT*20;
+   Messart: OPTIONAL TEXT*50;  !!  Art der Messung, z.B zeit- oder mengenproportional
+   Messdauer: OPTIONAL Sekunden;  !!  Dauer der Messung in Sekunden
+   Wert: OPTIONAL Number;  !!  Gemessene Grösse
+   Zeit: OPTIONAL Datum;  !!  Zeitpunkt des Messbeginns
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END Messresultat;
+
+TABLE Versickerungsbereich =  
+!! Bereiche nach Versickerungsmöglichkeit
+   OBJ_ID: TEXT*20;
+   Superclass: -> Zone;  !! 1-1 Beziehung / relation
+   Perimeter: OPTIONAL Gebietseinteilung;  !!  Begrenzungspunkte der Fläche
+   Versickerungsmoeglichkeit: OPTIONAL (     !! Versickerungsmöglichkeit im Bereich
+      gut,
+      keine,
+      maessig,
+      schlecht,
+      unbekannt,
+      unzulaessig
+    );
+IDENT 
+   OBJ_ID;
+END Versickerungsbereich;
+
+TABLE Entwaesserungssystem =  
+!! Art und Weise, wie ein bestimmtes Gebiet entwässert werden soll. (dss)
+   OBJ_ID: TEXT*20;
+   Superclass: -> Zone;  !! 1-1 Beziehung / relation
+   Art: OPTIONAL (     !! Art des Entwässerungssystems in dem ein bestimmtes Gebiet entwässert werden soll (SOLL Zustand)
+      Mischsystem,  !! Im Mischsystem werden häusliches, gewerbliches und industrielles Schmutzwasser und das Niederschlagswasser im Gegensatz zur Trennkanalisation gemeinsam in einer Kanalisation abgeleitet. Aufgrund der begrenzten Leistungsfähigkeit der Kläranlage und um aus technischen und wirtschaftlichen Erfordernissen den Kanalquerschnitt zu begrenzen, werden im Mischsystem an geeigneten Stellen Regenentlastungsbauwerke oder Regenrückhalteräume angeordnet. Durch Regenüberläufe in den Hauptkanälen gelangen vor allem in der Anfangsphase von Starkniederschlägen wegen der Spülwirkung hohe Schmutzmengen in die Kläranlage. Deshalb werden verstärkt Regenrückhaltebecken gebaut, die diesen "Spülstoß" auffangen und allmählich an die Kläranlage abgeben sollen. Unverschmutztes Wasser - wie Abfluss von Außengebieten, Dränagewasser, Quellen, Brunnen, usw. - darf nicht in den Mischwasserkanal eingeleitet werden. Dies wird am Entstehungsort oder nach Ableitung verrieselt, versickert oder direkt in ein Oberflächengewässer eingeleitet.
+      ModifiziertesSystem,  !! Entwässerungssystem, üblicherweise bestehend aus zwei Leitungssystemen für die getrennte Ableitung von Misch- und Regenabwasser. Das niederschlagsabhängige Abwasser von Strassen und Plätzen wird zusammen mit dem Schmutzabwasser abgeleitet. Unverschmutztes Dach- und Sickerwasser wird in die Regenabwasserkanalisation abgeleitet. (dss)
+      nicht_angeschlossen,
+      Trennsystem,  !! Entwässerungssystem, üblicherweise bestehend aus zwei Leitungs-/Kanalsystemen für die getrennte Ableitung von Schmutz- und Regenwasser
+      unbekannt
+    );
+   Perimeter: OPTIONAL Einzelflaechen;  !!  Begrenzungspunkte der Fläche
+IDENT 
+   OBJ_ID;
+END Entwaesserungssystem;
+
+TABLE Gewaesserschutzbereich =  
+!! Definiertes Gebiet, welches die Art des Schutzes bezüglich Gefährdung der Oberflächengewässer und des Grundwassers definiert.
+   OBJ_ID: TEXT*20;
+   Superclass: -> Zone;  !! 1-1 Beziehung / relation
+   Art: OPTIONAL (     !! Art des Schutzbereiches für  oberflächliches Gewässer und Grundwasser bezüglich Gefährdung
+      A,  !! Alte Klassifizierung vor 1998
+      Ao,  !! Der Gewässerschutzbereich Ao umfasst das oberirdische Gewässer und desser Uferbereiche, soweit dies zur Gewährleistung einer besonderen Nutzung erforderlich ist (GSchV 1998, Anhang 4, 112)
+      Au,  !! Der Gewässerschutzbereich Au umfasst die nutzbaren unterirdischen Gewässer sowie die zu ihrem Schutz notwendigen Randgebiete (GSchV 1998 Anhang 4, 111)
+      B,  !! Alte Klassifizierung vor 1998
+      C,  !! Alte Klassifizierung vor 1998
+      unbekannt,
+      Zo,  !! Der Zuströmbereich Zo umfasst das Einzugsgebiet, aus dem der grösste Teil der Verunreinigungen des oberirdischen Gewässers stammt (GSchV 1998, Anhang 4, 114)
+      Zu  !! Der Zuströmbereich Zu umfasst das Gebeit, aus dem bei niedrigem Wasserstand etwa 90 Prozent des Grundwasser, das bei einer Grundwasserfassung höchstens entnommen werden darf, stammt. (GSchV 1998)
+    );
+   Perimeter: OPTIONAL Einzelflaechen;  !!  Begrenzungspunkte der Fläche
+IDENT 
+   OBJ_ID;
+END Gewaesserschutzbereich;
+
+TABLE Grundwasserschutzareal =  
+!! Areale, die für die künftige Nutzung und Anreicherung von Grundwasservorkommen von Bedeutung sind
+   OBJ_ID: TEXT*20;
+   Superclass: -> Zone;  !! 1-1 Beziehung / relation
+   Perimeter: OPTIONAL Einzelflaechen;  !!  Begrenzungspunkte der Fläche
+IDENT 
+   OBJ_ID;
+END Grundwasserschutzareal;
+
+TABLE Grundwasserschutzzone =  
+!! Definiertes Gebiet, welches die im öffentlichen Interesse liegenden Grundwasserfassungen und Anreicherungsanlagen definiert und die notwendigen Eigentumsbeschränkungen festlegt.
+   OBJ_ID: TEXT*20;
+   Superclass: -> Zone;  !! 1-1 Beziehung / relation
+   Art: OPTIONAL (     !! Zonenarten. Grundwasserschutzzonen bestehen aus dem Fassungsbereich (Zone S1), der Engeren Schutzzone (Zone S2) und der Weiteren Schutzzone (Zone S3).
+      S1,  !! Fassungsbereich
+      S2,  !! Engere Schutzzone
+      S3,  !! Weitere Schutzzone
+      unbekannt
+    );
+   Perimeter: OPTIONAL Einzelflaechen;  !!  Begrenzungspunkte der Fläche
+IDENT 
+   OBJ_ID;
+END Grundwasserschutzzone;
+
+TABLE Trockenwetterfallrohr =  
+!! Fallrohr in einem Absturzschacht zur Ableitung des Zuflusses bei Trockenwetter und Schwachregen
+   OBJ_ID: TEXT*20;
+   Superclass: -> BauwerksTeil;  !! 1-1 Beziehung / relation
+   Durchmesser: OPTIONAL Abmessung;
+IDENT 
+   OBJ_ID;
+END Trockenwetterfallrohr;
+
+TABLE Einstiegshilfe =  
+!! Element, welches den Zugang zu einem Abwasserbauwerk ermöglicht.
+   OBJ_ID: TEXT*20;
+   Superclass: -> BauwerksTeil;  !! 1-1 Beziehung / relation
+   Art: OPTIONAL (     !! Art des Einstiegs in das Bauwerk
+      andere,
+      Drucktuere,
+      keine,
+      Leiter,
+      Steigeisen,
+      Treppe,
+      Trittnischen,
+      Tuere,
+      unbekannt
+    );
+IDENT 
+   OBJ_ID;
+END Einstiegshilfe;
+
+TABLE Trockenwetterrinne =  
+!! Bauliche Einengung des Kanalquerschnittes zwecks Erhöhung der Fliessgeschwindigkeit für den Trockenwetteranfall
+   OBJ_ID: TEXT*20;
+   Superclass: -> BauwerksTeil;  !! 1-1 Beziehung / relation
+   Material: OPTIONAL (     !! Material der Ausbildung oder Auskleidung der Trockenwetterrinne
+      andere,
+      kombiniert,
+      Kunststoff,
+      Steinzeug,
+      unbekannt,
+      Zementmoertel
+    );
+IDENT 
+   OBJ_ID;
+END Trockenwetterrinne;
+
+TABLE Deckel =  
+!! Abnehmbare Abdeckung eines Schachtbauwerkes
+   OBJ_ID: TEXT*20;
+   Superclass: -> BauwerksTeil;  !! 1-1 Beziehung / relation
+   Deckelform: OPTIONAL (     !! Form des Deckels
+      andere,
+      eckig,
+      rund,
+      unbekannt
+    );
+   Durchmesser: OPTIONAL Abmessung;  !!  Abmessung des Deckels (bei eckigen Deckeln minimale Abmessung)
+   Entlueftung: OPTIONAL (     !! Deckel mit Lüftungslöchern versehen
+      entlueftet,
+      nicht_entlueftet,
+      unbekannt
+    );
+   Fabrikat: OPTIONAL TEXT*50;  !!  Name der Herstellerfirma
+   Kote: OPTIONAL Hoehe;  !!  Deckelhöhe
+   Lage: OPTIONAL LKoord;  !!  Landeskoordinate Ost/Nord
+   Lagegenauigkeit: OPTIONAL (     !! Quantifizierung der Genauigkeit der Lage einer Koordinate.
+      groesser_50cm,  !! Dies ist die Lagegenauigkeit aller Punkte, die nur geschätzt sind
+      plusminus_10cm,  !! Dies ist der Bereich der Lagegenauigkeit eines ab einem 1:500 Plan digitalisierten Punktes (inkl. der absoluten Genauigkeit des Planes)
+      plusminus_3cm,  !! Dies ist der Bereich der Lagegenauigkeit eines vermessenen Punktes
+      plusminus_50cm,  !! Dies ist der Bereich der Lagegenauigkeit eines ab einem kleineren Massstab digitalisierten Punktes (inkl. der absoluten Genauigkeit des Planes)
+      unbekannt
+    );
+   Material: OPTIONAL (     !! Deckelmaterial
+      andere,
+      Beton,
+      Guss,
+      Guss_mit_Belagsfuellung,
+      Guss_mit_Betonfuellung,
+      unbekannt
+    );
+   Schlammeimer: OPTIONAL (     !! Angabe, ob der Deckel mit einem Schlammeimer versehen ist oder nicht
+      nicht_vorhanden,
+      unbekannt,
+      vorhanden
+    );
+   Verschluss: OPTIONAL (     !! Befestigungsart des Deckels
+      nicht_verschraubt,
+      unbekannt,
+      verschraubt
+    );
+IDENT 
+   OBJ_ID;
+END Deckel;
+
+TABLE ElektrischeEinrichtung =  
+!! Elektrische Installationen und Geräte in einem Abwasserbauwerk
+   OBJ_ID: TEXT*20;
+   Superclass: -> BauwerksTeil;  !! 1-1 Beziehung / relation
+   Art: OPTIONAL (     !! Elektrische Installationen und Geräte
+      andere,
+      Beleuchtung,
+      Fernwirkanlage,
+      Funk,
+      Telephon,
+      unbekannt
+    );
+   BruttoKosten: OPTIONAL CHF;
+   Ersatzjahr: OPTIONAL Jahr;  !!  Jahr, in dem die Lebensdauer der elektrischen Einrichtung voraussichtlich ausläuft
+IDENT 
+   OBJ_ID;
+END ElektrischeEinrichtung;
+
+TABLE ElektromechanischeAusruestung =  
+!! Elektromechanische Teile eines Bauwerks und/oder Vorrichtung zur Reinigung eines Abwasserbauwerks
+   OBJ_ID: TEXT*20;
+   Superclass: -> BauwerksTeil;  !! 1-1 Beziehung / relation
+   Art: OPTIONAL (     !! Elektormechanische Teile eines Bauwerks
+      andere,
+      Feinrechen,
+      Grobrechen,
+      Injektorpumpe,
+      Leckwasserpumpe,
+      Luftentfeuchter,
+      Raeumeinrichtung,
+      Sieb,
+      Spuelkippe,
+      Tauchwand,
+      unbekannt
+    );
+   BruttoKosten: OPTIONAL CHF;  !!  Brutto Erstellungskosten der elektromechanischen Ausrüstung
+   Ersatzjahr: OPTIONAL Jahr;  !!  Jahr in dem die Lebensdauer der elektromechanischen Ausrüstung voraussichtlich abläuft
+IDENT 
+   OBJ_ID;
+END ElektromechanischeAusruestung;
+
+TABLE Bankett =  
+!! Bankett im Kanal oder Schacht
+   OBJ_ID: TEXT*20;
+   Superclass: -> BauwerksTeil;  !! 1-1 Beziehung / relation
+   Art: OPTIONAL ( 
+      andere,
+      beidseitig,
+      einseitig,
+      kein,
+      unbekannt
+    );
+IDENT 
+   OBJ_ID;
+END Bankett;
+
+TABLE Vorflutereinlauf =  
+!! Auslauf aus dem Kanal in das Fliessgewässer
+   OBJ_ID: TEXT*20;
+   Superclass: -> Abwasserbauwerk;  !! 1-1 Beziehung / relation
+   Gewaessersektor: OPTIONAL -> Gewaessersektor;
+   Hochwasserkote: OPTIONAL Hoehe;  !!  Massgebliche Hochwasserkote des Vorflutereinlaufs
+IDENT 
+   OBJ_ID;
+END Vorflutereinlauf;
+
+TABLE ARABauwerk =  
+!! Reinigungsbecken einer Kläranlage
+   OBJ_ID: TEXT*20;
+   Superclass: -> Abwasserbauwerk;  !! 1-1 Beziehung / relation
+   Art: OPTIONAL ( 
+      Absetzbecken,
+      andere,
+      Belebtschlammbecken,
+      Festbettreaktor,
+      Tauchtropfkoerper,
+      Tropfkoerper,
+      unbekannt,
+      Vorklaerbecken
+    );
+IDENT 
+   OBJ_ID;
+END ARABauwerk;
+
+TABLE Normschacht =  
+!! Normiertes Schachtbauwerk mit abnehmbarem Deckel im Kanalnetz
+   OBJ_ID: TEXT*20;
+   Superclass: -> Abwasserbauwerk;  !! 1-1 Beziehung / relation
+   Dimension1: OPTIONAL Abmessung;  !!  Dimension1 des Schachtes (grösstes Innenmass).
+   Dimension2: OPTIONAL Abmessung;  !!  Dimension2 des Schachtes (kleinstes Innenmass). Bei runden Schächten wird Dimension2 leer gelassen, bei ovalen abgefüllt. Für eckige Schächte Detailgeometrie verwenden.
+   Funktion: OPTIONAL (     !! Art der Nutzung
+      Absturzbauwerk,  !! Ein Absturzschacht ist ein spezielles Bauwerk im Kanalisationsnetz zur Überwindung von Höhenunterschieden auf kurze Entfernung bei gleichzeitiger Energieumwandlung
+      andere,
+      Be_Entlueftung,  !! Vorrichtung zum gewünschten Luftaustausch in Abwasserbauwerken
+      Dachwasserschacht,  !! Schacht im Bereich der Lienschaftsentwässerung, in den in der Regel Abflussrohre vom Dach einmünden
+      Einlaufschacht,  !! Ablauf zur Fassung des Oberflächenwasssers auf der Strasse bestehend aus einem Schacht mit einem Aufsatz aus einem Rahmen und einem Rost (VSS, SN 640 356)
+      Entwaesserungsrinne,  !! Längliches Bauelement mit geschlitzten Öffnungen zur Aufnahme von abfliessendem Oberflächenwasser
+      Geleiseschacht,  !! Normschacht zur Entwässerung von Geleiseanlagen
+      Hochwasserentlastung,  !! Spezialbauwerk, welches Mischabwasser auftrennt und einen Teil davon direkt dem Vorfluter zuführt. Funktionell darf man hier nur eine Ueberlauf.Funktion = Hochwasserentlastung anhängen
+      Klaergrube,  !! Eine Klärgrube dient der Entwässerung einer Liegenschaft, die nicht an die öffentliche Kanalisation angeschlossen ist. Eine Klärgrube ist üblicherweise ein beckenartiges, unterirdisches Bauwerk, in dem sich die festen Stoffe am Boden absetzen, Klärgruben müssen periodisch geleert werden.
+      Kontrollschacht,  !! Bauwerk, das den Zugang für Unterhalts- und Kontrollzwecke zu Abwasser- und Sickerleitungen ermöglicht (VSS, SN 640 364)
+      Oelabscheider,  !! Ein Ölabscheider ist ein spezielles Bauwerk zum Abscheiden von Leichtflüssigkeiten von Abwasser. Es verhindert das Einleiten von Öl in den Vorfluter. Die Funktionsweise basiert auf dem Dichteunterschied von Wasser und Benzin, das zum Aufschwimmen des Öls führt.
+      Pumpwerk,  !! Anlage zum Heben von Abwasser innerhalb eines Kanalnetzes
+      Schlammsammler,  !! 1. Einlaufschacht mit Schlammsack  2. Ablauf zur Fassung des Oberflächenwasssers auf der Strasse bestehend aus einem Schacht mit Absetzraum mit einem Aufsatz aus einem Rahmen und einem Rost (VSS, SN 640 356)
+      Schwimmstoffabscheider,  !! Schlammsammler mit einem verlängerten Tauchbogen oder einer Tauchwand. Wird insbesondere bei Versickerungsanlagen als Vorbehandlung gebraucht
+      Spuelschacht,  !! Schacht der zu Spülzwecken benötigt wird
+      Trennschacht,  !! Trennschacht ist ein Spezialbauwerk, welches Abwasser im System auftrennt, aber nicht aus dem System entlastet. Ein oder mehrere Zuläufe, zwei oder mehr Abläufe
+      unbekannt
+    );
+   Material: OPTIONAL (     !! Hauptmaterial aus dem das Bauwerk besteht zur groben Klassifizierung.
+      andere,
+      Beton,
+      Kunststoff,
+      unbekannt
+    );
+   Oberflaechenzulauf: OPTIONAL (     !! Zuflussmöglichkeit  von Oberflächenwasser direkt in den Schacht
+      andere,
+      keiner,
+      Rost,
+      unbekannt,
+      Zulauf_seitlich
+    );
+IDENT 
+   OBJ_ID;
+END Normschacht;
+
+TABLE Spezialbauwerk =  
+!! Nicht normiertes Abwasserbauwerk mit spezieller Funktion, z.B zur Auftrennung von Abwassermengen, zur Überwindung von Höhenunterschieden oder zur Speicherung und Grobklärung
+   OBJ_ID: TEXT*20;
+   Superclass: -> Abwasserbauwerk;  !! 1-1 Beziehung / relation
+   Bypass: OPTIONAL (     !! Bypass zur Umleitung des Wassers (z.B. während Unterhalt oder  im Havariefall)
+      nicht_vorhanden,
+      unbekannt,
+      vorhanden
+    );
+   Funktion: OPTIONAL (     !! Art der Nutzung
+      Absturzbauwerk,  !! Ein Absturzschacht ist ein spezielles Bauwerk im Kanalisationsnetz zur Überwindung von Höhenunterschieden auf kurze Entfernung bei gleichzeitiger Energieumwandlung
+      andere,
+      Be_Entlueftung,  !! Vorrichtung zum gewünschten Luftaustausch in Abwasserbauwerken
+      Duekerkammer,  !! Spezialbauwerk bei einem Abwasserdüker zur Entleerung der Leitungen am tiefsten Punkt
+      Gelaendemulde,  !! natürliche oder künstliche Vertiefung im Boden um abfliessendes Wasser zurückzuhalten
+      Geschiebefang,  !! Spezialbauwerk in einem offenen Gewässer zur Aufnahme von im Wasser mitgeführtem Material. Häufig am Übergang zu einem eingedolten Abschnitt
+      Hochwasserentlastung,  !! Spezialbauwerk, welches Mischabwasser auftrennt und einen Teil davon direkt dem Vorfluter zuführt. Funktionell darf man hier nur eine Ueberlauf.Funktion = Hochwasserentlastung anhängen
+      Jauchegrube,
+      Klaergrube,  !! Eine Klärgrube dient der Entwässerung einer Liegenschaft, die nicht an die öffentliche Kanalisation angeschlossen ist. Eine Klärgrube ist üblicherweise ein beckenartiges, unterirdisches Bauwerk, in dem sich die festen Stoffe am Boden absetzen, Klärgruben müssen periodisch geleert werden.
+      Kontrollschacht,  !! Bauwerk, das den Zugang für Unterhalts- und Kontrollzwecke zu Abwasser- und Sickerleitungen ermöglicht (VSS, SN 640 364)
+      Oelabscheider,  !! Ein Ölabscheider ist ein spezielles Bauwerk zum Abscheiden von Leichtflüssigkeiten von Abwasser. Es verhindert das Einleiten von Öl in den Vorfluter. Die Funktionsweise basiert auf dem Dichteunterschied von Wasser und Benzin, das zum Aufschwimmen des Öls führt.
+      Pumpwerk,  !! Anlage zum Heben von Abwasser innerhalb eines Kanalnetzes
+      Regenbecken_Durchlaufbecken,  !! Durchflossene Baute mit Klärwirkung
+      Regenbecken_Fangbecken,  !! Dient zum Fangen des Schmutzstosses
+      Regenbecken_Regenklaerbecken,  !! 1. Identisch Durchlaufbecken (dss) 2. Absetzbecken für Regenwasser im Trennsystem. (DIN 4045)
+      Regenbecken_Regenrueckhaltebecken,  !! Baute zur Retension von Abflussspitzen
+      Regenbecken_Verbundbecken,  !! Kombination von Fangbecken und Klärbecken
+      Schwimmstoffabscheider,  !! Schlammsammler mit einem verlängerten Tauchbogen oder einer Tauchwand. Wird insbesondere bei Versickerungsanlagen als Vorbehandlung gebraucht
+      seitlicherZugang,  !! Ebenerdiger Zugang zu einem Bauwerk
+      Spuelschacht,  !! Schacht der zu Spülzwecken benötigt wird
+      Trennschacht,  !! Trennschacht ist ein Spezialbauwerk, welches Abwasser im System auftrennt, aber nicht aus dem System entlastet. Ein oder mehrere Zuläufe, zwei oder mehr Abläufe
+      unbekannt,
+      Wirbelfallschacht  !! Bauwerk zur möglichst schadlosen geführten Ableitung von Wasser über eine gewisse  Höhenstufe. Das Bauwerk besteht aus Drallkammer, Fallrohr, Toskammer und Rezirkulationsbelüftungsrohr
+    );
+IDENT 
+   OBJ_ID;
+END Spezialbauwerk;
+
+TABLE Furt =  
+!! Sohlengleiche Kreuzung eines Verkehrsweges mit einem Gewässer mit künstlicher Sohle in diesem Bereich
+   OBJ_ID: TEXT*20;
+   Superclass: -> Gewaesserverbauung;  !! 1-1 Beziehung / relation
+IDENT 
+   OBJ_ID;
+END Furt;
+
+TABLE GewaesserAbsturz =  
+!! Senkrechter Absturz von Wasser in einem Gewässer
+   OBJ_ID: TEXT*20;
+   Superclass: -> Gewaesserverbauung;  !! 1-1 Beziehung / relation
+   Absturzhoehe: OPTIONAL Laenge;  !!  Differenz des Wasserspiegels vor und nach dem Absturz
+   Material: OPTIONAL (     !! Material aus welchem der Absturz besteht
+      andere,
+      Beton_Steinpflaesterung,
+      Fels_Steinbloecke,
+      Holz,
+      natuerlich_kein,
+      unbekannt
+    );
+   Typ: OPTIONAL (     !! Art des Absturzes
+      kuenstlich,
+      natuerlich,
+      unbekannt
+    );
+IDENT 
+   OBJ_ID;
+END GewaesserAbsturz;
+
+TABLE Schleuse =  
+!! Künstliche Wasserkammer mit regulierbarem internem Wasserspiegel
+   OBJ_ID: TEXT*20;
+   Superclass: -> Gewaesserverbauung;  !! 1-1 Beziehung / relation
+   Absturzhoehe: OPTIONAL Laenge;  !!  Differenz im Wasserspiegel oberhalb und unterhalb der Schleuse
+IDENT 
+   OBJ_ID;
+END Schleuse;
+
+TABLE Durchlass =  
+!! Eindolungen unter Strassen, Wegen u.a. mit einer Länge von unter 15m (ansonsten Gewässerabschnitt eingedolt)
+   OBJ_ID: TEXT*20;
+   Superclass: -> Gewaesserverbauung;  !! 1-1 Beziehung / relation
+IDENT 
+   OBJ_ID;
+END Durchlass;
+
+TABLE Geschiebesperre =  
+!! Querbauwerke mit Öffnungen, welche den Geschiebetransport bei Hochwasser zurückhalten
+   OBJ_ID: TEXT*20;
+   Superclass: -> Gewaesserverbauung;  !! 1-1 Beziehung / relation
+   Absturzhoehe: OPTIONAL Laenge;  !!  Differenz des Wasserspiegels vor und nach der Sperre
+IDENT 
+   OBJ_ID;
+END Geschiebesperre;
+
+TABLE GewaesserWehr =  
+!! Wehr im Gewässer
+   OBJ_ID: TEXT*20;
+   Superclass: -> Gewaesserverbauung;  !! 1-1 Beziehung / relation
+   Absturzhoehe: OPTIONAL Laenge;  !!  Differenz des Wasserspiegels vor und nach dem Absturz
+   Art: OPTIONAL (     !! Art des Wehres
+      Stauwehr,
+      Streichwehr,
+      Talsperre,
+      Tirolerwehr,
+      unbekannt
+    );
+IDENT 
+   OBJ_ID;
+END GewaesserWehr;
+
+TABLE Sohlrampe =  
+!! Flächige Sohlbefestigungen im Gewässer
+   OBJ_ID: TEXT*20;
+   Superclass: -> Gewaesserverbauung;  !! 1-1 Beziehung / relation
+   Absturzhoehe: OPTIONAL Laenge;  !!  Differenz des Wasserspiegels vor und nach dem Absturz
+   Befestigung: OPTIONAL (     !! Befestigungsart der Sohlrampe
+      andere_glatt,
+      andere_rauh,
+      Betonrinne,
+      Blockwurf,
+      gepflaestert,
+      Holzbalken,
+      unbekannt
+    );
+IDENT 
+   OBJ_ID;
+END Sohlrampe;
+
+TABLE Abwasserknoten =  
+!! Verbindung zwischen zwei Haltungen, hydraulischer Bezugspunkt des Abwasserbauwerks (dss)
+   OBJ_ID: TEXT*20;
+   Superclass: -> Abwassernetzelement;  !! 1-1 Beziehung / relation
+   Hydr_Geometrie: OPTIONAL -> Hydr_Geometrie;
+   Lage: OPTIONAL LKoord;  !!  Landeskoordinate Nord/Ost (massgebender Bezugspunkt für die Kanalnetzberechnung )
+   Rueckstaukote: OPTIONAL Hoehe;  !!  1. Massgebende Rückstaukote bezogen auf den Berechnungsregen (dss)  2. Höhe, unter der innerhalb der Grundstücksentwässerung besondere Massnahmen gegen Rückstau zu treffen sind. (DIN 4045)
+   Sohlenkote: OPTIONAL Hoehe;  !!  Tiefster Punkt des Abwasserbauwerkes
+IDENT 
+   OBJ_ID;
+END Abwasserknoten;
+
+TABLE Absperr_Drosselorgan =  
+!! Absperr- oder Drosselorgan
+   OBJ_ID: TEXT*20;
+   Abwasserknoten: OPTIONAL -> Abwasserknoten;
+   Steuerungszentrale: OPTIONAL -> Steuerungszentrale;
+   Antrieb: OPTIONAL (     !! Antrieb der Einbaute
+      andere,
+      Benzinmotor,
+      Dieselmotor,
+      Elektromotor,
+      hydraulisch,
+      keiner,
+      manuell,
+      pneumatisch,
+      unbekannt
+    );
+   Art: OPTIONAL (     !! Art der Durchflussregulierung
+      andere,
+      Blende,
+      Dammbalken,
+      Drosselklappe,
+      Drosselschieber,
+      Rueckstauklappe,
+      Schieber,  !! siehe auch Absperrorgan, Drosselorgan
+      Schlauchdrossel,
+      Schuetze,
+      unbekannt,
+      Wirbeldrossel
+    );
+   Bemerkung: OPTIONAL TEXT*80;  !!  Allgemeine Bemerkungen
+   Bezeichnung: TEXT*20;
+   BruttoKosten: OPTIONAL CHF;  !!  Brutto Erstellungskosten
+   Fabrikat: OPTIONAL TEXT*50;  !!  Hersteller der elektro-mech. Ausrüstung oder Einrichtung
+   Querschnitt: OPTIONAL Flaecheninhalt;  !!  Geometrischer Drosselquerschnitt: Fgeom
+   Signaluebermittlung: OPTIONAL (     !! Signalübermittlung von und zu einer Fernwirkanlage
+      empfangen,
+      senden,
+      senden_empfangen,
+      unbekannt
+    );
+   Steuerung: OPTIONAL (     !! Steuer- und Regelorgan für die Einbaute
+      geregelt,
+      gesteuert,
+      keine,
+      unbekannt
+    );
+   Subventionen: OPTIONAL CHF;  !!  Staats- und Bundesbeiträge
+   Verstellbarkeit: OPTIONAL (     !! Möglichkeit zur Verstellung
+      fest,
+      unbekannt,
+      verstellbar
+    );
+   Wirksamer_QS: OPTIONAL Flaecheninhalt;  !!  Wirksamer Drosselquerschnitt : Fid
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END Absperr_Drosselorgan;
+
+TABLE Ueberlauf =  
+!! Bauteil in Abwasserbauwerken zum Ableiten von Abwasser in einen anderen Knoten
+   OBJ_ID: TEXT*20;
+   Abwasserknoten: OPTIONAL -> Abwasserknoten;
+   UeberlaufNach: OPTIONAL -> Abwasserknoten;
+   Ueberlaufcharakteristik: OPTIONAL -> Ueberlaufcharakteristik;
+   Steuerungszentrale: OPTIONAL -> Steuerungszentrale;
+   Antrieb: OPTIONAL (     !! Antrieb der Einbaute
+      andere,
+      Benzinmotor,
+      Dieselmotor,
+      Elektromotor,
+      hydraulisch,
+      keiner,
+      manuell,
+      pneumatisch,
+      unbekannt
+    );
+   Bemerkung: OPTIONAL TEXT*80;  !!  Allgemeine Bemerkungen
+   Bezeichnung: TEXT*20;
+   BruttoKosten: OPTIONAL CHF;  !!  Brutto Erstellungskosten
+   Fabrikat: OPTIONAL TEXT*50;  !!  Hersteller der elektro-mechanischen Ausrüstung oder Einrichtung
+   Funktion: OPTIONAL (     !! Teil des Mischwasserabflusses, der aus einem Überlauf in einen Vorfluter oder in ein Abwasserbauwerk abgeleitet wird
+      andere,
+      Hochwasserentlastung,  !! Bauwerk zur Entlastung von Mischabwasser beim Überschreiten des Dimensionierungsabflusses in einen Vorfluter
+      intern,  !! interner Weiterfluss ohne Verzweigung (v.a. bei Pumpen)
+      Notentlastung,  !! Bauwerk zur Ableitung von Wasser bei einem Betriebsversagen
+      Regenueberlauf,  !! interne Entlastung im Kanalnetz, z.B. in ein Becken oder in einen anderen Kanal
+      unbekannt
+    );
+   Qan_dim: OPTIONAL M3S;  !!  Wassermenge, bei welcher der Überlauf gemäss Dimensionierung anspringt
+   Qan_ist: OPTIONAL M3S;  !!  Wassermenge bei welcher der Überlauf tatsächlich anspringt
+   Signaluebermittlung: OPTIONAL (     !! Signalübermittlung von und zu einer Fernwirkanlag
+      empfangen,
+      senden,
+      senden_empfangen,
+      unbekannt
+    );
+   Steuerung: OPTIONAL (     !! Steuer- und Regelorgan für die Einbaute
+      geregelt,
+      gesteuert,
+      keine,
+      unbekannt
+    );
+   Subventionen: OPTIONAL CHF;  !!  Staats- und Bundesbeiträge
+   Ueberlaufdauer: OPTIONAL Stunden;  !!  Mittlere Überlaufdauer pro Jahr
+   Ueberlauffracht: OPTIONAL Fracht;  !!  Mittlere Überlaufschmutzfracht pro Jahr
+   Ueberlaufhaeufigkeit: OPTIONAL Number;  !!  Mittlere Überlaufhäufigkeit pro Jahr
+   Ueberlaufmenge: OPTIONAL Rauminhalt;  !!  Mittlere Überlaufwassermenge pro Jahr
+   Verstellbarkeit: OPTIONAL (     !! Möglichkeit zur Verstellung
+      fest,
+      unbekannt,
+      verstellbar
+    );
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END Ueberlauf;
+
+TABLE Privat =  
+!! Privatperson oder Privatorganisation, welche im Rahmen der Entwässerungsplanung auftritt
+   OBJ_ID: TEXT*20;
+   Superclass: -> Organisation;  !! 1-1 Beziehung / relation
+   Art: OPTIONAL TEXT*50;
+IDENT 
+   OBJ_ID;
+END Privat;
+
+TABLE Kanton =  
+!! Kanton der Schweiz
+   OBJ_ID: TEXT*20;
+   Superclass: -> Organisation;  !! 1-1 Beziehung / relation
+   Perimeter: OPTIONAL Gebietseinteilung;  !!  Kantonsgrenze
+IDENT 
+   OBJ_ID;
+END Kanton;
+
+TABLE Gemeinde =  
+!! Für die Belange der Siedlungsentwässerung zuständiges Organ der Gemeindeverwaltung
+   OBJ_ID: TEXT*20;
+   Superclass: -> Organisation;  !! 1-1 Beziehung / relation
+   Einwohner: OPTIONAL EGW;  !!  Ständige Einwohner (laut Einwohnerkontrolle der Gemeinde)
+   Flaeche: OPTIONAL Hektare;  !!  Fläche ohne Seeanteil
+   Gemeindenummer: OPTIONAL GemeindeNr;  !!  Offizielle Nummer gemäss Bundesamt für Statistik
+   GEP_Jahr: OPTIONAL Jahr;  !!  Rechtsgültiges GEP aus dem Jahr
+   Hoehe: OPTIONAL Hoehe;  !!  Mittlere Höhe des Siedlungsgebietes
+   Perimeter: OPTIONAL Gebietseinteilung;  !!  Gemeindegrenze
+IDENT 
+   OBJ_ID;
+END Gemeinde;
+
+TABLE Abwasserverband =  
+!! Abwasserverband
+   OBJ_ID: TEXT*20;
+   Superclass: -> Organisation;  !! 1-1 Beziehung / relation
+IDENT 
+   OBJ_ID;
+END Abwasserverband;
+
+TABLE Haltung =  
+!! Hydraulisch homogenes Transportelementt des Kanalnetzes, Berechnungsabschnitt einer Abflusssimulation.
+   OBJ_ID: TEXT*20;
+   Superclass: -> Abwassernetzelement;  !! 1-1 Beziehung / relation
+   vonHaltungspunkt: OPTIONAL -> Haltungspunkt;
+   nachHaltungspunkt: OPTIONAL -> Haltungspunkt;
+   Rohrprofil: OPTIONAL -> Rohrprofil;
+   Innenschutz: OPTIONAL (     !! Schutz der Innenwände des Kanals
+      andere,
+      Anstrich_Beschichtung,
+      Kanalklinkerauskleidung,
+      Steinzeugauskleidung,
+      unbekannt,
+      Zementmoertelauskleidung
+    );
+   LaengeEffektiv: OPTIONAL Laenge;  !!  Tatsächliche Länge einer Haltung inklusive Kanalkrümmungen
+   Lagebestimmung: OPTIONAL (     !! Definiert die Lagegenauigkeit der Verlaufspunkte einer Haltung. Falls ein Verlauf definiert ist, ist diese immer [genau].
+      genau,  !! +/- 10 cm, bei der Lagebestimmung aus unterschiedlichen Messungen das dreifache, d.h. +/- 30 cm (Norm SIA405 1998, Punkt 4 23 3)
+      unbekannt,
+      ungenau  !! siehe genau
+    );
+   Lichte_Hoehe: OPTIONAL Abmessung;  !!  Maximale Innenhöhe des Kanalprofiles
+   Material: OPTIONAL (     !! Rohrmaterial
+      andere,
+      Asbestzement,
+      Beton_Normalbeton,
+      Beton_Ortsbeton,
+      Beton_Pressrohrbeton,
+      Beton_Spezialbeton,
+      Beton_unbekannt,
+      Faserzement,
+      Gebrannte_Steine,
+      Guss_duktil,
+      Guss_Grauguss,
+      Kunststoff_Epoxydharz,
+      Kunststoff_Hartpolyethylen,
+      Kunststoff_Polyester_GUP,
+      Kunststoff_Polyethylen,
+      Kunststoff_Polypropylen,
+      Kunststoff_Polyvinilchlorid,  !! Polyvinylchlorid. Ein Polymerisatkunstoff, der hart, weich oder niedrig­molekular eingestellt werden kann. In der Abwassertechnik als Rohstoff für Rohre verwendet. (arb)
+      Kunststoff_unbekannt,
+      Stahl,
+      Stahl_rostfrei,
+      Steinzeug,
+      Ton,
+      unbekannt,
+      Zement
+    );
+   Reibungsbeiwert: OPTIONAL Strickler;  !!  Hydraulische Kenngrösse zur Beschreibung der Beschaffenheit der Kanalwandung. Beiwert für die Formeln nach Manning-Strickler (K oder kstr)
+   Verlauf: OPTIONAL Linienzug;  !!  Reihenfolge von Punkten die den genauen Verlauf eines Kanals beschreiben, insbesondere dann, wenn keine direkte Verbindung zwischen zwei Schächten. Zwingend, falls nicht linear zwischen den beiden Schächten. Sonst leer lassen.
+   Wandrauhigkeit: OPTIONAL Prandtl;  !!  Hydraulische Kenngrösse zur Beschreibung der Beschaffenheit der Kanalwandung. Beiwert für die Formeln nach Prandtl-Colebrook (ks oder kb)
+IDENT 
+   OBJ_ID;
+END Haltung;
+
+TABLE Haltung_Text  =
+   HaltungRef:  -> Haltung; !! 1-mc 
+   Textinhalt:   TEXT*80;    !! aus Attributen berechneter oder zusammengesetzter Wert
+   TextPos:    LKoord;
+   TextOri:    OPTIONAL Orientierung; !! Default: 90.0
+   TextHAli:   OPTIONAL HALIGNMENT; !! Default: Center
+   TextVAli:   OPTIONAL VALIGNMENT; !! Default: Half
+   Plantyp:    Plantyp; !! Default: Werkplan
+   Bemerkung: OPTIONAL TEXT*80; !! für bilaterale weitere Spezifikationen
+NO IDENT
+END Haltung_Text;
+
+TABLE Streichwehr =  
+!! Baute zur Entnahme von Wasser über eine Wehrkrone die parallel oder nahezu parallel zur Fliessrichtung angeordnet ist
+   OBJ_ID: TEXT*20;
+   Superclass: -> Ueberlauf;  !! 1-1 Beziehung / relation
+   HydrUeberfallaenge: OPTIONAL Laenge;  !!  Hydraulisch wirksame Wehrlänge
+   KoteMax: OPTIONAL Hoehe;  !!  Höhe des höchsten Punktes der Überfallkante
+   KoteMin: OPTIONAL Hoehe;  !!  Höhe des tiefsten Punktes der Überfallkante
+   Ueberfallkante: OPTIONAL (     !! Ausbildung der Überfallkante
+      andere,
+      rechteckig,
+      rund,
+      scharfkantig,
+      unbekannt
+    );
+   WehrschwellenZahl: OPTIONAL (     !! Anordnung der Überfallkante
+      beidseitig,
+      einseitig,
+      unbekannt
+    );
+IDENT 
+   OBJ_ID;
+END Streichwehr;
+
+TABLE FoerderAggregat =  
+!! Einrichtung zum Transport von Flüssigkeiten
+   OBJ_ID: TEXT*20;
+   Superclass: -> Ueberlauf;  !! 1-1 Beziehung / relation
+   Aggregatezahl: OPTIONAL Number;  !!  Anzahl Förderaggregate
+   Arbeitspunkt: OPTIONAL Rauminhalt;  !!  Fördermenge für Pumpen mit fixem Arbeitspunkt
+   AufstellungAntrieb: OPTIONAL (     !! Art der Aufstellung des Motors
+      nass,
+      trocken,
+      unbekannt
+    );
+   AufstellungFoerderaggregat: OPTIONAL (     !! Art der Aufstellung der Pumpe
+      horizontal,
+      unbekannt,
+      vertikal
+    );
+   Bauart: OPTIONAL (     !! Pumpenarten
+      andere,
+      Druckluftanlage,
+      Kolbenpumpe,
+      Kreiselpumpe,
+      Schneckenpumpe,
+      unbekannt,
+      Vakuumanlage
+    );
+   KoteStart: OPTIONAL Hoehe;  !!  Kote des Wasserspiegels im Pumpensumpf, bei der die Pumpe eingeschaltet wird (Einschaltkote)
+   KoteStop: OPTIONAL Hoehe;  !!  Kote des Wasserspiegels im Pumpensumpf, bei der die Pumpe ausgeschaltet wird (Ausschaltkote)
+IDENT 
+   OBJ_ID;
+END FoerderAggregat;
+
+TABLE Leapingwehr =  
+!! Regenüberlauf mit Bodenöffnung
+   OBJ_ID: TEXT*20;
+   Superclass: -> Ueberlauf;  !! 1-1 Beziehung / relation
+   Breite: OPTIONAL Laenge;  !!  Maximale Abmessung der Bodenöffnung quer zur Fliessrichtung
+   Laenge: OPTIONAL Laenge;  !!  Maximale Abmessung der Bodenöffnung in Fliessrichtung
+   Oeffnungsform: OPTIONAL (     !! Form der  Bodenöffnung
+      andere,
+      Kreis,
+      Parabel,
+      Rechteck,
+      unbekannt
+    );
+IDENT 
+   OBJ_ID;
+END Leapingwehr;
+
+TABLE Gebaeude =  
+!! Gebäude
+   OBJ_ID: TEXT*20;
+   Superclass: -> Anschlussobjekt;  !! 1-1 Beziehung / relation
+   Hausnummer: OPTIONAL TEXT*50;  !!  Hausnummer gemäss Grundbuch
+   Perimeter: OPTIONAL Einzelflaechen;  !!  Begrenzungspunkte der Fläche
+   Referenzpunkt: OPTIONAL LKoord;  !!  Landeskoordinate Ost/Nord (massgebender Bezugspunkt für z.B. Adressdaten )
+   Standortname: OPTIONAL TEXT*50;
+IDENT 
+   OBJ_ID;
+END Gebaeude;
+
+TABLE Reservoir =  
+!! Reservoir
+   OBJ_ID: TEXT*20;
+   Superclass: -> Anschlussobjekt;  !! 1-1 Beziehung / relation
+   Lage: OPTIONAL LKoord;  !!  Landeskoordinate Ost/Nord
+   Standortname: OPTIONAL TEXT*50;
+IDENT 
+   OBJ_ID;
+END Reservoir;
+
+TABLE Einzelflaeche =  
+!! Zusammenhängende Gebiete mit gleicher Oberflächencharakteristik
+   OBJ_ID: TEXT*20;
+   Superclass: -> Anschlussobjekt;  !! 1-1 Beziehung / relation
+   Befestigung: OPTIONAL (     !! Art der Befestigung
+      andere,
+      befestigt,
+      bestockt,
+      humusiert,
+      unbekannt,
+      vegetationslos
+    );
+   Funktion: OPTIONAL (     !! Art der Nutzung der Fläche
+      andere,
+      Bahnanlagen,
+      DachflaecheIndustrieundGewerbebetriebe,
+      DachflaecheWohnundBuerogebaeude,
+      Erschliessungs_Sammelstrassen,
+      Parkplaetze,
+      UmschlagundLagerplaetze,
+      unbekannt,
+      Verbindungs_Hauptverkehrs_Hochleistungsstrassen,
+      VorplaetzeZufahrten
+    );
+   Neigung: OPTIONAL Promill;  !!  Mittlere Neigung der Oberfläche
+   Perimeter: OPTIONAL Einzelflaechen;  !!  Begrenzungspunkte der Fläche
+IDENT 
+   OBJ_ID;
+END Einzelflaeche;
+
+TABLE Brunnen =  
+!! Brunnen
+   OBJ_ID: TEXT*20;
+   Superclass: -> Anschlussobjekt;  !! 1-1 Beziehung / relation
+   Lage: OPTIONAL LKoord;  !!  Landeskoordinate Ost/Nord
+   Standortname: OPTIONAL TEXT*50;
+IDENT 
+   OBJ_ID;
+END Brunnen;
+
+TABLE Planungszone =  
+!! Zonen gemäss Bauordnung
+   OBJ_ID: TEXT*20;
+   Superclass: -> Zone;  !! 1-1 Beziehung / relation
+   Art: OPTIONAL (     !! Art der Bauzone
+      andere,
+      Gewerbezone,
+      Industriezone,
+      Landwirtschaftszone,
+      unbekannt,
+      Wohnzone
+    );
+   Perimeter: OPTIONAL Gebietseinteilung;  !!  Begrenzungspunkte der Fläche
+IDENT 
+   OBJ_ID;
+END Planungszone;
+
+TABLE Rohrprofil_Geometrie =  
+!! Geometrie des Rohrprofils als x/y-Punkte mit Lichte_Hoehe = 1
+   OBJ_ID: TEXT*20;
+   Rohrprofil: OPTIONAL -> Rohrprofil;
+   Position: OPTIONAL Number;  !!  Integerzahl
+   x: OPTIONAL Number;
+   y: OPTIONAL Number;
+   Letzte_Aenderung: OPTIONAL DATE;
+   MD_Datenherr: OPTIONAL TEXT*12;
+IDENT 
+   OBJ_ID;
+END Rohrprofil_Geometrie;
+
+TABLE EZG_PARAMETER_ALLG =  
+!! Oberflaechenparameter welche zu keinem speziellen Modell gehören
+   OBJ_ID: TEXT*20;
+   Superclass: -> Oberflaechenabflussparameter;  !! 1-1 Beziehung / relation
+   Einwohnergleichwert: OPTIONAL EGW;
+   Flaeche: OPTIONAL Flaecheninhalt;
+   Fliessweggefaelle: OPTIONAL Promill;
+   Fliessweglaenge: OPTIONAL Laenge;
+   Trockenwetteranfall: OPTIONAL LS;
+IDENT 
+   OBJ_ID;
+END EZG_PARAMETER_ALLG;
+
+TABLE EZG_PARAMETER_MOUSE1 =  
+!! Oberflächenabflussparameter gemäss Modell MOUSE
+   OBJ_ID: TEXT*20;
+   Superclass: -> Oberflaechenabflussparameter;  !! 1-1 Beziehung / relation
+   Einwohnergleichwert: OPTIONAL EGW;
+   Flaeche: OPTIONAL Flaecheninhalt;  !!  Parameter zur Bestimmung des Oberflächenabflusses für das Oberflächenabflussmodell A1 von MOUSE
+   Fliessweggefaelle: OPTIONAL Promill;  !!  Parameter zur Bestimmung des Oberflächenabflusses für das Oberflächenabflussmodell A1 von MOUSE
+   Fliessweglaenge: OPTIONAL Laenge;  !!  Parameter zur Bestimmung des Oberflächenabflusses für das Oberflächenabflussmodell A1 von MOUSE
+   Nutzungsart: OPTIONAL TEXT*50;  !!  Klassifikation gemäss Oberflächenabflussmodell von MOUSE 2000/2001.
+   Trockenwetteranfall: OPTIONAL LS;  !!  Parameter zur Bestimmung des Oberflächenabflusses für das Oberflächenabflussmodell A1 von MOUSE
+IDENT 
+   OBJ_ID;
+END EZG_PARAMETER_MOUSE1;
+
+TABLE Erhaltungsereignis_Abwasserbauwerk =
+  OBJ_ID: TEXT*20;  
+   Erhaltungsereignis: -> Erhaltungsereignis;
+   Abwasserbauwerk: -> Abwasserbauwerk;
+NO IDENT
+END Erhaltungsereignis_Abwasserbauwerk ;
+
+END Siedlungsentwaesserung.   !! Ende des Topics / Fin du topic
+END DSS_2008.   !! Ende des Modells
+
+
+FORMAT FIX WITH LINESIZE = 255, TIDSIZE = 30;
+CODE
+BLANK = DEFAULT, UNDEFINED = DEFAULT, CONTINUE = DEFAULT;
+TID = ANY;
+END.
