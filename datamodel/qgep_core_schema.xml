@@ -1,0 +1,9309 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- $Header: /cvsroot/autodoc/autodoc/xml.tmpl,v 1.2 2006/05/16 19:01:27 rbt Exp $ -->
+
+<book id="database.sige" xreflabel="sige database schema"><title>sige Model</title>
+
+
+
+
+  <chapter id="qgep.schema"
+           xreflabel="qgep">
+    <title>Schema qgep</title>
+    <para></para>
+
+
+      <section id="qgep.table.od-access-aid"
+               xreflabel="qgep.od_access_aid">
+        <title id="qgep.table.od-access-aid-title">
+         Table:
+         
+         <structname>od_access_aid</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>od_access_aid</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>obj_id</structfield></term>
+              <listitem><para>
+                <type>character varying(36)</type>
+
+
+
+
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.od-structure-part"/>
+
+
+
+
+              </para>
+
+              <para>
+                INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>type</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.vl-access-aid-type"/>
+
+
+              </para>
+
+              <para>
+                 e
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.od-benching"
+               xreflabel="qgep.od_benching">
+        <title id="qgep.table.od-benching-title">
+         Table:
+         
+         <structname>od_benching</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>od_benching</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>obj_id</structfield></term>
+              <listitem><para>
+                <type>character varying(36)</type>
+
+
+
+
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.od-structure-part"/>
+
+
+
+
+              </para>
+
+              <para>
+                INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>type</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.vl-benching-type"/>
+
+
+              </para>
+
+              <para>
+                 /  / 
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.od-channel"
+               xreflabel="qgep.od_channel">
+        <title id="qgep.table.od-channel-title">
+         Table:
+         
+         <structname>od_channel</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>od_channel</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>obj_id</structfield></term>
+              <listitem><para>
+                <type>character varying(36)</type>
+
+
+
+
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.od-wastewater-structure"/>
+
+
+
+
+              </para>
+
+              <para>
+                INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>bedding_encasement</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.vl-channel-bedding-encasement"/>
+
+
+              </para>
+
+              <para>
+                yyy / Art und Weise der unmittelbaren Rohrumgebung im Boden: Bettungsschicht (Unterlage der Leitung),  Verdämmung (seitliche Auffüllung), Schutzschicht / Lit de pose (assise de la conduite), bourrage latéral (remblai latéral), couche de protection
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>connection_type</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.vl-channel-connection-type"/>
+
+
+              </para>
+
+              <para>
+                Types of connection / Verbindungstypen / Types de raccordement
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>function_amelioration</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 / Zur Unterscheidung der Funktion einer Leitung bei Meliorationen (Entwässerungen), Modellerweiterung TG / 
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>function_hierarchic</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                yn
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>function_hydraulic</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.vl-channel-function-hydraulic"/>
+
+
+              </para>
+
+              <para>
+                yyy / Art des Kanals hinsichtlich hydraulischer Ausführung (baulich) / Genre de canalisation par rapport à sa fonction hydraulique
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>jetting_interval</structfield></term>
+              <listitem><para>
+                <type>numeric(2,2)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 / Abstände in welchen der Kanal gespült werden sollte / Fréquence à laquelle une canalisation devrait subir un curage (années)
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>pipe_length</structfield></term>
+              <listitem><para>
+                <type>numeric(5,2)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 / Baulänge der Einzelrohre oder Fugenabstände bei Ortsbetonkanälen / Longueur de chaque tuyau ou distance des joints pour les canalisations en béton coulé sur place
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>seepage</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                yyy Beschreibung des oberliegenden Materials bei Saugern / Beschreibung des oberliegenden Materials bei Saugern / Description du matériau de remplissage
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>usage_current</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.vl-channel-usage-current"/>
+
+
+              </para>
+
+              <para>
+                 / Für Primäre Abwasseranlagen gilt: heute zulässige Nutzung. Für Sekundäre Abwasseranlagen gilt: heute tatsächliche Nutzung. / Pour les ouvrages du réseau primaire: utilisation actuelle autorisée pour les ouvrages du réseau secondaire: utilisation actuel
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>usage_planned</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.vl-channel-usage-planned"/>
+
+
+              </para>
+
+              <para>
+                 .
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.od-cover"
+               xreflabel="qgep.od_cover">
+        <title id="qgep.table.od-cover-title">
+         Table:
+         
+         <structname>od_cover</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>od_cover</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>obj_id</structfield></term>
+              <listitem><para>
+                <type>character varying(36)</type>
+
+
+
+
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.od-structure-part"/>
+
+
+
+
+              </para>
+
+              <para>
+                INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>brand</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 n
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>cover_shape</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.vl-cover-cover-shape"/>
+
+
+              </para>
+
+              <para>
+                 / Form des Deckels / Forme du couvercle
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>depth</structfield></term>
+              <listitem><para>
+                <type>smallint</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                yyyredundantes Funktionsattribut Maechtigkeit. Numerisch [mm]. Funktion (berechneter Wert) = zugehöriger Deckel.Kote minus Abwasserknoten.Sohlenkote.(falls die Sohlenkote nicht separat erfasst, dann ist es die tiefer liegende Hal-tungspunkt.Kote) / redund
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>diameter</structfield></term>
+              <listitem><para>
+                <type>smallint</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 / Abmessung des Deckels (bei eckigen Deckeln minimale Abmessung) / Dimension du couvercle (dimension minimale pour couvercle anguleux)
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>fastening</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.vl-cover-fastening"/>
+
+
+              </para>
+
+              <para>
+                 / Befestigungsart des Deckels / Genre de fixation du couvercle
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>level</structfield></term>
+              <listitem><para>
+                <type>numeric(4,3)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 / Deckelhöhe / Cote du couvercle
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>location_accuracy</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.vl-cover-location-accuracy"/>
+
+
+              </para>
+
+              <para>
+                 / Quantifizierung der Genauigkeit der Lage einer Koordinate. / Plage de précision des coordonnées planimétriques du couvercle.
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>material</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.vl-cover-material"/>
+
+
+              </para>
+
+              <para>
+                 / Deckelmaterial / Matériau du couvercle
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>situation_geometry</structfield></term>
+              <listitem><para>
+                <type>geometry(Point,21781)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                Situation of cover (cover hole) / Lage des Deckels (Pickelloch) / xxx_Situation du couvercle (Pickelloch)
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>sludge_bucket</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.vl-cover-sludge-bucket"/>
+
+
+              </para>
+
+              <para>
+                 s
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>venting</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.vl-cover-venting"/>
+
+
+              </para>
+
+              <para>
+                 n
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.od-discharge-point"
+               xreflabel="qgep.od_discharge_point">
+        <title id="qgep.table.od-discharge-point-title">
+         Table:
+         
+         <structname>od_discharge_point</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>od_discharge_point</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>obj_id</structfield></term>
+              <listitem><para>
+                <type>character varying(36)</type>
+
+
+
+
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.od-wastewater-structure"/>
+
+
+
+
+              </para>
+
+              <para>
+                INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>depth</structfield></term>
+              <listitem><para>
+                <type>smallint</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 /  / 
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>highwater_level</structfield></term>
+              <listitem><para>
+                <type>numeric(4,3)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 / Massgebliche Hochwasserkote des Vorflutereinlaufs / Cote de crue déterminante au point de rejet
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>upper_elevation</structfield></term>
+              <listitem><para>
+                <type>numeric(4,3)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 e
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>waterlevel_hydraulic</structfield></term>
+              <listitem><para>
+                <type>numeric(4,3)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 l
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.od-dryweather-flume"
+               xreflabel="qgep.od_dryweather_flume">
+        <title id="qgep.table.od-dryweather-flume-title">
+         Table:
+         
+         <structname>od_dryweather_flume</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>od_dryweather_flume</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>obj_id</structfield></term>
+              <listitem><para>
+                <type>character varying(36)</type>
+
+
+
+
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.od-structure-part"/>
+
+
+
+
+              </para>
+
+              <para>
+                INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>material</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.vl-dryweather-flume-material"/>
+
+
+              </para>
+
+              <para>
+                 / Material der Ausbildung oder Auskleidung der Trockenwetterrinne / Materiau de fabrication ou de revêtement de la cunette de débit temps sec
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.od-infiltration-installation"
+               xreflabel="qgep.od_infiltration_installation">
+        <title id="qgep.table.od-infiltration-installation-title">
+         Table:
+         
+         <structname>od_infiltration_installation</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>od_infiltration_installation</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>obj_id</structfield></term>
+              <listitem><para>
+                <type>character varying(36)</type>
+
+
+
+
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.od-wastewater-structure"/>
+
+
+
+
+              </para>
+
+              <para>
+                INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>absorption_capacity</structfield></term>
+              <listitem><para>
+                <type>numeric(5,3)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 l
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>defects</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.vl-infiltration-installation-defects"/>
+
+
+              </para>
+
+              <para>
+                 .
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>depth</structfield></term>
+              <listitem><para>
+                <type>smallint</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                yyy_Funktion (berechneter Wert) = repräsentative Abwasserknoten.Sohlenkote minus zugehörige Deckenkote des Bauwerks falls Detailgeometrie vorhanden, sonst Funktion (berechneter Wert) = Abwasserknoten.Sohlenkote minus zugehörige Deckel.Kote des Bauwerks / 
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>dimension1</structfield></term>
+              <listitem><para>
+                <type>smallint</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 / Dimension1 der Versickerungsanlage (grösstes Innenmass) bei der Verwendung von Normbauteilen. Sonst leer lassen und mit Detailgeometrie beschreiben. / Dimension1 de linstallation dinfiltration (plus grande mesure intérieure) lorsquelle est utilisée 
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>dimension2</structfield></term>
+              <listitem><para>
+                <type>smallint</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 / Dimension2 der Versickerungsanlage (kleinstes Innenmass) bei der Verwendung von Normbauteilen. Sonst leer lassen und mit Detailgeometrie beschreiben. / Dimension2 de la chambre (plus petite mesure intérieure). La dimension2 est à saisir pour des chambr
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>distance_to_aquifer</structfield></term>
+              <listitem><para>
+                <type>numeric(5,2)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 .
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>effective_area</structfield></term>
+              <listitem><para>
+                <type>numeric(6,2)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 t
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>emergency_spillway</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.vl-infiltration-installation-emergency-spillway"/>
+
+
+              </para>
+
+              <para>
+                 .
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>filling_material</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                yyy / Beschreibung des oberliegenden Materials bei Sickerschlitzen. Diese werden nicht als Haltungen sondern als Versickerungsanlagen modelliert. Sickerschlitze mit Kies als Versickerungsanlage.Art = Kieskoerper abbilden, Sickerschlitze mit anderen Fuellm
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>labeling</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.vl-infiltration-installation-labeling"/>
+
+
+              </para>
+
+              <para>
+                 .
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>seepage_utilization</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.vl-infiltration-installation-seepage-utilization"/>
+
+
+              </para>
+
+              <para>
+                 .
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>type</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.vl-infiltration-installation-type"/>
+
+
+              </para>
+
+              <para>
+                 .
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>upper_elevation</structfield></term>
+              <listitem><para>
+                <type>numeric(4,3)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 / Höchster Punkt des Bauwerks (Decke), aussen / Point le plus élevé de la construction
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>vehicle_access</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.vl-infiltration-installation-vehicle-access"/>
+
+
+              </para>
+
+              <para>
+                 t
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>watertightness</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.vl-infiltration-installation-watertightness"/>
+
+
+              </para>
+
+              <para>
+                 / Wasserdichtheit gegen Oberflächenwasser.  Nur bei Anlagen mit Schächten. / Etanchéité contre des eaux superficielles. Uniquement pour des installations avec chambres.
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.od-manhole"
+               xreflabel="qgep.od_manhole">
+        <title id="qgep.table.od-manhole-title">
+         Table:
+         
+         <structname>od_manhole</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>od_manhole</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>obj_id</structfield></term>
+              <listitem><para>
+                <type>character varying(36)</type>
+
+
+
+
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.od-wastewater-structure"/>
+
+
+
+
+              </para>
+
+              <para>
+                INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>depth</structfield></term>
+              <listitem><para>
+                <type>smallint</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                yy_Funktion (berechneter Wert) = zugehöriger Abwasserknoten.Sohlenkote minus Deckel.Kote (falls Sohlenkote nicht seperat erfasst, dann ist es die tiefer liegende Haltungspunkt.Kote). Siehe auch SIA 405 2015 4.3.4. / Funktion (berechneter Wert) = zugehörig
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>dimension1</structfield></term>
+              <listitem><para>
+                <type>smallint</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 / Dimension1 des Schachtes (grösstes Innenmass). / Dimension1 de la chambre (plus grande mesure intérieure).
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>dimension2</structfield></term>
+              <listitem><para>
+                <type>smallint</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 / Dimension2 des Schachtes (kleinstes Innenmass). Bei runden Schächten wird Dimension2 leer gelassen, bei ovalen abgefüllt. Für eckige Schächte Detailgeometrie verwenden. / Dimension2 de la chambre (plus petite mesure intérieure).
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>function</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.vl-manhole-function"/>
+
+
+              </para>
+
+              <para>
+                 n
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>material</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.vl-manhole-material"/>
+
+
+              </para>
+
+              <para>
+                 .
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>surface_inflow</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.vl-manhole-surface-inflow"/>
+
+
+              </para>
+
+              <para>
+                 e
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.od-organisation"
+               xreflabel="qgep.od_organisation">
+        <title id="qgep.table.od-organisation-title">
+         Table:
+         
+         <structname>od_organisation</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>od_organisation</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>obj_id</structfield></term>
+              <listitem><para>
+                <type>character varying(36)</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>address</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                yyy / Attribut zur Verknüpfung der Adressdaten von Organisationen aus Fremdsystemen. Die VSA-DSS bildet keine Adressinformationen ab. Diese sind genügend oft in anderen Systemen vorhanden  eine Referenzattribut reicht. / Attribut pour le lien des données
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>identifier</structfield></term>
+              <listitem><para>
+                <type>character varying(80)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                It is suggested to use real names, e.g. Sample_Community and not only Community. Or &quot;Waste Water Association WWTP Example&quot;and not only Waste Water Association because there will be multiple objects / Es wird empfohlen reale Namen zu nehmen, z.B. Mustergem
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>remark</structfield></term>
+              <listitem><para>
+                <type>character varying(80)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                yyy Fehler bei Zuordnung / Allgemeine Bemerkungen / Remarques générales
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>uid</structfield></term>
+              <listitem><para>
+                <type>character varying(12)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                yyyReferenz zur Unternehmensidentifikation des Bundesamts fuer Statistik (www.uid.admin.ch), e.g. z.B. CHE123456789 / Referenz zur Unternehmensidentifikation des Bundesamts fuer Statistik (www.uid.admin.ch), z.B. CHE123456789 / Référence pour lidentifica
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>last_modification</structfield></term>
+              <listitem><para>
+                <type>timestamp without time zone</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>datenherr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                Metaattribute Datenherr - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Gestionnaire données gestionnaire de données, qui estla personne ou l&apos;organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>datenlieferant</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                Metaattribute Datenlieferant - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / xxx_Datenlieferant 
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_wastewater_structure via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-wastewater-structure"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.od-pipe-profile"
+               xreflabel="qgep.od_pipe_profile">
+        <title id="qgep.table.od-pipe-profile-title">
+         Table:
+         
+         <structname>od_pipe_profile</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>od_pipe_profile</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>obj_id</structfield></term>
+              <listitem><para>
+                <type>character varying(36)</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>height_width_ratio</structfield></term>
+              <listitem><para>
+                <type>numeric(3,2)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                height-width ratio / Verhältnis der Höhe zur Breite / Rapport entre la hauteur et la largeur
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>identifier</structfield></term>
+              <listitem><para>
+                <type>character varying(20)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 /  / 
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>profile_type</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.vl-pipe-profile-profile-type"/>
+
+
+              </para>
+
+              <para>
+                Type of profile / Typ des Profils / Type du profil
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>remark</structfield></term>
+              <listitem><para>
+                <type>character varying(80)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                General remarks / Allgemeine Bemerkungen / Remarques générales
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>last_modification</structfield></term>
+              <listitem><para>
+                <type>timestamp without time zone</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>datenherr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                Metaattribute Datenherr - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Gestionnaire données gestionnaire de données, qui estla personne ou l&apos;organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>datenlieferant</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                Metaattribute Datenlieferant - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / xxx_Datenlieferant 
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_reach via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-reach"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.od-reach"
+               xreflabel="qgep.od_reach">
+        <title id="qgep.table.od-reach-title">
+         Table:
+         
+         <structname>od_reach</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>od_reach</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>obj_id</structfield></term>
+              <listitem><para>
+                <type>character varying(36)</type>
+
+
+
+
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.od-wastewater-networkelement"/>
+
+
+
+
+              </para>
+
+              <para>
+                INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>coefficient_of_friction</structfield></term>
+              <listitem><para>
+                <type>smallint</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                yyy http://www.linguee.com/english-german/search?source=auto&amp;query=reibungsbeiwert / Hydraulische Kenngrösse zur Beschreibung der Beschaffenheit der Kanalwandung. Beiwert für die Formeln nach Manning-Strickler (K oder kstr) / Constante de rugosité selon M
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>depth</structfield></term>
+              <listitem><para>
+                <type>smallint</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                yyy_Maximale Innenhöhe des Kanalprofiles / Maximale Innenhöhe des Kanalprofiles / Hauteur intérieure maximale du profil
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>elevation_determination</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 .
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>horizontal_positioning</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.vl-reach-horizontal-positioning"/>
+
+
+              </para>
+
+              <para>
+                y.
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>inside_coating</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.vl-reach-inside-coating"/>
+
+
+              </para>
+
+              <para>
+                 / Schutz der Innenwände des Kanals / Protection de la paroi intérieur de la canalisation
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>length_effective</structfield></term>
+              <listitem><para>
+                <type>numeric(5,2)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 / Tatsächliche Länge einer Haltung inklusive Kanalkrümmungen / Longueur effective (par ex. pour conduites incurvées)
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>material</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.vl-reach-material"/>
+
+
+              </para>
+
+              <para>
+                 / Rohrmaterial / Matériau du tuyau.
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>progression_geometry</structfield></term>
+              <listitem><para>
+                <type>geometry(LineString,21781)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                yyy_Reihenfolge von Punkten die den genauen Verlauf eines Kanals beschreiben, insbesondere dann, wenn keine direkte Verbindung zwischen zwei Schächten. / Reihenfolge von Punkten die den genauen Verlauf eines Kanals beschreiben, insbesondere dann, wenn kei
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>progression3d_geometry</structfield></term>
+              <listitem><para>
+                <type>geometry(LineString,21781)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                yy_Reihenfolge von Punkten die den genauen Verlauf eines Kanals beschreiben, insbesondere dann, wenn keine direkte Verbindung zwischen zwei Schächten. / Reihenfolge von Punkten (3D Koordinaten) die den genauen Verlauf eines Kanals beschreiben, insbesonder
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>ring_stiffness</structfield></term>
+              <listitem><para>
+                <type>smallint</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                yyy Ringsteifigkeitsklasse - Druckfestigkeit gegen Belastungen von aussen (gemäss ISO 13966 ) / Ringsteifigkeitsklasse - Druckfestigkeit gegen Belastungen von aussen (gemäss ISO 13966 ) / Rigidité annulaire pour des pressions extérieures (selon ISO 13966)
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>slope_building_plan</structfield></term>
+              <listitem><para>
+                <type>smallint</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                yyy / Auf dem alten Plan eingezeichnetes Plangefälle. Nicht kontrolliert im Feld. Kann nicht für die hydraulische Berechnungen übernommen werden. Für Liegenschaftsentwässerung und Meliorationsleitungen. Darstellung als z.B. 3.5%oP auf Plänen. / Pente indi
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>wall_roughness</structfield></term>
+              <listitem><para>
+                <type>numeric(3,2)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                yyy Hydraulische Kenngrösse zur Beschreibung der Beschaffenheit der Kanalwandung. Beiwert für die Formeln nach Prandtl-Colebrook (ks oder kb) / Hydraulische Kenngrösse zur Beschreibung der Beschaffenheit der Kanalwandung. Beiwert für die Formeln nach Pran
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>fs_reach_point_from</structfield></term>
+              <listitem><para>
+                <type>character varying(36)</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.od-reach-point"/>
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>fs_reach_point_to</structfield></term>
+              <listitem><para>
+                <type>character varying(36)</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.od-reach-point"/>
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>fs_pipe_profile</structfield></term>
+              <listitem><para>
+                <type>character varying(36)</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.od-pipe-profile"/>
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.od-reach-point"
+               xreflabel="qgep.od_reach_point">
+        <title id="qgep.table.od-reach-point-title">
+         Table:
+         
+         <structname>od_reach_point</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>od_reach_point</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>obj_id</structfield></term>
+              <listitem><para>
+                <type>character varying(36)</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>elevation_accuracy</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.vl-reach-point-elevation-accuracy"/>
+
+
+              </para>
+
+              <para>
+                yyy_Quantifizierung der Genauigkeit der Höhenlage der Kote in Relation zum Höhenfixpunktnetz (z.B. Grundbuchvermessung oder Landesnivellement). / Quantifizierung der Genauigkeit der Höhenlage der Kote in Relation zum Höhenfixpunktnetz (z.B. Grundbuchverme
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>identifier</structfield></term>
+              <listitem><para>
+                <type>character varying(20)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 /  / 
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>level</structfield></term>
+              <listitem><para>
+                <type>numeric(4,3)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                yyy / Sohlenhöhe des Haltungsendes / Cote du radier de la fin du tronçon
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>outlet_shape</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.vl-reach-point-outlet-shape"/>
+
+
+              </para>
+
+              <para>
+                yyy Art des Auslaufs / Art des Auslaufs / Types de sortie
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>position_of_connection</structfield></term>
+              <listitem><para>
+                <type>smallint</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                yyy / Anschlussstelle bezogen auf Querschnitt im Kanal; in Fliessrichtung  (für Haus- und Strassenanschlüsse) / Emplacement de raccordement Référence à la section transversale dans le canal dans le sens découlement (pour les raccordements domestiques et 
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>remark</structfield></term>
+              <listitem><para>
+                <type>character varying(80)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 / Allgemeine Bemerkungen / Remarques générales
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>situation_geometry</structfield></term>
+              <listitem><para>
+                <type>geometry(Point,21781)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                national position coordinates (N,E) / Landeskoordinate Ost/Nord / Coordonnées nationales Est/Nord
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>last_modification</structfield></term>
+              <listitem><para>
+                <type>timestamp without time zone</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>datenherr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                Metaattribute Datenherr - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Gestionnaire données gestionnaire de données, qui estla personne ou l&apos;organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>datenlieferant</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                Metaattribute Datenlieferant - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / xxx_Datenlieferant 
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>fs_wastewater_networkelement</structfield></term>
+              <listitem><para>
+                <type>character varying(36)</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.od-wastewater-networkelement"/>
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_reach via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-reach"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.od-special-structure"
+               xreflabel="qgep.od_special_structure">
+        <title id="qgep.table.od-special-structure-title">
+         Table:
+         
+         <structname>od_special_structure</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>od_special_structure</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>obj_id</structfield></term>
+              <listitem><para>
+                <type>character varying(36)</type>
+
+
+
+
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.od-wastewater-structure"/>
+
+
+
+
+              </para>
+
+              <para>
+                INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>bypass</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.vl-special-structure-bypass"/>
+
+
+              </para>
+
+              <para>
+                 / Bypass zur Umleitung des Wassers (z.B. während Unterhalt oder  im Havariefall) / Bypass pour détourner les eaux (par exemple durant des opérations de maintenance ou en cas davaries)
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>depth</structfield></term>
+              <listitem><para>
+                <type>smallint</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 /  / 
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>function</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.vl-special-structure-function"/>
+
+
+              </para>
+
+              <para>
+                 n
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>stormwatertank_arrangement</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 N
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>upper_elevation</structfield></term>
+              <listitem><para>
+                <type>numeric(4,3)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 / Höchster Punkt des Bauwerks (Decke), aussen / Point le plus élevé de la construction
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.od-structure-part"
+               xreflabel="qgep.od_structure_part">
+        <title id="qgep.table.od-structure-part-title">
+         Table:
+         
+         <structname>od_structure_part</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>od_structure_part</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>obj_id</structfield></term>
+              <listitem><para>
+                <type>character varying(36)</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>identifier</structfield></term>
+              <listitem><para>
+                <type>character varying(20)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 /  / 
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>remark</structfield></term>
+              <listitem><para>
+                <type>character varying(80)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 / Allgemeine Bemerkungen / Remarques générales
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>renovation_demand</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.vl-structure-part-renovation-demand"/>
+
+
+              </para>
+
+              <para>
+                 e
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>last_modification</structfield></term>
+              <listitem><para>
+                <type>timestamp without time zone</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>datenherr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                Metaattribute Datenherr - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Gestionnaire données gestionnaire de données, qui estla personne ou l&apos;organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>datenlieferant</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                Metaattribute Datenlieferant - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / xxx_Datenlieferant 
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>fs_wastewater_structure</structfield></term>
+              <listitem><para>
+                <type>character varying(36)</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.od-wastewater-structure"/>
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_access_aid via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-access-aid"/>
+            </para>
+          </listitem>
+
+
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-benching"/>
+            </para>
+          </listitem>
+
+
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-cover"/>
+            </para>
+          </listitem>
+
+
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-dryweather-flume"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.od-wastewater-networkelement"
+               xreflabel="qgep.od_wastewater_networkelement">
+        <title id="qgep.table.od-wastewater-networkelement-title">
+         Table:
+         
+         <structname>od_wastewater_networkelement</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>od_wastewater_networkelement</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>obj_id</structfield></term>
+              <listitem><para>
+                <type>character varying(36)</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>identifier</structfield></term>
+              <listitem><para>
+                <type>character varying(20)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 /  / 
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>remark</structfield></term>
+              <listitem><para>
+                <type>character varying(80)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 / Allgemeine Bemerkungen / Remarques générales
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>last_modification</structfield></term>
+              <listitem><para>
+                <type>timestamp without time zone</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>datenherr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                Metaattribute Datenherr - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Gestionnaire données gestionnaire de données, qui estla personne ou l&apos;organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>datenlieferant</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                Metaattribute Datenlieferant - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / xxx_Datenlieferant 
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>fs_wastewater_structure</structfield></term>
+              <listitem><para>
+                <type>character varying(36)</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.od-wastewater-structure"/>
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_reach via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-reach"/>
+            </para>
+          </listitem>
+
+
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-reach-point"/>
+            </para>
+          </listitem>
+
+
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-wastewater-node"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.od-wastewater-node"
+               xreflabel="qgep.od_wastewater_node">
+        <title id="qgep.table.od-wastewater-node-title">
+         Table:
+         
+         <structname>od_wastewater_node</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>od_wastewater_node</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>obj_id</structfield></term>
+              <listitem><para>
+                <type>character varying(36)</type>
+
+
+
+
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.od-wastewater-networkelement"/>
+
+
+
+
+              </para>
+
+              <para>
+                INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>backflow_level</structfield></term>
+              <listitem><para>
+                <type>numeric(4,3)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 / 1. Massgebende Rückstaukote bezogen auf den Berechnungsregen (dss)  2. Höhe, unter der innerhalb der Grundstücksentwässerung besondere Massnahmen gegen Rückstau zu treffen sind. (DIN 4045) / Cote de refoulement déterminante calculée à partir des pluies
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>bottom_level</structfield></term>
+              <listitem><para>
+                <type>numeric(4,3)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 / Tiefster Punkt des Abwasserbauwerkes / Point le plus bas du noeud
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>situation_geometry</structfield></term>
+              <listitem><para>
+                <type>geometry(Point,21781)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                Situation of node. Decisive reference point for sewer network simulation /  Lage des Knotens, massgebender Bezugspunkt für die Kanalnetzberechnung / Situation du noeud. Point de référence déterminant pour le calcul de réseau de canalisations
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.od-wastewater-structure"
+               xreflabel="qgep.od_wastewater_structure">
+        <title id="qgep.table.od-wastewater-structure-title">
+         Table:
+         
+         <structname>od_wastewater_structure</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>od_wastewater_structure</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>obj_id</structfield></term>
+              <listitem><para>
+                <type>character varying(36)</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>accessibility</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.vl-wastewater-structure-accessibility"/>
+
+
+              </para>
+
+              <para>
+                 t
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>contract_section</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 / Nummer des Bauloses / Numéro du lot de construction
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>depth</structfield></term>
+              <listitem><para>
+                <type>smallint</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                yy_Funktion (berechneter Wert) = zugehöriger Abwasserknoten.Sohlenkote minus Deckel.Kote (falls Sohlenkote nicht seperat erfasst, dann ist es die tiefer liegende Haltungspunkt.Kote). Siehe auch SIA 405 2015 4.3.4. / Funktion (berechneter Wert) = zugehörig
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>detail_geometry_geometry</structfield></term>
+              <listitem><para>
+                <type>geometry(Polygon,21781)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 / Detaillierte Geometrie insbesondere bei Spezialbauwerken. Bei Normschächten mit Dimension1 und 2 arbeiten. Dito bei normierten Versickerungsanlagen. In INTERLIS OPTIONAL gesetzt, da nicht bei allen Abwasserbauwerken zwingend. Kanäle haben normalerweise
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>detail_geometry3d_geometry</structfield></term>
+              <listitem><para>
+                <type>geometry(Polygon,21781)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                yyy / Detaillierte Geometrie (3D) insbesondere bei Spezialbauwerken. Bei Normschächten mit Dimension1 und 2 arbeiten. Dito bei normierten Versickerungsanlagen. In INTERLIS / GEOMETRIE_DETAILLEE3D: Géométrie détaillée particulièrement pour un OUVRAGE_SPECI
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>disposition_state</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.vl-wastewater-structure-disposition-state"/>
+
+
+              </para>
+
+              <para>
+                yyy_Betriebs- und Planungszustand in dem sich das Abwasserbauwerk befindet / Betriebs- und Planungszustand in dem sich das Abwasserbauwerk befindet / Etat de fonctionnement et de planification
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>gross_costs</structfield></term>
+              <listitem><para>
+                <type>numeric(8,2)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 / Brutto Erstellungskosten / Coûts bruts des travaux de construction.
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>identifier</structfield></term>
+              <listitem><para>
+                <type>character varying(20)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 /  / 
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>inspection_interval</structfield></term>
+              <listitem><para>
+                <type>numeric(2,2)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 )
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>location_name</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 e
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>remark</structfield></term>
+              <listitem><para>
+                <type>character varying(80)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 / Allgemeine Bemerkungen / Remarques générales
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>renovation_demand</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.vl-wastewater-structure-renovation-demand"/>
+
+
+              </para>
+
+              <para>
+                 / Dringlichkeitsstufen und Zeithorizont für bauliche Massnahmen / 	Degrés durgence et délai de réalisation des mesures constructives
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>replacement_value</structfield></term>
+              <listitem><para>
+                <type>numeric(8,2)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                y.
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>rv_base_year</structfield></term>
+              <listitem><para>
+                <type>smallint</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 / Basisjahr für die Kalkulation des Wiederbeschaffungswertes (siehe auch Wiederbeschaffungswert) / TO DO
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>rv_construction_type</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                yyy / Grobe Einteilung der Bauart des Abwasserbauwerkes als Inputwert für die Berechnung des Wiederbeschaffungswertes. / Valeur de remplacement du type de construction
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>structure_condition</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.vl-wastewater-structure-structure-condition"/>
+
+
+              </para>
+
+              <para>
+                 a
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>subsidies</structfield></term>
+              <listitem><para>
+                <type>numeric(8,2)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 / Staats- und Bundesbeiträge / Contributions des cantons et de la confédération
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>year_of_construction</structfield></term>
+              <listitem><para>
+                <type>smallint</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 / Jahr der Inbetriebsetzung (Schlussabnahme). Falls unbekannt = 1800 setzen (tiefster Wert des Wertebereiches) / Année de mise en service (réception finale).
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>year_of_replacement</structfield></term>
+              <listitem><para>
+                <type>smallint</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                 e
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>last_modification</structfield></term>
+              <listitem><para>
+                <type>timestamp without time zone</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>datenherr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                Metaattribute Datenherr - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Gestionnaire données gestionnaire de données, qui estla personne ou l&apos;organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>datenlieferant</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+              <para>
+                Metaattribute Datenlieferant - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / xxx_Datenlieferant 
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>fs_owner</structfield></term>
+              <listitem><para>
+                <type>character varying(36)</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.od-organisation"/>
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>fs_operator</structfield></term>
+              <listitem><para>
+                <type>character varying(36)</type>
+
+
+
+
+
+
+
+
+
+
+
+
+                <literal>REFERENCES</literal> <xref linkend="qgep.table.od-organisation"/>
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_channel via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-channel"/>
+            </para>
+          </listitem>
+
+
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-discharge-point"/>
+            </para>
+          </listitem>
+
+
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-infiltration-installation"/>
+            </para>
+          </listitem>
+
+
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-manhole"/>
+            </para>
+          </listitem>
+
+
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-special-structure"/>
+            </para>
+          </listitem>
+
+
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-structure-part"/>
+            </para>
+          </listitem>
+
+
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-wastewater-networkelement"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.vl-access-aid-type"
+               xreflabel="qgep.vl_access_aid_type">
+        <title id="qgep.table.vl-access-aid-type-title">
+         Table:
+         
+         <structname>vl_access_aid_type</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>vl_access_aid_type</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>code</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_en</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_de</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_fr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>active</structfield></term>
+              <listitem><para>
+                <type>boolean</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_access_aid via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-access-aid"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.vl-benching-type"
+               xreflabel="qgep.vl_benching_type">
+        <title id="qgep.table.vl-benching-type-title">
+         Table:
+         
+         <structname>vl_benching_type</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>vl_benching_type</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>code</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_en</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_de</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_fr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>active</structfield></term>
+              <listitem><para>
+                <type>boolean</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_benching via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-benching"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.vl-channel-bedding-encasement"
+               xreflabel="qgep.vl_channel_bedding_encasement">
+        <title id="qgep.table.vl-channel-bedding-encasement-title">
+         Table:
+         
+         <structname>vl_channel_bedding_encasement</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>vl_channel_bedding_encasement</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>code</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_en</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_de</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_fr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>active</structfield></term>
+              <listitem><para>
+                <type>boolean</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_channel via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-channel"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.vl-channel-connection-type"
+               xreflabel="qgep.vl_channel_connection_type">
+        <title id="qgep.table.vl-channel-connection-type-title">
+         Table:
+         
+         <structname>vl_channel_connection_type</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>vl_channel_connection_type</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>code</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_en</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_de</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_fr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>active</structfield></term>
+              <listitem><para>
+                <type>boolean</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_channel via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-channel"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.vl-channel-function-hydraulic"
+               xreflabel="qgep.vl_channel_function_hydraulic">
+        <title id="qgep.table.vl-channel-function-hydraulic-title">
+         Table:
+         
+         <structname>vl_channel_function_hydraulic</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>vl_channel_function_hydraulic</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>code</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_en</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_de</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_fr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>active</structfield></term>
+              <listitem><para>
+                <type>boolean</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_channel via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-channel"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.vl-channel-usage-current"
+               xreflabel="qgep.vl_channel_usage_current">
+        <title id="qgep.table.vl-channel-usage-current-title">
+         Table:
+         
+         <structname>vl_channel_usage_current</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>vl_channel_usage_current</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>code</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_en</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_de</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_fr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>active</structfield></term>
+              <listitem><para>
+                <type>boolean</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_channel via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-channel"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.vl-channel-usage-planned"
+               xreflabel="qgep.vl_channel_usage_planned">
+        <title id="qgep.table.vl-channel-usage-planned-title">
+         Table:
+         
+         <structname>vl_channel_usage_planned</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>vl_channel_usage_planned</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>code</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_en</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_de</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_fr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>active</structfield></term>
+              <listitem><para>
+                <type>boolean</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_channel via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-channel"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.vl-cover-cover-shape"
+               xreflabel="qgep.vl_cover_cover_shape">
+        <title id="qgep.table.vl-cover-cover-shape-title">
+         Table:
+         
+         <structname>vl_cover_cover_shape</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>vl_cover_cover_shape</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>code</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_en</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_de</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_fr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>active</structfield></term>
+              <listitem><para>
+                <type>boolean</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_cover via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-cover"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.vl-cover-fastening"
+               xreflabel="qgep.vl_cover_fastening">
+        <title id="qgep.table.vl-cover-fastening-title">
+         Table:
+         
+         <structname>vl_cover_fastening</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>vl_cover_fastening</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>code</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_en</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_de</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_fr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>active</structfield></term>
+              <listitem><para>
+                <type>boolean</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_cover via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-cover"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.vl-cover-location-accuracy"
+               xreflabel="qgep.vl_cover_location_accuracy">
+        <title id="qgep.table.vl-cover-location-accuracy-title">
+         Table:
+         
+         <structname>vl_cover_location_accuracy</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>vl_cover_location_accuracy</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>code</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_en</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_de</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_fr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>active</structfield></term>
+              <listitem><para>
+                <type>boolean</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_cover via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-cover"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.vl-cover-material"
+               xreflabel="qgep.vl_cover_material">
+        <title id="qgep.table.vl-cover-material-title">
+         Table:
+         
+         <structname>vl_cover_material</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>vl_cover_material</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>code</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_en</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_de</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_fr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>active</structfield></term>
+              <listitem><para>
+                <type>boolean</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_cover via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-cover"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.vl-cover-sludge-bucket"
+               xreflabel="qgep.vl_cover_sludge_bucket">
+        <title id="qgep.table.vl-cover-sludge-bucket-title">
+         Table:
+         
+         <structname>vl_cover_sludge_bucket</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>vl_cover_sludge_bucket</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>code</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_en</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_de</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_fr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>active</structfield></term>
+              <listitem><para>
+                <type>boolean</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_cover via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-cover"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.vl-cover-venting"
+               xreflabel="qgep.vl_cover_venting">
+        <title id="qgep.table.vl-cover-venting-title">
+         Table:
+         
+         <structname>vl_cover_venting</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>vl_cover_venting</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>code</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_en</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_de</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_fr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>active</structfield></term>
+              <listitem><para>
+                <type>boolean</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_cover via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-cover"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.vl-dryweather-flume-material"
+               xreflabel="qgep.vl_dryweather_flume_material">
+        <title id="qgep.table.vl-dryweather-flume-material-title">
+         Table:
+         
+         <structname>vl_dryweather_flume_material</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>vl_dryweather_flume_material</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>code</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_en</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_de</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_fr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>active</structfield></term>
+              <listitem><para>
+                <type>boolean</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_dryweather_flume via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-dryweather-flume"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.vl-infiltration-installation-defects"
+               xreflabel="qgep.vl_infiltration_installation_defects">
+        <title id="qgep.table.vl-infiltration-installation-defects-title">
+         Table:
+         
+         <structname>vl_infiltration_installation_defects</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>vl_infiltration_installation_defects</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>code</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_en</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_de</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_fr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>active</structfield></term>
+              <listitem><para>
+                <type>boolean</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_infiltration_installation via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-infiltration-installation"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.vl-infiltration-installation-emergency-spillway"
+               xreflabel="qgep.vl_infiltration_installation_emergency_spillway">
+        <title id="qgep.table.vl-infiltration-installation-emergency-spillway-title">
+         Table:
+         
+         <structname>vl_infiltration_installation_emergency_spillway</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>vl_infiltration_installation_emergency_spillway</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>code</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_en</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_de</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_fr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>active</structfield></term>
+              <listitem><para>
+                <type>boolean</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_infiltration_installation via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-infiltration-installation"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.vl-infiltration-installation-labeling"
+               xreflabel="qgep.vl_infiltration_installation_labeling">
+        <title id="qgep.table.vl-infiltration-installation-labeling-title">
+         Table:
+         
+         <structname>vl_infiltration_installation_labeling</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>vl_infiltration_installation_labeling</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>code</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_en</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_de</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_fr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>active</structfield></term>
+              <listitem><para>
+                <type>boolean</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_infiltration_installation via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-infiltration-installation"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.vl-infiltration-installation-seepage-utilization"
+               xreflabel="qgep.vl_infiltration_installation_seepage_utilization">
+        <title id="qgep.table.vl-infiltration-installation-seepage-utilization-title">
+         Table:
+         
+         <structname>vl_infiltration_installation_seepage_utilization</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>vl_infiltration_installation_seepage_utilization</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>code</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_en</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_de</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_fr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>active</structfield></term>
+              <listitem><para>
+                <type>boolean</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_infiltration_installation via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-infiltration-installation"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.vl-infiltration-installation-type"
+               xreflabel="qgep.vl_infiltration_installation_type">
+        <title id="qgep.table.vl-infiltration-installation-type-title">
+         Table:
+         
+         <structname>vl_infiltration_installation_type</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>vl_infiltration_installation_type</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>code</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_en</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_de</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_fr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>active</structfield></term>
+              <listitem><para>
+                <type>boolean</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_infiltration_installation via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-infiltration-installation"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.vl-infiltration-installation-vehicle-access"
+               xreflabel="qgep.vl_infiltration_installation_vehicle_access">
+        <title id="qgep.table.vl-infiltration-installation-vehicle-access-title">
+         Table:
+         
+         <structname>vl_infiltration_installation_vehicle_access</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>vl_infiltration_installation_vehicle_access</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>code</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_en</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_de</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_fr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>active</structfield></term>
+              <listitem><para>
+                <type>boolean</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_infiltration_installation via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-infiltration-installation"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.vl-infiltration-installation-watertightness"
+               xreflabel="qgep.vl_infiltration_installation_watertightness">
+        <title id="qgep.table.vl-infiltration-installation-watertightness-title">
+         Table:
+         
+         <structname>vl_infiltration_installation_watertightness</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>vl_infiltration_installation_watertightness</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>code</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_en</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_de</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_fr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>active</structfield></term>
+              <listitem><para>
+                <type>boolean</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_infiltration_installation via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-infiltration-installation"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.vl-manhole-function"
+               xreflabel="qgep.vl_manhole_function">
+        <title id="qgep.table.vl-manhole-function-title">
+         Table:
+         
+         <structname>vl_manhole_function</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>vl_manhole_function</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>code</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_en</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_de</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_fr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>active</structfield></term>
+              <listitem><para>
+                <type>boolean</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_manhole via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-manhole"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.vl-manhole-material"
+               xreflabel="qgep.vl_manhole_material">
+        <title id="qgep.table.vl-manhole-material-title">
+         Table:
+         
+         <structname>vl_manhole_material</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>vl_manhole_material</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>code</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_en</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_de</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_fr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>active</structfield></term>
+              <listitem><para>
+                <type>boolean</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_manhole via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-manhole"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.vl-manhole-surface-inflow"
+               xreflabel="qgep.vl_manhole_surface_inflow">
+        <title id="qgep.table.vl-manhole-surface-inflow-title">
+         Table:
+         
+         <structname>vl_manhole_surface_inflow</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>vl_manhole_surface_inflow</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>code</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_en</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_de</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_fr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>active</structfield></term>
+              <listitem><para>
+                <type>boolean</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_manhole via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-manhole"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.vl-pipe-profile-profile-type"
+               xreflabel="qgep.vl_pipe_profile_profile_type">
+        <title id="qgep.table.vl-pipe-profile-profile-type-title">
+         Table:
+         
+         <structname>vl_pipe_profile_profile_type</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>vl_pipe_profile_profile_type</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>code</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_en</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_de</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_fr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>active</structfield></term>
+              <listitem><para>
+                <type>boolean</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_pipe_profile via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-pipe-profile"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.vl-reach-horizontal-positioning"
+               xreflabel="qgep.vl_reach_horizontal_positioning">
+        <title id="qgep.table.vl-reach-horizontal-positioning-title">
+         Table:
+         
+         <structname>vl_reach_horizontal_positioning</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>vl_reach_horizontal_positioning</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>code</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_en</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_de</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_fr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>active</structfield></term>
+              <listitem><para>
+                <type>boolean</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_reach via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-reach"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.vl-reach-inside-coating"
+               xreflabel="qgep.vl_reach_inside_coating">
+        <title id="qgep.table.vl-reach-inside-coating-title">
+         Table:
+         
+         <structname>vl_reach_inside_coating</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>vl_reach_inside_coating</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>code</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_en</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_de</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_fr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>active</structfield></term>
+              <listitem><para>
+                <type>boolean</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_reach via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-reach"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.vl-reach-material"
+               xreflabel="qgep.vl_reach_material">
+        <title id="qgep.table.vl-reach-material-title">
+         Table:
+         
+         <structname>vl_reach_material</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>vl_reach_material</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>code</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_en</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_de</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_fr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>active</structfield></term>
+              <listitem><para>
+                <type>boolean</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_reach via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-reach"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.vl-reach-point-elevation-accuracy"
+               xreflabel="qgep.vl_reach_point_elevation_accuracy">
+        <title id="qgep.table.vl-reach-point-elevation-accuracy-title">
+         Table:
+         
+         <structname>vl_reach_point_elevation_accuracy</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>vl_reach_point_elevation_accuracy</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>code</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_en</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_de</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_fr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>active</structfield></term>
+              <listitem><para>
+                <type>boolean</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_reach_point via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-reach-point"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.vl-reach-point-outlet-shape"
+               xreflabel="qgep.vl_reach_point_outlet_shape">
+        <title id="qgep.table.vl-reach-point-outlet-shape-title">
+         Table:
+         
+         <structname>vl_reach_point_outlet_shape</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>vl_reach_point_outlet_shape</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>code</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_en</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_de</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_fr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>active</structfield></term>
+              <listitem><para>
+                <type>boolean</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_reach_point via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-reach-point"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.vl-special-structure-bypass"
+               xreflabel="qgep.vl_special_structure_bypass">
+        <title id="qgep.table.vl-special-structure-bypass-title">
+         Table:
+         
+         <structname>vl_special_structure_bypass</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>vl_special_structure_bypass</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>code</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_en</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_de</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_fr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>active</structfield></term>
+              <listitem><para>
+                <type>boolean</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_special_structure via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-special-structure"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.vl-special-structure-function"
+               xreflabel="qgep.vl_special_structure_function">
+        <title id="qgep.table.vl-special-structure-function-title">
+         Table:
+         
+         <structname>vl_special_structure_function</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>vl_special_structure_function</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>code</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_en</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_de</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_fr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>active</structfield></term>
+              <listitem><para>
+                <type>boolean</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_special_structure via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-special-structure"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.vl-structure-part-renovation-demand"
+               xreflabel="qgep.vl_structure_part_renovation_demand">
+        <title id="qgep.table.vl-structure-part-renovation-demand-title">
+         Table:
+         
+         <structname>vl_structure_part_renovation_demand</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>vl_structure_part_renovation_demand</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>code</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_en</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_de</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_fr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>active</structfield></term>
+              <listitem><para>
+                <type>boolean</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_structure_part via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-structure-part"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.vl-wastewater-structure-accessibility"
+               xreflabel="qgep.vl_wastewater_structure_accessibility">
+        <title id="qgep.table.vl-wastewater-structure-accessibility-title">
+         Table:
+         
+         <structname>vl_wastewater_structure_accessibility</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>vl_wastewater_structure_accessibility</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>code</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_en</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_de</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_fr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>active</structfield></term>
+              <listitem><para>
+                <type>boolean</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_wastewater_structure via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-wastewater-structure"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.vl-wastewater-structure-disposition-state"
+               xreflabel="qgep.vl_wastewater_structure_disposition_state">
+        <title id="qgep.table.vl-wastewater-structure-disposition-state-title">
+         Table:
+         
+         <structname>vl_wastewater_structure_disposition_state</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>vl_wastewater_structure_disposition_state</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>code</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_en</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_de</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_fr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>active</structfield></term>
+              <listitem><para>
+                <type>boolean</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_wastewater_structure via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-wastewater-structure"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.vl-wastewater-structure-renovation-demand"
+               xreflabel="qgep.vl_wastewater_structure_renovation_demand">
+        <title id="qgep.table.vl-wastewater-structure-renovation-demand-title">
+         Table:
+         
+         <structname>vl_wastewater_structure_renovation_demand</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>vl_wastewater_structure_renovation_demand</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>code</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_en</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_de</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_fr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>active</structfield></term>
+              <listitem><para>
+                <type>boolean</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_wastewater_structure via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-wastewater-structure"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+      <section id="qgep.table.vl-wastewater-structure-structure-condition"
+               xreflabel="qgep.vl_wastewater_structure_structure_condition">
+        <title id="qgep.table.vl-wastewater-structure-structure-condition-title">
+         Table:
+         
+         <structname>vl_wastewater_structure_structure_condition</structname>
+        </title>
+ 
+
+
+        <para>
+          <variablelist>
+            <title>
+              Structure of <structname>vl_wastewater_structure_structure_condition</structname>
+            </title>
+
+
+            <varlistentry>
+              <term><structfield>code</structfield></term>
+              <listitem><para>
+                <type>integer</type>
+
+
+                <literal>PRIMARY KEY</literal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_en</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_de</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>value_fr</structfield></term>
+              <listitem><para>
+                <type>character varying(50)</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+            <varlistentry>
+              <term><structfield>active</structfield></term>
+              <listitem><para>
+                <type>boolean</type>
+
+
+
+
+
+
+
+              </para>
+
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+
+
+
+
+
+
+        <itemizedlist>
+          <title>
+            Tables referencing od_wastewater_structure via Foreign Key Constraints
+          </title>
+
+          <listitem>
+            <para>
+              <xref linkend="qgep.table.od-wastewater-structure"/>
+            </para>
+          </listitem>
+
+        </itemizedlist>
+
+
+
+
+
+
+      </para>
+    </section>
+
+
+
+  </chapter>
+
+</book>
+
