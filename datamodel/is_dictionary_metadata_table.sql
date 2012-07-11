@@ -1,4 +1,4 @@
-CREATE TABLE qgep.is_dictionary (
+﻿CREATE TABLE qgep.is_dictionary (
     id integer NOT NULL,
     tablename text,
     name_en text,
@@ -25,7 +25,7 @@ INSERT INTO qgep.is_dictionary VALUES (57, 'od_special_structure', 'special_stru
 INSERT INTO qgep.is_dictionary VALUES (62, 'od_dryweather_flume', 'dryweather_flume', 'DF', 'Trockenwetterrinne', 'TR', 'cunette_debit_temps_sec', 'CU');
 INSERT INTO qgep.is_dictionary VALUES (68, 'od_infiltration_installation', 'infiltration_installation', 'II', 'Versickerungsanlage', 'VA', 'installation_infiltration', 'II');
 INSERT INTO qgep.is_dictionary VALUES (69, 'od_discharge_point', 'discharge_point', 'DP', 'Einleitstelle', 'VE', 'exutoire_milieu_recepteur', 'EX');
-ALTER TABLE ONLY is_dictionary
+ALTER TABLE ONLY qgep.is_dictionary
     ADD CONSTRAINT pkey_qgep_is_dictonary_id PRIMARY KEY (id);
-ALTER TABLE ONLY is_dictionary
+ALTER TABLE ONLY qgep.is_dictionary
     ADD CONSTRAINT unq_qgep_is_dictonary_tablename UNIQUE (tablename);
