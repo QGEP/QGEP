@@ -19,3 +19,7 @@ CREATE INDEX in_qgep_is_oid_prefixes_active
   USING btree
   (active );
 
+CREATE UNIQUE INDEX in_qgep_is_oid_prefixes_id
+  ON qgep.is_oid_prefixes
+  USING btree
+  (id );

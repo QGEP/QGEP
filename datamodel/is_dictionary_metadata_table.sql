@@ -29,3 +29,13 @@ ALTER TABLE ONLY qgep.is_dictionary
     ADD CONSTRAINT pkey_qgep_is_dictonary_id PRIMARY KEY (id);
 ALTER TABLE ONLY qgep.is_dictionary
     ADD CONSTRAINT unq_qgep_is_dictonary_tablename UNIQUE (tablename);
+
+CREATE UNIQUE INDEX in_qgep_is_dictionary_id
+  ON qgep.is_dictionary
+  USING btree
+  (id );
+
+CREATE UNIQUE INDEX in_qgep_is_dictionary_tablename
+  ON qgep.is_dictionary
+  USING btree
+  (tablename );
