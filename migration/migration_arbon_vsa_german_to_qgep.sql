@@ -41,42 +41,44 @@ FROM abwasser.siedlungsentwaesserung__organisation;
 
 INSERT INTO qgep.od_wastewater_structure
 (obj_id, accessibility, contract_section, detail_geometry_geometry, disposition_state, gross_costs, identifier, inspection_interval, location_name, remark, renovation_demand, structure_condition, subsidies, year_of_construction, year_of_replacement, datenherr) 
-SELECT obj_id, 
- CASE WHEN zugaenglichkeit = 0 THEN 3444 --- covered
-  WHEN zugaenglichkeit = 1 THEN 3447 --- unknown
-  WHEN zugaenglichkeit = 2 THEN 3446 --- inaccessible
-  WHEN zugaenglichkeit = 3 THEN 3445 --- accessible
+SELECT bw.obj_id, 
+ CASE WHEN bw.zugaenglichkeit = 0 THEN 3444 --- covered
+  WHEN bw.zugaenglichkeit = 1 THEN 3447 --- unknown
+  WHEN bw.zugaenglichkeit = 2 THEN 3446 --- inaccessible
+  WHEN bw.zugaenglichkeit = 3 THEN 3445 --- accessible
  END AS accessibility,
- baulos, the_geom,
- CASE WHEN status = 0 THEN 7 --- suspended_not_filled
-  WHEN status = 1 THEN 3325 --- suspended_unknown
-  WHEN status = 2 THEN 3633 --- nonoperational
-  WHEN status = 3 THEN 2763 --- calculation_alternative
-  WHEN status = 4 THEN 2764 --- planned
-  WHEN status = 5 THEN 3634 --- operational
-  WHEN status = 6 THEN 3653 --- project
-  WHEN status = 7 THEN 10 --- tentative
-  WHEN status = 8 THEN 3027 --- unknown
-  WHEN status = 9 THEN 8 --- filled
-  WHEN status = 10 THEN 2683 --- will_be_suspended
+ bw.baulos, geom.the_geom,
+ CASE WHEN bw.status = 0 THEN 7 --- suspended_not_filled
+  WHEN bw.status = 1 THEN 3325 --- suspended_unknown
+  WHEN bw.status = 2 THEN 3633 --- nonoperational
+  WHEN bw.status = 3 THEN 2763 --- calculation_alternative
+  WHEN bw.status = 4 THEN 2764 --- planned
+  WHEN bw.status = 5 THEN 3634 --- operational
+  WHEN bw.status = 6 THEN 3653 --- project
+  WHEN bw.status = 7 THEN 10 --- tentative
+  WHEN bw.status = 8 THEN 3027 --- unknown
+  WHEN bw.status = 9 THEN 8 --- filled
+  WHEN bw.status = 10 THEN 2683 --- will_be_suspended
  END AS disposition_state,
- bruttokosten, bezeichnung, inspektionsintervall, standortname, bemerkung,
- CASE WHEN sanierungsbedarf = 0 THEN 1 --- urgent
-  WHEN sanierungsbedarf = 1 THEN 5 --- no
-  WHEN sanierungsbedarf = 2 THEN 2 --- short_term
-  WHEN sanierungsbedarf = 3 THEN 4 --- long_term
-  WHEN sanierungsbedarf = 4 THEN 3 --- medium_term
-  WHEN sanierungsbedarf = 5 THEN 3023 --- unknown
+ bw.bruttokosten, bw.bezeichnung, bw.inspektionsintervall, bw.standortname, bw.bemerkung,
+ CASE WHEN bw.sanierungsbedarf = 0 THEN 1 --- urgent
+  WHEN bw.sanierungsbedarf = 1 THEN 5 --- no
+  WHEN bw.sanierungsbedarf = 2 THEN 2 --- short_term
+  WHEN bw.sanierungsbedarf = 3 THEN 4 --- long_term
+  WHEN bw.sanierungsbedarf = 4 THEN 3 --- medium_term
+  WHEN bw.sanierungsbedarf = 5 THEN 3023 --- unknown
  END AS renovation_demand,
- CASE WHEN baulicherzustand = 0 THEN 3037 --- unknown
-  WHEN baulicherzustand = 1 THEN 3363 --- Z0
-  WHEN baulicherzustand = 2 THEN 3359 --- Z1
-  WHEN baulicherzustand = 3 THEN 3360 --- Z2
-  WHEN baulicherzustand = 4 THEN 3361 --- Z3
-  WHEN baulicherzustand = 5 THEN 3362 --- Z4
+ CASE WHEN bw.baulicherzustand = 0 THEN 3037 --- unknown
+  WHEN bw.baulicherzustand = 1 THEN 3363 --- Z0
+  WHEN bw.baulicherzustand = 2 THEN 3359 --- Z1
+  WHEN bw.baulicherzustand = 3 THEN 3360 --- Z2
+  WHEN bw.baulicherzustand = 4 THEN 3361 --- Z3
+  WHEN bw.baulicherzustand = 5 THEN 3362 --- Z4
  END AS structure_condition,
- subventionen, baujahr, ersatzjahr, md_datenherr
-FROM abwasser.siedlungsentwaesserung__Abwasserbauwerk;
+ bw.subventionen, bw.baujahr, bw.ersatzjahr, bw.md_datenherr
+FROM abwasser.siedlungsentwaesserung__Abwasserbauwerk bw
+LEFT JOIN abwasser.siedlungsentwaesserung__abwasserbauwerk_detailgeometrie geom ON bw.obj_id = geom._tid AND geom.the_geom IS NOT NULL --later this has to be connected to ref_tid
+;
 --done, todo: letzte_aenderung/last_modification cast into correct date
 --todo: translate datenherr/datenlieferant
 
@@ -417,8 +419,8 @@ FROM abwasser.siedlungsentwaesserung__spezialbauwerk;
 --done
 
 INSERT INTO qgep.od_reach
-(obj_id, coefficient_of_friction, horizontal_positioning, inside_coating, length_effective, material, progression, wall_roughness, fs_reach_point_from, fs_reach_point_to)
-SELECT obj_id, reibungsbeiwert,
+(obj_id, coefficient_of_friction, depth, horizontal_positioning, inside_coating, length_effective, material, progression, wall_roughness, fs_reach_point_from, fs_reach_point_to, fs_pipe_profile)
+SELECT obj_id, reibungsbeiwert, lichte_hoehe,
  CASE WHEN lagebestimmung = 0 THEN 3630 --- accurate
   WHEN lagebestimmung = 1 THEN 3632 --- unknown
   WHEN lagebestimmung = 2 THEN 3631 --- inaccurate
@@ -456,8 +458,8 @@ SELECT obj_id, reibungsbeiwert,
   WHEN material = 22 THEN 3016 --- unknown
   WHEN material = 23 THEN 2762 --- cement
  END AS material,
- the_geom, wandrauhigkeit, vonhaltungspunkt, nachhaltungspunkt
-FROM abwasser.siedlungsentwaesserung__Haltung;
+ the_geom, wandrauhigkeit, vonhaltungspunkt, nachhaltungspunkt, rohrprofil
+FROM abwasser.siedlungsentwaesserung__haltung;
 --done todo: lichte_hoehe, clear_height missing?, pipe_profile has to be checked/added
 
 INSERT INTO qgep.od_wastewater_node

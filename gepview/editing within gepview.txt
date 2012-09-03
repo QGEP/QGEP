@@ -1,0 +1,123 @@
+Editing in GEPView in the sewer network subsystem
+
+Digitizing - Import - Delete - Changing Shape
+
+
+In the sewer network subsystem have the following classes a geometry (point, line, area) and thus can be edited directly in GEPView:
+[Wastewater_nodes] AK (point)
+[Reach] HA (line) -> [channel]
+[Cover] DE (point) -> manholes ([Manhole], [special_structure], [infiltration_installation])
+[Wastewater_structure] (surface) -> [Special_structure], [infiltration_installation], sometimes also [Manhole] (drainage_channel)
+
+For the digitizing / importing I start from the following approach:
+
+Manholes
+- I capture [cover] (which you see and you can measure it).
+- Unless otherwise selected: Wastewater_structure subclasse [Manhole]
+- [Wastewater_node] in the same place as [cover] -> pimple hole model (Pickellochmodel)
+
+(First I recorded at the [Wastewater_nodes] no coordinates if it has the same coordinates as the linked [cover]. Since the link ([cover]-[structure_part]-[Wastewater_structure]-[wastewater_networkelement]-[Wastewater_nodes]) is not easy, i had waiting times in larger databases.)
+
+Channels
+- I capture [reach]
+- Unless otherwise selected: Wastewater_structure subclasse [channel]
+- [Reach] grab if possible on existing [wastewater_node] (and thus are automatically linked with foreign keys)
+- [Reach] grab if there is no AK if possible on existing [reach] (and thus are automatically linked with foreign keys)
+
+Because in ArcView, there can be editing just one theme at a time, I usually first digitize all the manholes, then I have to save the manholes and can then digitize the reach between the manholes. Becuse of the automatic grab and foreign key-connecting, the network construction is done.
+
+[Reach_point] can not be digitized or deleted for themselves. Although they can be displayed as a separate theme, but it does not make sense to delete or digitize because they alwals belong to the [reach]. Therefore, they can only be moved, digitized or delete by the [reach].
+
+Below:
+- user action
+> program action 
+
+[Cover] digitizing
+-----------------------
+- Select [cover] theme
+- Select digitizing-tool
+> opens the modular window where I can choose the [Wastewater_structure] class (prefix is ​​[manhole], shortlist is [channel], [manhole], [special_structure], [discharge_point], [infiltration_installation], [ARABauwerk], existing Wastewater_structure) and get feedback on what is happening in the database.
+- Click point (respectively construct with resection or orthogonal tool)
+> Get a new DabaseID
+> Create the [Wastewater_structure] record (in query DSS02_ "building class", also generates the corresponding record in the superclass [Wastewater_structure]) with the appropriate [Wastewater_structure]-ID and the same name as the ID.
+> Create the [wastewater-node] (in query DSS02_[wastewater-node], also generates the corresponding record in the superclass [wastewater_networkelement]) with the corresponding AK-ID and the same name as the ID and the foreign key to the [Wastewater_structure].
+> Create the [cover] (in query DSS02_[cover], also generates the corresponding record in the superclass [structure_part]) with the corresponding [cover]-ID and the same name as the ID and the foreign key to the [Wastewater_structure].
+> Display the input screen
+- Acquisition of attributes in the input screen, and in the related tables [wastewater_node] and [wastewater_structure], also create additional data sets in other related tables (eg [acces_aid] or [benching]) (thats why AK and [wastewater_structure] should be created previously).
+- Cancel or OK
+> If Cancel: delete the whole [wastewater_structure] and all related records in the related tables (as a normal delete of [wastewater_structure]). Message in the modular window "dabase unchanged." Finish.
+> If OK: create the shapes (ArcView-specific)
+> if appropriate box selected: Set for [cover], [wastewater_node] and [wastewater_structure] the same name (this works only if there is just one cover and just one wastewater_node in this [wastewater_structure]).
+> Assume values ​​from input form to database
+> Depending on the settings: update attributes attached to the Shape File (lasts for large databases), so that the symbols match the corresponding entries and legends.
+> Message in the modular window "xy cover and wastewater_node created." Finish.
+
+
+[Reach] digitizing
+-----------------------
+- Select [reach] theme
+- Select digitizing-tool
+> opens the modular window where I can choose the [Wastewater_structure] class (prefix is [channel], shortlist is [channel], [manhole], [special_structure], [discharge_point], [infiltration_installation], [ARABauwerk], existing Wastewater_structure) and get feedback on what is happening in the database.
+- digitizing a (poly)line
+> Grap at each end of the line a [Wastewater_node] or an other [reach]
+> Get the appropriate [wastewater_networkelement]-IDs if grabed
+> Get a new DabaseID
+> Create a from-[reach_point] and a to-[reach_point] in DSS02_[reach_point], without coordinates.
+> Create the [Wastewater_structure]-class record (in query DSS02_[channel] respectively DSS02_"building class", that also produces the corresponding record in the super class [wastewater_structure]) with the appropriate [wastewater_structure]-ID and the same name as the ID.
+> Create the [reach] (DSS02_[reach], generats also the coresponding data set in the superclass [wastewater_networkelement]) with the corresponding [reach]-ID and the same name as the ID and the foreign keys to [wastewater_structure] and the two [reach_point].
+> Display the input screen
+- Acquisition of attributes in the input screen, and in the related tables [channel] and [reach_point], also create additional data sets in other related tables (eg [dryweather_downspout]) (that's why [wastewater_structure] should be created previously).
+- Cancel or OK
+> If Cancel: delete the whole [wastewater_structure] and all related records in the related tables (as a normal delete of [wastewater_structure]). Message in the modular window  "dabase unchanged." Finish.
+> If OK: create the shapes (ArcView-specific)
+> Assume values ​​from input form to database
+> Depending on the settings: update attributes attached to the Shape File (lasts for large databases), so that the symbols match the corresponding entries and legends.
+> Set the foreign key to the grabed [wastewater_networkelement] at the two [reach_point].
+> Write the geometry of the shape into the dabase (Table AT_HaltungVerlauf)
+> Set Field [reach]/length_effective to the shape-length
+> Message in the modular window  "xy reach created, caught start on yz, caught end on zx." Finish.
+
+************************
+
+Wastewater construction digitize
+------------------------------
+One area I can only digitize an existing wastewater construction. So I have to first collect a lid, waste knot or an attitude.
+- Select Topic wastewater construction
+- Select Digitalisiertool
+> It opens the window is where modular structure class selected as "existing sewage work 'and can not be changed. Instead of the feedback is a selection tool available.
+- Click entertainment, cover or water knot
+> In Klicktes element is selected and the class name and OBJ_ID appears in modular window.
+- Surface digitize
+> Geometry dabase store
+
+
+Import
+------------
+Is similar to themselves.
+At the Cover: Searching in the import data for the field structure class. If it exists, then the structure class is elected by the contents of the field (standard shaft, special structure, infiltration system, etc) when field is not present or invalid value, then there is a standard manhole.
+In entertainment: always building class channel
+Instead of the input screen, all fields that have the same name as the attribute fields used for the import.
+No linkage of the conversations with AK or other conversations. The shortcut on the basis of the neighbor relationship can be subsequently triggered with a command or created separately with the foreign key tool.
+
+
+Delete
+------------
+When deleting from the first, the dabase any existing links are broken, then the object itself is deleted with the existing super-or subclasses.
+For this release I have deleted and created a SQL-Statment jeweilen in a file in the config directory, which I read to edit Obj_IDs.
+
+With lid, waste knot and attitude may at the inquiry, if really want to delete, select whether the entire building waste is to be deleted. On the one hand this is useful if, for example. only one to be deleted from two covers of a building wastewater. On the other hand, it can also cause this as the position is cleared and then left to change the channel data rate can not be visualized in the GIS, because no geometry is available ... more
+
+Posture point can not be deleted (delete, if the attitude is deleted).
+Wastewater construction areas: it deletes only the geometry but not the buildings themselves and the associated wastewater sewage network elements.
+
+Maintenance events:
+First, only the RE-building waste water conservation event records are deleted (so that the connection between sewage construction and maintenance event occurs). Then it is checked whether the maintenance event now has a link to a sewer construction. If it can also preserve the event itself will be deleted after inquiry.
+
+
+Shape Change
+--------------
+If I use the Move tool, move a cover, shifts the nodes and the conversations with wastewater is not automatic. This must be done before you move all three layers are selected.
+That node and wastewater management (spunkte) mitverschieben there is certainly useful, where new coordinates can be changed via a cover of an import Koordiantenliste.
+If an attitude (at least in part) is moved: what happens to the dummy terminals. This situation must be adjusted moderately well. GEPView possible with a command for the selected positions. When the displacement exceeds a certain level, the user must decide whether the new location of the connector extend through or blind is Aufwinkeln or set manually.
+
+It would be ideal if the consumer point yet know whether it eg. constructed by a sample size from a corner was (then he moves really not, if the channel is moved) or by a distance along the channel (the channel TV recordings), then it shifts to the channel. This information can not be detected in the FD-DSS.
