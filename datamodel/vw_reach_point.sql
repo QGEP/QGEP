@@ -8,9 +8,4 @@ CREATE OR REPLACE VIEW qgep.vw_reach_point AS
    LEFT JOIN qgep.od_wastewater_networkelement ON od_reach_point.fs_wastewater_networkelement::text = od_wastewater_networkelement.obj_id::text
    LEFT JOIN qgep.od_reach ON od_reach_point.fs_wastewater_networkelement::text = od_reach.obj_id::text
    LEFT JOIN qgep.od_reach_point upper_reach_point ON od_reach.fs_reach_point_from::text = upper_reach_point.obj_id::text
-   LEFT JOIN qgep.od_wastewater_node upper_wastewater_node ON upper_reach_point.fs_wastewater_networkelement::text = upper_wastewater_node.obj_id::text
-  WHERE od_reach_point.obj_id::text = 'AAA_HA15283A'::text OR od_reach_point.obj_id::text = 'AAA_HA15283A'::text OR od_reach_point.obj_id::text = 'AAA_HA15285A'::text OR od_reach_point.obj_id::text = 'AAA_HA15285E'::text OR od_reach_point.obj_id::text = 'AAA_HA15286E'::text OR od_reach_point.obj_id::text = 'AAA_HA15289E'::text OR od_reach_point.obj_id::text = 'AAA_HA44265E'::text OR od_reach_point.obj_id::text = 'AAA_HA44281E'::text OR od_reach_point.obj_id::text = 'AAA_HA44310E'::text OR od_reach_point.obj_id::text = 'AAA_HA44313E'::text OR od_reach_point.obj_id::text = 'AAA_HA44314A'::text OR od_reach_point.obj_id::text = 'AAA_HA52631A'::text OR od_reach_point.obj_id::text = 'AAA_HA52631E'::text;
-
-ALTER TABLE qgep.vw_reach_point
-  OWNER TO an;
-
+   LEFT JOIN qgep.od_wastewater_node upper_wastewater_node ON upper_reach_point.fs_wastewater_networkelement::text = upper_wastewater_node.obj_id::text;
