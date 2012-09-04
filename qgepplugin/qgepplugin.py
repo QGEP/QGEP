@@ -67,6 +67,7 @@ class QgepPlugin:
 		#Init class variables
 		self.tool = QgepMapTool( self.canvas, self.action )
 		self.selectedPathPoints = []
+		self.pathPolyline = []
 		self.dockOpened = False		#remember for not reopening dock if there's already one opened
 
 	def unload(self):
@@ -128,13 +129,15 @@ class QgepPlugin:
 	def moved(self,position):
 		if len( self.selectedPathPoints ) > 0:
 			self.rbHelperLine.reset()
-			self.rbHelperLine.addPoint( self.selectedPathPoints[-1] )
+			for point in self.selectedPathPoints:
+				self.rbHelperLine.addPoint( point )
 			mousePos = self.canvas.getCoordinateTransform().toMapCoordinates(position["x"],position["y"])
 			self.rbHelperLine.addPoint( mousePos )
 
 	# Cancel any ongoing routing selection
 	def rightClicked(self,position):
 		self.selectedPathPoints = []
+		self.pathPolyline = []
 		self.rbHelperLine.reset( )
 
 	# Select startpoint / endpoint
@@ -159,6 +162,7 @@ class QgepPlugin:
 		if len( snappedPoint ) > 0 and len( self.selectedPathPoints ) > 0:
 			self.findPath( self.selectedPathPoints[-1], QgsPoint( snappedPoint[0].snappedVertex.x(), snappedPoint[0].snappedVertex.y() ) )
 			self.selectedPathPoints = []
+			self.pathPolyline = []
 
 #***************************** open and quit options *******************************************
 
@@ -212,7 +216,7 @@ class QgepPlugin:
 		
 	def findPath(self,pStart,pEnd):
 		( vertices, edges ) = self.networkAnalyzer.shortestPath( pStart, pEnd )
-		self.rbHelperLine.reset()
+		# self.rbHelperLine.reset()
 		
 		if vertices:
 			attrMASL = self.nodeLayer.dataProvider().fieldNameIndex( 'masl' ) # index of field meters above sea level
@@ -223,8 +227,7 @@ class QgepPlugin:
 			profile = QgepProfile()
 			curIdx = 0
 			
-			pathPolyline = []
-			
+
 			for vertex in vertices:
 				if self.nodeLayer.featureAtId( vertex[2], nodeFeat ):
 					nodeAttrs = nodeFeat.attributeMap()
@@ -239,11 +242,11 @@ class QgepPlugin:
 							mpl = edgeFeat.geometry().asMultiPolyline()
 							newSegment = mpl[0]
 							newSegment.reverse()
-							pathPolyline.extend( newSegment )
+							self.pathPolyline.extend( newSegment )
 						
 					curIdx += 1
 			
-			self.rbShortestPath.addGeometry( QgsGeometry.fromPolyline( pathPolyline ), self.nodeLayer )
+			self.rbShortestPath.addGeometry( QgsGeometry.fromPolyline( self.pathPolyline ), self.nodeLayer )
 			self.plotWidget.setProfile( profile )
 			return True
 		else:

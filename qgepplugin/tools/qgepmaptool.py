@@ -30,17 +30,14 @@ from qgis.gui import *
 
 class QgepMapTool(QgsMapTool):
 
-	def __init__(self, canvas,button):
+	def __init__( self, canvas, button ):
 		QgsMapTool.__init__(self,canvas)
 		self.canvas = canvas
 		self.cursor = QCursor(Qt.CrossCursor)
 		self.button = button
 
 	def canvasMoveEvent(self,event):
-		try:
-			self.emit( SIGNAL("moved"), {'x': event.pos().x(), 'y': event.pos().y()} )
-		except TypeError as e:
-			print "Mouse moved error:" + e.message
+		self.emit( SIGNAL("moved"), {'x': event.pos().x(), 'y': event.pos().y()} )
 
 
 	def canvasReleaseEvent(self,event):
