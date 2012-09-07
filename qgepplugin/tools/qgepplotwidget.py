@@ -23,10 +23,7 @@
 #
 #---------------------------------------------------------------------
 
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
-from PyQt4.Qt import *
-from matplotlib import *
+from PyQt4.QtGui import QWidget, QVBoxLayout, QPalette, QSizePolicy
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg
 

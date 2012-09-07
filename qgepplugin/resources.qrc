@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/plugins/qgepplugin">
+        <file>icons/qgepIcon.png</file>
+        <file>icons/qgepIcon.svg</file>
+    </qresource>
+</RCC>

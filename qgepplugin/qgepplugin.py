@@ -30,229 +30,113 @@ from qgis.gui import *
 
 
 import resources
-from ui.qgepdockwidget import QgepDockWidget
-from tools.qgepmaptool import QgepMapTool
-from tools.qgepnetwork import QgepNetworkAnalyzer
-from tools.qgepprofile import QgepProfile
+from ui.qgepdockwidget    import QgepDockWidget
+from tools.qgepmaptools   import QgepProfileMapTool
+from tools.qgepnetwork    import QgepNetworkAnalyzer
 from tools.qgepplotwidget import QgepPlotWidget
-
-import os
-from os import *
-
 
 class QgepPlugin:
 
-	def __init__(self, iface):
-		self.iface = iface
-		self.canvas = iface.mapCanvas()
-		self.networkAnalyzer = 0
-		self.toolActivated = False
-		self.reachLayer = 0
-		self.nodeLayer = 0
-		
-	def initGui(self):
-		# Create toolbar button
-		self.action = QAction(QIcon(":/plugins/qgepplugin/icons/qgepIcon.svg"), "Trace", self.iface.mainWindow())
-		self.action.setWhatsThis("Reach trace.")
-		QObject.connect(self.action, SIGNAL("triggered()"), self.run)
-		self.aboutAction = QAction("About", self.iface.mainWindow())
-		QObject.connect(self.aboutAction, SIGNAL("triggered()"), self.about)
+    def __init__( self, iface ):
+        self.iface = iface
+        self.canvas = iface.mapCanvas()
+        self.networkAnalyzer = 0
+        self.reachLayer = 0
+        self.nodeLayer = 0
+        
+        # Remember not to reopen the dock if there's already one opened
+        self.dockWidget      = 0
 
-		# Add toolbar button and menu item
-		self.iface.addToolBarIcon(self.action)
-		self.iface.addPluginToMenu("&QGEP", self.action)
-		QAction(QIcon(":/plugins/qgepplugin/icons/qgepIcon.png"), "Trace", self.iface.mainWindow())
-		self.iface.addPluginToMenu("&QGEP", self.aboutAction)
+    def initGui( self ):
+        self.toolbarButtons = []
+        
+        # Create toolbar button
+        self.profileAction = QAction( QIcon( ":/plugins/qgepplugin/icons/qgepIcon.svg" ), "Trace", self.iface.mainWindow() )
+        self.profileAction.setWhatsThis( "Reach trace." )
+        self.profileAction.setEnabled( False )
+        self.profileAction.triggered.connect( self.profileToolClicked )
+        self.aboutAction = QAction( "About", self.iface.mainWindow() )
+        self.aboutAction.triggered.connect( self.about )
 
-		#Init class variables
-		self.tool = QgepMapTool( self.canvas, self.action )
-		self.selectedPathPoints = []
-		self.pathPolyline = []
-		self.dockOpened = False		#remember for not reopening dock if there's already one opened
+        # Add toolbar button and menu item
+        self.iface.addToolBarIcon( self.profileAction )
+        self.iface.addPluginToMenu( "&QGEP", self.profileAction )
+        self.iface.addPluginToMenu( "&QGEP", self.aboutAction )
+        
+        self.toolbarButtons.append( self.profileAction )
 
-	def unload(self):
-		self.deactivate()
-		self.iface.removeToolBarIcon(self.action)
-		self.iface.removePluginMenu("&QGEP", self.action)
-		self.iface.removePluginMenu("&QGEP", self.aboutAction)
+		# Init the object maintaining the network
+        self.networkAnalyzer = QgepNetworkAnalyzer( self.iface )
+        # Create the map tool for profile selection
+        self.profileTool     = QgepProfileMapTool( self.canvas, self.profileAction, self.networkAnalyzer )
+        
+        # Connect to events that can change layers
+        QgsMapLayerRegistry.instance().layersWillBeRemoved.connect( self.layersWillBeRemoved )
+        QgsMapLayerRegistry.instance().layersAdded.connect( self.layersAdded )
+        
+    def unload( self ):
+        self.iface.removeToolBarIcon( self.profileAction )
+        self.iface.removePluginMenu( "&QGEP", self.profileAction )
+        self.iface.removePluginMenu( "&QGEP", self.aboutAction )
 
-	# Is executed when the main plugin button is clicked
-	def run(self):
-		# Check if the necessary layer for this tool is available 
-		if self.checkForLayers() == False:
-			return
-		
-		# If dock not already opened, open the dock and all the necessary thing (model,doProfile...)
-		if self.dockOpened == False:
-			self.wdg = QgepDockWidget( self.iface.mainWindow(), self.iface )
-			self.wdg.showIt()
+    # Is executed when the profile button is clicked
+    def profileToolClicked( self ):
+        self.openDock()
+        # Set the profile map tool
+        self.profileTool.setActive()
 
-			self.plotWidget = QgepPlotWidget( self.wdg )
+    def openDock(self):
+        if self.dockWidget == 0:
+            self.dockWidget = QgepDockWidget( self.iface.mainWindow(), self.iface )
+            self.dockWidget.closed.connect( self.onDialogClosed )
+            self.dockWidget.showIt()
+            
+            self.plotWidget = QgepPlotWidget( self.dockWidget )
+            self.dockWidget.addPlotWidget( self.plotWidget )
 
-			QObject.connect( self.wdg, SIGNAL( "closed(PyQt_PyObject)" ), self.onDialogClosed )
+    
+    # Gets called when a layer is removed    
+    def layersWillBeRemoved( self, layerList ):
+        for layerId in layerList:
+            if 0!= self.networkAnalyzer.getNodeLayer():
+                if self.networkAnalyzer.getNodeLayerId() == layerId:
+                    self.networkAnalyzer.setNodeLayer( 0 )
+                    self.layersChanged()
+                
+            if 0!= self.networkAnalyzer.getReachLayer(): 
+                if self.networkAnalyzer.getReachLayerId() == layerId:
+                    self.networkAnalyzer.setReachLayer( 0 )
+                    self.layersChanged()
+                    
+    # Gets called when a layer is added
+    def layersAdded( self, layers ):
+        for newLayer in layers:
+            if newLayer.type() == QgsMapLayer.VectorLayer and newLayer.name() == "vw_reach_point":
+                self.networkAnalyzer.setNodeLayer( newLayer )
+                self.layersChanged()
 
-			self.dockOpened = True
-			
-			self.wdg.addPlotWidget( self.plotWidget )
-			
-		# Connect mouse listeners
-		self.connectTool()
-		# We switch to our own map tool
-		self.saveTool = self.canvas.mapTool()
-		self.canvas.setMapTool( self.tool )
-		# Init rubberband to visualize current status
-		self.rbHelperLine = QgsRubberBand( self.canvas )
-		self.rbHelperLine.setColor( QColor("#FFD900") )
-		self.rbHelperLine.setWidth( 2 )
-		
-		self.rbShortestPath = QgsRubberBand( self.canvas ) 
-		self.rbShortestPath.setColor( QColor("#FF9500") )
-		self.rbShortestPath.setWidth( 3 )
-		
-		self.snapper = QgsSnapper( self.canvas.mapRenderer() )
-		snapLayer = QgsSnapper.SnapLayer()
-		snapLayer.mLayer = self.nodeLayer
-		snapLayer.mTolerance = 10
-		snapLayer.mUnitType = QgsTolerance.Pixels
-		snapLayer.mSnapTo = QgsSnapper.SnapToVertex
-		
-		self.snapper.setSnapLayers( [snapLayer] )
-		
-		if self.networkAnalyzer == 0:
-			self.networkAnalyzer = QgepNetworkAnalyzer( self.iface, self.reachLayer, self.nodeLayer )
-			self.networkAnalyzer.createGraph()
-
-
-#************************************* Mouse listener actions ***********************************************
-
-	# Mouse moved: update helper line
-	def moved(self,position):
-		if len( self.selectedPathPoints ) > 0:
-			self.rbHelperLine.reset()
-			for point in self.selectedPathPoints:
-				self.rbHelperLine.addPoint( point )
-			mousePos = self.canvas.getCoordinateTransform().toMapCoordinates(position["x"],position["y"])
-			self.rbHelperLine.addPoint( mousePos )
-
-	# Cancel any ongoing routing selection
-	def rightClicked(self,position):
-		self.selectedPathPoints = []
-		self.pathPolyline = []
-		self.rbHelperLine.reset( )
-
-	# Select startpoint / endpoint
-	def leftClicked(self,position):
-		pClicked = QPoint( position["x"], position["y"] )
-		snappedPoint = []
-		( res, snappedPoint ) = self.snapper.snapPoint( pClicked, snappedPoint )
-		
-		if len( snappedPoint ) > 0:
-			if len( self.selectedPathPoints ) > 0:
-				pf =  self.findPath( self.selectedPathPoints[-1], QgsPoint( snappedPoint[0].snappedVertex.x(), snappedPoint[0].snappedVertex.y() ) )
-				if pf:
-					self.selectedPathPoints.append( QgsPoint( snappedPoint[0].snappedVertex.x(), snappedPoint[0].snappedVertex.y() ) )
-			else:
-				self.selectedPathPoints.append( QgsPoint( snappedPoint[0].snappedVertex.x(), snappedPoint[0].snappedVertex.y() ) )
-
-	def doubleClicked(self,position):
-		pClicked = QPoint( position["x"], position["y"] )
-		snappedPoint = []
-		( res, snappedPoint ) = self.snapper.snapPoint( pClicked, snappedPoint )
-		
-		if len( snappedPoint ) > 0 and len( self.selectedPathPoints ) > 0:
-			self.findPath( self.selectedPathPoints[-1], QgsPoint( snappedPoint[0].snappedVertex.x(), snappedPoint[0].snappedVertex.y() ) )
-			self.selectedPathPoints = []
-			self.pathPolyline = []
-
+            if newLayer.type() == QgsMapLayer.VectorLayer and newLayer.name() == "Haltung":
+                self.networkAnalyzer.setReachLayer( newLayer )
+                self.layersChanged()
+                
+    def layersChanged( self ):
+        buttonsEnabled = False
+        
+        if self.networkAnalyzer.getNodeLayer() and self.networkAnalyzer.getReachLayer():
+            buttonsEnabled = True
+            
+        for button in self.toolbarButtons:
+            button.setEnabled( buttonsEnabled )
+            
+    def onProfileChanged( self, profile ):
+        if self.plotWidget:
+            self.plotWidget.setProfile( profile )
+            
 #***************************** open and quit options *******************************************
 
-	def checkForLayers(self):
-		layers = self.canvas.layers()
-		
-		for layer in layers:
-			if layer.type() == QgsMapLayer.VectorLayer:
-				provider = layer.dataProvider()
-				fields = provider.fields()
-				if layer.name() == "vw_reach_point":
-					self.nodeLayer = layer
-				elif layer.name() == "Haltung":
-					self.reachLayer = layer
-					
-		if self.nodeLayer == 0 or self.reachLayer == 0:
-			QMessageBox.warning(self.iface.mainWindow(), "QGEP", "A required layer is missing. Please open a QGEP project to use this plugin.")
-			return False
-		else:
-			return True
-		
-	def connectTool(self):
-		QObject.connect(self.tool, SIGNAL("moved"), self.moved)
-		QObject.connect(self.tool, SIGNAL("rightClicked"), self.rightClicked)
-		QObject.connect(self.tool, SIGNAL("leftClicked"), self.leftClicked)
-		QObject.connect(self.tool, SIGNAL("doubleClicked"), self.doubleClicked)
-		QObject.connect(self.tool, SIGNAL("deactivate"), self.deactivate)
+    def onDialogClosed( self ):        #used when Dock dialog is closed
+        self.dockWidget = 0
 
-
-	def deactivate(self):		#enable clean exit of the plugin
-		QObject.disconnect(self.tool, SIGNAL("moved"), self.moved)
-		QObject.disconnect(self.tool, SIGNAL("leftClicked"), self.leftClicked)
-		QObject.disconnect(self.tool, SIGNAL("rightClicked"), self.rightClicked)
-		QObject.disconnect(self.tool, SIGNAL("doubleClicked"), self.doubleClicked)
-		self.iface.mainWindow().statusBar().showMessage(QString(""))
-
-	def cleaning(self):			#used on right click
-		try:
-			#print str(self.previousLayer)
-			self.previousLayer.removeSelection(False)
-			#self.previousLayer.select(None)
-		except:
-			pass
-		self.canvas.unsetMapTool(self.tool)
-		self.canvas.setMapTool(self.saveTool)
-		self.iface.mainWindow().statusBar().showMessage( "" )
-
-	def onDialogClosed(self):		#used when Dock dialog is closed
-		self.dockOpened = False
-		self.cleaning()
-		
-	def findPath(self,pStart,pEnd):
-		( vertices, edges ) = self.networkAnalyzer.shortestPath( pStart, pEnd )
-		# self.rbHelperLine.reset()
-		
-		if vertices:
-			attrMASL = self.nodeLayer.dataProvider().fieldNameIndex( 'masl' ) # index of field meters above sea level
-			attrLength = self.reachLayer.dataProvider().fieldNameIndex( 'length_effective' )
-			self.rbShortestPath.reset()
-			nodeFeat = QgsFeature()
-			edgeFeat = QgsFeature()
-			profile = QgepProfile()
-			curIdx = 0
-			
-
-			for vertex in vertices:
-				if self.nodeLayer.featureAtId( vertex[2], nodeFeat ):
-					nodeAttrs = nodeFeat.attributeMap()
-					masl = nodeAttrs[attrMASL].toFloat()[0]
-					
-					profile.addPoint( vertex[0], masl )
-					
-					if curIdx < len( edges ):
-						
-						if self.networkAnalyzer.networkLayer().featureAtId( edges[curIdx], edgeFeat ):
-							newSegment = []
-							mpl = edgeFeat.geometry().asMultiPolyline()
-							newSegment = mpl[0]
-							newSegment.reverse()
-							self.pathPolyline.extend( newSegment )
-						
-					curIdx += 1
-			
-			self.rbShortestPath.addGeometry( QgsGeometry.fromPolyline( self.pathPolyline ), self.nodeLayer )
-			self.plotWidget.setProfile( profile )
-			return True
-		else:
-			QMessageBox.warning(self.iface.mainWindow(), "QGEP - No path found", "No connection exists between the selected points. Use right click to cancel this operation." )
-			return False
-
-	def about(self):
-		from ui.ui_dlgabout import DlgAbout
-		DlgAbout(self.iface.mainWindow()).exec_()
+    def about( self ):
+        from ui.ui_dlgabout import DlgAbout
+        DlgAbout( self.iface.mainWindow() ).exec_()

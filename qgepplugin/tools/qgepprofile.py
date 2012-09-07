@@ -23,23 +23,26 @@
 #
 #---------------------------------------------------------------------
 
-class QgepProfile():
-	def __init__( self ):
-		self.points = []
+from PyQt4.QtCore import QObject
 
-	def addPoint( self, offset, masl ):
-		self.points.append( ( offset, masl ) )
-		
-	def getOffsetArray(self):
-		offsetArray = []
-		for point in self.points:
-			offsetArray.append(point[0])
-		
-		return offsetArray
-		
-	def getMaslArray(self):
-		maslArray = []
-		for point in self.points:
-			maslArray.append(point[1])
-			
-		return maslArray
+class QgepProfile( QObject ):
+    def __init__( self ):
+        QObject.__init__(self)
+        self.points = []
+
+    def addPoint( self, offset, masl ):
+        self.points.append( ( offset, masl ) )
+        
+    def getOffsetArray(self):
+        offsetArray = []
+        for point in self.points:
+            offsetArray.append(point[0])
+        
+        return offsetArray
+        
+    def getMaslArray(self):
+        maslArray = []
+        for point in self.points:
+            maslArray.append(point[1])
+            
+        return maslArray

@@ -2,7 +2,7 @@
 #-----------------------------------------------------------
 #
 # Profile
-# Copyright (C) 2012  Patrice Verchere
+# Copyright (C) 2012  Matthias Kuhn
 #-----------------------------------------------------------
 #
 # licensed under the terms of GNU GPL 2
@@ -23,56 +23,42 @@
 #
 #---------------------------------------------------------------------
 
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
-
+from PyQt4.QtCore import Qt, pyqtSignal
+from PyQt4.QtGui import QDockWidget
 from qgis.core import *
 from qgis.gui import *
-
 from ui_qgepdockwidget import Ui_QgepDockWidget
 
-try:
-	from matplotlib import *
-	import matplotlib
-	matplotlib_loaded = True
-except ImportError:
-	matplotlib_loaded = False 
 
-class QgepDockWidget(QDockWidget,Ui_QgepDockWidget):
 
-	def __init__(self, parent, iface ):
-		QDockWidget.__init__( self, parent )
-		self.setAttribute( Qt.WA_DeleteOnClose )
+class QgepDockWidget( QDockWidget, Ui_QgepDockWidget ):
+    # Signal emitted when the widget is closed
+    closed = pyqtSignal()
 
-		self.iface = iface
+    def __init__( self, parent, iface ):
+        QDockWidget.__init__( self, parent )
+        self.setAttribute( Qt.WA_DeleteOnClose )
 
-		self.setupUi(self)
+        self.iface = iface
 
-	def showIt(self):
-		#self.setLocation( Qt.BottomDockWidgetArea )
-		self.location = Qt.BottomDockWidgetArea
-		minsize = self.minimumSize()
-		maxsize = self.maximumSize()
-		self.setMinimumSize(minsize)
-		self.setMaximumSize(maxsize)
-		self.iface.mapCanvas().setRenderFlag(False)
+        self.setupUi( self )
 
-		#TableWiew thing
-		self.verticalLayout_plot = QVBoxLayout( self.frame_for_plot )
-		self.verticalLayout_plot.setMargin(0)
-		
-		#The ploting area
-		self.plotWidget = None
-		#Draw the widget
-		self.iface.addDockWidget(self.location, self)
-		self.iface.mapCanvas().setRenderFlag(True)
+    def showIt( self ):
+        #self.setLocation( Qt.BottomDockWidgetArea )
+        self.location = Qt.BottomDockWidgetArea
+        minsize = self.minimumSize()
+        maxsize = self.maximumSize()
+        self.setMinimumSize( minsize )
+        self.setMaximumSize( maxsize )
+        self.iface.mapCanvas().setRenderFlag( False )
 
-	def closeEvent(self, event):
-		self.emit( SIGNAL( "closed(PyQt_PyObject)" ), self )
-		return QDockWidget.closeEvent( self, event )
+        self.iface.addDockWidget( self.location, self )
+        self.iface.mapCanvas().setRenderFlag( True )
 
-	def addPlotWidget( self, plotWidget ):
-		self.plotWidget = plotWidget
-		self.verticalLayout_plot.addWidget( self.plotWidget )
-		
-		
+    def closeEvent( self, event ):
+        self.closed.emit()
+        return QDockWidget.closeEvent( self, event )
+
+    def addPlotWidget( self, plotWidget ):
+        self.plotWidget = plotWidget
+        self.verticalLayoutForPlot.addWidget( self.plotWidget )
