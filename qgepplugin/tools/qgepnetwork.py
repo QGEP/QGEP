@@ -41,6 +41,7 @@ class QgepNetworkAnalyzer():
     vertexIds = {}
     edgeWithNodes = defaultdict(list)
     nodesOnStructure = defaultdict(list)
+    # Logs performance of graph creation
     timings = []
     
     def __init__( self, iface ):
@@ -65,12 +66,18 @@ class QgepNetworkAnalyzer():
             self.reachLayerId = 0
         
     def setNodeLayer( self, nodeLayer ):
+        self.dirty = True
+        
         self.nodeLayer = nodeLayer
+        
         if nodeLayer:
             self.nodeLayerId = nodeLayer.id()
+            
         else:
             self.nodeLayerId = 0
-        self.dirty = True
+            
+        if self.nodeLayer and self.reachLayer:
+            self.createGraph()
         
     def _createMemoryLayer( self ):
         provider = self.reachLayer.dataProvider()
@@ -328,7 +335,6 @@ class QgepNetworkAnalyzer():
     def shortestPath(self,pStart,pEnd):
         if self.dirty:
             self.createGraph()
-            print( self.timings )
             
         idStart = self.graph.findVertex( pStart )
         idEnd = self.graph.findVertex( pEnd )

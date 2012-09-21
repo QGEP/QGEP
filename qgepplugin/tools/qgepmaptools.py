@@ -31,7 +31,9 @@ from qgepprofile import QgepProfile
 
 class QgepMapTool( QgsMapTool ):
     
-    profileChanged = pyqtSignal( QgepProfile )
+    profileChanged = pyqtSignal( object )
+    profile = QgepProfile()
+    segmentOffset = 0
     
     def __init__( self, canvas, button ):
         QgsMapTool.__init__( self, canvas )
@@ -109,15 +111,16 @@ class QgepProfileMapTool( QgepMapTool ):
 
             nodeFeat = QgsFeature()
             edgeFeat = QgsFeature()
-            profile = QgepProfile()
-
+            
+            vertices.reverse()
             for vertex in vertices:
                 if nodeLayer.featureAtId( vertex[2], nodeFeat ):
                     nodeAttrs = nodeFeat.attributeMap()
                     masl = nodeAttrs[attrMASL].toFloat()[0]
                     
-                    profile.addPoint( vertex[0], masl )
+                    self.profile.addPoint( vertex[0] + self.segmentOffset, masl )
             
+            self.segmentOffset += vertices[-1][0]
             edges.reverse()
             
             for edge in edges:
@@ -128,7 +131,7 @@ class QgepProfileMapTool( QgepMapTool ):
                     self.pathPolyline.extend( newSegment )
             
             self.rbShortestPath.addGeometry( QgsGeometry.fromPolyline( self.pathPolyline ), nodeLayer )
-            self.profileChanged.emit( profile )
+            self.profileChanged.emit( self.profile )
             
             return True
         else:
@@ -151,6 +154,8 @@ class QgepProfileMapTool( QgepMapTool ):
         self.selectedPathPoints = []
         self.pathPolyline = []
         self.rbHelperLine.reset()
+        self.profile.reset()
+        self.segmentOffset = 0
 
     # Select startpoint / endpoint
     def leftClicked( self, position ):

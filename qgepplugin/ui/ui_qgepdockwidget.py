@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'C:\Daten\VMKUHN\Eigene Dateien\mkuhn\QGEP\qgepplugin\ui\qgepdockwidget.ui'
 #
-# Created: Wed Sep 05 17:53:08 2012
+# Created: Tue Sep 18 17:23:42 2012
 #      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -62,6 +62,7 @@ class Ui_QgepDockWidget(object):
         self.frameForPlot.setFrameShadow(QtGui.QFrame.Raised)
         self.frameForPlot.setObjectName(_fromUtf8("frameForPlot"))
         self.verticalLayoutForPlot = QtGui.QVBoxLayout(self.frameForPlot)
+        self.verticalLayoutForPlot.setMargin(0)
         self.verticalLayoutForPlot.setObjectName(_fromUtf8("verticalLayoutForPlot"))
         self.gridlayout.addWidget(self.frameForPlot, 0, 1, 1, 1)
         self.gridLayout = QtGui.QGridLayout()
@@ -73,7 +74,10 @@ class Ui_QgepDockWidget(object):
         self.performCalculationButton.setObjectName(_fromUtf8("performCalculationButton"))
         self.gridLayout.addWidget(self.performCalculationButton, 2, 0, 1, 1)
         spacerItem = QtGui.QSpacerItem(20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.gridLayout.addItem(spacerItem, 3, 0, 1, 1)
+        self.gridLayout.addItem(spacerItem, 4, 0, 1, 1)
+        self.printButton = QtGui.QPushButton(self.tab_1)
+        self.printButton.setObjectName(_fromUtf8("printButton"))
+        self.gridLayout.addWidget(self.printButton, 3, 0, 1, 1)
         self.gridlayout.addLayout(self.gridLayout, 0, 2, 1, 1)
         self.tabWidget.addTab(self.tab_1, _fromUtf8(""))
         self.tab = QtGui.QWidget()
@@ -99,6 +103,7 @@ class Ui_QgepDockWidget(object):
         QgepDockWidget.setWindowTitle(QtGui.QApplication.translate("QgepDockWidget", "QGEP", None, QtGui.QApplication.UnicodeUTF8))
         self.reachToSelectionButton.setText(QtGui.QApplication.translate("QgepDockWidget", "Add reaches to selection", None, QtGui.QApplication.UnicodeUTF8))
         self.performCalculationButton.setText(QtGui.QApplication.translate("QgepDockWidget", "Perform calculation", None, QtGui.QApplication.UnicodeUTF8))
+        self.printButton.setText(QtGui.QApplication.translate("QgepDockWidget", "Print", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_1), QtGui.QApplication.translate("QgepDockWidget", "&Profile", None, QtGui.QApplication.UnicodeUTF8))
         self.recreateGraphButton.setText(QtGui.QApplication.translate("QgepDockWidget", "Recreate graph", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QtGui.QApplication.translate("QgepDockWidget", "Tools", None, QtGui.QApplication.UnicodeUTF8))

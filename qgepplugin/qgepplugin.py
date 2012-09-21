@@ -34,6 +34,7 @@ from ui.qgepdockwidget    import QgepDockWidget
 from tools.qgepmaptools   import QgepProfileMapTool
 from tools.qgepnetwork    import QgepNetworkAnalyzer
 from tools.qgepplotwidget import QgepPlotWidget
+from ui.qgepprintpreview  import QgepPrintPreview
 
 class QgepPlugin:
 
@@ -69,6 +70,7 @@ class QgepPlugin:
         self.networkAnalyzer = QgepNetworkAnalyzer( self.iface )
         # Create the map tool for profile selection
         self.profileTool     = QgepProfileMapTool( self.canvas, self.profileAction, self.networkAnalyzer )
+        self.profileTool.profileChanged.connect( self.onProfileChanged )
         
         # Connect to events that can change layers
         QgsMapLayerRegistry.instance().layersWillBeRemoved.connect( self.layersWillBeRemoved )
@@ -93,6 +95,7 @@ class QgepPlugin:
             
             self.plotWidget = QgepPlotWidget( self.dockWidget )
             self.dockWidget.addPlotWidget( self.plotWidget )
+            self.dockWidget.printButton.clicked.connect( self.onPrintClicked )
 
     
     # Gets called when a layer is removed    
@@ -132,6 +135,11 @@ class QgepPlugin:
         if self.plotWidget:
             self.plotWidget.setProfile( profile )
             
+    def onPrintClicked( self ):
+        printPreview = QgepPrintPreview( self.dockWidget, self.plotWidget.profile )
+        printPreview.setModal( True )
+        printPreview.show() 
+        
 #***************************** open and quit options *******************************************
 
     def onDialogClosed( self ):        #used when Dock dialog is closed

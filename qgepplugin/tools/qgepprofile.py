@@ -24,25 +24,33 @@
 #---------------------------------------------------------------------
 
 from PyQt4.QtCore import QObject
+from copy import copy
 
 class QgepProfile( QObject ):
-    def __init__( self ):
-        QObject.__init__(self)
-        self.points = []
+    def __init__( self, points=[] ):
+        self.points = points
+        
+    def copy( self ):
+        newPoints = copy( self.points )
+        newProfile = QgepProfile( newPoints )
+        return newProfile
 
-    def addPoint( self, offset, masl ):
-        self.points.append( ( offset, masl ) )
+    # Adds a point if no point is present at this offset
+    # @param offset:   offset of the point (x)
+    # @param masl:     meters above sea level (y)
+    # @param props:    dict of properties for this point 
+    def addPoint( self, offset, masl, props={} ):
+        if ( offset not in self.getOffsetArray() ):
+            self.points.append( ( offset, masl, props ) )
         
     def getOffsetArray(self):
-        offsetArray = []
-        for point in self.points:
-            offsetArray.append(point[0])
-        
-        return offsetArray
+        return [ point[0] for point in self.points ]
         
     def getMaslArray(self):
-        maslArray = []
-        for point in self.points:
-            maslArray.append(point[1])
-            
-        return maslArray
+        return [ point[1] for point in self.points ]
+    
+    def getPropsArray(self):
+        return [ point[2] for point in self.points ]
+    
+    def reset(self):
+        self.points = []
