@@ -82,7 +82,8 @@ class QgepPlotWidget( QWidget ):
         self.detailPlot.yaxis.set_ticks([])
         
     def onPick( self, event ):
-        print( event )
+        if ( len( event.ind ) > 0 ):
+            self.profile.getOffsetArray()
         
 class HighlightSelected(lines.VertexSelector):
     def __init__(self, line, fmt='ro', **kwargs):

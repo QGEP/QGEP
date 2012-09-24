@@ -145,7 +145,7 @@ class QgepProfileMapTool( QgepMapTool ):
         if len( self.selectedPathPoints ) > 0:
             self.rbHelperLine.reset()
             for point in self.selectedPathPoints:
-                self.rbHelperLine.addPoint( point )
+                self.rbHelperLine.addPoint( point[1] )
             mousePos = self.canvas.getCoordinateTransform().toMapCoordinates( position["x"], position["y"] )
             self.rbHelperLine.addPoint( mousePos )
 
@@ -165,11 +165,11 @@ class QgepProfileMapTool( QgepMapTool ):
 
         if len( snappedPoint ) > 0:
             if len( self.selectedPathPoints ) > 0:
-                pf = self.findPath( self.selectedPathPoints[-1], QgsPoint( snappedPoint[0].snappedVertex.x(), snappedPoint[0].snappedVertex.y() ) )
+                pf = self.findPath( self.selectedPathPoints[-1][0], snappedPoint[0].snappedAtGeometry )
                 if pf:
-                    self.selectedPathPoints.append( QgsPoint( snappedPoint[0].snappedVertex.x(), snappedPoint[0].snappedVertex.y() ) )
+                    self.selectedPathPoints.append( ( snappedPoint[0].snappedAtGeometry, snappedPoint[0].snappedVertex ) )
             else:
-                self.selectedPathPoints.append( QgsPoint( snappedPoint[0].snappedVertex.x(), snappedPoint[0].snappedVertex.y() ) )
+                self.selectedPathPoints.append( ( snappedPoint[0].snappedAtGeometry, snappedPoint[0].snappedVertex ) )
 
     def doubleClicked( self, position ):
 #        pClicked = QPoint( position["x"], position["y"] )

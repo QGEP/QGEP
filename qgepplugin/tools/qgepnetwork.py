@@ -29,6 +29,7 @@ from collections import defaultdict
 from qgis.core import QgsVectorLayer, QgsField, QgsTolerance, QgsSnapper, \
     QgsFeature, QgsPoint, QgsGeometry, QgsMapLayerRegistry
 from qgis.networkanalysis import QgsGraph, QgsGraphAnalyzer
+import networkx as nx
 import time
 
 class QgepNetworkAnalyzer():
@@ -37,7 +38,7 @@ class QgepNetworkAnalyzer():
     nodeLayerId = 0
     nodeLayer = 0
     dirty = True
-    graph = QgsGraph()
+    graph = nx.DiGraph()
     vertexIds = {}
     edgeWithNodes = defaultdict(list)
     nodesOnStructure = defaultdict(list)
@@ -55,14 +56,7 @@ class QgepNetworkAnalyzer():
         if reachLayer:
             self.reachLayerId = reachLayer.id()
             
-            snapLayer = QgsSnapper.SnapLayer()
-            snapLayer.mLayer = reachLayer
-            snapLayer.mTolerance = 10
-            snapLayer.mUnitType = QgsTolerance.Pixels
-            snapLayer.mSnapTo = QgsSnapper.SnapToVertex
-            self.snapper.setSnapLayers( [snapLayer] )
         else:
-            self.snapper.setSnapLayers( [] )
             self.reachLayerId = 0
         
     def setNodeLayer( self, nodeLayer ):
@@ -72,8 +66,15 @@ class QgepNetworkAnalyzer():
         
         if nodeLayer:
             self.nodeLayerId = nodeLayer.id()
+            snapLayer = QgsSnapper.SnapLayer()
+            snapLayer.mLayer = nodeLayer
+            snapLayer.mTolerance = 10
+            snapLayer.mUnitType = QgsTolerance.Pixels
+            snapLayer.mSnapTo = QgsSnapper.SnapToVertex
+            self.snapper.setSnapLayers( [snapLayer] )
             
         else:
+            self.snapper.setSnapLayers( [] )
             self.nodeLayerId = 0
             
         if self.nodeLayer and self.reachLayer:
@@ -95,18 +96,18 @@ class QgepNetworkAnalyzer():
             curKey += 1
         
     def _addVertices(self):
-        provider = self.nodeLayer.dataProvider()
+        nodeProvider = self.nodeLayer.dataProvider()
         
         feat = QgsFeature()
-        allAttrs = provider.attributeIndexes()
-        attrObjId = provider.fieldNameIndex( 'obj_id' )
-        attrReachObjId = provider.fieldNameIndex( 'reach_obj_id' )
-        attrWWStructObjId = provider.fieldNameIndex( 'wastewater_structure_obj_id' )
+        allAttrs = nodeProvider.attributeIndexes()
+        attrObjId = nodeProvider.fieldNameIndex( 'obj_id' )
+        attrReachObjId = nodeProvider.fieldNameIndex( 'reach_obj_id' )
+        attrWWStructObjId = nodeProvider.fieldNameIndex( 'wastewater_structure_obj_id' )
         
-        provider.select( allAttrs )
+        nodeProvider.select( allAttrs )
         
         # Add all vertices
-        while provider.nextFeature( feat ):
+        while nodeProvider.nextFeature( feat ):
             attrs = feat.attributeMap()
             featId = feat.id()
             
@@ -115,14 +116,14 @@ class QgepNetworkAnalyzer():
             wwStructObjId = attrs[attrWWStructObjId].toString()
             
             vertex = feat.geometry().asPoint()
-            idx = self.graph.addVertex( vertex, featId )
+            self.graph.add_node( featId, dict( point=vertex) )
             
-            self.vertexIds[objId] = idx
+            self.vertexIds[objId] = featId
             
             if reachObjId != '':
-                self.edgeWithNodes[reachObjId].append( idx )
+                self.edgeWithNodes[reachObjId].append( featId )
             elif wwStructObjId != '':
-                self.nodesOnStructure[wwStructObjId].append( idx )
+                self.nodesOnStructure[wwStructObjId].append( featId )
             
     def _addEdges( self, progressDialog ):
         # Add all edges (reach)
@@ -147,6 +148,7 @@ class QgepNetworkAnalyzer():
         featureCount = dataProvider.featureCount()
         
         newEdges = []
+        graphNodes = self.graph.nodes(True)
         
         #Loop throuth all reaches
         while dataProvider.nextFeature( feat ):
@@ -198,7 +200,7 @@ class QgepNetworkAnalyzer():
                 
                 # Insert a new vertex for all nodes on this reach
                 for node in self.edgeWithNodes[objId]:
-                    point = self.graph.vertex(node).point()
+                    point = graphNodes[node][1]['point']
                     ( sqrdDist, closestPoint, vertexIndex ) = QgsGeometry.fromPolyline( polyLine ).closestSegmentWithContext( point )
                     polyLine.insert( vertexIndex, point )
                     nodes.insert( vertexIndex, ( node, point ) )
@@ -220,7 +222,7 @@ class QgepNetworkAnalyzer():
                         newFeature.setAttributeMap( feat.attributeMap() )
                         
                         # Add a new arc to the graph
-                        props = [newFeature.geometry().length()]
+                        props = dict( weight = newFeature.geometry().length(), baseFeature = feat.id() )
                         newEdges.append( ( ptId1, ptId2, props, newFeature ) )
                         
                         # Begin new segment
@@ -229,8 +231,8 @@ class QgepNetworkAnalyzer():
             
             # There are no blind connections on this reach
             else:
-                props = [attrs[attrLengthEffective]]
-                newEdges.append( ( ptId1, ptId2, props, QgsFeature( feat ) ) )
+                props = dict( weight = attrs[attrLengthEffective], baseFeature = feat.id() )
+                self.graph.add_edge( ptId1, ptId2, props )
             
             # From time to time update progress bar and insert features
             if currentFeatureCount % 1000 == 0:
@@ -262,8 +264,8 @@ class QgepNetworkAnalyzer():
             arcs = zip ( featureIds, edges )
             # Add the arcs to the graph
             for ( featId, ( ptId1, ptId2, props, feat ) ) in arcs:
-            # for ( featId, ( ptId1, ptId2, props, feat ) ) in edges:
-                self.graph.addArc( ptId1, ptId2, props, featId )
+                props['helpFeature'] = featId
+                self.graph.add_edge( ptId1, ptId2, props )
     
     # Creates a network graph
     def createGraph(self):
@@ -336,6 +338,7 @@ class QgepNetworkAnalyzer():
         if self.dirty:
             self.createGraph()
             
+        path = nx.algorithms.dijkstra_path( self.graph, pStart, pEnd )
         idStart = self.graph.findVertex( pStart )
         idEnd = self.graph.findVertex( pEnd )
 
