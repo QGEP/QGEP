@@ -38,7 +38,7 @@ class QgepNetworkAnalyzer():
     nodeLayerId = 0
     nodeLayer = 0
     dirty = True
-    graph = nx.DiGraph()
+    graph = 0
     vertexIds = {}
     edgeWithNodes = defaultdict(list)
     nodesOnStructure = defaultdict(list)
@@ -200,7 +200,7 @@ class QgepNetworkAnalyzer():
                 
                 # Insert a new vertex for all nodes on this reach
                 for node in self.edgeWithNodes[objId]:
-                    point = graphNodes[node][1]['point']
+                    point = [item[1]['point'] for item in graphNodes if item[0] == node][0]
                     ( sqrdDist, closestPoint, vertexIndex ) = QgsGeometry.fromPolyline( polyLine ).closestSegmentWithContext( point )
                     polyLine.insert( vertexIndex, point )
                     nodes.insert( vertexIndex, ( node, point ) )
@@ -221,9 +221,9 @@ class QgepNetworkAnalyzer():
                         newFeature.setGeometry( QgsGeometry.fromMultiPolyline( [newPolyLine] ) )
                         newFeature.setAttributeMap( feat.attributeMap() )
                         
-                        # Add a new arc to the graph
+                        # Add a new edge to the graph
                         props = dict( weight = newFeature.geometry().length(), baseFeature = feat.id() )
-                        newEdges.append( ( ptId1, ptId2, props, newFeature ) )
+                        newEdges.append( ( lastNode, node, props, newFeature ) )
                         
                         # Begin new segment
                         newPolyLine = [point]
@@ -231,7 +231,7 @@ class QgepNetworkAnalyzer():
             
             # There are no blind connections on this reach
             else:
-                props = dict( weight = attrs[attrLengthEffective], baseFeature = feat.id() )
+                props = dict( weight = attrs[attrLengthEffective].toDouble()[0], baseFeature = feat.id() )
                 self.graph.add_edge( ptId1, ptId2, props )
             
             # From time to time update progress bar and insert features
@@ -275,6 +275,7 @@ class QgepNetworkAnalyzer():
         self.vertexIds = {}
         self.edgeWithNodes = defaultdict( list )
         self.nodesOnStructure = defaultdict( list )
+        self.graph = nx.DiGraph()
         
         
         progressDialog.setAutoClose( True )
@@ -337,33 +338,26 @@ class QgepNetworkAnalyzer():
     def shortestPath(self,pStart,pEnd):
         if self.dirty:
             self.createGraph()
-            
-        path = nx.algorithms.dijkstra_path( self.graph, pStart, pEnd )
-        idStart = self.graph.findVertex( pStart )
-        idEnd = self.graph.findVertex( pEnd )
+        
+        p = ([],[])
+        
+        try:
+            path = nx.algorithms.dijkstra_path( self.graph, pStart, pEnd )
+            edges = [(u,v,self.graph[u][v]) for (u,v)in zip(path[0:], path[1:])]
 
-        ( tree, cost ) = QgsGraphAnalyzer.dijkstra( self.graph, idStart, 0 )
-
-        p = (0,0)
-
-        if tree[idEnd] == -1:
-            print "Path not found"
-        else:
-            vertices = []
-            edges = []
-            curPos = idEnd
-            while curPos != idStart:
-                curArc = self.graph.arc( tree[ curPos ] )
-                curInVertex = self.graph.vertex( curArc.inVertex() )
-                
-                edges.append( curArc.userData().toInt()[0] )
-                vertices.append( ( cost[ curPos ], curInVertex.point(), curInVertex.userData().toInt()[0] ) )
-                
-                curPos = self.graph.arc( tree[ curPos ] ).outVertex()
-            
-            # Append last vertex (=pStart)
-            lastVertex = self.graph.vertex( curPos )
-            vertices.append( ( cost[ curPos ], lastVertex.point(), lastVertex.userData().toInt()[0] ) )
-            p = ( vertices, edges )
-
+            p = ( path, edges )
+        
+        except nx.NetworkXNoPath:
+            print "no path found"
+        
         return p
+
+    def getEdgeFeature(self, edge):
+        feat = QgsFeature()
+        if 'helpFeature' in edge:
+            self.networkElementsLayer.featureAtId( edge['helpFeature'], feat )
+        else:
+            self.reachLayer.featureAtId( edge['baseFeature'], feat )
+            
+        return feat
+            

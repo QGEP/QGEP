@@ -112,23 +112,23 @@ class QgepProfileMapTool( QgepMapTool ):
             nodeFeat = QgsFeature()
             edgeFeat = QgsFeature()
             
-            vertices.reverse()
-            for vertex in vertices:
-                if nodeLayer.featureAtId( vertex[2], nodeFeat ):
+#            vertices.reverse()
+            for vertex in zip(vertices,[0]+[edge[2]['weight'] for edge in edges]):
+                if nodeLayer.featureAtId( vertex[0], nodeFeat ):
                     nodeAttrs = nodeFeat.attributeMap()
                     masl = nodeAttrs[attrMASL].toFloat()[0]
                     
-                    self.profile.addPoint( vertex[0] + self.segmentOffset, masl )
+                    self.segmentOffset += vertex[1]
+                    self.profile.addPoint( self.segmentOffset, masl )
             
-            self.segmentOffset += vertices[-1][0]
-            edges.reverse()
+#            edges.reverse()
             
             for edge in edges:
-                if self.networkAnalyzer.getNetworkLayer().featureAtId( edge, edgeFeat ):
-                    newSegment = []
-                    mpl = edgeFeat.geometry().asMultiPolyline()
-                    newSegment = mpl[0]
-                    self.pathPolyline.extend( newSegment )
+                edgeFeat = self.networkAnalyzer.getEdgeFeature( edge[2] )
+                newSegment = []
+                mpl = edgeFeat.geometry().asMultiPolyline()
+                newSegment = mpl[0]
+                self.pathPolyline.extend( newSegment )
             
             self.rbShortestPath.addGeometry( QgsGeometry.fromPolyline( self.pathPolyline ), nodeLayer )
             self.profileChanged.emit( self.profile )
@@ -167,9 +167,9 @@ class QgepProfileMapTool( QgepMapTool ):
             if len( self.selectedPathPoints ) > 0:
                 pf = self.findPath( self.selectedPathPoints[-1][0], snappedPoint[0].snappedAtGeometry )
                 if pf:
-                    self.selectedPathPoints.append( ( snappedPoint[0].snappedAtGeometry, snappedPoint[0].snappedVertex ) )
+                    self.selectedPathPoints.append( ( snappedPoint[0].snappedAtGeometry, QgsPoint( snappedPoint[0].snappedVertex ) ) )
             else:
-                self.selectedPathPoints.append( ( snappedPoint[0].snappedAtGeometry, snappedPoint[0].snappedVertex ) )
+                self.selectedPathPoints.append( ( snappedPoint[0].snappedAtGeometry, QgsPoint( snappedPoint[0].snappedVertex ) ) )
 
     def doubleClicked( self, position ):
 #        pClicked = QPoint( position["x"], position["y"] )
