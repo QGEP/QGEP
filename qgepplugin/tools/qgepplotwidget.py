@@ -51,8 +51,8 @@ class QgepPlotWidget( QWidget ):
         # Add more information for each point
         for x in profile.getOffsetArray():
             self.profilePlot.axvline( x, linestyle='--', alpha=0.7, color='0.75' )
-            self.detailPlot.axvline( x, linestyle='--', alpha=0.7, color='0.75' )
-            self.detailPlot.text( x, 0, str( x ) )
+#            self.detailPlot.axvline( x, linestyle='--', alpha=0.7, color='0.75' )
+#            self.detailPlot.text( x, 0, str( x ) )
         
         self.profilePlot.ticklabel_format(style='plain')
         self.canvas.draw()
@@ -74,12 +74,12 @@ class QgepPlotWidget( QWidget ):
         
     def initAxes(self):
         self.fig.clear()
-        self.profilePlot = self.fig.add_axes( ( 0.1, 0.5, 0.8, 0.4 ) )
+        self.profilePlot = self.fig.add_axes( ( 0.1, 0.1, 0.8, 0.8 ) )
         self.profilePlot.xaxis.set_ticks([])
         self.profilePlot.yaxis.set_major_formatter( ScalarFormatter() )
-        self.detailPlot = self.fig.add_axes( ( 0.1, 0.1, 0.8, 0.4 ), sharex=self.profilePlot )
-        self.detailPlot.set_ylim( 0, len( self.detailFields ) )
-        self.detailPlot.yaxis.set_ticks([])
+#        self.detailPlot = self.fig.add_axes( ( 0.1, 0.1, 0.8, 0.4 ), sharex=self.profilePlot )
+#        self.detailPlot.set_ylim( 0, len( self.detailFields ) )
+ #       self.detailPlot.yaxis.set_ticks([])
         
     def onPick( self, event ):
         if ( len( event.ind ) > 0 ):
