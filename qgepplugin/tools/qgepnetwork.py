@@ -23,7 +23,7 @@
 #
 #---------------------------------------------------------------------
 
-from PyQt4.QtCore import QVariant
+from PyQt4.QtCore import QVariant, QCoreApplication
 from PyQt4.QtGui import QProgressDialog
 from collections import defaultdict
 from qgis.core import QgsVectorLayer, QgsField, QgsTolerance, QgsSnapper, \
@@ -85,6 +85,7 @@ class QgepNetworkAnalyzer():
         memoryLayerUrl = 'LineString?crs=proj4:' + provider.crs().toProj4()
         self.networkElementsLayer = QgsVectorLayer( memoryLayerUrl, "network_elements", "memory" )
         pr = self.networkElementsLayer.dataProvider()
+        # There is just one field in this temporary layer, used to interpolate values
         pr.addAttributes( [QgsField( "relativePosition", QVariant.Double )] )
         
     def _addVertices(self):
@@ -207,12 +208,12 @@ class QgepNetworkAnalyzer():
                     
                     # If the just added vertex is a node: the segment is finished
                     if node > -1:
-                        length = newFeature.geometry().length()
-                        relativePosition = length / attrs[attrLengthEffective].toDouble()[0]
                         # Generate feature for memory layer
                         newFeature = QgsFeature()
                         newFeature.setTypeName( "WKBLineString" )
                         newFeature.setGeometry( QgsGeometry.fromMultiPolyline( [newPolyLine] ) )
+                        length = newFeature.geometry().length()
+                        relativePosition = length / attrs[attrLengthEffective].toDouble()[0]
                         newFeature.setAttributeMap( {0: relativePosition} )
                         
                         # Add a new edge to the graph
@@ -235,6 +236,8 @@ class QgepNetworkAnalyzer():
                 newEdges = []
                 self._profile( "added edges")
                 progressDialog.setValue( currentFeatureCount / featureCount * 90 + 10 )
+                QCoreApplication.instance().processEvents()
+                
             currentFeatureCount += 1
         
         #Add remaining edges
