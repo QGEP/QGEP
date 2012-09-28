@@ -85,15 +85,7 @@ class QgepNetworkAnalyzer():
         memoryLayerUrl = 'LineString?crs=proj4:' + provider.crs().toProj4()
         self.networkElementsLayer = QgsVectorLayer( memoryLayerUrl, "network_elements", "memory" )
         pr = self.networkElementsLayer.dataProvider()
-        
-        fields = provider.fields()
-        curKey = -1
-        for key, value in fields.iteritems():
-            while key != curKey+1:
-                pr.addAttributes( [QgsField( "dummy", QVariant.Double )] )
-                curKey += 1
-            pr.addAttributes([ value ])
-            curKey += 1
+        pr.addAttributes( [QgsField( "relativePosition", QVariant.Double )] )
         
     def _addVertices(self):
         nodeProvider = self.nodeLayer.dataProvider()
@@ -215,14 +207,16 @@ class QgepNetworkAnalyzer():
                     
                     # If the just added vertex is a node: the segment is finished
                     if node > -1:
+                        length = newFeature.geometry().length()
+                        relativePosition = length / attrs[attrLengthEffective].toDouble()[0]
                         # Generate feature for memory layer
                         newFeature = QgsFeature()
                         newFeature.setTypeName( "WKBLineString" )
                         newFeature.setGeometry( QgsGeometry.fromMultiPolyline( [newPolyLine] ) )
-                        newFeature.setAttributeMap( feat.attributeMap() )
+                        newFeature.setAttributeMap( {0: relativePosition} )
                         
                         # Add a new edge to the graph
-                        props = dict( weight = newFeature.geometry().length(), baseFeature = feat.id() )
+                        props = dict( weight = length, baseFeature = feat.id() )
                         newEdges.append( ( lastNode, node, props, newFeature ) )
                         
                         # Begin new segment
