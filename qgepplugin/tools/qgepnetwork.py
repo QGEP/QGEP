@@ -288,7 +288,7 @@ class QgepNetworkAnalyzer():
         self._addEdges( progressDialog )
         progressDialog.reset()
         
-        QgsMapLayerRegistry.instance().addMapLayer( self.networkElementsLayer )
+        # QgsMapLayerRegistry.instance().addMapLayer( self.networkElementsLayer )
         self.dirty = False
         #except Exception as e:
         #    progressDialog.close()
