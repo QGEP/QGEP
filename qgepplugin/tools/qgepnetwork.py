@@ -81,6 +81,7 @@ class QgepNetworkAnalyzer():
             self.createGraph()
         
     def _addVertices(self):
+        self._profile( "add vertices" )
         nodeProvider = self.nodeLayer.dataProvider()
         
         feat = QgsFeature()
@@ -110,7 +111,8 @@ class QgepNetworkAnalyzer():
             elif wwStructObjId != '':
                 self.nodesOnStructure[wwStructObjId].append( featId )
             
-    def _addEdges( self, progressDialog ):
+    def _addEdges( self ):
+        self._profile( "add edges" )
         # Add all edges (reach)
         dataProvider = self.reachLayer.dataProvider()
         
@@ -167,7 +169,7 @@ class QgepNetworkAnalyzer():
                 lstBlindOffsets = [0] + str( blindOffsets )[1:-1].split(',')[1:] + [1]
                 
                 for (pt1, pt2, offset1, offset2) in zip( lstBlindNodes[:-1], lstBlindNodes[1:], lstBlindOffsets[:-1], lstBlindOffsets[1:] ):
-                    props = dict( weight = float(offset2) * length - float(offset1) * length, baseFeature = feat.id() )
+                    props = dict( weight = float(offset2) * length - float(offset1) * length, baseFeature = feat.id(), offset = offset1 )
                     self.graph.add_edge( pt1, pt2, props )
             
             # There are no blind connections on this reach
@@ -184,7 +186,7 @@ class QgepNetworkAnalyzer():
     
     # Creates a network graph
     def createGraph(self):
-        progressDialog = QProgressDialog( "Initializing Graph", "Cancel", 0, 100, self.iface.mapCanvas() )
+        self._profile( "create graph" )
         
         #try:
         self.vertexIds = {}
@@ -192,25 +194,14 @@ class QgepNetworkAnalyzer():
         self.nodesOnStructure = defaultdict( list )
         self.graph = nx.DiGraph()
         
-        progressDialog.setAutoClose( True )
-        progressDialog.setLabelText( "Adding network elements" )
-        progressDialog.setValue( 33 )
-        if progressDialog.wasCanceled():
-            return
-        
         self._addVertices()
-        progressDialog.setLabelText( "Adding network reaches" )
-        progressDialog.setValue( 67 )
-        if progressDialog.wasCanceled():
-            return
+        self._addEdges()
         
-        self._addEdges( progressDialog )
-        progressDialog.reset()
+        self._profile( "finished" )
         
+        for (name, spenttime) in self.timings:
+            print name + ":" + str( spenttime ) 
         self.dirty = False
-        #except Exception as e:
-        #    progressDialog.close()
-
     
     def getNodeLayer(self):
         return self.nodeLayer
@@ -262,3 +253,9 @@ class QgepNetworkAnalyzer():
         
         return p
             
+            
+    def getEdgeGeometry(self, edge):
+        feat = QgsFeature()
+        if self.reachLayer.dataProvider().featureAtId( edge['baseFeature'], feat ):
+            polyline = feat.geometry().asMultiPolyline()[0]
+            return polyline

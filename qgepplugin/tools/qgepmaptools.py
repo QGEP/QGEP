@@ -124,11 +124,8 @@ class QgepProfileMapTool( QgepMapTool ):
 #            edges.reverse()
             
             for edge in edges:
-                edgeFeat = self.networkAnalyzer.getEdgeFeature( edge[2] )
-                newSegment = []
-                mpl = edgeFeat.geometry().asMultiPolyline()
-                newSegment = mpl[0]
-                self.pathPolyline.extend( newSegment )
+                polyline = self.networkAnalyzer.getEdgeGeometry( edge[2] )
+                self.pathPolyline.extend( polyline )
             
             self.rbShortestPath.addGeometry( QgsGeometry.fromPolyline( self.pathPolyline ), nodeLayer )
             self.profileChanged.emit( self.profile )
