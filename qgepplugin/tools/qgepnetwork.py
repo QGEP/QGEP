@@ -80,14 +80,6 @@ class QgepNetworkAnalyzer():
         if self.nodeLayer and self.reachLayer:
             self.createGraph()
         
-    def _createMemoryLayer( self ):
-        provider = self.reachLayer.dataProvider()
-        memoryLayerUrl = 'LineString?crs=proj4:' + provider.crs().toProj4()
-        self.networkElementsLayer = QgsVectorLayer( memoryLayerUrl, "network_elements", "memory" )
-        pr = self.networkElementsLayer.dataProvider()
-        # There is just one field in this temporary layer, used to interpolate values
-        pr.addAttributes( [QgsField( "relativePosition", QVariant.Double )] )
-        
     def _addVertices(self):
         nodeProvider = self.nodeLayer.dataProvider()
         
@@ -111,7 +103,7 @@ class QgepNetworkAnalyzer():
             vertex = feat.geometry().asPoint()
             self.graph.add_node( featId, dict( point=vertex) )
             
-            self.vertexIds[objId] = featId
+            self.vertexIds[str(objId)] = featId
             
             if reachObjId != '':
                 self.edgeWithNodes[reachObjId].append( featId )
@@ -121,7 +113,6 @@ class QgepNetworkAnalyzer():
     def _addEdges( self, progressDialog ):
         # Add all edges (reach)
         dataProvider = self.reachLayer.dataProvider()
-        netProvider = self.networkElementsLayer.dataProvider()
         
         attrObjId           = dataProvider.fieldNameIndex( 'obj_id' )
         attrStrFromObjId    = dataProvider.fieldNameIndex( 'str_from_obj_id' )
@@ -129,18 +120,16 @@ class QgepNetworkAnalyzer():
         attrRpFromObjId     = dataProvider.fieldNameIndex( 'rp_from_obj_id' )
         attrRpToObjId       = dataProvider.fieldNameIndex( 'rp_to_obj_id' )
         attrLengthEffective = dataProvider.fieldNameIndex( 'length_effective' )
+        attrBlindNodes      = dataProvider.fieldNameIndex( 'nodes' )
+        attrBlindOffsets    = dataProvider.fieldNameIndex( 'offsets' )
         
-        allAttrs = dataProvider.attributeIndexes()
+        # Only query needed attributes
+        queryAttrs = [ attrObjId, attrStrFromObjId, attrStrToObjId, attrRpFromObjId, attrRpToObjId, attrLengthEffective, attrBlindNodes, attrBlindOffsets ]
         
-        dataProvider.select( allAttrs )
+        dataProvider.select( queryAttrs )
         
         feat = QgsFeature()
         
-        # For progress dialog
-        currentFeatureCount = 0
-        featureCount = dataProvider.featureCount()
-        
-        newEdges = []
         graphNodes = self.graph.nodes(True)
         
         #Loop throuth all reaches
@@ -157,7 +146,7 @@ class QgepNetworkAnalyzer():
                 ptId1 = self.nodesOnStructure[wwStructFromId][0]
             else:
                 rpFromId = attrs[attrRpFromObjId].toString()
-                ptId1 = self.vertexIds[rpFromId]
+                ptId1 = self.vertexIds[str(rpFromId)]
             
             # Connect by structure if applicable. Reach points with reach as structure are handled specially
             wwStructToId = attrs[attrStrToObjId].toString()
@@ -165,104 +154,33 @@ class QgepNetworkAnalyzer():
                 ptId2 = self.nodesOnStructure[wwStructToId][0]
             else:
                 rpToId = attrs[attrRpToObjId].toString()
-                ptId2 = self.vertexIds[rpToId]
+                ptId2 = self.vertexIds[str(rpToId)]
                 
+            length = attrs[attrLengthEffective].toDouble()[0]
             # If this reach contains blind connections it needs to be split
-            if objId in self.edgeWithNodes:
-                multiPolyLine = feat.geometry().asMultiPolyline()
-                if len( multiPolyLine ) > 1:
-                    raise Exception("Unexpected MultiPolyLine with more than 1 segement. Please file a bug on https://github.com/qgep/QGEP/issues.")
-
+            blindNodes = attrs[attrBlindNodes].toString()
+            
+            if blindNodes != "":
+                blindOffsets = attrs[attrBlindOffsets].toString()
+                # First entry is always NULL...
+                lstBlindNodes = [ptId1] + [ self.vertexIds[x] for x in str( blindNodes )[1:-1].split(',')[1:] ] + [ptId2]
+                lstBlindOffsets = [0] + str( blindOffsets )[1:-1].split(',')[1:] + [1]
                 
-                polyLine = multiPolyLine[0]
-                
-                # nodes is an array of tuples. Every Tuple consists of 
-                # ( VerticeId, QgsPoint ) where the VerticeId is the ID
-                # of the node in the QgsGraph or -1 if it is just there
-                # for the reach geometry 
-                nodes = []
-                # The first vertex is always a node
-                nodes.append( ( ptId1, polyLine[0] ) )  
-                for node in polyLine[1:-1]:
-                    nodes.append( ( -1, node ) )
-                # The last vertex is always a node
-                nodes.append( ( ptId2, polyLine[-1] ) ) 
-                
-                vertexIndex = -1
-                closestPoint = QgsPoint()
-                
-                # Insert a new vertex for all nodes on this reach
-                for node in self.edgeWithNodes[objId]:
-                    point = [item[1]['point'] for item in graphNodes if item[0] == node][0]
-                    ( sqrdDist, closestPoint, vertexIndex ) = QgsGeometry.fromPolyline( polyLine ).closestSegmentWithContext( point )
-                    polyLine.insert( vertexIndex, point )
-                    nodes.insert( vertexIndex, ( node, point ) )
-                
-                # Create a new polyline for all segments
-                # Begin with first vertex/node
-                newPolyLine = [ polyLine[0] ]
-                ( lastNode, lastPoint ) = nodes[0]
-                
-                for ( node, point ) in nodes[1:]:
-                    newPolyLine.append( point )
-                    
-                    # If the just added vertex is a node: the segment is finished
-                    if node > -1:
-                        # Generate feature for memory layer
-                        newFeature = QgsFeature()
-                        newFeature.setTypeName( "WKBLineString" )
-                        newFeature.setGeometry( QgsGeometry.fromMultiPolyline( [newPolyLine] ) )
-                        length = newFeature.geometry().length()
-                        relativePosition = length / attrs[attrLengthEffective].toDouble()[0]
-                        newFeature.setAttributeMap( {0: relativePosition} )
-                        
-                        # Add a new edge to the graph
-                        props = dict( weight = length, baseFeature = feat.id() )
-                        newEdges.append( ( lastNode, node, props, newFeature ) )
-                        
-                        # Begin new segment
-                        newPolyLine = [point]
-                        lastNode = node
+                for (pt1, pt2, offset1, offset2) in zip( lstBlindNodes[:-1], lstBlindNodes[1:], lstBlindOffsets[:-1], lstBlindOffsets[1:] ):
+                    props = dict( weight = float(offset2) * length - float(offset1) * length, baseFeature = feat.id() )
+                    self.graph.add_edge( pt1, pt2, props )
             
             # There are no blind connections on this reach
             else:
-                props = dict( weight = attrs[attrLengthEffective].toDouble()[0], baseFeature = feat.id() )
+                props = dict( weight = length, baseFeature = feat.id() )
                 self.graph.add_edge( ptId1, ptId2, props )
             
-            # From time to time update progress bar and insert features
-            if currentFeatureCount % 1000 == 0:
-                self._profile( "collected edges")
-                self._addEdgeBatch( newEdges, netProvider )
-                newEdges = []
-                self._profile( "added edges")
-                progressDialog.setValue( currentFeatureCount / featureCount * 90 + 10 )
-                QCoreApplication.instance().processEvents()
-                
-            currentFeatureCount += 1
         
-        #Add remaining edges
-        self._addEdgeBatch( newEdges, netProvider )
-    
     def _profile(self,name):
         spenttime = 0
         if len( self.timings ) != 0:
             spenttime = time.clock() - self.timings[-1][1]
         self.timings.append( (name, spenttime) )
-    
-    def _addEdgeBatch( self, edges, provider ):
-        # Extract a list of features to add
-        features = [ edge[3] for edge in edges ]
-        
-        # Add the features
-        ( ok, newFeatures ) = provider.addFeatures( features )
-        if ok:
-            featureIds = [ feature.id() for feature in newFeatures ]
-            # Assign feature ids to the original edge data
-            arcs = zip ( featureIds, edges )
-            # Add the arcs to the graph
-            for ( featId, ( ptId1, ptId2, props, feat ) ) in arcs:
-                props['helpFeature'] = featId
-                self.graph.add_edge( ptId1, ptId2, props )
     
     # Creates a network graph
     def createGraph(self):
@@ -274,9 +192,7 @@ class QgepNetworkAnalyzer():
         self.nodesOnStructure = defaultdict( list )
         self.graph = nx.DiGraph()
         
-        
         progressDialog.setAutoClose( True )
-        self._createMemoryLayer()
         progressDialog.setLabelText( "Adding network elements" )
         progressDialog.setValue( 33 )
         if progressDialog.wasCanceled():
@@ -291,13 +207,10 @@ class QgepNetworkAnalyzer():
         self._addEdges( progressDialog )
         progressDialog.reset()
         
-        # QgsMapLayerRegistry.instance().addMapLayer( self.networkElementsLayer )
         self.dirty = False
         #except Exception as e:
         #    progressDialog.close()
 
-    def getNetworkLayer(self):
-        return self.networkElementsLayer
     
     def getNodeLayer(self):
         return self.nodeLayer
@@ -348,13 +261,4 @@ class QgepNetworkAnalyzer():
             print "no path found"
         
         return p
-
-    def getEdgeFeature(self, edge):
-        feat = QgsFeature()
-        if 'helpFeature' in edge:
-            self.networkElementsLayer.featureAtId( edge['helpFeature'], feat )
-        else:
-            self.reachLayer.featureAtId( edge['baseFeature'], feat )
-            
-        return feat
             
