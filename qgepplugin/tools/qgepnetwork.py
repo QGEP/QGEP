@@ -40,7 +40,6 @@ class QgepNetworkAnalyzer():
     dirty = True
     graph = 0
     vertexIds = {}
-    edgeWithNodes = defaultdict(list)
     nodesOnStructure = defaultdict(list)
     # Logs performance of graph creation
     timings = []
@@ -81,16 +80,13 @@ class QgepNetworkAnalyzer():
             self.createGraph()
         
     def _addVertices(self):
-        self._profile( "add vertices" )
         nodeProvider = self.nodeLayer.dataProvider()
         
         feat = QgsFeature()
-        allAttrs = nodeProvider.attributeIndexes()
         attrObjId = nodeProvider.fieldNameIndex( 'obj_id' )
-        attrReachObjId = nodeProvider.fieldNameIndex( 'reach_obj_id' )
         attrWWStructObjId = nodeProvider.fieldNameIndex( 'wastewater_structure_obj_id' )
         
-        nodeProvider.select( allAttrs )
+        nodeProvider.select( [attrObjId, attrWWStructObjId] )
         
         # Add all vertices
         while nodeProvider.nextFeature( feat ):
@@ -98,7 +94,6 @@ class QgepNetworkAnalyzer():
             featId = feat.id()
             
             objId = attrs[attrObjId].toString()
-            reachObjId = attrs[attrReachObjId].toString()
             wwStructObjId = attrs[attrWWStructObjId].toString()
             
             vertex = feat.geometry().asPoint()
@@ -106,13 +101,12 @@ class QgepNetworkAnalyzer():
             
             self.vertexIds[str(objId)] = featId
             
-            if reachObjId != '':
-                self.edgeWithNodes[reachObjId].append( featId )
-            elif wwStructObjId != '':
+            if wwStructObjId != '':
                 self.nodesOnStructure[wwStructObjId].append( featId )
+        
+        self._profile( "add vertices" )
             
     def _addEdges( self ):
-        self._profile( "add edges" )
         # Add all edges (reach)
         dataProvider = self.reachLayer.dataProvider()
         
@@ -121,12 +115,15 @@ class QgepNetworkAnalyzer():
         attrStrToObjId      = dataProvider.fieldNameIndex( 'str_to_obj_id' )
         attrRpFromObjId     = dataProvider.fieldNameIndex( 'rp_from_obj_id' )
         attrRpToObjId       = dataProvider.fieldNameIndex( 'rp_to_obj_id' )
+        attrStrFromType     = dataProvider.fieldNameIndex( 'str_from_type' )
+        attrStrToType       = dataProvider.fieldNameIndex( 'str_to_type' )
         attrLengthEffective = dataProvider.fieldNameIndex( 'length_effective' )
         attrBlindNodes      = dataProvider.fieldNameIndex( 'nodes' )
-        attrBlindOffsets    = dataProvider.fieldNameIndex( 'offsets' )
+        attrBlindOffsets    = dataProvider.fieldNameIndex( 'positions' )
+        attrBlindRanks      = dataProvider.fieldNameIndex( 'ranks' )
         
         # Only query needed attributes
-        queryAttrs = [ attrObjId, attrStrFromObjId, attrStrToObjId, attrRpFromObjId, attrRpToObjId, attrLengthEffective, attrBlindNodes, attrBlindOffsets ]
+        queryAttrs = [ attrObjId, attrStrFromObjId, attrStrToObjId, attrRpFromObjId, attrRpToObjId, attrLengthEffective, attrBlindNodes, attrBlindOffsets, attrBlindRanks, attrStrToType, attrStrFromType ]
         
         dataProvider.select( queryAttrs )
         
@@ -143,20 +140,23 @@ class QgepNetworkAnalyzer():
             ptId1 = -1
             ptId2 = -1
             wwStructFromId = attrs[attrStrFromObjId].toString()
-            # Connect by structure if applicable. Reach points with reach as structure are handled specially  
-            if wwStructFromId != "" and self.nodesOnStructure.has_key( wwStructFromId ):
-                ptId1 = self.nodesOnStructure[wwStructFromId][0]
-            else:
+            strFromType = str(attrs[attrStrFromType].toString())
+                                          
+            # Connect by structure if applicable. Reach points with reach as structure are handled specially
+            if strFromType == "channel" or strFromType == "reach" or strFromType == "":
                 rpFromId = attrs[attrRpFromObjId].toString()
                 ptId1 = self.vertexIds[str(rpFromId)]
-            
+            else:
+                ptId1 = self.nodesOnStructure[wwStructFromId][0]
+
             # Connect by structure if applicable. Reach points with reach as structure are handled specially
             wwStructToId = attrs[attrStrToObjId].toString()
-            if wwStructToId != "" and self.nodesOnStructure.has_key( wwStructToId ):
-                ptId2 = self.nodesOnStructure[wwStructToId][0]
-            else:
+            strToType = str(attrs[attrStrToType].toString())
+            if strToType == "channel" or strToType == "reach" or strToType == "":
                 rpToId = attrs[attrRpToObjId].toString()
                 ptId2 = self.vertexIds[str(rpToId)]
+            else:
+                ptId2 = self.nodesOnStructure[wwStructToId][0]
                 
             length = attrs[attrLengthEffective].toDouble()[0]
             # If this reach contains blind connections it needs to be split
@@ -164,18 +164,24 @@ class QgepNetworkAnalyzer():
             
             if blindNodes != "":
                 blindOffsets = attrs[attrBlindOffsets].toString()
-                # First entry is always NULL...
-                lstBlindNodes = [ptId1] + [ self.vertexIds[x] for x in str( blindNodes )[1:-1].split(',')[1:] ] + [ptId2]
-                lstBlindOffsets = [0] + str( blindOffsets )[1:-1].split(',')[1:] + [1]
+                blindRanks = attrs[attrBlindRanks].toString()
                 
-                for (pt1, pt2, offset1, offset2) in zip( lstBlindNodes[:-1], lstBlindNodes[1:], lstBlindOffsets[:-1], lstBlindOffsets[1:] ):
-                    props = dict( weight = float(offset2) * length - float(offset1) * length, baseFeature = feat.id(), offset = offset1 )
+                # First entry is always NULL...
+                lstBlindNodes   = [ptId1] + [ self.vertexIds[x] for x in str( blindNodes )[1:-1].split(',')[1:] ] + [ptId2]
+                lstBlindOffsets = [ float (a) for a in [0] + str( blindOffsets )[1:-1].split(',')[1:] + [1] ]
+                lstBlindRanks   = [ int(a) for a in [0] + str( blindRanks )[1:-1].split(',')[1:] ]
+                lstBlindRanks.append( lstBlindRanks[-1] + 1 )
+                
+                for (pt1, pt2, offset1, offset2, rank1, rank2) in zip( lstBlindNodes[:-1], lstBlindNodes[1:], lstBlindOffsets[:-1], lstBlindOffsets[1:], lstBlindRanks[1:], lstBlindRanks[:-1] ):
+                    props = dict( weight = offset2 * length - offset1 * length, baseFeature = feat.id(), offset = offset1, rank = rank1 )
                     self.graph.add_edge( pt1, pt2, props )
             
             # There are no blind connections on this reach
             else:
                 props = dict( weight = length, baseFeature = feat.id() )
                 self.graph.add_edge( ptId1, ptId2, props )
+                
+        self._profile( "add edges" )
             
         
     def _profile(self,name):
@@ -190,17 +196,16 @@ class QgepNetworkAnalyzer():
         
         #try:
         self.vertexIds = {}
-        self.edgeWithNodes = defaultdict( list )
         self.nodesOnStructure = defaultdict( list )
+        self._profile( "initiate dicts" )
         self.graph = nx.DiGraph()
+        
+        self._profile( "initiate graph" )
         
         self._addVertices()
         self._addEdges()
         
-        self._profile( "finished" )
-        
-        for (name, spenttime) in self.timings:
-            print name + ":" + str( spenttime ) 
+        self.print_profile()
         self.dirty = False
     
     def getNodeLayer(self):
@@ -254,8 +259,27 @@ class QgepNetworkAnalyzer():
         return p
             
             
-    def getEdgeGeometry(self, edge):
-        feat = QgsFeature()
-        if self.reachLayer.dataProvider().featureAtId( edge['baseFeature'], feat ):
-            polyline = feat.geometry().asMultiPolyline()[0]
-            return polyline
+    def getEdgeGeometry(self, edges):
+        cache = {}
+        polylines = []
+        
+        for edge in edges:
+            try:
+                feat = cache[edge['baseFeature']]
+            except KeyError:
+                feat = QgsFeature()
+                if self.reachLayer.dataProvider().featureAtId( edge['baseFeature'], feat ):
+                    cache[edge['baseFeature']] = feat
+                    
+            try:
+                rank = edge['rank'] - 1
+            except KeyError:
+                rank = 0
+                
+            polylines.append (feat.geometry().asMultiPolyline()[rank] )
+        
+        return polylines
+        
+    def print_profile(self):
+        for (name, spenttime) in self.timings:
+            print name + ":" + str( spenttime ) 

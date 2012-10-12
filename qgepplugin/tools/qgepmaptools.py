@@ -28,12 +28,14 @@ from PyQt4.QtGui import QCursor, QMessageBox, QColor
 from qgis.core import QgsSnapper, QgsTolerance, QgsFeature, QgsGeometry, QgsPoint
 from qgis.gui import QgsMapTool, QgsRubberBand
 from qgepprofile import QgepProfile
+import time
 
 class QgepMapTool( QgsMapTool ):
     
     profileChanged = pyqtSignal( object )
     profile = QgepProfile()
     segmentOffset = 0
+    timings = []
     
     def __init__( self, canvas, button ):
         QgsMapTool.__init__( self, canvas )
@@ -100,6 +102,13 @@ class QgepProfileMapTool( QgepMapTool ):
         self.selectedPathPoints = []
         self.pathPolyline = []
         
+    def _profile(self,name):
+        spenttime = 0
+        if len( self.timings ) != 0:
+            spenttime = time.clock() - self.timings[-1][1]
+        self.timings.append( (name, spenttime) )
+
+        
     def findPath( self, pStart, pEnd ):
         ( vertices, edges ) = self.networkAnalyzer.shortestPath( pStart, pEnd )
         
@@ -112,7 +121,6 @@ class QgepProfileMapTool( QgepMapTool ):
             nodeFeat = QgsFeature()
             edgeFeat = QgsFeature()
             
-#            vertices.reverse()
             for vertex in zip(vertices,[0]+[edge[2]['weight'] for edge in edges]):
                 if nodeLayer.featureAtId( vertex[0], nodeFeat ):
                     nodeAttrs = nodeFeat.attributeMap()
@@ -121,10 +129,8 @@ class QgepProfileMapTool( QgepMapTool ):
                     self.segmentOffset += vertex[1]
                     self.profile.addPoint( self.segmentOffset, masl )
             
-#            edges.reverse()
-            
-            for edge in edges:
-                polyline = self.networkAnalyzer.getEdgeGeometry( edge[2] )
+            polylines = self.networkAnalyzer.getEdgeGeometry( [edge[2] for edge in edges] )
+            for polyline in polylines:
                 self.pathPolyline.extend( polyline )
             
             self.rbShortestPath.addGeometry( QgsGeometry.fromPolyline( self.pathPolyline ), nodeLayer )

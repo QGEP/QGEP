@@ -118,7 +118,7 @@ class QgepPlugin:
                 self.networkAnalyzer.setNodeLayer( newLayer )
                 self.layersChanged()
 
-            if newLayer.type() == QgsMapLayer.VectorLayer and newLayer.name() == "vw_reach_multi_segment":
+            if newLayer.type() == QgsMapLayer.VectorLayer and newLayer.name() == "dummy_reach":
                 self.networkAnalyzer.setReachLayer( newLayer )
                 self.layersChanged()
                 
