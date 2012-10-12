@@ -263,6 +263,14 @@ class QgepNetworkAnalyzer():
             
         return p
             
+    def getTree(self,node):
+        if self.dirty:
+            self.createGraph()
+            
+        subgraph = nx.algorithms.dfs_edges(self.graph, node)
+        edges = [(u,v,self.graph[u][v]) for (u,v) in subgraph]
+        
+        return edges
             
     def getEdgeGeometry(self, edges):
         cache = {}
@@ -280,8 +288,10 @@ class QgepNetworkAnalyzer():
                 rank = edge['rank'] - 1
             except KeyError:
                 rank = 0
-                
-            polylines.append (feat.geometry().asMultiPolyline()[rank] )
+            try:
+                polylines.append (feat.geometry().asMultiPolyline()[rank] )
+            except IndexError:
+                print "Could not represent geometry as MultiPolyline"
         
         return polylines
     

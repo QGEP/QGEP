@@ -31,7 +31,7 @@ from qgis.gui import *
 
 import resources
 from ui.qgepdockwidget    import QgepDockWidget
-from tools.qgepmaptools   import QgepProfileMapTool
+from tools.qgepmaptools   import QgepProfileMapTool, QgepUpstreamMapTool
 from tools.qgepnetwork    import QgepNetworkAnalyzer
 from tools.qgepplotwidget import QgepPlotWidget
 from ui.qgepprintpreview  import QgepPrintPreview
@@ -56,21 +56,32 @@ class QgepPlugin:
         self.profileAction.setWhatsThis( "Reach trace." )
         self.profileAction.setEnabled( False )
         self.profileAction.triggered.connect( self.profileToolClicked )
+
+        self.upstreamAction = QAction( QIcon( ":/plugins/qgepplugin/icons/qgepIcon.svg" ), "Upstream", self.iface.mainWindow() )
+        self.upstreamAction.setWhatsThis( "Upstream reaches" )
+        self.upstreamAction.setEnabled( False )
+        self.upstreamAction.triggered.connect( self.upstreamToolClicked )
+        
         self.aboutAction = QAction( "About", self.iface.mainWindow() )
         self.aboutAction.triggered.connect( self.about )
 
         # Add toolbar button and menu item
         self.iface.addToolBarIcon( self.profileAction )
+        self.iface.addToolBarIcon( self.upstreamAction )
         self.iface.addPluginToMenu( "&QGEP", self.profileAction )
         self.iface.addPluginToMenu( "&QGEP", self.aboutAction )
         
+        # Local array of buttons to enable / disable based on context
         self.toolbarButtons.append( self.profileAction )
+        self.toolbarButtons.append( self.upstreamAction )
 
 		# Init the object maintaining the network
         self.networkAnalyzer = QgepNetworkAnalyzer( self.iface )
         # Create the map tool for profile selection
-        self.profileTool     = QgepProfileMapTool( self.canvas, self.profileAction, self.networkAnalyzer )
+        self.profileTool = QgepProfileMapTool( self.canvas, self.profileAction, self.networkAnalyzer )
         self.profileTool.profileChanged.connect( self.onProfileChanged )
+        
+        self.upstreamTool = QgepUpstreamMapTool( self.canvas, self.upstreamAction, self.networkAnalyzer )
         
         # Connect to events that can change layers
         QgsMapLayerRegistry.instance().layersWillBeRemoved.connect( self.layersWillBeRemoved )
@@ -86,6 +97,9 @@ class QgepPlugin:
         self.openDock()
         # Set the profile map tool
         self.profileTool.setActive()
+        
+    def upstreamToolClicked(self):
+        self.upstreamTool.setActive()
 
     def openDock(self):
         if self.dockWidget == 0:
@@ -118,7 +132,7 @@ class QgepPlugin:
                 self.networkAnalyzer.setNodeLayer( newLayer )
                 self.layersChanged()
 
-            if newLayer.type() == QgsMapLayer.VectorLayer and newLayer.name() == "dummy_reach":
+            if newLayer.type() == QgsMapLayer.VectorLayer and newLayer.name() == "vw_reach_multi_segment":
                 self.networkAnalyzer.setReachLayer( newLayer )
                 self.layersChanged()
                 

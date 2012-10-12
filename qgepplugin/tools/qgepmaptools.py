@@ -61,7 +61,10 @@ class QgepMapTool( QgsMapTool ):
 
 #************************************ Events (Convenience relays) *******************************************
     def canvasMoveEvent( self, event ):
-        self.mouseMoved( {'x': event.pos().x(), 'y': event.pos().y()} )
+        try:
+            self.mouseMoved( {'x': event.pos().x(), 'y': event.pos().y()} )
+        except AttributeError:
+            pass
 
     def canvasReleaseEvent( self, event ):
         if event.button() == Qt.RightButton:
@@ -70,7 +73,10 @@ class QgepMapTool( QgsMapTool ):
             self.leftClicked( {'x': event.pos().x(), 'y': event.pos().y()} )
 
     def canvasDoubleClickEvent( self, event ):
-        self.doubleClicked( {'x': event.pos().x(), 'y': event.pos().y()} )
+        try:
+            self.doubleClicked( {'x': event.pos().x(), 'y': event.pos().y()} )
+        except AttributeError:
+            pass
 
 
 class QgepProfileMapTool( QgepMapTool ):
@@ -178,3 +184,33 @@ class QgepProfileMapTool( QgepMapTool ):
 #            self.selectedPathPoints = []
 #            self.pathPolyline = []
         return
+
+
+class QgepUpstreamMapTool( QgepMapTool ):
+    def __init__( self, canvas, button, networkAnalyzer ):
+        QgepMapTool.__init__(self, canvas, button)
+        
+        self.networkAnalyzer = networkAnalyzer
+        
+        self.rbTree = QgsRubberBand( self.canvas )
+        self.rbTree.setColor( QColor( "#FF0095" ) )
+        self.rbTree.setWidth( 3 )
+        
+    def getTree(self,point):
+        edges = self.networkAnalyzer.getTree(point)
+        polylines = self.networkAnalyzer.getEdgeGeometry( [edge[2] for edge in edges] )
+        
+        self.rbTree.addGeometry( QgsGeometry.fromMultiPolyline( polylines ), self.networkAnalyzer.getNodeLayer() )
+
+        
+    def leftClicked( self, position ):
+        pClicked = QPoint( position["x"], position["y"] )
+        snappedPoint = []
+        ( res, snappedPoint ) = self.networkAnalyzer.getSnapper().snapPoint( pClicked, snappedPoint )
+
+        if len( snappedPoint ) > 0:
+            tree = self.getTree( snappedPoint[0].snappedAtGeometry )
+            
+    def setActive( self ):
+        self.saveTool = self.canvas.mapTool()
+        self.canvas.setMapTool( self )
