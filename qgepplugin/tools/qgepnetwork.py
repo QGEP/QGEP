@@ -141,19 +141,20 @@ class QgepNetworkAnalyzer():
             ptId2 = -1
             wwStructFromId = attrs[attrStrFromObjId].toString()
             strFromType = str(attrs[attrStrFromType].toString())
-                                          
+            rpFromId = attrs[attrRpFromObjId].toString()
+            
             # Connect by structure if applicable. Reach points with reach as structure are handled specially
             if strFromType == "channel" or strFromType == "reach" or strFromType == "":
-                rpFromId = attrs[attrRpFromObjId].toString()
                 ptId1 = self.vertexIds[str(rpFromId)]
             else:
                 ptId1 = self.nodesOnStructure[wwStructFromId][0]
 
-            # Connect by structure if applicable. Reach points with reach as structure are handled specially
             wwStructToId = attrs[attrStrToObjId].toString()
             strToType = str(attrs[attrStrToType].toString())
+            rpToId = attrs[attrRpToObjId].toString()
+            
+            # Connect by structure if applicable. Reach points with reach as structure are handled specially
             if strToType == "channel" or strToType == "reach" or strToType == "":
-                rpToId = attrs[attrRpToObjId].toString()
                 ptId2 = self.vertexIds[str(rpToId)]
             else:
                 ptId2 = self.nodesOnStructure[wwStructToId][0]
@@ -174,6 +175,11 @@ class QgepNetworkAnalyzer():
                 
                 for (pt1, pt2, offset1, offset2, rank1, rank2) in zip( lstBlindNodes[:-1], lstBlindNodes[1:], lstBlindOffsets[:-1], lstBlindOffsets[1:], lstBlindRanks[1:], lstBlindRanks[:-1] ):
                     props = dict( weight = offset2 * length - offset1 * length, baseFeature = feat.id(), offset = offset1, rank = rank1 )
+                    nd = self.graph.node[ pt1 ]
+                    nd['pos'] = offset1
+                    nd['baseEdge'] = feat.id()
+                    nd['pt1'] = self.vertexIds[str(rpFromId)]
+                    nd['pt2'] = self.vertexIds[str(rpToId)]
                     self.graph.add_edge( pt1, pt2, props )
             
             # There are no blind connections on this reach
@@ -245,8 +251,6 @@ class QgepNetworkAnalyzer():
         if self.dirty:
             self.createGraph()
         
-        p = ([],[])
-        
         try:
             path = nx.algorithms.dijkstra_path( self.graph, pStart, pEnd )
             edges = [(u,v,self.graph[u][v]) for (u,v)in zip(path[0:], path[1:])]
@@ -255,7 +259,8 @@ class QgepNetworkAnalyzer():
         
         except nx.NetworkXNoPath:
             print "no path found"
-        
+            p = ([],[])
+            
         return p
             
             
@@ -279,6 +284,32 @@ class QgepNetworkAnalyzer():
             polylines.append (feat.geometry().asMultiPolyline()[rank] )
         
         return polylines
+    
+    def getNodeValue(self, nodeId, attribute):
+        value = -1
+        feat = QgsFeature()
+        provider = self.nodeLayer.dataProvider()
+        attIdx = provider.fieldNameIndex( attribute )
+        
+        try:
+            feat1Id = self.graph.node[nodeId]['pt1']
+            feat2Id = self.graph.node[nodeId]['pt2']
+            feat1 = QgsFeature()
+            feat2 = QgsFeature()
+            
+            provider.featureAtId( feat1Id, feat1, False, [attIdx] )
+            provider.featureAtId( feat2Id, feat2, False, [attIdx] )
+            
+            value1 = feat1.attributeMap()[attIdx].toFloat()[0]
+            value2 = feat2.attributeMap()[attIdx].toFloat()[0]
+            
+            value = value1 + (value2 - value1) * self.graph.node[nodeId]['pos']
+            
+        except KeyError:
+            if self.nodeLayer.dataProvider().featureAtId( nodeId, feat, False, [attIdx] ):
+                value = feat.attributeMap()[attIdx].toFloat()[0]
+            
+        return value
         
     def print_profile(self):
         for (name, spenttime) in self.timings:

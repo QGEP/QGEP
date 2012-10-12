@@ -117,17 +117,11 @@ class QgepProfileMapTool( QgepMapTool ):
         if vertices:
             self.rbShortestPath.reset()
             attrMASL = nodeLayer.dataProvider().fieldNameIndex( 'masl' ) # index of field meters above sea level
-
-            nodeFeat = QgsFeature()
-            edgeFeat = QgsFeature()
             
             for vertex in zip(vertices,[0]+[edge[2]['weight'] for edge in edges]):
-                if nodeLayer.featureAtId( vertex[0], nodeFeat ):
-                    nodeAttrs = nodeFeat.attributeMap()
-                    masl = nodeAttrs[attrMASL].toFloat()[0]
-                    
-                    self.segmentOffset += vertex[1]
-                    self.profile.addPoint( self.segmentOffset, masl )
+                masl = self.networkAnalyzer.getNodeValue( vertex[0], 'masl' )
+                self.segmentOffset += vertex[1]
+                self.profile.addPoint( self.segmentOffset, masl )
             
             polylines = self.networkAnalyzer.getEdgeGeometry( [edge[2] for edge in edges] )
             for polyline in polylines:
