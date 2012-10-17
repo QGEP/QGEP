@@ -186,7 +186,9 @@ class QgepProfileMapTool( QgepMapTool ):
         return
 
 
-class QgepUpstreamMapTool( QgepMapTool ):
+class QgepTreeMapTool( QgepMapTool ):
+    direction = "downstream"
+    
     def __init__( self, canvas, button, networkAnalyzer ):
         QgepMapTool.__init__(self, canvas, button)
         
@@ -196,12 +198,18 @@ class QgepUpstreamMapTool( QgepMapTool ):
         self.rbTree.setColor( QColor( "#FF0095" ) )
         self.rbTree.setWidth( 3 )
         
+    def setDirection(self, direction):
+        self.direction = direction
+        
     def getTree(self,point):
-        edges = self.networkAnalyzer.getTree(point)
+        upstream = False
+        if self.direction == "upstream":
+            upstream = True
+             
+        edges = self.networkAnalyzer.getTree(point,upstream)
         polylines = self.networkAnalyzer.getEdgeGeometry( [edge[2] for edge in edges] )
         
         self.rbTree.addGeometry( QgsGeometry.fromMultiPolyline( polylines ), self.networkAnalyzer.getNodeLayer() )
-
         
     def leftClicked( self, position ):
         pClicked = QPoint( position["x"], position["y"] )

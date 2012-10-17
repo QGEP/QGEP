@@ -263,12 +263,17 @@ class QgepNetworkAnalyzer():
             
         return p
             
-    def getTree(self,node):
+    def getTree(self,node,reverse=False):
         if self.dirty:
             self.createGraph()
+        
+        if reverse:
+            myGraph = self.graph.reverse()
+        else:
+            myGraph = self.graph
             
-        subgraph = nx.algorithms.dfs_edges(self.graph, node)
-        edges = [(u,v,self.graph[u][v]) for (u,v) in subgraph]
+        subgraph = nx.algorithms.dfs_edges(myGraph, node)
+        edges = [(u,v,myGraph[u][v]) for (u,v) in subgraph]
         
         return edges
             

@@ -2,5 +2,8 @@
     <qresource prefix="/plugins/qgepplugin">
         <file>icons/qgepIcon.png</file>
         <file>icons/qgepIcon.svg</file>
+        <file>icons/wastewater-downstream.svg</file>
+        <file>icons/wastewater-profile.svg</file>
+        <file>icons/wastewater-upstream.svg</file>
     </qresource>
 </RCC>
