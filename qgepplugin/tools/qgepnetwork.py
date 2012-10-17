@@ -275,23 +275,34 @@ class QgepNetworkAnalyzer():
     def getEdgeGeometry(self, edges):
         cache = {}
         polylines = []
+        feat = QgsFeature()
+        searchIds = set([edge['baseFeature'] for edge in edges])
+        
+        dataProvider = self.reachLayer.dataProvider()
+        
+        attrObjId  = dataProvider.fieldNameIndex( 'obj_id' )
+        queryAttrs = [attrObjId]
+        dataProvider.select( queryAttrs )
+        
+        while dataProvider.nextFeature( feat ):
+            attrs = feat.attributeMap()
+            if feat.id() in searchIds:
+                cache[feat.id()] = feat
+                feat = QgsFeature()
         
         for edge in edges:
             try:
                 feat = cache[edge['baseFeature']]
+                try:
+                    rank = edge['rank'] - 1
+                except KeyError:
+                    rank = 0
+                try:
+                    polylines.append (feat.geometry().asMultiPolyline()[rank] )
+                except IndexError:
+                    print "Could not represent geometry as MultiPolyline"
             except KeyError:
-                feat = QgsFeature()
-                if self.reachLayer.dataProvider().featureAtId( edge['baseFeature'], feat ):
-                    cache[edge['baseFeature']] = feat
-                    
-            try:
-                rank = edge['rank'] - 1
-            except KeyError:
-                rank = 0
-            try:
-                polylines.append (feat.geometry().asMultiPolyline()[rank] )
-            except IndexError:
-                print "Could not represent geometry as MultiPolyline"
+                print "Feature not found"
         
         return polylines
     
