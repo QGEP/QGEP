@@ -276,7 +276,8 @@ class QgepNetworkAnalyzer():
         edges = [(u,v,myGraph[u][v]) for (u,v) in subgraph]
         
         return edges
-            
+    
+    # Queries for a set of edges (reaches) by featureId
     def getEdgeGeometry(self, edges):
         cache = {}
         polylines = []
@@ -289,10 +290,18 @@ class QgepNetworkAnalyzer():
         queryAttrs = [attrObjId]
         dataProvider.select( queryAttrs )
         
-        while dataProvider.nextFeature( feat ):
-            attrs = feat.attributeMap()
-            if feat.id() in searchIds:
-                cache[feat.id()] = feat
+        # For larger quantities of ids, batch query and filter locally
+        if len( searchIds > dataProvider.featureCount() / 2000 ):
+            while dataProvider.nextFeature( feat ):
+                attrs = feat.attributeMap()
+                if feat.id() in searchIds:
+                    cache[feat.id()] = feat
+                    feat = QgsFeature()
+        # If only a few ids, query each
+        else:
+            for featureId in searchIds:
+                dataProvider.featureAtId( featureId, feat, True, queryAttrs )
+                cache[featureId] = feat
                 feat = QgsFeature()
         
         for edge in edges:
