@@ -291,7 +291,7 @@ class QgepNetworkAnalyzer():
         dataProvider.select( queryAttrs )
         
         # For larger quantities of ids, batch query and filter locally
-        if len( searchIds > dataProvider.featureCount() / 2000 ):
+        if len( searchIds ) > dataProvider.featureCount() / 2000:
             while dataProvider.nextFeature( feat ):
                 attrs = feat.attributeMap()
                 if feat.id() in searchIds:
@@ -319,6 +319,30 @@ class QgepNetworkAnalyzer():
                 print "Feature not found"
         
         return polylines
+    
+    def getNodes(self,nodes,attributes):
+        features = {}
+        feat = QgsFeature()
+        dataProvider = self.nodeLayer.dataProvider()
+        
+        attrs = [ dataProvider.fieldNameIndex(attr) for attr in attributes]
+        
+        # For larger quantities of ids, batch query and filter locally
+        if len( nodes ) > dataProvider.featureCount() / 2000:
+            dataProvider.select( attrs )
+            while dataProvider.nextFeature( feat ):
+                if feat.id() in nodes:
+                    features[feat.id()] = feat
+                    feat = QgsFeature()
+        # If only a few ids, query each
+        else:
+            for featureId in nodes:
+                dataProvider.featureAtId( featureId, feat, True, attrs )
+                features[featureId] = feat
+                feat = QgsFeature()
+        
+        return features
+    
     
     def getNodeValue(self, nodeId, attribute):
         value = -1

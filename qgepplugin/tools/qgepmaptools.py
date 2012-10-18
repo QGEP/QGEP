@@ -117,6 +117,8 @@ class QgepProfileMapTool( QgepMapTool ):
 
         
     def findPath( self, pStart, pEnd ):
+        backupCursor = self.canvas.cursor()
+        self.canvas.setCursor(Qt.WaitCursor)
         ( vertices, edges ) = self.networkAnalyzer.shortestPath( pStart, pEnd )
         
         nodeLayer  = self.networkAnalyzer.getNodeLayer()
@@ -136,10 +138,11 @@ class QgepProfileMapTool( QgepMapTool ):
             
             self.rbShortestPath.addGeometry( QgsGeometry.fromPolyline( self.pathPolyline ), nodeLayer )
             self.profileChanged.emit( self.profile )
-            
+            self.canvas.setCursor(backupCursor)
             return True
         else:
             # QMessageBox.warning(self.iface.mainWindow(), "QGEP - No path found", "No connection exists between the selected points. Use right click to cancel this operation." )
+            self.canvas.setCursor(backupCursor)
             return False
 
 #************************************* Mouse listener actions ***********************************************
@@ -206,14 +209,20 @@ class QgepTreeMapTool( QgepMapTool ):
         self.direction = direction
         
     def getTree(self,point):
+        backupCursor = self.canvas.cursor()
+        self.canvas.setCursor(Qt.WaitCursor)
         upstream = False
         if self.direction == "upstream":
             upstream = True
-             
+        
+        self.rbTree.reset()
+        
         edges = self.networkAnalyzer.getTree(point,upstream)
         polylines = self.networkAnalyzer.getEdgeGeometry( [edge[2] for edge in edges] )
         
         self.rbTree.addGeometry( QgsGeometry.fromMultiPolyline( polylines ), self.networkAnalyzer.getNodeLayer() )
+        
+        self.canvas.setCursor(backupCursor)
         
     def mouseMoved(self, event):
         pClicked = QPoint( event.pos().x(), event.pos().y() )
@@ -234,6 +243,9 @@ class QgepTreeMapTool( QgepMapTool ):
                 marker.setPenWidth( 2 )
                 self.highLightedPoints.append(marker)
                 
+    def rightClicked(self, event):
+        self.rbTree.reset()
+                
     def leftClicked( self, event ):
         pClicked = QPoint( event.pos().x(), event.pos().y() )
         ( res, snappedPoints ) = self.networkAnalyzer.getSnapper().snapPoint( pClicked, [] )
@@ -244,8 +256,12 @@ class QgepTreeMapTool( QgepMapTool ):
             self.getTree( snappedPoints[0].snappedAtGeometry )
         elif len( snappedPoints ) > 1:
             menu = QMenu( self.canvas )
-            for point in snappedPoints:
-                action = QAction( str(point.snappedAtGeometry), menu )
+            nodeFeatures = self.networkAnalyzer.getNodes( [point.snappedAtGeometry for point in snappedPoints], ['obj_id'] )
+            
+            attrObjId = self.networkAnalyzer.getNodeLayer().dataProvider().fieldNameIndex('obj_id')
+            
+            for id, feature in nodeFeatures.iteritems():
+                action = QAction( feature.attributeMap()[attrObjId].toString(), menu )
                 action.triggered.connect( self.signalMapper.map )
                 self.signalMapper.setMapping(action, point.snappedAtGeometry )
                 menu.addAction( action )
