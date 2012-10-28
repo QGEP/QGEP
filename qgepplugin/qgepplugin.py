@@ -31,9 +31,9 @@ from qgis.gui import *
 
 import resources
 from ui.qgepdockwidget    import QgepDockWidget
-from tools.qgepmaptools   import QgepProfileMapTool, QgepUpstreamMapTool
+from tools.qgepmaptools   import QgepProfileMapTool, QgepDownstreamMapTool
 from tools.qgepnetwork    import QgepNetworkAnalyzer
-from tools.qgepplotwidget import QgepPlotWidget
+from ui.qgepplotd3widget  import QgepPlotD3Widget
 from ui.qgepprintpreview  import QgepPrintPreview
 
 class QgepPlugin:
@@ -57,23 +57,23 @@ class QgepPlugin:
         self.profileAction.setEnabled( False )
         self.profileAction.triggered.connect( self.profileToolClicked )
 
-        self.upstreamAction = QAction( QIcon( ":/plugins/qgepplugin/icons/qgepIcon.svg" ), "Upstream", self.iface.mainWindow() )
-        self.upstreamAction.setWhatsThis( "Upstream reaches" )
-        self.upstreamAction.setEnabled( False )
-        self.upstreamAction.triggered.connect( self.upstreamToolClicked )
+        self.DownstreamAction = QAction( QIcon( ":/plugins/qgepplugin/icons/qgepIcon.svg" ), "Downstream", self.iface.mainWindow() )
+        self.DownstreamAction.setWhatsThis( "Downstream reaches" )
+        self.DownstreamAction.setEnabled( False )
+        self.DownstreamAction.triggered.connect( self.DownstreamToolClicked )
         
         self.aboutAction = QAction( "About", self.iface.mainWindow() )
         self.aboutAction.triggered.connect( self.about )
 
         # Add toolbar button and menu item
         self.iface.addToolBarIcon( self.profileAction )
-        self.iface.addToolBarIcon( self.upstreamAction )
+        self.iface.addToolBarIcon( self.DownstreamAction )
         self.iface.addPluginToMenu( "&QGEP", self.profileAction )
         self.iface.addPluginToMenu( "&QGEP", self.aboutAction )
         
         # Local array of buttons to enable / disable based on context
         self.toolbarButtons.append( self.profileAction )
-        self.toolbarButtons.append( self.upstreamAction )
+        self.toolbarButtons.append( self.DownstreamAction )
 
 		# Init the object maintaining the network
         self.networkAnalyzer = QgepNetworkAnalyzer( self.iface )
@@ -81,7 +81,7 @@ class QgepPlugin:
         self.profileTool = QgepProfileMapTool( self.canvas, self.profileAction, self.networkAnalyzer )
         self.profileTool.profileChanged.connect( self.onProfileChanged )
         
-        self.upstreamTool = QgepUpstreamMapTool( self.canvas, self.upstreamAction, self.networkAnalyzer )
+        self.DownstreamTool = QgepDownstreamMapTool( self.canvas, self.DownstreamAction, self.networkAnalyzer )
         
         # Connect to events that can change layers
         QgsMapLayerRegistry.instance().layersWillBeRemoved.connect( self.layersWillBeRemoved )
@@ -98,8 +98,8 @@ class QgepPlugin:
         # Set the profile map tool
         self.profileTool.setActive()
         
-    def upstreamToolClicked(self):
-        self.upstreamTool.setActive()
+    def DownstreamToolClicked(self):
+        self.DownstreamTool.setActive()
 
     def openDock(self):
         if self.dockWidget == 0:
@@ -107,7 +107,7 @@ class QgepPlugin:
             self.dockWidget.closed.connect( self.onDialogClosed )
             self.dockWidget.showIt()
             
-            self.plotWidget = QgepPlotWidget( self.dockWidget )
+            self.plotWidget = QgepPlotD3Widget( self.dockWidget )
             self.dockWidget.addPlotWidget( self.plotWidget )
             self.dockWidget.printButton.clicked.connect( self.onPrintClicked )
 
