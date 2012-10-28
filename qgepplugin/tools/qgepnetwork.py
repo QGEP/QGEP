@@ -263,37 +263,86 @@ class QgepNetworkAnalyzer():
             
         return p
             
-    def getTree(self,node):
+    def getTree(self,node,reverse=False):
         if self.dirty:
             self.createGraph()
+        
+        if reverse:
+            myGraph = self.graph.reverse()
+        else:
+            myGraph = self.graph
             
-        subgraph = nx.algorithms.dfs_edges(self.graph, node)
-        edges = [(u,v,self.graph[u][v]) for (u,v) in subgraph]
+        subgraph = nx.algorithms.dfs_edges(myGraph, node)
+        edges = [(u,v,myGraph[u][v]) for (u,v) in subgraph]
         
         return edges
-            
+    
+    # Queries for a set of edges (reaches) by featureId
     def getEdgeGeometry(self, edges):
         cache = {}
         polylines = []
+        feat = QgsFeature()
+        searchIds = set([edge['baseFeature'] for edge in edges])
+        
+        dataProvider = self.reachLayer.dataProvider()
+        
+        attrObjId  = dataProvider.fieldNameIndex( 'obj_id' )
+        queryAttrs = [attrObjId]
+        dataProvider.select( queryAttrs )
+        
+        # For larger quantities of ids, batch query and filter locally
+        if len( searchIds ) > dataProvider.featureCount() / 2000:
+            while dataProvider.nextFeature( feat ):
+                attrs = feat.attributeMap()
+                if feat.id() in searchIds:
+                    cache[feat.id()] = feat
+                    feat = QgsFeature()
+        # If only a few ids, query each
+        else:
+            for featureId in searchIds:
+                dataProvider.featureAtId( featureId, feat, True, queryAttrs )
+                cache[featureId] = feat
+                feat = QgsFeature()
         
         for edge in edges:
             try:
                 feat = cache[edge['baseFeature']]
+                try:
+                    rank = edge['rank'] - 1
+                except KeyError:
+                    rank = 0
+                try:
+                    polylines.append (feat.geometry().asMultiPolyline()[rank] )
+                except IndexError:
+                    print "Could not represent geometry as MultiPolyline"
             except KeyError:
-                feat = QgsFeature()
-                if self.reachLayer.dataProvider().featureAtId( edge['baseFeature'], feat ):
-                    cache[edge['baseFeature']] = feat
-                    
-            try:
-                rank = edge['rank'] - 1
-            except KeyError:
-                rank = 0
-            try:
-                polylines.append (feat.geometry().asMultiPolyline()[rank] )
-            except IndexError:
-                print "Could not represent geometry as MultiPolyline"
+                print "Feature not found"
         
         return polylines
+    
+    def getNodes(self,nodes,attributes):
+        features = {}
+        feat = QgsFeature()
+        dataProvider = self.nodeLayer.dataProvider()
+        
+        attrs = [ dataProvider.fieldNameIndex(attr) for attr in attributes]
+        
+        # For larger quantities of ids, batch query and filter locally
+        if len( nodes ) > dataProvider.featureCount() / 2000:
+            dataProvider.select( attrs )
+            while dataProvider.nextFeature( feat ):
+                if feat.id() in nodes:
+                    features[feat.id()] = feat
+                    feat = QgsFeature()
+        # If only a few ids, query each
+        else:
+            for featureId in nodes:
+                dataProvider.featureAtId( featureId, feat, True, attrs )
+                features[featureId] = feat
+                feat = QgsFeature()
+        
+        return features
+    
     
     def getNodeValue(self, nodeId, attribute):
         value = -1

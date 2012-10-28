@@ -1,7 +1,7 @@
 #/***************************************************************************
-# ProfileTool
+# Qgep
 # 
-# ProfileTool
+# Qgep
 #                             -------------------
 #        begin                : 2012-08-31
 #        copyright            : (C) 2012 by matthias kuhn
@@ -17,11 +17,9 @@
 # *                                                                         *
 # ***************************************************************************/
 # Makefile for a PyQGIS plugin 
-PLUGINNAME = profiletool
-PY_FILES =  __init__.py  profileplugin.py
-PY_FILES1 = doProfile.py  selectPointTool.py
+PLUGINNAME = qgeptool
+PY_FILES =  __init__.py  qgepplugin.py
 EXTRAS = metadata.txt resources.qrc
-UI_FILES1 =  ui/profiletool.py
 RESOURCE_FILES = resources.py
 TOOL_DIR = tools ui
 ICONS_DIR = icons
