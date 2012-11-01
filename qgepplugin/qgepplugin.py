@@ -33,7 +33,7 @@ import resources
 from ui.qgepdockwidget    import QgepDockWidget
 from tools.qgepmaptools   import QgepProfileMapTool, QgepTreeMapTool
 from tools.qgepnetwork    import QgepNetworkAnalyzer
-from ui.qgepplotd3widget  import QgepPlotD3Widget
+from ui.qgepplotsvgwidget  import QgepPlotSVGWidget
 from ui.qgepprintpreview  import QgepPrintPreview
 
 class QgepPlugin:
@@ -120,7 +120,7 @@ class QgepPlugin:
             self.dockWidget.closed.connect( self.onDialogClosed )
             self.dockWidget.showIt()
             
-            self.plotWidget = QgepPlotD3Widget( self.dockWidget )
+            self.plotWidget = QgepPlotSVGWidget( self.dockWidget )
             self.dockWidget.addPlotWidget( self.plotWidget )
             self.dockWidget.printButton.clicked.connect( self.onPrintClicked )
 

@@ -1,0 +1,42 @@
+html {
+    height: 100%;
+}
+
+body {
+    font: 10px sans-serif;
+    margin: 0;
+    height: 100%;
+
+}
+
+.axis {
+    shape-rendering: crispEdges;
+}
+
+.x.axis line {
+    stroke: #fff;
+}
+
+.x.axis .minor {
+    stroke-opacity: .5;
+}
+
+.x.axis path {
+    display: none;
+}
+
+.y.axis line, .y.axis path {
+    fill: none;
+    stroke: #000;
+}
+
+.reach {
+    stroke-width: 1px;
+    vector-effect: non-scaling-stroke;
+}
+
+rect.pane {
+    cursor: move;
+    fill: none;
+    pointer-events: all;
+}
