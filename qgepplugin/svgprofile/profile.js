@@ -35,6 +35,8 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
     y: d3.scale.linear(),
     xAxis: d3.svg.axis().scale(this.x).tickSize(-this.height).tickSubdivide(true),
     yAxis: d3.svg.axis().scale(this.y).ticks(4).orient("right"),
+    verticalExaggeration: 5,
+
 
     initSVG: function( parent )
     {
@@ -90,7 +92,7 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
       this.mainGroup.select( "g.x.axis" ).attr( "transform", "translate(0," + this.height + ")" );
       this.mainGroup.select( "g.y.axis" ).attr( "transform", "translate(" + this.width + ",0)" );
 
-      this.xAxis.scale(this.x).tickSize(-this.height);
+      this.xAxis.scale(this.x).tickSize(-5).tickPadding(5);
       this.yAxis.scale(this.y);
 
       this.clipPath
@@ -174,7 +176,8 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
         .attr( 'y1', function(d) { return that.y( d.startLevel - d.width_m/2 ); } )
         .attr( 'y2', function(d) { return that.y( d.endLevel - d.width_m/2 ); } )
         .attr( 'class', 'reach' )
-        .style( "stroke" , ƒ('usage_current_color') );
+        .style( "stroke" , ƒ('usage_current_color') )
+        .on( dojo.hitch( this, this.onClick ), 'click' );
 
         reachGroups
         .append('line')
@@ -185,6 +188,12 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
         .attr( 'class', 'reach' )
         .style( "stroke" , ƒ('usage_current_color') );
 //        .style("stroke-width", function(d) { return that.y( d.width_m ); } );
+    },
+
+    onClick: function( d, i )
+    {
+      console.info( "Click ");
+      console.info( d3.event );
     },
 
     resetReaches: function()

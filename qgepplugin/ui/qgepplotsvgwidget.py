@@ -27,6 +27,7 @@ from PyQt4.QtGui import QVBoxLayout, QWidget
 from PyQt4.QtWebKit import QWebView, QWebSettings
 from PyQt4.QtCore import QUrl
 from PyQt4.QtCore import pyqtSignal
+import qgepplugin.resources
 
 class QgepPlotSVGWidget( QWidget ):
     webView = QWebView()
@@ -40,7 +41,7 @@ class QgepPlotSVGWidget( QWidget ):
         self.profile = 0
         
         layout = QVBoxLayout( self )
-        self.webView.load( QUrl( "/home/kk/.qgis/python/plugins/qgepplugin/d3js/index.html" ) )
+        self.webView.load( QUrl( "qrc:///plugins/qgepplugin/svgprofile/index.html" ) )
         self.frame = self.webView.page().mainFrame()
         self.frame.javaScriptWindowObjectCleared.connect( self.initJs )
         self.webView.page().settings().setAttribute(QWebSettings.DeveloperExtrasEnabled, True)

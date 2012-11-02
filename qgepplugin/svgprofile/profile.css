@@ -13,19 +13,11 @@ body {
     shape-rendering: crispEdges;
 }
 
-.x.axis line {
-    stroke: #fff;
-}
-
 .x.axis .minor {
     stroke-opacity: .5;
 }
 
-.x.axis path {
-    display: none;
-}
-
-.y.axis line, .y.axis path {
+.y.axis line, .y.axis path, .x.axis line, .x.axis path {
     fill: none;
     stroke: #000;
 }

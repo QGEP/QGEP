@@ -5,5 +5,10 @@
         <file>icons/wastewater-downstream.svg</file>
         <file>icons/wastewater-profile.svg</file>
         <file>icons/wastewater-upstream.svg</file>
+        <file>svgprofile/profile.js</file>
+        <file>svgprofile/profile.css</file>
+        <file>svgprofile/index.html</file>
+        <file>svgprofile/dojo.js</file>
+        <file>svgprofile/d3.v2.min.js</file>
     </qresource>
 </RCC>
