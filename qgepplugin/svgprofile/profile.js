@@ -117,10 +117,6 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
       this.x.domain([0, this.data[this.data.length - 1].endOffset]);
       this.y.domain([d3.min(this.data, ƒ('endLevel')), d3.max(this.data, ƒ('startLevel'))]).nice();
 
-      console.info( 'scaleDomain');
-      console.info( this.data[this.data.length - 1].endOffset );
-      console.info( d3.max(this.data, ƒ('startLevel')));
-
       this.mainGroup.select("g.x.axis").call(this.xAxis);
       this.mainGroup.select("g.y.axis").call(this.yAxis);
     },
@@ -138,7 +134,7 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
     zoom: function ()
     {
       this.transform( this.x, d3.event.translate[0], d3.event.scale );
-      // this.transform( this.y, d3.event.translate[1], d3.event.scale );
+      this.transform( this.y, d3.event.translate[1], d3.event.scale );
 
       this.profile
         .attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
@@ -157,24 +153,48 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
     // Data: reaches
     createReaches: function ( data )
     {
+      // Save the data
+      this.data = data;
+
+      // select data
       this.reachData = this.profile.selectAll(".reach")
         .data( data );
 
-      this.data = data;
-
-      var that = this;
-
       this.scaleDomain();
 
-      this.reachData.enter()
+      // create new reaches
+      var that = this;
+      var reachGroups = this.reachData.enter()
+        .append('svg:g');
+
+        reachGroups
         .append('line')
         .attr( 'x1', function(d) { return that.x( d.startOffset ); } )
         .attr( 'x2', function(d) { return that.x( d.endOffset ); } )
-        .attr( 'y1', function(d) { return that.y( d.startLevel ); } )
-        .attr( 'y2', function(d) { return that.y( d.endLevel ); } )
+        .attr( 'y1', function(d) { return that.y( d.startLevel - d.width_m/2 ); } )
+        .attr( 'y2', function(d) { return that.y( d.endLevel - d.width_m/2 ); } )
         .attr( 'class', 'reach' )
-        .style("stroke", ƒ('usage_current_color'))
-        .style("stroke-width", this.y( ƒ('width_m') ) );
+        .style( "stroke" , ƒ('usage_current_color') );
+
+        reachGroups
+        .append('line')
+        .attr( 'x1', function(d) { return that.x( d.startOffset ); } )
+        .attr( 'x2', function(d) { return that.x( d.endOffset ); } )
+        .attr( 'y1', function(d) { return that.y( d.startLevel + d.width_m/2 ); } )
+        .attr( 'y2', function(d) { return that.y( d.endLevel + d.width_m/2 ); } )
+        .attr( 'class', 'reach' )
+        .style( "stroke" , ƒ('usage_current_color') );
+//        .style("stroke-width", function(d) { return that.y( d.width_m ); } );
+    },
+
+    resetReaches: function()
+    {
+      this.data = [];
+      this.reachData = this.profile.selectAll( ".reach" )
+        .data( this.data );
+
+      this.reachData.exit()
+        .remove();
     }
   });
 
@@ -193,6 +213,7 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
     {
       profileProxy.profileChanged.connect(
         function(a) {
+          qgep.profilePlot.resetReaches();
           qgep.profilePlot.createReaches(dojo.fromJson(a));
         }
       );

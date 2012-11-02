@@ -32,6 +32,11 @@ class QgepProfile():
     def __init__( self, points=[] ):
         self.points = points
 
+    def copy( self ):
+        newPoints = copy( self.points )
+        newProfile = QgepProfile( newPoints )
+        return newProfile
+
     # Adds a point if no point is present at this offset
     # @param offset:   offset of the point (x)
     # @param masl:     meters above sea level (y)
@@ -50,7 +55,7 @@ class QgepProfile():
         return [ point[2] for point in self.points ]
 
     def asJson(self):
-        return json.dumps([ { 'startOffset': point1[0], 'endOffset': point2[0], 'startLevel': point1[1], 'endLevel': point2[1], 'type': 'reach', 'usage_current_color':'#660066', 'width_m':10 } for (point1, point2) in zip( self.points[:-1], self.points[1:] )])
+        return json.dumps([ { 'startOffset': point1[0], 'endOffset': point2[0], 'startLevel': point1[1], 'endLevel': point2[1], 'type': 'reach', 'usage_current_color':'#660066', 'width_m': 0.5 } for (point1, point2) in zip( self.points[:-1], self.points[1:] )])
 
     def reset(self):
         self.points = []

@@ -48,7 +48,10 @@ class QgepPlotSVGWidget( QWidget ):
         layout.addWidget( self.webView )
 
     def setProfile( self, profile ):
+        self.profile = profile.copy()
         self.profileChanged.emit( profile.asJson() )
 
     def initJs(self):
         self.frame.addToJavaScriptWindowObject( "profileProxy", self )
+        if self.profile:
+            self.profileChanged.emit( self.profile.asJson() )
