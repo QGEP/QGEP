@@ -177,7 +177,9 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
         .attr( 'y2', function(d) { return that.y( d.endLevel - d.width_m/2 ); } )
         .attr( 'class', 'reach' )
         .style( "stroke" , ƒ('usage_current_color') )
-        .on( dojo.hitch( this, this.onClick ), 'click' );
+        .on( dojo.hitch( this, this.onClick ), 'click' )
+        .append('title')
+        .text( function(d) { return 'Reach\nWidth:' + d.width_m; } );
 
         reachGroups
         .append('line')
