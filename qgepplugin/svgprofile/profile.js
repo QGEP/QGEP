@@ -23,11 +23,11 @@ function I(d)
 
 
 // Global Object, where we'll declare all the usefull stuff inside
-var qgep = { class: {} };
+var qgep = { def: {} };
 
 require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
 
-  qgep.class.ProfilePlot = dojo.declare( null,
+  qgep.def.ProfilePlot = dojo.declare( null,
   {
     margin: 10,
     reachData: [],
@@ -215,7 +215,7 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
 
   ready(function(){
     // Create the profile we need
-    qgep.profilePlot = new qgep.class.ProfilePlot();
+    qgep.profilePlot = new qgep.def.ProfilePlot();
     qgep.profilePlot.initSVG( d3.select("body") );
 
     // profileProxy is our bridge to the QGEP plugin. It's inserted with teh use of black magic (and pyQt/QtWebKit bridge)
