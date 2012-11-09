@@ -26,7 +26,7 @@ ICONS_DIR = icons
 
 UI_SOURCES=$(wildcard ui/*.ui)
 #UI_FILES=$(notdir $(UI_SOURCES))
-UI_FILES=$(join $(addsuffix ui_, $(dir $(UI_SOURCES))), $(notdir $(UI_SOURCES:.ui=.py)))
+UI_FILES=$(join $(addsuffix ui_, $(dir $(UI_SOURCES))), $(notdir $(UI_SOURCES:%.ui=ui_%.py)))
 RC_SOURCES=$(wildcard *.qrc)
 RC_FILES=$(patsubst %.qrc,%.py,$(RC_SOURCES))
 
@@ -36,7 +36,7 @@ all: $(GEN_FILES)
 ui: $(UI_FILES)
 resources: $(RC_FILES)
 
-ui/ui_$(UI_FILES): ui/ui_%.py: ui/%.ui
+$(UI_FILES): ui/ui_%.py: ui/%.ui
 	pyuic4 -o $@ $<
 	
 $(RC_FILES): %.py: %.qrc
