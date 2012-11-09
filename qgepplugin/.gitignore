@@ -1,4 +1,5 @@
 *.pyc
+resources.py
 .pydevproject
 .project
 .settings
