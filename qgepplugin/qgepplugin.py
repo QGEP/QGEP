@@ -30,11 +30,10 @@ from qgis.gui import *
 
 
 import resources
-from ui.qgepdockwidget    import QgepDockWidget
+from ui.ui_qgepdockwidget    import QgepDockWidget
 from tools.qgepmaptools   import QgepProfileMapTool, QgepTreeMapTool
 from tools.qgepnetwork    import QgepNetworkAnalyzer
 from ui.qgepplotsvgwidget  import QgepPlotSVGWidget
-from ui.qgepprintpreview  import QgepPrintPreview
 
 class QgepPlugin:
 
@@ -52,19 +51,22 @@ class QgepPlugin:
         self.toolbarButtons = []
         
         # Create toolbar button
-        self.profileAction = QAction( QIcon( ":/plugins/qgepplugin/icons/wastewater-profile.svg" ), "Trace", self.iface.mainWindow() )
+        self.profileAction = QAction( QIcon( ":/plugins/qgepplugin/icons/wastewater-profile.svg" ), "Profile", self.iface.mainWindow() )
         self.profileAction.setWhatsThis( "Reach trace." )
         self.profileAction.setEnabled( False )
+        self.profileAction.setCheckable( True )
         self.profileAction.triggered.connect( self.profileToolClicked )
 
         self.downstreamAction = QAction( QIcon( ":/plugins/qgepplugin/icons/wastewater-downstream.svg" ), "Downstream", self.iface.mainWindow() )
         self.downstreamAction.setWhatsThis( "Downstream reaches" )
         self.downstreamAction.setEnabled( False )
+        self.downstreamAction.setCheckable( True )
         self.downstreamAction.triggered.connect( self.downstreamToolClicked )
 
         self.upstreamAction = QAction( QIcon( ":/plugins/qgepplugin/icons/wastewater-upstream.svg" ), "Upstream", self.iface.mainWindow() )
         self.upstreamAction.setWhatsThis( "Upstream reaches" )
         self.upstreamAction.setEnabled( False )
+        self.upstreamAction.setCheckable( True )
         self.upstreamAction.triggered.connect( self.upstreamToolClicked )
         
         self.aboutAction = QAction( "About", self.iface.mainWindow() )
@@ -89,7 +91,10 @@ class QgepPlugin:
         self.profileTool = QgepProfileMapTool( self.canvas, self.profileAction, self.networkAnalyzer )
         self.profileTool.profileChanged.connect( self.onProfileChanged )
         
-        self.treeTool = QgepTreeMapTool( self.canvas, self.upstreamAction, self.networkAnalyzer )
+        self.upstreamTreeTool = QgepTreeMapTool( self.canvas, self.upstreamAction, self.networkAnalyzer )
+        self.upstreamTreeTool.setDirection( "upstream" )
+        self.downstreamTreeTool = QgepTreeMapTool( self.canvas, self.downstreamAction, self.networkAnalyzer )
+        self.downstreamTreeTool.setDirection( "downstream" )
         
         # Connect to events that can change layers
         QgsMapLayerRegistry.instance().layersWillBeRemoved.connect( self.layersWillBeRemoved )
@@ -107,12 +112,10 @@ class QgepPlugin:
         self.profileTool.setActive()
         
     def upstreamToolClicked(self):
-        self.treeTool.setActive()
-        self.treeTool.setDirection( "upstream" )
+        self.upstreamTreeTool.setActive()
         
     def downstreamToolClicked(self):
-        self.treeTool.setActive()
-        self.treeTool.setDirection( "downstream" )
+        self.downstreamTreeTool.setActive()
 
     def openDock(self):
         if self.dockWidget == 0:
@@ -141,11 +144,11 @@ class QgepPlugin:
     # Gets called when a layer is added
     def layersAdded( self, layers ):
         for newLayer in layers:
-            if newLayer.type() == QgsMapLayer.VectorLayer and newLayer.name() == "vw_reach_point":
+            if newLayer.type() == QgsMapLayer.VectorLayer and newLayer.name() == "vw_network_node":
                 self.networkAnalyzer.setNodeLayer( newLayer )
                 self.layersChanged()
 
-            if newLayer.type() == QgsMapLayer.VectorLayer and newLayer.name() == "vw_reach_multi_segment":
+            if newLayer.type() == QgsMapLayer.VectorLayer and newLayer.name() == "vw_network_segment":
                 self.networkAnalyzer.setReachLayer( newLayer )
                 self.layersChanged()
                 
