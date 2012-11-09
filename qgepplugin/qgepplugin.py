@@ -30,7 +30,7 @@ from qgis.gui import *
 
 
 import resources
-from ui.ui_qgepdockwidget    import QgepDockWidget
+from ui.qgepdockwidget    import QgepDockWidget
 from tools.qgepmaptools   import QgepProfileMapTool, QgepTreeMapTool
 from tools.qgepnetwork    import QgepNetworkAnalyzer
 from ui.qgepplotsvgwidget  import QgepPlotSVGWidget
