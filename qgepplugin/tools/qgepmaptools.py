@@ -137,13 +137,17 @@ class QgepProfileMapTool( QgepMapTool ):
     #=======================================================================
     def findPath( self, pStart, pEnd ):
         backupCursor = self.canvas.cursor()
-#        try:
-        self.canvas.setCursor(Qt.WaitCursor)
-        ( vertices, edges ) = self.networkAnalyzer.shortestPath( pStart, pEnd )
-        self.appendProfile( vertices, edges )
-#        except:
-#            pass
+        try:
+            self.canvas.setCursor(Qt.WaitCursor)
+            ( vertices, edges ) = self.networkAnalyzer.shortestPath( pStart, pEnd )
+            self.appendProfile( vertices, edges )
+        except:
+            pass
         self.canvas.setCursor(backupCursor)
+        if len( vertices ) > 0:
+            return True
+        else:
+            return False
         
     #=======================================================================
     # Appends to the current profile
@@ -289,7 +293,7 @@ class QgepTreeMapTool( QgepMapTool ):
         self.rubberBand.reset()
         
         edges = self.networkAnalyzer.getTree(point,upstream)
-        polylines = self.networkAnalyzer.getEdgeGeometry( [edge[2] for edge in edges] )
+        polylines = self.networkAnalyzer.getEdgeGeometry( [edge[2]['feature'] for edge in edges] )
         
         # Fix for QGIS < 2.0
         filteredPolylines = [pl for pl in polylines if len(pl) > 0]

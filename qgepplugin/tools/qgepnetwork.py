@@ -269,6 +269,12 @@ class QgepNetworkAnalyzer():
         
         return edges
     
+    def getEdgeGeometry(self, edges):
+        polylines = []
+        cache = self.getFeaturesById(self.reachLayer, self.reachLayer.dataProvider().attributeIndexes(), edges, True)
+        polylines = [feat.geometry().asPolyline() for feat in cache.asDict().values()]
+        return polylines
+    
     def getFeaturesById(self, layer, attributes, ids, fetchGeometry):
         featCache = QgepFeatureCache(layer)
         dataProvider = layer.dataProvider()
