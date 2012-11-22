@@ -29,10 +29,16 @@ CREATE VIEW qgep.vw_network_segment AS
  (
    SELECT 
      obj_id,
+     'reach' AS type,
      depth,
      ST_LENGTH( COALESCE( reach_progression, progression ) ) AS length_calc,
      COALESCE( from_obj_id, fs_reach_point_from ) AS from_obj_id,
      COALESCE( to_obj_id, fs_reach_point_to ) AS to_obj_id,
+     fs_reach_point_from AS from_obj_id_interpolate,
+     fs_reach_point_to AS to_obj_id_interpolate,
+     COALESCE( from_pos, 0 ) AS from_pos,
+     COALESCE( to_pos, 1 ) AS to_pos,
+     NULL AS bottom_level,
      COALESCE( reach_progression, st_linemerge(progression) ) AS progression_geometry
    FROM qgep.od_reach
    FULL JOIN
@@ -55,10 +61,16 @@ CREATE VIEW qgep.vw_network_segment AS
 
    SELECT 
      NULL AS obj_id,
+     'special_structure' AS type,
      NULL AS depth,
      ST_Length( progression_geometry ) AS length_calc,
      from_obj_id,
      to_obj_id,
+     from_obj_id AS from_obj_id_interpolate,
+     to_obj_id AS to_obj_id_interpolate,
+     0 AS from_pos,
+     1 AS to_pos,
+     bottom_level,
      progression_geometry
 
    FROM 
@@ -66,6 +78,7 @@ CREATE VIEW qgep.vw_network_segment AS
      SELECT 
      wn_from.obj_id AS from_obj_id,
      rp_from.obj_id AS to_obj_id,
+     wn_from.bottom_level AS bottom_level,
      ST_LineFromMultiPoint( ST_Collect(wn_from.situation_geometry, rp_from.situation_geometry ) ) AS progression_geometry
      FROM qgep.od_reach
        LEFT JOIN qgep.od_reach_point rp_from ON rp_from.obj_id = od_reach.fs_reach_point_from
@@ -80,6 +93,7 @@ CREATE VIEW qgep.vw_network_segment AS
      SELECT 
        rp_to.obj_id AS from_obj_id,
        wn_to.obj_id AS to_obj_id,
+       wn_to.bottom_level AS bottom_level,
        ST_LineFromMultiPoint( ST_Collect(rp_to.situation_geometry, wn_to.situation_geometry ) ) AS progression_geometry
      FROM qgep.od_reach
        LEFT JOIN qgep.od_reach_point rp_to ON rp_to.obj_id = od_reach.fs_reach_point_to
