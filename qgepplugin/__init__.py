@@ -22,15 +22,6 @@
 # 
 #---------------------------------------------------------------------
 
-def name():
- return "QGEP"
-
-def description():
- return "Plugin to manage wastewater networks"
-
-def version():
- return "Version 0.2.2"
-
 def qgisMinimumVersion():
   return '1.8'
 
