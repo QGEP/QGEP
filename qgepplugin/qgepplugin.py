@@ -30,7 +30,7 @@ from tools.qgepmaptools import QgepProfileMapTool, QgepTreeMapTool
 from tools.qgepnetwork import QgepNetworkAnalyzer
 from ui.qgepdockwidget import QgepDockWidget
 from ui.qgepplotsvgwidget import QgepPlotSVGWidget
-import resources
+from ui.qgepsettingsdialog import QgepSettingsDialog
 
 class QgepPlugin:
     # The networkAnalyzer will manage the networklayers and pathfinding
@@ -73,6 +73,9 @@ class QgepPlugin:
         
         self.aboutAction = QAction( "About", self.iface.mainWindow() )
         self.aboutAction.triggered.connect( self.about )
+        
+        self.settingsAction = QAction( 'Settings', self.iface.mainWindow() )
+        self.settingsAction.triggered.connect( self.showSettings )
 
         # Add toolbar button and menu item
         self.iface.addToolBarIcon( self.profileAction )
@@ -80,6 +83,7 @@ class QgepPlugin:
         self.iface.addToolBarIcon( self.downstreamAction )
 
         self.iface.addPluginToMenu( "&QGEP", self.profileAction )
+        self.iface.addPluginToMenu( "&QGEP", self.settingsAction )
         self.iface.addPluginToMenu( "&QGEP", self.aboutAction )
         
         # Local array of buttons to enable / disable based on context
@@ -200,3 +204,7 @@ class QgepPlugin:
     def about( self ):
         from ui.dlgabout import DlgAbout
         DlgAbout( self.iface.mainWindow() ).exec_()
+
+    def showSettings(self):
+        settingsDlg = QgepSettingsDialog( self.iface.mainWindow() )
+        settingsDlg.exec_()
