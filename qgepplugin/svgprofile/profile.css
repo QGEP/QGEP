@@ -1,12 +1,15 @@
-html {
+* {
+    margin:0;
+    padding:0;
+}
+
+body, html {
     height: 100%;
+    overflow: hidden;
 }
 
 body {
     font: 10px sans-serif;
-    margin: 0;
-    height: 100%;
-
 }
 
 .axis {
@@ -22,9 +25,29 @@ body {
     stroke: #000;
 }
 
+/* The profile elements */
 .reach {
     stroke-width: 1px;
     vector-effect: non-scaling-stroke;
+}
+
+.reach .usage-current-0 {
+    stroke: #dd0000;
+}
+
+.special-structure {
+    stroke-width: 1px;
+    vector-effect: non-scaling-stroke;
+    stroke: #444499;
+    fill: #444499;
+    fill-opacity: 0.7;
+}
+
+.terrain {
+    stroke-width: 1.5px;
+    vector-effect: non-scaling-stroke;
+    stroke: #00aa00;
+    fill: none;
 }
 
 rect.pane {

@@ -27,15 +27,18 @@ from PyQt4.QtCore import Qt, QPoint, pyqtSignal, QSignalMapper
 from PyQt4.QtGui import QCursor, QMessageBox, QColor, QMenu, QAction
 from qgis.core import QgsSnapper, QgsTolerance, QgsFeature, QgsGeometry, QgsPoint
 from qgis.gui import QgsMapTool, QgsRubberBand, QgsVertexMarker
-from qgepprofile import QgepProfile
+from qgepprofile import *
 import time
+
+#===============================================================================
+# Base class for all the map tools 
+#===============================================================================
 
 class QgepMapTool( QgsMapTool ):
     
     profileChanged = pyqtSignal( object )
     profile = QgepProfile()
     segmentOffset = 0
-    timings = []
     highLightedPoints = []
     
     def __init__( self, canvas, button ):
@@ -44,6 +47,11 @@ class QgepMapTool( QgsMapTool ):
         self.cursor = QCursor( Qt.CrossCursor )
         self.button = button
 
+        self.rubberBand = QgsRubberBand( self.canvas )
+        self.rubberBand.setColor( QColor( "#FF9500" ) )
+        self.rubberBand.setWidth( 3 )
+
+    # Gets called when the tool is activated
     def activate( self ):
         QgsMapTool.activate( self )
         self.canvas.setCursor( self.cursor )
@@ -51,8 +59,8 @@ class QgepMapTool( QgsMapTool ):
 
     # Gets called whenever the tool is deactivated directly or indirectly
     def deactivate( self ):
-        self.button.setChecked( False )
         QgsMapTool.deactivate( self )
+        self.button.setChecked( False )
 
     def isZoomTool( self ):
         return False
@@ -60,7 +68,10 @@ class QgepMapTool( QgsMapTool ):
     def setCursor( self, cursor ):
         self.cursor = QCursor( cursor )
 
-#************************************ Events (Convenience relays) *******************************************
+    #===========================================================================
+    # Events
+    #===========================================================================
+    
     def canvasMoveEvent( self, event ):
         try:
             self.mouseMoved( event )
@@ -79,75 +90,148 @@ class QgepMapTool( QgsMapTool ):
         except AttributeError:
             pass
 
+#===============================================================================
+# The map tool used for PROFILE
+# 
+# Allows to find the shortest path between several nodes.
+#===============================================================================
 
 class QgepProfileMapTool( QgepMapTool ):
+    
+    selectedPathPoints = []
+    pathPolyline = []
+    
     def __init__( self, canvas, button, networkAnalyzer ):
         QgepMapTool.__init__(self, canvas, button)
         
         self.networkAnalyzer = networkAnalyzer
-        
-        self.selectedPathPoints = []
-        self.pathPolyline = []
         
         # Init rubberband to visualize current status
         self.rbHelperLine = QgsRubberBand( self.canvas )
         self.rbHelperLine.setColor( QColor( "#FFD900" ) )
         self.rbHelperLine.setWidth( 2 )
 
-        self.rbShortestPath = QgsRubberBand( self.canvas )
-        self.rbShortestPath.setColor( QColor( "#FF9500" ) )
-        self.rbShortestPath.setWidth( 3 )
-
+    #===============================================================================
+    # activates this map tool
+    #===============================================================================
     def setActive( self ):
         self.saveTool = self.canvas.mapTool()
         self.canvas.setMapTool( self )
 
+    #===============================================================================
+    # Called whenever this map tool is deactivated.
+    # Used to clean up code
+    #===============================================================================
     def deactivate(self):
         QgepMapTool.deactivate(self)
-        self.rbShortestPath.reset()
+        self.rubberBand.reset()
         self.rbHelperLine.reset()
         self.selectedPathPoints = []
         self.pathPolyline = []
         
-    def _profile(self,name):
-        spenttime = 0
-        if len( self.timings ) != 0:
-            spenttime = time.clock() - self.timings[-1][1]
-        self.timings.append( (name, spenttime) )
-
-        
+    #=======================================================================
+    # Tries to find the shortest path between pStart and pEnd.
+    # If it finds a path:
+    #  * The path is visualized with a QgsRubberband
+    #  * The profile plot is updated to represent the current path
+    #=======================================================================
     def findPath( self, pStart, pEnd ):
         backupCursor = self.canvas.cursor()
+#        try:
         self.canvas.setCursor(Qt.WaitCursor)
         ( vertices, edges ) = self.networkAnalyzer.shortestPath( pStart, pEnd )
+        self.appendProfile( vertices, edges )
+#        except:
+#            pass
+        self.canvas.setCursor(backupCursor)
         
-        nodeLayer  = self.networkAnalyzer.getNodeLayer()
+    #=======================================================================
+    # Appends to the current profile
+    #=======================================================================
+    def appendProfile( self, vertices, edges ):
+        # Fetch all the needed edges in one batch
+        edgeLayer = self.networkAnalyzer.getReachLayer()
+        edgeAttrs = edgeLayer.dataProvider().attributeIndexes()
+        edgeIds = [edge['feature'] for p1, p2, edge in edges]
         
-        if vertices:
-            self.rbShortestPath.reset()
-            attrMASL = nodeLayer.dataProvider().fieldNameIndex( 'masl' ) # index of field meters above sea level
+        edgeFeatures = self.networkAnalyzer.getFeaturesById(edgeLayer, edgeAttrs, edgeIds, True)
+
+        # We need some additional nodes, where we need to interpolate...
+        interpolateNodesFrom = [edgeFeatures.attrAsUnicode( feat, u'from_obj_id_interpolate' ) for feat in edgeFeatures.asDict().values()]
+        interpolateNodesTo   = [edgeFeatures.attrAsUnicode( feat, u'to_obj_id_interpolate' ) for feat in edgeFeatures.asDict().values()]
+        additionalIds = [self.networkAnalyzer.vertexIds[node] for node in interpolateNodesFrom]
+        additionalIds += [self.networkAnalyzer.vertexIds[node] for node in interpolateNodesTo]
+        
+        # Now, fetch the nodes we need
+        nodeLayer = self.networkAnalyzer.getNodeLayer()
+        nodeIds = vertices + additionalIds
+        nodeAttrs = nodeLayer.dataProvider().attributeIndexes()
+        nodeFeatures = self.networkAnalyzer.getFeaturesById(nodeLayer, nodeAttrs, nodeIds, False)
+        
+        if len( vertices ) > 1:
+            self.rubberBand.reset()
             
-            for vertex in zip(vertices,[0]+[edge[2]['weight'] for edge in edges]):
-                masl = self.networkAnalyzer.getNodeValue( vertex[0], 'masl' )
-                self.segmentOffset += vertex[1]
-                self.profile.addPoint( self.segmentOffset, masl )
+            elem = QgepProfileNodeElement( vertices[0], nodeFeatures, 0 )
+            self.profile.addElement(elem)
             
-            polylines = self.networkAnalyzer.getEdgeGeometry( [edge[2] for edge in edges] )
-            for polyline in polylines:
-                self.pathPolyline.extend( polyline )
+            currentSpecialStructure = None
+            currentReach = None
             
-            self.rbShortestPath.addGeometry( QgsGeometry.fromPolyline( self.pathPolyline ), nodeLayer )
+            for p1, p2, edge in edges:
+                fromOffset = self.segmentOffset
+                toOffset = self.segmentOffset + edge['weight']
+                
+                if 'reach' == edge['type']:
+                    if currentSpecialStructure is not None:
+                        self.profile.addElement( currentSpecialStructure )
+                        currentSpecialStructure = None
+                        
+                    if currentReach is not None and currentReach.objId != edge['baseFeature']:
+                        self.profile.addElement(currentReach)
+                        currentReach = QgepProfileReachElement( p1, p2, edge['feature'], nodeFeatures, edgeFeatures, fromOffset, toOffset )
+                    elif currentReach is None:
+                        currentReach = QgepProfileReachElement( p1, p2, edge['feature'], nodeFeatures, edgeFeatures, fromOffset, toOffset  )
+                    else:
+                        currentReach.addSegment( p1, p2, edge['feature'], nodeFeatures, edgeFeatures, fromOffset, toOffset )
+                    
+                elif 'special_structure' == edge['type']:
+                    if currentReach is not None:
+                        self.profile.addElement(currentReach)
+                        currentReach = None
+                        
+                    if currentSpecialStructure is not None:
+                        currentSpecialStructure.addSegment( p1, p2, edge['feature'], fromOffset, toOffset )
+                    else:
+                        currentSpecialStructure = QgepProfileSpecialStructureElement( p1, p2, edge['feature'], nodeFeatures, edgeFeatures, fromOffset, toOffset )
+                
+                if currentSpecialStructure is not None:    
+                    self.profile.addElement( currentSpecialStructure )
+                    currentSpecialStructure = None
+                
+                if currentReach is not None:
+                    self.profile.addElement( currentReach )
+                    currentReach = None
+
+                elem = QgepProfileNodeElement( p2, nodeFeatures, toOffset )
+                self.profile.addElement(elem)
+                
+                self.segmentOffset = toOffset
+
             self.profileChanged.emit( self.profile )
-            self.canvas.setCursor(backupCursor)
+            
+            # Create rubberband geometry
+            for id in edgeIds:
+                self.pathPolyline.extend( edgeFeatures[id].geometry().asPolyline() )
+            
+            self.rubberBand.addGeometry( QgsGeometry.fromPolyline( self.pathPolyline ), nodeLayer )
+            self.profileChanged.emit( self.profile )
             return True
         else:
-            # QMessageBox.warning(self.iface.mainWindow(), "QGEP - No path found", "No connection exists between the selected points. Use right click to cancel this operation." )
-            self.canvas.setCursor(backupCursor)
             return False
 
-#************************************* Mouse listener actions ***********************************************
-
+    #===========================================================================
     # Mouse moved: update helper line
+    #===========================================================================
     def mouseMoved( self, event ):
         if len( self.selectedPathPoints ) > 0:
             self.rbHelperLine.reset()
@@ -156,7 +240,9 @@ class QgepProfileMapTool( QgepMapTool ):
             mousePos = self.canvas.getCoordinateTransform().toMapCoordinates( event.pos().x(), event.pos().y() )
             self.rbHelperLine.addPoint( mousePos )
 
+    #===========================================================================
     # Cancel any ongoing routing selection
+    #===========================================================================
     def rightClicked( self, event ):
         self.selectedPathPoints = []
         self.pathPolyline = []
@@ -164,46 +250,31 @@ class QgepProfileMapTool( QgepMapTool ):
         self.profile.reset()
         self.segmentOffset = 0
 
+    #===========================================================================
     # Select startpoint / endpoint
+    #===========================================================================
     def leftClicked( self, event ):
-        pClicked = QPoint( event.pos().x(), event.pos().y() )
-        snappedPoint = []
-        ( res, snappedPoint ) = self.networkAnalyzer.getSnapper().snapPoint( pClicked, snappedPoint )
-
-        if len( snappedPoint ) > 0:
+        snappedPoint = self.networkAnalyzer.snapPoint( event )
+        
+        if snappedPoint is not None:
             if len( self.selectedPathPoints ) > 0:
-                pf = self.findPath( self.selectedPathPoints[-1][0], snappedPoint[0].snappedAtGeometry )
+                pf = self.findPath( self.selectedPathPoints[-1][0], snappedPoint.snappedAtGeometry )
                 if pf:
-                    self.selectedPathPoints.append( ( snappedPoint[0].snappedAtGeometry, QgsPoint( snappedPoint[0].snappedVertex ) ) )
+                    self.selectedPathPoints.append( ( snappedPoint.snappedAtGeometry, QgsPoint( snappedPoint.snappedVertex ) ) )
             else:
-                self.selectedPathPoints.append( ( snappedPoint[0].snappedAtGeometry, QgsPoint( snappedPoint[0].snappedVertex ) ) )
+                self.selectedPathPoints.append( ( snappedPoint.snappedAtGeometry, QgsPoint( snappedPoint.snappedVertex ) ) )
 
-    def doubleClicked( self, event ):
-#        pClicked = QPoint( position["x"], position["y"] )
-#        snappedPoint = []
-#        ( res, snappedPoint ) = self.networkAnalyzer.getSnapper().snapPoint( pClicked, snappedPoint )
-#
-#        if len( snappedPoint ) > 0 and len( self.selectedPathPoints ) > 0:
-#            self.findPath( self.selectedPathPoints[-1], QgsPoint( snappedPoint[0].snappedVertex.x(), snappedPoint[0].snappedVertex.y() ) )
-#            self.selectedPathPoints = []
-#            self.pathPolyline = []
-        return
-
+#===============================================================================
+# The map tool used to find TREES 
+#===============================================================================
 
 class QgepTreeMapTool( QgepMapTool ):
     direction = "downstream"
-    signalMapper = QSignalMapper()
     
     def __init__( self, canvas, button, networkAnalyzer ):
         QgepMapTool.__init__(self, canvas, button)
         
         self.networkAnalyzer = networkAnalyzer
-        
-        self.rbTree = QgsRubberBand( self.canvas )
-        self.rbTree.setColor( QColor( "#FF0095" ) )
-        self.rbTree.setWidth( 3 )
-        
-        self.signalMapper.mapped.connect( self.nodeMenuClicked )
         
     def setDirection(self, direction):
         self.direction = direction
@@ -215,12 +286,15 @@ class QgepTreeMapTool( QgepMapTool ):
         if self.direction == "upstream":
             upstream = True
         
-        self.rbTree.reset()
+        self.rubberBand.reset()
         
         edges = self.networkAnalyzer.getTree(point,upstream)
         polylines = self.networkAnalyzer.getEdgeGeometry( [edge[2] for edge in edges] )
         
-        self.rbTree.addGeometry( QgsGeometry.fromMultiPolyline( polylines ), self.networkAnalyzer.getNodeLayer() )
+        # Fix for QGIS < 2.0
+        filteredPolylines = [pl for pl in polylines if len(pl) > 0]
+        
+        self.rubberBand.addGeometry( QgsGeometry.fromMultiPolyline( filteredPolylines ), self.networkAnalyzer.getNodeLayer() )
         
         self.canvas.setCursor(backupCursor)
         
@@ -244,36 +318,24 @@ class QgepTreeMapTool( QgepMapTool ):
                 self.highLightedPoints.append(marker)
                 
     def rightClicked(self, event):
-        self.rbTree.reset()
-                
-    def leftClicked( self, event ):
-        pClicked = QPoint( event.pos().x(), event.pos().y() )
-        ( res, snappedPoints ) = self.networkAnalyzer.getSnapper().snapPoint( pClicked, [] )
+        self.rubberBand.reset()
 
-        if len( snappedPoints ) == 0:
-            print "No node selected to start search"
-        elif len( snappedPoints ) == 1:
-            self.getTree( snappedPoints[0].snappedAtGeometry )
-        elif len( snappedPoints ) > 1:
-            menu = QMenu( self.canvas )
-            nodeFeatures = self.networkAnalyzer.getNodes( [point.snappedAtGeometry for point in snappedPoints], ['obj_id'] )
-            
-            attrObjId = self.networkAnalyzer.getNodeLayer().dataProvider().fieldNameIndex('obj_id')
-            
-            for id, feature in nodeFeatures.iteritems():
-                action = QAction( feature.attributeMap()[attrObjId].toString(), menu )
-                action.triggered.connect( self.signalMapper.map )
-                self.signalMapper.setMapping(action, point.snappedAtGeometry )
-                menu.addAction( action )
-            
-            menu.exec_( self.canvas.mapToGlobal( event.pos()  ) )
-            
-            for action in menu.actions():
-                menu.removeAction( action )
-         
-    def nodeMenuClicked(self,index):
-        self.getTree(index)
+    def leftClicked( self, event ):
+        snappedPoint = self.networkAnalyzer.snapPoint( event )
+        
+        if snappedPoint is not None:
+            self.getTree( snappedPoint.snappedAtGeometry )
             
     def setActive( self ):
         self.saveTool = self.canvas.mapTool()
         self.canvas.setMapTool( self )
+        
+    def deactivate(self):
+        QgepMapTool.deactivate(self)
+        self.rubberBand.reset()
+
+        for marker in self.highLightedPoints:
+            self.canvas.scene().removeItem( marker )
+        
+        self.highLightedPoints = []
+        

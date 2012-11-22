@@ -25,25 +25,30 @@
 
 from PyQt4.QtGui import QVBoxLayout, QWidget
 from PyQt4.QtWebKit import QWebView, QWebSettings
-from PyQt4.QtCore import QUrl
-from PyQt4.QtCore import pyqtSignal
+from PyQt4.QtCore import QUrl, pyqtSignal, QSettings, QVariant
 import qgepplugin.resources
 
 class QgepPlotSVGWidget( QWidget ):
     webView = QWebView()
-    frame = 0
+    frame   = None
+    profile = None
 
     profileChanged = pyqtSignal( [str], name='profileChanged' )
 
-    def __init__( self, parent = None ):
+    def __init__( self, parent, networkAnalyzer ):
         QWidget.__init__( self, parent )
         
-        self.profile = 0
+        self.networkAnalyzer = networkAnalyzer
+        
+        settings = QSettings()
         
         layout = QVBoxLayout( self )
-        self.webView.load( QUrl( "qrc:///plugins/qgepplugin/svgprofile/index.html" ) )
+        url = settings.value( "/QGEP/SvgProfilePath", QVariant( u'qrc:///plugins/qgepplugin/svgprofile/index.html' ) )
+
+        self.webView.load( QUrl( url.toString() ) )
         self.frame = self.webView.page().mainFrame()
         self.frame.javaScriptWindowObjectCleared.connect( self.initJs )
+        self.frame.loadFinished.connect( self.frameLoadFinished )
         self.webView.page().settings().setAttribute(QWebSettings.DeveloperExtrasEnabled, True)
 
         layout.addWidget( self.webView )
@@ -54,5 +59,7 @@ class QgepPlotSVGWidget( QWidget ):
 
     def initJs(self):
         self.frame.addToJavaScriptWindowObject( "profileProxy", self )
+        
+    def frameLoadFinished(self):
         if self.profile:
             self.profileChanged.emit( self.profile.asJson() )

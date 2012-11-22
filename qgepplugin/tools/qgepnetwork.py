@@ -23,12 +23,13 @@
 #
 #---------------------------------------------------------------------
 
-from PyQt4.QtCore import QVariant, QCoreApplication
-from PyQt4.QtGui import QProgressDialog
+from PyQt4.QtCore import QVariant, QCoreApplication, QPoint
+from PyQt4.QtGui import QProgressDialog, QMenu, QAction
 from collections import defaultdict
 from qgis.core import QgsVectorLayer, QgsField, QgsTolerance, QgsSnapper, \
-    QgsFeature, QgsPoint, QgsGeometry, QgsMapLayerRegistry
+    QgsFeature, QgsPoint, QgsGeometry, QgsMapLayerRegistry, QgsRectangle
 from qgis.networkanalysis import QgsGraph, QgsGraphAnalyzer
+from exceptions import TypeError
 import networkx as nx
 import time
 
@@ -51,12 +52,14 @@ class QgepNetworkAnalyzer():
     def setReachLayer( self, reachLayer ):
         self.reachLayer = reachLayer
         self.dirty = True
-                
+        
         if reachLayer:
             self.reachLayerId = reachLayer.id()
-            
         else:
             self.reachLayerId = 0
+            
+        if self.nodeLayer and self.reachLayer:
+            self.createGraph()
         
     def setNodeLayer( self, nodeLayer ):
         self.dirty = True
@@ -83,10 +86,11 @@ class QgepNetworkAnalyzer():
         nodeProvider = self.nodeLayer.dataProvider()
         
         feat = QgsFeature()
+        allAttrs = nodeProvider.attributeIndexes()
         attrObjId = nodeProvider.fieldNameIndex( 'obj_id' )
-        attrWWStructObjId = nodeProvider.fieldNameIndex( 'wastewater_structure_obj_id' )
+        attrType = nodeProvider.fieldNameIndex( 'type' )
         
-        nodeProvider.select( [attrObjId, attrWWStructObjId] )
+        nodeProvider.select( allAttrs )
         
         # Add all vertices
         while nodeProvider.nextFeature( feat ):
@@ -94,99 +98,55 @@ class QgepNetworkAnalyzer():
             featId = feat.id()
             
             objId = attrs[attrObjId].toString()
-            wwStructObjId = attrs[attrWWStructObjId].toString()
+            type = attrs[attrType].toString()
             
             vertex = feat.geometry().asPoint()
-            self.graph.add_node( featId, dict( point=vertex) )
+            self.graph.add_node( featId, dict( point=vertex, type=type ) )
             
             self.vertexIds[str(objId)] = featId
-            
-            if wwStructObjId != '':
-                self.nodesOnStructure[wwStructObjId].append( featId )
         
         self._profile( "add vertices" )
             
     def _addEdges( self ):
         # Add all edges (reach)
-        dataProvider = self.reachLayer.dataProvider()
+        reachProvider = self.reachLayer.dataProvider()
         
-        attrObjId           = dataProvider.fieldNameIndex( 'obj_id' )
-        attrStrFromObjId    = dataProvider.fieldNameIndex( 'str_from_obj_id' )
-        attrStrToObjId      = dataProvider.fieldNameIndex( 'str_to_obj_id' )
-        attrRpFromObjId     = dataProvider.fieldNameIndex( 'rp_from_obj_id' )
-        attrRpToObjId       = dataProvider.fieldNameIndex( 'rp_to_obj_id' )
-        attrStrFromType     = dataProvider.fieldNameIndex( 'str_from_type' )
-        attrStrToType       = dataProvider.fieldNameIndex( 'str_to_type' )
-        attrLengthEffective = dataProvider.fieldNameIndex( 'length_effective' )
-        attrBlindNodes      = dataProvider.fieldNameIndex( 'nodes' )
-        attrBlindOffsets    = dataProvider.fieldNameIndex( 'positions' )
-        attrBlindRanks      = dataProvider.fieldNameIndex( 'ranks' )
+        allAttrs = reachProvider.attributeIndexes()
         
-        # Only query needed attributes
-        queryAttrs = [ attrObjId, attrStrFromObjId, attrStrToObjId, attrRpFromObjId, attrRpToObjId, attrLengthEffective, attrBlindNodes, attrBlindOffsets, attrBlindRanks, attrStrToType, attrStrFromType ]
+        attrObjId      = reachProvider.fieldNameIndex( 'obj_id' )
+        attrFromObjId  = reachProvider.fieldNameIndex( 'from_obj_id' )
+        attrToObjId    = reachProvider.fieldNameIndex( 'to_obj_id' )
+        attrLength     = reachProvider.fieldNameIndex( 'length_calc' )
+        attrType       = reachProvider.fieldNameIndex( 'type' )
         
-        dataProvider.select( queryAttrs )
+        reachProvider.select( allAttrs )
         
         feat = QgsFeature()
         
         graphNodes = self.graph.nodes(True)
         
         #Loop throuth all reaches
-        while dataProvider.nextFeature( feat ):
+        while reachProvider.nextFeature( feat ):
             attrs = feat.attributeMap()
             
             objId = attrs[attrObjId].toString()
+            type = attrs[attrType].toString()
+            fromObjId = attrs[attrFromObjId].toString()
+            toObjId = attrs[attrToObjId].toString()
             
-            ptId1 = -1
-            ptId2 = -1
-            wwStructFromId = attrs[attrStrFromObjId].toString()
-            strFromType = str(attrs[attrStrFromType].toString())
-            rpFromId = attrs[attrRpFromObjId].toString()
+            length = attrs[attrLength].toDouble()[0]
             
-            # Connect by structure if applicable. Reach points with reach as structure are handled specially
-            if strFromType == "channel" or strFromType == "reach" or strFromType == "":
-                ptId1 = self.vertexIds[str(rpFromId)]
-            else:
-                ptId1 = self.nodesOnStructure[wwStructFromId][0]
+            ptId1 = self.vertexIds[str(fromObjId)]
+            ptId2 = self.vertexIds[str(toObjId)]
+            
+            props = { \
+              'weight': length,\
+              'feature': feat.id(),\
+              'baseFeature': unicode(objId),\
+              'type': unicode( type )\
+            }
+            self.graph.add_edge( ptId1, ptId2, props )
 
-            wwStructToId = attrs[attrStrToObjId].toString()
-            strToType = str(attrs[attrStrToType].toString())
-            rpToId = attrs[attrRpToObjId].toString()
-            
-            # Connect by structure if applicable. Reach points with reach as structure are handled specially
-            if strToType == "channel" or strToType == "reach" or strToType == "":
-                ptId2 = self.vertexIds[str(rpToId)]
-            else:
-                ptId2 = self.nodesOnStructure[wwStructToId][0]
-                
-            length = attrs[attrLengthEffective].toDouble()[0]
-            # If this reach contains blind connections it needs to be split
-            blindNodes = attrs[attrBlindNodes].toString()
-            
-            if blindNodes != "":
-                blindOffsets = attrs[attrBlindOffsets].toString()
-                blindRanks = attrs[attrBlindRanks].toString()
-                
-                # First entry is always NULL...
-                lstBlindNodes   = [ptId1] + [ self.vertexIds[x] for x in str( blindNodes )[1:-1].split(',')[1:] ] + [ptId2]
-                lstBlindOffsets = [ float (a) for a in [0] + str( blindOffsets )[1:-1].split(',')[1:] + [1] ]
-                lstBlindRanks   = [ int(a) for a in [0] + str( blindRanks )[1:-1].split(',')[1:] ]
-                lstBlindRanks.append( lstBlindRanks[-1] + 1 )
-                
-                for (pt1, pt2, offset1, offset2, rank1, rank2) in zip( lstBlindNodes[:-1], lstBlindNodes[1:], lstBlindOffsets[:-1], lstBlindOffsets[1:], lstBlindRanks[1:], lstBlindRanks[:-1] ):
-                    props = dict( weight = offset2 * length - offset1 * length, baseFeature = feat.id(), offset = offset1, rank = rank1 )
-                    nd = self.graph.node[ pt1 ]
-                    nd['pos'] = offset1
-                    nd['baseEdge'] = feat.id()
-                    nd['pt1'] = self.vertexIds[str(rpFromId)]
-                    nd['pt2'] = self.vertexIds[str(rpToId)]
-                    self.graph.add_edge( pt1, pt2, props )
-            
-            # There are no blind connections on this reach
-            else:
-                props = dict( weight = length, baseFeature = feat.id() )
-                self.graph.add_edge( ptId1, ptId2, props )
-                
         self._profile( "add edges" )
             
         
@@ -229,24 +189,56 @@ class QgepNetworkAnalyzer():
     def getSnapper(self):
         return self.snapper
     
+    def snapPoint(self, event):
+        pClicked = QPoint( event.pos().x(), event.pos().y() )
+        ( res, snappedPoints ) = self.snapper.snapPoint( pClicked, [] )
+
+        if len( snappedPoints ) == 0:
+            return None
+        elif len( snappedPoints ) == 1:
+            return snappedPoints[0]
+        elif len( snappedPoints ) > 1:
+            attrObjId = self.getNodeLayer().dataProvider().fieldNameIndex('obj_id')
+            attrType = self.getNodeLayer().dataProvider().fieldNameIndex('type')
+            attrDescr = self.getNodeLayer().dataProvider().fieldNameIndex('description')
+            
+            attributes = [attrObjId, attrType, attrDescr ]
+            pointIds = [point.snappedAtGeometry for point in snappedPoints]
+            nodeFeatures = self.getFeaturesById(self.getNodeLayer(), attributes, pointIds, True)
+
+            # Filter wastewater nodes            
+            filteredFeatures = { id: nodeFeatures.featureById(id) for id in nodeFeatures.asDict() if nodeFeatures.attrAsUnicode( nodeFeatures.featureById(id), u'type' ) == u'wastewater_node' }
+
+            # Only one wastewater node left: return this
+            if len( filteredFeatures ) == 1:
+                return [point for point in snappedPoints if point.snappedAtGeometry == filteredFeatures.iterkeys().next() ][0]
+
+            # Still not sure which point to take?
+            # Are there no wastewater nodes filtered? Let the user choose from the reach points
+            if len( filteredFeatures ) == 0:
+                filteredFeatures = nodeFeatures.asDict()
+            
+            # Ask the user which point he wants to use 
+            actions = dict()
+            
+            menu = QMenu( self.iface.mapCanvas() )
+            
+            for id, feature in filteredFeatures.iteritems():
+                title = feature.attributeMap()[attrDescr].toString() + " (" + feature.attributeMap()[attrObjId].toString() + ")" 
+                action = QAction( title, menu )
+                actions[action] = point
+                menu.addAction( action )
+            
+            clickedAction = menu.exec_( self.iface.mapCanvas().mapToGlobal( event.pos()  ) )
+            
+            if clickedAction is not None:
+                return actions[clickedAction]
+            
+            return None
+        
+    
     # Finds the shortes path from the start point
     # to the end point
-    # Returns a tuple ( vertices, edges )
-    # where each vertex is a tuple in the form
-    # (qgspoint, obj_id) again
-    #
-    # ( 
-    #   [
-    #     ( QgsPoint, VertexObjId ),
-    #     ..., 
-    #     ( QgsPoint, VertexObjId )
-    #   ],
-    #   [
-    #     ( 0, ArcObjId ),
-    #     ...,
-    #     ( 0, ArcObjId )
-    #   ] 
-    # )
     def shortestPath(self,pStart,pEnd):
         if self.dirty:
             self.createGraph()
@@ -272,77 +264,32 @@ class QgepNetworkAnalyzer():
         else:
             myGraph = self.graph
             
-        subgraph = nx.algorithms.dfs_edges(myGraph, node)
-        edges = [(u,v,myGraph[u][v]) for (u,v) in subgraph]
+        pred, weight = nx.bellman_ford(myGraph, node)
+        edges = [(v,u,myGraph[v][u]) for (u,v) in pred.items() if v is not None]
         
         return edges
     
-    # Queries for a set of edges (reaches) by featureId
-    def getEdgeGeometry(self, edges):
-        cache = {}
-        polylines = []
+    def getFeaturesById(self, layer, attributes, ids, fetchGeometry):
+        featCache = QgepFeatureCache(layer)
+        dataProvider = layer.dataProvider()
+        
         feat = QgsFeature()
-        searchIds = set([edge['baseFeature'] for edge in edges])
-        
-        dataProvider = self.reachLayer.dataProvider()
-        
-        attrObjId  = dataProvider.fieldNameIndex( 'obj_id' )
-        queryAttrs = [attrObjId]
-        dataProvider.select( queryAttrs )
         
         # For larger quantities of ids, batch query and filter locally
-        if len( searchIds ) > dataProvider.featureCount() / 2000:
+        if len( ids ) > dataProvider.featureCount() / 10000:
+            dataProvider.select( attributes, QgsRectangle(), fetchGeometry )
             while dataProvider.nextFeature( feat ):
-                attrs = feat.attributeMap()
-                if feat.id() in searchIds:
-                    cache[feat.id()] = feat
+                if feat.id() in ids:
+                    featCache.addFeature(feat)
                     feat = QgsFeature()
         # If only a few ids, query each
         else:
-            for featureId in searchIds:
-                dataProvider.featureAtId( featureId, feat, True, queryAttrs )
-                cache[featureId] = feat
+            for featureId in ids:
+                dataProvider.featureAtId( featureId, feat, True, attributes )
+                featCache.addFeature(feat)
                 feat = QgsFeature()
         
-        for edge in edges:
-            try:
-                feat = cache[edge['baseFeature']]
-                try:
-                    rank = edge['rank'] - 1
-                except KeyError:
-                    rank = 0
-                try:
-                    polylines.append (feat.geometry().asMultiPolyline()[rank] )
-                except IndexError:
-                    print "Could not represent geometry as MultiPolyline"
-            except KeyError:
-                print "Feature not found"
-        
-        return polylines
-    
-    def getNodes(self,nodes,attributes):
-        features = {}
-        feat = QgsFeature()
-        dataProvider = self.nodeLayer.dataProvider()
-        
-        attrs = [ dataProvider.fieldNameIndex(attr) for attr in attributes]
-        
-        # For larger quantities of ids, batch query and filter locally
-        if len( nodes ) > dataProvider.featureCount() / 2000:
-            dataProvider.select( attrs )
-            while dataProvider.nextFeature( feat ):
-                if feat.id() in nodes:
-                    features[feat.id()] = feat
-                    feat = QgsFeature()
-        # If only a few ids, query each
-        else:
-            for featureId in nodes:
-                dataProvider.featureAtId( featureId, feat, True, attrs )
-                features[featureId] = feat
-                feat = QgsFeature()
-        
-        return features
-    
+        return featCache
     
     def getNodeValue(self, nodeId, attribute):
         value = -1
@@ -367,9 +314,61 @@ class QgepNetworkAnalyzer():
         except KeyError:
             if self.nodeLayer.dataProvider().featureAtId( nodeId, feat, False, [attIdx] ):
                 value = feat.attributeMap()[attIdx].toFloat()[0]
-            
+        
         return value
         
     def print_profile(self):
         for (name, spenttime) in self.timings:
             print name + ":" + str( spenttime ) 
+
+
+class QgepFeatureCache:
+    _featuresById = None
+    _featuresByObjId = None
+    attrIndices = None
+    objIdField = None
+    layer = None
+    
+    def __init__(self, layer, objIdField = 'obj_id'):
+        self._featuresById = {}
+        self._featuresByObjId = {}
+        self.attrIndices = { unicode( field.name() ) : idx for idx, field in layer.pendingFields().items() }
+        self.objIdField = objIdField
+        self.layer = layer
+        
+    def __getitem__(self, key):
+         return self.featureById(key)
+         
+    def addFeature(self, feat):
+        self._featuresById[feat.id()] = feat
+        self._featuresByObjId[self.attrAsUnicode( feat, self.objIdField )] = feat
+        
+    def featureById(self, id):
+        return self._featuresById[id]
+        
+    def featureByObjId(self, objId):
+        return self._featuresByObjId[objId]
+    
+    def attrAsFloat(self, feat, attr):
+        var = self.attrAsQVariant(feat, attr)
+        res = var.toFloat()
+        
+        # If the value in the database was NULL return None
+        # Will also return None if you're trying to convert a String...
+        if res[1] != True:
+            return None
+        else:
+            return res[0]
+    
+    def attrAsUnicode(self, feat, attr):
+        var = self.attrAsQVariant(feat, attr)
+        return unicode( var.toString() ) 
+    
+    def attrAsQVariant(self, feat, attr):
+        attrMap = feat.attributeMap()
+        attrIdx = self.attrIndices[attr]
+        return attrMap[attrIdx]
+    
+    def asDict(self):
+        return self._featuresById
+        

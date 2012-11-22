@@ -26,27 +26,29 @@
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from qgis.core import *
-from qgis.gui import *
-
-
+from tools.qgepmaptools import QgepProfileMapTool, QgepTreeMapTool
+from tools.qgepnetwork import QgepNetworkAnalyzer
+from ui.qgepdockwidget import QgepDockWidget
+from ui.qgepplotsvgwidget import QgepPlotSVGWidget
 import resources
-from ui.qgepdockwidget    import QgepDockWidget
-from tools.qgepmaptools   import QgepProfileMapTool, QgepTreeMapTool
-from tools.qgepnetwork    import QgepNetworkAnalyzer
-from ui.qgepplotsvgwidget  import QgepPlotSVGWidget
 
 class QgepPlugin:
+    # The networkAnalyzer will manage the networklayers and pathfinding
+    networkAnalyzer = None
+    
+    # Remember not to reopen the dock if there's already one opened
+    dockWidget      = None
 
+    #===============================================================================
+    # Constructor
+    #===============================================================================
     def __init__( self, iface ):
         self.iface = iface
         self.canvas = iface.mapCanvas()
-        self.networkAnalyzer = 0
-        self.reachLayer = 0
-        self.nodeLayer = 0
         
-        # Remember not to reopen the dock if there's already one opened
-        self.dockWidget      = 0
-
+    #=======================================================================
+    # Called to setup the plugin GUI
+    #=======================================================================
     def initGui( self ):
         self.toolbarButtons = []
         
@@ -84,8 +86,8 @@ class QgepPlugin:
         self.toolbarButtons.append( self.profileAction )
         self.toolbarButtons.append( self.upstreamAction )
         self.toolbarButtons.append( self.downstreamAction )
-
-		# Init the object maintaining the network
+        
+        # Init the object maintaining the network
         self.networkAnalyzer = QgepNetworkAnalyzer( self.iface )
         # Create the map tool for profile selection
         self.profileTool = QgepProfileMapTool( self.canvas, self.profileAction, self.networkAnalyzer )
@@ -100,35 +102,52 @@ class QgepPlugin:
         QgsMapLayerRegistry.instance().layersWillBeRemoved.connect( self.layersWillBeRemoved )
         QgsMapLayerRegistry.instance().layersAdded.connect( self.layersAdded )
         
+    #===========================================================================
+    # Called when unloading
+    #===========================================================================
     def unload( self ):
         self.iface.removeToolBarIcon( self.profileAction )
+        self.iface.removeToolBarIcon( self.upstreamAction )
+        self.iface.removeToolBarIcon( self.downstreamAction )
         self.iface.removePluginMenu( "&QGEP", self.profileAction )
         self.iface.removePluginMenu( "&QGEP", self.aboutAction )
 
+    #===========================================================================
     # Is executed when the profile button is clicked
+    #===========================================================================
     def profileToolClicked( self ):
         self.openDock()
         # Set the profile map tool
         self.profileTool.setActive()
-        
+    
+    #=======================================================================
+    # Is executed when the user clicks the upstream search tool
+    #=======================================================================
     def upstreamToolClicked(self):
         self.upstreamTreeTool.setActive()
         
+    #===========================================================================
+    # Is executed when the user clicks the downstream search tool
+    #===========================================================================
     def downstreamToolClicked(self):
         self.downstreamTreeTool.setActive()
 
+    #===========================================================================
+    # Opens the dock
+    #===========================================================================
     def openDock(self):
-        if self.dockWidget == 0:
+        if self.dockWidget is None:
             self.dockWidget = QgepDockWidget( self.iface.mainWindow(), self.iface )
             self.dockWidget.closed.connect( self.onDialogClosed )
             self.dockWidget.showIt()
             
-            self.plotWidget = QgepPlotSVGWidget( self.dockWidget )
+            self.plotWidget = QgepPlotSVGWidget( self.dockWidget, self.networkAnalyzer )
             self.dockWidget.addPlotWidget( self.plotWidget )
-            self.dockWidget.printButton.clicked.connect( self.onPrintClicked )
 
     
+    #===========================================================================
     # Gets called when a layer is removed    
+    #===========================================================================
     def layersWillBeRemoved( self, layerList ):
         for layerId in layerList:
             if 0!= self.networkAnalyzer.getNodeLayer():
@@ -141,7 +160,9 @@ class QgepPlugin:
                     self.networkAnalyzer.setReachLayer( 0 )
                     self.layersChanged()
                     
+    #===========================================================================
     # Gets called when a layer is added
+    #===========================================================================
     def layersAdded( self, layers ):
         for newLayer in layers:
             if newLayer.type() == QgsMapLayer.VectorLayer and newLayer.name() == "vw_network_node":
@@ -152,6 +173,9 @@ class QgepPlugin:
                 self.networkAnalyzer.setReachLayer( newLayer )
                 self.layersChanged()
                 
+    #===========================================================================
+    # Gets called when the layers have changed
+    #===========================================================================
     def layersChanged( self ):
         buttonsEnabled = False
         
@@ -160,21 +184,19 @@ class QgepPlugin:
             
         for button in self.toolbarButtons:
             button.setEnabled( buttonsEnabled )
-            
+    
+    #===========================================================================
+    # The profile changed: update the plot
+    #===========================================================================
+    
     def onProfileChanged( self, profile ):
         if self.plotWidget:
             self.plotWidget.setProfile( profile )
-            
-    def onPrintClicked( self ):
-        printPreview = QgepPrintPreview( self.dockWidget, self.plotWidget.profile )
-        printPreview.setModal( True )
-        printPreview.show() 
-        
-#***************************** open and quit options *******************************************
 
+    
     def onDialogClosed( self ):        #used when Dock dialog is closed
-        self.dockWidget = 0
+        self.dockWidget = None
 
     def about( self ):
-        from ui.ui_dlgabout import DlgAbout
+        from ui.dlgabout import DlgAbout
         DlgAbout( self.iface.mainWindow() ).exec_()

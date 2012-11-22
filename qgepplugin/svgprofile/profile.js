@@ -31,15 +31,26 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
   {
     margin: 10,
     reachData: [],
+    data: [ {} ],
+    terrainData: [ {} ],
     x: d3.scale.linear(),
     y: d3.scale.linear(),
-    xAxis: d3.svg.axis().scale(this.x).tickSize(-this.height).tickSubdivide(true),
-    yAxis: d3.svg.axis().scale(this.y).ticks(4).orient("right"),
+    xAxis: d3.svg.axis()
+      .scale(this.x)
+      .tickSize(-this.height)
+      .tickSubdivide(true),
+    yAxis: d3.svg.axis()
+      .scale(this.y)
+      .ticks(4)
+      .orient("right"),
     verticalExaggeration: 5,
-
+    myZoom: d3.behavior.zoom(),
+    terrainLine: d3.svg.line(),
 
     initSVG: function( parent )
     {
+      var that = this;
+
       // Add an SVG element with the desired dimensions and margin.
       this.mainGroup = parent.append("svg:svg")
         .append("svg:g")
@@ -58,15 +69,27 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
       this.gyAxis = this.mainGroup.append("svg:g")
         .attr("class", "y axis");
 
+      this.myZoom
+        .x(this.x)
+        .y(this.y)
+        .on( 'zoom', dojo.hitch( this, this.zoom ) );
+
       this.zoomRect = this.mainGroup.append( "svg:rect" )
         .attr( "class", "pane" )
-        .call( d3.behavior.zoom().on( "zoom", dojo.hitch( this, this.zoom ) ) );
+        .call( this.myZoom );
 
       this.profileViewPort = this.mainGroup.append( "svg:g")
         .attr( "clip-path", "url(#profileMask)" );
 
       this.profile = this.profileViewPort.append( "svg:g" )
         .attr( "class", "profile" );
+
+      this.terrainProfile = this.profile.append( 'svg:path' )
+        .attr( 'class', 'terrain' );
+
+      this.terrainLine
+        .x( function(d) { return that.x( d.offset ); } )
+        .y( function(d) { return that.y( d.coverLevel ); } );
 
       // TODO: make resize more intelligent so it gets proper axis bounds already on first init
       this.onResize();
@@ -117,7 +140,12 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
     {
       // Compute the minimum and maximum offset, and the maximum level.
       this.x.domain([0, this.data[this.data.length - 1].endOffset]);
-      this.y.domain([d3.min(this.data, ƒ('endLevel')), d3.max(this.data, ƒ('startLevel'))]).nice();
+      var maxY = d3.max(this.terrainData, ƒ('coverLevel'));
+      minY = maxY - this.x.invert( maxY ) / this.verticalExaggeration;
+      this.y.domain([minY, maxY ]);
+
+      this.myZoom.scale(1);
+      this.myZoom.translate([0,0]);
 
       this.mainGroup.select("g.x.axis").call(this.xAxis);
       this.mainGroup.select("g.y.axis").call(this.yAxis);
@@ -126,27 +154,31 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
     // Animation to change scale
     changeScale: function ()
     {
-      var t = this.mainGroup.transition().duration(750);
+      var t = this.mainGroup.transition()
+        .duration(750);
       t.select(".x.axis").call(this.xAxis);
-      t.select(".reach").attr('d', area( this.reachData ) );
       t.select(".y.axis").call(this.yAxis);
+      this.updateReaches();
     },
 
     // zoom and pan operations
     zoom: function ()
     {
-      this.transform( this.x, d3.event.translate[0], d3.event.scale );
+/*    this.transform( this.x, d3.event.translate[0], d3.event.scale );
       this.transform( this.y, d3.event.translate[1], d3.event.scale );
-
+*/
       this.profile
         .attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
 
       this.mainGroup.select("g.x.axis").call(this.xAxis);
       this.mainGroup.select("g.y.axis").call(this.yAxis);
+      console.log("zoom: " + d3.event.scale);
+      console.log("translate: " + d3.event.translate);
     },
 
     // Copied from an old d3js source file
-    transform: function (scale, o, k) {
+    transform: function (scale, o, k)
+    {
       var domain = scale.__domain || (scale.__domain = scale.domain()),
         range = scale.range().map(function(v) { return (v - o) / k; });
       scale.domain(domain).domain(range.map(scale.invert));
@@ -155,41 +187,110 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
     // Data: reaches
     createReaches: function ( data )
     {
-      // Save the data
-      this.data = data;
+      this.resetReaches();
+      this.reachData = data;
+      this.updateReaches();
+    },
 
+    updateReaches: function()
+    {
       // select data
-      this.reachData = this.profile.selectAll(".reach")
-        .data( data );
-
-      this.scaleDomain();
+      var reaches = this.profile.selectAll(".reach")
+        .data( this.reachData );
 
       // create new reaches
       var that = this;
-      var reachGroups = this.reachData.enter()
+
+      var newReaches = reaches
+        .enter()
         .append('svg:g');
 
-        reachGroups
-        .append('line')
-        .attr( 'x1', function(d) { return that.x( d.startOffset ); } )
-        .attr( 'x2', function(d) { return that.x( d.endOffset ); } )
-        .attr( 'y1', function(d) { return that.y( d.startLevel - d.width_m/2 ); } )
-        .attr( 'y2', function(d) { return that.y( d.endLevel - d.width_m/2 ); } )
+      newReaches
+        .append('polygon')
         .attr( 'class', 'reach' )
-        .style( "stroke" , ƒ('usage_current_color') )
+        .style( "stroke" , function(d) { return '#dd00dd'; } )
         .on( dojo.hitch( this, this.onClick ), 'click' )
         .append('title')
         .text( function(d) { return 'Reach\nWidth:' + d.width_m; } );
 
-        reachGroups
+      reaches.selectAll('polygon')
+        .transition()
+        .duration(750)
+        .attr( 'points', function(d)
+        {
+          d.width_m = 0.5;
+          var x1, x2, x3, x4;
+          var y1, y2, y3, y4;
+          x1 = x2 = that.x( d.startOffset );
+          x3 = x4 = that.x( d.endOffset );
+          y1 = that.y( d.startLevel );
+          y2 = that.y( d.startLevel + d.width_m );
+          y4 = that.y( d.endLevel );
+          y3 = that.y( d.endLevel + d.width_m );
+
+          var pstr = [
+            d.startOffset + ',' + d.startLevel,
+            d.startOffset + ',' + (d.startLevel + d.width_m),
+            d.endOffset + ',' + (d.endLevel + d.width_m),
+            d.endOffset + ',' + d.endLevel
+          ].join(' ');
+
+          var pointstr = [
+            x1 + ',' + y1,
+            x2 + ',' + y2,
+            x3 + ',' + y3,
+            x4 + ',' + y4
+          ].join(' ');
+
+          console.info( 'original: ' + pstr );
+          console.info( 'transformed: ' + pointstr );
+          return pointstr;
+        } );
+
+      /*
+      reachGroups
         .append('line')
         .attr( 'x1', function(d) { return that.x( d.startOffset ); } )
         .attr( 'x2', function(d) { return that.x( d.endOffset ); } )
-        .attr( 'y1', function(d) { return that.y( d.startLevel + d.width_m/2 ); } )
-        .attr( 'y2', function(d) { return that.y( d.endLevel + d.width_m/2 ); } )
-        .attr( 'class', 'reach' )
-        .style( "stroke" , ƒ('usage_current_color') );
-//        .style("stroke-width", function(d) { return that.y( d.width_m ); } );
+        .attr( 'y1', function(d) { return that.y( d.startLevel + d.width_m ); } )
+        .attr( 'y2', function(d) { return that.y( d.endLevel + d.width_m ); } )
+        .attr( 'class' , function(d) { return 'reach usage-current-' + d.usage_current; } );
+        .style("stroke-width", function(d) { return that.y( d.width_m ); } );
+      */
+    },
+
+    // Data: special structures
+    createSpecialStructures: function ( data )
+    {
+      this.resetSpecialStructures();
+      this.data = data;
+      // select data
+      this.specialStructureData = this.profile.selectAll(".special-structure")
+        .data( data );
+
+      // create new reaches
+      var that = this;
+      var specialStructureGroups = this.specialStructureData.enter()
+        .append('svg:g');
+
+      specialStructureGroups
+        .append('svg:rect')
+        .attr('x',      function(d) { return that.x( d.startOffset ); } )
+        .attr('y',      function(d) { return that.y( d.coverLevel ); } )
+        .attr('width',  function(d) { return that.x( d.endOffset - d.startOffset ); } )
+        .attr('height', function(d) { return that.y( d.bottomLevel ) - that.y( d.coverLevel ); } )
+        .attr( 'class', 'special-structure' );
+    },
+
+    createTerrainPath: function( data )
+    {
+      this.terrainData = data.filter( function(d) { return d.coverLevel != null; } );
+
+      this.scaleDomain();
+
+      this.terrainProfile
+        .datum( this.terrainData )
+        .attr( 'd', this.terrainLine );
     },
 
     onClick: function( d, i )
@@ -200,11 +301,19 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
 
     resetReaches: function()
     {
-      this.data = [];
-      this.reachData = this.profile.selectAll( ".reach" )
-        .data( this.data );
+      var reachData = this.profile.selectAll( ".reach" )
+        .data( [] );
 
-      this.reachData.exit()
+      reachData.exit()
+        .remove();
+    },
+
+    resetSpecialStructures: function()
+    {
+      var specialStructures = this.profile.selectAll( ".special-structure" )
+        .data( [] );
+
+      specialStructures.exit()
         .remove();
     }
   });
@@ -223,9 +332,18 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
     if ( typeof profileProxy != 'undefined' )
     {
       profileProxy.profileChanged.connect(
-        function(a) {
-          qgep.profilePlot.resetReaches();
-          qgep.profilePlot.createReaches(dojo.fromJson(a));
+        function(data) {
+          var profileData = dojo.fromJson(data);
+          qgep.data = profileData;
+          var reachData = profileData.filter ( function(d) { return d.type == 'reach'; } );
+//          console.log( reachData );
+          qgep.profilePlot.createReaches( reachData );
+          var specialStructureData = profileData.filter ( function(d) { return d.type == 'special_structure'; } );
+//          console.log( specialStructureData );
+          qgep.profilePlot.createSpecialStructures( specialStructureData );
+
+          var coverData = profileData.filter( function(d) { return d.type == 'node'; } );
+          qgep.profilePlot.createTerrainPath( coverData );
         }
       );
     }
