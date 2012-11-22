@@ -26,13 +26,13 @@ def name():
  return "QGEP"
 
 def description():
- return "Fachschale Abwasser"
+ return "Plugin to manage wastewater networks"
 
 def version():
- return "Version 0.0.1"
+ return "Version 0.2.2"
 
 def qgisMinimumVersion():
-  return '1.7'
+  return '1.8'
 
 def authorName():
   return 'Matthias Kuhn'

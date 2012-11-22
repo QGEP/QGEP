@@ -4,14 +4,14 @@ name=QGEP
 qgisMinimumVersion=1.8
 description=Plugin to manage wastewater networks
 category=Vector
-version=version 0.0.1
+version=version 0.2.2
 ; end of mandatory metadata
 
 ; start of optional metadata
 changelog=
 
 ; tags are in comma separated value format, spaces are allowed
-tags=gep,abwasser
+tags=gep,abwasser,wastewater
 
 ; these metadata can be empty
 ; in a future version of the web application it will
@@ -20,7 +20,7 @@ tags=gep,abwasser
 homepage=https://github.com/qgep/QGEP
 tracker=https://github.com/qgep/QGEP/issues
 repository=http://hub.qgis.org/projects/gep
-icon=qgepIcon.svg
+icon=icons/qgepIcon.svg
 
 ; experimental flag
 experimental=True
