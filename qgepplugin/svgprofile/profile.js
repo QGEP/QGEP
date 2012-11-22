@@ -70,8 +70,6 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
         .attr("class", "y axis");
 
       this.myZoom
-        .x(this.x)
-        .y(this.y)
         .on( 'zoom', dojo.hitch( this, this.zoom ) );
 
       this.zoomRect = this.mainGroup.append( "svg:rect" )
@@ -138,14 +136,17 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
     // Data changed: domain needs to be adjusted
     scaleDomain: function ()
     {
+      this.profile
+        .attr("transform", "translate(0,0) scale(1)");
+
+      this.myZoom.scale(1);
+      this.myZoom.translate([0,0]);
+
       // Compute the minimum and maximum offset, and the maximum level.
       this.x.domain([0, this.data[this.data.length - 1].endOffset]);
       var maxY = d3.max(this.terrainData, ƒ('coverLevel'));
       minY = maxY - this.x.invert( maxY ) / this.verticalExaggeration;
       this.y.domain([minY, maxY ]);
-
-      this.myZoom.scale(1);
-      this.myZoom.translate([0,0]);
 
       this.mainGroup.select("g.x.axis").call(this.xAxis);
       this.mainGroup.select("g.y.axis").call(this.yAxis);
@@ -156,8 +157,10 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
     {
       var t = this.mainGroup.transition()
         .duration(750);
+
       t.select(".x.axis").call(this.xAxis);
       t.select(".y.axis").call(this.yAxis);
+
       this.updateReaches();
     },
 
@@ -172,6 +175,8 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
 
       this.mainGroup.select("g.x.axis").call(this.xAxis);
       this.mainGroup.select("g.y.axis").call(this.yAxis);
+
+
       console.log("zoom: " + d3.event.scale);
       console.log("translate: " + d3.event.translate);
     },
@@ -203,37 +208,33 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
 
       var newReaches = reaches
         .enter()
-        .append('svg:g');
+        .append('svg:g')
+        .attr( 'class', 'reach' )
+        .attr( 'id', function(d) { return d.objId; } );
 
       newReaches
         .append('polygon')
         .attr( 'class', 'reach' )
         .style( "stroke" , function(d) { return '#dd00dd'; } )
+        .call( this.myZoom )
         .on( dojo.hitch( this, this.onClick ), 'click' )
         .append('title')
-        .text( function(d) { return 'Reach\nWidth:' + d.width_m; } );
+        .text( function(d) { return d.objId + '\nWidth:' + d.width_m; } );
 
       reaches.selectAll('polygon')
         .transition()
         .duration(750)
         .attr( 'points', function(d)
         {
-          d.width_m = 0.5;
+          var dy = d.width_m * Math.sqrt(Math.pow(( d.endOffset- d.startOffset ), 2) + Math.pow(( d.startLevel- d.endLevel ), 2)) / ( d.endOffset- d.startOffset )
           var x1, x2, x3, x4;
           var y1, y2, y3, y4;
           x1 = x2 = that.x( d.startOffset );
           x3 = x4 = that.x( d.endOffset );
           y1 = that.y( d.startLevel );
-          y2 = that.y( d.startLevel + d.width_m );
+          y2 = that.y( d.startLevel + dy );
           y4 = that.y( d.endLevel );
-          y3 = that.y( d.endLevel + d.width_m );
-
-          var pstr = [
-            d.startOffset + ',' + d.startLevel,
-            d.startOffset + ',' + (d.startLevel + d.width_m),
-            d.endOffset + ',' + (d.endLevel + d.width_m),
-            d.endOffset + ',' + d.endLevel
-          ].join(' ');
+          y3 = that.y( d.endLevel + dy );
 
           var pointstr = [
             x1 + ',' + y1,
@@ -242,21 +243,8 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
             x4 + ',' + y4
           ].join(' ');
 
-          console.info( 'original: ' + pstr );
-          console.info( 'transformed: ' + pointstr );
           return pointstr;
         } );
-
-      /*
-      reachGroups
-        .append('line')
-        .attr( 'x1', function(d) { return that.x( d.startOffset ); } )
-        .attr( 'x2', function(d) { return that.x( d.endOffset ); } )
-        .attr( 'y1', function(d) { return that.y( d.startLevel + d.width_m ); } )
-        .attr( 'y2', function(d) { return that.y( d.endLevel + d.width_m ); } )
-        .attr( 'class' , function(d) { return 'reach usage-current-' + d.usage_current; } );
-        .style("stroke-width", function(d) { return that.y( d.width_m ); } );
-      */
     },
 
     // Data: special structures
@@ -271,7 +259,9 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
       // create new reaches
       var that = this;
       var specialStructureGroups = this.specialStructureData.enter()
-        .append('svg:g');
+        .append('svg:g')
+        .attr('class', 'special-structure')
+        .attr('id', function(d) { return d.objId; } );
 
       specialStructureGroups
         .append('svg:rect')
@@ -280,6 +270,14 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
         .attr('width',  function(d) { return that.x( d.endOffset - d.startOffset ); } )
         .attr('height', function(d) { return that.y( d.bottomLevel ) - that.y( d.coverLevel ); } )
         .attr( 'class', 'special-structure' );
+      specialStructureGroups
+        .append('svg:text')
+        .attr( 'x', function(d) { return that.x( (d.endOffset + d.startOffset)/2 ); })
+        .attr( 'y', function(d) { return that.y( (d.coverLevel+ d.bottomLevel)/2 ); })
+        .attr( 'fill', '#000000')
+        .attr( 'stroke', '#ffffff')
+        .attr( 'stroke-width', '0.5' )
+        .text( function(d) { return d.description; } );
     },
 
     createTerrainPath: function( data )

@@ -29,6 +29,8 @@ body {
 .reach {
     stroke-width: 1px;
     vector-effect: non-scaling-stroke;
+    fill: #994444;
+    fill-opacity: 0.7;
 }
 
 .reach .usage-current-0 {
@@ -46,7 +48,7 @@ body {
 .terrain {
     stroke-width: 1.5px;
     vector-effect: non-scaling-stroke;
-    stroke: #00aa00;
+    stroke: #007700;
     fill: none;
 }
 
