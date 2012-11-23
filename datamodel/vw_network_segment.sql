@@ -60,7 +60,7 @@ CREATE VIEW qgep.vw_network_segment AS
    UNION 
 
    SELECT 
-     NULL AS obj_id,
+     obj_id AS obj_id,
      'special_structure' AS type,
      NULL AS depth,
      ST_Length( progression_geometry ) AS length_calc,
@@ -76,6 +76,7 @@ CREATE VIEW qgep.vw_network_segment AS
    FROM 
    (
      SELECT 
+     wn_from.obj_id AS obj_id,
      wn_from.obj_id AS from_obj_id,
      rp_from.obj_id AS to_obj_id,
      wn_from.bottom_level AS bottom_level,
@@ -91,6 +92,7 @@ CREATE VIEW qgep.vw_network_segment AS
      UNION
 
      SELECT 
+       wn_to.obj_id AS obj_id,
        rp_to.obj_id AS from_obj_id,
        wn_to.obj_id AS to_obj_id,
        wn_to.bottom_level AS bottom_level,
