@@ -23,12 +23,11 @@
 #
 #---------------------------------------------------------------------
 
-from PyQt4.QtCore import Qt, QPoint, pyqtSignal, QSignalMapper
-from PyQt4.QtGui import QCursor, QMessageBox, QColor, QMenu, QAction
-from qgis.core import QgsSnapper, QgsTolerance, QgsFeature, QgsGeometry, QgsPoint
+from PyQt4.QtCore import Qt, QPoint, pyqtSignal
+from PyQt4.QtGui import QCursor, QColor
+from qgis.core import QgsGeometry, QgsPoint
 from qgis.gui import QgsMapTool, QgsRubberBand, QgsVertexMarker
 from qgepprofile import *
-import time
 
 #===============================================================================
 # Base class for all the map tools 
@@ -137,12 +136,12 @@ class QgepProfileMapTool( QgepMapTool ):
     #=======================================================================
     def findPath( self, pStart, pEnd ):
         backupCursor = self.canvas.cursor()
-        try:
-            self.canvas.setCursor(Qt.WaitCursor)
-            ( vertices, edges ) = self.networkAnalyzer.shortestPath( pStart, pEnd )
-            self.appendProfile( vertices, edges )
-        except:
-            pass
+        self.canvas.setCursor(Qt.WaitCursor)
+        #try:
+        ( vertices, edges ) = self.networkAnalyzer.shortestPath( pStart, pEnd )
+        self.appendProfile( vertices, edges )
+#        except:
+#            pass
         self.canvas.setCursor(backupCursor)
         if len( vertices ) > 0:
             return True
@@ -176,48 +175,28 @@ class QgepProfileMapTool( QgepMapTool ):
             self.rubberBand.reset()
             
             elem = QgepProfileNodeElement( vertices[0], nodeFeatures, 0 )
-            self.profile.addElement(elem)
-            
-            currentSpecialStructure = None
-            currentReach = None
+            self.profile.addElement(vertices[0], elem)
             
             for p1, p2, edge in edges:
                 fromOffset = self.segmentOffset
                 toOffset = self.segmentOffset + edge['weight']
                 
                 if 'reach' == edge['type']:
-                    if currentSpecialStructure is not None:
-                        self.profile.addElement( currentSpecialStructure )
-                        currentSpecialStructure = None
-                        
-                    if currentReach is not None and currentReach.objId != edge['baseFeature']:
-                        self.profile.addElement(currentReach)
-                        currentReach = QgepProfileReachElement( p1, p2, edge['feature'], nodeFeatures, edgeFeatures, fromOffset, toOffset )
-                    elif currentReach is None:
-                        currentReach = QgepProfileReachElement( p1, p2, edge['feature'], nodeFeatures, edgeFeatures, fromOffset, toOffset  )
+                    if self.profile.hasElement( edge['baseFeature'] ):
+                        self.profile[edge['baseFeature']].addSegment( p1, p2, edge['feature'], fromOffset, toOffset )
                     else:
-                        currentReach.addSegment( p1, p2, edge['feature'], nodeFeatures, edgeFeatures, fromOffset, toOffset )
+                        elem = QgepProfileReachElement( p1, p2, edge['feature'], nodeFeatures, edgeFeatures, fromOffset, toOffset )
+                        self.profile.addElement(edge['baseFeature'], elem)
                     
                 elif 'special_structure' == edge['type']:
-                    if currentReach is not None:
-                        self.profile.addElement(currentReach)
-                        currentReach = None
-                        
-                    if currentSpecialStructure is not None:
-                        currentSpecialStructure.addSegment( p1, p2, edge['feature'], fromOffset, toOffset )
+                    if self.profile.hasElement( edge['baseFeature'] ):
+                        self.profile[edge['baseFeature']].addSegment( p1, p2, edge['feature'], fromOffset, toOffset )
                     else:
-                        currentSpecialStructure = QgepProfileSpecialStructureElement( p1, p2, edge['feature'], nodeFeatures, edgeFeatures, fromOffset, toOffset )
+                        elem = QgepProfileSpecialStructureElement( p1, p2, edge['feature'], nodeFeatures, edgeFeatures, fromOffset, toOffset )
+                        self.profile.addElement(edge['baseFeature'], elem)
                 
-                if currentSpecialStructure is not None:    
-                    self.profile.addElement( currentSpecialStructure )
-                    currentSpecialStructure = None
-                
-                if currentReach is not None:
-                    self.profile.addElement( currentReach )
-                    currentReach = None
-
                 elem = QgepProfileNodeElement( p2, nodeFeatures, toOffset )
-                self.profile.addElement(elem)
+                self.profile.addElement(p2, elem)
                 
                 self.segmentOffset = toOffset
 

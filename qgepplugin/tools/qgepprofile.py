@@ -42,74 +42,83 @@ class QgepProfileElement():
 # Define the base attributes for all edge elements (reaches and special structures)
 #===============================================================================
 class QgepProfileEdgeElement(QgepProfileElement):
-    startOffset = 0
-    endOffset = 0
-    fromLevel = None
-    toLevel = None
     objId = None
     gid = None
     nodeCache = None
     edgeCache = None
+    blindConnections = None
     
     def __init__(self, fromPointId, toPointId, edgeId, nodeCache, edgeCache, startOffset, endOffset, type):
         QgepProfileElement.__init__(self,type)
-        self.startOffset = startOffset
-        self.endOffset   = endOffset
         self.nodeCache = nodeCache
         self.edgeCache = edgeCache
+        self.reachPoints = {}
         
-        fromPoint = nodeCache.featureById( fromPointId )
-        toPoint   = nodeCache.featureById( toPointId )
-        edge   = edgeCache.featureById( edgeId )
-        fromPos = edgeCache.attrAsFloat( edge, u'from_pos' )
-        toPos   = edgeCache.attrAsFloat( edge, u'to_pos' )
+        edge   = self.edgeCache.featureById( edgeId )
         
-        # Interpolate height if necessary
-        if fromPos != 0 or toPos != 1:
-            interpolateFromObjId = edgeCache.attrAsUnicode( edge, u'from_obj_id_interpolate' )
-            interpolateToObjId = edgeCache.attrAsUnicode( edge, u'to_obj_id_interpolate' )
-            interpolateFrom = nodeCache.featureByObjId(interpolateFromObjId)
-            interpolateTo   = nodeCache.featureByObjId(interpolateToObjId)
-            interpolateFromLevel = self.nodeCache.attrAsFloat( interpolateFrom, u'level')
-            interpolateToLevel = self.nodeCache.attrAsFloat( interpolateTo, u'level')
-            
-            self.fromLevel = interpolateFromLevel + ( fromPos * (interpolateToLevel-interpolateFromLevel) )  
-            self.toLevel   = interpolateFromLevel + ( toPos * (interpolateToLevel-interpolateFromLevel) )
-        else:
-            self.fromLevel   = nodeCache.attrAsFloat( fromPoint, u'level' )
-            self.toLevel     = nodeCache.attrAsFloat( toPoint, u'level')
-            
         # Read the identifiers
-        self.objId = edgeCache.attrAsUnicode( edge, u'obj_id' )
+        self.objId = self.edgeCache.attrAsUnicode( edge, u'obj_id' )
         self.gid = edge.id()
     
+        self.addSegment(fromPointId, toPointId, edgeId, startOffset, endOffset)
+        
     # Add a new segment
     def addSegment(self, fromPointId, toPointId, edgeId, startOffset, endOffset):
+        fromPoint = self.nodeCache.featureById( fromPointId )
         toPoint = self.nodeCache.featureById( toPointId )
-        edge   = edgeCache.featureById( edgeId )
+        edge   = self.edgeCache.featureById( edgeId )
         
-        self.endOffset = endOffset
-        toPos = edgeCache.attrAsFloat( edge, u'to_pos' )
+        if not self.reachPoints.has_key(fromPointId):
+            self.reachPoints[fromPointId] = {}
+        if not self.reachPoints.has_key(toPointId):
+            self.reachPoints[toPointId] = {}
         
-        if toPos != 1:
-            interpolateToObjId = edgeCache.attrAsUnicode( edge, u'to_obj_id_interpolate' )
-            interpolateTo   = nodeCache.featureByObjId(interpolateToObjId)
-            self.toLevel = toPos * self.nodeCache.attrAsFloat( interpolateTo, u'level')
+        
+        fromPos = self.edgeCache.attrAsFloat( edge, u'from_pos' )
+        toPos = self.edgeCache.attrAsFloat( edge, u'to_pos' )
+
+        if fromPos == 0 and toPos == 1:
+            fromLevel   = self.nodeCache.attrAsFloat( fromPoint, u'level' )
+            toLevel     = self.nodeCache.attrAsFloat( toPoint, u'level')
         else:
-            self.toLevel = self.nodeCache.attrAsFloat( toPoint, u'level')
+            interpolateFromObjId = self.edgeCache.attrAsUnicode( edge, u'from_obj_id_interpolate' )
+            interpolateToObjId = self.edgeCache.attrAsUnicode( edge, u'to_obj_id_interpolate' )
+            interpolateFrom = self.nodeCache.featureByObjId(interpolateFromObjId)
+            interpolateTo   = self.nodeCache.featureByObjId(interpolateToObjId)
+            interpolateFromLevel = self.nodeCache.attrAsFloat( interpolateFrom, u'level')
+            interpolateToLevel = self.nodeCache.attrAsFloat( interpolateTo, u'level')
+        
+            fromLevel = interpolateFromLevel + ( fromPos * (interpolateToLevel-interpolateFromLevel) )  
+            toLevel   = interpolateFromLevel + ( toPos * (interpolateToLevel-interpolateFromLevel) )
+
+        self.reachPoints[fromPointId]['offset'] = startOffset
+        self.reachPoints[toPointId]['offset']   = endOffset
+        
+        self.reachPoints[fromPointId]['level'] = fromLevel  
+        self.reachPoints[fromPointId]['pos']   = fromPos
+        
+        self.reachPoints[toPointId]['level']   = toLevel
+        self.reachPoints[toPointId]['pos']     = toPos
+        
     
     def asDict(self):
-            el = QgepProfileElement.asDict(self)
-            el.update( \
-            { \
-              'startOffset':   self.startOffset, \
-              'endOffset':     self.endOffset, \
-              'startLevel':    self.fromLevel, \
-              'endLevel':      self.toLevel, \
-              'objId':         self.objId, \
-              'gid':           self.gid \
-            } )
-            return el
+        startOffset = min([p['offset'] for p in self.reachPoints.values()])
+        endOffset = max([p['offset'] for p in self.reachPoints.values()])
+        fromLevel = max([p['level'] for p in self.reachPoints.values()])
+        toLevel = min([p['level'] for p in self.reachPoints.values()])
+        
+        el = QgepProfileElement.asDict(self)
+        el.update( \
+        { \
+          'startOffset':   startOffset, \
+          'endOffset':     endOffset, \
+          'startLevel':    fromLevel, \
+          'endLevel':      toLevel, \
+          'objId':         self.objId, \
+          'gid':           self.gid, \
+          'reachPoints':   self.reachPoints \
+        } )
+        return el
 
 #===============================================================================
 # Define the profile for the REACH element
@@ -147,6 +156,7 @@ class QgepProfileSpecialStructureElement(QgepProfileEdgeElement):
         self.addSegment( fromPointId, toPointId, reachId, startOffset, endOffset )
 
     def addSegment(self, fromPointId, toPointId, edgeId, startOffset, endOffset):
+        QgepProfileEdgeElement.addSegment(self, fromPointId, toPointId, edgeId, startOffset, endOffset)
         fromPoint = self.nodeCache.featureById( fromPointId )
         toPoint = self.nodeCache.featureById( toPointId )
         specialStructure = self.edgeCache.featureById( edgeId )
@@ -203,22 +213,27 @@ class QgepProfileNodeElement(QgepProfileElement):
 # 
 #===============================================================================
 class QgepProfile():
-    def __init__( self, elements=[] ):
+    def __init__( self, elements={} ):
         self.elements = elements
 
     def copy( self ):
-        newElements = copy( self.elements )
-        newProfile = QgepProfile( newElements )
+        newProfile = QgepProfile( self.elements.copy() )
         return newProfile
 
-    def addElement( self, elem ):
-        self.elements.append( elem )
+    def __getitem__(self, key):
+        return self.elements[key]
+    
+    def hasElement(self, key):
+        return self.elements.has_key( key)
+    
+    def addElement( self, key, elem ):
+        self.elements[key] = elem
 
     def getElements(self):
-        return self.elements
+        return self.elements.values()
 
     def asJson(self):
-        return json.dumps( [element.asDict() for element in self.elements] )
+        return json.dumps( [element.asDict() for element in self.elements.values()] )
 
     def reset(self):
-        self.elements = []
+        self.elements = {}
