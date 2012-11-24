@@ -143,10 +143,13 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
       this.myZoom.translate([0,0]);
 
       // Compute the minimum and maximum offset, and the maximum level.
-      this.x.domain([0, this.data[this.data.length - 1].endOffset]);
+      this.x.domain([0, this.reachData[this.reachData.length - 1].endOffset]);
       var maxY = d3.max(this.terrainData, ƒ('coverLevel'));
       minY = maxY - this.x.invert( maxY ) / this.verticalExaggeration;
       this.y.domain([minY, maxY ]);
+      console.info( 'domain' );
+      console.info( this.x.domain() );
+      console.info( this.y.domain() );
 
       this.mainGroup.select("g.x.axis").call(this.xAxis);
       this.mainGroup.select("g.y.axis").call(this.yAxis);
@@ -167,18 +170,16 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
     // zoom and pan operations
     zoom: function ()
     {
-/*    this.transform( this.x, d3.event.translate[0], d3.event.scale );
+      this.transform( this.x, d3.event.translate[0], d3.event.scale );
       this.transform( this.y, d3.event.translate[1], d3.event.scale );
-*/
+/*
       this.profile
         .attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
-
+*/
       this.mainGroup.select("g.x.axis").call(this.xAxis);
       this.mainGroup.select("g.y.axis").call(this.yAxis);
 
-
-      console.log("zoom: " + d3.event.scale);
-      console.log("translate: " + d3.event.translate);
+      this.redraw(0);
     },
 
     // Copied from an old d3js source file
@@ -192,16 +193,49 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
     // Data: reaches
     createReaches: function ( data )
     {
-      this.resetReaches();
       this.reachData = data;
-      this.updateReaches();
     },
 
-    updateReaches: function()
+    createSpecialStructures: function ( data )
     {
-      // select data
-      var reaches = this.profile.selectAll(".reach")
-        .data( this.reachData );
+      var that = this;
+
+      this.specialStructures = this.profile
+        .selectAll( '.special-structure' )
+        .data( data, ƒ( 'gid' ) );
+
+      this.specialStructures.exit()
+        .transition()
+        .duration(300)
+        .attr('opacity',0)
+        .remove();
+
+      var newSpecialStructures = this.specialStructures
+        .enter()
+        .append('svg:g')
+        .attr( 'class', 'special-structure' )
+        .attr( 'id', function(d) { return d.objId; } );
+
+      newSpecialStructures
+        .append('svg:rect');
+
+      newSpecialStructures
+        .append('svg:text')
+        .attr( 'fill', '#000000')
+        .attr( 'stroke', '#ffffff')
+        .attr( 'stroke-width', '0.5' )
+        .text( function(d) { return d.description; } );
+    },
+
+    updateReaches: function( duration )
+    {
+      var reaches = this.profile.selectAll('.reach')
+        .data( this.reachData, ƒ( 'gid' ) );
+
+//      console.info( 'Exit: ' + reaches.exit() );
+//      reaches.exit().remove().transition().duration(300)
+//        .attr('opacity',0)
+//        .remove();
 
       // create new reaches
       var that = this;
@@ -221,9 +255,15 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
         .append('title')
         .text( function(d) { return d.objId + '\nWidth:' + d.width_m; } );
 
-      reaches.selectAll('polygon')
-        .transition()
-        .duration(750)
+      var opon = reaches.selectAll('polygon');
+      if ( duration > 0 )
+      {
+        opon = opon
+          .transition()
+          .duration(duration);
+      }
+
+      opon
         .attr( 'points', function(d)
         {
           var dy = d.width_m * Math.sqrt(Math.pow(( d.endOffset- d.startOffset ), 2) + Math.pow(( d.startLevel- d.endLevel ), 2)) / ( d.endOffset- d.startOffset )
@@ -248,46 +288,56 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
     },
 
     // Data: special structures
-    createSpecialStructures: function ( data )
+    updateSpecialStructures: function ( duration )
     {
-      this.resetSpecialStructures();
-      this.data = data;
-      // select data
-      this.specialStructureData = this.profile.selectAll(".special-structure")
-        .data( data );
-
-      // create new reaches
       var that = this;
-      var specialStructureGroups = this.specialStructureData.enter()
-        .append('svg:g')
-        .attr('class', 'special-structure')
-        .attr('id', function(d) { return d.objId; } );
 
-      specialStructureGroups
-        .append('svg:rect')
+      var oponText = this.specialStructures.selectAll('text');
+      var oponRect = this.specialStructures.selectAll('rect');
+      if ( duration > 0 )
+      {
+        oponText = oponText
+          .transition()
+          .duration(duration);
+
+        oponRect = oponRect
+          .transition()
+          .duration(duration);
+      }
+
+      oponText
+        .attr( 'x', function(d) { return that.x( (d.endOffset + d.startOffset)/2 ); })
+        .attr( 'y', function(d) { return that.y( d.coverLevel ); });
+
+      oponRect
         .attr('x',      function(d) { return that.x( d.startOffset ); } )
         .attr('y',      function(d) { return that.y( d.coverLevel ); } )
-        .attr('width',  function(d) { return that.x( d.endOffset - d.startOffset ); } )
-        .attr('height', function(d) { return that.y( d.bottomLevel ) - that.y( d.coverLevel ); } )
-        .attr( 'class', 'special-structure' );
-      specialStructureGroups
-        .append('svg:text')
-        .attr( 'x', function(d) { return that.x( (d.endOffset + d.startOffset)/2 ); })
-        .attr( 'y', function(d) { return that.y( (d.coverLevel+ d.bottomLevel)/2 ); })
-        .attr( 'fill', '#000000')
-        .attr( 'stroke', '#ffffff')
-        .attr( 'stroke-width', '0.5' )
-        .text( function(d) { return d.description; } );
+        .attr('width',  function(d) { return that.x( d.endOffset ) - that.x( d.startOffset ); } )
+        .attr('height', function(d) { return that.y( d.bottomLevel ) - that.y( d.coverLevel ); } );
     },
 
     createTerrainPath: function( data )
     {
-      this.terrainData = data.filter( function(d) { return d.coverLevel != null; } );
-
-      this.scaleDomain();
+      this.terrainData = data
+        .filter( function(d) { return d.coverLevel != null; } )
+        .sort( function(a,b) { return a.offset - b.offset; } );
 
       this.terrainProfile
-        .datum( this.terrainData )
+        .datum( this.terrainData );
+    },
+
+    updateTerrainPath: function( duration )
+    {
+      var opon = this.terrainProfile;
+
+      if ( duration > 0 )
+      {
+        opon = opon
+          .transition()
+          .duration( duration );
+      }
+
+      opon
         .attr( 'd', this.terrainLine );
     },
 
@@ -306,13 +356,13 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
         .remove();
     },
 
-    resetSpecialStructures: function()
+    redraw: function( duration )
     {
-      var specialStructures = this.profile.selectAll( ".special-structure" )
-        .data( [] );
+      if( typeof(duration) === 'undefined' ) duration = 750;
 
-      specialStructures.exit()
-        .remove();
+      this.updateReaches( duration );
+      this.updateSpecialStructures( duration );
+      this.updateTerrainPath( duration );
     }
   });
 
@@ -332,9 +382,10 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
       profileProxy.profileChanged.connect(
         function(data) {
           var profileData = dojo.fromJson(data);
+          console.log( "Profile data: ");
+          console.log( profileData );
           qgep.data = profileData;
           var reachData = profileData.filter ( function(d) { return d.type == 'reach'; } );
-//          console.log( reachData );
           qgep.profilePlot.createReaches( reachData );
           var specialStructureData = profileData.filter ( function(d) { return d.type == 'special_structure'; } );
 //          console.log( specialStructureData );
@@ -342,6 +393,9 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
 
           var coverData = profileData.filter( function(d) { return d.type == 'node'; } );
           qgep.profilePlot.createTerrainPath( coverData );
+
+          qgep.profilePlot.scaleDomain();
+          qgep.profilePlot.redraw();
         }
       );
     }
