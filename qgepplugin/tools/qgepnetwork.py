@@ -127,25 +127,28 @@ class QgepNetworkAnalyzer():
         
         #Loop throuth all reaches
         while reachProvider.nextFeature( feat ):
-            attrs = feat.attributeMap()
-            
-            objId = attrs[attrObjId].toString()
-            type = attrs[attrType].toString()
-            fromObjId = attrs[attrFromObjId].toString()
-            toObjId = attrs[attrToObjId].toString()
-            
-            length = attrs[attrLength].toDouble()[0]
-            
-            ptId1 = self.vertexIds[str(fromObjId)]
-            ptId2 = self.vertexIds[str(toObjId)]
-            
-            props = { \
-              'weight': length,\
-              'feature': feat.id(),\
-              'baseFeature': unicode(objId),\
-              'type': unicode( type )\
-            }
-            self.graph.add_edge( ptId1, ptId2, props )
+            try:
+                attrs = feat.attributeMap()
+                
+                objId = attrs[attrObjId].toString()
+                type = attrs[attrType].toString()
+                fromObjId = attrs[attrFromObjId].toString()
+                toObjId = attrs[attrToObjId].toString()
+                
+                length = attrs[attrLength].toDouble()[0]
+                
+                ptId1 = self.vertexIds[str(fromObjId)]
+                ptId2 = self.vertexIds[str(toObjId)]
+                
+                props = { \
+                  'weight': length,\
+                  'feature': feat.id(),\
+                  'baseFeature': unicode(objId),\
+                  'type': unicode( type )\
+                }
+                self.graph.add_edge( ptId1, ptId2, props )
+            except KeyError as e:
+                print e
 
         self._profile( "add edges" )
             
@@ -343,7 +346,7 @@ class QgepFeatureCache:
         self.layer = layer
         
     def __getitem__(self, key):
-         return self.featureById(key)
+        return self.featureById(key)
          
     def addFeature(self, feat):
         self._featuresById[feat.id()] = feat

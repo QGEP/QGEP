@@ -183,14 +183,14 @@ class QgepProfileMapTool( QgepMapTool ):
                 
                 if 'reach' == edge['type']:
                     if self.profile.hasElement( edge['baseFeature'] ):
-                        self.profile[edge['baseFeature']].addSegment( p1, p2, edge['feature'], fromOffset, toOffset )
+                        self.profile[edge['baseFeature']].addSegment( p1, p2, edge['feature'], nodeFeatures, edgeFeatures, fromOffset, toOffset )
                     else:
                         elem = QgepProfileReachElement( p1, p2, edge['feature'], nodeFeatures, edgeFeatures, fromOffset, toOffset )
                         self.profile.addElement(edge['baseFeature'], elem)
                     
                 elif 'special_structure' == edge['type']:
                     if self.profile.hasElement( edge['baseFeature'] ):
-                        self.profile[edge['baseFeature']].addSegment( p1, p2, edge['feature'], fromOffset, toOffset )
+                        self.profile[edge['baseFeature']].addSegment( p1, p2, edge['feature'], nodeFeatures, edgeFeatures, fromOffset, toOffset )
                     else:
                         elem = QgepProfileSpecialStructureElement( p1, p2, edge['feature'], nodeFeatures, edgeFeatures, fromOffset, toOffset )
                         self.profile.addElement(edge['baseFeature'], elem)
