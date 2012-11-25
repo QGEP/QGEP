@@ -29,12 +29,36 @@ body {
 .reach {
     stroke-width: 1px;
     vector-effect: non-scaling-stroke;
-    fill: #994444;
     fill-opacity: 0.7;
 }
 
-.reach .usage-current-0 {
-    stroke: #dd0000;
+g.reach.usage-current-4514 > polygon,
+g.reach.usage-current-4518 > polygon,
+g.reach.usage-current-4520 > polygon {
+    stroke: #0000ff;
+    fill: #0000ff;
+}
+
+g.reach.usage-current-4516 > polygon {
+    stroke: #00ff6f;
+    fill: #00ff6f;
+}
+
+g.reach.usage-current-4522 > polygon {
+    stroke: #660066;
+    fill: #660066;
+}
+
+g.reach.usage-current-4524 > polygon,
+g.reach.usage-current-4526 > polygon {
+    stroke: #ff0000;
+    fill: #ff0000;
+}
+
+/* Fallback */
+g.reach > polygon {
+    stroke: #969696;
+    fill: #969696;
 }
 
 .special-structure {

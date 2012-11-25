@@ -137,7 +137,7 @@ class QgepProfileReachElement(QgepProfileEdgeElement):
         el = QgepProfileEdgeElement.asDict(self)
         el.update( \
         { \
-          'usage_current': self.usageCurrent, \
+          'usageCurrent': self.usageCurrent, \
           'width_m':       self.width \
         } )
         return el

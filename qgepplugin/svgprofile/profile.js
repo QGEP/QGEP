@@ -243,13 +243,12 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
       var newReaches = reaches
         .enter()
         .append('svg:g')
-        .attr( 'class', 'reach' )
+        .attr( 'class', function(d) { return 'usage-current-' + d.usageCurrent; } )
+        .classed( 'reach', true )
         .attr( 'id', function(d) { return d.objId; } );
 
       newReaches
         .append('polygon')
-        .attr( 'class', 'reach' )
-        .style( "stroke" , function(d) { return '#dd00dd'; } )
         .call( this.myZoom )
         .on( dojo.hitch( this, this.onClick ), 'click' )
         .append('title')
