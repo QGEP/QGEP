@@ -143,16 +143,15 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
       this.myZoom.translate([0,0]);
 
       // Compute the minimum and maximum offset, and the maximum level.
-      this.x.domain([0, this.reachData[this.reachData.length - 1].endOffset]);
+      this.x.domain([0, d3.max( this.reachData, ƒ('endOffset'))]);
       var maxY = d3.max(this.terrainData, ƒ('coverLevel'));
       minY = maxY - this.x.invert( maxY ) / this.verticalExaggeration;
       this.y.domain([minY, maxY ]);
-      console.info( 'domain' );
-      console.info( this.x.domain() );
-      console.info( this.y.domain() );
 
       this.mainGroup.select("g.x.axis").call(this.xAxis);
       this.mainGroup.select("g.y.axis").call(this.yAxis);
+
+      this.redraw();
     },
 
     // Animation to change scale
@@ -194,6 +193,36 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
     createReaches: function ( data )
     {
       this.reachData = data;
+
+      this.reaches = this.profile.selectAll('.reach')
+        .data( data, ƒ( 'gid' ) );
+
+      this.reaches
+        .exit()
+        .remove();
+
+      var newReaches = this.reaches
+        .enter()
+        .append('svg:g')
+        .attr( 'class', function(d) { return 'usage-current-' + d.usageCurrent; } )
+        .classed( 'reach', true )
+        .attr( 'id', function(d) { return d.objId; } );
+
+      newReaches
+        .append('polygon')
+        .call( this.myZoom )
+        .on( dojo.hitch( this, this.onClick ), 'click' )
+        .append('title')
+        .text( function(d) { return d.objId + '\nWidth:' + d.width_m; } );
+
+      newReaches
+        .selectAll( '.blind-connection' )
+        .data( function(d) { return d.reachPoints; }, function(rp) { return rp.objId; } )
+        .enter()
+        .append( 'circle' )
+        .attr( 'class', 'blind-connection')
+        .attr( 'r', 3 )
+        .attr( 'fill', 'red' );
     },
 
     createSpecialStructures: function ( data )
@@ -229,40 +258,20 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
 
     updateReaches: function( duration )
     {
-      var reaches = this.profile.selectAll('.reach')
-        .data( this.reachData, ƒ( 'gid' ) );
-
-//      console.info( 'Exit: ' + reaches.exit() );
-//      reaches.exit().remove().transition().duration(300)
-//        .attr('opacity',0)
-//        .remove();
-
       // create new reaches
       var that = this;
 
-      var newReaches = reaches
-        .enter()
-        .append('svg:g')
-        .attr( 'class', function(d) { return 'usage-current-' + d.usageCurrent; } )
-        .classed( 'reach', true )
-        .attr( 'id', function(d) { return d.objId; } );
+      var oponPolys = this.reaches.selectAll('polygon');
+      var oponBlindConnections = this.reaches.selectAll('.blind-connection');
 
-      newReaches
-        .append('polygon')
-        .call( this.myZoom )
-        .on( dojo.hitch( this, this.onClick ), 'click' )
-        .append('title')
-        .text( function(d) { return d.objId + '\nWidth:' + d.width_m; } );
-
-      var opon = reaches.selectAll('polygon');
       if ( duration > 0 )
       {
-        opon = opon
+        oponPolys = oponPolys
           .transition()
           .duration(duration);
       }
 
-      opon
+      oponPolys
         .attr( 'points', function(d)
         {
           var dy = d.width_m * Math.sqrt(Math.pow(( d.endOffset- d.startOffset ), 2) + Math.pow(( d.startLevel- d.endLevel ), 2)) / ( d.endOffset- d.startOffset )
@@ -284,6 +293,10 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
 
           return pointstr;
         } );
+
+      oponBlindConnections
+        .attr( 'cx', function(d) { return that.x(d.offset); } )
+        .attr( 'cy', function(d) { return that.y(d.level); } );
     },
 
     // Data: special structures

@@ -115,7 +115,7 @@ class QgepProfileEdgeElement(QgepProfileElement):
           'endLevel':      toLevel, \
           'objId':         self.objId, \
           'gid':           self.gid, \
-          'reachPoints':   self.reachPoints \
+          'reachPoints':   self.reachPoints.values() \
         } )
         return el
 
