@@ -28,7 +28,7 @@ CREATE VIEW qgep.vw_network_segment AS
  FROM
  (
    SELECT 
-     obj_id,
+     od_reach.obj_id,
      'reach' AS type,
      depth,
      ST_LENGTH( COALESCE( reach_progression, progression ) ) AS length_calc,
@@ -39,6 +39,7 @@ CREATE VIEW qgep.vw_network_segment AS
      COALESCE( from_pos, 0 ) AS from_pos,
      COALESCE( to_pos, 1 ) AS to_pos,
      NULL AS bottom_level,
+     ch.usage_current AS usage_current,
      COALESCE( reach_progression, st_linemerge(progression) ) AS progression_geometry
    FROM qgep.od_reach
    FULL JOIN
@@ -56,11 +57,12 @@ CREATE VIEW qgep.vw_network_segment AS
      ORDER BY COALESCE(s1.fs_wastewater_networkelement, s2.fs_wastewater_networkelement), COALESCE(s1.pos, 0::double precision)
    ) AS rr
    ON rr.reach_obj_id = od_reach.obj_id
+   LEFT JOIN qgep.od_channel ch ON ch.obj_id = od_reach.obj_id
 
    UNION 
 
    SELECT 
-     obj_id AS obj_id,
+     connectors.obj_id AS obj_id,
      'special_structure' AS type,
      NULL AS depth,
      ST_Length( progression_geometry ) AS length_calc,
@@ -71,6 +73,7 @@ CREATE VIEW qgep.vw_network_segment AS
      0 AS from_pos,
      1 AS to_pos,
      bottom_level,
+     NULL AS usage_current,
      progression_geometry
 
    FROM 
@@ -105,5 +108,6 @@ CREATE VIEW qgep.vw_network_segment AS
      AND
        wn_to.obj_id IS NOT NULL
    ) AS connectors
+   LEFT JOIN qgep.od_wastewater_networkelement ne ON ne.obj_id = connectors.obj_id 
  ) AS parts
 
