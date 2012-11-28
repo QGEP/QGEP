@@ -22,52 +22,79 @@ body {
 
 .y.axis line, .y.axis path, .x.axis line, .x.axis path {
     fill: none;
-    stroke: #000;
+    stroke: #323232;
 }
 
 /* The profile elements */
-.reach {
+g.reach > polygon {
     stroke-width: 1px;
-    vector-effect: non-scaling-stroke;
     fill-opacity: 0.7;
+}
+
+g.reach > polygon:hover {
+    stroke-width: 2px;
+    fill-opacity: 1;
 }
 
 g.reach.usage-current-4514 > polygon,
 g.reach.usage-current-4518 > polygon,
-g.reach.usage-current-4520 > polygon {
+g.reach.usage-current-4520 > polygon,
+g.special-structure.usage-current-4514 > rect,
+g.special-structure.usage-current-4518 > rect,
+g.special-structure.usage-current-4520 > rect
+{
     stroke: #0000ff;
     fill: #0000ff;
 }
 
-g.reach.usage-current-4516 > polygon {
+g.reach.usage-current-4516 > polygon,
+g.special-structure.usage-current-4516 > rect {
     stroke: #00ff6f;
     fill: #00ff6f;
 }
 
-g.reach.usage-current-4522 > polygon {
+g.reach.usage-current-4522 > polygon,
+g.special-structure.usage-current-4522 > rect {
     stroke: #660066;
     fill: #660066;
 }
 
 g.reach.usage-current-4524 > polygon,
-g.reach.usage-current-4526 > polygon {
+g.reach.usage-current-4526 > polygon,
+g.special-structure.usage-current-4524 > rect,
+g.special-structure.usage-current-4526 > rect {
     stroke: #ff0000;
     fill: #ff0000;
 }
 
 /* Fallback */
-g.reach > polygon {
+g.reach > polygon,
+g.special-structure > rect {
     stroke: #969696;
     fill: #969696;
 }
 
-.special-structure {
-    stroke-width: 1px;
-    vector-effect: non-scaling-stroke;
-    stroke: #444499;
-    fill: #444499;
+/*
+ * Special structure
+ */
+
+g.special-structure > rect {
+    stroke-width: 2px;
     fill-opacity: 0.7;
 }
+
+g.special-structure:hover > rect {
+    stroke-width: 3px;
+    fill-opacity: 1;
+}
+
+g.special-structure:hover > text {
+    font-weight: bold;
+}
+
+/*
+ * Terrain line
+ */
 
 .terrain {
     stroke-width: 1.5px;
@@ -76,6 +103,7 @@ g.reach > polygon {
     fill: none;
 }
 
+/* Zoom / pan overlay */
 rect.pane {
     cursor: move;
     fill: none;

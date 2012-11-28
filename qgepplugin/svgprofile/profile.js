@@ -41,7 +41,7 @@ function I(d)
 
 
 // Global Object, where we'll declare all the usefull stuff inside
-var qgep = { def: {} };
+var qgep = { def: {}, test: {} };
 
 require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
 
@@ -145,7 +145,7 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
       this.gyAxis
         .attr("transform", "translate(" + this.width + ",0)")
         .call( this.yAxis );
-
+        
       this.zoomRect
         .attr( "width", this.width )
         .attr( "height", this.height );
@@ -156,6 +156,8 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
     {
       this.profile
         .attr("transform", "translate(0,0) scale(1)");
+        
+      
 
       this.myZoom.scale(1);
       this.myZoom.translate([0,0]);
@@ -224,12 +226,13 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
         .append('svg:g')
         .attr( 'class', function(d) { return 'usage-current-' + d.usageCurrent; } )
         .classed( 'reach', true )
+        .on('click', function(d) { profileProxy.onReachClicked( d.objId ); })
         .attr( 'id', function(d) { return d.objId; } );
 
       newReaches
         .append('polygon')
         .call( this.myZoom )
-        .on( dojo.hitch( this, this.onClick ), 'click' )
+//        .on('contextmenu', function(d) {alert('Right click')} )
         .append('title')
         .text( function(d) { return d.objId + '\nWidth:' + d.width_m; } );
 
@@ -260,17 +263,16 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
       var newSpecialStructures = this.specialStructures
         .enter()
         .append('svg:g')
-        .attr( 'class', 'special-structure' )
-        .attr( 'id', function(d) { return d.objId; } );
+        .attr( 'id', function(d) { return d.objId; } )
+        .attr( 'class', function(d) { return 'usage-current-' + d.usageCurrent; } )
+        .classed( 'special-structure', true )
+        .call( this.myZoom );
 
       newSpecialStructures
         .append('svg:rect');
 
       newSpecialStructures
         .append('svg:text')
-        .attr( 'fill', '#000000')
-        .attr( 'stroke', '#ffffff')
-        .attr( 'stroke-width', '0.5' )
         .text( function(d) { return d.description; } );
     },
 
@@ -337,7 +339,7 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
 
       oponText
         .attr( 'x', function(d) { return that.x( (d.endOffset + d.startOffset)/2 ); })
-        .attr( 'y', function(d) { return that.y( d.coverLevel ); });
+        .attr( 'y', function(d) { return that.y( d.coverLevel ) - 3; });
 
       oponRect
         .attr('x',      function(d) { return that.x( d.startOffset ); } )
@@ -395,6 +397,13 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
       this.updateTerrainPath( duration );
     }
   });
+
+  qgep.test.clickReach = function( selector ) {
+    event = document.createEvent('MouseEvents');
+    event.initMouseEvent('click');
+    elem = d3.select( selector )[0][0];
+    elem.dispatchEvent(event);
+  };
 
   /*
    * When the DOM becomes ready, run some init code
