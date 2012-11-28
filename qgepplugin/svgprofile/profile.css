@@ -26,19 +26,19 @@ body {
 }
 
 /* The profile elements */
-g.reach > polygon {
+g.reach > path {
     stroke-width: 1px;
     fill-opacity: 0.7;
 }
 
-g.reach > polygon:hover {
+g.reach > path:hover {
     stroke-width: 2px;
     fill-opacity: 1;
 }
 
-g.reach.usage-current-4514 > polygon,
-g.reach.usage-current-4518 > polygon,
-g.reach.usage-current-4520 > polygon,
+g.reach.usage-current-4514 > path,
+g.reach.usage-current-4518 > path,
+g.reach.usage-current-4520 > path,
 g.special-structure.usage-current-4514 > rect,
 g.special-structure.usage-current-4518 > rect,
 g.special-structure.usage-current-4520 > rect
@@ -47,20 +47,20 @@ g.special-structure.usage-current-4520 > rect
     fill: #0000ff;
 }
 
-g.reach.usage-current-4516 > polygon,
+g.reach.usage-current-4516 > path,
 g.special-structure.usage-current-4516 > rect {
     stroke: #00ff6f;
     fill: #00ff6f;
 }
 
-g.reach.usage-current-4522 > polygon,
+g.reach.usage-current-4522 > path,
 g.special-structure.usage-current-4522 > rect {
     stroke: #660066;
     fill: #660066;
 }
 
-g.reach.usage-current-4524 > polygon,
-g.reach.usage-current-4526 > polygon,
+g.reach.usage-current-4524 > path,
+g.reach.usage-current-4526 > path,
 g.special-structure.usage-current-4524 > rect,
 g.special-structure.usage-current-4526 > rect {
     stroke: #ff0000;
@@ -68,7 +68,7 @@ g.special-structure.usage-current-4526 > rect {
 }
 
 /* Fallback */
-g.reach > polygon,
+g.reach > path,
 g.special-structure > rect {
     stroke: #969696;
     fill: #969696;

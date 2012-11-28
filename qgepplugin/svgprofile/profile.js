@@ -17,7 +17,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License along
- * with this progsram; if not, write to the Free Software Foundation, Inc.,
+ * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
@@ -39,20 +39,20 @@ function I(d)
   return d
 };
 
-
-// Global Object, where we'll declare all the usefull stuff inside
+// Global Object, where we'll declare all the useful stuff inside
 var qgep = { def: {}, test: {} };
 
-require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
+require( ["dojo/on", "dojo/ready", "dojo/_base/json", "profile/specialStructure", "profile/reach"], function(  on, ready, dojo, SpecialStructure, Reach ) {
 
   qgep.def.ProfilePlot = dojo.declare( null,
   {
+    verticalExaggeration: 5,
+
     margin: 10,
-    reachData: [],
-    data: [ {} ],
-    terrainData: [ {} ],
+
     x: d3.scale.linear(),
     y: d3.scale.linear(),
+
     xAxis: d3.svg.axis()
       .scale(this.x)
       .tickSize(-this.height)
@@ -61,7 +61,7 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
       .scale(this.y)
       .ticks(4)
       .orient("right"),
-    verticalExaggeration: 5,
+
     myZoom: d3.behavior.zoom(),
     terrainLine: d3.svg.line(),
 
@@ -113,6 +113,20 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
 
       //  Subscribe to window resize event
       on( window, "resize", dojo.hitch( this, this.onResize ) );
+
+      this.specialStructure = new SpecialStructure({
+        svgProfile: this.profile,
+        x: this.x,
+        y: this.y,
+        zoom: this.myZoom
+      });
+
+      this.reach = new Reach({
+        svgProfile: this.profile,
+        x: this.x,
+        y: this.y,
+        zoom: this.myZoom
+      })
     },
 
     onResize: function ()
@@ -156,14 +170,13 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
     {
       this.profile
         .attr("transform", "translate(0,0) scale(1)");
-        
-      
 
       this.myZoom.scale(1);
       this.myZoom.translate([0,0]);
 
       // Compute the minimum and maximum offset, and the maximum level.
-      this.x.domain([0, d3.max( this.reachData, ƒ('endOffset'))]);
+//      this.x.domain([0, d3.max( this.reachData, ƒ('endOffset'))]);
+      this.x.domain( [0, 200] );
       var maxY = d3.max(this.terrainData, ƒ('coverLevel'));
       minY = maxY - this.x.invert( maxY ) / this.verticalExaggeration;
       this.y.domain([minY, maxY ]);
@@ -209,145 +222,6 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
       scale.domain(domain).domain(range.map(scale.invert));
     },
 
-    // Data: reaches
-    createReaches: function ( data )
-    {
-      this.reachData = data;
-
-      this.reaches = this.profile.selectAll('.reach')
-        .data( data, ƒ( 'gid' ) );
-
-      this.reaches
-        .exit()
-        .remove();
-
-      var newReaches = this.reaches
-        .enter()
-        .append('svg:g')
-        .attr( 'class', function(d) { return 'usage-current-' + d.usageCurrent; } )
-        .classed( 'reach', true )
-        .on('click', function(d) { profileProxy.onReachClicked( d.objId ); })
-        .attr( 'id', function(d) { return d.objId; } );
-
-      newReaches
-        .append('polygon')
-        .call( this.myZoom )
-//        .on('contextmenu', function(d) {alert('Right click')} )
-        .append('title')
-        .text( function(d) { return d.objId + '\nWidth:' + d.width_m; } );
-
-      newReaches
-        .selectAll( '.blind-connection' )
-        .data( function(d) { return d.reachPoints; }, function(rp) { return rp.objId; } )
-        .enter()
-        .append( 'circle' )
-        .attr( 'class', 'blind-connection')
-        .attr( 'r', 3 )
-        .attr( 'fill', 'red' );
-    },
-
-    createSpecialStructures: function ( data )
-    {
-      var that = this;
-
-      this.specialStructures = this.profile
-        .selectAll( '.special-structure' )
-        .data( data, ƒ( 'gid' ) );
-
-      this.specialStructures.exit()
-        .transition()
-        .duration(300)
-        .attr('opacity',0)
-        .remove();
-
-      var newSpecialStructures = this.specialStructures
-        .enter()
-        .append('svg:g')
-        .attr( 'id', function(d) { return d.objId; } )
-        .attr( 'class', function(d) { return 'usage-current-' + d.usageCurrent; } )
-        .classed( 'special-structure', true )
-        .call( this.myZoom );
-
-      newSpecialStructures
-        .append('svg:rect');
-
-      newSpecialStructures
-        .append('svg:text')
-        .text( function(d) { return d.description; } );
-    },
-
-    updateReaches: function( duration )
-    {
-      // create new reaches
-      var that = this;
-
-      var oponPolys = this.reaches.selectAll('polygon');
-      var oponBlindConnections = this.reaches.selectAll('.blind-connection');
-
-      if ( duration > 0 )
-      {
-        oponPolys = oponPolys
-          .transition()
-          .duration(duration);
-      }
-
-      oponPolys
-        .attr( 'points', function(d)
-        {
-          var dy = d.width_m * Math.sqrt(Math.pow(( d.endOffset- d.startOffset ), 2) + Math.pow(( d.startLevel- d.endLevel ), 2)) / ( d.endOffset- d.startOffset )
-          var x1, x2, x3, x4;
-          var y1, y2, y3, y4;
-          x1 = x2 = that.x( d.startOffset );
-          x3 = x4 = that.x( d.endOffset );
-          y1 = that.y( d.startLevel );
-          y2 = that.y( d.startLevel + dy );
-          y4 = that.y( d.endLevel );
-          y3 = that.y( d.endLevel + dy );
-
-          var pointstr = [
-            x1 + ',' + y1,
-            x2 + ',' + y2,
-            x3 + ',' + y3,
-            x4 + ',' + y4
-          ].join(' ');
-
-          return pointstr;
-        } );
-
-      oponBlindConnections
-        .attr( 'cx', function(d) { return that.x(d.offset); } )
-        .attr( 'cy', function(d) { return that.y(d.level); } );
-    },
-
-    // Data: special structures
-    updateSpecialStructures: function ( duration )
-    {
-      var that = this;
-
-      var oponText = this.specialStructures.selectAll('text');
-      var oponRect = this.specialStructures.selectAll('rect');
-      if ( duration > 0 )
-      {
-        oponText = oponText
-          .transition()
-          .duration(duration);
-
-        oponRect = oponRect
-          .transition()
-          .duration(duration);
-      }
-
-      oponText
-        .attr( 'x', function(d) { return that.x( (d.endOffset + d.startOffset)/2 ); })
-        .attr( 'y', function(d) { return that.y( d.coverLevel ) - 3; });
-
-      oponRect
-        .attr('x',      function(d) { return that.x( d.startOffset ); } )
-        .attr('y',      function(d) { return that.y( d.coverLevel ); } )
-        .attr('width',  function(d) { return that.x( d.endOffset ) - that.x( d.startOffset ); } )
-        .attr('height', function(d) { return that.y( d.bottomLevel ) - that.y( d.coverLevel ); } );
-    },
-
     createTerrainPath: function( data )
     {
       this.terrainData = data
@@ -379,21 +253,12 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
       console.info( d3.event );
     },
 
-    resetReaches: function()
-    {
-      var reachData = this.profile.selectAll( ".reach" )
-        .data( [] );
-
-      reachData.exit()
-        .remove();
-    },
-
     redraw: function( duration )
     {
       if( typeof(duration) === 'undefined' ) duration = 750;
 
-      this.updateReaches( duration );
-      this.updateSpecialStructures( duration );
+      this.reach.redraw( duration );
+      this.specialStructure.redraw( duration );
       this.updateTerrainPath( duration );
     }
   });
@@ -416,20 +281,19 @@ require( ["dojo/on", "dojo/ready"], function(  on, ready ) {
 
     // profileProxy is our bridge to the QGEP plugin. It's inserted with teh use of black magic (and pyQt/QtWebKit bridge)
     //profileProxy.profileChanged.connect( dojo.hitch( qgep.profilePlot, qgep.profilePlot.createReaches, dojo.fromJson( arguments[0] ) ) );
-    if ( typeof profileProxy != 'undefined' )
+    if ( typeof profileProxy !== 'undefined' )
     {
       profileProxy.profileChanged.connect(
         function(data) {
+          console.info( 'profile Changed');
           var profileData = dojo.fromJson(data);
           console.log( "Profile data: ");
           console.log( profileData );
           qgep.data = profileData;
           var reachData = profileData.filter ( function(d) { return d.type == 'reach'; } );
-          qgep.profilePlot.createReaches( reachData );
+          qgep.profilePlot.reach.data( reachData )
           var specialStructureData = profileData.filter ( function(d) { return d.type == 'special_structure'; } );
-//          console.log( specialStructureData );
-          qgep.profilePlot.createSpecialStructures( specialStructureData );
-
+          qgep.profilePlot.specialStructure.data( specialStructureData );
           var coverData = profileData.filter( function(d) { return d.type == 'node'; } );
           qgep.profilePlot.createTerrainPath( coverData );
 
