@@ -25,25 +25,31 @@
 
 from PyQt4.QtGui import QVBoxLayout, QWidget
 from PyQt4.QtWebKit import QWebView, QWebSettings
-from PyQt4.QtCore import QUrl, pyqtSignal, QSettings, QVariant
-import qgepplugin.resources
+from PyQt4.QtCore import QUrl, pyqtSignal, pyqtSlot, QSettings, QVariant
 
 class QgepPlotSVGWidget( QWidget ):
-    webView = QWebView()
+    webView = None
     frame   = None
     profile = None
 
     profileChanged = pyqtSignal( [str], name='profileChanged' )
+    reachClicked = pyqtSignal( [str], name='reachClicked' )
+    reachMouseOver = pyqtSignal( [str], name='reachMouseOver' )
+    specialStructureClicked = pyqtSignal( [str], name='specialStructureClicked' )
+    specialStructureMouseOver = pyqtSignal( [str], name='specialStructureMouseOver' )
 
-    def __init__( self, parent, networkAnalyzer ):
+    def __init__( self, parent, networkAnalyzer, url = None ):
         QWidget.__init__( self, parent )
+        
+        self.webView = QWebView()
         
         self.networkAnalyzer = networkAnalyzer
         
         settings = QSettings()
         
         layout = QVBoxLayout( self )
-        url = settings.value( "/QGEP/SvgProfilePath", QVariant( u'qrc:///plugins/qgepplugin/svgprofile/index.html' ) )
+        if url is None:
+            url = settings.value( "/QGEP/SvgProfilePath", QVariant( u'qrc:///plugins/qgepplugin/svgprofile/index.html' ) )
 
         self.webView.load( QUrl( url.toString() ) )
         self.frame = self.webView.page().mainFrame()
@@ -63,3 +69,19 @@ class QgepPlotSVGWidget( QWidget ):
     def frameLoadFinished(self):
         if self.profile:
             self.profileChanged.emit( self.profile.asJson() )
+    
+    @pyqtSlot( str )
+    def onReachClicked(self, objId):
+        self.reachClicked.emit( objId )
+        
+    @pyqtSlot( str )
+    def onReachMouseOver(self, objId):
+        self.reachMouseOver.emit( objId )
+        
+    @pyqtSlot( str )
+    def onSpecialStructureClicked(self, objId):
+        self.specialStructureClicked.emit( objId )
+        
+    @pyqtSlot( str )
+    def onSpecialStructureMouseOver(self, objId):
+        self.specialStructureMouseOver.emit( objId )
