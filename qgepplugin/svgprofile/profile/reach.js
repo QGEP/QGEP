@@ -60,13 +60,12 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
     redraw: function( duration )
     {
       // create new reaches
-      var polys = this.reaches.selectAll('polygon');
       var blindConnections = this.reaches.selectAll('.blind-connection');
       var paths = this.reaches.selectAll('path');
 
       if ( duration > 0 )
       {
-        polys = polys
+        paths = paths
           .transition()
           .duration(duration);
 
@@ -95,29 +94,6 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
           ];
 
           return this.line( points ) + 'Z';
-        } ) );
-
-      polys
-        .attr( 'points', lang.hitch( this, function(d)
-        {
-          var dy = d.width_m * Math.sqrt(Math.pow(( d.endOffset- d.startOffset ), 2) + Math.pow(( d.startLevel- d.endLevel ), 2)) / ( d.endOffset- d.startOffset );
-          var x1, x2, x3, x4;
-          var y1, y2, y3, y4;
-          x1 = x2 = this.x( d.startOffset );
-          x3 = x4 = this.x( d.endOffset );
-          y1 = this.y( d.startLevel );
-          y2 = this.y( d.startLevel + dy );
-          y4 = this.y( d.endLevel );
-          y3 = this.y( d.endLevel + dy );
-
-          var pointstr = [
-            x1 + ',' + y1,
-            x2 + ',' + y2,
-            x3 + ',' + y3,
-            x4 + ',' + y4
-          ].join(' ');
-
-          return pointstr;
         } ) );
 
       blindConnections
