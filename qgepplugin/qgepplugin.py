@@ -23,14 +23,15 @@
 #
 #---------------------------------------------------------------------
 
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
-from qgis.core import *
+from PyQt4.QtCore import pyqtSlot
+from PyQt4.QtGui import QAction, QIcon, QMessageBox
+from qgis.core import QgsMapLayerRegistry, QgsMapLayer
 from tools.qgepmaptools import QgepProfileMapTool, QgepTreeMapTool
-from tools.qgepnetwork import QgepNetworkAnalyzer
+from tools.qgepnetwork import QgepGraphManager
 from ui.qgepdockwidget import QgepDockWidget
 from ui.qgepplotsvgwidget import QgepPlotSVGWidget
 from ui.qgepsettingsdialog import QgepSettingsDialog
+import resources #@UnusedImport needed to make icons etc. appear
 
 class QgepPlugin:
     # The networkAnalyzer will manage the networklayers and pathfinding
@@ -92,7 +93,7 @@ class QgepPlugin:
         self.toolbarButtons.append( self.downstreamAction )
         
         # Init the object maintaining the network
-        self.networkAnalyzer = QgepNetworkAnalyzer( self.iface )
+        self.networkAnalyzer = QgepGraphManager( self.iface )
         # Create the map tool for profile selection
         self.profileTool = QgepProfileMapTool( self.canvas, self.profileAction, self.networkAnalyzer )
         self.profileTool.profileChanged.connect( self.onProfileChanged )
@@ -142,13 +143,17 @@ class QgepPlugin:
     def openDock(self):
         if self.dockWidget is None:
             self.dockWidget = QgepDockWidget( self.iface.mainWindow(), self.iface )
-            self.dockWidget.closed.connect( self.onDialogClosed )
+            self.dockWidget.closed.connect( self.onDockClosed )
             self.dockWidget.showIt()
             
             self.plotWidget = QgepPlotSVGWidget( self.dockWidget, self.networkAnalyzer )
+            self.plotWidget.reachClicked.connect( self.highlightReach )
             self.dockWidget.addPlotWidget( self.plotWidget )
-
     
+    @pyqtSlot()
+    def onDockClosed( self ):        #used when Dock dialog is closed
+        self.dockWidget = None
+
     #===========================================================================
     # Gets called when a layer is removed    
     #===========================================================================
@@ -196,10 +201,11 @@ class QgepPlugin:
     def onProfileChanged( self, profile ):
         if self.plotWidget:
             self.plotWidget.setProfile( profile )
-
-    
-    def onDialogClosed( self ):        #used when Dock dialog is closed
-        self.dockWidget = None
+            
+    def highlightReach( self, objId ):
+        msgBox = QMessageBox()
+        msgBox.setText( "Reach " + objId + " clicked")
+        msgBox.exec_()
 
     def about( self ):
         from ui.dlgabout import DlgAbout

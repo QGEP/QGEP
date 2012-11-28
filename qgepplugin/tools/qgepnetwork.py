@@ -23,17 +23,14 @@
 #
 #---------------------------------------------------------------------
 
-from PyQt4.QtCore import QVariant, QCoreApplication, QPoint
-from PyQt4.QtGui import QProgressDialog, QMenu, QAction
+from PyQt4.QtCore import QPoint
+from PyQt4.QtGui import QMenu, QAction
 from collections import defaultdict
-from qgis.core import QgsVectorLayer, QgsField, QgsTolerance, QgsSnapper, \
-    QgsFeature, QgsPoint, QgsGeometry, QgsMapLayerRegistry, QgsRectangle
-from qgis.networkanalysis import QgsGraph, QgsGraphAnalyzer
-from exceptions import TypeError
+from qgis.core import QgsTolerance, QgsSnapper, QgsFeature, QgsRectangle
 import networkx as nx
 import time
 
-class QgepNetworkAnalyzer():
+class QgepGraphManager():
     reachLayer = 0
     reachLayerId = 0
     nodeLayerId = 0
@@ -98,10 +95,10 @@ class QgepNetworkAnalyzer():
             featId = feat.id()
             
             objId = attrs[attrObjId].toString()
-            type = attrs[attrType].toString()
+            objType = attrs[attrType].toString()
             
             vertex = feat.geometry().asPoint()
-            self.graph.add_node( featId, dict( point=vertex, type=type ) )
+            self.graph.add_node( featId, dict( point=vertex, objType=objType ) )
             
             self.vertexIds[str(objId)] = featId
         
@@ -131,7 +128,7 @@ class QgepNetworkAnalyzer():
                 attrs = feat.attributeMap()
                 
                 objId = attrs[attrObjId].toString()
-                type = attrs[attrType].toString()
+                objType = attrs[attrType].toString()
                 fromObjId = attrs[attrFromObjId].toString()
                 toObjId = attrs[attrToObjId].toString()
                 
@@ -144,7 +141,7 @@ class QgepNetworkAnalyzer():
                   'weight': length,\
                   'feature': feat.id(),\
                   'baseFeature': unicode(objId),\
-                  'type': unicode( type )\
+                  'objType': unicode( objType )\
                 }
                 self.graph.add_edge( ptId1, ptId2, props )
             except KeyError as e:
@@ -194,7 +191,7 @@ class QgepNetworkAnalyzer():
     
     def snapPoint(self, event):
         pClicked = QPoint( event.pos().x(), event.pos().y() )
-        ( res, snappedPoints ) = self.snapper.snapPoint( pClicked, [] )
+        ( _, snappedPoints ) = self.snapper.snapPoint( pClicked, [] )
 
         if len( snappedPoints ) == 0:
             return None
@@ -267,13 +264,13 @@ class QgepNetworkAnalyzer():
         else:
             myGraph = self.graph
             
-        pred, weight = nx.bellman_ford(myGraph, node)
+        # Returns pred, weight
+        pred, _ = nx.bellman_ford(myGraph, node)
         edges = [(v,u,myGraph[v][u]) for (u,v) in pred.items() if v is not None]
         
         return edges
     
     def getEdgeGeometry(self, edges):
-        polylines = []
         cache = self.getFeaturesById(self.reachLayer, self.reachLayer.dataProvider().attributeIndexes(), edges, True)
         polylines = [feat.geometry().asPolyline() for feat in cache.asDict().values()]
         return polylines
@@ -330,7 +327,13 @@ class QgepNetworkAnalyzer():
         for (name, spenttime) in self.timings:
             print name + ":" + str( spenttime ) 
 
-
+#===============================================================================
+# A feature cache.
+# The DB can be slow sometimes, so if we know, that we'll be using some features
+# several times consecutively it's better to keep it in memory.
+# There is no check done for maximum size. You have to care for your memory
+# yourself, when using this class! 
+#===============================================================================
 class QgepFeatureCache:
     _featuresById = None
     _featuresByObjId = None
@@ -347,13 +350,13 @@ class QgepFeatureCache:
         
     def __getitem__(self, key):
         return self.featureById(key)
-         
+        
     def addFeature(self, feat):
         self._featuresById[feat.id()] = feat
         self._featuresByObjId[self.attrAsUnicode( feat, self.objIdField )] = feat
         
-    def featureById(self, id):
-        return self._featuresById[id]
+    def featureById(self, featId):
+        return self._featuresById[featId]
         
     def featureByObjId(self, objId):
         return self._featuresByObjId[objId]
