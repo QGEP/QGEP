@@ -27,7 +27,7 @@ from PyQt4.QtCore import Qt, QPoint, pyqtSignal
 from PyQt4.QtGui import QCursor, QColor
 from qgis.core import QgsGeometry, QgsPoint
 from qgis.gui import QgsMapTool, QgsRubberBand, QgsVertexMarker
-from qgepprofile import *
+from qgepprofile import * #@UnusedWildImport
 
 #===============================================================================
 # Base class for all the map tools 
@@ -96,7 +96,6 @@ class QgepMapTool( QgsMapTool ):
 #===============================================================================
 
 class QgepProfileMapTool( QgepMapTool ):
-    
     selectedPathPoints = []
     pathPolyline = []
     
@@ -181,14 +180,14 @@ class QgepProfileMapTool( QgepMapTool ):
                 fromOffset = self.segmentOffset
                 toOffset = self.segmentOffset + edge['weight']
                 
-                if 'reach' == edge['type']:
+                if 'reach' == edge['objType']:
                     if self.profile.hasElement( edge['baseFeature'] ):
                         self.profile[edge['baseFeature']].addSegment( p1, p2, edge['feature'], nodeFeatures, edgeFeatures, fromOffset, toOffset )
                     else:
                         elem = QgepProfileReachElement( p1, p2, edge['feature'], nodeFeatures, edgeFeatures, fromOffset, toOffset )
                         self.profile.addElement(edge['baseFeature'], elem)
                     
-                elif 'special_structure' == edge['type']:
+                elif 'special_structure' == edge['objType']:
                     if self.profile.hasElement( edge['baseFeature'] ):
                         self.profile[edge['baseFeature']].addSegment( p1, p2, edge['feature'], nodeFeatures, edgeFeatures, fromOffset, toOffset )
                     else:
@@ -203,8 +202,8 @@ class QgepProfileMapTool( QgepMapTool ):
             self.profileChanged.emit( self.profile )
             
             # Create rubberband geometry
-            for id in edgeIds:
-                self.pathPolyline.extend( edgeFeatures[id].geometry().asPolyline() )
+            for featId in edgeIds:
+                self.pathPolyline.extend( edgeFeatures[featId].geometry().asPolyline() )
             
             self.rubberBand.addGeometry( QgsGeometry.fromPolyline( self.pathPolyline ), nodeLayer )
             self.profileChanged.emit( self.profile )
@@ -283,7 +282,7 @@ class QgepTreeMapTool( QgepMapTool ):
         
     def mouseMoved(self, event):
         pClicked = QPoint( event.pos().x(), event.pos().y() )
-        ( res, snappedPoints ) = self.networkAnalyzer.getSnapper().snapPoint( pClicked, [] )
+        ( _, snappedPoints ) = self.networkAnalyzer.getSnapper().snapPoint( pClicked, [] )
         
         for marker in self.highLightedPoints:
             self.canvas.scene().removeItem( marker )

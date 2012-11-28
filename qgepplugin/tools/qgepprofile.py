@@ -23,11 +23,11 @@
 #
 #---------------------------------------------------------------------
 
-from copy import copy
 import json
 
 class QgepProfileElement():
     type = 'undefined'
+    feat = None
     
     def __init__(self, elementType):
         self.type = elementType
@@ -37,6 +37,12 @@ class QgepProfileElement():
             { \
               'type': self.type \
             }
+            
+    def feature(self):
+        return self.feat
+    
+    def type(self):
+        return type
 
 #===============================================================================
 # Define the base attributes for all edge elements (reaches and special structures)
@@ -46,8 +52,8 @@ class QgepProfileEdgeElement(QgepProfileElement):
     gid = None
     blindConnections = None
     
-    def __init__(self, fromPointId, toPointId, edgeId, nodeCache, edgeCache, startOffset, endOffset, type):
-        QgepProfileElement.__init__(self,type)
+    def __init__(self, fromPointId, toPointId, edgeId, nodeCache, edgeCache, startOffset, endOffset, elemType):
+        QgepProfileElement.__init__(self,elemType)
         nodeCache = nodeCache
         edgeCache = edgeCache
         self.reachPoints = {}
@@ -129,6 +135,7 @@ class QgepProfileReachElement(QgepProfileEdgeElement):
     def __init__(self, fromPointId, toPointId, reachId, nodeCache, edgeCache, startOffset, endOffset ):
         QgepProfileEdgeElement.__init__( self, fromPointId, toPointId, reachId, nodeCache, edgeCache, startOffset, endOffset, 'reach' )
         reach   = edgeCache.featureById( reachId )
+        self.feat = reach
         
         self.width = edgeCache.attrAsFloat( reach, u'depth' ) / 1000
         self.usageCurrent = edgeCache.attrAsFloat( reach, u'usage_current' )
@@ -152,6 +159,8 @@ class QgepProfileSpecialStructureElement(QgepProfileEdgeElement):
     
     def __init__(self, fromPointId, toPointId, edgeId, nodeCache, edgeCache, startOffset, endOffset):
         QgepProfileEdgeElement.__init__( self, fromPointId, toPointId, edgeId, nodeCache, edgeCache, startOffset, endOffset, 'special_structure' )
+        specialStructure = edgeCache.featureById( edgeId )
+        self.feat = specialStructure
         
         self.addSegment( fromPointId, toPointId, edgeId, nodeCache, edgeCache, startOffset, endOffset )
 
@@ -174,6 +183,7 @@ class QgepProfileSpecialStructureElement(QgepProfileEdgeElement):
         if definingWasteWaterNode is not None:
             self.coverLevel  = nodeCache.attrAsFloat( definingWasteWaterNode, u'cover_level' )
             self.description  = nodeCache.attrAsUnicode( definingWasteWaterNode, u'description' )
+            self.usageCurrent = nodeCache.attrAsFloat( definingWasteWaterNode, u'usage_current' )
         
     def asDict(self):
             el = QgepProfileEdgeElement.asDict(self)
@@ -181,7 +191,8 @@ class QgepProfileSpecialStructureElement(QgepProfileEdgeElement):
             { \
               'bottomLevel': self.bottomLevel, \
               'description': self.description, \
-              'coverLevel':  self.coverLevel \
+              'coverLevel':  self.coverLevel, \
+              'usageCurrent': self.usageCurrent \
             } )
             return el
 
