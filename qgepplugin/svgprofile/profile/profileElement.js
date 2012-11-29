@@ -11,7 +11,6 @@ define([ "dojo/_base/declare" ], function (declare) {
     svgProfile: null,        /* Reference to the svg object */
     x: null,                 /* Reference to the d3 x scale */
     y: null,                 /* Reference to the d3 y scale */
-    zoom: null,              /* Reference to a d3 zoom behavior object */
 
     data: function (data) {
 
@@ -23,7 +22,7 @@ define([ "dojo/_base/declare" ], function (declare) {
 
     extent: function () {
       /* xmin, xmax, ymin, ymax */
-      return [0, 1, 0, 1];
+      return { x: [0, 1], y: [0, 1] };
     }
   });
 });

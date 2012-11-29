@@ -9,10 +9,15 @@
 define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], function (declare, lang, _ProfileElement) {
   return declare([ _ProfileElement ], {
     specialStructures: null, /* Reference to the current working set */
+    line: d3.svg.line(),
 
     constructor: function(/*Object*/ kwArgs)
     {
       lang.mixin(this, kwArgs);
+
+      this.line
+        .x( lang.hitch( this, function(d) { return this.x( d.x ); } ) )
+        .y( lang.hitch( this, function(d) { return this.y( d.y ); } ) );
     },
 
     data: function( data )
@@ -32,11 +37,32 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
         .append('svg:g')
         .attr( 'id', function(d) { return d.objId; } )
         .attr( 'class', function(d) { return 'usage-current-' + d.usageCurrent; } )
-        .classed( 'special-structure', true )
-        .call( this.zoom );
+        .classed( 'special-structure', true );
 
       newSpecialStructures
-        .append('svg:rect');
+        .append('svg:path')
+        .datum( function(d) {
+          var x1 = d.startOffset;
+          var y1 = d.coverLevel;
+          var x2 = d.endOffset;
+          var y2 = d.coverLevel;
+          var x3 = d.endOffset;
+          var y3 = d.endLevel;
+          var x4 = d.wwNodeOffset;
+          var y4 = d.bottomLevel;
+          var x5 = d.startOffset;
+          var y5 = d.startLevel;
+
+          return [
+            {x: x1, y: y1 },
+            {x: x2, y: y2 },
+            {x: x3, y: y3 },
+            {x: x4, y: y4 },
+            {x: x5, y: y5 }
+          ];
+        })
+        .append('title')
+        .text( function(d) { return d.objId; } );
 
       newSpecialStructures
         .append('svg:text')
@@ -46,14 +72,15 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
     redraw: function( duration )
     {
       var oponText = this.specialStructures.selectAll('text');
-      var oponRect = this.specialStructures.selectAll('rect');
+      var path = this.specialStructures.selectAll('path');
+
       if ( duration > 0 )
       {
         oponText = oponText
           .transition()
           .duration(duration);
 
-        oponRect = oponRect
+        path = path
           .transition()
           .duration(duration);
       }
@@ -62,11 +89,18 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
         .attr( 'x', lang.hitch( this, function (d) { return this.x( (d.endOffset + d.startOffset)/2 ); } ) )
         .attr( 'y', lang.hitch( this, function (d) { return this.y( d.coverLevel ) - 3; } ) );
 
-      oponRect
-        .attr('x',      lang.hitch( this, function(d) { return this.x( d.startOffset ); } ) )
-        .attr('y',      lang.hitch( this, function(d) { return this.y( d.coverLevel ); } ) )
-        .attr('width',  lang.hitch( this, function(d) { return this.x( d.endOffset ) - this.x( d.startOffset ); } ) )
-        .attr('height', lang.hitch( this, function(d) { return this.y( d.bottomLevel ) - this.y( d.coverLevel ); } ) );
+      path
+        .attr( 'd', lang.hitch( this, function(d) { return this.line(d) +'Z'; } ) );
+    },
+
+    extent: function()
+    {
+      var minX = d3.min( this.specialStructures.data(), ƒ('startOffset') ) || 0;
+      var maxX = d3.max( this.specialStructures.data(), ƒ('endOffset') ) || 1;
+      var minY = d3.min( this.specialStructures.data(), ƒ('bottomLevel') ) || 0;
+      var maxY = d3.max( this.specialStructures.data(), ƒ('coverLevel') ) || 1;
+
+      return {x: [minX, maxX], y: [minY, maxY] };
     }
   });
 });

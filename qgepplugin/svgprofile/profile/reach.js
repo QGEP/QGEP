@@ -38,12 +38,10 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
         .attr( 'id', function(d) { return d.objId; } )
         .attr( 'class', function(d) { return 'usage-current-' + d.usageCurrent; } )
         .classed( 'reach', true )
-        .call( this.zoom )
         .on('click', function(d) { profileProxy.onReachClicked( d.objId ); });
 
       newReaches
         .append('svg:path')
-//        .on('contextmenu', function(d) {alert('Right click')} )
         .append('title')
         .text( function(d) { return d.objId + '\nWidth:' + d.width_m; } );
 
@@ -99,7 +97,16 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
       blindConnections
         .attr( 'cx', lang.hitch( this, function(d) { return this.x(d.offset); } ) )
         .attr( 'cy', lang.hitch( this, function(d) { return this.y(d.level); } ) );
+    },
 
+    extent: function()
+    {
+      var minX = d3.min( this.reaches.data(), ƒ('startOffset') ) || 0;
+      var maxX = d3.max( this.reaches.data(), ƒ('endOffset') ) || 1;
+      var minY = d3.min( this.reaches.data(), ƒ('endLevel') ) || 0;
+      var maxY = d3.max( this.reaches.data(), ƒ('startLevel') ) || 1;
+
+      return {x: [minX, maxX], y: [minY, maxY] };
     }
   });
 });

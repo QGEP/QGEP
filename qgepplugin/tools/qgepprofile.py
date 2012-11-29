@@ -156,6 +156,7 @@ class QgepProfileSpecialStructureElement(QgepProfileEdgeElement):
     bottomLevel = None
     coverLevel = None
     description = None
+    wwNodeOffset = None
     
     def __init__(self, fromPointId, toPointId, edgeId, nodeCache, edgeCache, startOffset, endOffset):
         QgepProfileEdgeElement.__init__( self, fromPointId, toPointId, edgeId, nodeCache, edgeCache, startOffset, endOffset, 'special_structure' )
@@ -176,8 +177,10 @@ class QgepProfileSpecialStructureElement(QgepProfileEdgeElement):
         
         if u'wastewater_node' == nodeCache.attrAsUnicode(fromPoint, u'type'):
             definingWasteWaterNode = fromPoint
+            self.wwNodeOffset = startOffset
         elif u'wastewater_node' == nodeCache.attrAsUnicode(toPoint, u'type'):
             definingWasteWaterNode = toPoint
+            self.wwNodeOffset = endOffset
         
         # There should always be a wastewater node but checking does not hurt
         if definingWasteWaterNode is not None:
@@ -189,10 +192,11 @@ class QgepProfileSpecialStructureElement(QgepProfileEdgeElement):
             el = QgepProfileEdgeElement.asDict(self)
             el.update( \
             { \
-              'bottomLevel': self.bottomLevel, \
-              'description': self.description, \
-              'coverLevel':  self.coverLevel, \
-              'usageCurrent': self.usageCurrent \
+              'bottomLevel':  self.bottomLevel, \
+              'description':  self.description, \
+              'coverLevel':   self.coverLevel, \
+              'usageCurrent': self.usageCurrent, \
+              'wwNodeOffset': self.wwNodeOffset \
             } )
             return el
 

@@ -16,6 +16,15 @@ body {
     shape-rendering: crispEdges;
 }
 
+.axis, .profile{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 .x.axis .minor {
     stroke-opacity: .5;
 }
@@ -26,6 +35,10 @@ body {
 }
 
 /* The profile elements */
+g.reach {
+    cursor: pointer;
+}
+
 g.reach > path {
     stroke-width: 1px;
     fill-opacity: 0.7;
@@ -39,37 +52,37 @@ g.reach > path:hover {
 g.reach.usage-current-4514 > path,
 g.reach.usage-current-4518 > path,
 g.reach.usage-current-4520 > path,
-g.special-structure.usage-current-4514 > rect,
-g.special-structure.usage-current-4518 > rect,
-g.special-structure.usage-current-4520 > rect
+g.special-structure.usage-current-4514 > path,
+g.special-structure.usage-current-4518 > path,
+g.special-structure.usage-current-4520 > path
 {
     stroke: #0000ff;
     fill: #0000ff;
 }
 
 g.reach.usage-current-4516 > path,
-g.special-structure.usage-current-4516 > rect {
+g.special-structure.usage-current-4516 > path {
     stroke: #00ff6f;
     fill: #00ff6f;
 }
 
 g.reach.usage-current-4522 > path,
-g.special-structure.usage-current-4522 > rect {
+g.special-structure.usage-current-4522 > path {
     stroke: #660066;
     fill: #660066;
 }
 
 g.reach.usage-current-4524 > path,
 g.reach.usage-current-4526 > path,
-g.special-structure.usage-current-4524 > rect,
-g.special-structure.usage-current-4526 > rect {
+g.special-structure.usage-current-4524 > path,
+g.special-structure.usage-current-4526 > path {
     stroke: #ff0000;
     fill: #ff0000;
 }
 
 /* Fallback */
 g.reach > path,
-g.special-structure > rect {
+g.special-structure > path {
     stroke: #969696;
     fill: #969696;
 }
@@ -78,12 +91,16 @@ g.special-structure > rect {
  * Special structure
  */
 
-g.special-structure > rect {
+g.special-structure {
+    cursor: pointer;
+}
+
+g.special-structure > path {
     stroke-width: 2px;
     fill-opacity: 0.7;
 }
 
-g.special-structure:hover > rect {
+g.special-structure:hover > path {
     stroke-width: 3px;
     fill-opacity: 1;
 }

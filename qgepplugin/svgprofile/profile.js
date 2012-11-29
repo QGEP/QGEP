@@ -42,7 +42,7 @@ function I(d)
 // Global Object, where we'll declare all the useful stuff inside
 var qgep = { def: {}, test: {} };
 
-require( ["dojo/on", "dojo/ready", "dojo/_base/json", "profile/specialStructure", "profile/reach"], function(  on, ready, dojo, SpecialStructure, Reach ) {
+require( ["dojo/on", "dojo/ready", "dojo/_base/json", "profile/specialStructure", "profile/reach", "profile/terrain"], function(  on, ready, dojo, SpecialStructure, Reach, Terrain ) {
 
   qgep.def.ProfilePlot = dojo.declare( null,
   {
@@ -63,7 +63,6 @@ require( ["dojo/on", "dojo/ready", "dojo/_base/json", "profile/specialStructure"
       .orient("right"),
 
     myZoom: d3.behavior.zoom(),
-    terrainLine: d3.svg.line(),
 
     initSVG: function( parent )
     {
@@ -98,14 +97,8 @@ require( ["dojo/on", "dojo/ready", "dojo/_base/json", "profile/specialStructure"
         .attr( "clip-path", "url(#profileMask)" );
 
       this.profile = this.profileViewPort.append( "svg:g" )
-        .attr( "class", "profile" );
-
-      this.terrainProfile = this.profile.append( 'svg:path' )
-        .attr( 'class', 'terrain' );
-
-      this.terrainLine
-        .x( function(d) { return that.x( d.offset ); } )
-        .y( function(d) { return that.y( d.coverLevel ); } );
+        .attr( "class", "profile" )
+        .call( this.myZoom );
 
       // TODO: make resize more intelligent so it gets proper axis bounds already on first init
       this.onResize();
@@ -117,15 +110,19 @@ require( ["dojo/on", "dojo/ready", "dojo/_base/json", "profile/specialStructure"
       this.specialStructure = new SpecialStructure({
         svgProfile: this.profile,
         x: this.x,
-        y: this.y,
-        zoom: this.myZoom
+        y: this.y
       });
 
       this.reach = new Reach({
         svgProfile: this.profile,
         x: this.x,
-        y: this.y,
-        zoom: this.myZoom
+        y: this.y
+      });
+
+      this.terrain = new Terrain({
+        svgProfile: this.profile,
+        x: this.x,
+        y: this.y
       })
     },
 
@@ -168,16 +165,14 @@ require( ["dojo/on", "dojo/ready", "dojo/_base/json", "profile/specialStructure"
     // Data changed: domain needs to be adjusted
     scaleDomain: function ()
     {
-      this.profile
-        .attr("transform", "translate(0,0) scale(1)");
-
       this.myZoom.scale(1);
       this.myZoom.translate([0,0]);
 
-      // Compute the minimum and maximum offset, and the maximum level.
-//      this.x.domain([0, d3.max( this.reachData, ƒ('endOffset'))]);
-      this.x.domain( [0, 200] );
-      var maxY = d3.max(this.terrainData, ƒ('coverLevel'));
+      var rExt = this.reach.extent();
+      var sExt = this.specialStructure.extent();
+      var xExtent = [ d3.min([rExt.x[0], sExt.x[0]]), d3.max([rExt.x[1], sExt.x[1]]) ];
+      this.x.domain( xExtent );
+      var maxY = this.terrain.extent().y[1];
       minY = maxY - this.x.invert( maxY ) / this.verticalExaggeration;
       this.y.domain([minY, maxY ]);
 
@@ -195,8 +190,6 @@ require( ["dojo/on", "dojo/ready", "dojo/_base/json", "profile/specialStructure"
 
       t.select(".x.axis").call(this.xAxis);
       t.select(".y.axis").call(this.yAxis);
-
-      this.updateReaches();
     },
 
     // zoom and pan operations
@@ -204,10 +197,7 @@ require( ["dojo/on", "dojo/ready", "dojo/_base/json", "profile/specialStructure"
     {
       this.transform( this.x, d3.event.translate[0], d3.event.scale );
       this.transform( this.y, d3.event.translate[1], d3.event.scale );
-/*
-      this.profile
-        .attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
-*/
+
       this.mainGroup.select("g.x.axis").call(this.xAxis);
       this.mainGroup.select("g.y.axis").call(this.yAxis);
 
@@ -222,44 +212,13 @@ require( ["dojo/on", "dojo/ready", "dojo/_base/json", "profile/specialStructure"
       scale.domain(domain).domain(range.map(scale.invert));
     },
 
-    createTerrainPath: function( data )
-    {
-      this.terrainData = data
-        .filter( function(d) { return d.coverLevel != null; } )
-        .sort( function(a,b) { return a.offset - b.offset; } );
-
-      this.terrainProfile
-        .datum( this.terrainData );
-    },
-
-    updateTerrainPath: function( duration )
-    {
-      var opon = this.terrainProfile;
-
-      if ( duration > 0 )
-      {
-        opon = opon
-          .transition()
-          .duration( duration );
-      }
-
-      opon
-        .attr( 'd', this.terrainLine );
-    },
-
-    onClick: function( d, i )
-    {
-      console.info( "Click ");
-      console.info( d3.event );
-    },
-
     redraw: function( duration )
     {
       if( typeof(duration) === 'undefined' ) duration = 750;
 
       this.reach.redraw( duration );
       this.specialStructure.redraw( duration );
-      this.updateTerrainPath( duration );
+      this.terrain.redraw( duration );
     }
   });
 
@@ -295,12 +254,14 @@ require( ["dojo/on", "dojo/ready", "dojo/_base/json", "profile/specialStructure"
           var specialStructureData = profileData.filter ( function(d) { return d.type == 'special_structure'; } );
           qgep.profilePlot.specialStructure.data( specialStructureData );
           var coverData = profileData.filter( function(d) { return d.type == 'node'; } );
-          qgep.profilePlot.createTerrainPath( coverData );
+          qgep.profilePlot.terrain.data( coverData );
 
           qgep.profilePlot.scaleDomain();
           qgep.profilePlot.redraw();
         }
       );
+
+      profileProxy.updateProfile();
     }
   });
 });
