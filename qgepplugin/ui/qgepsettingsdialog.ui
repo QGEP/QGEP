@@ -52,6 +52,45 @@
     </widget>
    </item>
    <item>
+    <widget class="QGroupBox" name="mGbLayers">
+     <property name="title">
+      <string>Layers</string>
+     </property>
+     <layout class="QFormLayout" name="formLayout_2">
+      <item row="0" column="0">
+       <widget class="QLabel" name="mLblSpecialStructures">
+        <property name="text">
+         <string>Special structures:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="mCbSpecialStructures"/>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="mLblGraphNodes">
+        <property name="text">
+         <string>Graph nodes:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QComboBox" name="mCbGraphNodes"/>
+      </item>
+      <item row="2" column="1">
+       <widget class="QComboBox" name="mCbGraphEdges"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="mLblGraphEdges">
+        <property name="text">
+         <string>Graph edges:</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
     <widget class="QCheckBox" name="mCbDevelMode">
      <property name="text">
       <string>Developer mode</string>
@@ -59,7 +98,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QDialogButtonBox" name="buttonBox">
+    <widget class="QDialogButtonBox" name="mBtnBoxOkCancel">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
@@ -73,7 +112,7 @@
  <resources/>
  <connections>
   <connection>
-   <sender>buttonBox</sender>
+   <sender>mBtnBoxOkCancel</sender>
    <signal>accepted()</signal>
    <receiver>QgepSettingsDialog</receiver>
    <slot>accept()</slot>
@@ -89,7 +128,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>buttonBox</sender>
+   <sender>mBtnBoxOkCancel</sender>
    <signal>rejected()</signal>
    <receiver>QgepSettingsDialog</receiver>
    <slot>reject()</slot>

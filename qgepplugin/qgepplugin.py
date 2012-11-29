@@ -25,7 +25,7 @@
 
 from PyQt4.QtCore import pyqtSlot
 from PyQt4.QtGui import QAction, QIcon, QMessageBox
-from qgis.core import QgsMapLayerRegistry, QgsMapLayer
+from qgis.core import QgsMapLayerRegistry, QgsMapLayer, QgsProject
 from tools.qgepmaptools import QgepProfileMapTool, QgepTreeMapTool
 from tools.qgepnetwork import QgepGraphManager
 from ui.qgepdockwidget import QgepDockWidget
@@ -39,6 +39,11 @@ class QgepPlugin:
     
     # Remember not to reopen the dock if there's already one opened
     dockWidget      = None
+    
+    # The layer ids the plugin will need
+    edgeLayer             = None
+    nodeLayer             = None
+    specialStructureLayer = None
 
     #===============================================================================
     # Constructor
@@ -104,6 +109,7 @@ class QgepPlugin:
         self.downstreamTreeTool.setDirection( "downstream" )
         
         # Connect to events that can change layers
+        self.iface.projectRead.connect( self.onProjectRead )
         QgsMapLayerRegistry.instance().layersWillBeRemoved.connect( self.layersWillBeRemoved )
         QgsMapLayerRegistry.instance().layersAdded.connect( self.layersAdded )
         
@@ -174,11 +180,11 @@ class QgepPlugin:
     #===========================================================================
     def layersAdded( self, layers ):
         for newLayer in layers:
-            if newLayer.type() == QgsMapLayer.VectorLayer and newLayer.name() == "vw_network_node":
+            if newLayer.type() == QgsMapLayer.VectorLayer and newLayer.id() == self.nodeLayer:
                 self.networkAnalyzer.setNodeLayer( newLayer )
                 self.layersChanged()
 
-            if newLayer.type() == QgsMapLayer.VectorLayer and newLayer.name() == "vw_network_segment":
+            if newLayer.type() == QgsMapLayer.VectorLayer and newLayer.id() == self.edgeLayer:
                 self.networkAnalyzer.setReachLayer( newLayer )
                 self.layersChanged()
                 
@@ -194,6 +200,32 @@ class QgepPlugin:
         for button in self.toolbarButtons:
             button.setEnabled( buttonsEnabled )
     
+    @pyqtSlot()
+    def onProjectRead( self ):
+        project = QgsProject.instance()
+        
+        specialStructureLayer = project.readEntry( 'QGEP', 'SpecialStructureLayer' )
+        graphEdgeLayer = project.readEntry( 'QGEP', 'GraphEdgeLayer' )
+        graphNodeLayer = project.readEntry( 'QGEP', 'GraphNodeLayer' )
+        
+        if graphNodeLayer[1] is not False:
+            self.nodeLayer = graphNodeLayer[0]
+        else:
+            self.nodeLayer = None
+            
+        if graphEdgeLayer[1] is not False:
+            self.edgeLayer = graphEdgeLayer[0]
+        else:
+            self.edgeLayer = None
+        
+        if specialStructureLayer[1] is not False:
+            self.specialStructureLayer = specialStructureLayer[0]
+        else:
+            self.specialStructureLayer = None
+            
+        reg = QgsMapLayerRegistry.instance()
+        self.layersAdded( [layer for layer in reg.mapLayers().itervalues()] )
+        
     #===========================================================================
     # The profile changed: update the plot
     #===========================================================================

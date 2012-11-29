@@ -26,6 +26,7 @@
 from ui_qgepsettingsdialog import Ui_QgepSettingsDialog
 from PyQt4.QtCore import QSettings, pyqtSlot, QVariant
 from PyQt4.QtGui import QDialog, QFileDialog
+from qgis.core import QgsMapLayerRegistry, QgsProject
 
 class QgepSettingsDialog(QDialog, Ui_QgepSettingsDialog):
     settings = QSettings()
@@ -33,6 +34,8 @@ class QgepSettingsDialog(QDialog, Ui_QgepSettingsDialog):
     def __init__(self, parent=None):
         QDialog.__init__(self, parent)
         self.setupUi(self)
+        
+        project = QgsProject.instance()
         
         svgProfilePath = self.settings.value( "/QGEP/SvgProfilePath", None ).toString()
         if svgProfilePath != u'':
@@ -44,17 +47,34 @@ class QgepSettingsDialog(QDialog, Ui_QgepSettingsDialog):
         develMode = self.settings.value( "/QGEP/DeveloperMode", QVariant( False ) ).toBool()
         self.mCbDevelMode.setChecked( develMode )
         
+        lyrSpecialStructures, _ = project.readEntry( 'QGEP', 'SpecialStructureLayer' )
+        lyrGraphEdges, _        = project.readEntry( 'QGEP', 'GraphEdgeLayer' )
+        lyrGraphNodes, _        = project.readEntry( 'QGEP', 'GraphNodeLayer' )
+        
+        self.initLayerCombobox( self.mCbSpecialStructures, lyrSpecialStructures )
+        self.initLayerCombobox( self.mCbGraphEdges, lyrGraphEdges )
+        self.initLayerCombobox( self.mCbGraphNodes, lyrGraphNodes )
+        
         self.mPbnChooseProfileTemplateFile.clicked.connect( self.onChooseProfileTemplateFileClicked)
         self.accepted.connect( self.onAccept )
+        
+    def initLayerCombobox(self,combobox, default):
+        reg = QgsMapLayerRegistry.instance()
+        for ( key, layer ) in reg.mapLayers().iteritems():
+            combobox.addItem( layer.name(), key )
+            
+        idx = combobox.findData( default )
+        if idx != -1:
+            combobox.setCurrentIndex( idx )
         
     @pyqtSlot()
     def onChooseProfileTemplateFileClicked(self):
         fileName = QFileDialog.getOpenFileName(self, self.tr('Select profile template'), '', self.tr('HTML files(*.htm *.html)') )
         self.mProfileTemplateFile.setText( fileName )
         
-       
     @pyqtSlot()
     def onAccept(self):
+        # General settings
         if self.mGbOverrideDefaultProfileTemplate.isChecked() \
         and self.mProfileTemplateFile != '':
             self.settings.setValue( "/QGEP/SvgProfilePath", self.mProfileTemplateFile.text())
@@ -62,3 +82,14 @@ class QgepSettingsDialog(QDialog, Ui_QgepSettingsDialog):
             self.settings.remove( "/QGEP/SvgProfilePath" )
         
         self.settings.setValue( "/QGEP/DeveloperMode", self.mCbDevelMode.checkState() )
+        
+        # Project specific settings
+        project = QgsProject.instance()
+        
+        specialStructureIdx = self.mCbSpecialStructures.currentIndex()
+        graphEdgeLayerIdx   = self.mCbGraphEdges.currentIndex()
+        graphNodeLayerIdx   = self.mCbGraphNodes.currentIndex()
+        
+        project.writeEntry( 'QGEP', 'SpecialStructureLayer', self.mCbSpecialStructures.itemData( specialStructureIdx ).toString() )
+        project.writeEntry( 'QGEP', 'GraphEdgeLayer',        self.mCbGraphEdges.itemData( graphEdgeLayerIdx ).toString() )
+        project.writeEntry( 'QGEP', 'GraphNodeLayer',        self.mCbGraphNodes.itemData( graphNodeLayerIdx ).toString() )
