@@ -175,7 +175,7 @@ require( ["dojo/on", "dojo/ready", "dojo/_base/json", "profile/specialStructure"
       var xExtent = [ d3.min([rExt.x[0], sExt.x[0]]), d3.max([rExt.x[1], sExt.x[1]]) ];
       this.x.domain( xExtent );
       var maxY = this.terrain.extent().y[1];
-      minY = maxY - this.x.invert( maxY ) / this.verticalExaggeration;
+      var minY = maxY - ( this.height * xExtent[1] ) / this.width / this.verticalExaggeration;
       this.y.domain([minY, maxY ]);
 
       this.zoom
@@ -186,16 +186,6 @@ require( ["dojo/on", "dojo/ready", "dojo/_base/json", "profile/specialStructure"
       this.mainGroup.select("g.y.axis").call(this.yAxis);
 
       this.redraw();
-    },
-
-    // Animation to change scale
-    changeScale: function ()
-    {
-      var t = this.mainGroup.transition()
-        .duration(750);
-
-      t.select(".x.axis").call(this.xAxis);
-      t.select(".y.axis").call(this.yAxis);
     },
 
     // zoom and pan operations
