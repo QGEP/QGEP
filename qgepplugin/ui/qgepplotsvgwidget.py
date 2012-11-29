@@ -25,7 +25,7 @@
 
 from PyQt4.QtGui import QVBoxLayout, QWidget
 from PyQt4.QtWebKit import QWebView, QWebSettings
-from PyQt4.QtCore import QUrl, pyqtSignal, pyqtSlot, QSettings, QVariant
+from PyQt4.QtCore import QUrl, pyqtSignal, pyqtSlot, QSettings, QVariant, Qt
 
 class QgepPlotSVGWidget( QWidget ):
     webView = None
@@ -37,7 +37,7 @@ class QgepPlotSVGWidget( QWidget ):
     reachMouseOver = pyqtSignal( [str], name='reachMouseOver' )
     specialStructureClicked = pyqtSignal( [str], name='specialStructureClicked' )
     specialStructureMouseOver = pyqtSignal( [str], name='specialStructureMouseOver' )
-
+    
     def __init__( self, parent, networkAnalyzer, url = None ):
         QWidget.__init__( self, parent )
         
@@ -50,12 +50,19 @@ class QgepPlotSVGWidget( QWidget ):
         layout = QVBoxLayout( self )
         if url is None:
             url = settings.value( "/QGEP/SvgProfilePath", QVariant( u'qrc:///plugins/qgepplugin/svgprofile/index.html' ) )
+            
+        developerMode = settings.value( "/QGEP/DeveloperMode", QVariant( False ) ).toBool()
+        
+        if developerMode is True:
+            self.webView.page().settings().setAttribute(QWebSettings.DeveloperExtrasEnabled, True)
+        else:
+            self.webView.setContextMenuPolicy( Qt.NoContextMenu )
+            
 
         self.webView.load( QUrl( url.toString() ) )
         self.frame = self.webView.page().mainFrame()
         self.frame.javaScriptWindowObjectCleared.connect( self.initJs )
         self.frame.loadFinished.connect( self.frameLoadFinished )
-        self.webView.page().settings().setAttribute(QWebSettings.DeveloperExtrasEnabled, True)
 
         layout.addWidget( self.webView )
 
@@ -85,3 +92,8 @@ class QgepPlotSVGWidget( QWidget ):
     @pyqtSlot( str )
     def onSpecialStructureMouseOver(self, objId):
         self.specialStructureMouseOver.emit( objId )
+        
+    @pyqtSlot( )
+    def updateProfile(self):
+        if self.profile:
+            self.profileChanged.emit( self.profile.asJson() )

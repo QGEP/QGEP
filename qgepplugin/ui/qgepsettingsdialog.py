@@ -24,7 +24,7 @@
 #---------------------------------------------------------------------
 
 from ui_qgepsettingsdialog import Ui_QgepSettingsDialog
-from PyQt4.QtCore import QSettings, pyqtSlot, QCoreApplication
+from PyQt4.QtCore import QSettings, pyqtSlot, QVariant
 from PyQt4.QtGui import QDialog, QFileDialog
 
 class QgepSettingsDialog(QDialog, Ui_QgepSettingsDialog):
@@ -37,10 +37,13 @@ class QgepSettingsDialog(QDialog, Ui_QgepSettingsDialog):
         svgProfilePath = self.settings.value( "/QGEP/SvgProfilePath", None ).toString()
         if svgProfilePath != u'':
             self.mGbOverrideDefaultProfileTemplate.setChecked( True )
-            self.mProfileTemplateFile.setText( svgProfilePath.toString() )
+            self.mProfileTemplateFile.setText( svgProfilePath )
         else:
             self.mGbOverrideDefaultProfileTemplate.setChecked( False )
             
+        develMode = self.settings.value( "/QGEP/DeveloperMode", QVariant( False ) ).toBool()
+        self.mCbDevelMode.setChecked( develMode )
+        
         self.mPbnChooseProfileTemplateFile.clicked.connect( self.onChooseProfileTemplateFileClicked)
         self.accepted.connect( self.onAccept )
         
@@ -49,6 +52,7 @@ class QgepSettingsDialog(QDialog, Ui_QgepSettingsDialog):
         fileName = QFileDialog.getOpenFileName(self, self.tr('Select profile template'), '', self.tr('HTML files(*.htm *.html)') )
         self.mProfileTemplateFile.setText( fileName )
         
+       
     @pyqtSlot()
     def onAccept(self):
         if self.mGbOverrideDefaultProfileTemplate.isChecked() \
@@ -56,3 +60,5 @@ class QgepSettingsDialog(QDialog, Ui_QgepSettingsDialog):
             self.settings.setValue( "/QGEP/SvgProfilePath", self.mProfileTemplateFile.text())
         else:
             self.settings.remove( "/QGEP/SvgProfilePath" )
+        
+        self.settings.setValue( "/QGEP/DeveloperMode", self.mCbDevelMode.checkState() )
