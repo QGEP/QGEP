@@ -23,10 +23,8 @@
 #
 #---------------------------------------------------------------------
 
-from PyQt4.QtCore import Qt, pyqtSignal
+from PyQt4.QtCore import Qt, pyqtSignal, pyqtSlot
 from PyQt4.QtGui import QDockWidget
-from qgis.core import *
-from qgis.gui import *
 from ui_qgepdockwidget import Ui_QgepDockWidget
 
 
@@ -34,14 +32,30 @@ from ui_qgepdockwidget import Ui_QgepDockWidget
 class QgepDockWidget( QDockWidget, Ui_QgepDockWidget ):
     # Signal emitted when the widget is closed
     closed = pyqtSignal()
+    canvas = None
+    addDockWidget = None
+    # Lookup table for vertical exaggeration values
+    veLUT = \
+    {\
+       1:   1,\
+       2:   2,\
+       3:   3,\
+       4:   5,\
+       5:  10,\
+       6:  20,\
+       7:  30,\
+       8:  50,\
+       9: 100,\
+      10: 500\
+    }
 
-    def __init__( self, parent, iface ):
+    def __init__( self, parent, canvas, addDockWidget ):
         QDockWidget.__init__( self, parent )
-        self.setAttribute( Qt.WA_DeleteOnClose )
-
-        self.iface = iface
-
         self.setupUi( self )
+        
+        self.setAttribute( Qt.WA_DeleteOnClose )
+        self.canvas = canvas
+        self.addDockWidget = addDockWidget
 
     def showIt( self ):
         #self.setLocation( Qt.BottomDockWidgetArea )
@@ -50,10 +64,12 @@ class QgepDockWidget( QDockWidget, Ui_QgepDockWidget ):
         maxsize = self.maximumSize()
         self.setMinimumSize( minsize )
         self.setMaximumSize( maxsize )
-        self.iface.mapCanvas().setRenderFlag( False )
+        self.canvas.setRenderFlag( False )
 
-        self.iface.addDockWidget( self.location, self )
-        self.iface.mapCanvas().setRenderFlag( True )
+        self.addDockWidget( self.location, self )
+        self.canvas.setRenderFlag( True )
+        
+        self.mSliderVerticalExaggeration.valueChanged.connect( self.onVerticalExaggerationChanged )
 
     def closeEvent( self, event ):
         self.closed.emit()
@@ -62,3 +78,10 @@ class QgepDockWidget( QDockWidget, Ui_QgepDockWidget ):
     def addPlotWidget( self, plotWidget ):
         self.plotWidget = plotWidget
         self.verticalLayoutForPlot.addWidget( self.plotWidget )
+
+    @pyqtSlot( int )
+    def onVerticalExaggerationChanged(self, value):
+        veVal = self.veLUT[value]
+        self.mLblVerticalExaggeration.setText( unicode( veVal ) + 'x' )
+        self.plotWidget.changeVerticalExaggeration( veVal )
+        

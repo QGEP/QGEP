@@ -41,26 +41,7 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
 
       newSpecialStructures
         .append('svg:path')
-        .datum( function(d) {
-          var x1 = d.startOffset;
-          var y1 = d.coverLevel;
-          var x2 = d.endOffset;
-          var y2 = d.coverLevel;
-          var x3 = d.endOffset;
-          var y3 = d.endLevel;
-          var x4 = d.wwNodeOffset;
-          var y4 = d.bottomLevel;
-          var x5 = d.startOffset;
-          var y5 = d.startLevel;
-
-          return [
-            {x: x1, y: y1 },
-            {x: x2, y: y2 },
-            {x: x3, y: y3 },
-            {x: x4, y: y4 },
-            {x: x5, y: y5 }
-          ];
-        })
+        .datum( this.pathPoints )
         .append('title')
         .text( function(d) { return d.objId; } );
 
@@ -71,25 +52,25 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
 
     redraw: function( duration )
     {
-      var oponText = this.specialStructures.selectAll('text');
-      var path = this.specialStructures.selectAll('path');
+      var texts = this.specialStructures.selectAll('text');
+      var paths = this.specialStructures.selectAll('path');
 
       if ( duration > 0 )
       {
-        oponText = oponText
+        texts = texts
           .transition()
           .duration(duration);
 
-        path = path
+        paths = paths
           .transition()
           .duration(duration);
       }
 
-      oponText
+      texts
         .attr( 'x', lang.hitch( this, function (d) { return this.x( (d.endOffset + d.startOffset)/2 ); } ) )
         .attr( 'y', lang.hitch( this, function (d) { return this.y( d.coverLevel ) - 3; } ) );
 
-      path
+      paths
         .attr( 'd', lang.hitch( this, function(d) { return this.line(d) +'Z'; } ) );
     },
 
@@ -101,6 +82,28 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
       var maxY = d3.max( this.specialStructures.data(), ƒ('coverLevel') ) || 1;
 
       return {x: [minX, maxX], y: [minY, maxY] };
+    },
+
+    pathPoints: function(d)
+    {
+      var x1 = d.startOffset;
+      var y1 = d.coverLevel;
+      var x2 = d.endOffset;
+      var y2 = d.coverLevel;
+      var x3 = d.endOffset;
+      var y3 = d.endLevel;
+      var x4 = d.wwNodeOffset;
+      var y4 = d.bottomLevel;
+      var x5 = d.startOffset;
+      var y5 = d.startLevel;
+
+      return [
+        {x: x1, y: y1 },
+        {x: x2, y: y2 },
+        {x: x3, y: y3 },
+        {x: x4, y: y4 },
+        {x: x5, y: y5 }
+      ];
     }
   });
 });

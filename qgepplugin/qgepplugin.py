@@ -148,7 +148,7 @@ class QgepPlugin:
     #===========================================================================
     def openDock(self):
         if self.dockWidget is None:
-            self.dockWidget = QgepDockWidget( self.iface.mainWindow(), self.iface )
+            self.dockWidget = QgepDockWidget( self.iface.mainWindow(), self.iface.mapCanvas(), self.iface.addDockWidget )
             self.dockWidget.closed.connect( self.onDockClosed )
             self.dockWidget.showIt()
             
@@ -187,6 +187,10 @@ class QgepPlugin:
             if newLayer.type() == QgsMapLayer.VectorLayer and newLayer.id() == self.edgeLayer:
                 self.networkAnalyzer.setReachLayer( newLayer )
                 self.layersChanged()
+
+            if newLayer.type() == QgsMapLayer.VectorLayer and newLayer.id() == self.specialStructureLayer:
+                self.networkAnalyzer.setSpecialStructureLayer( newLayer )
+                self.layersChanged()
                 
     #===========================================================================
     # Gets called when the layers have changed
@@ -205,8 +209,8 @@ class QgepPlugin:
         project = QgsProject.instance()
         
         specialStructureLayer = project.readEntry( 'QGEP', 'SpecialStructureLayer' )
-        graphEdgeLayer = project.readEntry( 'QGEP', 'GraphEdgeLayer' )
-        graphNodeLayer = project.readEntry( 'QGEP', 'GraphNodeLayer' )
+        graphEdgeLayer        = project.readEntry( 'QGEP', 'GraphEdgeLayer' )
+        graphNodeLayer        = project.readEntry( 'QGEP', 'GraphNodeLayer' )
         
         if graphNodeLayer[1] is not False:
             self.nodeLayer = graphNodeLayer[0]

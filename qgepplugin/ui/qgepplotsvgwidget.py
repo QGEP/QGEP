@@ -32,11 +32,15 @@ class QgepPlotSVGWidget( QWidget ):
     frame   = None
     profile = None
 
-    profileChanged = pyqtSignal( [str], name='profileChanged' )
+    # Signals emitted triggered by javascript actions
     reachClicked = pyqtSignal( [str], name='reachClicked' )
     reachMouseOver = pyqtSignal( [str], name='reachMouseOver' )
     specialStructureClicked = pyqtSignal( [str], name='specialStructureClicked' )
     specialStructureMouseOver = pyqtSignal( [str], name='specialStructureMouseOver' )
+    
+    # Signals emitted for javascript
+    profileChanged = pyqtSignal( [str], name='profileChanged' )
+    verticalExaggerationChanged = pyqtSignal( [int], name='verticalExaggerationChanged' )
     
     def __init__( self, parent, networkAnalyzer, url = None ):
         QWidget.__init__( self, parent )
@@ -77,6 +81,9 @@ class QgepPlotSVGWidget( QWidget ):
         if self.profile:
             self.profileChanged.emit( self.profile.asJson() )
     
+    def changeVerticalExaggeration(self, val):
+        self.verticalExaggerationChanged.emit(val)
+    
     @pyqtSlot( str )
     def onReachClicked(self, objId):
         self.reachClicked.emit( objId )
@@ -88,12 +95,14 @@ class QgepPlotSVGWidget( QWidget ):
     @pyqtSlot( str )
     def onSpecialStructureClicked(self, objId):
         self.specialStructureClicked.emit( objId )
-        
+    
     @pyqtSlot( str )
     def onSpecialStructureMouseOver(self, objId):
         self.specialStructureMouseOver.emit( objId )
-        
-    @pyqtSlot( )
+    
+    # Is called from the webView when it's been reloaded and wants to have the
+    # profile information resent
+    @pyqtSlot()
     def updateProfile(self):
         if self.profile:
             self.profileChanged.emit( self.profile.asJson() )

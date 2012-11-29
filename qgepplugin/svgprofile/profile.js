@@ -62,7 +62,7 @@ require( ["dojo/on", "dojo/ready", "dojo/_base/json", "profile/specialStructure"
       .ticks(4)
       .orient("right"),
 
-    myZoom: d3.behavior.zoom(),
+    zoom: d3.behavior.zoom(),
 
     initSVG: function( parent )
     {
@@ -86,19 +86,21 @@ require( ["dojo/on", "dojo/ready", "dojo/_base/json", "profile/specialStructure"
       this.gyAxis = this.mainGroup.append("svg:g")
         .attr("class", "y axis");
 
-      this.myZoom
-        .on( 'zoom', dojo.hitch( this, this.zoom ) );
+      this.zoom
+        .x( this.x )
+        .y( this.y )
+        .on( 'zoom', dojo.hitch( this, this.zoomed ) );
 
       this.zoomRect = this.mainGroup.append( "svg:rect" )
         .attr( "class", "pane" )
-        .call( this.myZoom );
+        .call( this.zoom );
 
       this.profileViewPort = this.mainGroup.append( "svg:g")
         .attr( "clip-path", "url(#profileMask)" );
 
       this.profile = this.profileViewPort.append( "svg:g" )
         .attr( "class", "profile" )
-        .call( this.myZoom );
+        .call( this.zoom );
 
       // TODO: make resize more intelligent so it gets proper axis bounds already on first init
       this.onResize();
@@ -165,8 +167,8 @@ require( ["dojo/on", "dojo/ready", "dojo/_base/json", "profile/specialStructure"
     // Data changed: domain needs to be adjusted
     scaleDomain: function ()
     {
-      this.myZoom.scale(1);
-      this.myZoom.translate([0,0]);
+//      this.zoom.scale(1);
+//      this.zoom.translate([0,0]);
 
       var rExt = this.reach.extent();
       var sExt = this.specialStructure.extent();
@@ -175,6 +177,10 @@ require( ["dojo/on", "dojo/ready", "dojo/_base/json", "profile/specialStructure"
       var maxY = this.terrain.extent().y[1];
       minY = maxY - this.x.invert( maxY ) / this.verticalExaggeration;
       this.y.domain([minY, maxY ]);
+
+      this.zoom
+        .x( this.x )
+        .y( this.y );
 
       this.mainGroup.select("g.x.axis").call(this.xAxis);
       this.mainGroup.select("g.y.axis").call(this.yAxis);
@@ -193,23 +199,15 @@ require( ["dojo/on", "dojo/ready", "dojo/_base/json", "profile/specialStructure"
     },
 
     // zoom and pan operations
-    zoom: function ()
+    zoomed: function ()
     {
-      this.transform( this.x, d3.event.translate[0], d3.event.scale );
-      this.transform( this.y, d3.event.translate[1], d3.event.scale );
+/*      this.transform( this.x, d3.event.translate[0], d3.event.scale );
+      this.transform( this.y, d3.event.translate[1], d3.event.scale );*/
 
       this.mainGroup.select("g.x.axis").call(this.xAxis);
       this.mainGroup.select("g.y.axis").call(this.yAxis);
 
       this.redraw(0);
-    },
-
-    // Copied from an old d3js source file
-    transform: function (scale, o, k)
-    {
-      var domain = scale.__domain || (scale.__domain = scale.domain()),
-        range = scale.range().map(function(v) { return (v - o) / k; });
-      scale.domain(domain).domain(range.map(scale.invert));
     },
 
     redraw: function( duration )
@@ -244,10 +242,7 @@ require( ["dojo/on", "dojo/ready", "dojo/_base/json", "profile/specialStructure"
     {
       profileProxy.profileChanged.connect(
         function(data) {
-          console.info( 'profile Changed');
           var profileData = dojo.fromJson(data);
-          console.log( "Profile data: ");
-          console.log( profileData );
           qgep.data = profileData;
           var reachData = profileData.filter ( function(d) { return d.type == 'reach'; } );
           qgep.profilePlot.reach.data( reachData )
@@ -258,6 +253,14 @@ require( ["dojo/on", "dojo/ready", "dojo/_base/json", "profile/specialStructure"
 
           qgep.profilePlot.scaleDomain();
           qgep.profilePlot.redraw();
+        }
+      );
+
+      profileProxy.verticalExaggerationChanged.connect(
+        function(ve)
+        {
+          qgep.profilePlot.verticalExaggeration = ve;
+          qgep.profilePlot.scaleDomain();
         }
       );
 

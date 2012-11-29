@@ -42,7 +42,9 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
 
       newReaches
         .append('svg:path')
-        .append('title')
+        .datum( this.pathPoints )
+        .classed( 'progression', true )
+        .append( 'title' )
         .text( function(d) { return d.objId + '\nWidth:' + d.width_m; } );
 
       newReaches
@@ -73,26 +75,7 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
       }
 
       paths
-        .attr('d', lang.hitch( this, function(d) {
-          var dy = d.width_m * Math.sqrt(Math.pow(( d.endOffset- d.startOffset ), 2) + Math.pow(( d.startLevel- d.endLevel ), 2)) / ( d.endOffset- d.startOffset );
-          var x1, x2, x3, x4;
-          var y1, y2, y3, y4;
-          x1 = x2 = d.startOffset;
-          x3 = x4 = d.endOffset;
-          y1 = d.startLevel;
-          y2 = d.startLevel + dy;
-          y4 = d.endLevel;
-          y3 = d.endLevel + dy;
-
-          var points = [
-            {x: x1, y: y1 },
-            {x: x2, y: y2 },
-            {x: x3, y: y3 },
-            {x: x4, y: y4 }
-          ];
-
-          return this.line( points ) + 'Z';
-        } ) );
+        .attr( 'd', lang.hitch( this, function(d) { return this.line(d) +'Z'; } ) );
 
       blindConnections
         .attr( 'cx', lang.hitch( this, function(d) { return this.x(d.offset); } ) )
@@ -107,6 +90,31 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
       var maxY = d3.max( this.reaches.data(), ƒ('startLevel') ) || 1;
 
       return {x: [minX, maxX], y: [minY, maxY] };
+    },
+
+    pathPoints: function(d)
+    {
+      var endLevel = d.endLevel ? d.endLevel : d.startLevel;
+      var startLevel = d.startLevel ? d.startLevel : d.endLevel;
+
+      var dy = d.width_m * Math.sqrt(Math.pow(( d.endOffset- d.startOffset ), 2) + Math.pow(( startLevel- endLevel ), 2)) / ( d.endOffset- d.startOffset );
+      var x1, x2, x3, x4;
+      var y1, y2, y3, y4;
+      x1 = x2 = d.startOffset;
+      x3 = x4 = d.endOffset;
+      y1 = startLevel;
+      y2 = startLevel + dy;
+      y4 = endLevel;
+      y3 = endLevel + dy;
+
+      var points = [
+        {x: x1, y: y1 },
+        {x: x2, y: y2 },
+        {x: x3, y: y3 },
+        {x: x4, y: y4 }
+      ];
+
+      return points;
     }
   });
 });
