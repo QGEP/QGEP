@@ -182,6 +182,11 @@ require( ["dojo/on", "dojo/ready", "dojo/_base/json", "profile/specialStructure"
         .x( this.x )
         .y( this.y );
 
+      this.zoom
+        .scale( 1 );
+      this.zoom
+        .translate( [0, 0] );
+
       this.mainGroup.select("g.x.axis").call(this.xAxis);
       this.mainGroup.select("g.y.axis").call(this.yAxis);
 
