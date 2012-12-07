@@ -24,6 +24,7 @@
 #---------------------------------------------------------------------
 
 import json
+import math
 
 class QgepProfileElement():
     type = 'undefined'
@@ -81,20 +82,23 @@ class QgepProfileEdgeElement(QgepProfileElement):
         fromPos = edgeCache.attrAsFloat( edge, u'from_pos' )
         toPos = edgeCache.attrAsFloat( edge, u'to_pos' )
 
+        interpolateFromObjId = edgeCache.attrAsUnicode( edge, u'from_obj_id_interpolate' )
+        interpolateToObjId = edgeCache.attrAsUnicode( edge, u'to_obj_id_interpolate' )
+        interpolateFrom = nodeCache.featureByObjId(interpolateFromObjId)
+        interpolateTo   = nodeCache.featureByObjId(interpolateToObjId)
+        interpolateFromLevel = nodeCache.attrAsFloat( interpolateFrom, u'level')
+        interpolateToLevel = nodeCache.attrAsFloat( interpolateTo, u'level')
+        
         if fromPos == 0 and toPos == 1:
             fromLevel   = nodeCache.attrAsFloat( fromPoint, u'level' )
             toLevel     = nodeCache.attrAsFloat( toPoint, u'level')
         else:
-            interpolateFromObjId = edgeCache.attrAsUnicode( edge, u'from_obj_id_interpolate' )
-            interpolateToObjId = edgeCache.attrAsUnicode( edge, u'to_obj_id_interpolate' )
-            interpolateFrom = nodeCache.featureByObjId(interpolateFromObjId)
-            interpolateTo   = nodeCache.featureByObjId(interpolateToObjId)
-            interpolateFromLevel = nodeCache.attrAsFloat( interpolateFrom, u'level')
-            interpolateToLevel = nodeCache.attrAsFloat( interpolateTo, u'level')
-        
             fromLevel = interpolateFromLevel + ( fromPos * (interpolateToLevel-interpolateFromLevel) )  
             toLevel   = interpolateFromLevel + ( toPos * (interpolateToLevel-interpolateFromLevel) )
-
+        
+        self.fromLevel = interpolateFromLevel
+        self.toLevel = interpolateToLevel
+        
         self.reachPoints[fromPointId]['offset']  = startOffset
         self.reachPoints[fromPointId]['level']   = fromLevel
         self.reachPoints[fromPointId]['pos']     = fromPos
@@ -119,6 +123,8 @@ class QgepProfileEdgeElement(QgepProfileElement):
           'endOffset':     endOffset, \
           'startLevel':    fromLevel, \
           'endLevel':      toLevel, \
+          'globStartLevel':self.fromLevel, \
+          'globEndLevel':  self.toLevel, \
           'objId':         self.objId, \
           'gid':           self.gid, \
           'reachPoints':   self.reachPoints.values() \
@@ -129,8 +135,10 @@ class QgepProfileEdgeElement(QgepProfileElement):
 # Define the profile for the REACH element
 #===============================================================================
 class QgepProfileReachElement(QgepProfileEdgeElement):
-    usageCurrent = 0
-    width = 0.5
+    usageCurrent = None
+    width = None
+    length = None
+    gradient = None
     
     def __init__(self, fromPointId, toPointId, reachId, nodeCache, edgeCache, startOffset, endOffset ):
         QgepProfileEdgeElement.__init__( self, fromPointId, toPointId, reachId, nodeCache, edgeCache, startOffset, endOffset, 'reach' )
@@ -139,13 +147,22 @@ class QgepProfileReachElement(QgepProfileEdgeElement):
         
         self.width = edgeCache.attrAsFloat( reach, u'depth' ) / 1000
         self.usageCurrent = edgeCache.attrAsFloat( reach, u'usage_current' )
+        self.length = edgeCache.attrAsFloat( reach, u'length_calc' )
+        try:
+            self.gradient = math.degrees( math.atan( (self.fromLevel - self.toLevel) / self.length ) )
+        except:
+            pass
 
     def asDict(self):
         el = QgepProfileEdgeElement.asDict(self)
+        
+        # Global length: whole reach
         el.update( \
         { \
           'usageCurrent': self.usageCurrent, \
-          'width_m':       self.width \
+          'width_m':       self.width, \
+          'gradient':     self.gradient, \
+          'length':       self.length \
         } )
         return el
     
