@@ -10,5 +10,9 @@
         <file>svgprofile/index.html</file>
         <file>svgprofile/dojo.js</file>
         <file>svgprofile/d3.v2.min.js</file>
+        <file>svgprofile/profile/terrain.js</file>
+        <file>svgprofile/profile/specialStructure.js</file>
+        <file>svgprofile/profile/reach.js</file>
+        <file>svgprofile/profile/profileElement.js</file>
     </qresource>
 </RCC>
