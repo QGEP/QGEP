@@ -23,6 +23,32 @@ define([ "dojo/_base/declare" ], function (declare) {
     extent: function () {
       /* xmin, xmax, ymin, ymax */
       return { x: [0, 1], y: [0, 1] };
+    },
+
+    tooltipTop: function( tt ) {
+      var height = d3.select("body").property( 'clientHeight' );
+      tt.attr('top');
+      var ttHeight = tt.property( 'clientHeight' );
+
+      if ( height - ttHeight > event.pageY - 10 )
+      {
+        return event.pageY - 10 + 'px';
+      }
+      else
+      {
+        return height - ttHeight + 'px';
+      }
+    },
+
+    formatMeters: function(n) {
+      if ( n === null )
+      {
+        return '<i>Undefined</i>';
+      }
+      else
+      {
+        return Math.round( n * 100 ) / 100 + 'm';
+      }
     }
   });
 });

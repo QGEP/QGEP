@@ -34,6 +34,14 @@ body {
     stroke: #323232;
 }
 
+.tooltip {
+  position: absolute;
+  background: -webkit-linear-gradient(top, #efe7b3 0%,#fefcea 100%); /* Chrome10+,Safari5.1+ */
+  left: -9999px;
+  border: 1px solid #969696;
+  padding: 0.5em;
+}
+
 /* The profile elements */
 g.reach {
     cursor: pointer;
@@ -85,6 +93,17 @@ g.reach > path,
 g.special-structure > path {
     stroke: #969696;
     fill: #969696;
+}
+
+/* Blind connections */
+g.reach > .blind-connection {
+  stroke: #323232;
+  stroke-width: 2px;
+  fill: none;
+}
+
+.scale-large g.reach > .blind-connection {
+  visibility: hidden;
 }
 
 /*

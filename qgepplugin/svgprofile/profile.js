@@ -196,8 +196,24 @@ require( ["dojo/on", "dojo/ready", "dojo/_base/json", "profile/specialStructure"
     // zoom and pan operations
     zoomed: function ()
     {
-/*      this.transform( this.x, d3.event.translate[0], d3.event.scale );
-      this.transform( this.y, d3.event.translate[1], d3.event.scale );*/
+      var dom = this.x.domain();
+      var ran = this.x.range();
+
+      var ddom = dom[1]-dom[0];
+      var dran = ran[1]-ran[0];
+
+      if ( ddom / dran < 0.2 )
+      {
+        this.profile
+          .classed( 'scale-small', true )
+          .classed( 'scale-large', false );
+      }
+      else
+      {
+        this.profile
+          .classed( 'scale-small', false )
+          .classed( 'scale-large', true );
+      }
 
       this.mainGroup.select("g.x.axis").call(this.xAxis);
       this.mainGroup.select("g.y.axis").call(this.yAxis);

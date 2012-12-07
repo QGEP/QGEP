@@ -6,10 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], function (declare, lang, _ProfileElement) {
+define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], function ( declare, lang, _ProfileElement ) {
   return declare([ _ProfileElement ], {
     reaches: null,
     line: d3.svg.line(),
+    tooltip: d3.select('body')
+      .append( 'div' )
+      .attr('class', 'tooltip')
+      .attr('id', 'reach-tooltip'),
 
     constructor: function(/*Object*/ kwArgs)
     {
@@ -42,19 +46,30 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
 
       newReaches
         .append('svg:path')
-        .datum( this.pathPoints )
+        .datum( lang.hitch( this, function(d) { d.pathPoints = this.pathPoints(d); return d; } ) )
         .classed( 'progression', true )
-        .append( 'title' )
-        .text( function(d) { return d.objId + '\nWidth:' + d.width_m; } );
+        .on('mouseover', lang.hitch( this,
+          function(d) {
+            return this.tooltip
+              .html(
+                '<h2>Reach ' + d.objId + '</h2><br/>' +
+                  '<strong>Width:</strong> ' + this.formatMeters( d.width_m ) + "<br/>" +
+                  "<strong>Length:</strong> " + this.formatMeters( d.length ) + "<br/>" +
+                  "<strong>Gradient:</strong> " + Math.round( d.gradient * 100 ) / 100 + "°<br/>" +
+                  "<strong>Entry level:</strong> " + this.formatMeters( d.startLevel ) + '<br/>' +
+                  "<strong>Exit level:</strong> " + this.formatMeters( d.endLevel ) )
+              .style('top', lang.hitch( this, function() { return this.tooltipTop( this.tooltip ); } ) )
+              .style('left', (event.pageX+10)+'px');
+          } ) )
+        .on('mouseout', lang.hitch( this, function() { return this.tooltip.style('left', '-9999px'); } ) );
 
       newReaches
         .selectAll( '.blind-connection' )
-        .data( function(d) { return d.reachPoints; }, function(rp) { return rp.objId; } )
+        .data( function(d) { return d.reachPoints.filter( function(rp) { return rp.offset != 0 && rp.offset != 1; } ); }, function(rp) { return rp.objId; } )
         .enter()
         .append( 'circle' )
         .attr( 'class', 'blind-connection')
-        .attr( 'r', 3 )
-        .attr( 'fill', 'red' );
+        .attr( 'r', '5' );
     },
 
     redraw: function( duration )
@@ -75,7 +90,7 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
       }
 
       paths
-        .attr( 'd', lang.hitch( this, function(d) { return this.line(d) +'Z'; } ) );
+        .attr( 'd', lang.hitch( this, function(d) { return this.line(d.pathPoints) +'Z'; } ) );
 
       blindConnections
         .attr( 'cx', lang.hitch( this, function(d) { return this.x(d.offset); } ) )

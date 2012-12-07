@@ -10,6 +10,10 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
   return declare([ _ProfileElement ], {
     specialStructures: null, /* Reference to the current working set */
     line: d3.svg.line(),
+    tooltip: d3.select('body')
+      .append( 'div' )
+      .attr('class', 'tooltip')
+      .attr('id', 'special-structure-tooltip'),
 
     constructor: function(/*Object*/ kwArgs)
     {
@@ -41,9 +45,21 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
 
       newSpecialStructures
         .append('svg:path')
-        .datum( this.pathPoints )
-        .append('title')
-        .text( function(d) { return d.objId; } );
+        .datum( lang.hitch( this, function(d) { d.pathPoints = this.pathPoints(d); return d; } ) )
+        .on('mouseover', lang.hitch( this,
+          function(d) {
+            console.info( 'ssstruct');
+            return this.tooltip
+              .html(
+              '<h2>Special structure ' + d.objId + '</h2><br/>' +
+                "<strong>Entry level:</strong> " + this.formatMeters( d.startLevel ) + '<br/>' +
+                "<strong>Exit level:</strong> "  + this.formatMeters( d.endLevel ) + '<br/>' +
+                "<strong>Bottom level:</strong> " + this.formatMeters( d.bottomLevel ) + '<br/>' +
+                "<strong>Cover level:</strong> "  + this.formatMeters( d.coverLevel ) )
+              .style('top', lang.hitch( this, function() { return this.tooltipTop( this.tooltip ); } ) )
+              .style('left', (event.pageX+10)+'px');
+          } ) )
+        .on('mouseout', lang.hitch( this, function() { return this.tooltip.style('left', '-9999px'); } ) );
 
       newSpecialStructures
         .append('svg:text')
@@ -71,7 +87,7 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
         .attr( 'y', lang.hitch( this, function (d) { return this.y( d.coverLevel ) - 3; } ) );
 
       paths
-        .attr( 'd', lang.hitch( this, function(d) { return this.line(d) +'Z'; } ) );
+        .attr( 'd', lang.hitch( this, function(d) { return this.line(d.pathPoints) +'Z'; } ) );
     },
 
     extent: function()
@@ -97,13 +113,17 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
       var x5 = d.startOffset;
       var y5 = d.startLevel;
 
-      return [
+      var corners = [
         {x: x1, y: y1 },
         {x: x2, y: y2 },
         {x: x3, y: y3 },
         {x: x4, y: y4 },
         {x: x5, y: y5 }
       ];
+
+      var filteredCorners = corners.filter( function(d) { return d.x !== null && d.y !== null; } );
+
+      return filteredCorners;
     }
   });
 });
