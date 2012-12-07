@@ -31,6 +31,7 @@ class QgepPlotSVGWidget( QWidget ):
     webView = None
     frame   = None
     profile = None
+    verticalExaggeration = 5
 
     # Signals emitted triggered by javascript actions
     reachClicked = pyqtSignal( [str], name='reachClicked' )
@@ -66,7 +67,6 @@ class QgepPlotSVGWidget( QWidget ):
         self.webView.load( QUrl( url.toString() ) )
         self.frame = self.webView.page().mainFrame()
         self.frame.javaScriptWindowObjectCleared.connect( self.initJs )
-        self.frame.loadFinished.connect( self.frameLoadFinished )
 
         layout.addWidget( self.webView )
 
@@ -77,11 +77,8 @@ class QgepPlotSVGWidget( QWidget ):
     def initJs(self):
         self.frame.addToJavaScriptWindowObject( "profileProxy", self )
         
-    def frameLoadFinished(self):
-        if self.profile:
-            self.profileChanged.emit( self.profile.asJson() )
-    
     def changeVerticalExaggeration(self, val):
+        self.verticalExaggeration = val
         self.verticalExaggerationChanged.emit(val)
     
     @pyqtSlot( str )
@@ -106,3 +103,5 @@ class QgepPlotSVGWidget( QWidget ):
     def updateProfile(self):
         if self.profile:
             self.profileChanged.emit( self.profile.asJson() )
+            self.verticalExaggerationChanged.emit( self.verticalExaggeration )
+            

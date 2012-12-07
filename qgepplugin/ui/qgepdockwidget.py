@@ -78,6 +78,8 @@ class QgepDockWidget( QDockWidget, Ui_QgepDockWidget ):
     def addPlotWidget( self, plotWidget ):
         self.plotWidget = plotWidget
         self.verticalLayoutForPlot.addWidget( self.plotWidget )
+        veVal = self.veLUT[self.mSliderVerticalExaggeration.value()]
+        self.plotWidget.changeVerticalExaggeration( veVal )
 
     @pyqtSlot( int )
     def onVerticalExaggerationChanged(self, value):
