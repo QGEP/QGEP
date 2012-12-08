@@ -1,6 +1,6 @@
 ﻿-- View: qgep.vw_network_segment
 
---DROP VIEW qgep.vw_network_segment;
+DROP VIEW IF EXISTS qgep.vw_network_segment;
 
 CREATE VIEW qgep.vw_network_segment AS
  WITH reach_parts AS (

@@ -1,6 +1,6 @@
 ﻿-- View: qgep.vw_network_node
 
-DROP VIEW qgep.vw_network_node;
+DROP VIEW IF EXISTS qgep.vw_network_node;
 
 CREATE OR REPLACE VIEW qgep.vw_network_node AS 
  SELECT 
