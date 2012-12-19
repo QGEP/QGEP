@@ -22,15 +22,24 @@
 # 
 #---------------------------------------------------------------------
 
+import os
+from PyQt4.QtCore import QSettings
+
 def qgisMinimumVersion():
-  return '1.8'
+    return '1.8'
 
 def authorName():
-  return 'Matthias Kuhn'
+    return 'Matthias Kuhn'
 
 def homepage():
-  return 'https://github.com/qgep/QGEP'
+    return 'https://github.com/qgep/QGEP'
+
+def version():
+    fp = os.path.join(os.path.abspath(os.path.dirname(__file__)) , "metadata.txt")
+    iniText = QSettings(fp, QSettings.IniFormat)
+    version = iniText.value("version").toString()
+    return version
 
 def classFactory(iface):
- from qgepplugin import QgepPlugin
- return QgepPlugin(iface)
+    from qgepplugin import QgepPlugin
+    return QgepPlugin(iface)
