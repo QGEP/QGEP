@@ -99,9 +99,15 @@ class QgepProfileEdgeElement(QgepProfileElement):
             fromLevel   = nodeCache.attrAsFloat( fromPoint, u'level' )
             toLevel     = nodeCache.attrAsFloat( toPoint, u'level')
         else:
-            fromLevel = interpolateFromLevel + ( fromPos * (interpolateToLevel-interpolateFromLevel) )  
-            toLevel   = interpolateFromLevel + ( toPos * (interpolateToLevel-interpolateFromLevel) )
-        
+            try:
+                fromLevel = interpolateFromLevel + ( fromPos * (interpolateToLevel-interpolateFromLevel) )
+            except TypeError:
+                fromLevel = None
+            try:
+                toLevel   = interpolateFromLevel + ( toPos * (interpolateToLevel-interpolateFromLevel) )
+            except TypeError:
+                toLevel = None
+                
         self.fromLevel = interpolateFromLevel
         self.toLevel = interpolateToLevel
         
