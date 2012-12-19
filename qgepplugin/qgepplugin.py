@@ -24,7 +24,7 @@
 #---------------------------------------------------------------------
 
 from PyQt4.QtCore import pyqtSlot
-from PyQt4.QtGui import QAction, QIcon, QMessageBox
+from PyQt4.QtGui import QAction, QIcon
 from qgis.core import QgsMapLayerRegistry, QgsMapLayer, QgsProject
 from tools.qgepmaptools import QgepProfileMapTool, QgepTreeMapTool
 from tools.qgepnetwork import QgepGraphManager
@@ -44,6 +44,8 @@ class QgepPlugin:
     edgeLayer             = None
     nodeLayer             = None
     specialStructureLayer = None
+    
+    profile = None
 
     #===============================================================================
     # Constructor
@@ -153,7 +155,10 @@ class QgepPlugin:
             self.dockWidget.showIt()
             
             self.plotWidget = QgepPlotSVGWidget( self.dockWidget, self.networkAnalyzer )
-            self.plotWidget.reachClicked.connect( self.highlightReach )
+            self.plotWidget.specialStructureMouseOver.connect( self.highlightProfileElement )
+            self.plotWidget.specialStructureMouseOut.connect( self.unhighlightProfileElement )
+            self.plotWidget.reachMouseOver.connect( self.highlightProfileElement )
+            self.plotWidget.reachMouseOut.connect( self.unhighlightProfileElement )
             self.dockWidget.addPlotWidget( self.plotWidget )
     
     @pyqtSlot()
@@ -235,13 +240,19 @@ class QgepPlugin:
     #===========================================================================
     
     def onProfileChanged( self, profile ):
+        self.profile = profile.copy()
+        
         if self.plotWidget:
             self.plotWidget.setProfile( profile )
             
-    def highlightReach( self, objId ):
-        msgBox = QMessageBox()
-        msgBox.setText( "Reach " + objId + " clicked")
-        msgBox.exec_()
+    @pyqtSlot( unicode )
+    def highlightProfileElement( self, objId ):
+        if self.profile is not None:
+            self.profile.highlight( unicode( objId ) )
+            
+    def unhighlightProfileElement( self ):
+        if self.profile is not None:
+            self.profile.highlight( None )
 
     def about( self ):
         from ui.dlgabout import DlgAbout

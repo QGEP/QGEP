@@ -26,6 +26,9 @@
 import json
 import math
 
+from PyQt4.QtGui import QMessageBox
+from qgis.core import QgsGeometry
+
 class QgepProfileElement():
     type = 'undefined'
     feat = None
@@ -42,6 +45,11 @@ class QgepProfileElement():
     def feature(self):
         return self.feat
     
+    def highlight( self, rubberband ):
+        msgBox = QMessageBox()
+        msgBox.setText( 'Highlight unimplemented' )
+        msgBox.exec_()
+    
     def type(self):
         return type
 
@@ -55,8 +63,6 @@ class QgepProfileEdgeElement(QgepProfileElement):
     
     def __init__(self, fromPointId, toPointId, edgeId, nodeCache, edgeCache, startOffset, endOffset, elemType):
         QgepProfileElement.__init__(self,elemType)
-        nodeCache = nodeCache
-        edgeCache = edgeCache
         self.reachPoints = {}
         
         edge   = edgeCache.featureById( edgeId )
@@ -139,6 +145,7 @@ class QgepProfileReachElement(QgepProfileEdgeElement):
     width = None
     length = None
     gradient = None
+    detailGeometry = None
     
     def __init__(self, fromPointId, toPointId, reachId, nodeCache, edgeCache, startOffset, endOffset ):
         QgepProfileEdgeElement.__init__( self, fromPointId, toPointId, reachId, nodeCache, edgeCache, startOffset, endOffset, 'reach' )
@@ -148,6 +155,8 @@ class QgepProfileReachElement(QgepProfileEdgeElement):
         self.width = edgeCache.attrAsFloat( reach, u'depth' ) / 1000
         self.usageCurrent = edgeCache.attrAsFloat( reach, u'usage_current' )
         self.length = edgeCache.attrAsFloat( reach, u'length_calc' )
+        self.detailGeometry = reach.geometry()
+        
         try:
             self.gradient = math.degrees( math.atan( (self.fromLevel - self.toLevel) / self.length ) )
         except:
@@ -166,6 +175,10 @@ class QgepProfileReachElement(QgepProfileEdgeElement):
         } )
         return el
     
+    def highlight( self, rubberband ):
+        rubberband.reset( self.detailGeometry.type() )
+        rubberband.addGeometry( self.detailGeometry, None )
+    
 #===============================================================================
 # Define the profile element for the SPECIAL STRUCTURE
 #===============================================================================
@@ -174,6 +187,7 @@ class QgepProfileSpecialStructureElement(QgepProfileEdgeElement):
     coverLevel = None
     description = None
     wwNodeOffset = None
+    detailGeometry = None
     
     def __init__(self, fromPointId, toPointId, edgeId, nodeCache, edgeCache, startOffset, endOffset):
         QgepProfileEdgeElement.__init__( self, fromPointId, toPointId, edgeId, nodeCache, edgeCache, startOffset, endOffset, 'special_structure' )
@@ -204,6 +218,13 @@ class QgepProfileSpecialStructureElement(QgepProfileEdgeElement):
             self.coverLevel  = nodeCache.attrAsFloat( definingWasteWaterNode, u'cover_level' )
             self.description  = nodeCache.attrAsUnicode( definingWasteWaterNode, u'description' )
             self.usageCurrent = nodeCache.attrAsFloat( definingWasteWaterNode, u'usage_current' )
+            self.detailGeometry = QgsGeometry()
+            wktDetailGeometry = nodeCache.attrAsUnicode( definingWasteWaterNode, u'detail_geometry' )
+            self.detailGeometry.fromWkt( wktDetailGeometry )
+        
+    def highlight(self, rubberband):
+        rubberband.reset( self.detailGeometry.type() )
+        rubberband.addGeometry( self.detailGeometry, None )
         
     def asDict(self):
             el = QgepProfileEdgeElement.asDict(self)
@@ -218,7 +239,7 @@ class QgepProfileSpecialStructureElement(QgepProfileEdgeElement):
             return el
 
 #===============================================================================
-# 
+# A node (wastewater node or reach point)
 #===============================================================================
 class QgepProfileNodeElement(QgepProfileElement):
     coverLevel = None
@@ -242,14 +263,20 @@ class QgepProfileNodeElement(QgepProfileElement):
         return el
 
 #===============================================================================
-# 
+# Manages a profile of reaches and special structures
 #===============================================================================
 class QgepProfile():
+    rubberband = None
+    
     def __init__( self, elements={} ):
         self.elements = elements
+        
+    def setRubberband(self, rubberband):
+        self.rubberband = rubberband
 
     def copy( self ):
         newProfile = QgepProfile( self.elements.copy() )
+        newProfile.setRubberband( self.rubberband )
         return newProfile
 
     def __getitem__(self, key):
@@ -269,3 +296,12 @@ class QgepProfile():
 
     def reset(self):
         self.elements = {}
+        
+    def highlight( self, objId ):
+        try:
+            if objId is not None:
+                self.elements[objId].highlight( self.rubberband )
+            else:
+                self.rubberband.reset()
+        except KeyError, AttributeError:
+            pass

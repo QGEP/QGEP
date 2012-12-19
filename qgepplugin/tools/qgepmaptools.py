@@ -23,7 +23,7 @@
 #
 #---------------------------------------------------------------------
 
-from PyQt4.QtCore import Qt, QPoint, pyqtSignal
+from PyQt4.QtCore import Qt, QPoint, pyqtSignal, QVariant, QSettings
 from PyQt4.QtGui import QCursor, QColor
 from qgis.core import QgsGeometry, QgsPoint
 from qgis.gui import QgsMapTool, QgsRubberBand, QgsVertexMarker
@@ -35,9 +35,6 @@ from qgepprofile import * #@UnusedWildImport
 
 class QgepMapTool( QgsMapTool ):
     
-    profileChanged = pyqtSignal( object )
-    profile = QgepProfile()
-    segmentOffset = 0
     highLightedPoints = []
     
     def __init__( self, canvas, button ):
@@ -46,8 +43,11 @@ class QgepMapTool( QgsMapTool ):
         self.cursor = QCursor( Qt.CrossCursor )
         self.button = button
 
+        settings = QSettings()
+        currentProfileColor = settings.value( "/QGEP/CurrentProfileColor", QVariant( '#FF9500' ) ).toString()
+        
         self.rubberBand = QgsRubberBand( self.canvas )
-        self.rubberBand.setColor( QColor( "#FF9500" ) )
+        self.rubberBand.setColor( QColor( currentProfileColor ) )
         self.rubberBand.setWidth( 3 )
 
     # Gets called when the tool is activated
@@ -96,18 +96,32 @@ class QgepMapTool( QgsMapTool ):
 #===============================================================================
 
 class QgepProfileMapTool( QgepMapTool ):
+    profileChanged = pyqtSignal( object )
+    profile = QgepProfile()
+    segmentOffset = 0
+
     selectedPathPoints = []
     pathPolyline = []
     
     def __init__( self, canvas, button, networkAnalyzer ):
         QgepMapTool.__init__(self, canvas, button)
+        settings = QSettings()
+        
+        helperLineColor = settings.value( "/QGEP/HelperLineColor", QVariant( '#FFD900' ) ).toString()
+        highlightColor  = settings.value( "/QGEP/HighlightColor",  QVariant( '#40FF40' ) ).toString()
         
         self.networkAnalyzer = networkAnalyzer
         
         # Init rubberband to visualize current status
         self.rbHelperLine = QgsRubberBand( self.canvas )
-        self.rbHelperLine.setColor( QColor( "#FFD900" ) )
+        self.rbHelperLine.setColor( QColor( helperLineColor ) )
         self.rbHelperLine.setWidth( 2 )
+        
+        self.rbHighlight = QgsRubberBand( self.canvas )
+        self.rbHighlight.setColor( QColor( highlightColor ) )
+        self.rbHighlight.setWidth( 5 )
+        
+        self.profile.setRubberband( self.rbHighlight )
 
     #===============================================================================
     # activates this map tool
@@ -170,11 +184,16 @@ class QgepProfileMapTool( QgepMapTool ):
         nodeAttrs = nodeLayer.dataProvider().attributeIndexes()
         nodeFeatures = self.networkAnalyzer.getFeaturesById(nodeLayer, nodeAttrs, nodeIds, False)
         
+        ssLayer = self.networkAnalyzer.getSpecialStructureLayer()
+        ssIds = nodeFeatures.asObjIdDict().keys()
+        ssAttrs = ssLayer.dataProvider().attributeIndexes()
+        ssFeatures = self.networkAnalyzer.getFeaturesByAttr(ssLayer, ssAttrs, u'obj_id', ssIds, True)
+                
         if len( vertices ) > 1:
             self.rubberBand.reset()
             
             elem = QgepProfileNodeElement( vertices[0], nodeFeatures, 0 )
-            self.profile.addElement(vertices[0], elem)
+            self.profile.addElement( vertices[0], elem )
             
             for p1, p2, edge in edges:
                 fromOffset = self.segmentOffset
@@ -185,14 +204,14 @@ class QgepProfileMapTool( QgepMapTool ):
                         self.profile[edge['baseFeature']].addSegment( p1, p2, edge['feature'], nodeFeatures, edgeFeatures, fromOffset, toOffset )
                     else:
                         elem = QgepProfileReachElement( p1, p2, edge['feature'], nodeFeatures, edgeFeatures, fromOffset, toOffset )
-                        self.profile.addElement(edge['baseFeature'], elem)
+                        self.profile.addElement(elem.objId, elem)
                     
                 elif 'special_structure' == edge['objType']:
                     if self.profile.hasElement( edge['baseFeature'] ):
                         self.profile[edge['baseFeature']].addSegment( p1, p2, edge['feature'], nodeFeatures, edgeFeatures, fromOffset, toOffset )
                     else:
                         elem = QgepProfileSpecialStructureElement( p1, p2, edge['feature'], nodeFeatures, edgeFeatures, fromOffset, toOffset )
-                        self.profile.addElement(edge['baseFeature'], elem)
+                        self.profile.addElement(elem.objId, elem)
                 
                 elem = QgepProfileNodeElement( p2, nodeFeatures, toOffset )
                 self.profile.addElement(p2, elem)

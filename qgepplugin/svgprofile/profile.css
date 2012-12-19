@@ -37,9 +37,13 @@ body {
 .tooltip {
   position: absolute;
   background: -webkit-linear-gradient(top, #efe7b3 0%,#fefcea 100%); /* Chrome10+,Safari5.1+ */
-  left: -9999px;
+  -moz-border-radius: 0.5em;
+  border-radius: 0.5em;
+  box-shadow:2px 2px 10px #636363;
   border: 1px solid #969696;
   padding: 0.5em;
+
+  left: -9999px; /* hide by placing outside viewport. This way we can still calculate the size. */
 }
 
 /* The profile elements */

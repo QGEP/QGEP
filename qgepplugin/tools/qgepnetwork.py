@@ -31,12 +31,14 @@ import networkx as nx
 import time
 
 class QgepGraphManager():
-    reachLayer = 0
-    reachLayerId = 0
-    nodeLayerId = 0
-    nodeLayer = 0
+    reachLayer = None
+    reachLayerId = -1
+    nodeLayer = None
+    nodeLayerId = -1
+    specialStructureLayer = None
+    specialStructureLayerId = -1
     dirty = True
-    graph = 0
+    graph = None
     vertexIds = {}
     nodesOnStructure = defaultdict(list)
     # Logs performance of graph creation
@@ -78,6 +80,12 @@ class QgepGraphManager():
             
         if self.nodeLayer and self.reachLayer:
             self.createGraph()
+            
+    def setSpecialStructureLayer( self, specialStructureLayer ):
+        self.specialStructureLayer = specialStructureLayer
+        
+        if specialStructureLayer:
+            self.specialStructureLayerId = specialStructureLayer.id()
         
     def _addVertices(self):
         nodeProvider = self.nodeLayer.dataProvider()
@@ -122,7 +130,7 @@ class QgepGraphManager():
         
         graphNodes = self.graph.nodes(True)
         
-        #Loop throuth all reaches
+        #Loop through all reaches
         while reachProvider.nextFeature( feat ):
             try:
                 attrs = feat.attributeMap()
@@ -176,6 +184,9 @@ class QgepGraphManager():
     
     def getNodeLayer(self):
         return self.nodeLayer
+    
+    def getSpecialStructureLayer(self):
+        return self.specialStructureLayer
     
     def getReachLayer(self):
         return self.reachLayer
@@ -296,33 +307,22 @@ class QgepGraphManager():
                 feat = QgsFeature()
         
         return featCache
-    
-    def getNodeValue(self, nodeId, attribute):
-        value = -1
+
+    def getFeaturesByAttr(self, layer, attributes, attr, values, fetchGeometry):
+        featCache = QgepFeatureCache(layer)
+        dataProvider = layer.dataProvider()
+        
         feat = QgsFeature()
-        provider = self.nodeLayer.dataProvider()
-        attIdx = provider.fieldNameIndex( attribute )
         
-        try:
-            feat1Id = self.graph.node[nodeId]['pt1']
-            feat2Id = self.graph.node[nodeId]['pt2']
-            feat1 = QgsFeature()
-            feat2 = QgsFeature()
-            
-            provider.featureAtId( feat1Id, feat1, False, [attIdx] )
-            provider.featureAtId( feat2Id, feat2, False, [attIdx] )
-            
-            value1 = feat1.attributeMap()[attIdx].toFloat()[0]
-            value2 = feat2.attributeMap()[attIdx].toFloat()[0]
-            
-            value = value1 + (value2 - value1) * self.graph.node[nodeId]['pos']
-            
-        except KeyError:
-            if self.nodeLayer.dataProvider().featureAtId( nodeId, feat, False, [attIdx] ):
-                value = feat.attributeMap()[attIdx].toFloat()[0]
+        # Batch query and filter locally
+        dataProvider.select( attributes, QgsRectangle(), fetchGeometry )
+        while dataProvider.nextFeature( feat ):
+            if featCache.attrAsUnicode(feat, attr) in values :
+                featCache.addFeature(feat)
+                feat = QgsFeature()
         
-        return value
-        
+        return featCache
+
     def print_profile(self):
         for (name, spenttime) in self.timings:
             print name + ":" + str( spenttime ) 
@@ -384,3 +384,5 @@ class QgepFeatureCache:
     def asDict(self):
         return self._featuresById
         
+    def asObjIdDict(self):
+        return self._featuresById

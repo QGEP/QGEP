@@ -42,26 +42,35 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
         .attr( 'id', function(d) { return d.objId; } )
         .attr( 'class', function(d) { return 'usage-current-' + d.usageCurrent; } )
         .classed( 'reach', true )
-        .on('click', function(d) { profileProxy.onReachClicked( d.objId ); });
+        .on('click', function(d) { profileProxy.onReachClicked( d.objId ); })
+        .on('mouseover', lang.hitch( this,
+          function(d) {
+            profileProxy.onReachMouseOver( d.objId );
+
+            return this.tooltip
+              .html(
+              '<h2>Reach ' + d.objId + '</h2><br/>' +
+                '<strong>Width:</strong> ' + this.formatMeters( d.width_m ) + "<br/>" +
+                "<strong>Length:</strong> " + this.formatMeters( d.length ) + "<br/>" +
+                "<strong>Gradient:</strong> " + Math.round( d.gradient * 100 ) / 100 + "°<br/>" +
+                "<strong>Entry level:</strong> " + this.formatMeters( d.startLevel ) + '<br/>' +
+                "<strong>Exit level:</strong> " + this.formatMeters( d.endLevel ) )
+              .style('top', lang.hitch( this, function() { return this.tooltipTop( this.tooltip ); } ) )
+              .style('left', (event.pageX+10)+'px');
+          }
+        ) )
+        .on('mouseout', lang.hitch( this,
+          function(d) {
+            profileProxy.onReachMouseOut( d.objId );
+
+            return this.tooltip.style('left', '-9999px');
+          }
+        ) );
 
       newReaches
         .append('svg:path')
         .datum( lang.hitch( this, function(d) { d.pathPoints = this.pathPoints(d); return d; } ) )
-        .classed( 'progression', true )
-        .on('mouseover', lang.hitch( this,
-          function(d) {
-            return this.tooltip
-              .html(
-                '<h2>Reach ' + d.objId + '</h2><br/>' +
-                  '<strong>Width:</strong> ' + this.formatMeters( d.width_m ) + "<br/>" +
-                  "<strong>Length:</strong> " + this.formatMeters( d.length ) + "<br/>" +
-                  "<strong>Gradient:</strong> " + Math.round( d.gradient * 100 ) / 100 + "°<br/>" +
-                  "<strong>Entry level:</strong> " + this.formatMeters( d.startLevel ) + '<br/>' +
-                  "<strong>Exit level:</strong> " + this.formatMeters( d.endLevel ) )
-              .style('top', lang.hitch( this, function() { return this.tooltipTop( this.tooltip ); } ) )
-              .style('left', (event.pageX+10)+'px');
-          } ) )
-        .on('mouseout', lang.hitch( this, function() { return this.tooltip.style('left', '-9999px'); } ) );
+        .classed( 'progression', true );
 
       newReaches
         .selectAll( '.blind-connection' )

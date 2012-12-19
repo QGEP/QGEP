@@ -36,8 +36,10 @@ class QgepPlotSVGWidget( QWidget ):
     # Signals emitted triggered by javascript actions
     reachClicked = pyqtSignal( [str], name='reachClicked' )
     reachMouseOver = pyqtSignal( [str], name='reachMouseOver' )
+    reachMouseOut = pyqtSignal( [str], name='reachMouseOut' )
     specialStructureClicked = pyqtSignal( [str], name='specialStructureClicked' )
     specialStructureMouseOver = pyqtSignal( [str], name='specialStructureMouseOver' )
+    specialStructureMouseOut = pyqtSignal( [str], name='specialStructureMouseOut' )
     
     # Signals emitted for javascript
     profileChanged = pyqtSignal( [str], name='profileChanged' )
@@ -63,17 +65,17 @@ class QgepPlotSVGWidget( QWidget ):
         else:
             self.webView.setContextMenuPolicy( Qt.NoContextMenu )
             
-
         self.webView.load( QUrl( url.toString() ) )
         self.frame = self.webView.page().mainFrame()
         self.frame.javaScriptWindowObjectCleared.connect( self.initJs )
 
         layout.addWidget( self.webView )
-
+        
     def setProfile( self, profile ):
-        self.profile = profile.copy()
+        self.profile = profile
+        # Forward to javascript
         self.profileChanged.emit( profile.asJson() )
-
+            
     def initJs(self):
         self.frame.addToJavaScriptWindowObject( "profileProxy", self )
         
@@ -81,21 +83,29 @@ class QgepPlotSVGWidget( QWidget ):
         self.verticalExaggeration = val
         self.verticalExaggerationChanged.emit(val)
     
-    @pyqtSlot( str )
+    @pyqtSlot( unicode )
     def onReachClicked(self, objId):
         self.reachClicked.emit( objId )
         
-    @pyqtSlot( str )
+    @pyqtSlot( unicode )
     def onReachMouseOver(self, objId):
         self.reachMouseOver.emit( objId )
-        
-    @pyqtSlot( str )
+    
+    @pyqtSlot( unicode )
+    def onReachMouseOut(self, objId):
+        self.reachMouseOut.emit( objId )
+            
+    @pyqtSlot( unicode )
     def onSpecialStructureClicked(self, objId):
         self.specialStructureClicked.emit( objId )
     
-    @pyqtSlot( str )
+    @pyqtSlot( unicode )
     def onSpecialStructureMouseOver(self, objId):
         self.specialStructureMouseOver.emit( objId )
+    
+    @pyqtSlot( unicode )
+    def onSpecialStructureMouseOut(self, objId):
+        self.specialStructureMouseOut.emit( objId )
     
     # Is called from the webView when it's been reloaded and wants to have the
     # profile information resent

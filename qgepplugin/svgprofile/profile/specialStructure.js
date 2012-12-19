@@ -48,7 +48,8 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
         .datum( lang.hitch( this, function(d) { d.pathPoints = this.pathPoints(d); return d; } ) )
         .on('mouseover', lang.hitch( this,
           function(d) {
-            console.info( 'ssstruct');
+            profileProxy.onSpecialStructureMouseOver( d.objId );
+
             return this.tooltip
               .html(
               '<h2>Special structure ' + d.objId + '</h2><br/>' +
@@ -59,7 +60,12 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
               .style('top', lang.hitch( this, function() { return this.tooltipTop( this.tooltip ); } ) )
               .style('left', (event.pageX+10)+'px');
           } ) )
-        .on('mouseout', lang.hitch( this, function() { return this.tooltip.style('left', '-9999px'); } ) );
+        .on('mouseout', lang.hitch( this,
+          function( d ) {
+            profileProxy.onSpecialStructureMouseOut( d.objId );
+
+            return this.tooltip.style('left', '-9999px');
+          } ) );
 
       newSpecialStructures
         .append('svg:text')
