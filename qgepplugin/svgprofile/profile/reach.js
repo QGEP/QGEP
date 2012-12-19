@@ -69,8 +69,10 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
 
       newReaches
         .append('svg:path')
-        .datum( lang.hitch( this, function(d) { d.pathPoints = this.pathPoints(d); return d; } ) )
         .classed( 'progression', true );
+
+      this.reaches
+        .datum( lang.hitch( this, function(d) { d.pathPoints = this.pathPoints(d); return d; } ) );
 
       newReaches
         .selectAll( '.blind-connection' )

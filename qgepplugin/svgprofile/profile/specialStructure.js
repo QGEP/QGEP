@@ -41,31 +41,33 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
         .append('svg:g')
         .attr( 'id', function(d) { return d.objId; } )
         .attr( 'class', function(d) { return 'usage-current-' + d.usageCurrent; } )
-        .classed( 'special-structure', true );
+        .classed( 'special-structure', true )
+        .on('mouseover', lang.hitch( this,
+        function(d) {
+          profileProxy.onSpecialStructureMouseOver( d.objId );
+
+          return this.tooltip
+            .html(
+            '<h2>Special structure ' + d.objId + '</h2><br/>' +
+              "<strong>Entry level:</strong> " + this.formatMeters( d.startLevel ) + '<br/>' +
+              "<strong>Exit level:</strong> "  + this.formatMeters( d.endLevel ) + '<br/>' +
+              "<strong>Bottom level:</strong> " + this.formatMeters( d.bottomLevel ) + '<br/>' +
+              "<strong>Cover level:</strong> "  + this.formatMeters( d.coverLevel ) )
+            .style('top', lang.hitch( this, function() { return this.tooltipTop( this.tooltip ); } ) )
+            .style('left', (event.pageX+10)+'px');
+        } ) )
+        .on('mouseout', lang.hitch( this,
+        function( d ) {
+          profileProxy.onSpecialStructureMouseOut( d.objId );
+
+          return this.tooltip.style('left', '-9999px');
+        } ) );
 
       newSpecialStructures
-        .append('svg:path')
-        .datum( lang.hitch( this, function(d) { d.pathPoints = this.pathPoints(d); return d; } ) )
-        .on('mouseover', lang.hitch( this,
-          function(d) {
-            profileProxy.onSpecialStructureMouseOver( d.objId );
+        .append('svg:path');
 
-            return this.tooltip
-              .html(
-              '<h2>Special structure ' + d.objId + '</h2><br/>' +
-                "<strong>Entry level:</strong> " + this.formatMeters( d.startLevel ) + '<br/>' +
-                "<strong>Exit level:</strong> "  + this.formatMeters( d.endLevel ) + '<br/>' +
-                "<strong>Bottom level:</strong> " + this.formatMeters( d.bottomLevel ) + '<br/>' +
-                "<strong>Cover level:</strong> "  + this.formatMeters( d.coverLevel ) )
-              .style('top', lang.hitch( this, function() { return this.tooltipTop( this.tooltip ); } ) )
-              .style('left', (event.pageX+10)+'px');
-          } ) )
-        .on('mouseout', lang.hitch( this,
-          function( d ) {
-            profileProxy.onSpecialStructureMouseOut( d.objId );
-
-            return this.tooltip.style('left', '-9999px');
-          } ) );
+      this.specialStructures
+        .datum( lang.hitch( this, function(d) { d.pathPoints = this.pathPoints(d); return d; } ) );
 
       newSpecialStructures
         .append('svg:text')
