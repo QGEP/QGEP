@@ -158,7 +158,11 @@ class QgepProfileReachElement(QgepProfileEdgeElement):
         reach   = edgeCache.featureById( reachId )
         self.feat = reach
         
-        self.width = edgeCache.attrAsFloat( reach, u'depth' ) / 1000
+        try:
+            self.width = edgeCache.attrAsFloat( reach, u'depth' ) / 1000
+        except TypeError:
+            pass
+            
         self.usageCurrent = edgeCache.attrAsFloat( reach, u'usage_current' )
         self.length = edgeCache.attrAsFloat( reach, u'length_calc' )
         self.detailGeometry = reach.geometry()
