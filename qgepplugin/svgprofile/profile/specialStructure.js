@@ -91,8 +91,14 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
       }
 
       texts
-        .attr( 'x', lang.hitch( this, function (d) { return this.x( (d.endOffset + d.startOffset)/2 ); } ) )
-        .attr( 'y', lang.hitch( this, function (d) { return this.y( d.coverLevel ) - 3; } ) );
+        .attr( 'transform', lang.hitch( this, function (d) {
+          return 'translate(' +
+            (this.x( (d.endOffset + d.startOffset)/2 )) +
+            ',' +
+            (this.y( d.coverLevel ) - 3) +
+            ')' +
+            'rotate(-80)';
+        } ) );
 
       paths
         .attr( 'd', lang.hitch( this, function(d) { return this.line(d.pathPoints) +'Z'; } ) );
