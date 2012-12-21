@@ -50,9 +50,10 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
             return this.tooltip
               .html(
               '<h2>Reach ' + d.objId + '</h2><br/>' +
-                '<strong>Width:</strong> ' + this.formatMeters( d.width_m ) + "<br/>" +
+                "<strong>Material:</strong> " + d.material + "<br/>" +
+                '<strong>Width:</strong> ' + this.formatMeters( d.width_m, 0, 1000, 'mm' ) + "<br/>" +
                 "<strong>Length:</strong> " + this.formatMeters( d.length ) + "<br/>" +
-                "<strong>Gradient:</strong> " + Math.round( d.gradient * 100 ) / 100 + "°<br/>" +
+                "<strong>Gradient:</strong> " + Math.round( d.gradient * 10000 ) / 10 + " ‰<br/>" +
                 "<strong>Entry level:</strong> " + this.formatMeters( d.startLevel ) + '<br/>' +
                 "<strong>Exit level:</strong> " + this.formatMeters( d.endLevel ) )
               .style('top', lang.hitch( this, function() { return this.tooltipTop( this.tooltip ); } ) )
@@ -72,9 +73,9 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
         .classed( 'progression', true );
 
       this.reaches
-        .datum( lang.hitch( this, function(d) { d.pathPoints = this.pathPoints(d); return d; } ) );
+        .datum( lang.hitch( this, function(d) { console.info( d ); d.pathPoints = this.pathPoints(d); return d; } ) );
 
-      newReaches
+      this.reaches
         .selectAll( '.blind-connection' )
         .data( function(d) { return d.reachPoints.filter( function(rp) { return rp.offset != 0 && rp.offset != 1; } ); }, function(rp) { return rp.objId; } )
         .enter()

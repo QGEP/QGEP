@@ -152,6 +152,7 @@ class QgepProfileReachElement(QgepProfileEdgeElement):
     length = None
     gradient = None
     detailGeometry = None
+    material = None
     
     def __init__(self, fromPointId, toPointId, reachId, nodeCache, edgeCache, startOffset, endOffset ):
         QgepProfileEdgeElement.__init__( self, fromPointId, toPointId, reachId, nodeCache, edgeCache, startOffset, endOffset, 'reach' )
@@ -164,11 +165,12 @@ class QgepProfileReachElement(QgepProfileEdgeElement):
             pass
             
         self.usageCurrent = edgeCache.attrAsFloat( reach, u'usage_current' )
-        self.length = edgeCache.attrAsFloat( reach, u'length_calc' )
+        self.material = edgeCache.attrAsUnicode( reach, u'material' )
+        self.length = edgeCache.attrAsFloat( reach, u'length_full' )
         self.detailGeometry = reach.geometry()
         
         try:
-            self.gradient = math.degrees( math.atan( (self.fromLevel - self.toLevel) / self.length ) )
+            self.gradient = (self.fromLevel - self.toLevel) / self.length
         except:
             pass
 
@@ -181,7 +183,8 @@ class QgepProfileReachElement(QgepProfileEdgeElement):
           'usageCurrent': self.usageCurrent, \
           'width_m':       self.width, \
           'gradient':     self.gradient, \
-          'length':       self.length \
+          'length':       self.length, \
+          'material':     self.material \
         } )
         return el
     
