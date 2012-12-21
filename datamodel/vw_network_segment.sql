@@ -1,6 +1,6 @@
 ﻿-- View: qgep.vw_network_segment
 
-DROP VIEW IF EXISTS qgep.vw_network_segment;
+DROP VIEW IF EXISTS qgep.vw_network_segment CASCADE;
 
 CREATE VIEW qgep.vw_network_segment AS
  WITH reach_parts AS (
@@ -32,6 +32,7 @@ CREATE VIEW qgep.vw_network_segment AS
      'reach' AS type,
      depth,
      ST_LENGTH( COALESCE( reach_progression, progression ) ) AS length_calc,
+     ST_LENGTH( progression ) AS length_full,
      COALESCE( from_obj_id, fs_reach_point_from ) AS from_obj_id,
      COALESCE( to_obj_id, fs_reach_point_to ) AS to_obj_id,
      fs_reach_point_from AS from_obj_id_interpolate,
@@ -66,6 +67,7 @@ CREATE VIEW qgep.vw_network_segment AS
      'special_structure' AS type,
      NULL AS depth,
      ST_Length( progression_geometry ) AS length_calc,
+     ST_Length( progression_geometry ) AS length_full,
      from_obj_id,
      to_obj_id,
      from_obj_id AS from_obj_id_interpolate,
