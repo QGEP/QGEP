@@ -41,6 +41,7 @@ CREATE VIEW qgep.vw_network_segment AS
      COALESCE( to_pos, 1 ) AS to_pos,
      NULL AS bottom_level,
      ch.usage_current AS usage_current,
+     mat.abbr_de AS material,
      COALESCE( reach_progression, st_linemerge(progression) ) AS progression_geometry
    FROM qgep.od_reach
    FULL JOIN
@@ -59,6 +60,7 @@ CREATE VIEW qgep.vw_network_segment AS
    ) AS rr
    ON rr.reach_obj_id = od_reach.obj_id
    LEFT JOIN qgep.od_channel ch ON ch.obj_id = od_reach.obj_id
+   LEFT JOIN qgep.vl_reach_material mat ON od_reach.material = mat.code
 
    UNION 
 
@@ -76,6 +78,7 @@ CREATE VIEW qgep.vw_network_segment AS
      1 AS to_pos,
      bottom_level,
      NULL AS usage_current,
+     NULL AS material,
      progression_geometry
 
    FROM 
