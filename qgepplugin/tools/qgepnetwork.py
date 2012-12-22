@@ -26,9 +26,10 @@
 from PyQt4.QtCore import QPoint
 from PyQt4.QtGui import QMenu, QAction
 from collections import defaultdict
-from qgis.core import QgsTolerance, QgsSnapper, QgsFeature, QgsRectangle
+from qgis.core import QgsTolerance, QgsSnapper, QgsFeature, QgsRectangle, QgsGeometry
 import networkx as nx
 import time
+import re
 
 class QgepGraphManager():
     reachLayer = None
@@ -372,14 +373,20 @@ class QgepFeatureCache:
         else:
             return res[0]
     
-    def attrAsUnicode(self, feat, attr):
+    def attrAsUnicode( self, feat, attr ):
         var = self.attrAsQVariant(feat, attr)
         return unicode( var.toString() ) 
     
-    def attrAsQVariant(self, feat, attr):
+    def attrAsQVariant( self, feat, attr ):
         attrMap = feat.attributeMap()
         attrIdx = self.attrIndices[attr]
         return attrMap[attrIdx]
+    
+    def attrAsGeometry( self, feat, attr ):
+        ewktString = self.attrAsUnicode(feat, attr)
+        # Strip SRID=21781; token, TODO: Fix this upstream
+        m = re.search( '(.*;)?(.*)', ewktString )
+        return ( QgsGeometry.fromWkt( m.group(2) ) )
     
     def asDict(self):
         return self._featuresById

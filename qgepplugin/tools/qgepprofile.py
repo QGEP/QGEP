@@ -24,10 +24,8 @@
 #---------------------------------------------------------------------
 
 import json
-import math
 
 from PyQt4.QtGui import QMessageBox
-from qgis.core import QgsGeometry
 
 class QgepProfileElement():
     type = 'undefined'
@@ -167,7 +165,8 @@ class QgepProfileReachElement(QgepProfileEdgeElement):
         self.usageCurrent = edgeCache.attrAsFloat( reach, u'usage_current' )
         self.material = edgeCache.attrAsUnicode( reach, u'material' )
         self.length = edgeCache.attrAsFloat( reach, u'length_full' )
-        self.detailGeometry = reach.geometry()
+
+        self.detailGeometry = edgeCache.attrAsGeometry( reach, u'detail_geometry' )
         
         try:
             self.gradient = (self.fromLevel - self.toLevel) / self.length
@@ -231,10 +230,9 @@ class QgepProfileSpecialStructureElement(QgepProfileEdgeElement):
             self.coverLevel  = nodeCache.attrAsFloat( definingWasteWaterNode, u'cover_level' )
             self.description  = nodeCache.attrAsUnicode( definingWasteWaterNode, u'description' )
             self.usageCurrent = nodeCache.attrAsFloat( definingWasteWaterNode, u'usage_current' )
-            self.detailGeometry = QgsGeometry()
-            wktDetailGeometry = nodeCache.attrAsUnicode( definingWasteWaterNode, u'detail_geometry' )
-            self.detailGeometry.fromWkt( wktDetailGeometry )
-        
+            
+            self.detailGeometry = nodeCache.attrAsGeometry( definingWasteWaterNode, u'detail_geometry' )
+
     def highlight(self, rubberband):
         rubberband.reset( self.detailGeometry.type() )
         rubberband.addGeometry( self.detailGeometry, None )

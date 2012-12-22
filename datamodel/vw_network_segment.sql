@@ -42,7 +42,8 @@ CREATE VIEW qgep.vw_network_segment AS
      NULL AS bottom_level,
      ch.usage_current AS usage_current,
      mat.abbr_de AS material,
-     COALESCE( reach_progression, st_linemerge(progression) ) AS progression_geometry
+     COALESCE( reach_progression, st_linemerge(progression) ) AS progression_geometry,
+     ST_Linemerge(progression) AS detail_geometry
    FROM qgep.od_reach
    FULL JOIN
    (
@@ -79,7 +80,8 @@ CREATE VIEW qgep.vw_network_segment AS
      bottom_level,
      NULL AS usage_current,
      NULL AS material,
-     progression_geometry
+     progression_geometry,
+     progression_geometry AS detail_geometry
 
    FROM 
    (
