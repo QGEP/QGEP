@@ -37,6 +37,9 @@ class QgepPlotSVGWidget( QWidget ):
     reachClicked = pyqtSignal( [str], name='reachClicked' )
     reachMouseOver = pyqtSignal( [str], name='reachMouseOver' )
     reachMouseOut = pyqtSignal( [str], name='reachMouseOut' )
+    reachPointClicked = pyqtSignal( [str], name='reachPointClicked' )
+    reachPointMouseOver = pyqtSignal( [str], name='reachPointMouseOver' )
+    reachPointMouseOut = pyqtSignal( [str], name='reachPointMouseOut' )
     specialStructureClicked = pyqtSignal( [str], name='specialStructureClicked' )
     specialStructureMouseOver = pyqtSignal( [str], name='specialStructureMouseOver' )
     specialStructureMouseOut = pyqtSignal( [str], name='specialStructureMouseOut' )
@@ -94,7 +97,19 @@ class QgepPlotSVGWidget( QWidget ):
     @pyqtSlot( unicode )
     def onReachMouseOut(self, objId):
         self.reachMouseOut.emit( objId )
-            
+
+    @pyqtSlot( unicode, unicode )
+    def onReachPointClicked(self, objId, reachObjId):
+        self.reachPointClicked.emit( objId, reachObjId )
+        
+    @pyqtSlot( unicode, unicode )
+    def onReachPointMouseOver(self, objId, reachObjId):
+        self.reachPointMouseOver.emit( objId, reachObjId )
+    
+    @pyqtSlot( unicode, unicode )
+    def onReachPointMouseOut(self, objId, reachObjId):
+        self.reachPointMouseOut.emit( objId, reachObjId )
+
     @pyqtSlot( unicode )
     def onSpecialStructureClicked(self, objId):
         self.specialStructureClicked.emit( objId )

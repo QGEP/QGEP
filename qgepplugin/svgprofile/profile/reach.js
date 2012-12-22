@@ -7,6 +7,8 @@
  */
 
 define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], function ( declare, lang, _ProfileElement ) {
+  "use strict";
+
   return declare([ _ProfileElement ], {
     reaches: null,
     line: d3.svg.line(),
@@ -42,46 +44,73 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
         .attr( 'id', function(d) { return d.objId; } )
         .attr( 'class', function(d) { return 'usage-current-' + d.usageCurrent; } )
         .classed( 'reach', true )
-        .on('click', function(d) { profileProxy.onReachClicked( d.objId ); })
-        .on('mouseover', lang.hitch( this,
-          function(d) {
-            profileProxy.onReachMouseOver( d.objId );
-
-            return this.tooltip
-              .html(
-              '<h2>Reach ' + d.objId + '</h2><br/>' +
-                "<strong>Material:</strong> " + d.material + "<br/>" +
-                '<strong>Width:</strong> ' + this.formatMeters( d.width_m, 0, 1000, 'mm' ) + "<br/>" +
-                "<strong>Length:</strong> " + this.formatMeters( d.length ) + "<br/>" +
-                "<strong>Gradient:</strong> " + Math.round( d.gradient * 10000 ) / 10 + " ‰<br/>" +
-                "<strong>Entry level:</strong> " + this.formatMeters( d.startLevel ) + '<br/>' +
-                "<strong>Exit level:</strong> " + this.formatMeters( d.endLevel ) )
-              .style('top', lang.hitch( this, function() { return this.tooltipTop( this.tooltip ); } ) )
-              .style('left', (event.pageX+10)+'px');
-          }
-        ) )
-        .on('mouseout', lang.hitch( this,
-          function(d) {
-            profileProxy.onReachMouseOut( d.objId );
-
-            return this.tooltip.style('left', '-9999px');
-          }
-        ) );
+        .on('click', function(d) { profileProxy.onReachClicked( d.objId ); });
 
       newReaches
         .append('svg:path')
-        .classed( 'progression', true );
+        .classed( 'progression', true )
+        .on('mouseover', lang.hitch( this,
+        function(d) {
+          profileProxy.onReachMouseOver( d.objId );
+
+          return this.tooltip
+            .html(
+            '<h2>Reach ' + d.objId + '</h2><br/>' +
+              "<strong>Material:</strong> " + d.material + "<br/>" +
+              '<strong>Width:</strong> ' + this.formatMeters( d.width_m, 0, 1000, 'mm' ) + "<br/>" +
+              "<strong>Length:</strong> " + this.formatMeters( d.length ) + "<br/>" +
+              "<strong>Gradient:</strong> " + Math.round( d.gradient * 10000 ) / 10 + " ‰<br/>" +
+              "<strong>Entry level:</strong> " + this.formatMeters( d.startLevel ) + '<br/>' +
+              "<strong>Exit level:</strong> " + this.formatMeters( d.endLevel ) )
+            .style('top', lang.hitch( this, function() { return this.tooltipTop( this.tooltip ); } ) )
+            .style('left', (event.pageX+10)+'px');
+        }
+      ) )
+        .on('mouseout', lang.hitch( this,
+        function(d) {
+          profileProxy.onReachMouseOut( d.objId );
+
+          return this.tooltip.style('left', '-9999px');
+        }
+      ) );
 
       this.reaches
         .datum( lang.hitch( this, function(d) { console.info( d ); d.pathPoints = this.pathPoints(d); return d; } ) );
 
+      /* Blind connections */
       this.reaches
         .selectAll( '.blind-connection' )
-        .data( function(d) { return d.reachPoints.filter( function(rp) { return rp.offset != 0 && rp.offset != 1; } ); }, function(rp) { return rp.objId; } )
+        .data(
+          function(d) {
+            /* Do only show blind connections. offset 0 and 1 are normally special structures.*/
+            var drp = d.reachPoints.filter(
+              function(rp) { return rp.offset !== 0 && rp.offset !== 1; }
+            );
+
+            /* Assign backreference to reach to each reachpoint */
+            drp.forEach(
+              function(rp) { rp.reach = d; }
+            );
+
+            return drp;
+          },
+        /* Id's for the reachopints are their respective objId */
+          function(rp) { return rp.objId; }
+        )
         .enter()
         .append( 'circle' )
         .attr( 'class', 'blind-connection')
-        .attr( 'r', '5' );
+        .attr( 'r', '5' )
+        .on('mouseover', lang.hitch( this,
+          function(d) {
+            profileProxy.onReachPointMouseOver( d.objId, d.reach.objId );
+          }
+        ) )
+        .on('mouseout', lang.hitch( this,
+          function(d) {
+            profileProxy.onReachPointMouseOut(d.objId, d.reach.objId );
+          }
+        ) );
     },
 
     redraw: function( duration )

@@ -104,7 +104,8 @@ g.special-structure > path {
 g.reach > .blind-connection {
   stroke: #323232;
   stroke-width: 2px;
-  fill: none;
+  fill: #323232;
+  fill-opacity: 0.7;
 }
 
 .scale-large g.reach > .blind-connection {
