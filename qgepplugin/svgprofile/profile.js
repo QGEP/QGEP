@@ -46,7 +46,7 @@ require( ["dojo/on", "dojo/ready", "dojo/_base/json", "profile/specialStructure"
 
   qgep.def.ProfilePlot = dojo.declare( null,
   {
-    verticalExaggeration: 5,
+    verticalExaggeration: 10,
 
     margin: 10,
 

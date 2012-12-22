@@ -31,7 +31,7 @@ class QgepPlotSVGWidget( QWidget ):
     webView = None
     frame   = None
     profile = None
-    verticalExaggeration = 5
+    verticalExaggeration = 10
 
     # Signals emitted triggered by javascript actions
     reachClicked = pyqtSignal( [str], name='reachClicked' )
