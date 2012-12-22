@@ -40,15 +40,27 @@ define([ "dojo/_base/declare" ], function (declare) {
       }
     },
 
-    formatMeters: function(n) {
+    formatMeters: function(n, decimal_places, multiplier, suffix) {
       if ( n === null )
       {
         return '<i>Undefined</i>';
       }
-      else
+      if ( multiplier === undefined )
       {
-        return Math.round( n * 100 ) / 100 + 'm';
+        multiplier = 1;
       }
+      if ( suffix === undefined )
+      {
+        suffix = 'm';
+      }
+      if ( decimal_places === undefined )
+      {
+        decimal_places = 2;
+      }
+
+      var rf = Math.pow( 10, decimal_places );
+
+      return Math.round( n * multiplier * rf ) / rf + ' ' + suffix;
     }
   });
 });
