@@ -23,7 +23,7 @@
 #
 #---------------------------------------------------------------------
 
-from PyQt4.QtGui import QVBoxLayout, QWidget
+from PyQt4.QtGui import QVBoxLayout, QWidget, QPrintPreviewDialog, QPrinter
 from PyQt4.QtWebKit import QWebView, QWebSettings
 from PyQt4.QtCore import QUrl, pyqtSignal, pyqtSlot, QSettings, QVariant, Qt
 
@@ -34,18 +34,18 @@ class QgepPlotSVGWidget( QWidget ):
     verticalExaggeration = 10
 
     # Signals emitted triggered by javascript actions
-    reachClicked = pyqtSignal( [str], name='reachClicked' )
-    reachMouseOver = pyqtSignal( [str], name='reachMouseOver' )
-    reachMouseOut = pyqtSignal( [str], name='reachMouseOut' )
-    reachPointClicked = pyqtSignal( [str], name='reachPointClicked' )
-    reachPointMouseOver = pyqtSignal( [str], name='reachPointMouseOver' )
-    reachPointMouseOut = pyqtSignal( [str], name='reachPointMouseOut' )
-    specialStructureClicked = pyqtSignal( [str], name='specialStructureClicked' )
-    specialStructureMouseOver = pyqtSignal( [str], name='specialStructureMouseOver' )
-    specialStructureMouseOut = pyqtSignal( [str], name='specialStructureMouseOut' )
+    reachClicked = pyqtSignal( [unicode], name='reachClicked' )
+    reachMouseOver = pyqtSignal( [unicode], name='reachMouseOver' )
+    reachMouseOut = pyqtSignal( [unicode], name='reachMouseOut' )
+    reachPointClicked = pyqtSignal( [unicode, unicode], name='reachPointClicked' )
+    reachPointMouseOver = pyqtSignal( [unicode, unicode], name='reachPointMouseOver' )
+    reachPointMouseOut = pyqtSignal( [unicode, unicode], name='reachPointMouseOut' )
+    specialStructureClicked = pyqtSignal( [unicode], name='specialStructureClicked' )
+    specialStructureMouseOver = pyqtSignal( [unicode], name='specialStructureMouseOver' )
+    specialStructureMouseOut = pyqtSignal( [unicode], name='specialStructureMouseOut' )
     
     # Signals emitted for javascript
-    profileChanged = pyqtSignal( [str], name='profileChanged' )
+    profileChanged = pyqtSignal( [unicode], name='profileChanged' )
     verticalExaggerationChanged = pyqtSignal( [int], name='verticalExaggerationChanged' )
     
     def __init__( self, parent, networkAnalyzer, url = None ):
@@ -85,7 +85,22 @@ class QgepPlotSVGWidget( QWidget ):
     def changeVerticalExaggeration(self, val):
         self.verticalExaggeration = val
         self.verticalExaggerationChanged.emit(val)
-    
+        
+    def printProfile(self):
+        printer = QPrinter( QPrinter.HighResolution )
+        printer.setOutputFormat( QPrinter.PdfFormat )
+        printer.setPaperSize( QPrinter.A4 )
+        printer.setOrientation( QPrinter.Landscape )
+        
+        printPreviewDlg = QPrintPreviewDialog( )
+        printPreviewDlg.paintRequested.connect( self.printRequested )
+        
+        printPreviewDlg.exec_()
+        
+    @pyqtSlot( QPrinter )
+    def printRequested( self, printer ):
+        self.webView.print_( printer )
+        
     @pyqtSlot( unicode )
     def onReachClicked(self, objId):
         self.reachClicked.emit( objId )

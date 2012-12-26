@@ -42,7 +42,7 @@ function I(d)
 // Global Object, where we'll declare all the useful stuff inside
 var qgep = { def: {}, test: {} };
 
-require( ["dojo/on", "dojo/ready", "dojo/_base/json", "profile/specialStructure", "profile/reach", "profile/terrain"], function(  on, ready, dojo, SpecialStructure, Reach, Terrain ) {
+require( ["dojo/on", "dojo/ready", "dojo/_base/json", "dojo/_base/lang", "profile/specialStructure", "profile/reach", "profile/terrain"], function(  on, ready, dojo, lang, SpecialStructure, Reach, Terrain ) {
 
   qgep.def.ProfilePlot = dojo.declare( null,
   {
@@ -89,7 +89,7 @@ require( ["dojo/on", "dojo/ready", "dojo/_base/json", "profile/specialStructure"
       this.zoom
         .x( this.x )
         .y( this.y )
-        .on( 'zoom', dojo.hitch( this, this.zoomed ) );
+        .on( 'zoom', lang.hitch( this, this.zoomed ) );
 
       this.zoomRect = this.mainGroup.append( "svg:rect" )
         .attr( "class", "pane" )
@@ -108,7 +108,14 @@ require( ["dojo/on", "dojo/ready", "dojo/_base/json", "profile/specialStructure"
       this.onResize();
 
       //  Subscribe to window resize event
-      on( window, "resize", dojo.hitch( this, this.onResize ) );
+      on( window, "resize", lang.hitch( this, this.onResize ) );
+
+      // http://tjvantoll.com/2012/06/15/detecting-print-requests-with-javascript/
+      if ( window.matchMedia )
+      {
+        var mediaQueryList = window.matchMedia( 'print' );
+        mediaQueryList.addListener( lang.hitch( this, this.onPrint ) );
+      }
 
       this.specialStructure = new SpecialStructure({
         svgProfile: this.profile,
@@ -126,7 +133,16 @@ require( ["dojo/on", "dojo/ready", "dojo/_base/json", "profile/specialStructure"
         svgProfile: this.profile,
         x: this.x,
         y: this.y
-      })
+      });
+    },
+
+    onPrint: function ( mql )
+    {
+      // only before print
+      if ( mql.matches )
+      {
+        console.info( 'onbeforeprint' );
+      }
     },
 
     onResize: function ()

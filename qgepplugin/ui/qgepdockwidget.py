@@ -69,6 +69,8 @@ class QgepDockWidget( QDockWidget, Ui_QgepDockWidget ):
         self.addDockWidget( self.location, self )
         self.canvas.setRenderFlag( True )
         
+        self.printButton.clicked.connect( self.onPrintButtonClicked )
+        
         self.mSliderVerticalExaggeration.valueChanged.connect( self.onVerticalExaggerationChanged )
 
     def closeEvent( self, event ):
@@ -87,3 +89,6 @@ class QgepDockWidget( QDockWidget, Ui_QgepDockWidget ):
         self.mLblVerticalExaggeration.setText( unicode( veVal ) + 'x' )
         self.plotWidget.changeVerticalExaggeration( veVal )
         
+    @pyqtSlot( )
+    def onPrintButtonClicked(self):
+        self.plotWidget.printProfile()
