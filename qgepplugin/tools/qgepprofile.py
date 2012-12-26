@@ -188,8 +188,7 @@ class QgepProfileReachElement(QgepProfileEdgeElement):
         return el
     
     def highlight( self, rubberband ):
-        rubberband.reset( self.detailGeometry.type() )
-        rubberband.addGeometry( self.detailGeometry, None )
+        rubberband.setToGeometry( self.detailGeometry, None )
     
 #===============================================================================
 # Define the profile element for the SPECIAL STRUCTURE
@@ -234,8 +233,7 @@ class QgepProfileSpecialStructureElement(QgepProfileEdgeElement):
             self.detailGeometry = nodeCache.attrAsGeometry( definingWasteWaterNode, u'detail_geometry' )
 
     def highlight(self, rubberband):
-        rubberband.reset( self.detailGeometry.type() )
-        rubberband.addGeometry( self.detailGeometry, None )
+        rubberband.setToGeometry( self.detailGeometry, None )
         
     def asDict(self):
             el = QgepProfileEdgeElement.asDict(self)
