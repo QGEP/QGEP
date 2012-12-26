@@ -14,5 +14,7 @@
         <file>svgprofile/profile/specialStructure.js</file>
         <file>svgprofile/profile/reach.js</file>
         <file>svgprofile/profile/profileElement.js</file>
+        <file>svgprofile/screen.css</file>
+        <file>svgprofile/print.css</file>
     </qresource>
 </RCC>
