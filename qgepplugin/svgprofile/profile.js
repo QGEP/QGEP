@@ -93,6 +93,7 @@ require( ["dojo/on", "dojo/ready", "dojo/_base/json", "profile/specialStructure"
 
       this.zoomRect = this.mainGroup.append( "svg:rect" )
         .attr( "class", "pane" )
+        .classed( 'dont-print', true )
         .call( this.zoom );
 
       this.profileViewPort = this.mainGroup.append( "svg:g")

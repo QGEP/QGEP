@@ -27,6 +27,7 @@ define([ "dojo/_base/declare" ], function (declare) {
 
     tooltipTop: function( tt ) {
       var height = d3.select("body").property( 'clientHeight' );
+      tt.classed( 'dont-print', true );
       tt.attr('top');
       var ttHeight = tt.property( 'clientHeight' );
 

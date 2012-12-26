@@ -49,10 +49,10 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
           return this.tooltip
             .html(
             '<h2>Special structure ' + d.objId + '</h2><br/>' +
-              "<strong>Cover level:</strong> "  + this.formatMeters( d.coverLevel ) ) +
+              "<strong>Cover level:</strong> "  + this.formatMeters( d.coverLevel ) +
             "<strong>Bottom level:</strong> " + this.formatMeters( d.bottomLevel ) + '<br/>' +
               "<strong>Entry level:</strong> " + this.formatMeters( d.startLevel ) + '<br/>' +
-              "<strong>Exit level:</strong> "  + this.formatMeters( d.endLevel ) + '<br/>'
+              "<strong>Exit level:</strong> "  + this.formatMeters( d.endLevel ) + '<br/>' )
             .style('top', lang.hitch( this, function() { return this.tooltipTop( this.tooltip ); } ) )
             .style('left', (event.pageX+10)+'px');
         } ) )
