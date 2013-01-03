@@ -7,6 +7,7 @@
  */
 
 define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], function (declare, lang, _ProfileElement) {
+  "use strict";
   return declare([ _ProfileElement ], {
     specialStructures: null, /* Reference to the current working set */
     line: d3.svg.line(),
@@ -42,26 +43,35 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
         .attr( 'id', function(d) { return d.objId; } )
         .attr( 'class', function(d) { return 'usage-current-' + d.usageCurrent; } )
         .classed( 'special-structure', true )
-        .on('mouseover', lang.hitch( this,
-        function(d) {
-          profileProxy.onSpecialStructureMouseOver( d.objId );
+        .on( 'mouseover',
+          lang.hitch( this,
+            function(d)
+            {
+              profileProxy.onSpecialStructureMouseOver( d.objId );
 
-          return this.tooltip
-            .html(
-            '<h2>Special structure ' + d.objId + '</h2><br/>' +
-              "<strong>Cover level:</strong> "  + this.formatMeters( d.coverLevel ) +
-            "<strong>Bottom level:</strong> " + this.formatMeters( d.bottomLevel ) + '<br/>' +
-              "<strong>Entry level:</strong> " + this.formatMeters( d.startLevel ) + '<br/>' +
-              "<strong>Exit level:</strong> "  + this.formatMeters( d.endLevel ) + '<br/>' )
-            .style('top', lang.hitch( this, function() { return this.tooltipTop( this.tooltip ); } ) )
-            .style('left', (event.pageX+10)+'px');
-        } ) )
-        .on('mouseout', lang.hitch( this,
-        function( d ) {
-          profileProxy.onSpecialStructureMouseOut( d.objId );
+              return this.tooltip
+                .html(
+                  '<h2>Special structure ' + d.objId + '</h2><br/>' +
+                  '<strong>Cover level:</strong> '  + this.formatMeters( d.coverLevel ) + '<br/>' +
+                  '<strong>Bottom level:</strong> ' + this.formatMeters( d.bottomLevel ) + '<br/>' +
+                  '<strong>Entry level:</strong> ' + this.formatMeters( d.startLevel ) + '<br/>' +
+                  '<strong>Exit level:</strong> '  + this.formatMeters( d.endLevel ) + '<br/>'
+                )
+                .style('top', lang.hitch( this, function() { return this.tooltipTop( this.tooltip ); } ) )
+                .style('left', (event.pageX+10)+'px');
+            }
+          )
+        )
+        .on( 'mouseout',
+          lang.hitch( this,
+            function( d )
+            {
+              profileProxy.onSpecialStructureMouseOut( d.objId );
 
-          return this.tooltip.style('left', '-9999px');
-        } ) );
+              return this.tooltip.style('left', '-9999px');
+            }
+          )
+        );
 
       newSpecialStructures
         .append('svg:path');
@@ -91,14 +101,19 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
       }
 
       texts
-        .attr( 'transform', lang.hitch( this, function (d) {
-          return 'translate(' +
-            (this.x( (d.endOffset + d.startOffset)/2 )) +
-            ',' +
-            (this.y( d.coverLevel ) - 3) +
-            ')' +
-            'rotate(-80)';
-        } ) );
+        .attr( 'transform',
+          lang.hitch( this,
+            function (d)
+            {
+              return 'translate(' +
+                (this.x( (d.endOffset + d.startOffset)/2 )) +
+                ',' +
+                (this.y( d.coverLevel ) - 3) +
+                ')' +
+                'rotate(-80)';
+            }
+          )
+        );
 
       paths
         .attr( 'd', lang.hitch( this, function(d) { return this.line(d.pathPoints) +'Z'; } ) );
@@ -106,12 +121,12 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
 
     extent: function()
     {
-      var minX = d3.min( this.specialStructures.data(), ƒ('startOffset') ) || 0;
-      var maxX = d3.max( this.specialStructures.data(), ƒ('endOffset') ) || 1;
-      var minY = d3.min( this.specialStructures.data(), ƒ('bottomLevel') ) || 0;
-      var maxY = d3.max( this.specialStructures.data(), ƒ('coverLevel') ) || 1;
+      var minX = d3.min( this.specialStructures.data(), ƒ( 'startOffset' ) ) || 0;
+      var maxX = d3.max( this.specialStructures.data(), ƒ( 'endOffset' ) ) || 1;
+      var minY = d3.min( this.specialStructures.data(), ƒ( 'bottomLevel' ) ) || 0;
+      var maxY = d3.max( this.specialStructures.data(), ƒ( 'coverLevel' ) ) || 1;
 
-      return {x: [minX, maxX], y: [minY, maxY] };
+      return { x: [minX, maxX], y: [minY, maxY] };
     },
 
     pathPoints: function(d)
@@ -128,11 +143,11 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
       var y5 = d.startLevel;
 
       var corners = [
-        {x: x1, y: y1 },
-        {x: x2, y: y2 },
-        {x: x3, y: y3 },
-        {x: x4, y: y4 },
-        {x: x5, y: y5 }
+        { x: x1, y: y1 },
+        { x: x2, y: y2 },
+        { x: x3, y: y3 },
+        { x: x4, y: y4 },
+        { x: x5, y: y5 }
       ];
 
       var filteredCorners = corners.filter( function(d) { return d.x !== null && d.y !== null; } );
