@@ -26,7 +26,7 @@
 from PyQt4.QtCore import QPoint
 from PyQt4.QtGui import QMenu, QAction
 from collections import defaultdict
-from qgis.core import QgsTolerance, QgsSnapper, QgsFeature, QgsRectangle, QgsGeometry
+from qgis.core import QgsTolerance, QgsSnapper, QgsFeature, QgsRectangle, QgsGeometry, QgsFeatureRequest
 import networkx as nx
 import time
 import re
@@ -91,25 +91,19 @@ class QgepGraphManager():
     def _addVertices(self):
         nodeProvider = self.nodeLayer.dataProvider()
         
-        feat = QgsFeature()
-        allAttrs = nodeProvider.attributeIndexes()
-        attrObjId = nodeProvider.fieldNameIndex( 'obj_id' )
-        attrType = nodeProvider.fieldNameIndex( 'type' )
-        
-        nodeProvider.select( allAttrs )
+        features = nodeProvider.getFeatures()
         
         # Add all vertices
-        while nodeProvider.nextFeature( feat ):
-            attrs = feat.attributeMap()
+        for feat in features:
             featId = feat.id()
             
-            objId = attrs[attrObjId].toString()
-            objType = attrs[attrType].toString()
+            objId = feat['obj_id'].toString()
+            objType = feat['type'].toString()
             
             vertex = feat.geometry().asPoint()
             self.graph.add_node( featId, dict( point=vertex, objType=objType ) )
             
-            self.vertexIds[str(objId)] = featId
+            self.vertexIds[ unicode( objId ) ] = featId
         
         self._profile( "add vertices" )
             
@@ -117,34 +111,20 @@ class QgepGraphManager():
         # Add all edges (reach)
         reachProvider = self.reachLayer.dataProvider()
         
-        allAttrs = reachProvider.attributeIndexes()
-        
-        attrObjId      = reachProvider.fieldNameIndex( 'obj_id' )
-        attrFromObjId  = reachProvider.fieldNameIndex( 'from_obj_id' )
-        attrToObjId    = reachProvider.fieldNameIndex( 'to_obj_id' )
-        attrLength     = reachProvider.fieldNameIndex( 'length_calc' )
-        attrType       = reachProvider.fieldNameIndex( 'type' )
-        
-        reachProvider.select( allAttrs )
-        
-        feat = QgsFeature()
-        
-        graphNodes = self.graph.nodes(True)
+        features = reachProvider.getFeatures()
         
         #Loop through all reaches
-        while reachProvider.nextFeature( feat ):
+        for feat in features:
             try:
-                attrs = feat.attributeMap()
+                objId     = feat['obj_id'].toString()
+                objType   = feat['type'].toString()
+                fromObjId = feat['from_obj_id'].toString()
+                toObjId   = feat['to_obj_id'].toString()
                 
-                objId = attrs[attrObjId].toString()
-                objType = attrs[attrType].toString()
-                fromObjId = attrs[attrFromObjId].toString()
-                toObjId = attrs[attrToObjId].toString()
+                length    = feat['length_calc'].toDouble()[0]
                 
-                length = attrs[attrLength].toDouble()[0]
-                
-                ptId1 = self.vertexIds[str(fromObjId)]
-                ptId2 = self.vertexIds[str(toObjId)]
+                ptId1 = self.vertexIds[ unicode( fromObjId ) ]
+                ptId2 = self.vertexIds[ unicode( toObjId ) ]
                 
                 props = { \
                   'weight': length,\
@@ -291,21 +271,12 @@ class QgepGraphManager():
         featCache = QgepFeatureCache(layer)
         dataProvider = layer.dataProvider()
         
-        feat = QgsFeature()
+        features = dataProvider.getFeatures()
         
-        # For larger quantities of ids, batch query and filter locally
-        if len( ids ) > dataProvider.featureCount() / 10000:
-            dataProvider.select( attributes, QgsRectangle(), fetchGeometry )
-            while dataProvider.nextFeature( feat ):
-                if feat.id() in ids:
-                    featCache.addFeature(feat)
-                    feat = QgsFeature()
-        # If only a few ids, query each
-        else:
-            for featureId in ids:
-                dataProvider.featureAtId( featureId, feat, True, attributes )
-                featCache.addFeature(feat)
-                feat = QgsFeature()
+        for feat in features:
+            if feat.id() in ids:
+                featCache.addFeature( feat )
+
         
         return featCache
 
@@ -313,13 +284,12 @@ class QgepGraphManager():
         featCache = QgepFeatureCache(layer)
         dataProvider = layer.dataProvider()
         
-        feat = QgsFeature()
-        
         # Batch query and filter locally
-        dataProvider.select( attributes, QgsRectangle(), fetchGeometry )
-        while dataProvider.nextFeature( feat ):
-            if featCache.attrAsUnicode(feat, attr) in values :
-                featCache.addFeature(feat)
+        features = dataProvider.getFeatures()
+
+        for feat in features:
+            if featCache.attrAsUnicode( feat, attr ) in values :
+                featCache.addFeature( feat )
                 feat = QgsFeature()
         
         return featCache
@@ -338,14 +308,12 @@ class QgepGraphManager():
 class QgepFeatureCache:
     _featuresById = None
     _featuresByObjId = None
-    attrIndices = None
     objIdField = None
     layer = None
     
     def __init__(self, layer, objIdField = 'obj_id'):
         self._featuresById = {}
         self._featuresByObjId = {}
-        self.attrIndices = { unicode( field.name() ) : idx for idx, field in layer.pendingFields().items() }
         self.objIdField = objIdField
         self.layer = layer
         
@@ -378,9 +346,7 @@ class QgepFeatureCache:
         return unicode( var.toString() ) 
     
     def attrAsQVariant( self, feat, attr ):
-        attrMap = feat.attributeMap()
-        attrIdx = self.attrIndices[attr]
-        return attrMap[attrIdx]
+        return feat[attr]
     
     def attrAsGeometry( self, feat, attr ):
         ewktString = self.attrAsUnicode(feat, attr)
