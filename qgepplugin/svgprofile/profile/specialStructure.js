@@ -21,25 +21,31 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
       lang.mixin(this, kwArgs);
 
       this.line
-        .x( lang.hitch( this, function(d) { return this.x( d.x ); } ) )
-        .y( lang.hitch( this, function(d) { return this.y( d.y ); } ) );
+        .x( lang.hitch( this, function( d ) { return this.x( d.x ); } ) )
+        .y( lang.hitch( this, function( d ) { return this.y( d.y ); } ) );
     },
 
     data: function( data )
     {
+      // Preprocess data
+      data.forEach(
+        lang.hitch( this,
+          function( d )
+          {
+            d.pathPoints = this.pathPoints( d );
+          }
+        )
+      );
+
+      console.info( data.filter( function (d) { return d.description == '6008.0130'; } ) );
+
       this.specialStructures = this.svgProfile
         .selectAll( '.special-structure' )
-        .data( data, ƒ( 'gid' ) );
-
-      this.specialStructures.exit()
-        .transition()
-        .duration(300)
-        .attr('opacity',0)
-        .remove();
+        .data( data, ƒ( 'objId' ) );
 
       var newSpecialStructures = this.specialStructures
         .enter()
-        .append('svg:g')
+        .append( 'svg:g' )
         .attr( 'id', function(d) { return d.objId; } )
         .attr( 'class', function(d) { return 'usage-current-' + d.usageCurrent; } )
         .classed( 'special-structure', true )
@@ -74,41 +80,48 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
         );
 
       newSpecialStructures
-        .append('svg:path');
-
-      this.specialStructures
-        .datum( lang.hitch( this, function(d) { d.pathPoints = this.pathPoints(d); return d; } ) );
+        .append( 'svg:path' );
 
       newSpecialStructures
-        .append('svg:text')
-        .text( function(d) { return d.description; } );
+        .append( 'svg:text' )
+        .text( function( d ) { return d.description; } );
+
+      this.specialStructures.exit()
+        .transition()
+        .duration( 300 )
+        .attr( 'opacity' , 0 )
+        .remove();
+
     },
 
     redraw: function( duration )
     {
-      var texts = this.specialStructures.selectAll('text');
-      var paths = this.specialStructures.selectAll('path');
-
+      var texts = this.specialStructures.select( 'text' );
+      // For some reason, select does propagate the __data__ down from the g to the path element
+      // see http://stackoverflow.com/questions/10129432/inheritance-in-data-joins
+      // For some unknown reason selectAll does not do this!!
+      var paths = this.specialStructures.select( 'path' );
+/*
       if ( duration > 0 )
       {
         texts = texts
           .transition()
-          .duration(duration);
+          .duration( duration );
 
         paths = paths
           .transition()
-          .duration(duration);
+          .duration( duration );
       }
-
+*/
       texts
         .attr( 'transform',
           lang.hitch( this,
-            function (d)
+            function ( d )
             {
               return 'translate(' +
-                (this.x( (d.endOffset + d.startOffset)/2 )) +
+                ( this.x( ( d.endOffset + d.startOffset ) / 2 ) ) +
                 ',' +
-                (this.y( d.coverLevel ) - 3) +
+                ( this.y( d.coverLevel ) - 3 ) +
                 ')' +
                 'rotate(-80)';
             }
@@ -116,7 +129,14 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
         );
 
       paths
-        .attr( 'd', lang.hitch( this, function(d) { return this.line(d.pathPoints) +'Z'; } ) );
+        .attr( 'd',
+          lang.hitch( this,
+            function( d )
+            {
+              return this.line( d.pathPoints ) +'Z';
+            }
+          )
+        );
     },
 
     extent: function()
@@ -131,6 +151,14 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
 
     pathPoints: function(d)
     {
+      // TODO: remove this debugging stuff
+      if ( qgep.p === undefined )
+      {
+        qgep.p = []
+      }
+
+      qgep.p.push( d );
+
       var x1 = d.startOffset;
       var y1 = d.coverLevel;
       var x2 = d.endOffset;

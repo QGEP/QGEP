@@ -19,15 +19,15 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
         .attr( 'class', 'terrain' );
 
       this.line
-        .x( lang.hitch( this, function(d) { return this.x( d.offset ); } ) )
-        .y( lang.hitch( this, function(d) { return this.y( d.coverLevel ); } ) );
+        .x( lang.hitch( this, function( d ) { return this.x( d.offset ); } ) )
+        .y( lang.hitch( this, function( d ) { return this.y( d.coverLevel ); } ) );
     },
 
     data: function( data )
     {
       var terrainData = data
-        .filter( function(d) { return d.coverLevel != null; } )
-        .sort( function(a,b) { return a.offset - b.offset; } );
+        .filter( function( d ) { return d.coverLevel != null; } )
+        .sort( function( a, b ) { return a.offset - b.offset; } );
 
       this.terrain
         .datum( terrainData );

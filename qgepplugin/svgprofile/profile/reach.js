@@ -49,33 +49,48 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
       newReaches
         .append('svg:path')
         .classed( 'progression', true )
-        .on('mouseover', lang.hitch( this,
-        function(d) {
-          profileProxy.onReachMouseOver( d.objId );
+        .on( 'mouseover',
+          lang.hitch( this,
+            function(d)
+            {
+              profileProxy.onReachMouseOver( d.objId );
 
-          return this.tooltip
-            .html(
-            '<h2>Reach ' + d.objId + '</h2><br/>' +
-              "<strong>Material:</strong> " + d.material + "<br/>" +
-              '<strong>Width:</strong> ' + this.formatMeters( d.width_m, 0, 1000, 'mm' ) + "<br/>" +
-              "<strong>Length:</strong> " + this.formatMeters( d.length ) + "<br/>" +
-              "<strong>Gradient:</strong> " + Math.round( d.gradient * 10000 ) / 10 + " ‰<br/>" +
-              "<strong>Entry level:</strong> " + this.formatMeters( d.startLevel ) + '<br/>' +
-              "<strong>Exit level:</strong> " + this.formatMeters( d.endLevel ) )
-            .style('top', lang.hitch( this, function() { return this.tooltipTop( this.tooltip ); } ) )
-            .style('left', (event.pageX+10)+'px');
-        }
-      ) )
-        .on('mouseout', lang.hitch( this,
-        function(d) {
-          profileProxy.onReachMouseOut( d.objId );
+              return this.tooltip
+                .html(
+                  '<h2>Reach ' + d.objId + '</h2><br/>' +
+                  '<strong>Material:</strong> ' + d.material + '<br/>' +
+                  '<strong>Width:</strong> ' + this.formatMeters( d.width_m, 0, 1000, 'mm' ) + '<br/>' +
+                  '<strong>Length:</strong> ' + this.formatMeters( d.length ) + '<br/>' +
+                  '<strong>Gradient:</strong> ' + Math.round( d.gradient * 10000 ) / 10 + ' ‰<br/>' +
+                  '<strong>Entry level:</strong> ' + this.formatMeters( d.startLevel ) + '<br/>' +
+                  '<strong>Exit level:</strong> ' + this.formatMeters( d.endLevel )
+                )
+                .style('top', lang.hitch( this, function() { return this.tooltipTop( this.tooltip ); } ) )
+                .style('left', (event.pageX+10)+'px');
+            }
+          )
+        )
+        .on( 'mouseout',
+          lang.hitch( this,
+            function(d)
+            {
+              profileProxy.onReachMouseOut( d.objId );
 
-          return this.tooltip.style('left', '-9999px');
-        }
-      ) );
+              return this.tooltip.style('left', '-9999px');
+            }
+          )
+        );
 
       this.reaches
-        .datum( lang.hitch( this, function(d) { console.info( d ); d.pathPoints = this.pathPoints(d); return d; } ) );
+        .datum(
+          lang.hitch( this,
+            function(d)
+            {
+              d.pathPoints = this.pathPoints(d);
+              return d;
+            }
+          )
+        );
 
       /* Blind connections */
       this.reaches
@@ -101,23 +116,32 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
         .append( 'circle' )
         .attr( 'class', 'blind-connection')
         .attr( 'r', '5' )
-        .on('mouseover', lang.hitch( this,
-          function(d) {
-            profileProxy.onReachPointMouseOver( d.objId, d.reach.objId );
-          }
-        ) )
-        .on('mouseout', lang.hitch( this,
-          function(d) {
-            profileProxy.onReachPointMouseOut(d.objId, d.reach.objId );
-          }
-        ) );
+        .on( 'mouseover',
+          lang.hitch( this,
+            function(d)
+            {
+              profileProxy.onReachPointMouseOver( d.objId, d.reach.objId );
+            }
+          )
+        )
+        .on( 'mouseout',
+          lang.hitch( this,
+            function(d)
+            {
+              profileProxy.onReachPointMouseOut(d.objId, d.reach.objId );
+            }
+          )
+        );
     },
 
     redraw: function( duration )
     {
       // create new reaches
       var blindConnections = this.reaches.selectAll('.blind-connection');
-      var paths = this.reaches.selectAll('path');
+      // For some reason, select does propagate the __data__ down from the g to the path element
+      // see http://stackoverflow.com/questions/10129432/inheritance-in-data-joins
+      // For some unknown reason selectAll does not do this!!
+      var paths = this.reaches.select('path');
 
       if ( duration > 0 )
       {
