@@ -25,8 +25,11 @@
 
 from ui_qgepsettingsdialog import Ui_QgepSettingsDialog
 from PyQt4.QtCore import QSettings, pyqtSlot, QVariant
-from PyQt4.QtGui import QDialog, QFileDialog
+from PyQt4.QtGui import QDialog, QFileDialog, QColorDialog
 from qgis.core import QgsMapLayerRegistry, QgsProject
+import logging
+
+LOGFORMAT     = '%(asctime)s:%(levelname)s:%(module)s:%(message)s'
 
 class QgepSettingsDialog(QDialog, Ui_QgepSettingsDialog):
     settings = QSettings()
@@ -55,8 +58,25 @@ class QgepSettingsDialog(QDialog, Ui_QgepSettingsDialog):
         self.initLayerCombobox( self.mCbGraphEdges, lyrGraphEdges )
         self.initLayerCombobox( self.mCbGraphNodes, lyrGraphNodes )
         
-        self.mPbnChooseProfileTemplateFile.clicked.connect( self.onChooseProfileTemplateFileClicked)
+        self.mPbnChooseProfileTemplateFile.clicked.connect( self.onChooseProfileTemplateFileClicked )
+        self.mPbnChooseLogFile.clicked.connect( self.onChooseLogFileClicked )
+        
+        self.mHelperLineColorButton.clicked.connect( self.onHelperLineColorButtonClicked )
+        self.mCurrentProfileColorButton.clicked.connect( self.onCurrentProfileColorButtonClicked )
+        self.mHighlightColorButton.clicked.connect( self.onHighlightColorButtonClicked )
+        
         self.accepted.connect( self.onAccept )
+        
+        loglevel = self.settings.value( "/QGEP/LogLevel", 'Warning' ).toString()
+        self.mCbLogLevel.setCurrentIndex( self.mCbLogLevel.findText( self.tr( loglevel ) ) )
+        
+        logfile = self.settings.value( "/QGEP/LogFile", None )
+        
+        if logfile.isNull() is not True:
+            self.mGbLogToFile.setChecked( True )
+            self.mLogFile.setText( logfile.toString() )
+        else:
+            self.mGbLogToFile.setChecked( False )
         
     def initLayerCombobox(self,combobox, default):
         reg = QgsMapLayerRegistry.instance()
@@ -68,12 +88,8 @@ class QgepSettingsDialog(QDialog, Ui_QgepSettingsDialog):
             combobox.setCurrentIndex( idx )
         
     @pyqtSlot()
-    def onChooseProfileTemplateFileClicked(self):
-        fileName = QFileDialog.getOpenFileName(self, self.tr('Select profile template'), '', self.tr('HTML files(*.htm *.html)') )
-        self.mProfileTemplateFile.setText( fileName )
-        
-    @pyqtSlot()
     def onAccept(self):
+        qgepLogger = logging.getLogger( 'qgep' )
         # General settings
         if self.mGbOverrideDefaultProfileTemplate.isChecked() \
         and self.mProfileTemplateFile != '':
@@ -82,6 +98,35 @@ class QgepSettingsDialog(QDialog, Ui_QgepSettingsDialog):
             self.settings.remove( "/QGEP/SvgProfilePath" )
         
         self.settings.setValue( "/QGEP/DeveloperMode", self.mCbDevelMode.checkState() )
+        
+        # Logging
+        if hasattr( qgepLogger, 'qgepFileHandler' ):
+            qgepLogger.removeHandler( qgepLogger.qgepFileHandler )
+            del qgepLogger.qgepFileHandler
+            
+        if self.mGbLogToFile.isChecked():
+            logfile = unicode( self.mLogFile.text() )
+            hLog = logging.FileHandler( logfile )
+            fmt = logging.Formatter( LOGFORMAT )
+            hLog.setFormatter( fmt )
+            qgepLogger.addHandler( hLog )
+            qgepLogger.qgepFileHandler = hLog
+            self.settings.setValue( "/QGEP/LogFile", logfile )
+        else:
+            self.settings.setValue( "/QGEP/LogFile", None )
+        
+        if self.tr( 'Debug' ) == self.mCbLogLevel.currentText():
+            qgepLogger.setLevel( logging.DEBUG )
+            self.settings.setValue( "/QGEP/LogLevel", 'Debug' )
+        elif self.tr( 'Info' ) == self.mCbLogLevel.currentText():
+            qgepLogger.setLevel( logging.INFO )
+            self.settings.setValue( "/QGEP/LogLevel", 'Info' )
+        elif self.tr( 'Warning' ) == self.mCbLogLevel.currentText():
+            qgepLogger.setLevel( logging.WARNING )
+            self.settings.setValue( "/QGEP/LogLevel", 'Warning' )
+        elif self.tr( 'Error' ) == self.mCbLogLevel.currentText():
+            qgepLogger.setLevel( logging.ERROR )
+            self.settings.setValue( "/QGEP/LogLevel", 'Error' )
         
         # Project specific settings
         project = QgsProject.instance()
@@ -93,3 +138,31 @@ class QgepSettingsDialog(QDialog, Ui_QgepSettingsDialog):
         project.writeEntry( 'QGEP', 'SpecialStructureLayer', self.mCbSpecialStructures.itemData( specialStructureIdx ).toString() )
         project.writeEntry( 'QGEP', 'GraphEdgeLayer',        self.mCbGraphEdges.itemData( graphEdgeLayerIdx ).toString() )
         project.writeEntry( 'QGEP', 'GraphNodeLayer',        self.mCbGraphNodes.itemData( graphNodeLayerIdx ).toString() )
+
+    @pyqtSlot()
+    def onChooseProfileTemplateFileClicked(self):
+        fileName = QFileDialog.getOpenFileName(self, self.tr( 'Select profile template' ), '', self.tr( 'HTML files(*.htm *.html)' ) )
+        self.mProfileTemplateFile.setText( fileName )
+        
+    @pyqtSlot()
+    def onChooseLogFileClicked(self):
+        fileName = QFileDialog.getSaveFileName(self, self.tr( 'Select log file' ), '', self.tr( 'Log files(*.log)' ) )
+        self.mLogFile.setText( fileName )
+        
+    @pyqtSlot()
+    def onHelperLineColorButtonClicked( self ):
+        newColor = QColorDialog.getColor( self.mHelperLineColorButton.color(), None, self.tr( 'Helper line color' ) )
+        if ( newColor.isValid() ):
+            self.mHelperLineColorButton.setColor( newColor )
+        
+    @pyqtSlot()
+    def onCurrentProfileColorButtonClicked( self ):
+        newColor = QColorDialog.getColor( self.mCurrentProfileColorButton.color(), None, self.tr( 'Current profile color' ) )
+        if ( newColor.isValid() ):
+            self.mHelperLineColorButton.setColor( newColor )
+        
+    @pyqtSlot()
+    def onHighlightColorButtonClicked( self ):
+        newColor = QColorDialog.getColor( self.mHighlightColorButton.color(), None, self.tr( 'Feature highlight color' ) )
+        if ( newColor.isValid() ):
+            self.mHelperLineColorButton.setColor( newColor )

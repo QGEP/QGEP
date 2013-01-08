@@ -23,7 +23,7 @@
 #
 #---------------------------------------------------------------------
 
-from PyQt4.QtCore import pyqtSlot
+from PyQt4.QtCore import pyqtSlot, QSettings
 from PyQt4.QtGui import QAction, QIcon
 from qgis.core import QgsMapLayerRegistry, QgsMapLayer, QgsProject
 from tools.qgepmaptools import QgepProfileMapTool, QgepTreeMapTool
@@ -32,6 +32,9 @@ from ui.qgepdockwidget import QgepDockWidget
 from ui.qgepplotsvgwidget import QgepPlotSVGWidget
 from ui.qgepsettingsdialog import QgepSettingsDialog
 import resources #@UnusedImport needed to make icons etc. appear
+import logging, os
+
+LOGFORMAT     = '%(asctime)s:%(levelname)s:%(module)s:%(message)s'
 
 class QgepPlugin:
     # The networkAnalyzer will manage the networklayers and pathfinding
@@ -53,6 +56,44 @@ class QgepPlugin:
     def __init__( self, iface ):
         self.iface = iface
         self.canvas = iface.mapCanvas()
+        
+        self.initLogger()
+        
+    def initLogger( self ):
+        self.logger = logging.getLogger( 'qgep' )
+        
+        settings = QSettings()
+        
+        loglevel = settings.value( "/QGEP/LogLevel", 'Warning' ).toString()
+        logfile  = settings.value( "/QGEP/LogFile", None )
+
+        if hasattr( self.logger, 'qgepFileHandler' ):
+            self.logger.removeHandler( self.logger.qgepFileHandler )
+            del self.logger.qgepFileHandler
+                    
+        if logfile.isNull() is not True:
+            hLog = logging.FileHandler( unicode( logfile.toString() ) )
+            fmt = logging.Formatter( LOGFORMAT )
+            hLog.setFormatter( fmt )
+            self.logger.addHandler( hLog )
+            self.logger.fileHandler = hLog
+
+                
+        if 'Debug'     == loglevel:
+            self.logger.setLevel( logging.DEBUG )
+        elif 'Info'    == loglevel:
+            self.logger.setLevel( logging.INFO )
+        elif 'Warning' == loglevel:
+            self.logger.setLevel( logging.WARNING )
+        elif 'Error'   == loglevel:
+            self.logger.setLevel( logging.ERROR )
+                
+        fp = os.path.join( os.path.abspath(os.path.dirname( __file__ ) ), "metadata.txt")
+
+        iniText = QSettings(fp, QSettings.IniFormat)
+        verno = iniText.value("version").toString()
+
+        self.logger.info( 'QGEP plugin version ' + verno + ' started' )
         
     #=======================================================================
     # Called to setup the plugin GUI
@@ -150,6 +191,7 @@ class QgepPlugin:
     #===========================================================================
     def openDock(self):
         if self.dockWidget is None:
+            self.logger.debug( 'Open dock' )
             self.dockWidget = QgepDockWidget( self.iface.mainWindow(), self.iface.mapCanvas(), self.iface.addDockWidget )
             self.dockWidget.closed.connect( self.onDockClosed )
             self.dockWidget.showIt()
@@ -160,7 +202,10 @@ class QgepPlugin:
             self.plotWidget.reachMouseOver.connect( self.highlightProfileElement )
             self.plotWidget.reachMouseOut.connect( self.unhighlightProfileElement )
             self.dockWidget.addPlotWidget( self.plotWidget )
-    
+
+    #===========================================================================
+    # Gets called when the dock is closed    
+    #===========================================================================
     @pyqtSlot()
     def onDockClosed( self ):        #used when Dock dialog is closed
         self.dockWidget = None
@@ -203,12 +248,16 @@ class QgepPlugin:
     def layersChanged( self ):
         buttonsEnabled = False
         
-        if self.networkAnalyzer.getNodeLayer() and self.networkAnalyzer.getReachLayer():
+        if self.networkAnalyzer.getNodeLayer() \
+        and self.networkAnalyzer.getReachLayer():
             buttonsEnabled = True
             
         for button in self.toolbarButtons:
             button.setEnabled( buttonsEnabled )
     
+    #===========================================================================
+    # Gets called when a new project gets loaded
+    #===========================================================================
     @pyqtSlot()
     def onProjectRead( self ):
         project = QgsProject.instance()
@@ -231,9 +280,15 @@ class QgepPlugin:
             self.specialStructureLayer = specialStructureLayer[0]
         else:
             self.specialStructureLayer = None
-            
-        reg = QgsMapLayerRegistry.instance()
-        self.layersAdded( [layer for layer in reg.mapLayers().itervalues()] )
+        
+        if self.nodeLayer is not None  \
+        and self.edgeLayer is not None \
+        and self.specialStructureLayer is not None:
+            reg = QgsMapLayerRegistry.instance()
+            self.layersAdded( [layer for layer in reg.mapLayers().itervalues()] )
+        else:
+            if self.dockWidget is not None:
+                self.dockWidget.close()
         
     #===========================================================================
     # The profile changed: update the plot

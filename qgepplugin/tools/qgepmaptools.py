@@ -28,6 +28,7 @@ from PyQt4.QtGui import QCursor, QColor
 from qgis.core import QgsGeometry, QgsPoint
 from qgis.gui import QgsMapTool, QgsRubberBand, QgsVertexMarker
 from qgepprofile import * #@UnusedWildImport
+import logging
 
 #===============================================================================
 # Base class for all the map tools 
@@ -36,6 +37,7 @@ from qgepprofile import * #@UnusedWildImport
 class QgepMapTool( QgsMapTool ):
     
     highLightedPoints = []
+    logger = logging.getLogger( 'qgep.' + __name__ )
     
     def __init__( self, canvas, button ):
         QgsMapTool.__init__( self, canvas )
@@ -165,6 +167,9 @@ class QgepProfileMapTool( QgepMapTool ):
     # Appends to the current profile
     #=======================================================================
     def appendProfile( self, vertices, edges ):
+        self.logger.debug( 'Append profile' )
+        self.logger.info( ' * ' + `len( vertices )` + ' vertices' )
+        self.logger.info( ' * ' + `len( edges )` + ' edges')
         # Fetch all the needed edges in one batch
         edgeLayer = self.networkAnalyzer.getReachLayer()
         edgeAttrs = edgeLayer.dataProvider().attributeIndexes()
@@ -184,11 +189,6 @@ class QgepProfileMapTool( QgepMapTool ):
         nodeAttrs = nodeLayer.dataProvider().attributeIndexes()
         nodeFeatures = self.networkAnalyzer.getFeaturesById(nodeLayer, nodeAttrs, nodeIds, False)
         
-        ssLayer = self.networkAnalyzer.getSpecialStructureLayer()
-        ssIds = nodeFeatures.asObjIdDict().keys()
-        ssAttrs = ssLayer.dataProvider().attributeIndexes()
-        ssFeatures = self.networkAnalyzer.getFeaturesByAttr(ssLayer, ssAttrs, u'obj_id', ssIds, True)
-                
         if len( vertices ) > 1:
             self.rubberBand.reset()
             
