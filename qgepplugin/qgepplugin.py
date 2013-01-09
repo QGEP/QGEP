@@ -38,6 +38,10 @@ from utils.QgepQgsLogHandler import QgepQgsLogHandler
 LOGFORMAT     = '%(asctime)s:%(levelname)s:%(module)s:%(message)s'
 
 class QgepPlugin:
+    '''
+    A plugin for wastewater management
+    http://www.github.com/qgep/QGEP
+    '''
     # The networkAnalyzer will manage the networklayers and pathfinding
     networkAnalyzer = None
     
@@ -51,9 +55,6 @@ class QgepPlugin:
     
     profile = None
 
-    #===============================================================================
-    # Constructor
-    #===============================================================================
     def __init__( self, iface ):
         self.iface = iface
         self.canvas = iface.mapCanvas()
@@ -61,6 +62,9 @@ class QgepPlugin:
         self.initLogger()
         
     def initLogger( self ):
+        '''
+        Initializes the logger
+        '''
         self.logger = logging.getLogger( __package__ )
         
         settings = QSettings()
@@ -97,10 +101,10 @@ class QgepPlugin:
 
         self.logger.info( 'QGEP plugin version ' + verno + ' started' )
         
-    #=======================================================================
-    # Called to setup the plugin GUI
-    #=======================================================================
     def initGui( self ):
+        '''
+        Called to setup the plugin GUI
+        '''
         self.toolbarButtons = []
         
         # Create toolbar button
@@ -158,40 +162,40 @@ class QgepPlugin:
         QgsMapLayerRegistry.instance().layersWillBeRemoved.connect( self.layersWillBeRemoved )
         QgsMapLayerRegistry.instance().layersAdded.connect( self.layersAdded )
         
-    #===========================================================================
-    # Called when unloading
-    #===========================================================================
     def unload( self ):
+        '''
+        Called when unloading
+        '''
         self.iface.removeToolBarIcon( self.profileAction )
         self.iface.removeToolBarIcon( self.upstreamAction )
         self.iface.removeToolBarIcon( self.downstreamAction )
         self.iface.removePluginMenu( "&QGEP", self.profileAction )
         self.iface.removePluginMenu( "&QGEP", self.aboutAction )
 
-    #===========================================================================
-    # Is executed when the profile button is clicked
-    #===========================================================================
     def profileToolClicked( self ):
+        '''
+        Is executed when the profile button is clicked
+        '''
         self.openDock()
         # Set the profile map tool
         self.profileTool.setActive()
     
-    #=======================================================================
-    # Is executed when the user clicks the upstream search tool
-    #=======================================================================
     def upstreamToolClicked(self):
+        '''
+        Is executed when the user clicks the upstream search tool
+        '''
         self.upstreamTreeTool.setActive()
         
-    #===========================================================================
-    # Is executed when the user clicks the downstream search tool
-    #===========================================================================
     def downstreamToolClicked(self):
+        '''
+        Is executed when the user clicks the downstream search tool
+        '''
         self.downstreamTreeTool.setActive()
 
-    #===========================================================================
-    # Opens the dock
-    #===========================================================================
     def openDock(self):
+        '''
+        Opens the dock
+        '''
         if self.dockWidget is None:
             self.logger.debug( 'Open dock' )
             self.dockWidget = QgepDockWidget( self.iface.mainWindow(), self.iface.mapCanvas(), self.iface.addDockWidget )
@@ -205,17 +209,20 @@ class QgepPlugin:
             self.plotWidget.reachMouseOut.connect( self.unhighlightProfileElement )
             self.dockWidget.addPlotWidget( self.plotWidget )
 
-    #===========================================================================
-    # Gets called when the dock is closed    
-    #===========================================================================
     @pyqtSlot()
     def onDockClosed( self ):        #used when Dock dialog is closed
+        '''
+        Gets called when the dock is closed
+        All the cleanup of the dock has to be done here
+        '''
         self.dockWidget = None
 
-    #===========================================================================
-    # Gets called when a layer is removed    
-    #===========================================================================
     def layersWillBeRemoved( self, layerList ):
+        '''
+        Gets called when a layer is removed
+        
+        @param layerList: The layers about to be removed
+        '''
         for layerId in layerList:
             if 0!= self.networkAnalyzer.getNodeLayer():
                 if self.networkAnalyzer.getNodeLayerId() == layerId:
@@ -227,10 +234,11 @@ class QgepPlugin:
                     self.networkAnalyzer.setReachLayer( 0 )
                     self.layersChanged()
                     
-    #===========================================================================
-    # Gets called when a layer is added
-    #===========================================================================
     def layersAdded( self, layers ):
+        '''
+        Gets called when a layer is added
+        @param layers: the layers to check
+        '''
         for newLayer in layers:
             if newLayer.type() == QgsMapLayer.VectorLayer and newLayer.id() == self.nodeLayer:
                 self.networkAnalyzer.setNodeLayer( newLayer )
@@ -244,10 +252,10 @@ class QgepPlugin:
                 self.networkAnalyzer.setSpecialStructureLayer( newLayer )
                 self.layersChanged()
                 
-    #===========================================================================
-    # Gets called when the layers have changed
-    #===========================================================================
     def layersChanged( self ):
+        '''
+        Gets called when the layers have changed
+        '''
         buttonsEnabled = False
         
         if self.networkAnalyzer.getNodeLayer() \
@@ -257,11 +265,11 @@ class QgepPlugin:
         for button in self.toolbarButtons:
             button.setEnabled( buttonsEnabled )
     
-    #===========================================================================
-    # Gets called when a new project gets loaded
-    #===========================================================================
     @pyqtSlot()
     def onProjectRead( self ):
+        '''
+        Gets called when a new project gets loaded. Updates the layers
+        '''
         project = QgsProject.instance()
         
         specialStructureLayer = project.readEntry( 'QGEP', 'SpecialStructureLayer' )
@@ -292,11 +300,11 @@ class QgepPlugin:
             if self.dockWidget is not None:
                 self.dockWidget.close()
         
-    #===========================================================================
-    # The profile changed: update the plot
-    #===========================================================================
-    
     def onProfileChanged( self, profile ):
+        '''
+        The profile changed: update the plot
+        @param profile: The profile to plot
+        '''
         self.profile = profile.copy()
         
         if self.plotWidget:

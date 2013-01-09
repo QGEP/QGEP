@@ -25,9 +25,11 @@
 
 import json
 
-from PyQt4.QtGui import QMessageBox
-
 class QgepProfileElement():
+    '''
+    Base class for all profile elements
+    '''
+    
     type = 'undefined'
     feat = None
     
@@ -43,39 +45,47 @@ class QgepProfileElement():
     def feature(self):
         return self.feat
     
-    def highlight( self, rubberband ):
-        msgBox = QMessageBox()
-        msgBox.setText( 'Highlight unimplemented' )
-        msgBox.exec_()
+    def highlight(self, rubberband):
+        pass
     
     def type(self):
         return type
 
-#===============================================================================
-# Define the base attributes for all edge elements (reaches and special structures)
-#===============================================================================
 class QgepProfileEdgeElement(QgepProfileElement):
+    '''
+    Define the base attributes for all edge elements (reaches and special structures)
+    '''
     objId = None
     gid = None
     blindConnections = None
     
     def __init__(self, fromPointId, toPointId, edgeId, nodeCache, edgeCache, startOffset, endOffset, elemType):
-        QgepProfileElement.__init__(self,elemType)
+        QgepProfileElement.__init__(self, elemType)
         self.reachPoints = {}
         
-        edge   = edgeCache.featureById( edgeId )
+        edge = edgeCache.featureById(edgeId)
         
         # Read the identifiers
-        self.objId = edgeCache.attrAsUnicode( edge, u'obj_id' )
+        self.objId = edgeCache.attrAsUnicode(edge, u'obj_id')
         self.gid = edge.id()
     
         self.addSegment(fromPointId, toPointId, edgeId, nodeCache, edgeCache, startOffset, endOffset)
         
-    # Add a new segment
     def addSegment(self, fromPointId, toPointId, edgeId, nodeCache, edgeCache, startOffset, endOffset):
-        fromPoint = nodeCache.featureById( fromPointId )
-        toPoint = nodeCache.featureById( toPointId )
-        edge   = edgeCache.featureById( edgeId )
+        '''
+        Adds a segment to the profile
+        
+        @param fromPointId: The id of the from node of this edge
+        @param toPointId:   The id of the to node of this edge
+        @param edgeId:      The id of this edge
+        @param nodeCache:   A reference to the cache where the nodes are cached
+        @param edgeCache:   A reference to the cache where the edges are cached
+        @param startOffset: The offset of the start node relative to the start of the profile
+        @param endOffset:   The offset of the end node relative to the start of the profile
+        '''
+        fromPoint = nodeCache.featureById(fromPointId)
+        toPoint   = nodeCache.featureById(toPointId)
+        edge      = edgeCache.featureById(edgeId)
         
         if not self.reachPoints.has_key(fromPointId):
             self.reachPoints[fromPointId] = {}
@@ -83,41 +93,41 @@ class QgepProfileEdgeElement(QgepProfileElement):
             self.reachPoints[toPointId] = {}
         
         
-        fromPos = edgeCache.attrAsFloat( edge, u'from_pos' )
-        toPos = edgeCache.attrAsFloat( edge, u'to_pos' )
+        fromPos = edgeCache.attrAsFloat(edge, u'from_pos')
+        toPos = edgeCache.attrAsFloat(edge, u'to_pos')
 
-        interpolateFromObjId = edgeCache.attrAsUnicode( edge, u'from_obj_id_interpolate' )
-        interpolateToObjId = edgeCache.attrAsUnicode( edge, u'to_obj_id_interpolate' )
+        interpolateFromObjId = edgeCache.attrAsUnicode(edge, u'from_obj_id_interpolate')
+        interpolateToObjId = edgeCache.attrAsUnicode(edge, u'to_obj_id_interpolate')
         interpolateFrom = nodeCache.featureByObjId(interpolateFromObjId)
-        interpolateTo   = nodeCache.featureByObjId(interpolateToObjId)
-        interpolateFromLevel = nodeCache.attrAsFloat( interpolateFrom, u'level')
-        interpolateToLevel = nodeCache.attrAsFloat( interpolateTo, u'level')
+        interpolateTo = nodeCache.featureByObjId(interpolateToObjId)
+        interpolateFromLevel = nodeCache.attrAsFloat(interpolateFrom, u'level')
+        interpolateToLevel = nodeCache.attrAsFloat(interpolateTo, u'level')
         
         if fromPos == 0 and toPos == 1:
-            fromLevel   = nodeCache.attrAsFloat( fromPoint, u'level' )
-            toLevel     = nodeCache.attrAsFloat( toPoint, u'level')
+            fromLevel = nodeCache.attrAsFloat(fromPoint, u'level')
+            toLevel = nodeCache.attrAsFloat(toPoint, u'level')
         else:
             try:
-                fromLevel = interpolateFromLevel + ( fromPos * (interpolateToLevel-interpolateFromLevel) )
+                fromLevel = interpolateFromLevel + (fromPos * (interpolateToLevel - interpolateFromLevel))
             except TypeError:
                 fromLevel = None
             try:
-                toLevel   = interpolateFromLevel + ( toPos * (interpolateToLevel-interpolateFromLevel) )
+                toLevel = interpolateFromLevel + (toPos * (interpolateToLevel - interpolateFromLevel))
             except TypeError:
                 toLevel = None
                 
         self.fromLevel = interpolateFromLevel
         self.toLevel = interpolateToLevel
         
-        self.reachPoints[fromPointId]['offset']  = startOffset
-        self.reachPoints[fromPointId]['level']   = fromLevel
-        self.reachPoints[fromPointId]['pos']     = fromPos
-        self.reachPoints[fromPointId]['objId']   = nodeCache.attrAsUnicode( fromPoint, u'obj_id' )
+        self.reachPoints[fromPointId]['offset'] = startOffset
+        self.reachPoints[fromPointId]['level'] = fromLevel
+        self.reachPoints[fromPointId]['pos'] = fromPos
+        self.reachPoints[fromPointId]['objId'] = nodeCache.attrAsUnicode(fromPoint, u'obj_id')
         
-        self.reachPoints[toPointId]['offset']    = endOffset
-        self.reachPoints[toPointId]['level']     = toLevel
-        self.reachPoints[toPointId]['pos']       = toPos
-        self.reachPoints[toPointId]['objId']     = nodeCache.attrAsUnicode( toPoint, u'obj_id' )
+        self.reachPoints[toPointId]['offset'] = endOffset
+        self.reachPoints[toPointId]['level'] = toLevel
+        self.reachPoints[toPointId]['pos'] = toPos
+        self.reachPoints[toPointId]['objId'] = nodeCache.attrAsUnicode(toPoint, u'obj_id')
         
     
     def asDict(self):
@@ -127,7 +137,7 @@ class QgepProfileEdgeElement(QgepProfileElement):
         toLevel = min([p['level'] for p in self.reachPoints.values()])
         
         el = QgepProfileElement.asDict(self)
-        el.update( \
+        el.update(\
         { \
           'startOffset':   startOffset, \
           'endOffset':     endOffset, \
@@ -138,13 +148,13 @@ class QgepProfileEdgeElement(QgepProfileElement):
           'objId':         self.objId, \
           'gid':           self.gid, \
           'reachPoints':   self.reachPoints.values() \
-        } )
+        })
         return el
 
-#===============================================================================
-# Define the profile for the REACH element
-#===============================================================================
 class QgepProfileReachElement(QgepProfileEdgeElement):
+    '''
+    Define the profile for the REACH element    
+    '''
     usageCurrent = None
     width = None
     length = None
@@ -152,21 +162,30 @@ class QgepProfileReachElement(QgepProfileEdgeElement):
     detailGeometry = None
     material = None
     
-    def __init__(self, fromPointId, toPointId, reachId, nodeCache, edgeCache, startOffset, endOffset ):
-        QgepProfileEdgeElement.__init__( self, fromPointId, toPointId, reachId, nodeCache, edgeCache, startOffset, endOffset, 'reach' )
-        reach   = edgeCache.featureById( reachId )
+    def __init__(self, fromPointId, toPointId, reachId, nodeCache, edgeCache, startOffset, endOffset):
+        '''
+        @param fromPointId: The id of the from node of this edge
+        @param toPointId:   The id of the to node of this edge
+        @param edgeId:      The id of this edge
+        @param nodeCache:   A reference to the cache where the nodes are cached
+        @param edgeCache:   A reference to the cache where the edges are cached
+        @param startOffset: The offset of the start node relative to the start of the profile
+        @param endOffset:   The offset of the end node relative to the start of the profile
+        '''
+        QgepProfileEdgeElement.__init__(self, fromPointId, toPointId, reachId, nodeCache, edgeCache, startOffset, endOffset, 'reach')
+        reach = edgeCache.featureById(reachId)
         self.feat = reach
         
         try:
-            self.width = edgeCache.attrAsFloat( reach, u'depth' ) / 1000
+            self.width = edgeCache.attrAsFloat(reach, u'depth') / 1000
         except TypeError:
             pass
             
-        self.usageCurrent = edgeCache.attrAsFloat( reach, u'usage_current' )
-        self.material = edgeCache.attrAsUnicode( reach, u'material' )
-        self.length = edgeCache.attrAsFloat( reach, u'length_full' )
+        self.usageCurrent = edgeCache.attrAsFloat(reach, u'usage_current')
+        self.material = edgeCache.attrAsUnicode(reach, u'material')
+        self.length = edgeCache.attrAsFloat(reach, u'length_full')
 
-        self.detailGeometry = edgeCache.attrAsGeometry( reach, u'detail_geometry' )
+        self.detailGeometry = edgeCache.attrAsGeometry(reach, u'detail_geometry')
         
         try:
             self.gradient = (self.fromLevel - self.toLevel) / self.length
@@ -177,23 +196,26 @@ class QgepProfileReachElement(QgepProfileEdgeElement):
         el = QgepProfileEdgeElement.asDict(self)
         
         # Global length: whole reach
-        el.update( \
+        el.update(\
         { \
           'usageCurrent': self.usageCurrent, \
           'width_m':       self.width, \
           'gradient':     self.gradient, \
           'length':       self.length, \
           'material':     self.material \
-        } )
+        })
         return el
     
-    def highlight( self, rubberband ):
-        rubberband.setToGeometry( self.detailGeometry, None )
+    def highlight(self, rubberband):
+        rubberband.setToGeometry(self.detailGeometry, None)
     
-#===============================================================================
-# Define the profile element for the SPECIAL STRUCTURE
-#===============================================================================
+    
 class QgepProfileSpecialStructureElement(QgepProfileEdgeElement):
+    '''
+    The profile element for STRUCTURE elements.
+    It's also responsible for manholes, as there is no particular
+    reason to distinguish these here.
+    '''
     bottomLevel = None
     coverLevel = None
     description = None
@@ -201,19 +223,31 @@ class QgepProfileSpecialStructureElement(QgepProfileEdgeElement):
     detailGeometry = None
     
     def __init__(self, fromPointId, toPointId, edgeId, nodeCache, edgeCache, startOffset, endOffset):
-        QgepProfileEdgeElement.__init__( self, fromPointId, toPointId, edgeId, nodeCache, edgeCache, startOffset, endOffset, 'special_structure' )
-        specialStructure = edgeCache.featureById( edgeId )
+        QgepProfileEdgeElement.__init__(self, fromPointId, toPointId, edgeId, nodeCache, edgeCache, startOffset, endOffset, 'special_structure')
+        specialStructure = edgeCache.featureById(edgeId)
         self.feat = specialStructure
         
-        self.addSegment( fromPointId, toPointId, edgeId, nodeCache, edgeCache, startOffset, endOffset )
+        self.addSegment(fromPointId, toPointId, edgeId, nodeCache, edgeCache, startOffset, endOffset)
 
     def addSegment(self, fromPointId, toPointId, edgeId, nodeCache, edgeCache, startOffset, endOffset):
-        QgepProfileEdgeElement.addSegment(self, fromPointId, toPointId, edgeId, nodeCache, edgeCache, startOffset, endOffset)
-        fromPoint = nodeCache.featureById( fromPointId )
-        toPoint = nodeCache.featureById( toPointId )
-        specialStructure = edgeCache.featureById( edgeId )
+        '''
+        Adds a segment to the special structure. There are normally two parts:
+        From the start to the wastewater node and from there to the end
         
-        self.bottomLevel  = edgeCache.attrAsFloat( specialStructure, u'bottom_level' )
+        @param fromPointId: The id of the from node of this edge
+        @param toPointId:   The id of the to node of this edge
+        @param edgeId:      The id of this edge
+        @param nodeCache:   A reference to the cache where the nodes are cached
+        @param edgeCache:   A reference to the cache where the edges are cached
+        @param startOffset: The offset of the start node relative to the start of the profile
+        @param endOffset:   The offset of the end node relative to the start of the profile
+        '''
+        QgepProfileEdgeElement.addSegment(self, fromPointId, toPointId, edgeId, nodeCache, edgeCache, startOffset, endOffset)
+        fromPoint = nodeCache.featureById(fromPointId)
+        toPoint = nodeCache.featureById(toPointId)
+        specialStructure = edgeCache.featureById(edgeId)
+        
+        self.bottomLevel = edgeCache.attrAsFloat(specialStructure, u'bottom_level')
         
         definingWasteWaterNode = None
         
@@ -226,91 +260,95 @@ class QgepProfileSpecialStructureElement(QgepProfileEdgeElement):
         
         # There should always be a wastewater node but checking does not hurt
         if definingWasteWaterNode is not None:
-            self.coverLevel  = nodeCache.attrAsFloat( definingWasteWaterNode, u'cover_level' )
-            self.description  = nodeCache.attrAsUnicode( definingWasteWaterNode, u'description' )
-            self.usageCurrent = nodeCache.attrAsFloat( definingWasteWaterNode, u'usage_current' )
+            self.coverLevel = nodeCache.attrAsFloat(definingWasteWaterNode, u'cover_level')
+            self.description = nodeCache.attrAsUnicode(definingWasteWaterNode, u'description')
+            self.usageCurrent = nodeCache.attrAsFloat(definingWasteWaterNode, u'usage_current')
             
-            self.detailGeometry = nodeCache.attrAsGeometry( definingWasteWaterNode, u'detail_geometry' )
+            self.detailGeometry = nodeCache.attrAsGeometry(definingWasteWaterNode, u'detail_geometry')
 
     def highlight(self, rubberband):
-        rubberband.setToGeometry( self.detailGeometry, None )
+        rubberband.setToGeometry(self.detailGeometry, None)
         
     def asDict(self):
             el = QgepProfileEdgeElement.asDict(self)
-            el.update( \
+            el.update(\
             { \
               'bottomLevel':  self.bottomLevel, \
               'description':  self.description, \
               'coverLevel':   self.coverLevel, \
               'usageCurrent': self.usageCurrent, \
               'wwNodeOffset': self.wwNodeOffset \
-            } )
+            })
             return el
 
-#===============================================================================
-# A node (wastewater node or reach point)
-#===============================================================================
 class QgepProfileNodeElement(QgepProfileElement):
+    '''
+    A node (wastewater node or reach point)
+    '''
     coverLevel = None
     offset = None
     
     def __init__(self, pointId, nodeCache, offset):
-        QgepProfileElement.__init__(self,'node')
+        QgepProfileElement.__init__(self, 'node')
         
-        point = nodeCache.featureById( pointId )
+        point = nodeCache.featureById(pointId)
         
         self.offset = offset
-        self.coverLevel = nodeCache.attrAsFloat( point, u'cover_level' )
+        self.coverLevel = nodeCache.attrAsFloat(point, u'cover_level')
         
     def asDict(self):
         el = QgepProfileElement.asDict(self)
-        el.update( \
+        el.update(\
         { \
           'offset': self.offset, \
           'coverLevel': self.coverLevel \
-        } )
+        })
         return el
 
-#===============================================================================
-# Manages a profile of reaches and special structures
-#===============================================================================
 class QgepProfile():
+    '''
+    Manages a profile of reaches and special structures
+    '''
     rubberband = None
     
-    def __init__( self, elements={} ):
+    def __init__(self, elements={}):
         self.elements = elements
         
     def setRubberband(self, rubberband):
         self.rubberband = rubberband
 
-    def copy( self ):
-        newProfile = QgepProfile( self.elements.copy() )
-        newProfile.setRubberband( self.rubberband )
+    def copy(self):
+        newProfile = QgepProfile(self.elements.copy())
+        newProfile.setRubberband(self.rubberband)
         return newProfile
 
     def __getitem__(self, key):
         return self.elements[key]
     
     def hasElement(self, key):
-        return self.elements.has_key( key)
+        return self.elements.has_key(key)
     
-    def addElement( self, key, elem ):
+    def addElement(self, key, elem):
         self.elements[key] = elem
 
     def getElements(self):
         return self.elements.values()
 
     def asJson(self):
-        return json.dumps( [element.asDict() for element in self.elements.values()] )
+        '''
+        Prepare profile as JSON string, so the javascript responsible for the
+        svg will know what to do with the data.
+        '''
+        return json.dumps([element.asDict() for element in self.elements.values()])
 
     def reset(self):
+        '''
+        Reset the profile ( forget about all elements )
+        '''
         self.elements = {}
         
-    def highlight( self, objId ):
-        try:
-            if objId is not None:
-                self.elements[objId].highlight( self.rubberband )
-            else:
-                self.rubberband.reset()
-        except KeyError, AttributeError:
-            pass
+    def highlight(self, objId):
+        if objId is not None:
+            self.elements[objId].highlight(self.rubberband)
+        else:
+            self.rubberband.reset()
