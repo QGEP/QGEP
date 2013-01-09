@@ -33,6 +33,7 @@ from ui.qgepplotsvgwidget import QgepPlotSVGWidget
 from ui.qgepsettingsdialog import QgepSettingsDialog
 import resources #@UnusedImport needed to make icons etc. appear
 import logging, os
+from utils.QgepQgsLogHandler import QgepQgsLogHandler
 
 LOGFORMAT     = '%(asctime)s:%(levelname)s:%(module)s:%(message)s'
 
@@ -60,7 +61,7 @@ class QgepPlugin:
         self.initLogger()
         
     def initLogger( self ):
-        self.logger = logging.getLogger( 'qgep' )
+        self.logger = logging.getLogger( __package__ )
         
         settings = QSettings()
         
@@ -70,7 +71,9 @@ class QgepPlugin:
         if hasattr( self.logger, 'qgepFileHandler' ):
             self.logger.removeHandler( self.logger.qgepFileHandler )
             del self.logger.qgepFileHandler
-                    
+
+        self.logger.addHandler( QgepQgsLogHandler() )
+        
         if logfile.isNull() is not True:
             hLog = logging.FileHandler( unicode( logfile.toString() ) )
             fmt = logging.Formatter( LOGFORMAT )
@@ -78,7 +81,6 @@ class QgepPlugin:
             self.logger.addHandler( hLog )
             self.logger.fileHandler = hLog
 
-                
         if 'Debug'     == loglevel:
             self.logger.setLevel( logging.DEBUG )
         elif 'Info'    == loglevel:

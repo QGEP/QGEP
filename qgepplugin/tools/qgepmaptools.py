@@ -37,7 +37,7 @@ import logging
 class QgepMapTool( QgsMapTool ):
     
     highLightedPoints = []
-    logger = logging.getLogger( 'qgep.' + __name__ )
+    logger = logging.getLogger( __name__ )
     
     def __init__( self, canvas, button ):
         QgsMapTool.__init__( self, canvas )
@@ -169,7 +169,12 @@ class QgepProfileMapTool( QgepMapTool ):
     def appendProfile( self, vertices, edges ):
         self.logger.debug( 'Append profile' )
         self.logger.info( ' * ' + `len( vertices )` + ' vertices' )
+        for v in vertices:
+            self.logger.debug( '   *' + `v`)
         self.logger.info( ' * ' + `len( edges )` + ' edges')
+        for e in edges:
+            self.logger.debug( '   *' + `e`)
+            
         # Fetch all the needed edges in one batch
         edgeLayer = self.networkAnalyzer.getReachLayer()
         edgeAttrs = edgeLayer.dataProvider().attributeIndexes()
