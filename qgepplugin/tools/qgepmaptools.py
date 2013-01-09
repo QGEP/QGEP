@@ -26,7 +26,7 @@
 from PyQt4.QtCore import Qt, QPoint, pyqtSignal, QVariant, QSettings
 from PyQt4.QtGui import QCursor, QColor
 from qgis.core import QgsGeometry, QgsPoint
-from qgis.gui import QgsMapTool, QgsRubberBand, QgsVertexMarker
+from qgis.gui import QgsMapTool, QgsRubberBand, QgsVertexMarker, QgsMessageBar
 from qgepprofile import * #@UnusedWildImport
 import logging
 
@@ -39,11 +39,12 @@ class QgepMapTool( QgsMapTool ):
     highLightedPoints = []
     logger = logging.getLogger( __name__ )
     
-    def __init__( self, canvas, button ):
-        QgsMapTool.__init__( self, canvas )
-        self.canvas = canvas
+    def __init__( self, iface, button ):
+        QgsMapTool.__init__( self, iface.mapCanvas() )
+        self.canvas = iface.mapCanvas()
         self.cursor = QCursor( Qt.CrossCursor )
         self.button = button
+        self.msgBar = iface.messageBar()
 
         settings = QSettings()
         currentProfileColor = settings.value( "/QGEP/CurrentProfileColor", QVariant( '#FF9500' ) ).toString()
@@ -267,6 +268,9 @@ class QgepProfileMapTool( QgepMapTool ):
                 pf = self.findPath( self.selectedPathPoints[-1][0], snappedPoint.snappedAtGeometry )
                 if pf:
                     self.selectedPathPoints.append( ( snappedPoint.snappedAtGeometry, QgsPoint( snappedPoint.snappedVertex ) ) )
+                else:
+                    msg = self.msgBar.createMessage( 'No path found' )
+                    self.msgBar.pushWidget( msg, QgsMessageBar.WARNING )
             else:
                 self.selectedPathPoints.append( ( snappedPoint.snappedAtGeometry, QgsPoint( snappedPoint.snappedVertex ) ) )
 

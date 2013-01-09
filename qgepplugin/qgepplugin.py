@@ -145,12 +145,12 @@ class QgepPlugin:
         # Init the object maintaining the network
         self.networkAnalyzer = QgepGraphManager( self.iface )
         # Create the map tool for profile selection
-        self.profileTool = QgepProfileMapTool( self.canvas, self.profileAction, self.networkAnalyzer )
+        self.profileTool = QgepProfileMapTool( self.iface, self.profileAction, self.networkAnalyzer )
         self.profileTool.profileChanged.connect( self.onProfileChanged )
         
-        self.upstreamTreeTool = QgepTreeMapTool( self.canvas, self.upstreamAction, self.networkAnalyzer )
+        self.upstreamTreeTool = QgepTreeMapTool( self.iface, self.upstreamAction, self.networkAnalyzer )
         self.upstreamTreeTool.setDirection( "upstream" )
-        self.downstreamTreeTool = QgepTreeMapTool( self.canvas, self.downstreamAction, self.networkAnalyzer )
+        self.downstreamTreeTool = QgepTreeMapTool( self.iface, self.downstreamAction, self.networkAnalyzer )
         self.downstreamTreeTool.setDirection( "downstream" )
         
         # Connect to events that can change layers
