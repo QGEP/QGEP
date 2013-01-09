@@ -180,19 +180,19 @@ class QgepPlugin:
         # Set the profile map tool
         self.profileTool.setActive()
     
-    def upstreamToolClicked(self):
+    def upstreamToolClicked( self ):
         '''
         Is executed when the user clicks the upstream search tool
         '''
         self.upstreamTreeTool.setActive()
         
-    def downstreamToolClicked(self):
+    def downstreamToolClicked( self ):
         '''
         Is executed when the user clicks the downstream search tool
         '''
         self.downstreamTreeTool.setActive()
 
-    def openDock(self):
+    def openDock( self ):
         '''
         Opens the dock
         '''
@@ -314,7 +314,8 @@ class QgepPlugin:
     def highlightProfileElement( self, objId ):
         if self.profile is not None:
             self.profile.highlight( unicode( objId ) )
-            
+    
+    @pyqtSlot()
     def unhighlightProfileElement( self ):
         if self.profile is not None:
             self.profile.highlight( None )
@@ -323,6 +324,6 @@ class QgepPlugin:
         from ui.dlgabout import DlgAbout
         DlgAbout( self.iface.mainWindow() ).exec_()
 
-    def showSettings(self):
+    def showSettings( self ):
         settingsDlg = QgepSettingsDialog( self.iface.mainWindow() )
         settingsDlg.exec_()
