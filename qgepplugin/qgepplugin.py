@@ -33,7 +33,8 @@ from ui.qgepplotsvgwidget import QgepPlotSVGWidget
 from ui.qgepsettingsdialog import QgepSettingsDialog
 import resources #@UnusedImport needed to make icons etc. appear
 import logging, os
-from utils.QgepQgsLogHandler import QgepQgsLogHandler
+from utils.qgeplogging import QgepQgsLogHandler
+from utils.translation import setupI18n
 
 LOGFORMAT     = '%(asctime)s:%(levelname)s:%(module)s:%(message)s'
 
@@ -60,6 +61,7 @@ class QgepPlugin:
         self.canvas = iface.mapCanvas()
         
         self.initLogger()
+        setupI18n()
         
     def initLogger( self ):
         '''

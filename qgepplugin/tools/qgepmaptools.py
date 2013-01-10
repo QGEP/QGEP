@@ -30,11 +30,10 @@ from qgis.gui import QgsMapTool, QgsRubberBand, QgsVertexMarker, QgsMessageBar
 from qgepprofile import * #@UnusedWildImport
 import logging
 
-#===============================================================================
-# Base class for all the map tools 
-#===============================================================================
-
 class QgepMapTool( QgsMapTool ):
+    '''
+    Base class for all the map tools
+    '''
     
     highLightedPoints = []
     logger = logging.getLogger( __name__ )
@@ -92,13 +91,12 @@ class QgepMapTool( QgsMapTool ):
         except AttributeError:
             pass
 
-#===============================================================================
-# The map tool used for PROFILE
-# 
-# Allows to find the shortest path between several nodes.
-#===============================================================================
-
 class QgepProfileMapTool( QgepMapTool ):
+    '''
+    The map tool used for PROFILE
+    
+    Allows to find the shortest path between several nodes.
+    '''
     profileChanged = pyqtSignal( object )
     profile = QgepProfile()
     segmentOffset = 0
@@ -126,31 +124,34 @@ class QgepProfileMapTool( QgepMapTool ):
         
         self.profile.setRubberband( self.rbHighlight )
 
-    #===============================================================================
-    # activates this map tool
-    #===============================================================================
     def setActive( self ):
+        '''
+        activates this map tool
+        '''
         self.saveTool = self.canvas.mapTool()
         self.canvas.setMapTool( self )
 
-    #===============================================================================
-    # Called whenever this map tool is deactivated.
-    # Used to clean up code
-    #===============================================================================
     def deactivate(self):
+        '''
+        Called whenever this map tool is deactivated.
+        Used to clean up code
+        '''
         QgepMapTool.deactivate(self)
         self.rubberBand.reset()
         self.rbHelperLine.reset()
         self.selectedPathPoints = []
         self.pathPolyline = []
         
-    #=======================================================================
-    # Tries to find the shortest path between pStart and pEnd.
-    # If it finds a path:
-    #  * The path is visualized with a QgsRubberband
-    #  * The profile plot is updated to represent the current path
-    #=======================================================================
     def findPath( self, pStart, pEnd ):
+        '''
+        Tries to find the shortest path between pStart and pEnd.
+        If it finds a path:
+         * The path is visualized with a QgsRubberband
+         * The profile plot is updated to represent the current path
+    
+        @param pStart: The id of the start point of the path 
+        @param pEnd:   The id of the end point of the path
+        '''
         backupCursor = self.canvas.cursor()
         self.canvas.setCursor(Qt.WaitCursor)
         #try:
@@ -164,10 +165,13 @@ class QgepProfileMapTool( QgepMapTool ):
         else:
             return False
         
-    #=======================================================================
-    # Appends to the current profile
-    #=======================================================================
     def appendProfile( self, vertices, edges ):
+        '''
+        Appends to the current profile
+        
+        @param vertices: A collection of vertices to append
+        @param edges:    A collection of edges which connect the vertices
+        '''
         self.logger.debug( 'Append profile' )
         self.logger.info( ' * ' + `len( vertices )` + ' vertices' )
         for v in vertices:
@@ -236,10 +240,12 @@ class QgepProfileMapTool( QgepMapTool ):
         else:
             return False
 
-    #===========================================================================
-    # Mouse moved: update helper line
-    #===========================================================================
     def mouseMoved( self, event ):
+        '''
+        Mouse moved: update helper line
+        
+        @param event: The mouse event with coordinates and all
+        '''
         if len( self.selectedPathPoints ) > 0:
             self.rbHelperLine.reset()
             for point in self.selectedPathPoints:
@@ -247,20 +253,24 @@ class QgepProfileMapTool( QgepMapTool ):
             mousePos = self.canvas.getCoordinateTransform().toMapCoordinates( event.pos().x(), event.pos().y() )
             self.rbHelperLine.addPoint( mousePos )
 
-    #===========================================================================
-    # Cancel any ongoing routing selection
-    #===========================================================================
     def rightClicked( self, event ):
+        '''
+        Cancel any ongoing path selection
+        
+        @param event: The mouse event with coordinates and all
+        '''
         self.selectedPathPoints = []
         self.pathPolyline = []
         self.rbHelperLine.reset()
         self.profile.reset()
         self.segmentOffset = 0
 
-    #===========================================================================
-    # Select startpoint / endpoint
-    #===========================================================================
     def leftClicked( self, event ):
+        '''
+        Select startpoint / intermediate point / endpoint
+        
+        @param event: The mouse event with coordinates and all
+        '''
         snappedPoint = self.networkAnalyzer.snapPoint( event )
         
         if snappedPoint is not None:
@@ -274,11 +284,11 @@ class QgepProfileMapTool( QgepMapTool ):
             else:
                 self.selectedPathPoints.append( ( snappedPoint.snappedAtGeometry, QgsPoint( snappedPoint.snappedVertex ) ) )
 
-#===============================================================================
-# The map tool used to find TREES 
-#===============================================================================
 
 class QgepTreeMapTool( QgepMapTool ):
+    '''
+    The map tool used to find TREES (upstream or downstream)
+    '''
     direction = "downstream"
     
     def __init__( self, canvas, button, networkAnalyzer ):

@@ -25,7 +25,7 @@
 
 from ui_qgepsettingsdialog import Ui_QgepSettingsDialog
 from PyQt4.QtCore import QSettings, pyqtSlot, QVariant
-from PyQt4.QtGui import QDialog, QFileDialog, QColorDialog
+from PyQt4.QtGui import QDialog, QFileDialog, QColorDialog, QApplication
 from qgis.core import QgsMapLayerRegistry, QgsProject
 import logging
 
@@ -141,28 +141,28 @@ class QgepSettingsDialog(QDialog, Ui_QgepSettingsDialog):
 
     @pyqtSlot()
     def onChooseProfileTemplateFileClicked(self):
-        fileName = QFileDialog.getOpenFileName(self, self.tr( 'Select profile template' ), '', self.tr( 'HTML files(*.htm *.html)' ) )
+        fileName = QFileDialog.getOpenFileName(self, QApplication.translate( 'Select profile template' ), '', QApplication.translate( 'HTML files(*.htm *.html)' ) )
         self.mProfileTemplateFile.setText( fileName )
         
     @pyqtSlot()
     def onChooseLogFileClicked(self):
-        fileName = QFileDialog.getSaveFileName(self, self.tr( 'Select log file' ), '', self.tr( 'Log files(*.log)' ) )
+        fileName = QFileDialog.getSaveFileName(self, QApplication.translate( 'Select log file' ), '', QApplication.translate( 'Log files(*.log)' ) )
         self.mLogFile.setText( fileName )
         
     @pyqtSlot()
     def onHelperLineColorButtonClicked( self ):
-        newColor = QColorDialog.getColor( self.mHelperLineColorButton.color(), None, self.tr( 'Helper line color' ) )
+        newColor = QColorDialog.getColor( self.mHelperLineColorButton.color(), None, QApplication.translate( 'Helper line color' ) )
         if ( newColor.isValid() ):
             self.mHelperLineColorButton.setColor( newColor )
         
     @pyqtSlot()
     def onCurrentProfileColorButtonClicked( self ):
-        newColor = QColorDialog.getColor( self.mCurrentProfileColorButton.color(), None, self.tr( 'Current profile color' ) )
+        newColor = QColorDialog.getColor( self.mCurrentProfileColorButton.color(), None, QApplication.translate( 'Current profile color' ) )
         if ( newColor.isValid() ):
             self.mHelperLineColorButton.setColor( newColor )
         
     @pyqtSlot()
     def onHighlightColorButtonClicked( self ):
-        newColor = QColorDialog.getColor( self.mHighlightColorButton.color(), None, self.tr( 'Feature highlight color' ) )
+        newColor = QColorDialog.getColor( self.mHighlightColorButton.color(), None, QApplication.translate( 'Feature highlight color' ) )
         if ( newColor.isValid() ):
             self.mHelperLineColorButton.setColor( newColor )

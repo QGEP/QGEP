@@ -221,6 +221,7 @@ class QgepProfileSpecialStructureElement(QgepProfileEdgeElement):
     description = None
     wwNodeOffset = None
     detailGeometry = None
+    type = None
     
     def __init__(self, fromPointId, toPointId, edgeId, nodeCache, edgeCache, startOffset, endOffset):
         QgepProfileEdgeElement.__init__(self, fromPointId, toPointId, edgeId, nodeCache, edgeCache, startOffset, endOffset, 'special_structure')
@@ -247,7 +248,7 @@ class QgepProfileSpecialStructureElement(QgepProfileEdgeElement):
         toPoint = nodeCache.featureById(toPointId)
         specialStructure = edgeCache.featureById(edgeId)
         
-        self.bottomLevel = edgeCache.attrAsFloat(specialStructure, u'bottom_level')
+        self.bottomLevel = edgeCache.attrAsFloat( specialStructure, u'bottom_level' )
         
         definingWasteWaterNode = None
         
@@ -260,11 +261,11 @@ class QgepProfileSpecialStructureElement(QgepProfileEdgeElement):
         
         # There should always be a wastewater node but checking does not hurt
         if definingWasteWaterNode is not None:
-            self.coverLevel = nodeCache.attrAsFloat(definingWasteWaterNode, u'cover_level')
-            self.description = nodeCache.attrAsUnicode(definingWasteWaterNode, u'description')
-            self.usageCurrent = nodeCache.attrAsFloat(definingWasteWaterNode, u'usage_current')
-            
-            self.detailGeometry = nodeCache.attrAsGeometry(definingWasteWaterNode, u'detail_geometry')
+            self.nodeType       = nodeCache.attrAsUnicode( definingWasteWaterNode, u'node_type' )
+            self.coverLevel     = nodeCache.attrAsFloat( definingWasteWaterNode, u'cover_level' )
+            self.description    = nodeCache.attrAsUnicode( definingWasteWaterNode, u'description' )
+            self.usageCurrent   = nodeCache.attrAsFloat( definingWasteWaterNode, u'usage_current' )
+            self.detailGeometry = nodeCache.attrAsGeometry( definingWasteWaterNode, u'detail_geometry' )
 
     def highlight(self, rubberband):
         rubberband.setToGeometry(self.detailGeometry, None)
@@ -273,11 +274,12 @@ class QgepProfileSpecialStructureElement(QgepProfileEdgeElement):
             el = QgepProfileEdgeElement.asDict(self)
             el.update(\
             { \
-              'bottomLevel':  self.bottomLevel, \
-              'description':  self.description, \
-              'coverLevel':   self.coverLevel, \
+              'bottomLevel' : self.bottomLevel, \
+              'description' : self.description, \
+              'coverLevel'  : self.coverLevel, \
               'usageCurrent': self.usageCurrent, \
-              'wwNodeOffset': self.wwNodeOffset \
+              'wwNodeOffset': self.wwNodeOffset, \
+              'nodeType'    : self.nodeType \
             })
             return el
 
