@@ -43,7 +43,7 @@ then
     echo "Updating .ts files for .py and .ui files"
     pylupdate4 -noobsolete $FILES -ts i18n/qgepplugin_$LOCALE.ts
     echo "Updating .ts files for .js files"
-    lupdate-qt4 svgprofile -recursive -no-obsolete -extensions js -ts i18n/qgepplugin-js_de.ts
+    lupdate-qt4 svgprofile -recursive -no-obsolete -extensions js -ts i18n/qgepplugin-js_$LOCALE.ts
   done
 else
   echo "No need to edit any translation files (.ts) because no python files has been updated since the last update translation. "
