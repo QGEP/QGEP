@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="2.0" language="de" sourcelanguage="en">
+<!DOCTYPE TS>
+<TS version="2.0" language="de" sourcelanguage="en">
 <context>
     <name>DlgAbout</name>
     <message>
         <location filename="ui_dlgabout.py" line="82"/>
         <source>Dialog</source>
-        <translation type="unfinished">Dialog</translation>
+        <translation>Dialog</translation>
     </message>
     <message>
         <location filename="ui_dlgabout.py" line="83"/>
         <source>$PLUGIN_DESCRIPTION$</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="ui_dlgabout.py" line="84"/>
@@ -39,7 +40,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="ui_dlgabout.py" line="104"/>
         <source>QGEP</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -47,42 +48,42 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="ui_qgepdockwidget.py" line="120"/>
         <source>QGEP</source>
-        <translation type="unfinished"></translation>
+        <translation>QGEP</translation>
     </message>
     <message>
         <location filename="ui_qgepdockwidget.py" line="125"/>
         <source>&amp;Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Profil</translation>
     </message>
     <message>
         <location filename="ui_qgepdockwidget.py" line="121"/>
         <source>Add reaches to selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Haltungen zur Selektion hinzufügen</translation>
     </message>
     <message>
         <location filename="ui_qgepdockwidget.py" line="122"/>
         <source>Perform calculation</source>
-        <translation type="unfinished"></translation>
+        <translation>Berechnung ausführen</translation>
     </message>
     <message>
         <location filename="ui_qgepdockwidget.py" line="123"/>
         <source>Print</source>
-        <translation type="unfinished"></translation>
+        <translation>Drucken</translation>
     </message>
     <message>
         <location filename="ui_qgepdockwidget.py" line="124"/>
         <source>10x</source>
-        <translation type="unfinished"></translation>
+        <translation>10x</translation>
     </message>
     <message>
         <location filename="ui_qgepdockwidget.py" line="127"/>
         <source>Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>Werkzeuge</translation>
     </message>
     <message>
         <location filename="ui_qgepdockwidget.py" line="126"/>
         <source>Recreate graph</source>
-        <translation type="unfinished"></translation>
+        <translation>Graph neu berechnen</translation>
     </message>
 </context>
 <context>
@@ -90,22 +91,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="qgepsettingsdialog.ui" line="235"/>
         <source>Debug</source>
-        <translation type="unfinished"></translation>
+        <translation>Debug</translation>
     </message>
     <message>
         <location filename="qgepsettingsdialog.ui" line="240"/>
         <source>Info</source>
-        <translation type="unfinished"></translation>
+        <translation>Info</translation>
     </message>
     <message>
         <location filename="qgepsettingsdialog.ui" line="245"/>
         <source>Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Warnung</translation>
     </message>
     <message>
         <location filename="qgepsettingsdialog.py" line="127"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Error</translation>
     </message>
     <message>
         <location filename="qgepsettingsdialog.ui" line="30"/>
@@ -140,77 +141,77 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="qgepsettingsdialog.ui" line="133"/>
         <source>Special structures:</source>
-        <translation type="unfinished"></translation>
+        <translation>Spezialbauwerke:</translation>
     </message>
     <message>
         <location filename="qgepsettingsdialog.ui" line="143"/>
         <source>Graph nodes:</source>
-        <translation type="unfinished"></translation>
+        <translation>Knoten:</translation>
     </message>
     <message>
         <location filename="qgepsettingsdialog.ui" line="156"/>
         <source>Graph edges:</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbindungen:</translation>
     </message>
     <message>
         <location filename="qgepsettingsdialog.ui" line="115"/>
         <source>Project Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Projekteinstellungen</translation>
     </message>
     <message>
         <location filename="qgepsettingsdialog.ui" line="171"/>
         <source>Enables developer tools on the profile widget. Reload and Inspect options are shown. The dock needs to be reopened.</source>
-        <translation type="unfinished"></translation>
+        <translation>Schaltet die Entwicklerwerkzeuge für das Profilwidget frei. &quot;Neu laden&quot; und &quot;Prüfen&quot; werden im Kontextmenü aktiviert. Der Dialog muss neu geöffnet werden.</translation>
     </message>
     <message>
         <location filename="qgepsettingsdialog.ui" line="174"/>
         <source>Developer mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Entwicklermodus</translation>
     </message>
     <message>
         <location filename="qgepsettingsdialog.ui" line="181"/>
         <source>Layout</source>
-        <translation type="unfinished"></translation>
+        <translation>Anzeige</translation>
     </message>
     <message>
         <location filename="qgepsettingsdialog.ui" line="190"/>
         <source>Override default profile template</source>
-        <translation type="unfinished">Standartprofilvorlage überschreiben</translation>
+        <translation>Standartprofilvorlage überschreiben</translation>
     </message>
     <message>
         <location filename="qgepsettingsdialog.ui" line="286"/>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="qgepsettingsdialog.ui" line="218"/>
         <source>Logging</source>
-        <translation type="unfinished"></translation>
+        <translation>Loggen</translation>
     </message>
     <message>
         <location filename="qgepsettingsdialog.ui" line="227"/>
         <source>Log level</source>
-        <translation type="unfinished"></translation>
+        <translation>Log Level</translation>
     </message>
     <message>
         <location filename="qgepsettingsdialog.ui" line="250"/>
         <source>Critical</source>
-        <translation type="unfinished"></translation>
+        <translation>Kritisch</translation>
     </message>
     <message>
         <location filename="qgepsettingsdialog.ui" line="258"/>
         <source>Log to file</source>
-        <translation type="unfinished"></translation>
+        <translation>Log in Datei schreiben</translation>
     </message>
     <message>
         <location filename="qgepsettingsdialog.ui" line="267"/>
         <source>Log file</source>
-        <translation type="unfinished"></translation>
+        <translation>Logdatei</translation>
     </message>
     <message>
         <location filename="qgepsettingsdialog.ui" line="165"/>
         <source>Developer Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Entwickleroptionen</translation>
     </message>
 </context>
 </TS>
