@@ -13,7 +13,7 @@ LOCALES=( de fr )
 for LOCALE in "${LOCALES[@]}"
 do
     echo "Compiling translation for " $LOCALE
-    lrelease-qt4 i18n/qgepplugin_$LOCALE.ts
+    lrelease-qt4 i18n/qgepplugin_$LOCALE.ts i18n/qgepplugin-js_$LOCALE.ts -qm i18n/qgepplugin_$LOCALE.qm
 done
  
 echo "Cleaning files"
