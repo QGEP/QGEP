@@ -55,9 +55,22 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
             {
               profileProxy.onSpecialStructureMouseOver( d.objId );
 
+              var type = 'Unknown';
+
+              switch ( d.nodeType )
+              {
+                case 'manhole':
+                  type = 'Manhole';
+                  break;
+
+                case 'special_structure':
+                  type = 'Special Structure';
+                  break;
+              }
+
               return this.tooltip
                 .html(
-                  '<h2>Special structure ' + d.objId + '</h2><br/>' +
+                  '<h2>' + type + ': ' + d.objId + '</h2><br/>' +
                   '<strong>Cover level:</strong> '  + this.formatMeters( d.coverLevel ) + '<br/>' +
                   '<strong>Bottom level:</strong> ' + this.formatMeters( d.bottomLevel ) + '<br/>' +
                   '<strong>Entry level:</strong> ' + this.formatMeters( d.startLevel ) + '<br/>' +
