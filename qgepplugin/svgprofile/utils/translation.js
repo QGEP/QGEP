@@ -2,6 +2,7 @@
  * translation.js
  *
  * Copyright (C) 2013  Matthias Kuhn
+ * matthias [dot] kuhn [at] gmx [dot] ch
  *-----------------------------------------------------------
  *
  * licensed under the terms of GNU GPL 2
@@ -22,7 +23,10 @@
  *
  */
 
-/* Integrates closely with QGEP / Qt Linguist*/
+/* Integrates closely with QGEP / Qt Linguist
+ * Needs to be in the global namespace for lupdate-qt4 to recognize translation calls.
+ * uses a named! dojo object as context.
+ **/
 function qsTr ( sourceString, context )
 {
   "use strict";

@@ -2,6 +2,7 @@
  * specialStructure.js
  *
  * Copyright (C) 2013  Matthias Kuhn
+ * matthias [dot] kuhn [at] gmx [dot] ch
  *-----------------------------------------------------------
  *
  * licensed under the terms of GNU GPL 2
@@ -28,10 +29,10 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
   return declare( 'specialStructure', [ _ProfileElement ], {
     specialStructures: null, /* Reference to the current working set */
     line: d3.svg.line(),
-    tooltip: d3.select('body')
+    tooltip: d3.select( 'body' )
       .append( 'div' )
-      .attr('class', 'tooltip')
-      .attr('id', 'special-structure-tooltip'),
+      .attr( 'class', 'tooltip' )
+      .attr( 'id', 'special-structure-tooltip' ),
 
     constructor: function(/*Object*/ kwArgs)
     {

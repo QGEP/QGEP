@@ -1,8 +1,9 @@
 /**
- * Date: 28.10.12
- * Copyright(C) 2012 Matthias Kuhn 
- * matthias dot kuhn (at) gmx dot ch
+ * profile.js
  *
+ * Copyright (C) 2013  Matthias Kuhn
+ * matthias [dot] kuhn [at] gmx [dot] ch
+ *-----------------------------------------------------------
  *
  * licensed under the terms of GNU GPL 2
  *
@@ -17,8 +18,9 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License along
- * with this program; if not, write to the Free Software Foundation, Inc.,
+ * with this progsram; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ *
  */
 
 
