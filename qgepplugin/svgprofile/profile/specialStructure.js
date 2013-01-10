@@ -132,7 +132,7 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
       // see http://stackoverflow.com/questions/10129432/inheritance-in-data-joins
       // For some unknown reason selectAll does not do this!!
       var paths = this.specialStructures.select( 'path' );
-/*
+
       if ( duration > 0 )
       {
         texts = texts
@@ -143,7 +143,7 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
           .transition()
           .duration( duration );
       }
-*/
+
       texts
         .attr( 'transform',
           lang.hitch( this,
