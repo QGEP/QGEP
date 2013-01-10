@@ -18,5 +18,6 @@
         <file>svgprofile/print.css</file>
         <file>i18n/qgepplugin_de.qm</file>
         <file>i18n/qgepplugin_fr.qm</file>
+        <file>svgprofile/utils/translation.js</file>
     </qresource>
 </RCC>
