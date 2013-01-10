@@ -9,7 +9,7 @@
 define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], function ( declare, lang, _ProfileElement ) {
   "use strict";
 
-  return declare([ _ProfileElement ], {
+  return declare( 'reach', [ _ProfileElement ], {
     reaches: null,
     line: d3.svg.line(),
     tooltip: d3.select('body')
@@ -29,7 +29,7 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
     data: function( data )
     {
       this.reaches = this.svgProfile.selectAll('.reach')
-        .data( data, ƒ( 'gid' ) );
+        .data( data, extract( 'gid' ) );
 
       this.reaches
         .exit()
@@ -57,13 +57,13 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
 
               return this.tooltip
                 .html(
-                  '<h2>Reach ' + d.objId + '</h2><br/>' +
-                  '<strong>Material:</strong> ' + d.material + '<br/>' +
-                  '<strong>Width:</strong> ' + this.formatMeters( d.width_m, 0, 1000, 'mm' ) + '<br/>' +
-                  '<strong>Length:</strong> ' + this.formatMeters( d.length ) + '<br/>' +
-                  '<strong>Gradient:</strong> ' + Math.round( d.gradient * 10000 ) / 10 + ' ‰<br/>' +
-                  '<strong>Entry level:</strong> ' + this.formatMeters( d.startLevel ) + '<br/>' +
-                  '<strong>Exit level:</strong> ' + this.formatMeters( d.endLevel )
+                  '<h2>' + qsTr( 'Reach', this ) + ' ' + d.objId + '</h2><br/>' +
+                  '<strong>' + qsTr( 'Material:', this ) + '</strong> ' + d.material + '<br/>' +
+                  '<strong>' + qsTr( 'Width:', this ) + '</strong> ' + this.formatMeters( d.width_m, 0, 1000, 'mm' ) + '<br/>' +
+                  '<strong>' + qsTr( 'Length:', this ) + '</strong> ' + this.formatMeters( d.length ) + '<br/>' +
+                  '<strong>' + qsTr( 'Gradient:', this ) + '</strong> ' + Math.round( d.gradient * 10000 ) / 10 + ' ‰<br/>' +
+                  '<strong>' + qsTr( 'Entry level:', this ) + '</strong> ' + this.formatMeters( d.startLevel ) + '<br/>' +
+                  '<strong>' + qsTr( 'Exit level:', this ) + '</strong> ' + this.formatMeters( d.endLevel )
                 )
                 .style('top', lang.hitch( this, function() { return this.tooltipTop( this.tooltip ); } ) )
                 .style('left', (event.pageX+10)+'px');
@@ -164,10 +164,10 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
 
     extent: function()
     {
-      var minX = d3.min( this.reaches.data(), ƒ('startOffset') ) || 0;
-      var maxX = d3.max( this.reaches.data(), ƒ('endOffset') ) || 1;
-      var minY = d3.min( this.reaches.data(), ƒ('endLevel') ) || 0;
-      var maxY = d3.max( this.reaches.data(), ƒ('startLevel') ) || 1;
+      var minX = d3.min( this.reaches.data(), extract('startOffset') ) || 0;
+      var maxX = d3.max( this.reaches.data(), extract('endOffset') ) || 1;
+      var minY = d3.min( this.reaches.data(), extract('endLevel') ) || 0;
+      var maxY = d3.max( this.reaches.data(), extract('startLevel') ) || 1;
 
       return {x: [minX, maxX], y: [minY, maxY] };
     },

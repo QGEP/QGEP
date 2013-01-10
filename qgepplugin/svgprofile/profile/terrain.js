@@ -50,10 +50,10 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
 
     extent: function()
     {
-      var minX = d3.min( this.terrain.datum(), ƒ('offset') ) || 0;
-      var maxX = d3.max( this.terrain.datum(), ƒ('offset') ) || 1;
-      var minY = d3.min( this.terrain.datum(), ƒ('coverLevel') ) || 0;
-      var maxY = d3.max( this.terrain.datum(), ƒ('coverLevel') ) || 1;
+      var minX = d3.min( this.terrain.datum(), extract('offset') ) || 0;
+      var maxX = d3.max( this.terrain.datum(), extract('offset') ) || 1;
+      var minY = d3.min( this.terrain.datum(), extract('coverLevel') ) || 0;
+      var maxY = d3.max( this.terrain.datum(), extract('coverLevel') ) || 1;
 
       return {x: [minX, maxX], y: [minY, maxY] };
     }

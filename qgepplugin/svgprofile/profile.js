@@ -24,26 +24,27 @@
 
 // Create a function that returns a particular property of its parameter.
 // If that property is a function, invoke it (and pass optional params).
-function ƒ(name)
+function extract( name )
 {
+  "use strict";
   var v, params = Array.prototype.slice.call(arguments, 1);
   return function (o)
   {
     return (typeof (v = o[name]) === 'function' ? v.apply(o, params) : v );
   };
-};
+}
 
 // Return the first argument passed in
 function I(d)
 {
-  return d
-};
+  "use strict";
+  return d;
+}
 
 // Global Object, where we'll declare all the useful stuff inside
 var qgep = { def: {}, test: {} };
 
 require( ["dojo/on", "dojo/ready", "dojo/_base/json", "dojo/_base/lang", "profile/specialStructure", "profile/reach", "profile/terrain"], function(  on, ready, dojo, lang, SpecialStructure, Reach, Terrain ) {
-
   qgep.def.ProfilePlot = dojo.declare( null,
   {
     verticalExaggeration: 10,
@@ -54,13 +55,13 @@ require( ["dojo/on", "dojo/ready", "dojo/_base/json", "dojo/_base/lang", "profil
     y: d3.scale.linear(),
 
     xAxis: d3.svg.axis()
-      .scale(this.x)
-      .tickSize(-this.height)
-      .tickSubdivide(true),
+      .scale( this.x )
+      .tickSize( -this.height )
+      .tickSubdivide( true ),
     yAxis: d3.svg.axis()
-      .scale(this.y)
-      .ticks(4)
-      .orient("right"),
+      .scale( this.y )
+      .ticks( 4 )
+      .orient( 'right' ),
 
     zoom: d3.behavior.zoom(),
 
@@ -148,8 +149,8 @@ require( ["dojo/on", "dojo/ready", "dojo/_base/json", "dojo/_base/lang", "profil
     onResize: function ()
     {
       // Get the size of the axis
-      var xAxisHeight = d3.max( d3.select("g.x.axis"), function (d) { return d.pop().getBoundingClientRect().height } )
-      var yAxisWidth = d3.max( d3.select("g.y.axis"), function (d) { return d.pop().getBoundingClientRect().width } )
+      var xAxisHeight = d3.max( d3.select( 'g.x.axis' ), function (d) { return d.pop().getBoundingClientRect().height; } );
+      var yAxisWidth = d3.max( d3.select( 'g.y.axis' ), function (d) { return d.pop().getBoundingClientRect().width; } );
 
       this.width = d3.select("body").property( 'clientWidth' ) - 2*this.margin - yAxisWidth;
       this.height = d3.select("body").property( 'clientHeight' ) - 2*this.margin - xAxisHeight;
@@ -204,8 +205,8 @@ require( ["dojo/on", "dojo/ready", "dojo/_base/json", "dojo/_base/lang", "profil
       this.zoom
         .translate( [0, 0] );
 
-      this.mainGroup.select("g.x.axis").call(this.xAxis);
-      this.mainGroup.select("g.y.axis").call(this.yAxis);
+      this.mainGroup.select( 'g.x.axis' ).call( this.xAxis );
+      this.mainGroup.select( 'g.y.axis' ).call( this.yAxis );
 
       this.redraw();
     },
@@ -232,15 +233,15 @@ require( ["dojo/on", "dojo/ready", "dojo/_base/json", "dojo/_base/lang", "profil
           .classed( 'scale-large', true );
       }
 
-      this.mainGroup.select("g.x.axis").call(this.xAxis);
-      this.mainGroup.select("g.y.axis").call(this.yAxis);
+      this.mainGroup.select( 'g.x.axis' ).call( this.xAxis );
+      this.mainGroup.select( 'g.y.axis' ).call( this.yAxis );
 
       this.redraw(0);
     },
 
     redraw: function( duration )
     {
-      if( typeof(duration) === 'undefined' ) duration = 750;
+      if( typeof(duration) === 'undefined' ) { duration = 750; }
 
       this.reach.redraw( duration );
       this.specialStructure.redraw( duration );
@@ -249,9 +250,9 @@ require( ["dojo/on", "dojo/ready", "dojo/_base/json", "dojo/_base/lang", "profil
   });
 
   qgep.test.clickReach = function( selector ) {
-    event = document.createEvent('MouseEvents');
-    event.initMouseEvent('click');
-    elem = d3.select( selector )[0][0];
+    var event = document.createEvent( 'MouseEvents' );
+    event.initMouseEvent( 'click' );
+    var elem = d3.select( selector )[0][0];
     elem.dispatchEvent(event);
   };
 
@@ -272,11 +273,11 @@ require( ["dojo/on", "dojo/ready", "dojo/_base/json", "dojo/_base/lang", "profil
         function(data) {
           var profileData = dojo.fromJson(data);
           qgep.data = profileData;
-          var reachData = profileData.filter ( function(d) { return d.type == 'reach'; } );
-          qgep.profilePlot.reach.data( reachData )
-          var specialStructureData = profileData.filter ( function(d) { return d.type == 'special_structure'; } );
+          var reachData = profileData.filter ( function(d) { return d.type === 'reach'; } );
+          qgep.profilePlot.reach.data( reachData );
+          var specialStructureData = profileData.filter ( function(d) { return d.type === 'special_structure'; } );
           qgep.profilePlot.specialStructure.data( specialStructureData );
-          var coverData = profileData.filter( function(d) { return d.type == 'node'; } );
+          var coverData = profileData.filter( function(d) { return d.type === 'node'; } );
           qgep.profilePlot.terrain.data( coverData );
 
           qgep.profilePlot.scaleDomain();

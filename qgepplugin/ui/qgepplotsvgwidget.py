@@ -26,12 +26,14 @@
 from PyQt4.QtGui import QVBoxLayout, QWidget, QPrintPreviewDialog, QPrinter
 from PyQt4.QtWebKit import QWebView, QWebSettings
 from PyQt4.QtCore import QUrl, pyqtSignal, pyqtSlot, QSettings, QVariant, Qt
+from qgepplugin.utils.translation import QgepJsTranslator
 
 class QgepPlotSVGWidget( QWidget ):
     webView = None
     frame   = None
     profile = None
     verticalExaggeration = 10
+    jsTranslator = QgepJsTranslator()
 
     # Signals emitted triggered by javascript actions
     reachClicked = pyqtSignal( [unicode], name='reachClicked' )
@@ -81,6 +83,7 @@ class QgepPlotSVGWidget( QWidget ):
             
     def initJs(self):
         self.frame.addToJavaScriptWindowObject( "profileProxy", self )
+        self.frame.addToJavaScriptWindowObject( "i18n", self.jsTranslator )
         
     def changeVerticalExaggeration(self, val):
         self.verticalExaggeration = val

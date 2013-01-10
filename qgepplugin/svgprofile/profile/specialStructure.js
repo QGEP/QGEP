@@ -1,14 +1,31 @@
-/**
- * Created with JetBrains PhpStorm.
- * User: kk
- * Date: 11/28/12
- * Time: 9:18 PM
- * To change this template use File | Settings | File Templates.
+/*
+ * specialStructure.js
+ *
+ * Copyright (C) 2013  Matthias Kuhn
+ *-----------------------------------------------------------
+ *
+ * licensed under the terms of GNU GPL 2
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this progsram; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ *
  */
+
 
 define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], function (declare, lang, _ProfileElement) {
   "use strict";
-  return declare([ _ProfileElement ], {
+  return declare( 'specialStructure', [ _ProfileElement ], {
     specialStructures: null, /* Reference to the current working set */
     line: d3.svg.line(),
     tooltip: d3.select('body')
@@ -41,7 +58,7 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
 
       this.specialStructures = this.svgProfile
         .selectAll( '.special-structure' )
-        .data( data, ƒ( 'objId' ) );
+        .data( data, extract( 'objId' ) );
 
       var newSpecialStructures = this.specialStructures
         .enter()
@@ -60,7 +77,7 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
               switch ( d.nodeType )
               {
                 case 'manhole':
-                  type = 'Manhole';
+                  type = qsTr( 'Manhole', this );
                   break;
 
                 case 'special_structure':
@@ -71,10 +88,10 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
               return this.tooltip
                 .html(
                   '<h2>' + type + ': ' + d.objId + '</h2><br/>' +
-                  '<strong>Cover level:</strong> '  + this.formatMeters( d.coverLevel ) + '<br/>' +
-                  '<strong>Bottom level:</strong> ' + this.formatMeters( d.bottomLevel ) + '<br/>' +
-                  '<strong>Entry level:</strong> ' + this.formatMeters( d.startLevel ) + '<br/>' +
-                  '<strong>Exit level:</strong> '  + this.formatMeters( d.endLevel ) + '<br/>'
+                  '<strong>' + qsTr( 'Cover level:', this ) + '</strong> '  + this.formatMeters( d.coverLevel ) + '<br/>' +
+                  '<strong>' + qsTr( 'Bottom level:', this ) + '</strong> ' + this.formatMeters( d.bottomLevel ) + '<br/>' +
+                  '<strong>' + qsTr( 'Entry level:', this ) + '</strong> ' + this.formatMeters( d.startLevel ) + '<br/>' +
+                  '<strong>' + qsTr( 'Exit level:', this ) + '</strong> '  + this.formatMeters( d.endLevel ) + '<br/>'
                 )
                 .style('top', lang.hitch( this, function() { return this.tooltipTop( this.tooltip ); } ) )
                 .style('left', (event.pageX+10)+'px');
@@ -154,10 +171,10 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
 
     extent: function()
     {
-      var minX = d3.min( this.specialStructures.data(), ƒ( 'startOffset' ) ) || 0;
-      var maxX = d3.max( this.specialStructures.data(), ƒ( 'endOffset' ) ) || 1;
-      var minY = d3.min( this.specialStructures.data(), ƒ( 'bottomLevel' ) ) || 0;
-      var maxY = d3.max( this.specialStructures.data(), ƒ( 'coverLevel' ) ) || 1;
+      var minX = d3.min( this.specialStructures.data(), extract( 'startOffset' ) ) || 0;
+      var maxX = d3.max( this.specialStructures.data(), extract( 'endOffset' ) ) || 1;
+      var minY = d3.min( this.specialStructures.data(), extract( 'bottomLevel' ) ) || 0;
+      var maxY = d3.max( this.specialStructures.data(), extract( 'coverLevel' ) ) || 1;
 
       return { x: [minX, maxX], y: [minY, maxY] };
     },

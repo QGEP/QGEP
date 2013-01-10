@@ -1,5 +1,5 @@
-from PyQt4.QtCore import QSettings, QVariant, QLocale, QTranslator, QCoreApplication
-import os
+from PyQt4.QtCore import QSettings, QVariant, QLocale, QTranslator, QCoreApplication, pyqtSlot, QObject
+from PyQt4.QtGui import QApplication
 import logging
 
 def setupI18n( thePreferredLocale=None):
@@ -43,7 +43,13 @@ def setupI18n( thePreferredLocale=None):
     
     myTranslatorFile = 'qgepplugin_' + myLocaleName
     
-    myResult = translator.load( myTranslatorFile, ':/plugins/qgepplugin/i18n' )
+    # myResult = translator.load( myTranslatorFile, ':/plugins/qgepplugin/i18n' )
+    myResult = translator.load( myTranslatorFile, '/home/kk/dev/python/QGEP/qgepplugin/i18n' )
     
     if myResult:
         QCoreApplication.instance().installTranslator( translator )
+ 
+class QgepJsTranslator( QObject ):       
+    @pyqtSlot( unicode, unicode, name='qsTr', result=unicode )
+    def qsTr( self, context, sourceText ):
+        return QApplication.translate( context, sourceText )
