@@ -16,5 +16,7 @@
         <file>svgprofile/profile/profileElement.js</file>
         <file>svgprofile/screen.css</file>
         <file>svgprofile/print.css</file>
+        <file>i18n/qgepplugin_de.qm</file>
+        <file>i18n/qgepplugin_fr.qm</file>
     </qresource>
 </RCC>
