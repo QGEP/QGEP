@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<plugins>
+    <pyqgis_plugin name="QGEP" version="__version__">
+        <description><![CDATA[QGEP: Plugin for wastewater management]]></description>
+        <version>__version__</version>
+        <qgis_minimum_version>1.8</qgis_minimum_version>
+        <homepage>http://github.com/qgep/QGEP</homepage>
+        <file_name>qgepplugin.zip</file_name>
+        <icon>icons/qgepPlugin.svg</icon>
+        <author_name>Matthias Kuhn</author_name>
+        <download_url>http://qgis.vitu.ch/plugins/qgepplugin-__version__.zip</download_url>
+        <uploaded_by>mkuhn</uploaded_by>
+        <create_date>2012-11-02T14:00:00.000000</create_date>
+	<update_date>__now__</update_date>
+        <experimental>True</experimental>
+        <deprecated>False</deprecated>
+        <tracker></tracker>
+        <repository>https://github.com/qgep/QGEP</repository>
+        <tags>qgep,wastewater management,wastewater,abwasser</tags>
+    </pyqgis_plugin>
+</plugins>

@@ -23,7 +23,7 @@ make
 
 cd ..
 sed -i "s/version=.*$/version=$1/" qgepplugin/metadata.txt
-sed "s/__version__/$1/" <plugins.xml.template >plugins.xml
+sed "s/__version__/$1/" <qgepplugin/scripts/data/plugins.xml.template >plugins.xml
 NOW=`date -Iseconds -u`
 sed -i "s/__now__/$NOW/" plugins.xml
-cat qgepplugin/release-files | zip qgepplugin-$1.zip -@
+cat qgepplugin/scripts/data/release-files | zip qgepplugin-$1.zip -@
