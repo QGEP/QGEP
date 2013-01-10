@@ -128,7 +128,7 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
     redraw: function( duration )
     {
       var texts = this.specialStructures.select( 'text' );
-      // For some reason, select does propagate the __data__ down from the g to the path element
+      // For some reason, select does propagate the __data__ down from the <g> to the <path> element
       // see http://stackoverflow.com/questions/10129432/inheritance-in-data-joins
       // For some unknown reason selectAll does not do this!!
       var paths = this.specialStructures.select( 'path' );
