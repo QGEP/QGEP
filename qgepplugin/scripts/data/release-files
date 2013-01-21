@@ -31,6 +31,7 @@ qgepplugin/tools/qgepprofile.py
 qgepplugin/utils
 qgepplugin/utils/__init__.py
 qgepplugin/utils/qgeplogging.py
+qgepplugin/utils/translation.py
 qgepplugin/metadata.txt
 qgepplugin/resources.py
 qgepplugin/qgepplugin.py
