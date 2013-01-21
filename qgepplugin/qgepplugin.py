@@ -23,7 +23,7 @@
 #
 #---------------------------------------------------------------------
 
-from PyQt4.QtCore import pyqtSlot, QSettings
+from PyQt4.QtCore import pyqtSlot, QSettings, QCoreApplication
 from PyQt4.QtGui import QAction, QIcon
 from qgis.core import QgsMapLayerRegistry, QgsMapLayer, QgsProject
 from tools.qgepmaptools import QgepProfileMapTool, QgepTreeMapTool
@@ -62,6 +62,9 @@ class QgepPlugin:
         
         self.initLogger()
         setupI18n()
+        
+    def tr( self, sourceText ):
+        return QCoreApplication.translate( 'qgepplugin', sourceText )
         
     def initLogger( self ):
         '''
@@ -111,27 +114,27 @@ class QgepPlugin:
         
         # Create toolbar button
         self.profileAction = QAction( QIcon( ":/plugins/qgepplugin/icons/wastewater-profile.svg" ), "Profile", self.iface.mainWindow() )
-        self.profileAction.setWhatsThis( "Reach trace." )
+        self.profileAction.setWhatsThis( self.tr( "Reach trace" ) )
         self.profileAction.setEnabled( False )
         self.profileAction.setCheckable( True )
         self.profileAction.triggered.connect( self.profileToolClicked )
 
         self.downstreamAction = QAction( QIcon( ":/plugins/qgepplugin/icons/wastewater-downstream.svg" ), "Downstream", self.iface.mainWindow() )
-        self.downstreamAction.setWhatsThis( "Downstream reaches" )
+        self.downstreamAction.setWhatsThis( self.tr( "Downstream reaches" ) )
         self.downstreamAction.setEnabled( False )
         self.downstreamAction.setCheckable( True )
         self.downstreamAction.triggered.connect( self.downstreamToolClicked )
 
         self.upstreamAction = QAction( QIcon( ":/plugins/qgepplugin/icons/wastewater-upstream.svg" ), "Upstream", self.iface.mainWindow() )
-        self.upstreamAction.setWhatsThis( "Upstream reaches" )
+        self.upstreamAction.setWhatsThis( self.tr( "Upstream reaches" ) )
         self.upstreamAction.setEnabled( False )
         self.upstreamAction.setCheckable( True )
         self.upstreamAction.triggered.connect( self.upstreamToolClicked )
         
-        self.aboutAction = QAction( "About", self.iface.mainWindow() )
+        self.aboutAction = QAction( self.tr( 'About' ), self.iface.mainWindow() )
         self.aboutAction.triggered.connect( self.about )
         
-        self.settingsAction = QAction( 'Settings', self.iface.mainWindow() )
+        self.settingsAction = QAction( self.tr( 'Settings' ), self.iface.mainWindow() )
         self.settingsAction.triggered.connect( self.showSettings )
 
         # Add toolbar button and menu item
