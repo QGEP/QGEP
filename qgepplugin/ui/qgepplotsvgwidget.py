@@ -24,12 +24,21 @@
 #---------------------------------------------------------------------
 
 from PyQt4.QtGui import QVBoxLayout, QWidget, QPrintPreviewDialog, QPrinter
-from PyQt4.QtWebKit import QWebView, QWebSettings
+from PyQt4.QtWebKit import QWebView, QWebSettings, QWebPage
 from PyQt4.QtCore import QUrl, pyqtSignal, pyqtSlot, QSettings, QVariant, Qt
 from qgepplugin.utils.translation import QgepJsTranslator
 
+import logging
+
+class QgepWebPage( QWebPage ):
+    logger = logging.getLogger( __name__ )
+    
+    def javaScriptConsoleMessage( self, msg, line, source ):
+        self.logger.debug( '%s line %d: %s' % (source, line, msg) )
+
 class QgepPlotSVGWidget( QWidget ):
     webView = None
+    webPage = None
     frame   = None
     profile = None
     verticalExaggeration = 10
@@ -54,6 +63,7 @@ class QgepPlotSVGWidget( QWidget ):
         QWidget.__init__( self, parent )
         
         self.webView = QWebView()
+        self.webView.setPage( QgepWebPage( self.webView ) )
         
         self.networkAnalyzer = networkAnalyzer
         
