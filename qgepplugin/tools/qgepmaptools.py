@@ -23,10 +23,20 @@
 #
 #---------------------------------------------------------------------
 
-from PyQt4.QtCore import Qt, QPoint, pyqtSignal, QVariant, QSettings
-from PyQt4.QtGui import QCursor, QColor
-from qgis.core import QgsGeometry, QgsPoint
-from qgis.gui import QgsMapTool, QgsRubberBand, QgsVertexMarker, QgsMessageBar
+from PyQt4.QtCore import (Qt, 
+                          QPoint, 
+                          pyqtSignal, 
+                          QVariant, 
+                          QSettings)
+from PyQt4.QtGui import (QCursor, 
+                         QColor)
+from qgis.core import (QgsGeometry, 
+                       QgsPoint)
+from qgis.gui import (QgsMapTool,
+                      QgsRubberBand, 
+                      QgsVertexMarker, 
+                      QgsMessageBar)
+
 from qgepprofile import * #@UnusedWildImport
 import logging
 
