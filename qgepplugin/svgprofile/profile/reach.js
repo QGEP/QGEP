@@ -66,7 +66,7 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
 
       newReaches
         .append('svg:path')
-        .classed( 'progression', true )
+        .attr( 'class', 'progression' )
         .on( 'mouseover',
           lang.hitch( this,
             function(d)
