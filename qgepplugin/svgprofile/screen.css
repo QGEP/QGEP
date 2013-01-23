@@ -19,7 +19,8 @@ body, html {
 
 .tooltip {
     position: absolute;
-    background: -webkit-linear-gradient(top, #efe7b3 0%,#fefcea 100%); /* Chrome10+,Safari5.1+ */
+    background-color: #fefcea;
+    background-image: -webkit-linear-gradient(top, #efe7b3 0%,#fefcea 100%); /* Chrome10+,Safari5.1+ */
     -moz-border-radius: 0.5em;
     border-radius: 0.5em;
     box-shadow:2px 2px 10px #636363;
