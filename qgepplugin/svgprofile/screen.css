@@ -19,7 +19,7 @@ body, html {
 
 .tooltip {
     position: absolute;
-    background-color: #fefcea;
+    background-color: #fefcea; /* For older browsers (Current OSGeo4W QtWebKit4.dll) */
     background-image: -webkit-linear-gradient(top, #efe7b3 0%,#fefcea 100%); /* Chrome10+,Safari5.1+ */
     -moz-border-radius: 0.5em;
     border-radius: 0.5em;
