@@ -11,16 +11,16 @@ $BODY$
 DECLARE 
 	tname varchar(50);
 BEGIN
-	CREATE TEMPORARY TABLE dictionnary_table (table_name varchar(50),value_en varchar(50),value_de varchar(50),value_fr varchar(50));
+	CREATE TEMPORARY TABLE dictionary_table (table_name varchar(50),value_en varchar(50),value_de varchar(50),value_fr varchar(50));
 	
-	INSERT INTO dictionnary_table (table_name,value_en,value_de,value_fr) SELECT tablename,name_en,name_de,name_fr FROM qgep.is_dictionary;
+	INSERT INTO dictionary_table (table_name,value_en,value_de,value_fr) SELECT tablename,name_en,name_de,name_fr FROM qgep.is_dictionary;
 	
 	FOR tname IN SELECT "tablename" FROM pg_tables WHERE schemaname = 'qgep' AND tablename LIKE 'vl%'
 	LOOP
-		EXECUTE 'INSERT INTO dictionnary_table (table_name,value_en,value_de,value_fr) 
+		EXECUTE 'INSERT INTO dictionary_table (table_name,value_en,value_de,value_fr) 
 				SELECT '''||tname||''' AS table_name,value_en,value_de,value_fr FROM qgep.'||tname||';' ;
 	END LOOP;
-	RETURN QUERY SELECT * FROM dictionnary_table;
+	RETURN QUERY SELECT * FROM dictionary_table;
 END
 $BODY$
 LANGUAGE 'plpgsql' ;
