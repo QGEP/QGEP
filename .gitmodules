@@ -1,0 +1,3 @@
+[submodule "qgepplugin/tools/qgistools"]
+	path = qgepplugin/tools/qgistools
+	url = git@github.com:3nids/qgistools.git
