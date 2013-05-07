@@ -58,13 +58,11 @@ COMMENT ON FUNCTION logger_create(varchar,varchar,varchar) IS 'logger_create(_sc
 CREATE OR REPLACE FUNCTION logger_create_view(_schema VARCHAR, _table VARCHAR, _view VARCHAR, id_column VARCHAR) RETURNS void AS
 $BODY$
 	DECLARE
-		field						 VARCHAR;
 		field_list                   VARCHAR[];	
 		field_list_comma_sep         VARCHAR;
 		field_list_comma_sep_new     VARCHAR;
 		field_list_with_id           VARCHAR[];	
 		field_list_with_id_comma_sep VARCHAR;
-		_sql						 TEXT;
 	BEGIN
 		/* get all the fields of the table except logger specific columns */
 		EXECUTE 'SELECT table_fields('''||_schema||''','''||_table||''','''||id_column||''',''logger_id'',''logger_creation_user'',''logger_archive_user'',''logger_creation_date'',''logger_archive_date'',''logger_last_action'',''logger_archive_modif_columns'');' INTO field_list ;
@@ -90,17 +88,23 @@ $BODY$
 
 		
 		/* update trigger */
-		_sql := 'CREATE OR REPLACE FUNCTION '||_schema||'.logger_'||_view||'_update() RETURNS TRIGGER AS 
+		EXECUTE 'CREATE OR REPLACE FUNCTION '||_schema||'.logger_'||_view||'_update() RETURNS TRIGGER AS 
 				''
 					DECLARE
 						modified_columns VARCHAR[] := ''''{}'''' ;
+						field_list       VARCHAR[];
+						field            VARCHAR;
+						field2            INT;
 					BEGIN
 						/* list the mofified columns */
-						';
-		FOREACH field IN ARRAY field_list LOOP
-			_sql := _sql || 'IF OLD.'||field||'<>NEW.'||field||' THEN modified_columns := array_append(modified_columns,'''''||field||'''''); END IF;';
-		END LOOP;
-		_sql := _sql ||'
+						field_list := ''''{'||array_to_string(field_list,',''''')||'}'''';
+						FOREACH field IN ARRAY field_list LOOP
+							EXECUTE ''''
+							IF OLD.''''||field||'''' <> NEW.''''||field||'''' THEN 	
+								field2 := 2;
+							END IF;
+							'''';
+						END LOOP;
 						/* set archive date for previous state and specify modified columns */
 						UPDATE '||_schema||'.'||_table||' SET 
 							logger_archive_date = now(), 
@@ -116,7 +120,6 @@ $BODY$
 				''
 				LANGUAGE ''plpgsql'';
 		';
-		EXECUTE _sql;
 				
 		EXECUTE 'CREATE TRIGGER logger_'||_view||'_update_trigger INSTEAD OF UPDATE ON '||_schema||'.'||_view||'
 				FOR EACH ROW
