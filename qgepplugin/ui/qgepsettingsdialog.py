@@ -25,7 +25,7 @@
 
 from ui_qgepsettingsdialog import Ui_QgepSettingsDialog
 from PyQt4.QtCore import QSettings, pyqtSlot, QVariant
-from PyQt4.QtGui import QDialog, QFileDialog, QColorDialog, QApplication
+from PyQt4.QtGui import QDialog, QFileDialog, QColorDialog, QColor
 from qgis.core import QgsMapLayerRegistry, QgsProject
 import logging
 
@@ -57,13 +57,13 @@ class QgepSettingsDialog(QDialog, Ui_QgepSettingsDialog):
         self.initLayerCombobox( self.mCbSpecialStructures, lyrSpecialStructures )
         self.initLayerCombobox( self.mCbGraphEdges, lyrGraphEdges )
         self.initLayerCombobox( self.mCbGraphNodes, lyrGraphNodes )
-        
+
+        self.mCurrentProfileColorButton.setColor( QColor( self.settings.value( "/QGEP/CurrentProfileColor", QVariant( '#FF9500' ) ).toString() ) )
+        self.mHelperLineColorButton.setColor( QColor( self.settings.value( "/QGEP/HelperLineColor", QVariant( '#FFD900' ) ).toString() ) )
+        self.mHighlightColorButton.setColor( QColor( self.settings.value( "/QGEP/HighlightColor",  QVariant( '#40FF40' ) ).toString() ) )
+
         self.mPbnChooseProfileTemplateFile.clicked.connect( self.onChooseProfileTemplateFileClicked )
         self.mPbnChooseLogFile.clicked.connect( self.onChooseLogFileClicked )
-        
-        self.mHelperLineColorButton.clicked.connect( self.onHelperLineColorButtonClicked )
-        self.mCurrentProfileColorButton.clicked.connect( self.onCurrentProfileColorButtonClicked )
-        self.mHighlightColorButton.clicked.connect( self.onHighlightColorButtonClicked )
         
         self.accepted.connect( self.onAccept )
         
@@ -127,7 +127,12 @@ class QgepSettingsDialog(QDialog, Ui_QgepSettingsDialog):
         elif self.tr( 'Error' ) == self.mCbLogLevel.currentText():
             qgepLogger.setLevel( logging.ERROR )
             self.settings.setValue( "/QGEP/LogLevel", 'Error' )
-        
+
+        # Save colors
+        self.settings.setValue( "/QGEP/HelperLineColor", self.mHelperLineColorButton.color().name() )
+        self.settings.setValue( "/QGEP/HighlightColor", self.mHighlightColorButton.color().name() )
+        self.settings.setValue( "/QGEP/CurrentProfileColor", self.mCurrentProfileColorButton.color().name() )
+
         # Project specific settings
         project = QgsProject.instance()
         
@@ -148,21 +153,3 @@ class QgepSettingsDialog(QDialog, Ui_QgepSettingsDialog):
     def onChooseLogFileClicked(self):
         fileName = QFileDialog.getSaveFileName(self, self.tr( 'Select log file' ), '', self.tr( 'Log files(*.log)' ) )
         self.mLogFile.setText( fileName )
-        
-    @pyqtSlot()
-    def onHelperLineColorButtonClicked( self ):
-        newColor = QColorDialog.getColor( self.mHelperLineColorButton.color(), None, self.tr( 'Helper line color' ) )
-        if ( newColor.isValid() ):
-            self.mHelperLineColorButton.setColor( newColor )
-        
-    @pyqtSlot()
-    def onCurrentProfileColorButtonClicked( self ):
-        newColor = QColorDialog.getColor( self.mCurrentProfileColorButton.color(), None, self.tr( 'Current profile color' ) )
-        if ( newColor.isValid() ):
-            self.mHelperLineColorButton.setColor( newColor )
-        
-    @pyqtSlot()
-    def onHighlightColorButtonClicked( self ):
-        newColor = QColorDialog.getColor( self.mHighlightColorButton.color(), None, self.tr( 'Feature highlight color' ) )
-        if ( newColor.isValid() ):
-            self.mHelperLineColorButton.setColor( newColor )

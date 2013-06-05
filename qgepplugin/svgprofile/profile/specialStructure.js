@@ -94,8 +94,10 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
                   '<strong>' + qsTr( 'Entry level:', this ) + '</strong> ' + this.formatMeters( d.startLevel ) + '<br/>' +
                   '<strong>' + qsTr( 'Exit level:', this ) + '</strong> '  + this.formatMeters( d.endLevel ) + '<br/>'
                 )
-                .style('top', lang.hitch( this, function() { return this.tooltipTop( this.tooltip ); } ) )
-                .style('left', (event.pageX+10)+'px');
+                .style( 'top', lang.hitch( this, function() { return this.tooltipTop( this.tooltip ); } ) )
+                .style( 'left', (event.pageX+10)+'px' )
+                .style( 'opacity', 1 );
+
             }
           )
         )
@@ -105,7 +107,7 @@ define([ "dojo/_base/declare", "dojo/_base/lang", "profile/profileElement" ], fu
             {
               profileProxy.onSpecialStructureMouseOut( d.objId );
 
-              return this.tooltip.style('left', '-9999px');
+              return this.tooltip.transition().duration( 700 ).style( 'opacity', 0 );
             }
           )
         );
