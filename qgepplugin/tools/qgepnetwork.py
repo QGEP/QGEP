@@ -23,7 +23,7 @@
 #
 #---------------------------------------------------------------------
 
-from PyQt4.QtCore import QPoint
+from PyQt4.QtCore import QPoint, QPyNullVariant
 from PyQt4.QtGui import QMenu, QAction
 from collections import defaultdict
 from qgis.core import QgsTolerance, QgsSnapper, QgsFeature, QgsRectangle, QgsGeometry, QgsFeatureRequest
@@ -97,8 +97,8 @@ class QgepGraphManager():
         for feat in features:
             featId = feat.id()
             
-            objId = feat['obj_id'].toString()
-            objType = feat['type'].toString()
+            objId = feat['obj_id']
+            objType = feat['type']
             
             vertex = feat.geometry().asPoint()
             self.graph.add_node( featId, dict( point=vertex, objType=objType ) )
@@ -116,21 +116,21 @@ class QgepGraphManager():
         #Loop through all reaches
         for feat in features:
             try:
-                objId     = feat['obj_id'].toString()
-                objType   = feat['type'].toString()
-                fromObjId = feat['from_obj_id'].toString()
-                toObjId   = feat['to_obj_id'].toString()
+                objId     = feat['obj_id']
+                objType   = feat['type']
+                fromObjId = feat['from_obj_id']
+                toObjId   = feat['to_obj_id']
                 
-                length    = feat['length_calc'].toDouble()[0]
+                length    = feat['length_calc']
                 
-                ptId1 = self.vertexIds[ unicode( fromObjId ) ]
-                ptId2 = self.vertexIds[ unicode( toObjId ) ]
+                ptId1 = self.vertexIds[ fromObjId ]
+                ptId2 = self.vertexIds[ toObjId ]
                 
                 props = { \
                   'weight': length,\
                   'feature': feat.id(),\
-                  'baseFeature': unicode(objId),\
-                  'objType': unicode( objType )\
+                  'baseFeature': objId,\
+                  'objType': objType\
                 }
                 self.graph.add_edge( ptId1, ptId2, props )
             except KeyError as e:
@@ -216,7 +216,10 @@ class QgepGraphManager():
             menu = QMenu( self.iface.mapCanvas() )
             
             for id, feature in filteredFeatures.iteritems():
-                title = feature.attribute( 'description' ).toString() + " (" + feature.attribute( 'obj_id' ).toString() + ")" 
+                try:
+                    title = feature.attribute( 'description' ) + " (" + feature.attribute( 'obj_id' ) + ")"
+                except TypeError:
+                    title = " (" + feature.attribute( 'obj_id' ) + ")"
                 action = QAction( title, menu )
                 actions[action] = point
                 menu.addAction( action )
@@ -331,22 +334,22 @@ class QgepFeatureCache:
         return self._featuresByObjId[objId]
     
     def attrAsFloat(self, feat, attr):
-        var = self.attrAsQVariant(feat, attr)
-        res = var.toFloat()
-        
-        # If the value in the database was NULL return None
-        # Will also return None if you're trying to convert a String...
-        if res[1] != True:
+        try:
+            return float( self.attr( feat, attr ) )
+        except TypeError:
             return None
-        else:
-            return res[0]
     
     def attrAsUnicode( self, feat, attr ):
-        var = self.attrAsQVariant(feat, attr)
-        return unicode( var.toString() ) 
+        return self.attr(feat, attr)
     
-    def attrAsQVariant( self, feat, attr ):
-        return feat[attr]
+    def attr( self, feat, attr ):
+        try:
+            if isinstance( feat[attr], QPyNullVariant ):
+                return None
+            else:
+                return feat[attr]
+        except KeyError:
+            return None
     
     def attrAsGeometry( self, feat, attr ):
         ewktString = self.attrAsUnicode(feat, attr)

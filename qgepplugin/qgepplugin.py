@@ -74,7 +74,7 @@ class QgepPlugin:
         
         settings = QSettings()
         
-        loglevel = settings.value( "/QGEP/LogLevel", 'Warning' ).toString()
+        loglevel = settings.value( "/QGEP/LogLevel", 'Warning' )
         logfile  = settings.value( "/QGEP/LogFile", None )
 
         if hasattr( self.logger, 'qgepFileHandler' ):
@@ -83,8 +83,8 @@ class QgepPlugin:
 
         self.logger.addHandler( QgepQgsLogHandler() )
         
-        if logfile.isNull() is not True:
-            hLog = logging.FileHandler( unicode( logfile.toString() ) )
+        if not logfile:
+            hLog = logging.FileHandler( logfile )
             fmt = logging.Formatter( LOGFORMAT )
             hLog.setFormatter( fmt )
             self.logger.addHandler( hLog )
@@ -102,7 +102,7 @@ class QgepPlugin:
         fp = os.path.join( os.path.abspath(os.path.dirname( __file__ ) ), "metadata.txt")
 
         iniText = QSettings(fp, QSettings.IniFormat)
-        verno = iniText.value("version").toString()
+        verno = iniText.value("version")
 
         self.logger.info( 'QGEP plugin version ' + verno + ' started' )
         

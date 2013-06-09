@@ -26,7 +26,6 @@
 from PyQt4.QtCore import (Qt, 
                           QPoint, 
                           pyqtSignal, 
-                          QVariant, 
                           QSettings)
 from PyQt4.QtGui import (QCursor, 
                          QColor)
@@ -56,7 +55,7 @@ class QgepMapTool( QgsMapTool ):
         self.msgBar = iface.messageBar()
 
         settings = QSettings()
-        currentProfileColor = settings.value( "/QGEP/CurrentProfileColor", QVariant( '#FF9500' ) ).toString()
+        currentProfileColor = settings.value( "/QGEP/CurrentProfileColor", u'#FF9500' )
         
         self.rubberBand = QgsRubberBand( self.canvas )
         self.rubberBand.setColor( QColor( currentProfileColor ) )
@@ -118,8 +117,8 @@ class QgepProfileMapTool( QgepMapTool ):
         QgepMapTool.__init__(self, canvas, button)
         settings = QSettings()
         
-        helperLineColor = settings.value( "/QGEP/HelperLineColor", QVariant( '#FFD900' ) ).toString()
-        highlightColor  = settings.value( "/QGEP/HighlightColor",  QVariant( '#40FF40' ) ).toString()
+        helperLineColor = settings.value( "/QGEP/HelperLineColor", u'#FFD900' )
+        highlightColor  = settings.value( "/QGEP/HighlightColor",  u'#40FF40' )
         
         self.networkAnalyzer = networkAnalyzer
         

@@ -25,7 +25,7 @@
 
 from PyQt4.QtGui import QVBoxLayout, QWidget, QPrintPreviewDialog, QPrinter
 from PyQt4.QtWebKit import QWebView, QWebSettings, QWebPage
-from PyQt4.QtCore import QUrl, pyqtSignal, pyqtSlot, QSettings, QVariant, Qt
+from PyQt4.QtCore import QUrl, pyqtSignal, pyqtSlot, QSettings, Qt
 from qgepplugin.utils.translation import QgepJsTranslator
 
 import logging
@@ -71,16 +71,16 @@ class QgepPlotSVGWidget( QWidget ):
         
         layout = QVBoxLayout( self )
         if url is None:
-            url = settings.value( "/QGEP/SvgProfilePath", QVariant( u'qrc:///plugins/qgepplugin/svgprofile/index.html' ) )
+            url = settings.value( "/QGEP/SvgProfilePath", u'qrc:///plugins/qgepplugin/svgprofile/index.html' )
             
-        developerMode = settings.value( "/QGEP/DeveloperMode", QVariant( False ) ).toBool()
+        developerMode = settings.value( "/QGEP/DeveloperMode", False, type=bool )
         
         if developerMode is True:
             self.webView.page().settings().setAttribute(QWebSettings.DeveloperExtrasEnabled, True)
         else:
             self.webView.setContextMenuPolicy( Qt.NoContextMenu )
             
-        self.webView.load( QUrl( url.toString() ) )
+        self.webView.load( QUrl( url ) )
         self.frame = self.webView.page().mainFrame()
         self.frame.javaScriptWindowObjectCleared.connect( self.initJs )
 

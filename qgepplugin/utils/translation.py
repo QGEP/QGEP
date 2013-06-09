@@ -1,4 +1,4 @@
-from PyQt4.QtCore import QSettings, QVariant, QLocale, QTranslator, QCoreApplication, pyqtSlot, QObject
+from PyQt4.QtCore import QSettings, QLocale, QTranslator, QCoreApplication, pyqtSlot, QObject
 from PyQt4.QtGui import QApplication
 import logging
 
@@ -15,17 +15,14 @@ def setupI18n( thePreferredLocale=None):
     
     logger = logging.getLogger( __name__ )
     
-    myOverrideFlag = QSettings().value('locale/overrideFlag',
-                                        QVariant(False)).toBool()
-                                        
+    myOverrideFlag = QSettings().value('locale/overrideFlag', False, type=bool )
 
     myLocaleName = None
     if thePreferredLocale is not None:
         myLocaleName = thePreferredLocale
         logger.info( 'Using preferred locale: ' + myLocaleName )
     elif myOverrideFlag:
-        myLocaleName = QSettings().value('locale/userLocale',
-                                         QVariant('')).toString()
+        myLocaleName = QSettings().value('locale/userLocale', u'' )
         logger.info( 'Using QGIS override locale: ' + myLocaleName )
     else:
         myLocaleName = QLocale.system().name()

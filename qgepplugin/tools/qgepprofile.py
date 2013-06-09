@@ -177,7 +177,7 @@ class QgepProfileReachElement(QgepProfileEdgeElement):
         self.feat = reach
         
         try:
-            self.width = edgeCache.attrAsFloat(reach, u'depth') / 1000
+            self.width = edgeCache.attrAsFloat(reach, u'depth') / 1000.0
         except TypeError:
             pass
             

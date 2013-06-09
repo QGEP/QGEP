@@ -24,7 +24,7 @@
 #---------------------------------------------------------------------
 
 from ui_qgepsettingsdialog import Ui_QgepSettingsDialog
-from PyQt4.QtCore import QSettings, pyqtSlot, QVariant
+from PyQt4.QtCore import QSettings, pyqtSlot
 from PyQt4.QtGui import QDialog, QFileDialog, QColorDialog, QColor
 from qgis.core import QgsMapLayerRegistry, QgsProject
 import logging
@@ -40,14 +40,14 @@ class QgepSettingsDialog(QDialog, Ui_QgepSettingsDialog):
         
         project = QgsProject.instance()
         
-        svgProfilePath = self.settings.value( "/QGEP/SvgProfilePath", None ).toString()
+        svgProfilePath = self.settings.value( "/QGEP/SvgProfilePath", None )
         if svgProfilePath != u'':
             self.mGbOverrideDefaultProfileTemplate.setChecked( True )
             self.mProfileTemplateFile.setText( svgProfilePath )
         else:
             self.mGbOverrideDefaultProfileTemplate.setChecked( False )
             
-        develMode = self.settings.value( "/QGEP/DeveloperMode", QVariant( False ) ).toBool()
+        develMode = self.settings.value( "/QGEP/DeveloperMode", False, type=bool )
         self.mCbDevelMode.setChecked( develMode )
         
         lyrSpecialStructures, _ = project.readEntry( 'QGEP', 'SpecialStructureLayer' )
@@ -58,23 +58,23 @@ class QgepSettingsDialog(QDialog, Ui_QgepSettingsDialog):
         self.initLayerCombobox( self.mCbGraphEdges, lyrGraphEdges )
         self.initLayerCombobox( self.mCbGraphNodes, lyrGraphNodes )
 
-        self.mCurrentProfileColorButton.setColor( QColor( self.settings.value( "/QGEP/CurrentProfileColor", QVariant( '#FF9500' ) ).toString() ) )
-        self.mHelperLineColorButton.setColor( QColor( self.settings.value( "/QGEP/HelperLineColor", QVariant( '#FFD900' ) ).toString() ) )
-        self.mHighlightColorButton.setColor( QColor( self.settings.value( "/QGEP/HighlightColor",  QVariant( '#40FF40' ) ).toString() ) )
+        self.mCurrentProfileColorButton.setColor( QColor( self.settings.value( "/QGEP/CurrentProfileColor", u'#FF9500' ) ) )
+        self.mHelperLineColorButton.setColor( QColor( self.settings.value( "/QGEP/HelperLineColor", u'#FFD900' ) ) )
+        self.mHighlightColorButton.setColor( QColor( self.settings.value( "/QGEP/HighlightColor",  u'#40FF40' ) ) )
 
         self.mPbnChooseProfileTemplateFile.clicked.connect( self.onChooseProfileTemplateFileClicked )
         self.mPbnChooseLogFile.clicked.connect( self.onChooseLogFileClicked )
         
         self.accepted.connect( self.onAccept )
         
-        loglevel = self.settings.value( "/QGEP/LogLevel", 'Warning' ).toString()
+        loglevel = self.settings.value( "/QGEP/LogLevel", 'Warning' )
         self.mCbLogLevel.setCurrentIndex( self.mCbLogLevel.findText( self.tr( loglevel ) ) )
         
         logfile = self.settings.value( "/QGEP/LogFile", None )
         
-        if logfile.isNull() is not True:
+        if logfile is not None:
             self.mGbLogToFile.setChecked( True )
-            self.mLogFile.setText( logfile.toString() )
+            self.mLogFile.setText( logfile )
         else:
             self.mGbLogToFile.setChecked( False )
         
@@ -140,9 +140,9 @@ class QgepSettingsDialog(QDialog, Ui_QgepSettingsDialog):
         graphEdgeLayerIdx   = self.mCbGraphEdges.currentIndex()
         graphNodeLayerIdx   = self.mCbGraphNodes.currentIndex()
         
-        project.writeEntry( 'QGEP', 'SpecialStructureLayer', self.mCbSpecialStructures.itemData( specialStructureIdx ).toString() )
-        project.writeEntry( 'QGEP', 'GraphEdgeLayer',        self.mCbGraphEdges.itemData( graphEdgeLayerIdx ).toString() )
-        project.writeEntry( 'QGEP', 'GraphNodeLayer',        self.mCbGraphNodes.itemData( graphNodeLayerIdx ).toString() )
+        project.writeEntry( 'QGEP', 'SpecialStructureLayer', self.mCbSpecialStructures.itemData( specialStructureIdx ) )
+        project.writeEntry( 'QGEP', 'GraphEdgeLayer',        self.mCbGraphEdges.itemData( graphEdgeLayerIdx ) )
+        project.writeEntry( 'QGEP', 'GraphNodeLayer',        self.mCbGraphNodes.itemData( graphNodeLayerIdx ) )
 
     @pyqtSlot()
     def onChooseProfileTemplateFileClicked(self):
