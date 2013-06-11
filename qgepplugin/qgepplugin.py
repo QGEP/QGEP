@@ -83,7 +83,7 @@ class QgepPlugin:
 
         self.logger.addHandler( QgepQgsLogHandler() )
         
-        if not logfile:
+        if logfile:
             hLog = logging.FileHandler( logfile )
             fmt = logging.Formatter( LOGFORMAT )
             hLog.setFormatter( fmt )
