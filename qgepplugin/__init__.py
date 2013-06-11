@@ -26,7 +26,10 @@ import os
 from PyQt4.QtCore import QSettings
 
 def qgisMinimumVersion():
-    return '1.9'
+    fp = os.path.join(os.path.abspath(os.path.dirname(__file__)) , "metadata.txt")
+    iniText = QSettings(fp, QSettings.IniFormat)
+    qgisMinVersion = iniText.value("qgisMinimumVersion").toString()
+    return qgisMinVersion
 
 def authorName():
     return 'Matthias Kuhn'
