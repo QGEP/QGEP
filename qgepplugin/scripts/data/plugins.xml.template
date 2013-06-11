@@ -3,7 +3,7 @@
     <pyqgis_plugin name="QGEP" version="__version__">
         <description><![CDATA[QGEP: Plugin for wastewater management]]></description>
         <version>__version__</version>
-        <qgis_minimum_version>1.8</qgis_minimum_version>
+        <qgis_minimum_version>2.0</qgis_minimum_version>
         <homepage>http://github.com/qgep/QGEP</homepage>
         <file_name>qgepplugin.zip</file_name>
         <icon>icons/qgepPlugin.svg</icon>
