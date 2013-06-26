@@ -1,10 +1,10 @@
 Installation of the data model in PostgreSQL - Execution order of SQL files:
 
-1. 1_audit.sql - creates the trigger to log actions on tables
-2. 2_qgep.sql - creates schema and empty tables
-3. 3_is_dictionary_metadata_table.sql - translations of tables into different languages, incl. abbreviations
-4. 4_is_oid_prefixes_table.sql - prefixes for the generation of OIDs
-5. 5_indexes_core_model.sql - indexes for faster access
-6. 6_generate_oid_function.sql - function for generating new OIDs
-7. 7_vw_network_node.sql - view for network following
-8. 8_vw_network_segment.sql - view for network following
+00_create_schema.sql - creates the QGEP schema
+01_audit.sql - creates the trigger to log history on tables
+02_is_dictionary_metadata_table.sql - translations of tables into different languages, incl. abbreviations
+03_oid_generation.sql - infrastructure table and function for StandardOID generation
+04_qgep_tables.sql - the core of the model: the empty tables
+05_indexes - indexes for faster access
+06_vw_symbology_manhole_reach_specialstructure.sql - views for displaying/symbolizing the data
+07_views_for_network_following.sql - 2 views for network following

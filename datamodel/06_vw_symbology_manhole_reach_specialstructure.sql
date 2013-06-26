@@ -29,10 +29,7 @@ CREATE OR REPLACE VIEW qgep.vw_manhole AS
    LEFT JOIN qgep.od_reach re_from ON rp.obj_id::text = re_from.fs_reach_point_from::text
    LEFT JOIN qgep.vl_manhole_function mh_func ON mh.function = mh_func.code
    LEFT JOIN qgep.vl_manhole_material mh_mat ON mh.material = mh_mat.code
-  WHERE str.obj_id::text <> 'AAA_AK726'::text
   GROUP BY mh.gid, mh.obj_id, mh.depth, mh.dimension1, mh.dimension2, mh.function, mh.material, mh.surface_inflow, str.obj_id, str.accessibility, str.disposition_state, str.identifier, str.location_name, str.remark, str.renovation_demand, str.structure_condition, str.year_of_construction, str.year_of_replacement, ne.obj_id, mh_func.value_de, mh_mat.value_de;
-
-ALTER TABLE qgep.vw_manhole OWNER TO an;
 
 ----------------
 
@@ -104,8 +101,6 @@ CREATE OR REPLACE VIEW qgep.vw_reach AS
    LEFT JOIN qgep.od_infiltration_installation inf_to ON inf_to.obj_id::text = str_to.obj_id::text
    LEFT JOIN qgep.od_discharge_point disch_to ON disch_to.obj_id::text = str_to.obj_id::text;
 
-ALTER TABLE qgep.vw_reach OWNER TO an;
-
 -----------------------
 
 -- View: qgep.vw_special_structure
@@ -129,6 +124,3 @@ CREATE OR REPLACE VIEW qgep.vw_special_structure AS
    LEFT JOIN qgep.od_reach re_to ON rp.obj_id::text = re_to.fs_reach_point_to::text
    LEFT JOIN qgep.od_reach re_from ON rp.obj_id::text = re_from.fs_reach_point_from::text
   GROUP BY ss.gid, ss.obj_id, str.detail_geometry_geometry, ss.bypass, ss.depth, ss.function, ss.stormwatertank_arrangement, ss.upper_elevation, str.obj_id, str.identifier, str.accessibility, str.disposition_state, str.location_name, str.remark, str.renovation_demand, str.structure_condition, str.year_of_construction, str.year_of_replacement, ne.obj_id;
-
-ALTER TABLE qgep.vw_special_structure OWNER TO an;
-

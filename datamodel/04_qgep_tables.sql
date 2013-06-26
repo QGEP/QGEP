@@ -2,8 +2,6 @@
 ------ for questions etc please contact stefan burckhardt stefan.burckhardt@sjib.ch
 ------ version 24.04.2013 15:23:06
 BEGIN;
-CREATE SCHEMA qgep;
--------
 CREATE TABLE qgep.od_mutation
 (
    obj_id  varchar(16) NOT NULL,
