@@ -10,7 +10,7 @@ def setupI18n( thePreferredLocale=None):
     and then see if we can get a valid translation file
     for whatever locale is effectively being used.
 
-    @param thePreferredLocal will override any other locale setting
+    @param thePreferredLocale will override any other locale setting
     """
     
     logger = logging.getLogger( __name__ )
