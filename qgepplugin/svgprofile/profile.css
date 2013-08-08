@@ -106,6 +106,17 @@ g.special-structure:hover > text {
     fill: none;
 }
 
+/*
+ * Backflow line
+ */
+
+.backflow {
+    stroke-width: 1.5px;
+    vector-effect: non-scaling-stroke;
+    stroke: #007777;
+    fill: none;
+}
+
 /* Zoom / pan overlay */
 rect.pane {
     cursor: move;

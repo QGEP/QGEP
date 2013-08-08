@@ -46,7 +46,7 @@ function I(d)
 // Global Object, where we'll declare all the useful stuff inside
 var qgep = { def: {}, test: {} };
 
-require( ["dojo/on", "dojo/ready", "dojo/_base/json", "dojo/_base/lang", "profile/specialStructure", "profile/reach", "profile/terrain"], function(  on, ready, dojo, lang, SpecialStructure, Reach, Terrain ) {
+require( ["dojo/on", "dojo/ready", "dojo/_base/json", "dojo/_base/lang", "profile/specialStructure", "profile/reach", "profile/surface"], function(  on, ready, dojo, lang, SpecialStructure, Reach, Surface ) {
   qgep.def.ProfilePlot = dojo.declare( null,
   {
     verticalExaggeration: 10,
@@ -132,10 +132,22 @@ require( ["dojo/on", "dojo/ready", "dojo/_base/json", "dojo/_base/lang", "profil
         y: this.y
       });
 
-      this.terrain = new Terrain({
+      this.terrain = new Surface({
         svgProfile: this.profile,
         x: this.x,
-        y: this.y
+        y: this.y,
+        className: "terrain",
+        xAttr: "offset",
+        yAttr: "coverLevel"
+      });
+
+      this.backflow = new Surface({
+        svgProfile: this.profile,
+        x: this.x,
+        y: this.y,
+        className: "backflow",
+        xAttr: "offset",
+        yAttr: "backflowLevel"
       });
     },
 
@@ -178,7 +190,7 @@ require( ["dojo/on", "dojo/ready", "dojo/_base/json", "dojo/_base/lang", "profil
       this.gyAxis
         .attr("transform", "translate(" + this.width + ",0)")
         .call( this.yAxis );
-        
+
       this.zoomRect
         .attr( "width", this.width )
         .attr( "height", this.height );
@@ -248,6 +260,7 @@ require( ["dojo/on", "dojo/ready", "dojo/_base/json", "dojo/_base/lang", "profil
       this.reach.redraw( duration );
       this.specialStructure.redraw( duration );
       this.terrain.redraw( duration );
+      this.backflow.redraw( duration );
     }
   });
 
@@ -279,8 +292,9 @@ require( ["dojo/on", "dojo/ready", "dojo/_base/json", "dojo/_base/lang", "profil
           qgep.profilePlot.reach.data( reachData );
           var specialStructureData = profileData.filter ( function(d) { return d.type === 'special_structure'; } );
           qgep.profilePlot.specialStructure.data( specialStructureData );
-          var coverData = profileData.filter( function(d) { return d.type === 'node'; } );
-          qgep.profilePlot.terrain.data( coverData );
+          var nodeData = profileData.filter( function(d) { return d.type === 'node'; } );
+          qgep.profilePlot.terrain.data( nodeData );
+          qgep.profilePlot.backflow.data( nodeData );
 
           qgep.profilePlot.scaleDomain();
           qgep.profilePlot.redraw();

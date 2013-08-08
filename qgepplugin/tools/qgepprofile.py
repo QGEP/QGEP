@@ -297,13 +297,15 @@ class QgepProfileNodeElement(QgepProfileElement):
         
         self.offset = offset
         self.coverLevel = nodeCache.attrAsFloat(point, u'cover_level')
+        self.backflowLevel = nodeCache.attrAsFloat(point, u'backflow_level')
         
     def asDict(self):
         el = QgepProfileElement.asDict(self)
         el.update(\
         { \
           'offset': self.offset, \
-          'coverLevel': self.coverLevel \
+          'coverLevel': self.coverLevel, \
+          'backflowLevel': self.backflowLevel
         })
         return el
 
