@@ -1,4 +1,4 @@
-BEGIN;
+﻿BEGIN;
 --
 -- Audited data. Lots of information is available, it's just a matter of how much
 -- you really want to record. See:
@@ -16,9 +16,9 @@ BEGIN;
 -- you're interested in, into a temporary table where you CREATE any useful
 -- indexes and do your analysis.
 --
-DROP TABLE IF EXISTS qgep.logged_actions;
+DROP TABLE IF EXISTS qgep.is_logged_actions;
 
-CREATE TABLE qgep.logged_actions (
+CREATE TABLE qgep.is_logged_actions (
     event_id bigserial PRIMARY KEY,
     schema_name text NOT NULL,
     table_name text NOT NULL,
@@ -38,34 +38,34 @@ CREATE TABLE qgep.logged_actions (
     statement_only BOOLEAN NOT NULL
 );
  
-REVOKE ALL ON qgep.logged_actions FROM public;
+REVOKE ALL ON qgep.is_logged_actions FROM public;
  
-COMMENT ON TABLE qgep.logged_actions IS 'History of auditable actions on audited tables, from qgep.if_modified_func()';
-COMMENT ON COLUMN qgep.logged_actions.event_id IS 'Unique identifier for each auditable event';
-COMMENT ON COLUMN qgep.logged_actions.schema_name IS 'Database schema audited table for this event is in';
-COMMENT ON COLUMN qgep.logged_actions.table_name IS 'Non-schema-qualified table name of table event occured in';
-COMMENT ON COLUMN qgep.logged_actions.relid IS 'Table OID. Changes with drop/create. Get with ''tablename''::regclass';
-COMMENT ON COLUMN qgep.logged_actions.session_user_name IS 'Login / session user whose statement caused the audited event';
-COMMENT ON COLUMN qgep.logged_actions.action_tstamp_tx IS 'Transaction start timestamp for tx in which audited event occurred';
-COMMENT ON COLUMN qgep.logged_actions.action_tstamp_stm IS 'Statement start timestamp for tx in which audited event occurred';
-COMMENT ON COLUMN qgep.logged_actions.action_tstamp_clk IS 'Wall clock time at which audited event''s trigger call occurred';
-COMMENT ON COLUMN qgep.logged_actions.transaction_id IS 'Identifier of transaction that made the change. May wrap, but unique paired with action_tstamp_tx.';
-COMMENT ON COLUMN qgep.logged_actions.client_addr IS 'IP address of client that issued query. Null for unix domain socket.';
-COMMENT ON COLUMN qgep.logged_actions.client_port IS 'Remote peer IP port address of client that issued query. Undefined for unix socket.';
-COMMENT ON COLUMN qgep.logged_actions.client_query IS 'Top-level query that caused this auditable event. May be more than one statement.';
-COMMENT ON COLUMN qgep.logged_actions.application_name IS 'Application name set when this audit event occurred. Can be changed in-session by client.';
-COMMENT ON COLUMN qgep.logged_actions.action IS 'Action type; I = insert, D = delete, U = update, T = truncate';
-COMMENT ON COLUMN qgep.logged_actions.row_data IS 'Record value. Null for statement-level trigger. For INSERT this is the new tuple. For DELETE and UPDATE it is the old tuple.';
-COMMENT ON COLUMN qgep.logged_actions.changed_fields IS 'New values of fields changed by UPDATE. Null except for row-level UPDATE events.';
-COMMENT ON COLUMN qgep.logged_actions.statement_only IS '''t'' if audit event is from an FOR EACH STATEMENT trigger, ''f'' for FOR EACH ROW';
+COMMENT ON TABLE qgep.is_logged_actions IS 'History of auditable actions on audited tables, from qgep.if_modified_func()';
+COMMENT ON COLUMN qgep.is_logged_actions.event_id IS 'Unique identifier for each auditable event';
+COMMENT ON COLUMN qgep.is_logged_actions.schema_name IS 'Database schema audited table for this event is in';
+COMMENT ON COLUMN qgep.is_logged_actions.table_name IS 'Non-schema-qualified table name of table event occured in';
+COMMENT ON COLUMN qgep.is_logged_actions.relid IS 'Table OID. Changes with drop/create. Get with ''tablename''::regclass';
+COMMENT ON COLUMN qgep.is_logged_actions.session_user_name IS 'Login / session user whose statement caused the audited event';
+COMMENT ON COLUMN qgep.is_logged_actions.action_tstamp_tx IS 'Transaction start timestamp for tx in which audited event occurred';
+COMMENT ON COLUMN qgep.is_logged_actions.action_tstamp_stm IS 'Statement start timestamp for tx in which audited event occurred';
+COMMENT ON COLUMN qgep.is_logged_actions.action_tstamp_clk IS 'Wall clock time at which audited event''s trigger call occurred';
+COMMENT ON COLUMN qgep.is_logged_actions.transaction_id IS 'Identifier of transaction that made the change. May wrap, but unique paired with action_tstamp_tx.';
+COMMENT ON COLUMN qgep.is_logged_actions.client_addr IS 'IP address of client that issued query. Null for unix domain socket.';
+COMMENT ON COLUMN qgep.is_logged_actions.client_port IS 'Remote peer IP port address of client that issued query. Undefined for unix socket.';
+COMMENT ON COLUMN qgep.is_logged_actions.client_query IS 'Top-level query that caused this auditable event. May be more than one statement.';
+COMMENT ON COLUMN qgep.is_logged_actions.application_name IS 'Application name set when this audit event occurred. Can be changed in-session by client.';
+COMMENT ON COLUMN qgep.is_logged_actions.action IS 'Action type; I = insert, D = delete, U = update, T = truncate';
+COMMENT ON COLUMN qgep.is_logged_actions.row_data IS 'Record value. Null for statement-level trigger. For INSERT this is the new tuple. For DELETE and UPDATE it is the old tuple.';
+COMMENT ON COLUMN qgep.is_logged_actions.changed_fields IS 'New values of fields changed by UPDATE. Null except for row-level UPDATE events.';
+COMMENT ON COLUMN qgep.is_logged_actions.statement_only IS '''t'' if audit event is from an FOR EACH STATEMENT trigger, ''f'' for FOR EACH ROW';
  
-CREATE INDEX logged_actions_relid_idx ON qgep.logged_actions(relid);
-CREATE INDEX logged_actions_action_tstamp_tx_stm_idx ON qgep.logged_actions(action_tstamp_stm);
-CREATE INDEX logged_actions_action_idx ON qgep.logged_actions(action);
+CREATE INDEX logged_actions_relid_idx ON qgep.is_logged_actions(relid);
+CREATE INDEX logged_actions_action_tstamp_tx_stm_idx ON qgep.is_logged_actions(action_tstamp_stm);
+CREATE INDEX logged_actions_action_idx ON qgep.is_logged_actions(action);
  
 CREATE OR REPLACE FUNCTION qgep.if_modified_func() RETURNS TRIGGER AS $body$
 DECLARE
-    audit_row qgep.logged_actions;
+    audit_row qgep.is_logged_actions;
     include_values BOOLEAN;
     log_diffs BOOLEAN;
     h_old hstore;
@@ -77,7 +77,7 @@ BEGIN
     END IF;
  
     audit_row = ROW(
-        NEXTVAL('qgep.logged_actions_event_id_seq'), -- event_id
+        NEXTVAL('qgep.is_logged_actions_event_id_seq'), -- event_id
         TG_TABLE_SCHEMA::text,                        -- schema_name
         TG_TABLE_NAME::text,                          -- table_name
         TG_RELID,                                     -- relation OID for much quicker searches
@@ -120,7 +120,7 @@ BEGIN
         RAISE EXCEPTION '[qgep.if_modified_func] - Trigger func added as trigger for unhandled case: %, %',TG_OP, TG_LEVEL;
         RETURN NULL;
     END IF;
-    INSERT INTO qgep.logged_actions VALUES (audit_row.*);
+    INSERT INTO qgep.is_logged_actions VALUES (audit_row.*);
     RETURN NULL;
 END;
 $body$

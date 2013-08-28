@@ -1,4 +1,8 @@
-﻿CREATE TABLE qgep.is_oid_prefixes
+﻿-- this file generates a new SQL function to create StandardOIDs for all the qgep.od_* tables.
+-- you need to add entries for your organizations into the table qgep.is_oid_prefixes
+-- questions regarding this function should be directed to Andreas Neumann, Stadt Uster
+
+CREATE TABLE qgep.is_oid_prefixes
 (
   id serial NOT NULL,
   prefix character(8),

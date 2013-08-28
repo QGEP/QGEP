@@ -95,7 +95,7 @@ CREATE VIEW qgep.vw_network_segment AS
    SELECT 
      od_reach.obj_id,
      'reach' AS type,
-     depth,
+     max_height_profile,
      ST_LENGTH( COALESCE( reach_progression, progression ) ) AS length_calc,
      ST_LENGTH( progression ) AS length_full,
      COALESCE( from_obj_id, fs_reach_point_from ) AS from_obj_id,
