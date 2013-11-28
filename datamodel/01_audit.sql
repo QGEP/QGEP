@@ -16,6 +16,16 @@
 -- you're interested in, into a temporary table where you CREATE any useful
 -- indexes and do your analysis.
 --
+-- This needs the hstore extension to be installed.
+-- Installation instructions for Ubuntu:
+-- 
+-- * As root install the postgresql-contrib package
+--     apt-get install postgresql-contrib
+-- 
+-- * Create the hstore extension on this database
+--   by manually executing or uncommenting the following line
+--     CREATE EXTENSION hstore;
+
 DROP TABLE IF EXISTS qgep.is_logged_actions;
 
 CREATE TABLE qgep.is_logged_actions (
