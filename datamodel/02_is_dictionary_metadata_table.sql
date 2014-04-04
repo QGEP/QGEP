@@ -1,6 +1,6 @@
-﻿------ this file generates the qgep is_dictionary on QGEP
+﻿------ this file generates the qgep is_dictionary (Modul dss) in en on QGEP
 ------ for questions etc. please contact stefan burckhardt stefan.burckhardt@sjib.ch
------- version 19.07.2013 20:45:19
+------ version 13.03.2014 21:18:49
 CREATE TABLE qgep.is_dictionary
 (
   id integer NOT NULL,
@@ -17,6 +17,29 @@ CREATE TABLE qgep.is_dictionary
 WITH (
   OIDS = False
 );
+ INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (23,'od_hazard_source','hazard source','HS','Gefahrenquelle','GQ','source de danger','SD');
+ INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (24,'od_municipality','municipality','MU','Gemeinde','GE','commune','CM');
+ INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (25,'od_surface_water_bodies','surface water bodies','CU','Oberflächengewässer','GW','eaux superficielles','ES');
+ INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (26,'od_water_course_segment','water course segment','SE','Gewässerabschnitt','GA','tronçon de cours d''eau','TC');
+ INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (2652,'od_sector_water_body','sector water body','SW','Gewässersektor','GK','secteur d''eaux superficielles','SU');
+ INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (27,'od_river_bed','river bed','RD','Gewässersohle','GO','fond du cours d''eau','FC');
+ INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (2721,'od_drainage_system','drainage system','DS','Entwässerungssystem','ES','système d''évacuation des eaux','SY');
+ INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (2723,'od_control_center','control center','CC','Steuerungszentrale','SZ','centrale de commande','CC');
+ INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (2733,'od_administrative_office','administrative office','AO','Amt','AM','office','OF');
+ INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (28,'od_water_control_structure','water control structure','CS','Gewässerverbauung','GV','aménagement de cours d''eau','AM');
+ INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (29,'od_water_catchment','water catchment','WC','Wasserfassung','WF','captage','CP');
+ INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (2964,'od_profile_geometry','profile geometry','PG','Rohrprofil Geometrie','RG','profil du tuyau geometrie','TG');
+ INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (3,'od_waste_water_treatment','waste water treatment','TR','Abwasserbehandlung','AH','traitement des eaux usées','TE');
+ INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (30,'od_aquifier','aquifier','AQ','Grundwasserleiter','GL','aquifère','AQ');
+ INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (31,'od_reach','reach','RE','Haltung','HA','tronçon','TR');
+ INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (3189,'od_param_ca_general','param ca general','PC','EZG_PARAMETER_ALLG','EG','param bv géneral','PB');
+ INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (32,'od_reach_point','reach point','RP','Haltungspunkt','HP','point de tronçon','PT');
+ INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (33,'od_hq_relation','hq relation','HQ','HQ-Relation','HR','relation hq','HQ');
+ INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (36,'od_hydr_geometry','hydraulic geometry','HG','Hydro-Geometrie','HG','géométrie hydraulique','GH');
+ INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (3679,'od_examination','examination','EX','Untersuchung','UN','examen','IN');
+ INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (37,'od_hydr_geom_relation','hydr geom relation','HR','Hydro-Geometrie-Relation','HY','relation géometrie hydraulique','RG');
+ INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (3705,'od_damage','damage','DG','Schaden','SC','dommage','DO');
+ INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (3714,'od_damage_channel','damage channel','DC','Kanalschaden','KS','dommage aux canalisations','DC');
  INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (1001,'od_dryweather_downspout','dryweather downspout','DD','Trockenwetterfallrohr','TF','tuyau de chute par temps sec','TT');
  INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (1022,'od_param_ca_mouse1','param ca mouse1','PM','EZG_PARAMETER_MOUSE1','EM','paramètre bv mouse1','PM');
  INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (1033,'od_fountain','fountain','FO','Brunnen','BR','fontaine','FO');
@@ -49,29 +72,6 @@ WITH (
  INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (19,'od_catchment_area','catchment area','CA','Einzugsgebiet','EZ','bassin versant','BV');
  INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (2,'od_wastewater_structure','wastewater structure','WS','Abwasserbauwerk','BW','ouvrage du réseau d''évacuation','OU');
  INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (21,'od_river','river','RI','Fliessgewässer','FG','cours d''eau','CE');
- INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (23,'od_hazard_source','hazard source','HS','Gefahrenquelle','GQ','source de danger','SD');
- INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (24,'od_municipality','municipality','MU','Gemeinde','GE','commune','CM');
- INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (25,'od_surface_water_bodies','surface water bodies','CU','Oberflächengewässer','GW','eaux superficielles','ES');
- INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (26,'od_water_course_segment','water course segment','SE','Gewässerabschnitt','GA','tronçon de cours d''eau','TC');
- INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (2652,'od_sector_water_body','sector water body','SW','Gewässersektor','GK','secteur d''eaux superficielles','SU');
- INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (27,'od_river_bed','river bed','RD','Gewässersohle','GO','fond du cours d''eau','FC');
- INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (2721,'od_drainage_system','drainage system','DS','Entwässerungssystem','ES','système d''évacuation des eaux','SY');
- INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (2723,'od_control_center','control center','CC','Steuerungszentrale','SZ','centrale de commande','CC');
- INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (2733,'od_administrative_office','administrative office','AO','Amt','AM','office','OF');
- INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (28,'od_water_control_structure','water control structure','CS','Gewässerverbauung','GV','aménagement de cours d''eau','AM');
- INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (29,'od_water_catchment','water catchment','WC','Wasserfassung','WF','captage','CP');
- INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (2964,'od_profile_geometry','profile geometry','PG','Rohrprofil Geometrie','RG','profil du tuyau geometrie','TG');
- INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (3,'od_waste_water_treatment','waste water treatment','TR','Abwasserbehandlung','AH','traitement des eaux usées','TE');
- INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (30,'od_aquifier','aquifier','AQ','Grundwasserleiter','GL','aquifère','AQ');
- INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (31,'od_reach','reach','RE','Haltung','HA','tronçon','TR');
- INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (3189,'od_param_ca_general','param ca general','PC','EZG_PARAMETER_ALLG','EG','param bv géneral','PB');
- INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (32,'od_reach_point','reach point','RP','Haltungspunkt','HP','point de tronçon','PT');
- INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (33,'od_hq_relation','hq relation','HQ','HQ-Relation','HR','relation hq','HQ');
- INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (36,'od_hydr_geometry','hydr geometry','HG','Hydro-Geometrie','HG','géométrie hydraulique','GH');
- INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (3679,'od_examination','examination','EX','Untersuchung','UN','examen','IN');
- INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (37,'od_hydr_geom_relation','hydr geom relation','HR','Hydro-Geometrie-Relation','HY','relation géometrie hydraulique','RG');
- INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (3705,'od_damage','damage','DG','Schaden','SC','dommage','DO');
- INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (3714,'od_damage_channel','damage channel','DC','Kanalschaden','KS','dommage aux canalisations','DC');
  INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (3728,'od_damage_manhole','damage manhole','DM','Normschachtschaden','SS','dommage chambre standard','SS');
  INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (3754,'od_file','file','FI','Datei','DA','fichier','FI');
  INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (3776,'od_data_media','data media','VO','Datenträger','DT','support données','SO');
@@ -86,7 +86,7 @@ WITH (
  INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (4586,'od_cooperative','cooperative','CP','Genossenschaft/Kooperation','GN','cooperative','GK');
  INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (46,'od_surface_runoff_parameters','surface runoff parameters','SR','Oberflächenabflussparameter','OP','paramètres d''écoulement superficiel','PE');
  INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (47,'od_organisation','organisation','OG','Organisation','OG','organisation','OG');
- INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (48,'od_privat','privat','PR','Privat','PR','privé','PR');
+ INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (48,'od_private','private','PR','Privat','PR','privé','PR');
  INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (49,'od_pipe_profile','pipe profile','PP','Rohrprofil','RP','genre de profil de tuyau','GP');
  INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (5,'od_wastewater_networkelement','wastewater networkelement','WE','Abwassernetzelement','AN','elément du réseau d''évacuation des eaux','ER');
  INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (50,'od_pump','pump','PU','Förderaggregat','FA','installation de refoulement','IR');
@@ -97,12 +97,11 @@ WITH (
  INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (57,'od_special_structure','special structure','SS','Spezialbauwerk','SW','ouvrage spécial','OC');
  INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (58,'od_substance','substance','SB','Stoff','ST','substance','SB');
  INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (60,'od_prank_weir','prank weir','PW','Streichwehr','WE','déversoir latéral','DL');
- INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (6100,'od_building_group','building group','','Gebäudegruppe','GG','bâtiment','BG');
- INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (6101,'od_farm','farm','','Landwirtschaftsbetrieb','','exploitation agricole','EA');
- INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (6102,'od_disposal_without_drain','disposal without drain','','Abflusslose Entsorgung','','evacuation sans rejet','SR');
- INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (6103,'od_small_treatment_plant','small treatment plant','','KLARA','','petite step','PS');
- INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (6104,'od_disposal_with_drain','disposal with drain','','Entsorgung mit Abfluss','','evacuation avec rejet','EV');
- INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (6105,'od_building_group_baugwr','building group baugwr','','Gebäudegruppe BAUGWR','','bâtiment bauregbl','');
+ INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (6100,'od_building_group','building group','BG','Gebäudegruppe','GG','bâtiment','BG');
+ INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (6101,'od_farm','farm','FA','Landwirtschaftsbetrieb','LB','exploitation agricole','EA');
+ INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (6103,'od_small_treatment_plant','small treatment plant','SM','KLARA','KL','petite step','PS');
+ INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (6105,'od_building_group_baugwr','building group baugwr','BW','Gebäudegruppe BAUGWR','BA','bâtiment bauregbl','BR');
+ INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (6107,'od_toilet','toilet','','Toilette','','toilette','');
  INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (62,'od_dryweather_flume','dryweather flume','DF','Trockenwetterrinne','TR','cunette de débit temps sec','CU');
  INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (63,'od_overflow','overflow','OF','Überlauf','UE','déversoir','DE');
  INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (64,'od_overflow_characteristic','overflow characteristic','OC','Überlaufcharakteristik','UC','caractéristiques du déversoir','CD');
@@ -117,5 +116,5 @@ WITH (
  INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (9,'od_waste_water_treatment_plant','waste water treatment plant','TP','Abwasserreinigungsanlage','AR','station d''épuration des eaux usées','ST');
  INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (97,'od_wwtp_structure','wwtp structure','WT','ARA Bauwerk','AW','ouvrages d''une  step','OS');
  INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (99,'od_measuring_device','measuring device','MV','Messgerät','MG','appareil de mesure','AP');
- INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (9998,'od_TEXT','TEXT','','Text','TX','texte','TX');
+ INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (9998,'od_text','TEXT','','Text','TX','texte','TX');
  INSERT INTO qgep.is_dictionary (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr) VALUES (9999,'od_mutation','mutation','MD','Mutation','MD','mutation','MD');

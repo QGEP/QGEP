@@ -1,8 +1,7 @@
 ﻿------ This file generates the VSA-DSS database (Modul VSA-DSS) in en on QQIS
 ------ For questions etc. please contact Stefan Burckhardt stefan.burckhardt@sjib.ch
------- version 19.07.2013 20:45:13
+------ version 13.03.2014 21:19:04
 BEGIN;
--------
 CREATE TABLE qgep.txt_text
 (
    obj_id  varchar(16) NOT NULL,
@@ -16,20 +15,20 @@ CREATE SEQUENCE qgep.seq_txt_text_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 STA
  ALTER TABLE qgep.txt_text ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('txt_text');
 COMMENT ON COLUMN qgep.txt_text.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
  ALTER TABLE qgep.txt_text ADD COLUMN class  varchar(80) ;
-COMMENT ON COLUMN qgep.txt_text.class IS 'Name of VSA-DSS class / Bezeichnung der VSA-DSS Klasse zu der dieser Text gehört / Nom de la classee VSA-SDEE';
+COMMENT ON COLUMN qgep.txt_text.class IS 'Name of VSA-DSS class / Bezeichnung der VSA-DSS Klasse zu der dieser Text gehört / Nom de la classe VSA-SDEE';
  ALTER TABLE qgep.txt_text ADD COLUMN map_type  integer ;
 COMMENT ON COLUMN qgep.txt_text.map_type IS ' /  / ';
  ALTER TABLE qgep.txt_text ADD COLUMN object  varchar(16) ;
 COMMENT ON COLUMN qgep.txt_text.object IS ' /  / ';
  ALTER TABLE qgep.txt_text ADD COLUMN remarks  varchar(80) ;
-COMMENT ON COLUMN qgep.txt_text.remarks IS 'for bilateral further specifications / für bilaterale weitere Spezifikationen / pour des spécifications bilaterale';
+COMMENT ON COLUMN qgep.txt_text.remarks IS 'for bilateral further specifications / für bilaterale weitere Spezifikationen / pour des spécifications bilatérales';
  ALTER TABLE qgep.txt_text ADD COLUMN text  TEXT ;
 COMMENT ON COLUMN qgep.txt_text.text IS 'yyy_aus Attributen berechneter Wert, neu 80 statt 40 Zeichen und MTEXT statt TEXT, damit auch mehrzeilige Texte verarbeitet werden können. / aus Attributen berechneter Wert, neu 80 statt 40 Zeichen und MTEXT statt TEXT, damit auch mehrzeilige Texte verarb';
  ALTER TABLE qgep.txt_text ADD COLUMN texthali  integer ;
 COMMENT ON COLUMN qgep.txt_text.texthali IS ' /  / ';
  ALTER TABLE qgep.txt_text ADD COLUMN textori  decimal(4,1) ;
 COMMENT ON COLUMN qgep.txt_text.textori IS ' /  / ';
-SELECT AddGeometryColumn('qgep', 'txt_text', 'textpos_geometry', 21781, 'POINT', 2);
+SELECT AddGeometryColumn('qgep', 'txt_text', 'textpos_geometry', 21781, 'POINT', 2, true);
 CREATE INDEX in_qgep_txt_text_textpos_geometry ON qgep.txt_text USING gist (textpos_geometry );
 COMMENT ON COLUMN qgep.txt_text.textpos_geometry IS ' /  / ';
  ALTER TABLE qgep.txt_text ADD COLUMN textvali  integer ;
@@ -80,6 +79,57 @@ COMMENT ON COLUMN qgep.od_mutation.dataowner IS 'Metaattribute dataowner - this 
  ALTER TABLE qgep.od_mutation ADD COLUMN provider varchar(80) ;
 COMMENT ON COLUMN qgep.od_mutation.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
 -------
+CREATE TABLE qgep.od_hydraulic_characteristic_data
+(
+   obj_id  varchar(16) NOT NULL,
+   CONSTRAINT pkey_qgep_od_hydraulic_characteristic_data_obj_id PRIMARY KEY (obj_id)
+)
+WITH (
+   OIDS = False
+);
+CREATE INDEX in_od_hydraulic_characteristic_data_obj_id ON qgep.od_hydraulic_characteristic_data USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_hydraulic_characteristic_data_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_hydraulic_characteristic_data ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_hydraulic_characteristic_data');
+COMMENT ON COLUMN qgep.od_hydraulic_characteristic_data.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_hydraulic_characteristic_data ADD COLUMN aggregate_number  smallint ;
+COMMENT ON COLUMN qgep.od_hydraulic_characteristic_data.aggregate_number IS ' /  / ';
+ ALTER TABLE qgep.od_hydraulic_characteristic_data ADD COLUMN delivery_height_geodaetic  decimal(5,2) ;
+COMMENT ON COLUMN qgep.od_hydraulic_characteristic_data.delivery_height_geodaetic IS ' /  / ';
+ ALTER TABLE qgep.od_hydraulic_characteristic_data ADD COLUMN is_overflowing  integer ;
+COMMENT ON COLUMN qgep.od_hydraulic_characteristic_data.is_overflowing IS 'yyy_Angabe, ob die Entlastung beim Dimensionierungsereignis anspringt / Angabe, ob die Entlastung beim Dimensionierungsereignis anspringt / Indication, si le déversoir déverse lors des événements pour lesquels il a été dimensionné.';
+ ALTER TABLE qgep.od_hydraulic_characteristic_data ADD COLUMN main_weir_kind  integer ;
+COMMENT ON COLUMN qgep.od_hydraulic_characteristic_data.main_weir_kind IS 'y.';
+ ALTER TABLE qgep.od_hydraulic_characteristic_data ADD COLUMN overcharge  smallint ;
+COMMENT ON COLUMN qgep.od_hydraulic_characteristic_data.overcharge IS 'yyy_Optimale Mehrbelastung nach der Umsetzung der Massnahmen. / Ist: Mehrbelastung der untenliegenden Kanäle beim Dimensionierungsereignis = 100 * (Qab – Qan) / Qan 	[%]. Verhältnis zwischen der abgeleiteten Abwassermengen Richtung ARA beim Anspringen des';
+ ALTER TABLE qgep.od_hydraulic_characteristic_data ADD COLUMN overflow_duration  decimal(5,1) ;
+COMMENT ON COLUMN qgep.od_hydraulic_characteristic_data.overflow_duration IS 'yyy_Mittlere Überlaufdauer pro Jahr / Mittlere Überlaufdauer pro Jahr / xxx_Mittlere Überlaufdauer pro Jahr';
+ ALTER TABLE qgep.od_hydraulic_characteristic_data ADD COLUMN overflow_freight  integer ;
+COMMENT ON COLUMN qgep.od_hydraulic_characteristic_data.overflow_freight IS ' /  / ';
+ ALTER TABLE qgep.od_hydraulic_characteristic_data ADD COLUMN overflow_frequency  decimal(3,1) ;
+COMMENT ON COLUMN qgep.od_hydraulic_characteristic_data.overflow_frequency IS ' /  / ';
+ ALTER TABLE qgep.od_hydraulic_characteristic_data ADD COLUMN pump_characteristics  integer ;
+COMMENT ON COLUMN qgep.od_hydraulic_characteristic_data.pump_characteristics IS 'yyy_Bei speziellen Betriebsarten ist die Funktion separat zu dokumentieren und der Stammkarte beizulegen. / Bei speziellen Betriebsarten ist die Funktion separat zu dokumentieren und der Stammkarte beizulegen. / Pour de régime de fonctionnement spéciaux, ';
+ ALTER TABLE qgep.od_hydraulic_characteristic_data ADD COLUMN pump_flow_max  decimal(5,3) ;
+COMMENT ON COLUMN qgep.od_hydraulic_characteristic_data.pump_flow_max IS 'yyy_Maximaler Förderstrom der Pumpen (gesamtes Bauwerk). Tritt in der Regel bei der minimalen Förderhöhe ein. / Maximaler Förderstrom der Pumpen (gesamtes Bauwerk). Tritt in der Regel bei der minimalen Förderhöhe ein. / Débit de refoulement maximal de tou';
+ ALTER TABLE qgep.od_hydraulic_characteristic_data ADD COLUMN pump_flow_min  decimal(5,3) ;
+COMMENT ON COLUMN qgep.od_hydraulic_characteristic_data.pump_flow_min IS 'yyy_Minimaler Förderstrom der Pumpen zusammen (gesamtes Bauwerk). Tritt in der Regel bei der maximalen Förderhöhe ein. / Minimaler Förderstrom der Pumpen zusammen (gesamtes Bauwerk). Tritt in der Regel bei der maximalen Förderhöhe ein. / Débit de refoulem';
+ ALTER TABLE qgep.od_hydraulic_characteristic_data ADD COLUMN pump_usage_current  integer ;
+COMMENT ON COLUMN qgep.od_hydraulic_characteristic_data.pump_usage_current IS 'ye';
+ ALTER TABLE qgep.od_hydraulic_characteristic_data ADD COLUMN q_discharge  decimal(5,3) ;
+COMMENT ON COLUMN qgep.od_hydraulic_characteristic_data.q_discharge IS 'yyy_Qab gemäss GEP / Qab gemäss GEP / Qeff';
+ ALTER TABLE qgep.od_hydraulic_characteristic_data ADD COLUMN qon  decimal(5,3) ;
+COMMENT ON COLUMN qgep.od_hydraulic_characteristic_data.qon IS 'yyy_Wassermenge, bei welcher der Überlauf anspringt / Wassermenge, bei welcher der Überlauf anspringt / Débit à partir duquel le déversoir devrait être fonctionnel';
+ ALTER TABLE qgep.od_hydraulic_characteristic_data ADD COLUMN remark  varchar(80) ;
+COMMENT ON COLUMN qgep.od_hydraulic_characteristic_data.remark IS ' /  / ';
+ ALTER TABLE qgep.od_hydraulic_characteristic_data ADD COLUMN status  integer ;
+COMMENT ON COLUMN qgep.od_hydraulic_characteristic_data.status IS 'yyy_Planungszustand der Hydraulischen Kennwerte (zwingend). Ueberlaufcharakteristik und Gesamteinzugsgebiet kann für verschiedene Stati gebildet werden und leitet sich aus dem Status der Hydr_Kennwerte ab. / Planungszustand der Hydraulischen Kennwerte (zw';
+ ALTER TABLE qgep.od_hydraulic_characteristic_data ADD COLUMN last_modification timestamp without time zone ;
+COMMENT ON COLUMN qgep.od_hydraulic_characteristic_data.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
+ ALTER TABLE qgep.od_hydraulic_characteristic_data ADD COLUMN dataowner varchar(80) ;
+COMMENT ON COLUMN qgep.od_hydraulic_characteristic_data.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
+ ALTER TABLE qgep.od_hydraulic_characteristic_data ADD COLUMN provider varchar(80) ;
+COMMENT ON COLUMN qgep.od_hydraulic_characteristic_data.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
+-------
 CREATE TABLE qgep.od_zone
 (
    obj_id  varchar(16) NOT NULL,
@@ -129,36 +179,6 @@ COMMENT ON COLUMN qgep.od_organisation.last_modification IS 'Last modification /
 COMMENT ON COLUMN qgep.od_organisation.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
  ALTER TABLE qgep.od_organisation ADD COLUMN provider varchar(80) ;
 COMMENT ON COLUMN qgep.od_organisation.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
--------
-CREATE TABLE qgep.od_wwtp_energy_use
-(
-   obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_wwtp_energy_use_obj_id PRIMARY KEY (obj_id)
-)
-WITH (
-   OIDS = False
-);
-CREATE INDEX in_od_wwtp_energy_use_obj_id ON qgep.od_wwtp_energy_use USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_wwtp_energy_use_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_wwtp_energy_use ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_wwtp_energy_use');
-COMMENT ON COLUMN qgep.od_wwtp_energy_use.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_wwtp_energy_use ADD COLUMN gas_motor  integer ;
-COMMENT ON COLUMN qgep.od_wwtp_energy_use.gas_motor IS 'electric power / elektrische Leistung / Puissance électrique';
- ALTER TABLE qgep.od_wwtp_energy_use ADD COLUMN heat_pump  integer ;
-COMMENT ON COLUMN qgep.od_wwtp_energy_use.heat_pump IS 'EP';
- ALTER TABLE qgep.od_wwtp_energy_use ADD COLUMN identifier  varchar(20) ;
- CREATE UNIQUE INDEX in_od_wwtp_energy_use_identifier ON qgep.od_wwtp_energy_use USING btree (identifier);
-COMMENT ON COLUMN qgep.od_wwtp_energy_use.identifier IS ' /  / ';
- ALTER TABLE qgep.od_wwtp_energy_use ADD COLUMN remark  varchar(80) ;
-COMMENT ON COLUMN qgep.od_wwtp_energy_use.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
- ALTER TABLE qgep.od_wwtp_energy_use ADD COLUMN turbining  integer ;
-COMMENT ON COLUMN qgep.od_wwtp_energy_use.turbining IS 'EP';
- ALTER TABLE qgep.od_wwtp_energy_use ADD COLUMN last_modification timestamp without time zone ;
-COMMENT ON COLUMN qgep.od_wwtp_energy_use.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
- ALTER TABLE qgep.od_wwtp_energy_use ADD COLUMN dataowner varchar(80) ;
-COMMENT ON COLUMN qgep.od_wwtp_energy_use.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
- ALTER TABLE qgep.od_wwtp_energy_use ADD COLUMN provider varchar(80) ;
-COMMENT ON COLUMN qgep.od_wwtp_energy_use.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
 -------
 CREATE TABLE qgep.od_waste_water_treatment
 (
@@ -232,6 +252,36 @@ COMMENT ON COLUMN qgep.od_sludge_treatment.dataowner IS 'Metaattribute dataowner
  ALTER TABLE qgep.od_sludge_treatment ADD COLUMN provider varchar(80) ;
 COMMENT ON COLUMN qgep.od_sludge_treatment.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
 -------
+CREATE TABLE qgep.od_wwtp_energy_use
+(
+   obj_id  varchar(16) NOT NULL,
+   CONSTRAINT pkey_qgep_od_wwtp_energy_use_obj_id PRIMARY KEY (obj_id)
+)
+WITH (
+   OIDS = False
+);
+CREATE INDEX in_od_wwtp_energy_use_obj_id ON qgep.od_wwtp_energy_use USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_wwtp_energy_use_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_wwtp_energy_use ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_wwtp_energy_use');
+COMMENT ON COLUMN qgep.od_wwtp_energy_use.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_wwtp_energy_use ADD COLUMN gas_motor  integer ;
+COMMENT ON COLUMN qgep.od_wwtp_energy_use.gas_motor IS 'electric power / elektrische Leistung / Puissance électrique';
+ ALTER TABLE qgep.od_wwtp_energy_use ADD COLUMN heat_pump  integer ;
+COMMENT ON COLUMN qgep.od_wwtp_energy_use.heat_pump IS 'EP';
+ ALTER TABLE qgep.od_wwtp_energy_use ADD COLUMN identifier  varchar(20) ;
+ CREATE UNIQUE INDEX in_od_wwtp_energy_use_identifier ON qgep.od_wwtp_energy_use USING btree (identifier);
+COMMENT ON COLUMN qgep.od_wwtp_energy_use.identifier IS ' /  / ';
+ ALTER TABLE qgep.od_wwtp_energy_use ADD COLUMN remark  varchar(80) ;
+COMMENT ON COLUMN qgep.od_wwtp_energy_use.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
+ ALTER TABLE qgep.od_wwtp_energy_use ADD COLUMN turbining  integer ;
+COMMENT ON COLUMN qgep.od_wwtp_energy_use.turbining IS 'EP';
+ ALTER TABLE qgep.od_wwtp_energy_use ADD COLUMN last_modification timestamp without time zone ;
+COMMENT ON COLUMN qgep.od_wwtp_energy_use.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
+ ALTER TABLE qgep.od_wwtp_energy_use ADD COLUMN dataowner varchar(80) ;
+COMMENT ON COLUMN qgep.od_wwtp_energy_use.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
+ ALTER TABLE qgep.od_wwtp_energy_use ADD COLUMN provider varchar(80) ;
+COMMENT ON COLUMN qgep.od_wwtp_energy_use.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
+-------
 CREATE TABLE qgep.od_control_center
 (
    obj_id  varchar(16) NOT NULL,
@@ -247,7 +297,7 @@ COMMENT ON COLUMN qgep.od_control_center.obj_id IS 'INTERLIS STANDARD OID (with 
  ALTER TABLE qgep.od_control_center ADD COLUMN identifier  varchar(20) ;
  CREATE UNIQUE INDEX in_od_control_center_identifier ON qgep.od_control_center USING btree (identifier);
 COMMENT ON COLUMN qgep.od_control_center.identifier IS ' /  / ';
-SELECT AddGeometryColumn('qgep', 'od_control_center', 'situation_geometry', 21781, 'POINT', 2);
+SELECT AddGeometryColumn('qgep', 'od_control_center', 'situation_geometry', 21781, 'POINT', 2, true);
 CREATE INDEX in_qgep_od_control_center_situation_geometry ON qgep.od_control_center USING gist (situation_geometry );
 COMMENT ON COLUMN qgep.od_control_center.situation_geometry IS 'National position coordinates (East, North) / Landeskoordinate Ost/Nord / Coordonnées nationales Est/Nord';
  ALTER TABLE qgep.od_control_center ADD COLUMN last_modification timestamp without time zone ;
@@ -257,67 +307,58 @@ COMMENT ON COLUMN qgep.od_control_center.dataowner IS 'Metaattribute dataowner -
  ALTER TABLE qgep.od_control_center ADD COLUMN provider varchar(80) ;
 COMMENT ON COLUMN qgep.od_control_center.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
 -------
-CREATE TABLE qgep.od_water_course_segment
+CREATE TABLE qgep.od_bathing_area
 (
    obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_water_course_segment_obj_id PRIMARY KEY (obj_id)
+   CONSTRAINT pkey_qgep_od_bathing_area_obj_id PRIMARY KEY (obj_id)
 )
 WITH (
    OIDS = False
 );
-CREATE INDEX in_od_water_course_segment_obj_id ON qgep.od_water_course_segment USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_water_course_segment_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_water_course_segment ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_water_course_segment');
-COMMENT ON COLUMN qgep.od_water_course_segment.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_water_course_segment ADD COLUMN algae_growth  integer ;
-COMMENT ON COLUMN qgep.od_water_course_segment.algae_growth IS 'Coverage with algae / Bewuchs mit Algen / Couverture végétale par des algues';
- ALTER TABLE qgep.od_water_course_segment ADD COLUMN altitudinal_zone  integer ;
-COMMENT ON COLUMN qgep.od_water_course_segment.altitudinal_zone IS 'Au';
- ALTER TABLE qgep.od_water_course_segment ADD COLUMN bed_with  decimal(5,2) ;
-COMMENT ON COLUMN qgep.od_water_course_segment.bed_with IS 'Average bed with / mittlere Sohlenbreite / Largeur moyenne du lit';
- ALTER TABLE qgep.od_water_course_segment ADD COLUMN dead_wood  integer ;
-COMMENT ON COLUMN qgep.od_water_course_segment.dead_wood IS 'Au';
- ALTER TABLE qgep.od_water_course_segment ADD COLUMN depth_variability  integer ;
-COMMENT ON COLUMN qgep.od_water_course_segment.depth_variability IS 'Vu';
- ALTER TABLE qgep.od_water_course_segment ADD COLUMN discharge_regime  integer ;
-COMMENT ON COLUMN qgep.od_water_course_segment.discharge_regime IS 'ye';
- ALTER TABLE qgep.od_water_course_segment ADD COLUMN ecom_classification  integer ;
-COMMENT ON COLUMN qgep.od_water_course_segment.ecom_classification IS 'Summary attribut of ecomorphological classification of level F / Summenattribut aus der ökomorphologischen Klassifizierung nach Stufe F / Attribut issu de la classification écomorphologique du niveau R';
-SELECT AddGeometryColumn('qgep', 'od_water_course_segment', 'from_geometry', 21781, 'POINT', 2);
-CREATE INDEX in_qgep_od_water_course_segment_from_geometry ON qgep.od_water_course_segment USING gist (from_geometry );
-COMMENT ON COLUMN qgep.od_water_course_segment.from_geometry IS 'Position of segment start point in water course / Lage des Abschnittanfangs  im Gewässerverlauf / Situation du début du tronçon';
- ALTER TABLE qgep.od_water_course_segment ADD COLUMN identifier  varchar(20) ;
- CREATE UNIQUE INDEX in_od_water_course_segment_identifier ON qgep.od_water_course_segment USING btree (identifier);
-COMMENT ON COLUMN qgep.od_water_course_segment.identifier IS ' /  / ';
- ALTER TABLE qgep.od_water_course_segment ADD COLUMN kind  integer ;
-COMMENT ON COLUMN qgep.od_water_course_segment.kind IS ' /  / ';
- ALTER TABLE qgep.od_water_course_segment ADD COLUMN length_profile  integer ;
-COMMENT ON COLUMN qgep.od_water_course_segment.length_profile IS 'Character of length profile / Charakterisierung des Gewässerlängsprofil / Caractérisation du profil en long';
- ALTER TABLE qgep.od_water_course_segment ADD COLUMN macrophyte_coverage  integer ;
-COMMENT ON COLUMN qgep.od_water_course_segment.macrophyte_coverage IS 'Coverage with macrophytes / Bewuchs mit Makrophyten / Couverture végétale par des macrophytes (végétation aquatique (macroscopique))';
- ALTER TABLE qgep.od_water_course_segment ADD COLUMN remark  varchar(80) ;
-COMMENT ON COLUMN qgep.od_water_course_segment.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
- ALTER TABLE qgep.od_water_course_segment ADD COLUMN section_morphology  integer ;
-COMMENT ON COLUMN qgep.od_water_course_segment.section_morphology IS 'yu';
- ALTER TABLE qgep.od_water_course_segment ADD COLUMN size  smallint ;
-COMMENT ON COLUMN qgep.od_water_course_segment.size IS 'Classification by Strahler / Ordnungszahl nach Strahler / Classification selon Strahler';
- ALTER TABLE qgep.od_water_course_segment ADD COLUMN slope  integer ;
-COMMENT ON COLUMN qgep.od_water_course_segment.slope IS 'Au';
-SELECT AddGeometryColumn('qgep', 'od_water_course_segment', 'to_geometry', 21781, 'POINT', 2);
-CREATE INDEX in_qgep_od_water_course_segment_to_geometry ON qgep.od_water_course_segment USING gist (to_geometry );
-COMMENT ON COLUMN qgep.od_water_course_segment.to_geometry IS 'Position of segment end point in water course / Lage Abschnitt-Ende im Gewässerverlauf / Situation de la fin du tronçon';
- ALTER TABLE qgep.od_water_course_segment ADD COLUMN utilisation  integer ;
-COMMENT ON COLUMN qgep.od_water_course_segment.utilisation IS 'Pu';
- ALTER TABLE qgep.od_water_course_segment ADD COLUMN water_hardness  integer ;
-COMMENT ON COLUMN qgep.od_water_course_segment.water_hardness IS 'Cu';
- ALTER TABLE qgep.od_water_course_segment ADD COLUMN width_variability  integer ;
-COMMENT ON COLUMN qgep.od_water_course_segment.width_variability IS 'yyy_Breitenvariabilität des Wasserspiegels bei niedrigem bis mittlerem Abfluss / Breitenvariabilität des Wasserspiegels bei niedrigem bis mittlerem Abfluss / Variabilité de la largeur du lit mouillé par basses et moyennes eaux';
- ALTER TABLE qgep.od_water_course_segment ADD COLUMN last_modification timestamp without time zone ;
-COMMENT ON COLUMN qgep.od_water_course_segment.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
- ALTER TABLE qgep.od_water_course_segment ADD COLUMN dataowner varchar(80) ;
-COMMENT ON COLUMN qgep.od_water_course_segment.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
- ALTER TABLE qgep.od_water_course_segment ADD COLUMN provider varchar(80) ;
-COMMENT ON COLUMN qgep.od_water_course_segment.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
+CREATE INDEX in_od_bathing_area_obj_id ON qgep.od_bathing_area USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_bathing_area_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_bathing_area ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_bathing_area');
+COMMENT ON COLUMN qgep.od_bathing_area.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_bathing_area ADD COLUMN identifier  varchar(20) ;
+ CREATE UNIQUE INDEX in_od_bathing_area_identifier ON qgep.od_bathing_area USING btree (identifier);
+COMMENT ON COLUMN qgep.od_bathing_area.identifier IS ' /  / ';
+ ALTER TABLE qgep.od_bathing_area ADD COLUMN remark  varchar(80) ;
+COMMENT ON COLUMN qgep.od_bathing_area.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
+SELECT AddGeometryColumn('qgep', 'od_bathing_area', 'situation_geometry', 21781, 'POINT', 2, true);
+CREATE INDEX in_qgep_od_bathing_area_situation_geometry ON qgep.od_bathing_area USING gist (situation_geometry );
+COMMENT ON COLUMN qgep.od_bathing_area.situation_geometry IS 'National position coordinates (East, North) / Landeskoordinate Ost/Nord / Coordonnées nationales Est/Nord';
+ ALTER TABLE qgep.od_bathing_area ADD COLUMN last_modification timestamp without time zone ;
+COMMENT ON COLUMN qgep.od_bathing_area.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
+ ALTER TABLE qgep.od_bathing_area ADD COLUMN dataowner varchar(80) ;
+COMMENT ON COLUMN qgep.od_bathing_area.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
+ ALTER TABLE qgep.od_bathing_area ADD COLUMN provider varchar(80) ;
+COMMENT ON COLUMN qgep.od_bathing_area.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
+-------
+CREATE TABLE qgep.od_fish_pass
+(
+   obj_id  varchar(16) NOT NULL,
+   CONSTRAINT pkey_qgep_od_fish_pass_obj_id PRIMARY KEY (obj_id)
+)
+WITH (
+   OIDS = False
+);
+CREATE INDEX in_od_fish_pass_obj_id ON qgep.od_fish_pass USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_fish_pass_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_fish_pass ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_fish_pass');
+COMMENT ON COLUMN qgep.od_fish_pass.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_fish_pass ADD COLUMN identifier  varchar(20) ;
+ CREATE UNIQUE INDEX in_od_fish_pass_identifier ON qgep.od_fish_pass USING btree (identifier);
+COMMENT ON COLUMN qgep.od_fish_pass.identifier IS ' /  / ';
+ ALTER TABLE qgep.od_fish_pass ADD COLUMN remark  varchar(80) ;
+COMMENT ON COLUMN qgep.od_fish_pass.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
+ ALTER TABLE qgep.od_fish_pass ADD COLUMN vertical_drop  decimal(5,2) ;
+COMMENT ON COLUMN qgep.od_fish_pass.vertical_drop IS 'Vn';
+ ALTER TABLE qgep.od_fish_pass ADD COLUMN last_modification timestamp without time zone ;
+COMMENT ON COLUMN qgep.od_fish_pass.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
+ ALTER TABLE qgep.od_fish_pass ADD COLUMN dataowner varchar(80) ;
+COMMENT ON COLUMN qgep.od_fish_pass.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
+ ALTER TABLE qgep.od_fish_pass ADD COLUMN provider varchar(80) ;
+COMMENT ON COLUMN qgep.od_fish_pass.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
 -------
 CREATE TABLE qgep.od_aquifier
 (
@@ -340,7 +381,7 @@ COMMENT ON COLUMN qgep.od_aquifier.identifier IS ' /  / ';
 COMMENT ON COLUMN qgep.od_aquifier.maximal_groundwater_level IS 'Maximal level of ground water table / Maximale Lage des Grundwasserspiegels / Niveau maximal de la nappe';
  ALTER TABLE qgep.od_aquifier ADD COLUMN minimal_groundwater_level  decimal(4,3) ;
 COMMENT ON COLUMN qgep.od_aquifier.minimal_groundwater_level IS 'Minimal level of groundwater table / Minimale Lage des Grundwasserspiegels / Niveau minimal de la nappe';
-SELECT AddGeometryColumn('qgep', 'od_aquifier', 'perimeter_geometry', 21781, 'POLYGON', 2);
+SELECT AddGeometryColumn('qgep', 'od_aquifier', 'perimeter_geometry', 21781, 'POLYGON', 2, true);
 CREATE INDEX in_qgep_od_aquifier_perimeter_geometry ON qgep.od_aquifier USING gist (perimeter_geometry );
 COMMENT ON COLUMN qgep.od_aquifier.perimeter_geometry IS 'Boundary points of the perimeter / Begrenzungspunkte der Fläche / Points de délimitation de la surface';
  ALTER TABLE qgep.od_aquifier ADD COLUMN remark  varchar(80) ;
@@ -371,7 +412,7 @@ COMMENT ON COLUMN qgep.od_water_catchment.identifier IS ' /  / ';
 COMMENT ON COLUMN qgep.od_water_catchment.kind IS 'Tu';
  ALTER TABLE qgep.od_water_catchment ADD COLUMN remark  varchar(80) ;
 COMMENT ON COLUMN qgep.od_water_catchment.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
-SELECT AddGeometryColumn('qgep', 'od_water_catchment', 'situation_geometry', 21781, 'POINT', 2);
+SELECT AddGeometryColumn('qgep', 'od_water_catchment', 'situation_geometry', 21781, 'POINT', 2, true);
 CREATE INDEX in_qgep_od_water_catchment_situation_geometry ON qgep.od_water_catchment USING gist (situation_geometry );
 COMMENT ON COLUMN qgep.od_water_catchment.situation_geometry IS 'National position coordinates (East, North) / Landeskoordinate Ost/Nord / Coordonnées nationales Est/Nord';
  ALTER TABLE qgep.od_water_catchment ADD COLUMN last_modification timestamp without time zone ;
@@ -398,7 +439,7 @@ COMMENT ON COLUMN qgep.od_water_control_structure.obj_id IS 'INTERLIS STANDARD O
 COMMENT ON COLUMN qgep.od_water_control_structure.identifier IS ' /  / ';
  ALTER TABLE qgep.od_water_control_structure ADD COLUMN remark  varchar(80) ;
 COMMENT ON COLUMN qgep.od_water_control_structure.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
-SELECT AddGeometryColumn('qgep', 'od_water_control_structure', 'situation_geometry', 21781, 'POINT', 2);
+SELECT AddGeometryColumn('qgep', 'od_water_control_structure', 'situation_geometry', 21781, 'POINT', 2, true);
 CREATE INDEX in_qgep_od_water_control_structure_situation_geometry ON qgep.od_water_control_structure USING gist (situation_geometry );
 COMMENT ON COLUMN qgep.od_water_control_structure.situation_geometry IS 'National position coordinates (East, North) / Landeskoordinate Ost/Nord / Coordonnées nationales Est/Nord';
  ALTER TABLE qgep.od_water_control_structure ADD COLUMN last_modification timestamp without time zone ;
@@ -407,6 +448,38 @@ COMMENT ON COLUMN qgep.od_water_control_structure.last_modification IS 'Last mod
 COMMENT ON COLUMN qgep.od_water_control_structure.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
  ALTER TABLE qgep.od_water_control_structure ADD COLUMN provider varchar(80) ;
 COMMENT ON COLUMN qgep.od_water_control_structure.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
+-------
+CREATE TABLE qgep.od_river_bed
+(
+   obj_id  varchar(16) NOT NULL,
+   CONSTRAINT pkey_qgep_od_river_bed_obj_id PRIMARY KEY (obj_id)
+)
+WITH (
+   OIDS = False
+);
+CREATE INDEX in_od_river_bed_obj_id ON qgep.od_river_bed USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_river_bed_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_river_bed ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_river_bed');
+COMMENT ON COLUMN qgep.od_river_bed.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_river_bed ADD COLUMN control_grade_of_river  integer ;
+COMMENT ON COLUMN qgep.od_river_bed.control_grade_of_river IS 'yyy_Flächenhafter Verbauungsgrad der Gewässersohle in %. Aufteilung in Klassen. / Flächenhafter Verbauungsgrad der Gewässersohle in %. Aufteilung in Klassen. / Pourcentage de la surface avec aménagement du fond du lit. Classification';
+ ALTER TABLE qgep.od_river_bed ADD COLUMN identifier  varchar(20) ;
+ CREATE UNIQUE INDEX in_od_river_bed_identifier ON qgep.od_river_bed USING btree (identifier);
+COMMENT ON COLUMN qgep.od_river_bed.identifier IS ' /  / ';
+ ALTER TABLE qgep.od_river_bed ADD COLUMN kind  integer ;
+COMMENT ON COLUMN qgep.od_river_bed.kind IS 'type of bed / Sohlentyp / Type de fond';
+ ALTER TABLE qgep.od_river_bed ADD COLUMN remark  varchar(80) ;
+COMMENT ON COLUMN qgep.od_river_bed.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
+ ALTER TABLE qgep.od_river_bed ADD COLUMN river_control_type  integer ;
+COMMENT ON COLUMN qgep.od_river_bed.river_control_type IS 'Td';
+ ALTER TABLE qgep.od_river_bed ADD COLUMN width  decimal(5,2) ;
+COMMENT ON COLUMN qgep.od_river_bed.width IS 'yyy_Bei Hochwasser umgelagerter Bereich (frei von höheren Wasserpflanzen) / Bei Hochwasser umgelagerter Bereich (frei von höheren Wasserpflanzen) / Zone de charriage par hautes eaux (absence de plantes aquatiques supérieures)';
+ ALTER TABLE qgep.od_river_bed ADD COLUMN last_modification timestamp without time zone ;
+COMMENT ON COLUMN qgep.od_river_bed.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
+ ALTER TABLE qgep.od_river_bed ADD COLUMN dataowner varchar(80) ;
+COMMENT ON COLUMN qgep.od_river_bed.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
+ ALTER TABLE qgep.od_river_bed ADD COLUMN provider varchar(80) ;
+COMMENT ON COLUMN qgep.od_river_bed.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
 -------
 CREATE TABLE qgep.od_sector_water_body
 (
@@ -431,7 +504,7 @@ COMMENT ON COLUMN qgep.od_sector_water_body.kind IS 'Su';
 COMMENT ON COLUMN qgep.od_sector_water_body.km_down IS 'yyy_Adresskilometer beim Sektorende (nur definieren, falls es sich um den letzten Sektor handelt oder ein Sprung in der Adresskilometrierung von einem Sektor zum nächsten  existiert) / Adresskilometer beim Sektorende (nur definieren, falls es sich um den ';
  ALTER TABLE qgep.od_sector_water_body ADD COLUMN km_up  decimal(6,3) ;
 COMMENT ON COLUMN qgep.od_sector_water_body.km_up IS 'yyy_Adresskilometer beim Sektorbeginn / Adresskilometer beim Sektorbeginn / Kilomètre du début du secteur';
-SELECT AddGeometryColumn('qgep', 'od_sector_water_body', 'progression_geometry', 21781, 'LINESTRING', 2);
+SELECT AddGeometryColumn('qgep', 'od_sector_water_body', 'progression_geometry', 21781, 'LINESTRING', 2, true);
 CREATE INDEX in_qgep_od_sector_water_body_progression_geometry ON qgep.od_sector_water_body USING gist (progression_geometry );
 COMMENT ON COLUMN qgep.od_sector_water_body.progression_geometry IS 'yu';
  ALTER TABLE qgep.od_sector_water_body ADD COLUMN ref_length  decimal(5,2) ;
@@ -444,6 +517,68 @@ COMMENT ON COLUMN qgep.od_sector_water_body.last_modification IS 'Last modificat
 COMMENT ON COLUMN qgep.od_sector_water_body.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
  ALTER TABLE qgep.od_sector_water_body ADD COLUMN provider varchar(80) ;
 COMMENT ON COLUMN qgep.od_sector_water_body.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
+-------
+CREATE TABLE qgep.od_water_course_segment
+(
+   obj_id  varchar(16) NOT NULL,
+   CONSTRAINT pkey_qgep_od_water_course_segment_obj_id PRIMARY KEY (obj_id)
+)
+WITH (
+   OIDS = False
+);
+CREATE INDEX in_od_water_course_segment_obj_id ON qgep.od_water_course_segment USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_water_course_segment_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_water_course_segment ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_water_course_segment');
+COMMENT ON COLUMN qgep.od_water_course_segment.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_water_course_segment ADD COLUMN algae_growth  integer ;
+COMMENT ON COLUMN qgep.od_water_course_segment.algae_growth IS 'Coverage with algae / Bewuchs mit Algen / Couverture végétale par des algues';
+ ALTER TABLE qgep.od_water_course_segment ADD COLUMN altitudinal_zone  integer ;
+COMMENT ON COLUMN qgep.od_water_course_segment.altitudinal_zone IS 'Au';
+ ALTER TABLE qgep.od_water_course_segment ADD COLUMN bed_with  decimal(5,2) ;
+COMMENT ON COLUMN qgep.od_water_course_segment.bed_with IS 'Average bed with / mittlere Sohlenbreite / Largeur moyenne du lit';
+ ALTER TABLE qgep.od_water_course_segment ADD COLUMN dead_wood  integer ;
+COMMENT ON COLUMN qgep.od_water_course_segment.dead_wood IS 'Au';
+ ALTER TABLE qgep.od_water_course_segment ADD COLUMN depth_variability  integer ;
+COMMENT ON COLUMN qgep.od_water_course_segment.depth_variability IS 'Vu';
+ ALTER TABLE qgep.od_water_course_segment ADD COLUMN discharge_regime  integer ;
+COMMENT ON COLUMN qgep.od_water_course_segment.discharge_regime IS 'ye';
+ ALTER TABLE qgep.od_water_course_segment ADD COLUMN ecom_classification  integer ;
+COMMENT ON COLUMN qgep.od_water_course_segment.ecom_classification IS 'Summary attribut of ecomorphological classification of level F / Summenattribut aus der ökomorphologischen Klassifizierung nach Stufe F / Attribut issu de la classification écomorphologique du niveau R';
+SELECT AddGeometryColumn('qgep', 'od_water_course_segment', 'from_geometry', 21781, 'POINT', 2, true);
+CREATE INDEX in_qgep_od_water_course_segment_from_geometry ON qgep.od_water_course_segment USING gist (from_geometry );
+COMMENT ON COLUMN qgep.od_water_course_segment.from_geometry IS 'Position of segment start point in water course / Lage des Abschnittanfangs  im Gewässerverlauf / Situation du début du tronçon';
+ ALTER TABLE qgep.od_water_course_segment ADD COLUMN identifier  varchar(20) ;
+ CREATE UNIQUE INDEX in_od_water_course_segment_identifier ON qgep.od_water_course_segment USING btree (identifier);
+COMMENT ON COLUMN qgep.od_water_course_segment.identifier IS ' /  / ';
+ ALTER TABLE qgep.od_water_course_segment ADD COLUMN kind  integer ;
+COMMENT ON COLUMN qgep.od_water_course_segment.kind IS ' /  / ';
+ ALTER TABLE qgep.od_water_course_segment ADD COLUMN length_profile  integer ;
+COMMENT ON COLUMN qgep.od_water_course_segment.length_profile IS 'Character of length profile / Charakterisierung des Gewässerlängsprofil / Caractérisation du profil en long';
+ ALTER TABLE qgep.od_water_course_segment ADD COLUMN macrophyte_coverage  integer ;
+COMMENT ON COLUMN qgep.od_water_course_segment.macrophyte_coverage IS 'Coverage with macrophytes / Bewuchs mit Makrophyten / Couverture végétale par des macrophytes (végétation aquatique (macroscopique))';
+ ALTER TABLE qgep.od_water_course_segment ADD COLUMN remark  varchar(80) ;
+COMMENT ON COLUMN qgep.od_water_course_segment.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
+ ALTER TABLE qgep.od_water_course_segment ADD COLUMN section_morphology  integer ;
+COMMENT ON COLUMN qgep.od_water_course_segment.section_morphology IS 'yu';
+ ALTER TABLE qgep.od_water_course_segment ADD COLUMN size  smallint ;
+COMMENT ON COLUMN qgep.od_water_course_segment.size IS 'Classification by Strahler / Ordnungszahl nach Strahler / Classification selon Strahler';
+ ALTER TABLE qgep.od_water_course_segment ADD COLUMN slope  integer ;
+COMMENT ON COLUMN qgep.od_water_course_segment.slope IS 'Au';
+SELECT AddGeometryColumn('qgep', 'od_water_course_segment', 'to_geometry', 21781, 'POINT', 2, true);
+CREATE INDEX in_qgep_od_water_course_segment_to_geometry ON qgep.od_water_course_segment USING gist (to_geometry );
+COMMENT ON COLUMN qgep.od_water_course_segment.to_geometry IS 'Position of segment end point in water course / Lage Abschnitt-Ende im Gewässerverlauf / Situation de la fin du tronçon';
+ ALTER TABLE qgep.od_water_course_segment ADD COLUMN utilisation  integer ;
+COMMENT ON COLUMN qgep.od_water_course_segment.utilisation IS 'Pu';
+ ALTER TABLE qgep.od_water_course_segment ADD COLUMN water_hardness  integer ;
+COMMENT ON COLUMN qgep.od_water_course_segment.water_hardness IS 'Cu';
+ ALTER TABLE qgep.od_water_course_segment ADD COLUMN width_variability  integer ;
+COMMENT ON COLUMN qgep.od_water_course_segment.width_variability IS 'yyy_Breitenvariabilität des Wasserspiegels bei niedrigem bis mittlerem Abfluss / Breitenvariabilität des Wasserspiegels bei niedrigem bis mittlerem Abfluss / Variabilité de la largeur du lit mouillé par basses et moyennes eaux';
+ ALTER TABLE qgep.od_water_course_segment ADD COLUMN last_modification timestamp without time zone ;
+COMMENT ON COLUMN qgep.od_water_course_segment.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
+ ALTER TABLE qgep.od_water_course_segment ADD COLUMN dataowner varchar(80) ;
+COMMENT ON COLUMN qgep.od_water_course_segment.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
+ ALTER TABLE qgep.od_water_course_segment ADD COLUMN provider varchar(80) ;
+COMMENT ON COLUMN qgep.od_water_course_segment.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
 -------
 CREATE TABLE qgep.od_surface_water_bodies
 (
@@ -468,91 +603,6 @@ COMMENT ON COLUMN qgep.od_surface_water_bodies.last_modification IS 'Last modifi
 COMMENT ON COLUMN qgep.od_surface_water_bodies.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
  ALTER TABLE qgep.od_surface_water_bodies ADD COLUMN provider varchar(80) ;
 COMMENT ON COLUMN qgep.od_surface_water_bodies.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
--------
-CREATE TABLE qgep.od_fish_pass
-(
-   obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_fish_pass_obj_id PRIMARY KEY (obj_id)
-)
-WITH (
-   OIDS = False
-);
-CREATE INDEX in_od_fish_pass_obj_id ON qgep.od_fish_pass USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_fish_pass_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_fish_pass ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_fish_pass');
-COMMENT ON COLUMN qgep.od_fish_pass.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_fish_pass ADD COLUMN identifier  varchar(20) ;
- CREATE UNIQUE INDEX in_od_fish_pass_identifier ON qgep.od_fish_pass USING btree (identifier);
-COMMENT ON COLUMN qgep.od_fish_pass.identifier IS ' /  / ';
- ALTER TABLE qgep.od_fish_pass ADD COLUMN remark  varchar(80) ;
-COMMENT ON COLUMN qgep.od_fish_pass.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
- ALTER TABLE qgep.od_fish_pass ADD COLUMN vertical_drop  decimal(5,2) ;
-COMMENT ON COLUMN qgep.od_fish_pass.vertical_drop IS 'Vn';
- ALTER TABLE qgep.od_fish_pass ADD COLUMN last_modification timestamp without time zone ;
-COMMENT ON COLUMN qgep.od_fish_pass.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
- ALTER TABLE qgep.od_fish_pass ADD COLUMN dataowner varchar(80) ;
-COMMENT ON COLUMN qgep.od_fish_pass.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
- ALTER TABLE qgep.od_fish_pass ADD COLUMN provider varchar(80) ;
-COMMENT ON COLUMN qgep.od_fish_pass.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
--------
-CREATE TABLE qgep.od_bathing_area
-(
-   obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_bathing_area_obj_id PRIMARY KEY (obj_id)
-)
-WITH (
-   OIDS = False
-);
-CREATE INDEX in_od_bathing_area_obj_id ON qgep.od_bathing_area USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_bathing_area_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_bathing_area ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_bathing_area');
-COMMENT ON COLUMN qgep.od_bathing_area.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_bathing_area ADD COLUMN identifier  varchar(20) ;
- CREATE UNIQUE INDEX in_od_bathing_area_identifier ON qgep.od_bathing_area USING btree (identifier);
-COMMENT ON COLUMN qgep.od_bathing_area.identifier IS ' /  / ';
- ALTER TABLE qgep.od_bathing_area ADD COLUMN remark  varchar(80) ;
-COMMENT ON COLUMN qgep.od_bathing_area.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
-SELECT AddGeometryColumn('qgep', 'od_bathing_area', 'situation_geometry', 21781, 'POINT', 2);
-CREATE INDEX in_qgep_od_bathing_area_situation_geometry ON qgep.od_bathing_area USING gist (situation_geometry );
-COMMENT ON COLUMN qgep.od_bathing_area.situation_geometry IS 'National position coordinates (East, North) / Landeskoordinate Ost/Nord / Coordonnées nationales Est/Nord';
- ALTER TABLE qgep.od_bathing_area ADD COLUMN last_modification timestamp without time zone ;
-COMMENT ON COLUMN qgep.od_bathing_area.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
- ALTER TABLE qgep.od_bathing_area ADD COLUMN dataowner varchar(80) ;
-COMMENT ON COLUMN qgep.od_bathing_area.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
- ALTER TABLE qgep.od_bathing_area ADD COLUMN provider varchar(80) ;
-COMMENT ON COLUMN qgep.od_bathing_area.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
--------
-CREATE TABLE qgep.od_river_bed
-(
-   obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_river_bed_obj_id PRIMARY KEY (obj_id)
-)
-WITH (
-   OIDS = False
-);
-CREATE INDEX in_od_river_bed_obj_id ON qgep.od_river_bed USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_river_bed_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_river_bed ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_river_bed');
-COMMENT ON COLUMN qgep.od_river_bed.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_river_bed ADD COLUMN control_grade_of_river  integer ;
-COMMENT ON COLUMN qgep.od_river_bed.control_grade_of_river IS 'yyy_Flächenhafter Verbauungsgrad der Gewässersohle in %. Aufteilung in Klassen. / Flächenhafter Verbauungsgrad der Gewässersohle in %. Aufteilung in Klassen. / Poucentage de la surface avec aménagement du fond du lit. Classification';
- ALTER TABLE qgep.od_river_bed ADD COLUMN identifier  varchar(20) ;
- CREATE UNIQUE INDEX in_od_river_bed_identifier ON qgep.od_river_bed USING btree (identifier);
-COMMENT ON COLUMN qgep.od_river_bed.identifier IS ' /  / ';
- ALTER TABLE qgep.od_river_bed ADD COLUMN kind  integer ;
-COMMENT ON COLUMN qgep.od_river_bed.kind IS 'type of bed / Sohlentyp / Type de fond';
- ALTER TABLE qgep.od_river_bed ADD COLUMN remark  varchar(80) ;
-COMMENT ON COLUMN qgep.od_river_bed.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
- ALTER TABLE qgep.od_river_bed ADD COLUMN river_control_type  integer ;
-COMMENT ON COLUMN qgep.od_river_bed.river_control_type IS 'Td';
- ALTER TABLE qgep.od_river_bed ADD COLUMN width  decimal(5,2) ;
-COMMENT ON COLUMN qgep.od_river_bed.width IS 'yyy_Bei Hochwasser umgelagerter Bereich (frei von höheren Wasserpflanzen) / Bei Hochwasser umgelagerter Bereich (frei von höheren Wasserpflanzen) / Zone de charriage par hautes eaux (absence de plantes aquatiques supérieures)';
- ALTER TABLE qgep.od_river_bed ADD COLUMN last_modification timestamp without time zone ;
-COMMENT ON COLUMN qgep.od_river_bed.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
- ALTER TABLE qgep.od_river_bed ADD COLUMN dataowner varchar(80) ;
-COMMENT ON COLUMN qgep.od_river_bed.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
- ALTER TABLE qgep.od_river_bed ADD COLUMN provider varchar(80) ;
-COMMENT ON COLUMN qgep.od_river_bed.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
 -------
 CREATE TABLE qgep.od_river_bank
 (
@@ -592,162 +642,6 @@ COMMENT ON COLUMN qgep.od_river_bank.dataowner IS 'Metaattribute dataowner - thi
  ALTER TABLE qgep.od_river_bank ADD COLUMN provider varchar(80) ;
 COMMENT ON COLUMN qgep.od_river_bank.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
 -------
-CREATE TABLE qgep.od_overflow_characteristic
-(
-   obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_overflow_characteristic_obj_id PRIMARY KEY (obj_id)
-)
-WITH (
-   OIDS = False
-);
-CREATE INDEX in_od_overflow_characteristic_obj_id ON qgep.od_overflow_characteristic USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_overflow_characteristic_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_overflow_characteristic ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_overflow_characteristic');
-COMMENT ON COLUMN qgep.od_overflow_characteristic.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_overflow_characteristic ADD COLUMN identifier  varchar(20) ;
- CREATE UNIQUE INDEX in_od_overflow_characteristic_identifier ON qgep.od_overflow_characteristic USING btree (identifier);
-COMMENT ON COLUMN qgep.od_overflow_characteristic.identifier IS ' /  / ';
- ALTER TABLE qgep.od_overflow_characteristic ADD COLUMN remark  varchar(80) ;
-COMMENT ON COLUMN qgep.od_overflow_characteristic.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
- ALTER TABLE qgep.od_overflow_characteristic ADD COLUMN last_modification timestamp without time zone ;
-COMMENT ON COLUMN qgep.od_overflow_characteristic.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
- ALTER TABLE qgep.od_overflow_characteristic ADD COLUMN dataowner varchar(80) ;
-COMMENT ON COLUMN qgep.od_overflow_characteristic.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
- ALTER TABLE qgep.od_overflow_characteristic ADD COLUMN provider varchar(80) ;
-COMMENT ON COLUMN qgep.od_overflow_characteristic.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
--------
-CREATE TABLE qgep.od_hydr_geom_relation
-(
-   obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_hydr_geom_relation_obj_id PRIMARY KEY (obj_id)
-)
-WITH (
-   OIDS = False
-);
-CREATE INDEX in_od_hydr_geom_relation_obj_id ON qgep.od_hydr_geom_relation USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_hydr_geom_relation_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_hydr_geom_relation ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_hydr_geom_relation');
-COMMENT ON COLUMN qgep.od_hydr_geom_relation.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_hydr_geom_relation ADD COLUMN water_depth  decimal(5,2) ;
-COMMENT ON COLUMN qgep.od_hydr_geom_relation.water_depth IS 'ye';
- ALTER TABLE qgep.od_hydr_geom_relation ADD COLUMN water_surface  decimal(6,2) ;
-COMMENT ON COLUMN qgep.od_hydr_geom_relation.water_surface IS 'yn';
- ALTER TABLE qgep.od_hydr_geom_relation ADD COLUMN wet_cross_section_area  decimal(6,2) ;
-COMMENT ON COLUMN qgep.od_hydr_geom_relation.wet_cross_section_area IS 'yyy_Hydraulisch wirksamer Querschnitt für Verlustberechnungen / Hydraulisch wirksamer Querschnitt für Verlustberechnungen / Section hydrauliquement active pour les calculs des pertes de charge';
- ALTER TABLE qgep.od_hydr_geom_relation ADD COLUMN last_modification timestamp without time zone ;
-COMMENT ON COLUMN qgep.od_hydr_geom_relation.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
- ALTER TABLE qgep.od_hydr_geom_relation ADD COLUMN dataowner varchar(80) ;
-COMMENT ON COLUMN qgep.od_hydr_geom_relation.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
- ALTER TABLE qgep.od_hydr_geom_relation ADD COLUMN provider varchar(80) ;
-COMMENT ON COLUMN qgep.od_hydr_geom_relation.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
--------
-CREATE TABLE qgep.od_mechanical_pretreatment
-(
-   obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_mechanical_pretreatment_obj_id PRIMARY KEY (obj_id)
-)
-WITH (
-   OIDS = False
-);
-CREATE INDEX in_od_mechanical_pretreatment_obj_id ON qgep.od_mechanical_pretreatment USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_mechanical_pretreatment_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_mechanical_pretreatment ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_mechanical_pretreatment');
-COMMENT ON COLUMN qgep.od_mechanical_pretreatment.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_mechanical_pretreatment ADD COLUMN identifier  varchar(20) ;
- CREATE UNIQUE INDEX in_od_mechanical_pretreatment_identifier ON qgep.od_mechanical_pretreatment USING btree (identifier);
-COMMENT ON COLUMN qgep.od_mechanical_pretreatment.identifier IS ' /  / ';
- ALTER TABLE qgep.od_mechanical_pretreatment ADD COLUMN kind  integer ;
-COMMENT ON COLUMN qgep.od_mechanical_pretreatment.kind IS 'yyy_Arten der mechanischen Vorreinigung / Behandlung (gemäss VSA Richtlinie Regenwasserentsorgung (2002)) / Arten der mechanischen Vorreinigung / Behandlung (gemäss VSA Richtlinie Regenwasserentsorgung (2002)) / Genre de pré-épuration mécanique (selon dir';
- ALTER TABLE qgep.od_mechanical_pretreatment ADD COLUMN remark  varchar(80) ;
-COMMENT ON COLUMN qgep.od_mechanical_pretreatment.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
- ALTER TABLE qgep.od_mechanical_pretreatment ADD COLUMN last_modification timestamp without time zone ;
-COMMENT ON COLUMN qgep.od_mechanical_pretreatment.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
- ALTER TABLE qgep.od_mechanical_pretreatment ADD COLUMN dataowner varchar(80) ;
-COMMENT ON COLUMN qgep.od_mechanical_pretreatment.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
- ALTER TABLE qgep.od_mechanical_pretreatment ADD COLUMN provider varchar(80) ;
-COMMENT ON COLUMN qgep.od_mechanical_pretreatment.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
--------
-CREATE TABLE qgep.od_hydr_geometry
-(
-   obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_hydr_geometry_obj_id PRIMARY KEY (obj_id)
-)
-WITH (
-   OIDS = False
-);
-CREATE INDEX in_od_hydr_geometry_obj_id ON qgep.od_hydr_geometry USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_hydr_geometry_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_hydr_geometry ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_hydr_geometry');
-COMMENT ON COLUMN qgep.od_hydr_geometry.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_hydr_geometry ADD COLUMN identifier  varchar(20) ;
- CREATE UNIQUE INDEX in_od_hydr_geometry_identifier ON qgep.od_hydr_geometry USING btree (identifier);
-COMMENT ON COLUMN qgep.od_hydr_geometry.identifier IS ' /  / ';
- ALTER TABLE qgep.od_hydr_geometry ADD COLUMN remark  varchar(80) ;
-COMMENT ON COLUMN qgep.od_hydr_geometry.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
- ALTER TABLE qgep.od_hydr_geometry ADD COLUMN storage_volume  decimal(7,2) ;
-COMMENT ON COLUMN qgep.od_hydr_geometry.storage_volume IS 'yyy_Speicherinhalt im Becken und im Zulauf zwischen Wehrkrone und dem Wasserspiegel bei Qan / Speicherinhalt im Becken und im Zulauf zwischen Wehrkrone und dem Wasserspiegel bei Qan / Volume de stockage disponible dans l’ouvrage et conduite d’amenée entre';
- ALTER TABLE qgep.od_hydr_geometry ADD COLUMN stormwater_tank_area_dimensioning  decimal(6,2) ;
-COMMENT ON COLUMN qgep.od_hydr_geometry.stormwater_tank_area_dimensioning IS 'yyy_Total angehängte Fläche des Einzugsgebietes des Regenbeckens  (Dimensionierung). Redundanter Wert als Kontrolle der angehängten Teileinzugsgebiete. / Total angehängte Fläche des Einzugsgebietes des Regenbeckens  (Dimensionierung). Redundanter Wert als';
- ALTER TABLE qgep.od_hydr_geometry ADD COLUMN stormwater_tank_area_red_dimensioning  decimal(6,2) ;
-COMMENT ON COLUMN qgep.od_hydr_geometry.stormwater_tank_area_red_dimensioning IS 'yyy_Total reduzierte angehängte Fläche des Einzugsgebietes des Regenbeckens  (Dimensionierung). Redundanter Wert als Kontrolle der angehängten Teileinzugsgebiete. / Total reduzierte angehängte Fläche des Einzugsgebietes des Regenbeckens  (Dimensionierung)';
- ALTER TABLE qgep.od_hydr_geometry ADD COLUMN utilisable_capacity  decimal(7,2) ;
-COMMENT ON COLUMN qgep.od_hydr_geometry.utilisable_capacity IS 'yyy_Nutzbares Beckenvolumen (ohne Zulauf). Wird nur bei Regenbecken (Fangvolumen, Klärvolumen, Rückhaltevolumen) erfasst. Siehe auch Stauraum. / Nutzbares Beckenvolumen (ohne Zulauf). Wird nur bei Regenbecken (Fangvolumen, Klärvolumen, Rückhaltevolumen) e';
- ALTER TABLE qgep.od_hydr_geometry ADD COLUMN last_modification timestamp without time zone ;
-COMMENT ON COLUMN qgep.od_hydr_geometry.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
- ALTER TABLE qgep.od_hydr_geometry ADD COLUMN dataowner varchar(80) ;
-COMMENT ON COLUMN qgep.od_hydr_geometry.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
- ALTER TABLE qgep.od_hydr_geometry ADD COLUMN provider varchar(80) ;
-COMMENT ON COLUMN qgep.od_hydr_geometry.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
--------
-CREATE TABLE qgep.od_hq_relation
-(
-   obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_hq_relation_obj_id PRIMARY KEY (obj_id)
-)
-WITH (
-   OIDS = False
-);
-CREATE INDEX in_od_hq_relation_obj_id ON qgep.od_hq_relation USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_hq_relation_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_hq_relation ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_hq_relation');
-COMMENT ON COLUMN qgep.od_hq_relation.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_hq_relation ADD COLUMN altitude  decimal(4,3) ;
-COMMENT ON COLUMN qgep.od_hq_relation.altitude IS 'yt';
- ALTER TABLE qgep.od_hq_relation ADD COLUMN flow  decimal(5,3) ;
-COMMENT ON COLUMN qgep.od_hq_relation.flow IS 'yu';
- ALTER TABLE qgep.od_hq_relation ADD COLUMN last_modification timestamp without time zone ;
-COMMENT ON COLUMN qgep.od_hq_relation.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
- ALTER TABLE qgep.od_hq_relation ADD COLUMN dataowner varchar(80) ;
-COMMENT ON COLUMN qgep.od_hq_relation.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
- ALTER TABLE qgep.od_hq_relation ADD COLUMN provider varchar(80) ;
-COMMENT ON COLUMN qgep.od_hq_relation.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
--------
-CREATE TABLE qgep.od_structure_part
-(
-   obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_structure_part_obj_id PRIMARY KEY (obj_id)
-)
-WITH (
-   OIDS = False
-);
-CREATE INDEX in_od_structure_part_obj_id ON qgep.od_structure_part USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_structure_part_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_structure_part ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_structure_part');
-COMMENT ON COLUMN qgep.od_structure_part.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_structure_part ADD COLUMN identifier  varchar(20) ;
- CREATE UNIQUE INDEX in_od_structure_part_identifier ON qgep.od_structure_part USING btree (identifier);
-COMMENT ON COLUMN qgep.od_structure_part.identifier IS ' /  / ';
- ALTER TABLE qgep.od_structure_part ADD COLUMN remark  varchar(80) ;
-COMMENT ON COLUMN qgep.od_structure_part.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
- ALTER TABLE qgep.od_structure_part ADD COLUMN renovation_demand  integer ;
-COMMENT ON COLUMN qgep.od_structure_part.renovation_demand IS 'ye';
- ALTER TABLE qgep.od_structure_part ADD COLUMN last_modification timestamp without time zone ;
-COMMENT ON COLUMN qgep.od_structure_part.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
- ALTER TABLE qgep.od_structure_part ADD COLUMN dataowner varchar(80) ;
-COMMENT ON COLUMN qgep.od_structure_part.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
- ALTER TABLE qgep.od_structure_part ADD COLUMN provider varchar(80) ;
-COMMENT ON COLUMN qgep.od_structure_part.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
--------
 CREATE TABLE qgep.od_reach_point
 (
    obj_id  varchar(16) NOT NULL,
@@ -768,10 +662,12 @@ COMMENT ON COLUMN qgep.od_reach_point.identifier IS ' /  / ';
  ALTER TABLE qgep.od_reach_point ADD COLUMN level  decimal(4,3) ;
 COMMENT ON COLUMN qgep.od_reach_point.level IS 'yyy_Sohlenhöhe des Haltungsendes / Sohlenhöhe des Haltungsendes / Cote du radier de la fin du tronçon';
  ALTER TABLE qgep.od_reach_point ADD COLUMN outlet_shape  integer ;
-COMMENT ON COLUMN qgep.od_reach_point.outlet_shape IS 'yyy Art des Auslaufs / Art des Auslaufs / Types de sortie';
+COMMENT ON COLUMN qgep.od_reach_point.outlet_shape IS 'Kind of outlet shape / Art des Auslaufs / Types de sortie';
+ ALTER TABLE qgep.od_reach_point ADD COLUMN position_of_connection  smallint ;
+COMMENT ON COLUMN qgep.od_reach_point.position_of_connection IS 'yyy_Anschlussstelle bezogen auf Querschnitt im Kanal; in Fliessrichtung  (für Haus- und Strassenanschlüsse) / Anschlussstelle bezogen auf Querschnitt im Kanal; in Fliessrichtung  (für Haus- und Strassenanschlüsse) / Emplacement de raccordement Référence à';
  ALTER TABLE qgep.od_reach_point ADD COLUMN remark  varchar(80) ;
 COMMENT ON COLUMN qgep.od_reach_point.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
-SELECT AddGeometryColumn('qgep', 'od_reach_point', 'situation_geometry', 21781, 'POINT', 2);
+SELECT AddGeometryColumn('qgep', 'od_reach_point', 'situation_geometry', 21781, 'POINT', 2, true);
 CREATE INDEX in_qgep_od_reach_point_situation_geometry ON qgep.od_reach_point USING gist (situation_geometry );
 COMMENT ON COLUMN qgep.od_reach_point.situation_geometry IS 'National position coordinates (East, North) / Landeskoordinate Ost/Nord / Coordonnées nationales Est/Nord';
  ALTER TABLE qgep.od_reach_point ADD COLUMN last_modification timestamp without time zone ;
@@ -799,11 +695,11 @@ COMMENT ON COLUMN qgep.od_wastewater_structure.accessibility IS 'yyy_Möglichkei
 COMMENT ON COLUMN qgep.od_wastewater_structure.contract_section IS 'Number of contract section / Nummer des Bauloses / Numéro du lot de construction';
  ALTER TABLE qgep.od_wastewater_structure ADD COLUMN depth  smallint ;
 COMMENT ON COLUMN qgep.od_wastewater_structure.depth IS 'yy_Funktion (berechneter Wert) = zugehöriger Abwasserknoten.Sohlenkote minus Deckel.Kote (falls Sohlenkote nicht seperat erfasst, dann ist es die tiefer liegende Haltungspunkt.Kote). Siehe auch SIA 405 2015 4.3.4. / Funktion (berechneter Wert) = zugehörig';
-SELECT AddGeometryColumn('qgep', 'od_wastewater_structure', 'detail_geometry_geometry', 21781, 'POLYGON', 2);
+SELECT AddGeometryColumn('qgep', 'od_wastewater_structure', 'detail_geometry_geometry', 21781, 'POLYGON', 2, true);
 CREATE INDEX in_qgep_od_wastewater_structure_detail_geometry_geometry ON qgep.od_wastewater_structure USING gist (detail_geometry_geometry );
 COMMENT ON COLUMN qgep.od_wastewater_structure.detail_geometry_geometry IS 'Detail geometry especially with special structures. For manhole usually use dimension1 and 2. Also with normed infiltratin structures.  Channels do not have a detail_geometry. / Detaillierte Geometrie insbesondere bei Spezialbauwerken. Für Normschächte i.';
- ALTER TABLE qgep.od_wastewater_structure ADD COLUMN detail_geometry3d  geometry ;
-COMMENT ON COLUMN qgep.od_wastewater_structure.detail_geometry3d IS 'yyy_Detaillierte Geometrie (3D) insbesondere bei Spezialbauwerken. Bei Normschächten mit Dimension1 und 2 arbeiten. Dito bei normierten Versickerungsanlagen. In INTERLIS / Detaillierte Geometrie (3D) insbesondere bei Spezialbauwerken. Bei Normschächten mi';
+ ALTER TABLE qgep.od_wastewater_structure ADD COLUMN detail_geometry_3d  geometry ;
+COMMENT ON COLUMN qgep.od_wastewater_structure.detail_geometry_3d IS 'yyy_Detaillierte Geometrie (3D) insbesondere bei Spezialbauwerken. Bei Normschächten mit Dimension1 und 2 arbeiten. Dito bei normierten Versickerungsanlagen. In INTERLIS / Detaillierte Geometrie (3D) insbesondere bei Spezialbauwerken. Bei Normschächten mi';
  ALTER TABLE qgep.od_wastewater_structure ADD COLUMN financing  integer ;
 COMMENT ON COLUMN qgep.od_wastewater_structure.financing IS ' Method of financing  (Financing based on GschG Art. 60a). / Finanzierungart (Finanzierung gemäss GschG Art. 60a). / Type de financement (financement selon LEaux Art. 60a)';
  ALTER TABLE qgep.od_wastewater_structure ADD COLUMN gross_costs  decimal(8,2) ;
@@ -815,6 +711,8 @@ COMMENT ON COLUMN qgep.od_wastewater_structure.identifier IS 'yyy_Pro Datenherr 
 COMMENT ON COLUMN qgep.od_wastewater_structure.inspection_interval IS 'yyy_Abstände, in welchen das Abwasserbauwerk inspiziert werden sollte (Jahre) / Abstände, in welchen das Abwasserbauwerk inspiziert werden sollte (Jahre) / Fréquence à laquelle un ouvrage du réseau d‘assainissement devrait subir une inspection (années)';
  ALTER TABLE qgep.od_wastewater_structure ADD COLUMN location_name  varchar(50) ;
 COMMENT ON COLUMN qgep.od_wastewater_structure.location_name IS 'Se';
+ ALTER TABLE qgep.od_wastewater_structure ADD COLUMN records  TEXT ;
+COMMENT ON COLUMN qgep.od_wastewater_structure.records IS 'yyy_Plan Nr. der Ausführungsdokumentation. Kurzbeschrieb weiterer Akten (Betriebsanleitung vom …, etc.) / Plan Nr. der Ausführungsdokumentation. Kurzbeschrieb weiterer Akten (Betriebsanleitung vom …, etc.) / n° de plan de la documentation d’exécution, des';
  ALTER TABLE qgep.od_wastewater_structure ADD COLUMN remark  varchar(80) ;
 COMMENT ON COLUMN qgep.od_wastewater_structure.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
  ALTER TABLE qgep.od_wastewater_structure ADD COLUMN renovation_necessity  integer ;
@@ -842,57 +740,153 @@ COMMENT ON COLUMN qgep.od_wastewater_structure.dataowner IS 'Metaattribute datao
  ALTER TABLE qgep.od_wastewater_structure ADD COLUMN provider varchar(80) ;
 COMMENT ON COLUMN qgep.od_wastewater_structure.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
 -------
-CREATE TABLE qgep.od_overflow
+CREATE TABLE qgep.od_structure_part
 (
    obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_overflow_obj_id PRIMARY KEY (obj_id)
+   CONSTRAINT pkey_qgep_od_structure_part_obj_id PRIMARY KEY (obj_id)
 )
 WITH (
    OIDS = False
 );
-CREATE INDEX in_od_overflow_obj_id ON qgep.od_overflow USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_overflow_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_overflow ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_overflow');
-COMMENT ON COLUMN qgep.od_overflow.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_overflow ADD COLUMN actuation  integer ;
-COMMENT ON COLUMN qgep.od_overflow.actuation IS 'Actuation of installation / Antrieb der Einbaute / Entraînement des installations';
- ALTER TABLE qgep.od_overflow ADD COLUMN adjustability  integer ;
-COMMENT ON COLUMN qgep.od_overflow.adjustability IS 'yyy_Möglichkeit zur Verstellung / Möglichkeit zur Verstellung / Possibilité de modifier la position';
- ALTER TABLE qgep.od_overflow ADD COLUMN brand  varchar(50) ;
-COMMENT ON COLUMN qgep.od_overflow.brand IS 'Ms';
- ALTER TABLE qgep.od_overflow ADD COLUMN control  integer ;
-COMMENT ON COLUMN qgep.od_overflow.control IS 'yyy_Steuer- und Regelorgan für die Einbaute / Steuer- und Regelorgan für die Einbaute / Dispositifs de commande et de régulation des installations';
- ALTER TABLE qgep.od_overflow ADD COLUMN function  integer ;
-COMMENT ON COLUMN qgep.od_overflow.function IS 'yyy_Teil des Mischwasserabflusses, der aus einem Überlauf in einen Vorfluter oder in ein Abwasserbauwerk abgeleitet wird / Teil des Mischwasserabflusses, der aus einem Überlauf in einen Vorfluter oder in ein Abwasserbauwerk abgeleitet wird / Type de déver';
- ALTER TABLE qgep.od_overflow ADD COLUMN gross_costs  decimal(8,2) ;
-COMMENT ON COLUMN qgep.od_overflow.gross_costs IS 'Gross costs / Brutto Erstellungskosten / Coûts bruts de réalisation';
- ALTER TABLE qgep.od_overflow ADD COLUMN identifier  varchar(20) ;
- CREATE UNIQUE INDEX in_od_overflow_identifier ON qgep.od_overflow USING btree (identifier);
-COMMENT ON COLUMN qgep.od_overflow.identifier IS ' /  / ';
- ALTER TABLE qgep.od_overflow ADD COLUMN overflow_duration  decimal(5,1) ;
-COMMENT ON COLUMN qgep.od_overflow.overflow_duration IS 'Average overflow duration per year / Mittlere Überlaufdauer pro Jahr / Durée moyenne de déversement par année';
- ALTER TABLE qgep.od_overflow ADD COLUMN overflow_freight  integer ;
-COMMENT ON COLUMN qgep.od_overflow.overflow_freight IS 'Average overflow freight per year / Mittlere Überlaufschmutzfracht pro Jahr / Charge polluante moyenne déversée par année';
- ALTER TABLE qgep.od_overflow ADD COLUMN overflow_number  decimal(3,1) ;
-COMMENT ON COLUMN qgep.od_overflow.overflow_number IS 'Average number of overflow events per year / Mittlere Überlaufhäufigkeit pro Jahr / Fréquence moyenne de déversement par année';
- ALTER TABLE qgep.od_overflow ADD COLUMN overflow_volume  decimal(7,2) ;
-COMMENT ON COLUMN qgep.od_overflow.overflow_volume IS 'yt';
- ALTER TABLE qgep.od_overflow ADD COLUMN qon_current_state  decimal(5,3) ;
-COMMENT ON COLUMN qgep.od_overflow.qon_current_state IS 'yyy_Wassermenge bei welcher der Überlauf tatsächlich anspringt / Wassermenge bei welcher der Überlauf tatsächlich anspringt / Débit à partir duquel le déversoir devient effectivement fonctionnel';
- ALTER TABLE qgep.od_overflow ADD COLUMN qon_dim  decimal(5,3) ;
-COMMENT ON COLUMN qgep.od_overflow.qon_dim IS 'yyy_Wassermenge, bei welcher der Überlauf gemäss Dimensionierung anspringt / Wassermenge, bei welcher der Überlauf gemäss Dimensionierung anspringt / Débit à partir duquel le déversoir devrait être fonctionnel (selon dimensionnement)';
- ALTER TABLE qgep.od_overflow ADD COLUMN remark  varchar(80) ;
-COMMENT ON COLUMN qgep.od_overflow.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
- ALTER TABLE qgep.od_overflow ADD COLUMN signal_transmission  integer ;
-COMMENT ON COLUMN qgep.od_overflow.signal_transmission IS 'Signal or data transfer from or to a telecommunication station / Signalübermittlung von und zu einer Fernwirkanlage / Transmission des signaux de et vers une station de télécommande';
- ALTER TABLE qgep.od_overflow ADD COLUMN subsidies  decimal(8,2) ;
-COMMENT ON COLUMN qgep.od_overflow.subsidies IS 'yyy_Staats- und Bundesbeiträge / Staats- und Bundesbeiträge / Contributions des cantons et de la confédération';
- ALTER TABLE qgep.od_overflow ADD COLUMN last_modification timestamp without time zone ;
-COMMENT ON COLUMN qgep.od_overflow.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
- ALTER TABLE qgep.od_overflow ADD COLUMN dataowner varchar(80) ;
-COMMENT ON COLUMN qgep.od_overflow.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
- ALTER TABLE qgep.od_overflow ADD COLUMN provider varchar(80) ;
-COMMENT ON COLUMN qgep.od_overflow.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
+CREATE INDEX in_od_structure_part_obj_id ON qgep.od_structure_part USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_structure_part_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_structure_part ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_structure_part');
+COMMENT ON COLUMN qgep.od_structure_part.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_structure_part ADD COLUMN identifier  varchar(20) ;
+ CREATE UNIQUE INDEX in_od_structure_part_identifier ON qgep.od_structure_part USING btree (identifier);
+COMMENT ON COLUMN qgep.od_structure_part.identifier IS ' /  / ';
+ ALTER TABLE qgep.od_structure_part ADD COLUMN remark  varchar(80) ;
+COMMENT ON COLUMN qgep.od_structure_part.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
+ ALTER TABLE qgep.od_structure_part ADD COLUMN renovation_demand  integer ;
+COMMENT ON COLUMN qgep.od_structure_part.renovation_demand IS 'ye';
+ ALTER TABLE qgep.od_structure_part ADD COLUMN last_modification timestamp without time zone ;
+COMMENT ON COLUMN qgep.od_structure_part.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
+ ALTER TABLE qgep.od_structure_part ADD COLUMN dataowner varchar(80) ;
+COMMENT ON COLUMN qgep.od_structure_part.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
+ ALTER TABLE qgep.od_structure_part ADD COLUMN provider varchar(80) ;
+COMMENT ON COLUMN qgep.od_structure_part.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
+-------
+CREATE TABLE qgep.od_maintenance_event
+(
+   obj_id  varchar(16) NOT NULL,
+   CONSTRAINT pkey_qgep_od_maintenance_event_obj_id PRIMARY KEY (obj_id)
+)
+WITH (
+   OIDS = False
+);
+CREATE INDEX in_od_maintenance_event_obj_id ON qgep.od_maintenance_event USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_maintenance_event_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_maintenance_event ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_maintenance_event');
+COMMENT ON COLUMN qgep.od_maintenance_event.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_maintenance_event ADD COLUMN base_data  varchar(50) ;
+COMMENT ON COLUMN qgep.od_maintenance_event.base_data IS 'e.g. damage protocol / Z.B. Schadensprotokoll / par ex. protocole de dommages';
+ ALTER TABLE qgep.od_maintenance_event ADD COLUMN cost  decimal(8,2) ;
+COMMENT ON COLUMN qgep.od_maintenance_event.cost IS ' /  / ';
+ ALTER TABLE qgep.od_maintenance_event ADD COLUMN data_details  varchar(50) ;
+COMMENT ON COLUMN qgep.od_maintenance_event.data_details IS 'yd';
+ ALTER TABLE qgep.od_maintenance_event ADD COLUMN duration  smallint ;
+COMMENT ON COLUMN qgep.od_maintenance_event.duration IS 'Ds';
+ ALTER TABLE qgep.od_maintenance_event ADD COLUMN identifier  varchar(20) ;
+ CREATE UNIQUE INDEX in_od_maintenance_event_identifier ON qgep.od_maintenance_event USING btree (identifier);
+COMMENT ON COLUMN qgep.od_maintenance_event.identifier IS ' /  / ';
+ ALTER TABLE qgep.od_maintenance_event ADD COLUMN kind  integer ;
+COMMENT ON COLUMN qgep.od_maintenance_event.kind IS 'Tt';
+ ALTER TABLE qgep.od_maintenance_event ADD COLUMN operator  varchar(50) ;
+COMMENT ON COLUMN qgep.od_maintenance_event.operator IS 'yyy_Operating company or administration und Sachbearbeiter / Ausführende Firma oder Verwaltung und Sachbearbeiter / Bureau et responsable de saisie du bureau';
+ ALTER TABLE qgep.od_maintenance_event ADD COLUMN reason  varchar(50) ;
+COMMENT ON COLUMN qgep.od_maintenance_event.reason IS 'Rt';
+ ALTER TABLE qgep.od_maintenance_event ADD COLUMN remark  varchar(80) ;
+COMMENT ON COLUMN qgep.od_maintenance_event.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
+ ALTER TABLE qgep.od_maintenance_event ADD COLUMN result  varchar(50) ;
+COMMENT ON COLUMN qgep.od_maintenance_event.result IS 'Rt';
+ ALTER TABLE qgep.od_maintenance_event ADD COLUMN status  integer ;
+COMMENT ON COLUMN qgep.od_maintenance_event.status IS 'De';
+ ALTER TABLE qgep.od_maintenance_event ADD COLUMN time_point  timestamp without time zone ;
+COMMENT ON COLUMN qgep.od_maintenance_event.time_point IS 'Dt';
+ ALTER TABLE qgep.od_maintenance_event ADD COLUMN last_modification timestamp without time zone ;
+COMMENT ON COLUMN qgep.od_maintenance_event.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
+ ALTER TABLE qgep.od_maintenance_event ADD COLUMN dataowner varchar(80) ;
+COMMENT ON COLUMN qgep.od_maintenance_event.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
+ ALTER TABLE qgep.od_maintenance_event ADD COLUMN provider varchar(80) ;
+COMMENT ON COLUMN qgep.od_maintenance_event.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
+-------
+CREATE TABLE qgep.od_hydr_geom_relation
+(
+   obj_id  varchar(16) NOT NULL,
+   CONSTRAINT pkey_qgep_od_hydr_geom_relation_obj_id PRIMARY KEY (obj_id)
+)
+WITH (
+   OIDS = False
+);
+CREATE INDEX in_od_hydr_geom_relation_obj_id ON qgep.od_hydr_geom_relation USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_hydr_geom_relation_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_hydr_geom_relation ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_hydr_geom_relation');
+COMMENT ON COLUMN qgep.od_hydr_geom_relation.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_hydr_geom_relation ADD COLUMN water_depth  decimal(5,2) ;
+COMMENT ON COLUMN qgep.od_hydr_geom_relation.water_depth IS 'ye';
+ ALTER TABLE qgep.od_hydr_geom_relation ADD COLUMN water_surface  decimal(6,2) ;
+COMMENT ON COLUMN qgep.od_hydr_geom_relation.water_surface IS 'yn';
+ ALTER TABLE qgep.od_hydr_geom_relation ADD COLUMN wet_cross_section_area  decimal(6,2) ;
+COMMENT ON COLUMN qgep.od_hydr_geom_relation.wet_cross_section_area IS 'yyy_Hydraulisch wirksamer Querschnitt für Verlustberechnungen / Hydraulisch wirksamer Querschnitt für Verlustberechnungen / Section hydrauliquement active pour les calculs des pertes de charge';
+ ALTER TABLE qgep.od_hydr_geom_relation ADD COLUMN last_modification timestamp without time zone ;
+COMMENT ON COLUMN qgep.od_hydr_geom_relation.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
+ ALTER TABLE qgep.od_hydr_geom_relation ADD COLUMN dataowner varchar(80) ;
+COMMENT ON COLUMN qgep.od_hydr_geom_relation.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
+ ALTER TABLE qgep.od_hydr_geom_relation ADD COLUMN provider varchar(80) ;
+COMMENT ON COLUMN qgep.od_hydr_geom_relation.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
+-------
+CREATE TABLE qgep.od_pipe_profile
+(
+   obj_id  varchar(16) NOT NULL,
+   CONSTRAINT pkey_qgep_od_pipe_profile_obj_id PRIMARY KEY (obj_id)
+)
+WITH (
+   OIDS = False
+);
+CREATE INDEX in_od_pipe_profile_obj_id ON qgep.od_pipe_profile USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_pipe_profile_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_pipe_profile ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_pipe_profile');
+COMMENT ON COLUMN qgep.od_pipe_profile.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_pipe_profile ADD COLUMN height_width_ratio  decimal(3,2) ;
+COMMENT ON COLUMN qgep.od_pipe_profile.height_width_ratio IS 'height-width ratio / Verhältnis der Höhe zur Breite / Rapport entre la hauteur et la largeur';
+ ALTER TABLE qgep.od_pipe_profile ADD COLUMN identifier  varchar(20) ;
+ CREATE UNIQUE INDEX in_od_pipe_profile_identifier ON qgep.od_pipe_profile USING btree (identifier);
+COMMENT ON COLUMN qgep.od_pipe_profile.identifier IS ' /  / ';
+ ALTER TABLE qgep.od_pipe_profile ADD COLUMN profile_type  integer ;
+COMMENT ON COLUMN qgep.od_pipe_profile.profile_type IS 'Type of profile / Typ des Profils / Type du profil';
+ ALTER TABLE qgep.od_pipe_profile ADD COLUMN remark  varchar(80) ;
+COMMENT ON COLUMN qgep.od_pipe_profile.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
+ ALTER TABLE qgep.od_pipe_profile ADD COLUMN last_modification timestamp without time zone ;
+COMMENT ON COLUMN qgep.od_pipe_profile.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
+ ALTER TABLE qgep.od_pipe_profile ADD COLUMN dataowner varchar(80) ;
+COMMENT ON COLUMN qgep.od_pipe_profile.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
+ ALTER TABLE qgep.od_pipe_profile ADD COLUMN provider varchar(80) ;
+COMMENT ON COLUMN qgep.od_pipe_profile.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
+-------
+CREATE TABLE qgep.od_hq_relation
+(
+   obj_id  varchar(16) NOT NULL,
+   CONSTRAINT pkey_qgep_od_hq_relation_obj_id PRIMARY KEY (obj_id)
+)
+WITH (
+   OIDS = False
+);
+CREATE INDEX in_od_hq_relation_obj_id ON qgep.od_hq_relation USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_hq_relation_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_hq_relation ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_hq_relation');
+COMMENT ON COLUMN qgep.od_hq_relation.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_hq_relation ADD COLUMN altitude  decimal(4,3) ;
+COMMENT ON COLUMN qgep.od_hq_relation.altitude IS 'y)';
+ ALTER TABLE qgep.od_hq_relation ADD COLUMN flow  decimal(5,3) ;
+COMMENT ON COLUMN qgep.od_hq_relation.flow IS 'yP';
+ ALTER TABLE qgep.od_hq_relation ADD COLUMN flow_from  decimal(5,3) ;
+COMMENT ON COLUMN qgep.od_hq_relation.flow_from IS 'yyy_Zufluss (Q1) / Zufluss (Q1) / Débit d’entrée  (Q1)';
+ ALTER TABLE qgep.od_hq_relation ADD COLUMN last_modification timestamp without time zone ;
+COMMENT ON COLUMN qgep.od_hq_relation.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
+ ALTER TABLE qgep.od_hq_relation ADD COLUMN dataowner varchar(80) ;
+COMMENT ON COLUMN qgep.od_hq_relation.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
+ ALTER TABLE qgep.od_hq_relation ADD COLUMN provider varchar(80) ;
+COMMENT ON COLUMN qgep.od_hq_relation.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
 -------
 CREATE TABLE qgep.od_throttle_shut_off_unit
 (
@@ -931,6 +925,10 @@ COMMENT ON COLUMN qgep.od_throttle_shut_off_unit.remark IS 'General remarks / Al
 COMMENT ON COLUMN qgep.od_throttle_shut_off_unit.signal_transmission IS 'Signal or data transfer from or to a telecommunication station sending_receiving / Signalübermittlung von und zu einer Fernwirkanlage / Transmission des signaux de et vers une station de télécommande';
  ALTER TABLE qgep.od_throttle_shut_off_unit ADD COLUMN subsidies  decimal(8,2) ;
 COMMENT ON COLUMN qgep.od_throttle_shut_off_unit.subsidies IS 'yyy_Staats- und Bundesbeiträge / Staats- und Bundesbeiträge / Contributions des cantons et de la confédération';
+ ALTER TABLE qgep.od_throttle_shut_off_unit ADD COLUMN throttle_unit_opening_current  smallint ;
+COMMENT ON COLUMN qgep.od_throttle_shut_off_unit.throttle_unit_opening_current IS 'yyy_Folgende Werte sind anzugeben: Leapingwehr: Schrägdistanz der Blech- resp. Bodenöffnung. Drosselstrecke: keine zusätzlichen Angaben. Schieber / Schütz: lichte Höhe der Öffnung (ab Sohle bis UK Schieberplatte, tiefster Punkt). Abflussregulator: keine z';
+ ALTER TABLE qgep.od_throttle_shut_off_unit ADD COLUMN throttle_unit_opening_current_optimized  smallint ;
+COMMENT ON COLUMN qgep.od_throttle_shut_off_unit.throttle_unit_opening_current_optimized IS 'yyy_Folgende Werte sind anzugeben: Leapingwehr: Schrägdistanz der Blech- resp. Bodenöffnung. Drosselstrecke: keine zusätzlichen Angaben. Schieber / Schütz: lichte Höhe der Öffnung (ab Sohle bis UK Schieberplatte, tiefster Punkt). Abflussregulator: keine z';
  ALTER TABLE qgep.od_throttle_shut_off_unit ADD COLUMN last_modification timestamp without time zone ;
 COMMENT ON COLUMN qgep.od_throttle_shut_off_unit.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
  ALTER TABLE qgep.od_throttle_shut_off_unit ADD COLUMN dataowner varchar(80) ;
@@ -938,101 +936,97 @@ COMMENT ON COLUMN qgep.od_throttle_shut_off_unit.dataowner IS 'Metaattribute dat
  ALTER TABLE qgep.od_throttle_shut_off_unit ADD COLUMN provider varchar(80) ;
 COMMENT ON COLUMN qgep.od_throttle_shut_off_unit.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
 -------
-CREATE TABLE qgep.od_pipe_profile
+CREATE TABLE qgep.od_profile_geometry
 (
    obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_pipe_profile_obj_id PRIMARY KEY (obj_id)
+   CONSTRAINT pkey_qgep_od_profile_geometry_obj_id PRIMARY KEY (obj_id)
 )
 WITH (
    OIDS = False
 );
-CREATE INDEX in_od_pipe_profile_obj_id ON qgep.od_pipe_profile USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_pipe_profile_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_pipe_profile ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_pipe_profile');
-COMMENT ON COLUMN qgep.od_pipe_profile.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_pipe_profile ADD COLUMN height_width_ratio  decimal(3,2) ;
-COMMENT ON COLUMN qgep.od_pipe_profile.height_width_ratio IS 'height-width ratio / Verhältnis der Höhe zur Breite / Rapport entre la hauteur et la largeur';
- ALTER TABLE qgep.od_pipe_profile ADD COLUMN identifier  varchar(20) ;
- CREATE UNIQUE INDEX in_od_pipe_profile_identifier ON qgep.od_pipe_profile USING btree (identifier);
-COMMENT ON COLUMN qgep.od_pipe_profile.identifier IS ' /  / ';
- ALTER TABLE qgep.od_pipe_profile ADD COLUMN profile_type  integer ;
-COMMENT ON COLUMN qgep.od_pipe_profile.profile_type IS 'Type of profile / Typ des Profils / Type du profil';
- ALTER TABLE qgep.od_pipe_profile ADD COLUMN remark  varchar(80) ;
-COMMENT ON COLUMN qgep.od_pipe_profile.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
- ALTER TABLE qgep.od_pipe_profile ADD COLUMN last_modification timestamp without time zone ;
-COMMENT ON COLUMN qgep.od_pipe_profile.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
- ALTER TABLE qgep.od_pipe_profile ADD COLUMN dataowner varchar(80) ;
-COMMENT ON COLUMN qgep.od_pipe_profile.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
- ALTER TABLE qgep.od_pipe_profile ADD COLUMN provider varchar(80) ;
-COMMENT ON COLUMN qgep.od_pipe_profile.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
+CREATE INDEX in_od_profile_geometry_obj_id ON qgep.od_profile_geometry USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_profile_geometry_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_profile_geometry ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_profile_geometry');
+COMMENT ON COLUMN qgep.od_profile_geometry.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_profile_geometry ADD COLUMN position  smallint ;
+COMMENT ON COLUMN qgep.od_profile_geometry.position IS 'ye';
+ ALTER TABLE qgep.od_profile_geometry ADD COLUMN x  real ;
+COMMENT ON COLUMN qgep.od_profile_geometry.x IS 'x /  / ';
+ ALTER TABLE qgep.od_profile_geometry ADD COLUMN y  real ;
+COMMENT ON COLUMN qgep.od_profile_geometry.y IS 'y /  / ';
+ ALTER TABLE qgep.od_profile_geometry ADD COLUMN last_modification timestamp without time zone ;
+COMMENT ON COLUMN qgep.od_profile_geometry.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
+ ALTER TABLE qgep.od_profile_geometry ADD COLUMN dataowner varchar(80) ;
+COMMENT ON COLUMN qgep.od_profile_geometry.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
+ ALTER TABLE qgep.od_profile_geometry ADD COLUMN provider varchar(80) ;
+COMMENT ON COLUMN qgep.od_profile_geometry.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
 -------
-CREATE TABLE qgep.od_wastewater_networkelement
+CREATE TABLE qgep.od_hydr_geometry
 (
    obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_wastewater_networkelement_obj_id PRIMARY KEY (obj_id)
+   CONSTRAINT pkey_qgep_od_hydr_geometry_obj_id PRIMARY KEY (obj_id)
 )
 WITH (
    OIDS = False
 );
-CREATE INDEX in_od_wastewater_networkelement_obj_id ON qgep.od_wastewater_networkelement USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_wastewater_networkelement_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_wastewater_networkelement ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_wastewater_networkelement');
-COMMENT ON COLUMN qgep.od_wastewater_networkelement.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_wastewater_networkelement ADD COLUMN identifier  varchar(20) ;
- CREATE UNIQUE INDEX in_od_wastewater_networkelement_identifier ON qgep.od_wastewater_networkelement USING btree (identifier);
-COMMENT ON COLUMN qgep.od_wastewater_networkelement.identifier IS ' /  / ';
- ALTER TABLE qgep.od_wastewater_networkelement ADD COLUMN remark  varchar(80) ;
-COMMENT ON COLUMN qgep.od_wastewater_networkelement.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
- ALTER TABLE qgep.od_wastewater_networkelement ADD COLUMN last_modification timestamp without time zone ;
-COMMENT ON COLUMN qgep.od_wastewater_networkelement.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
- ALTER TABLE qgep.od_wastewater_networkelement ADD COLUMN dataowner varchar(80) ;
-COMMENT ON COLUMN qgep.od_wastewater_networkelement.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
- ALTER TABLE qgep.od_wastewater_networkelement ADD COLUMN provider varchar(80) ;
-COMMENT ON COLUMN qgep.od_wastewater_networkelement.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
+CREATE INDEX in_od_hydr_geometry_obj_id ON qgep.od_hydr_geometry USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_hydr_geometry_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_hydr_geometry ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_hydr_geometry');
+COMMENT ON COLUMN qgep.od_hydr_geometry.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_hydr_geometry ADD COLUMN identifier  varchar(20) ;
+ CREATE UNIQUE INDEX in_od_hydr_geometry_identifier ON qgep.od_hydr_geometry USING btree (identifier);
+COMMENT ON COLUMN qgep.od_hydr_geometry.identifier IS ' /  / ';
+ ALTER TABLE qgep.od_hydr_geometry ADD COLUMN remark  varchar(80) ;
+COMMENT ON COLUMN qgep.od_hydr_geometry.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
+ ALTER TABLE qgep.od_hydr_geometry ADD COLUMN storage_volume  decimal(7,2) ;
+COMMENT ON COLUMN qgep.od_hydr_geometry.storage_volume IS 'yyy_Speicherinhalt im Becken und im Zulauf zwischen Wehrkrone und dem Wasserspiegel bei Qan. Bei Regenbecken nur im Hauptschluss erfassen. Bei Pumpen: Speicherinhalt im Zulaufkanal unter dem Wasserspiegel beim Einschalten der Pumpe (höchstes Einschaltnive';
+ ALTER TABLE qgep.od_hydr_geometry ADD COLUMN usable_capacity_storage  decimal(7,2) ;
+COMMENT ON COLUMN qgep.od_hydr_geometry.usable_capacity_storage IS 'yyy_Inhalt der Kammer unterhalb der Wehrkrone ohne Stauraum im Zulaufkanal (wird in der Stammkarte Trennbauwerke oder Regenüberlauf erfasst). / Inhalt der Kammer unterhalb der Wehrkrone ohne Stauraum im Zulaufkanal (wird in der Stammkarte Trennbauwerke od';
+ ALTER TABLE qgep.od_hydr_geometry ADD COLUMN usable_capacity_treatment  decimal(7,2) ;
+COMMENT ON COLUMN qgep.od_hydr_geometry.usable_capacity_treatment IS 'yyy_Inhalt der Kammer unterhalb der Wehrkrone inkl. Einlaufbereich, Auslaufbereich und Sedimentationsbereich, ohne Stauraum im Zulaufkanal (wird in der Stammkarte Trennbauwerke oder Regenüberlauf erfasst). / Inhalt der Kammer unterhalb der Wehrkrone inkl.';
+ ALTER TABLE qgep.od_hydr_geometry ADD COLUMN utilisable_capacity  decimal(7,2) ;
+COMMENT ON COLUMN qgep.od_hydr_geometry.utilisable_capacity IS 'yyy_Inhalt der Kammer unterhalb Notüberlauf oder Bypass (maximal mobilisierbares Volumen, inkl. Stauraum im Zulaufkanal). Für RRB und RRK. Für RÜB Nutzinhalt_Fangteil und Nutzinhalt_Klaerteil benutzen. Zusätzlich auch Stauraum erfassen. / Inhalt der Kamme';
+ ALTER TABLE qgep.od_hydr_geometry ADD COLUMN volume_pump_sump  decimal(7,2) ;
+COMMENT ON COLUMN qgep.od_hydr_geometry.volume_pump_sump IS 'yyy_Volumen des Pumpensumpfs von der Sohle bis zur maximal möglichen Wasserspiegellage (inkl. Kanalspeichervolumen im Zulaufkanal). / Volumen des Pumpensumpfs von der Sohle bis zur maximal möglichen Wasserspiegellage (inkl. Kanalspeichervolumen im Zulaufk';
+ ALTER TABLE qgep.od_hydr_geometry ADD COLUMN last_modification timestamp without time zone ;
+COMMENT ON COLUMN qgep.od_hydr_geometry.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
+ ALTER TABLE qgep.od_hydr_geometry ADD COLUMN dataowner varchar(80) ;
+COMMENT ON COLUMN qgep.od_hydr_geometry.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
+ ALTER TABLE qgep.od_hydr_geometry ADD COLUMN provider varchar(80) ;
+COMMENT ON COLUMN qgep.od_hydr_geometry.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
 -------
-CREATE TABLE qgep.od_maintenance_event
+CREATE TABLE qgep.od_accident
 (
    obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_maintenance_event_obj_id PRIMARY KEY (obj_id)
+   CONSTRAINT pkey_qgep_od_accident_obj_id PRIMARY KEY (obj_id)
 )
 WITH (
    OIDS = False
 );
-CREATE INDEX in_od_maintenance_event_obj_id ON qgep.od_maintenance_event USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_maintenance_event_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_maintenance_event ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_maintenance_event');
-COMMENT ON COLUMN qgep.od_maintenance_event.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_maintenance_event ADD COLUMN base_data  varchar(50) ;
-COMMENT ON COLUMN qgep.od_maintenance_event.base_data IS 'e.g. damage protocol / Z.B. Schadensprotokoll / par ex. protocole de dommages';
- ALTER TABLE qgep.od_maintenance_event ADD COLUMN cost  decimal(8,2) ;
-COMMENT ON COLUMN qgep.od_maintenance_event.cost IS ' /  / ';
- ALTER TABLE qgep.od_maintenance_event ADD COLUMN data_details  varchar(50) ;
-COMMENT ON COLUMN qgep.od_maintenance_event.data_details IS 'yd';
- ALTER TABLE qgep.od_maintenance_event ADD COLUMN disposition_state  integer ;
-COMMENT ON COLUMN qgep.od_maintenance_event.disposition_state IS 'De';
- ALTER TABLE qgep.od_maintenance_event ADD COLUMN duration  smallint ;
-COMMENT ON COLUMN qgep.od_maintenance_event.duration IS 'Ds';
- ALTER TABLE qgep.od_maintenance_event ADD COLUMN identifier  varchar(20) ;
- CREATE UNIQUE INDEX in_od_maintenance_event_identifier ON qgep.od_maintenance_event USING btree (identifier);
-COMMENT ON COLUMN qgep.od_maintenance_event.identifier IS ' /  / ';
- ALTER TABLE qgep.od_maintenance_event ADD COLUMN kind  integer ;
-COMMENT ON COLUMN qgep.od_maintenance_event.kind IS 'Tt';
- ALTER TABLE qgep.od_maintenance_event ADD COLUMN operator  varchar(50) ;
-COMMENT ON COLUMN qgep.od_maintenance_event.operator IS 'Operating company or administration / Ausführende Firma oder Verwaltung / Entreprise ou administration exécutante';
- ALTER TABLE qgep.od_maintenance_event ADD COLUMN reason  varchar(50) ;
-COMMENT ON COLUMN qgep.od_maintenance_event.reason IS 'Rt';
- ALTER TABLE qgep.od_maintenance_event ADD COLUMN remark  varchar(80) ;
-COMMENT ON COLUMN qgep.od_maintenance_event.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
- ALTER TABLE qgep.od_maintenance_event ADD COLUMN result  varchar(50) ;
-COMMENT ON COLUMN qgep.od_maintenance_event.result IS 'Rt';
- ALTER TABLE qgep.od_maintenance_event ADD COLUMN time_point  timestamp without time zone ;
-COMMENT ON COLUMN qgep.od_maintenance_event.time_point IS 'Dt';
- ALTER TABLE qgep.od_maintenance_event ADD COLUMN last_modification timestamp without time zone ;
-COMMENT ON COLUMN qgep.od_maintenance_event.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
- ALTER TABLE qgep.od_maintenance_event ADD COLUMN dataowner varchar(80) ;
-COMMENT ON COLUMN qgep.od_maintenance_event.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
- ALTER TABLE qgep.od_maintenance_event ADD COLUMN provider varchar(80) ;
-COMMENT ON COLUMN qgep.od_maintenance_event.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
+CREATE INDEX in_od_accident_obj_id ON qgep.od_accident USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_accident_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_accident ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_accident');
+COMMENT ON COLUMN qgep.od_accident.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_accident ADD COLUMN date  timestamp without time zone ;
+COMMENT ON COLUMN qgep.od_accident.date IS 'Dt';
+ ALTER TABLE qgep.od_accident ADD COLUMN identifier  varchar(20) ;
+ CREATE UNIQUE INDEX in_od_accident_identifier ON qgep.od_accident USING btree (identifier);
+COMMENT ON COLUMN qgep.od_accident.identifier IS ' /  / ';
+ ALTER TABLE qgep.od_accident ADD COLUMN place  varchar(50) ;
+COMMENT ON COLUMN qgep.od_accident.place IS 'At';
+ ALTER TABLE qgep.od_accident ADD COLUMN remark  varchar(80) ;
+COMMENT ON COLUMN qgep.od_accident.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
+ ALTER TABLE qgep.od_accident ADD COLUMN responsible  varchar(50) ;
+COMMENT ON COLUMN qgep.od_accident.responsible IS 'Nr';
+SELECT AddGeometryColumn('qgep', 'od_accident', 'situation_geometry', 21781, 'POINT', 2, true);
+CREATE INDEX in_qgep_od_accident_situation_geometry ON qgep.od_accident USING gist (situation_geometry );
+COMMENT ON COLUMN qgep.od_accident.situation_geometry IS 'Nt';
+ ALTER TABLE qgep.od_accident ADD COLUMN last_modification timestamp without time zone ;
+COMMENT ON COLUMN qgep.od_accident.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
+ ALTER TABLE qgep.od_accident ADD COLUMN dataowner varchar(80) ;
+COMMENT ON COLUMN qgep.od_accident.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
+ ALTER TABLE qgep.od_accident ADD COLUMN provider varchar(80) ;
+COMMENT ON COLUMN qgep.od_accident.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
 -------
 CREATE TABLE qgep.od_retention_body
 (
@@ -1060,118 +1054,161 @@ COMMENT ON COLUMN qgep.od_retention_body.dataowner IS 'Metaattribute dataowner -
  ALTER TABLE qgep.od_retention_body ADD COLUMN provider varchar(80) ;
 COMMENT ON COLUMN qgep.od_retention_body.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
 -------
-CREATE TABLE qgep.od_accident
+CREATE TABLE qgep.od_overflow_characteristic
 (
    obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_accident_obj_id PRIMARY KEY (obj_id)
+   CONSTRAINT pkey_qgep_od_overflow_characteristic_obj_id PRIMARY KEY (obj_id)
 )
 WITH (
    OIDS = False
 );
-CREATE INDEX in_od_accident_obj_id ON qgep.od_accident USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_accident_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_accident ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_accident');
-COMMENT ON COLUMN qgep.od_accident.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_accident ADD COLUMN date  timestamp without time zone ;
-COMMENT ON COLUMN qgep.od_accident.date IS 'Dt';
- ALTER TABLE qgep.od_accident ADD COLUMN identifier  varchar(20) ;
- CREATE UNIQUE INDEX in_od_accident_identifier ON qgep.od_accident USING btree (identifier);
-COMMENT ON COLUMN qgep.od_accident.identifier IS ' /  / ';
- ALTER TABLE qgep.od_accident ADD COLUMN place  varchar(50) ;
-COMMENT ON COLUMN qgep.od_accident.place IS 'At';
- ALTER TABLE qgep.od_accident ADD COLUMN remark  varchar(80) ;
-COMMENT ON COLUMN qgep.od_accident.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
- ALTER TABLE qgep.od_accident ADD COLUMN responsible  varchar(50) ;
-COMMENT ON COLUMN qgep.od_accident.responsible IS 'Nr';
-SELECT AddGeometryColumn('qgep', 'od_accident', 'situation_geometry', 21781, 'POINT', 2);
-CREATE INDEX in_qgep_od_accident_situation_geometry ON qgep.od_accident USING gist (situation_geometry );
-COMMENT ON COLUMN qgep.od_accident.situation_geometry IS 'Nt';
- ALTER TABLE qgep.od_accident ADD COLUMN last_modification timestamp without time zone ;
-COMMENT ON COLUMN qgep.od_accident.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
- ALTER TABLE qgep.od_accident ADD COLUMN dataowner varchar(80) ;
-COMMENT ON COLUMN qgep.od_accident.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
- ALTER TABLE qgep.od_accident ADD COLUMN provider varchar(80) ;
-COMMENT ON COLUMN qgep.od_accident.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
+CREATE INDEX in_od_overflow_characteristic_obj_id ON qgep.od_overflow_characteristic USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_overflow_characteristic_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_overflow_characteristic ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_overflow_characteristic');
+COMMENT ON COLUMN qgep.od_overflow_characteristic.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_overflow_characteristic ADD COLUMN identifier  varchar(20) ;
+ CREATE UNIQUE INDEX in_od_overflow_characteristic_identifier ON qgep.od_overflow_characteristic USING btree (identifier);
+COMMENT ON COLUMN qgep.od_overflow_characteristic.identifier IS ' /  / ';
+ ALTER TABLE qgep.od_overflow_characteristic ADD COLUMN overflow_characteristic_digital  integer ;
+COMMENT ON COLUMN qgep.od_overflow_characteristic.overflow_characteristic_digital IS 'yyy_Falls Kennlinie_digital = ja müssen die Attribute für die Q-Q oder H-Q Beziehung ausgefüllt sein. / Falls Kennlinie_digital = ja müssen die Attribute für die Q-Q oder H-Q Beziehung ausgefüllt sein. / Si courbe de fonctionnement numérique = oui, les at';
+ ALTER TABLE qgep.od_overflow_characteristic ADD COLUMN remark  varchar(80) ;
+COMMENT ON COLUMN qgep.od_overflow_characteristic.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
+ ALTER TABLE qgep.od_overflow_characteristic ADD COLUMN last_modification timestamp without time zone ;
+COMMENT ON COLUMN qgep.od_overflow_characteristic.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
+ ALTER TABLE qgep.od_overflow_characteristic ADD COLUMN dataowner varchar(80) ;
+COMMENT ON COLUMN qgep.od_overflow_characteristic.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
+ ALTER TABLE qgep.od_overflow_characteristic ADD COLUMN provider varchar(80) ;
+COMMENT ON COLUMN qgep.od_overflow_characteristic.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
 -------
-CREATE TABLE qgep.od_profile_geometry
+CREATE TABLE qgep.od_overflow
 (
    obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_profile_geometry_obj_id PRIMARY KEY (obj_id)
+   CONSTRAINT pkey_qgep_od_overflow_obj_id PRIMARY KEY (obj_id)
 )
 WITH (
    OIDS = False
 );
-CREATE INDEX in_od_profile_geometry_obj_id ON qgep.od_profile_geometry USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_profile_geometry_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_profile_geometry ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_profile_geometry');
-COMMENT ON COLUMN qgep.od_profile_geometry.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_profile_geometry ADD COLUMN position  smallint ;
-COMMENT ON COLUMN qgep.od_profile_geometry.position IS 'ye';
- ALTER TABLE qgep.od_profile_geometry ADD COLUMN x  real ;
-COMMENT ON COLUMN qgep.od_profile_geometry.x IS 'x /  / ';
- ALTER TABLE qgep.od_profile_geometry ADD COLUMN y  real ;
-COMMENT ON COLUMN qgep.od_profile_geometry.y IS 'y /  / ';
- ALTER TABLE qgep.od_profile_geometry ADD COLUMN last_modification timestamp without time zone ;
-COMMENT ON COLUMN qgep.od_profile_geometry.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
- ALTER TABLE qgep.od_profile_geometry ADD COLUMN dataowner varchar(80) ;
-COMMENT ON COLUMN qgep.od_profile_geometry.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
- ALTER TABLE qgep.od_profile_geometry ADD COLUMN provider varchar(80) ;
-COMMENT ON COLUMN qgep.od_profile_geometry.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
+CREATE INDEX in_od_overflow_obj_id ON qgep.od_overflow USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_overflow_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_overflow ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_overflow');
+COMMENT ON COLUMN qgep.od_overflow.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_overflow ADD COLUMN actuation  integer ;
+COMMENT ON COLUMN qgep.od_overflow.actuation IS 'Actuation of installation / Antrieb der Einbaute / Entraînement des installations';
+ ALTER TABLE qgep.od_overflow ADD COLUMN adjustability  integer ;
+COMMENT ON COLUMN qgep.od_overflow.adjustability IS 'yyy_Möglichkeit zur Verstellung / Möglichkeit zur Verstellung / Possibilité de modifier la position';
+ ALTER TABLE qgep.od_overflow ADD COLUMN brand  varchar(50) ;
+COMMENT ON COLUMN qgep.od_overflow.brand IS 'Ms';
+ ALTER TABLE qgep.od_overflow ADD COLUMN control  integer ;
+COMMENT ON COLUMN qgep.od_overflow.control IS 'yyy_Steuer- und Regelorgan für die Einbaute / Steuer- und Regelorgan für die Einbaute / Dispositifs de commande et de régulation des installations';
+ ALTER TABLE qgep.od_overflow ADD COLUMN function  integer ;
+COMMENT ON COLUMN qgep.od_overflow.function IS 'yyy_Teil des Mischwasserabflusses, der aus einem Überlauf in einen Vorfluter oder in ein Abwasserbauwerk abgeleitet wird / Teil des Mischwasserabflusses, der aus einem Überlauf in einen Vorfluter oder in ein Abwasserbauwerk abgeleitet wird / Type de déver';
+ ALTER TABLE qgep.od_overflow ADD COLUMN gross_costs  decimal(8,2) ;
+COMMENT ON COLUMN qgep.od_overflow.gross_costs IS 'Gross costs / Brutto Erstellungskosten / Coûts bruts de réalisation';
+ ALTER TABLE qgep.od_overflow ADD COLUMN identifier  varchar(20) ;
+ CREATE UNIQUE INDEX in_od_overflow_identifier ON qgep.od_overflow USING btree (identifier);
+COMMENT ON COLUMN qgep.od_overflow.identifier IS ' /  / ';
+ ALTER TABLE qgep.od_overflow ADD COLUMN overcharge_current  smallint ;
+COMMENT ON COLUMN qgep.od_overflow.overcharge_current IS 'yyy_Mehrbelastung der untenliegenden Kanäle beim Dimensionierungsereignis = 100 * (Qab – Qan) / Qan 	[%]. Verhältnis zwischen der abgeleiteten Abwassermengen Richtung ARA beim Anspringen des Entlastungsbauwerkes (Qan) und Qab (Abwassermenge, welche beim D';
+ ALTER TABLE qgep.od_overflow ADD COLUMN overcharge_current_optimized  smallint ;
+COMMENT ON COLUMN qgep.od_overflow.overcharge_current_optimized IS 'yyy_Optimale Mehrbelastung im Ist-Zustand vor der Umsetzung von allfälligen weiteren Massnahmen. / Optimale Mehrbelastung im Ist-Zustand vor der Umsetzung von allfälligen weiteren Massnahmen. / Surcharge optimale à l’état actuel avant la réalisation d’éve';
+ ALTER TABLE qgep.od_overflow ADD COLUMN overcharge_planned  smallint ;
+COMMENT ON COLUMN qgep.od_overflow.overcharge_planned IS 'yyy_Optimale Mehrbelastung nach der Umsetzung der Massnahmen. / Optimale Mehrbelastung nach der Umsetzung der Massnahmen. / Surcharge optimale prévue après la réalisation d’éventuelles mesures.';
+ ALTER TABLE qgep.od_overflow ADD COLUMN overflow_duration_current  decimal(5,1) ;
+COMMENT ON COLUMN qgep.od_overflow.overflow_duration_current IS 'yyy_Mittlere Überlaufdauer pro Jahr. Durchschnittliche Überlaufdauer pro Jahr von Entlastungsanlagen gemäss Langzeitsimulation (Dauer mindestens 10 Jahre). / Mittlere Überlaufdauer pro Jahr. Durchschnittliche Überlaufdauer pro Jahr von Entlastungsanlagen ';
+ ALTER TABLE qgep.od_overflow ADD COLUMN overflow_duration_current_optimized  decimal(5,1) ;
+COMMENT ON COLUMN qgep.od_overflow.overflow_duration_current_optimized IS 'yyy_Mittlere Überlaufdauer pro Jahr. Berechnung mit optimierten Einstellungen im Ist-Zustand vor der Umsetzung von allfälligen weiteren Massnahmen. / Mittlere Überlaufdauer pro Jahr. Berechnung mit optimierten Einstellungen im Ist-Zustand vor der Umsetzun';
+ ALTER TABLE qgep.od_overflow ADD COLUMN overflow_duration_planned  decimal(5,1) ;
+COMMENT ON COLUMN qgep.od_overflow.overflow_duration_planned IS 'yyy_Mittlere Überlaufdauer pro Jahr. Berechnung mit geplanten Massnahmen. / Mittlere Überlaufdauer pro Jahr. Berechnung mit geplanten Massnahmen. / Durée moyenne de déversement par an. Calcul selon les mesures planifiées.';
+ ALTER TABLE qgep.od_overflow ADD COLUMN overflow_freight_current  integer ;
+COMMENT ON COLUMN qgep.od_overflow.overflow_freight_current IS 'Average freight during overflows per year / Mittlere Ueberlaufschmutzfracht pro Jahr / Charge polluante moyenne déversée par année';
+ ALTER TABLE qgep.od_overflow ADD COLUMN overflow_frequency_current  decimal(3,1) ;
+COMMENT ON COLUMN qgep.od_overflow.overflow_frequency_current IS 'yyy_Mittlere Überlaufhäufigkeit pro Jahr. Durchschnittliche Überlaufhäufigkeit pro Jahr von Entlastungsanlagen gemäss Langzeitsimulation (Dauer mindestens 10 Jahre). / Mittlere Überlaufhäufigkeit pro Jahr. Durchschnittliche Überlaufhäufigkeit pro Jahr von';
+ ALTER TABLE qgep.od_overflow ADD COLUMN overflow_frequency_current_optimized  decimal(3,1) ;
+COMMENT ON COLUMN qgep.od_overflow.overflow_frequency_current_optimized IS 'yyy_Mittlere Überlaufhäufigkeit pro Jahr. Berechnung mit optimierten Einstellungen im Ist-Zustand vor der Umsetzung von allfälligen weiteren Massnahmen. / Mittlere Überlaufhäufigkeit pro Jahr. Berechnung mit optimierten Einstellungen im Ist-Zustand vor de';
+ ALTER TABLE qgep.od_overflow ADD COLUMN overflow_frequency_planned  decimal(3,1) ;
+COMMENT ON COLUMN qgep.od_overflow.overflow_frequency_planned IS 'yyy_Mittlere Überlaufhäufigkeit pro Jahr. Berechnung mit Einstellungen nach der Umsetzung der Massnahmen. / Mittlere Überlaufhäufigkeit pro Jahr. Berechnung mit Einstellungen nach der Umsetzung der Massnahmen. / Fréquence moyenne de déversement par an. Ca';
+ ALTER TABLE qgep.od_overflow ADD COLUMN overflow_volume_current  decimal(7,2) ;
+COMMENT ON COLUMN qgep.od_overflow.overflow_volume_current IS 'yyy_Mittlere Überlaufwassermenge pro Jahr. Durchschnittliche Überlaufmenge pro Jahr von Entlastungsanlagen gemäss Langzeitsimulation (Dauer mindestens 10 Jahre). / Mittlere Überlaufwassermenge pro Jahr. Durchschnittliche Überlaufmenge pro Jahr von Entlast';
+ ALTER TABLE qgep.od_overflow ADD COLUMN overflow_volume_current_optimized  decimal(7,2) ;
+COMMENT ON COLUMN qgep.od_overflow.overflow_volume_current_optimized IS 'yyy_Mittlere Überlaufwassermenge pro Jahr. Berechnung mit optimierten Einstellungen im Ist-Zustand vor der Umsetzung von allfälligen weiteren Massnahmen. / Mittlere Überlaufwassermenge pro Jahr. Berechnung mit optimierten Einstellungen im Ist-Zustand vor ';
+ ALTER TABLE qgep.od_overflow ADD COLUMN overflow_volume_planned  decimal(7,2) ;
+COMMENT ON COLUMN qgep.od_overflow.overflow_volume_planned IS 'yyy_Mittlere Überlaufwassermenge pro Jahr. Berechnung mit Einstellungen nach der Umsetzung der Massnahmen. / Mittlere Überlaufwassermenge pro Jahr. Berechnung mit Einstellungen nach der Umsetzung der Massnahmen. / Volume moyen de déversement par an. Calcu';
+ ALTER TABLE qgep.od_overflow ADD COLUMN q_discharge_current  decimal(5,3) ;
+COMMENT ON COLUMN qgep.od_overflow.q_discharge_current IS 'yyy_Qab im heutigen Zustand, Ist-Wert aufgrund von Blechöffnungen, Drosselstrecken, etc. Qab ist die Abwassermenge, welche beim Dimensionierungsereignis (z=5) weiter im Kanalnetz Richtung Abwasserreinigungsanlage abgeleitet wird.  (Ausfüllen bei Regenrück';
+ ALTER TABLE qgep.od_overflow ADD COLUMN q_discharge_current_optimized  decimal(5,3) ;
+COMMENT ON COLUMN qgep.od_overflow.q_discharge_current_optimized IS 'yyy_Berechneter Wert Qab, welcher aufgrund der Randbedingungen im heutigen Zustand einen gemäss Gesetzen und Richtlinien geforderten Zustand gewährleistet.  (Ausfüllen bei Regenrückhaltebecken / Regenrückhaltekanal) / Berechneter Wert Qab, welcher aufgrun';
+ ALTER TABLE qgep.od_overflow ADD COLUMN q_discharge_planned  decimal(5,3) ;
+COMMENT ON COLUMN qgep.od_overflow.q_discharge_planned IS 'yyy_Qab im geplanten Zustand gemäss GEP.  (Ausfüllen bei Regenrückhaltebecken / Regenrückhaltekanal) / Qab im geplanten Zustand gemäss GEP.  (Ausfüllen bei Regenrückhaltebecken / Regenrückhaltekanal) / Qeff dans l’état pévur selon PGEE. (A remplir pour ba';
+ ALTER TABLE qgep.od_overflow ADD COLUMN qon_current_optimized  decimal(5,3) ;
+COMMENT ON COLUMN qgep.od_overflow.qon_current_optimized IS 'yyy_Optimale Menge im Ist-Zustand vor der Umsetzung von allfälligen weiteren Massnahmen. / Optimale Menge im Ist-Zustand vor der Umsetzung von allfälligen weiteren Massnahmen. / Débit optimal à l’état actuel avant la réalisation d’éventuelles mesures.';
+ ALTER TABLE qgep.od_overflow ADD COLUMN qon_current_state  decimal(5,3) ;
+COMMENT ON COLUMN qgep.od_overflow.qon_current_state IS 'yyy_Qan im heutigen Zustand, Ist-Wert aufgrund von Blechöffnungen, Drosselstrecken, etc. Qan ist die Abwassermenge, welche beim Anspringen des Überlaufs weiter im Kanalnetz Richtung Abwasserreinigungsanlage abgeleitet wird. Wassermenge bei welcher der Übe';
+ ALTER TABLE qgep.od_overflow ADD COLUMN qon_dim  decimal(5,3) ;
+COMMENT ON COLUMN qgep.od_overflow.qon_dim IS 'yyy_Wassermenge, bei welcher der Überlauf gemäss Dimensionierung anspringt / Wassermenge, bei welcher der Überlauf gemäss Dimensionierung anspringt / Débit à partir duquel le déversoir devrait être fonctionnel (selon dimensionnement)';
+ ALTER TABLE qgep.od_overflow ADD COLUMN qon_planned  decimal(5,3) ;
+COMMENT ON COLUMN qgep.od_overflow.qon_planned IS 'yyy_Optimale Menge nach der Umsetzung der Massnahmen. / Optimale Menge nach der Umsetzung der Massnahmen. / Débit optimisé après la réalisation des mesures';
+ ALTER TABLE qgep.od_overflow ADD COLUMN remark  varchar(80) ;
+COMMENT ON COLUMN qgep.od_overflow.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
+ ALTER TABLE qgep.od_overflow ADD COLUMN signal_transmission  integer ;
+COMMENT ON COLUMN qgep.od_overflow.signal_transmission IS 'Signal or data transfer from or to a telecommunication station / Signalübermittlung von und zu einer Fernwirkanlage / Transmission des signaux de et vers une station de télécommande';
+ ALTER TABLE qgep.od_overflow ADD COLUMN subsidies  decimal(8,2) ;
+COMMENT ON COLUMN qgep.od_overflow.subsidies IS 'yyy_Staats- und Bundesbeiträge / Staats- und Bundesbeiträge / Contributions des cantons et de la confédération';
+ ALTER TABLE qgep.od_overflow ADD COLUMN last_modification timestamp without time zone ;
+COMMENT ON COLUMN qgep.od_overflow.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
+ ALTER TABLE qgep.od_overflow ADD COLUMN dataowner varchar(80) ;
+COMMENT ON COLUMN qgep.od_overflow.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
+ ALTER TABLE qgep.od_overflow ADD COLUMN provider varchar(80) ;
+COMMENT ON COLUMN qgep.od_overflow.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
 -------
-CREATE TABLE qgep.od_substance
+CREATE TABLE qgep.od_mechanical_pretreatment
 (
    obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_substance_obj_id PRIMARY KEY (obj_id)
+   CONSTRAINT pkey_qgep_od_mechanical_pretreatment_obj_id PRIMARY KEY (obj_id)
 )
 WITH (
    OIDS = False
 );
-CREATE INDEX in_od_substance_obj_id ON qgep.od_substance USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_substance_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_substance ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_substance');
-COMMENT ON COLUMN qgep.od_substance.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_substance ADD COLUMN identifier  varchar(20) ;
- CREATE UNIQUE INDEX in_od_substance_identifier ON qgep.od_substance USING btree (identifier);
-COMMENT ON COLUMN qgep.od_substance.identifier IS ' /  / ';
- ALTER TABLE qgep.od_substance ADD COLUMN kind  varchar(50) ;
-COMMENT ON COLUMN qgep.od_substance.kind IS 'yyy_Liste der wassergefährdenden Stoffe / Liste der wassergefährdenden Stoffe / Liste des substances de nature à polluer les eaux';
- ALTER TABLE qgep.od_substance ADD COLUMN remark  varchar(80) ;
-COMMENT ON COLUMN qgep.od_substance.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
- ALTER TABLE qgep.od_substance ADD COLUMN stockage  varchar(50) ;
-COMMENT ON COLUMN qgep.od_substance.stockage IS 'yyy_Art der Lagerung der abwassergefährdenden Stoffe / Art der Lagerung der abwassergefährdenden Stoffe / Genre de stockage des substances dangereuses';
- ALTER TABLE qgep.od_substance ADD COLUMN last_modification timestamp without time zone ;
-COMMENT ON COLUMN qgep.od_substance.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
- ALTER TABLE qgep.od_substance ADD COLUMN dataowner varchar(80) ;
-COMMENT ON COLUMN qgep.od_substance.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
- ALTER TABLE qgep.od_substance ADD COLUMN provider varchar(80) ;
-COMMENT ON COLUMN qgep.od_substance.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
+CREATE INDEX in_od_mechanical_pretreatment_obj_id ON qgep.od_mechanical_pretreatment USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_mechanical_pretreatment_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_mechanical_pretreatment ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_mechanical_pretreatment');
+COMMENT ON COLUMN qgep.od_mechanical_pretreatment.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_mechanical_pretreatment ADD COLUMN identifier  varchar(20) ;
+ CREATE UNIQUE INDEX in_od_mechanical_pretreatment_identifier ON qgep.od_mechanical_pretreatment USING btree (identifier);
+COMMENT ON COLUMN qgep.od_mechanical_pretreatment.identifier IS ' /  / ';
+ ALTER TABLE qgep.od_mechanical_pretreatment ADD COLUMN kind  integer ;
+COMMENT ON COLUMN qgep.od_mechanical_pretreatment.kind IS 'yyy_Arten der mechanischen Vorreinigung / Behandlung (gemäss VSA Richtlinie Regenwasserentsorgung (2002)) / Arten der mechanischen Vorreinigung / Behandlung (gemäss VSA Richtlinie Regenwasserentsorgung (2002)) / Genre de pré-épuration mécanique (selon dir';
+ ALTER TABLE qgep.od_mechanical_pretreatment ADD COLUMN remark  varchar(80) ;
+COMMENT ON COLUMN qgep.od_mechanical_pretreatment.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
+ ALTER TABLE qgep.od_mechanical_pretreatment ADD COLUMN last_modification timestamp without time zone ;
+COMMENT ON COLUMN qgep.od_mechanical_pretreatment.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
+ ALTER TABLE qgep.od_mechanical_pretreatment ADD COLUMN dataowner varchar(80) ;
+COMMENT ON COLUMN qgep.od_mechanical_pretreatment.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
+ ALTER TABLE qgep.od_mechanical_pretreatment ADD COLUMN provider varchar(80) ;
+COMMENT ON COLUMN qgep.od_mechanical_pretreatment.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
 -------
-CREATE TABLE qgep.od_hazard_source
+CREATE TABLE qgep.od_wastewater_networkelement
 (
    obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_hazard_source_obj_id PRIMARY KEY (obj_id)
+   CONSTRAINT pkey_qgep_od_wastewater_networkelement_obj_id PRIMARY KEY (obj_id)
 )
 WITH (
    OIDS = False
 );
-CREATE INDEX in_od_hazard_source_obj_id ON qgep.od_hazard_source USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_hazard_source_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_hazard_source ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_hazard_source');
-COMMENT ON COLUMN qgep.od_hazard_source.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_hazard_source ADD COLUMN identifier  varchar(20) ;
- CREATE UNIQUE INDEX in_od_hazard_source_identifier ON qgep.od_hazard_source USING btree (identifier);
-COMMENT ON COLUMN qgep.od_hazard_source.identifier IS ' /  / ';
- ALTER TABLE qgep.od_hazard_source ADD COLUMN remark  varchar(80) ;
-COMMENT ON COLUMN qgep.od_hazard_source.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
-SELECT AddGeometryColumn('qgep', 'od_hazard_source', 'situation_geometry', 21781, 'POINT', 2);
-CREATE INDEX in_qgep_od_hazard_source_situation_geometry ON qgep.od_hazard_source USING gist (situation_geometry );
-COMMENT ON COLUMN qgep.od_hazard_source.situation_geometry IS 'National position coordinates (East, North) / Landeskoordinate Ost/Nord / Coordonnées nationales Est/Nord';
- ALTER TABLE qgep.od_hazard_source ADD COLUMN last_modification timestamp without time zone ;
-COMMENT ON COLUMN qgep.od_hazard_source.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
- ALTER TABLE qgep.od_hazard_source ADD COLUMN dataowner varchar(80) ;
-COMMENT ON COLUMN qgep.od_hazard_source.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
- ALTER TABLE qgep.od_hazard_source ADD COLUMN provider varchar(80) ;
-COMMENT ON COLUMN qgep.od_hazard_source.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
+CREATE INDEX in_od_wastewater_networkelement_obj_id ON qgep.od_wastewater_networkelement USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_wastewater_networkelement_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_wastewater_networkelement ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_wastewater_networkelement');
+COMMENT ON COLUMN qgep.od_wastewater_networkelement.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_wastewater_networkelement ADD COLUMN identifier  varchar(20) ;
+ CREATE UNIQUE INDEX in_od_wastewater_networkelement_identifier ON qgep.od_wastewater_networkelement USING btree (identifier);
+COMMENT ON COLUMN qgep.od_wastewater_networkelement.identifier IS ' /  / ';
+ ALTER TABLE qgep.od_wastewater_networkelement ADD COLUMN remark  varchar(80) ;
+COMMENT ON COLUMN qgep.od_wastewater_networkelement.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
+ ALTER TABLE qgep.od_wastewater_networkelement ADD COLUMN last_modification timestamp without time zone ;
+COMMENT ON COLUMN qgep.od_wastewater_networkelement.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
+ ALTER TABLE qgep.od_wastewater_networkelement ADD COLUMN dataowner varchar(80) ;
+COMMENT ON COLUMN qgep.od_wastewater_networkelement.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
+ ALTER TABLE qgep.od_wastewater_networkelement ADD COLUMN provider varchar(80) ;
+COMMENT ON COLUMN qgep.od_wastewater_networkelement.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
 -------
 CREATE TABLE qgep.od_catchment_area
 (
@@ -1210,7 +1247,7 @@ COMMENT ON COLUMN qgep.od_catchment_area.infiltration_current IS 'yyy_Das Regena
 COMMENT ON COLUMN qgep.od_catchment_area.infiltration_planned IS 'In the future the rain water will  be completly or partially infiltrated in a infiltration unit. / Das Regenabwasser wird in Zukunft ganz oder teilweise einer Versickerungsanlage zugeführt / Les eaux pluviales seront amenées complètement ou partiellement ';
  ALTER TABLE qgep.od_catchment_area ADD COLUMN kind  integer ;
 COMMENT ON COLUMN qgep.od_catchment_area.kind IS 'yyy_Trockenwetter- und Regenwettereinzugsgebiet / Trockenwetter- und Regenwettereinzugsgebiet / Bassin versant par temps sec et par temps de pluie';
-SELECT AddGeometryColumn('qgep', 'od_catchment_area', 'perimeter_geometry', 21781, 'POLYGON', 2);
+SELECT AddGeometryColumn('qgep', 'od_catchment_area', 'perimeter_geometry', 21781, 'POLYGON', 2, true);
 CREATE INDEX in_qgep_od_catchment_area_perimeter_geometry ON qgep.od_catchment_area USING gist (perimeter_geometry );
 COMMENT ON COLUMN qgep.od_catchment_area.perimeter_geometry IS 'Boundary points of the perimeter sub catchement area / Begrenzungspunkte des Teileinzugsgebiets / Points de délimitation du bassin versant partiel';
  ALTER TABLE qgep.od_catchment_area ADD COLUMN population_density_current  smallint ;
@@ -1253,6 +1290,61 @@ COMMENT ON COLUMN qgep.od_catchment_area.last_modification IS 'Last modification
 COMMENT ON COLUMN qgep.od_catchment_area.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
  ALTER TABLE qgep.od_catchment_area ADD COLUMN provider varchar(80) ;
 COMMENT ON COLUMN qgep.od_catchment_area.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
+-------
+CREATE TABLE qgep.od_hazard_source
+(
+   obj_id  varchar(16) NOT NULL,
+   CONSTRAINT pkey_qgep_od_hazard_source_obj_id PRIMARY KEY (obj_id)
+)
+WITH (
+   OIDS = False
+);
+CREATE INDEX in_od_hazard_source_obj_id ON qgep.od_hazard_source USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_hazard_source_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_hazard_source ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_hazard_source');
+COMMENT ON COLUMN qgep.od_hazard_source.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_hazard_source ADD COLUMN identifier  varchar(20) ;
+ CREATE UNIQUE INDEX in_od_hazard_source_identifier ON qgep.od_hazard_source USING btree (identifier);
+COMMENT ON COLUMN qgep.od_hazard_source.identifier IS ' /  / ';
+ ALTER TABLE qgep.od_hazard_source ADD COLUMN remark  varchar(80) ;
+COMMENT ON COLUMN qgep.od_hazard_source.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
+SELECT AddGeometryColumn('qgep', 'od_hazard_source', 'situation_geometry', 21781, 'POINT', 2, true);
+CREATE INDEX in_qgep_od_hazard_source_situation_geometry ON qgep.od_hazard_source USING gist (situation_geometry );
+COMMENT ON COLUMN qgep.od_hazard_source.situation_geometry IS 'National position coordinates (East, North) / Landeskoordinate Ost/Nord / Coordonnées nationales Est/Nord';
+ ALTER TABLE qgep.od_hazard_source ADD COLUMN last_modification timestamp without time zone ;
+COMMENT ON COLUMN qgep.od_hazard_source.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
+ ALTER TABLE qgep.od_hazard_source ADD COLUMN dataowner varchar(80) ;
+COMMENT ON COLUMN qgep.od_hazard_source.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
+ ALTER TABLE qgep.od_hazard_source ADD COLUMN provider varchar(80) ;
+COMMENT ON COLUMN qgep.od_hazard_source.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
+-------
+CREATE TABLE qgep.od_substance
+(
+   obj_id  varchar(16) NOT NULL,
+   CONSTRAINT pkey_qgep_od_substance_obj_id PRIMARY KEY (obj_id)
+)
+WITH (
+   OIDS = False
+);
+CREATE INDEX in_od_substance_obj_id ON qgep.od_substance USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_substance_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_substance ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_substance');
+COMMENT ON COLUMN qgep.od_substance.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_substance ADD COLUMN identifier  varchar(20) ;
+ CREATE UNIQUE INDEX in_od_substance_identifier ON qgep.od_substance USING btree (identifier);
+COMMENT ON COLUMN qgep.od_substance.identifier IS ' /  / ';
+ ALTER TABLE qgep.od_substance ADD COLUMN kind  varchar(50) ;
+COMMENT ON COLUMN qgep.od_substance.kind IS 'yyy_Liste der wassergefährdenden Stoffe / Liste der wassergefährdenden Stoffe / Liste des substances de nature à polluer les eaux';
+ ALTER TABLE qgep.od_substance ADD COLUMN remark  varchar(80) ;
+COMMENT ON COLUMN qgep.od_substance.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
+ ALTER TABLE qgep.od_substance ADD COLUMN stockage  varchar(50) ;
+COMMENT ON COLUMN qgep.od_substance.stockage IS 'yyy_Art der Lagerung der abwassergefährdenden Stoffe / Art der Lagerung der abwassergefährdenden Stoffe / Genre de stockage des substances dangereuses';
+ ALTER TABLE qgep.od_substance ADD COLUMN last_modification timestamp without time zone ;
+COMMENT ON COLUMN qgep.od_substance.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
+ ALTER TABLE qgep.od_substance ADD COLUMN dataowner varchar(80) ;
+COMMENT ON COLUMN qgep.od_substance.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
+ ALTER TABLE qgep.od_substance ADD COLUMN provider varchar(80) ;
+COMMENT ON COLUMN qgep.od_substance.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
 -------
 CREATE TABLE qgep.od_surface_runoff_parameters
 (
@@ -1312,67 +1404,6 @@ COMMENT ON COLUMN qgep.od_connection_object.dataowner IS 'Metaattribute dataowne
  ALTER TABLE qgep.od_connection_object ADD COLUMN provider varchar(80) ;
 COMMENT ON COLUMN qgep.od_connection_object.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
 -------
-CREATE TABLE qgep.od_measurement_result
-(
-   obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_measurement_result_obj_id PRIMARY KEY (obj_id)
-)
-WITH (
-   OIDS = False
-);
-CREATE INDEX in_od_measurement_result_obj_id ON qgep.od_measurement_result USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_measurement_result_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_measurement_result ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_measurement_result');
-COMMENT ON COLUMN qgep.od_measurement_result.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_measurement_result ADD COLUMN identifier  varchar(20) ;
- CREATE UNIQUE INDEX in_od_measurement_result_identifier ON qgep.od_measurement_result USING btree (identifier);
-COMMENT ON COLUMN qgep.od_measurement_result.identifier IS ' /  / ';
- ALTER TABLE qgep.od_measurement_result ADD COLUMN measurement_type  varchar(50) ;
-COMMENT ON COLUMN qgep.od_measurement_result.measurement_type IS 'Type of measurment, e.g. proportional to time or volume / Art der Messung, z.B zeit- oder mengenproportional / Type de mesure, par ex. proportionnel au temps ou au débit';
- ALTER TABLE qgep.od_measurement_result ADD COLUMN measuring_duration  decimal(6,0) ;
-COMMENT ON COLUMN qgep.od_measurement_result.measuring_duration IS 'Duration of measurment in seconds / Dauer der Messung in Sekunden / Durée de la mesure';
- ALTER TABLE qgep.od_measurement_result ADD COLUMN remark  varchar(80) ;
-COMMENT ON COLUMN qgep.od_measurement_result.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
- ALTER TABLE qgep.od_measurement_result ADD COLUMN time  timestamp without time zone ;
-COMMENT ON COLUMN qgep.od_measurement_result.time IS 'Date and time at beginning of measurment / Zeitpunkt des Messbeginns / Date et heure du début de la mesure';
- ALTER TABLE qgep.od_measurement_result ADD COLUMN value  real ;
-COMMENT ON COLUMN qgep.od_measurement_result.value IS 'yyy_Gemessene Grösse / Gemessene Grösse / Valeur mesurée';
- ALTER TABLE qgep.od_measurement_result ADD COLUMN last_modification timestamp without time zone ;
-COMMENT ON COLUMN qgep.od_measurement_result.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
- ALTER TABLE qgep.od_measurement_result ADD COLUMN dataowner varchar(80) ;
-COMMENT ON COLUMN qgep.od_measurement_result.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
- ALTER TABLE qgep.od_measurement_result ADD COLUMN provider varchar(80) ;
-COMMENT ON COLUMN qgep.od_measurement_result.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
--------
-CREATE TABLE qgep.od_measuring_point
-(
-   obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_measuring_point_obj_id PRIMARY KEY (obj_id)
-)
-WITH (
-   OIDS = False
-);
-CREATE INDEX in_od_measuring_point_obj_id ON qgep.od_measuring_point USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_measuring_point_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_measuring_point ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_measuring_point');
-COMMENT ON COLUMN qgep.od_measuring_point.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_measuring_point ADD COLUMN identifier  varchar(20) ;
- CREATE UNIQUE INDEX in_od_measuring_point_identifier ON qgep.od_measuring_point USING btree (identifier);
-COMMENT ON COLUMN qgep.od_measuring_point.identifier IS ' /  / ';
- ALTER TABLE qgep.od_measuring_point ADD COLUMN kind  varchar(50) ;
-COMMENT ON COLUMN qgep.od_measuring_point.kind IS 'yyy_Art der Untersuchungsstelle ( Regenmessungen, Abflussmessungen, etc.) / Art der Untersuchungsstelle ( Regenmessungen, Abflussmessungen, etc.) / Genre de mesure (mesures de pluviométrie, mesures de débit, etc.)';
- ALTER TABLE qgep.od_measuring_point ADD COLUMN remark  varchar(80) ;
-COMMENT ON COLUMN qgep.od_measuring_point.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
-SELECT AddGeometryColumn('qgep', 'od_measuring_point', 'situation_geometry', 21781, 'POINT', 2);
-CREATE INDEX in_qgep_od_measuring_point_situation_geometry ON qgep.od_measuring_point USING gist (situation_geometry );
-COMMENT ON COLUMN qgep.od_measuring_point.situation_geometry IS 'National position coordinates (East, North) / Landeskoordinate Ost/Nord / Coordonnées nationales Est/Nord';
- ALTER TABLE qgep.od_measuring_point ADD COLUMN last_modification timestamp without time zone ;
-COMMENT ON COLUMN qgep.od_measuring_point.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
- ALTER TABLE qgep.od_measuring_point ADD COLUMN dataowner varchar(80) ;
-COMMENT ON COLUMN qgep.od_measuring_point.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
- ALTER TABLE qgep.od_measuring_point ADD COLUMN provider varchar(80) ;
-COMMENT ON COLUMN qgep.od_measuring_point.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
--------
 CREATE TABLE qgep.od_measuring_device
 (
    obj_id  varchar(16) NOT NULL,
@@ -1390,7 +1421,7 @@ COMMENT ON COLUMN qgep.od_measuring_device.brand IS 'Brand / Name of producer / 
  ALTER TABLE qgep.od_measuring_device ADD COLUMN identifier  varchar(20) ;
  CREATE UNIQUE INDEX in_od_measuring_device_identifier ON qgep.od_measuring_device USING btree (identifier);
 COMMENT ON COLUMN qgep.od_measuring_device.identifier IS ' /  / ';
- ALTER TABLE qgep.od_measuring_device ADD COLUMN kind  varchar(50) ;
+ ALTER TABLE qgep.od_measuring_device ADD COLUMN kind  integer ;
 COMMENT ON COLUMN qgep.od_measuring_device.kind IS 'Te';
  ALTER TABLE qgep.od_measuring_device ADD COLUMN remark  varchar(80) ;
 COMMENT ON COLUMN qgep.od_measuring_device.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
@@ -1433,39 +1464,66 @@ COMMENT ON COLUMN qgep.od_measurement_series.dataowner IS 'Metaattribute dataown
  ALTER TABLE qgep.od_measurement_series ADD COLUMN provider varchar(80) ;
 COMMENT ON COLUMN qgep.od_measurement_series.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
 -------
-CREATE TABLE qgep.od_drainage_system
+CREATE TABLE qgep.od_measurement_result
 (
    obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_drainage_system_obj_id PRIMARY KEY (obj_id)
+   CONSTRAINT pkey_qgep_od_measurement_result_obj_id PRIMARY KEY (obj_id)
 )
 WITH (
    OIDS = False
 );
-CREATE INDEX in_od_drainage_system_obj_id ON qgep.od_drainage_system USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_drainage_system_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_drainage_system ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_drainage_system');
-COMMENT ON COLUMN qgep.od_drainage_system.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_drainage_system ADD COLUMN kind  integer ;
-COMMENT ON COLUMN qgep.od_drainage_system.kind IS 'yé';
-SELECT AddGeometryColumn('qgep', 'od_drainage_system', 'perimeter_geometry', 21781, 'POLYGON', 2);
-CREATE INDEX in_qgep_od_drainage_system_perimeter_geometry ON qgep.od_drainage_system USING gist (perimeter_geometry );
-COMMENT ON COLUMN qgep.od_drainage_system.perimeter_geometry IS 'Boundary points of the perimeter / Begrenzungspunkte der Fläche / Points de délimitation de la surface';
+CREATE INDEX in_od_measurement_result_obj_id ON qgep.od_measurement_result USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_measurement_result_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_measurement_result ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_measurement_result');
+COMMENT ON COLUMN qgep.od_measurement_result.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_measurement_result ADD COLUMN identifier  varchar(20) ;
+ CREATE UNIQUE INDEX in_od_measurement_result_identifier ON qgep.od_measurement_result USING btree (identifier);
+COMMENT ON COLUMN qgep.od_measurement_result.identifier IS ' /  / ';
+ ALTER TABLE qgep.od_measurement_result ADD COLUMN measurement_type  integer ;
+COMMENT ON COLUMN qgep.od_measurement_result.measurement_type IS 'Type of measurment, e.g. proportional to time or volume / Art der Messung, z.B zeit- oder mengenproportional / Type de mesure, par ex. proportionnel au temps ou au débit';
+ ALTER TABLE qgep.od_measurement_result ADD COLUMN measuring_duration  decimal(6,0) ;
+COMMENT ON COLUMN qgep.od_measurement_result.measuring_duration IS 'Duration of measurment in seconds / Dauer der Messung in Sekunden / Durée de la mesure';
+ ALTER TABLE qgep.od_measurement_result ADD COLUMN remark  varchar(80) ;
+COMMENT ON COLUMN qgep.od_measurement_result.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
+ ALTER TABLE qgep.od_measurement_result ADD COLUMN time  timestamp without time zone ;
+COMMENT ON COLUMN qgep.od_measurement_result.time IS 'Date and time at beginning of measurment / Zeitpunkt des Messbeginns / Date et heure du début de la mesure';
+ ALTER TABLE qgep.od_measurement_result ADD COLUMN value  real ;
+COMMENT ON COLUMN qgep.od_measurement_result.value IS 'yyy_Gemessene Grösse / Gemessene Grösse / Valeur mesurée';
+ ALTER TABLE qgep.od_measurement_result ADD COLUMN last_modification timestamp without time zone ;
+COMMENT ON COLUMN qgep.od_measurement_result.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
+ ALTER TABLE qgep.od_measurement_result ADD COLUMN dataowner varchar(80) ;
+COMMENT ON COLUMN qgep.od_measurement_result.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
+ ALTER TABLE qgep.od_measurement_result ADD COLUMN provider varchar(80) ;
+COMMENT ON COLUMN qgep.od_measurement_result.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
 -------
-CREATE TABLE qgep.od_ground_water_protection_perimeter
+CREATE TABLE qgep.od_measuring_point
 (
    obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_ground_water_protection_perimeter_obj_id PRIMARY KEY (obj_id)
+   CONSTRAINT pkey_qgep_od_measuring_point_obj_id PRIMARY KEY (obj_id)
 )
 WITH (
    OIDS = False
 );
-CREATE INDEX in_od_ground_water_protection_perimeter_obj_id ON qgep.od_ground_water_protection_perimeter USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_ground_water_protection_perimeter_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_ground_water_protection_perimeter ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_ground_water_protection_perimeter');
-COMMENT ON COLUMN qgep.od_ground_water_protection_perimeter.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
-SELECT AddGeometryColumn('qgep', 'od_ground_water_protection_perimeter', 'perimeter_geometry', 21781, 'POLYGON', 2);
-CREATE INDEX in_qgep_od_ground_water_protection_perimeter_perimeter_geometry ON qgep.od_ground_water_protection_perimeter USING gist (perimeter_geometry );
-COMMENT ON COLUMN qgep.od_ground_water_protection_perimeter.perimeter_geometry IS 'Boundary points of the perimeter / Begrenzungspunkte der Fläche / Points de délimitation de la surface';
+CREATE INDEX in_od_measuring_point_obj_id ON qgep.od_measuring_point USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_measuring_point_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_measuring_point ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_measuring_point');
+COMMENT ON COLUMN qgep.od_measuring_point.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_measuring_point ADD COLUMN identifier  varchar(20) ;
+ CREATE UNIQUE INDEX in_od_measuring_point_identifier ON qgep.od_measuring_point USING btree (identifier);
+COMMENT ON COLUMN qgep.od_measuring_point.identifier IS ' /  / ';
+ ALTER TABLE qgep.od_measuring_point ADD COLUMN kind  varchar(50) ;
+COMMENT ON COLUMN qgep.od_measuring_point.kind IS 'yyy_Art der Untersuchungsstelle ( Regenmessungen, Abflussmessungen, etc.) / Art der Untersuchungsstelle ( Regenmessungen, Abflussmessungen, etc.) / Genre de mesure (mesures de pluviométrie, mesures de débit, etc.)';
+ ALTER TABLE qgep.od_measuring_point ADD COLUMN remark  varchar(80) ;
+COMMENT ON COLUMN qgep.od_measuring_point.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
+SELECT AddGeometryColumn('qgep', 'od_measuring_point', 'situation_geometry', 21781, 'POINT', 2, true);
+CREATE INDEX in_qgep_od_measuring_point_situation_geometry ON qgep.od_measuring_point USING gist (situation_geometry );
+COMMENT ON COLUMN qgep.od_measuring_point.situation_geometry IS 'National position coordinates (East, North) / Landeskoordinate Ost/Nord / Coordonnées nationales Est/Nord';
+ ALTER TABLE qgep.od_measuring_point ADD COLUMN last_modification timestamp without time zone ;
+COMMENT ON COLUMN qgep.od_measuring_point.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
+ ALTER TABLE qgep.od_measuring_point ADD COLUMN dataowner varchar(80) ;
+COMMENT ON COLUMN qgep.od_measuring_point.dataowner IS 'Metaattribute dataowner - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
+ ALTER TABLE qgep.od_measuring_point ADD COLUMN provider varchar(80) ;
+COMMENT ON COLUMN qgep.od_measuring_point.provider IS 'Metaattribute provider - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES xxx ';
 -------
 CREATE TABLE qgep.od_water_body_protection_sector
 (
@@ -1481,9 +1539,61 @@ CREATE SEQUENCE qgep.seq_od_water_body_protection_sector_oid INCREMENT 1 MINVALU
 COMMENT ON COLUMN qgep.od_water_body_protection_sector.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
  ALTER TABLE qgep.od_water_body_protection_sector ADD COLUMN kind  integer ;
 COMMENT ON COLUMN qgep.od_water_body_protection_sector.kind IS 'yyy_Art des Schutzbereiches für  oberflächliches Gewässer und Grundwasser bezüglich Gefährdung / Art des Schutzbereiches für  oberflächliches Gewässer und Grundwasser bezüglich Gefährdung / Type de zones de protection des eaux superficielles et souterrain';
-SELECT AddGeometryColumn('qgep', 'od_water_body_protection_sector', 'perimeter_geometry', 21781, 'POLYGON', 2);
+SELECT AddGeometryColumn('qgep', 'od_water_body_protection_sector', 'perimeter_geometry', 21781, 'POLYGON', 2, true);
 CREATE INDEX in_qgep_od_water_body_protection_sector_perimeter_geometry ON qgep.od_water_body_protection_sector USING gist (perimeter_geometry );
 COMMENT ON COLUMN qgep.od_water_body_protection_sector.perimeter_geometry IS 'Boundary points of the perimeter / Begrenzungspunkte der Fläche / Points de délimitation de la surface';
+-------
+CREATE TABLE qgep.od_drainage_system
+(
+   obj_id  varchar(16) NOT NULL,
+   CONSTRAINT pkey_qgep_od_drainage_system_obj_id PRIMARY KEY (obj_id)
+)
+WITH (
+   OIDS = False
+);
+CREATE INDEX in_od_drainage_system_obj_id ON qgep.od_drainage_system USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_drainage_system_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_drainage_system ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_drainage_system');
+COMMENT ON COLUMN qgep.od_drainage_system.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_drainage_system ADD COLUMN kind  integer ;
+COMMENT ON COLUMN qgep.od_drainage_system.kind IS 'yé';
+SELECT AddGeometryColumn('qgep', 'od_drainage_system', 'perimeter_geometry', 21781, 'POLYGON', 2, true);
+CREATE INDEX in_qgep_od_drainage_system_perimeter_geometry ON qgep.od_drainage_system USING gist (perimeter_geometry );
+COMMENT ON COLUMN qgep.od_drainage_system.perimeter_geometry IS 'Boundary points of the perimeter / Begrenzungspunkte der Fläche / Points de délimitation de la surface';
+-------
+CREATE TABLE qgep.od_planning_zone
+(
+   obj_id  varchar(16) NOT NULL,
+   CONSTRAINT pkey_qgep_od_planning_zone_obj_id PRIMARY KEY (obj_id)
+)
+WITH (
+   OIDS = False
+);
+CREATE INDEX in_od_planning_zone_obj_id ON qgep.od_planning_zone USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_planning_zone_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_planning_zone ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_planning_zone');
+COMMENT ON COLUMN qgep.od_planning_zone.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_planning_zone ADD COLUMN kind  integer ;
+COMMENT ON COLUMN qgep.od_planning_zone.kind IS 'Type of planning zone / Art der Bauzone / Genre de zones à bâtir';
+SELECT AddGeometryColumn('qgep', 'od_planning_zone', 'perimeter_geometry', 21781, 'POLYGON', 2, true);
+CREATE INDEX in_qgep_od_planning_zone_perimeter_geometry ON qgep.od_planning_zone USING gist (perimeter_geometry );
+COMMENT ON COLUMN qgep.od_planning_zone.perimeter_geometry IS 'Boundary points of the perimeter / Begrenzungspunkte der Fläche / Points de délimitation de la surface';
+-------
+CREATE TABLE qgep.od_ground_water_protection_perimeter
+(
+   obj_id  varchar(16) NOT NULL,
+   CONSTRAINT pkey_qgep_od_ground_water_protection_perimeter_obj_id PRIMARY KEY (obj_id)
+)
+WITH (
+   OIDS = False
+);
+CREATE INDEX in_od_ground_water_protection_perimeter_obj_id ON qgep.od_ground_water_protection_perimeter USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_ground_water_protection_perimeter_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_ground_water_protection_perimeter ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_ground_water_protection_perimeter');
+COMMENT ON COLUMN qgep.od_ground_water_protection_perimeter.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+SELECT AddGeometryColumn('qgep', 'od_ground_water_protection_perimeter', 'perimeter_geometry', 21781, 'POLYGON', 2, true);
+CREATE INDEX in_qgep_od_ground_water_protection_perimeter_perimeter_geometry ON qgep.od_ground_water_protection_perimeter USING gist (perimeter_geometry );
+COMMENT ON COLUMN qgep.od_ground_water_protection_perimeter.perimeter_geometry IS 'Boundary points of the perimeter / Begrenzungspunkte der Fläche / Points de délimitation de la surface';
 -------
 CREATE TABLE qgep.od_groundwater_protection_zone
 (
@@ -1499,7 +1609,7 @@ CREATE SEQUENCE qgep.seq_od_groundwater_protection_zone_oid INCREMENT 1 MINVALUE
 COMMENT ON COLUMN qgep.od_groundwater_protection_zone.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
  ALTER TABLE qgep.od_groundwater_protection_zone ADD COLUMN kind  integer ;
 COMMENT ON COLUMN qgep.od_groundwater_protection_zone.kind IS 'yyy_Zonenarten. Grundwasserschutzzonen bestehen aus dem Fassungsbereich (Zone S1), der Engeren Schutzzone (Zone S2) und der Weiteren Schutzzone (Zone S3). / Zonenarten. Grundwasserschutzzonen bestehen aus dem Fassungsbereich (Zone S1), der Engeren Schutzz';
-SELECT AddGeometryColumn('qgep', 'od_groundwater_protection_zone', 'perimeter_geometry', 21781, 'POLYGON', 2);
+SELECT AddGeometryColumn('qgep', 'od_groundwater_protection_zone', 'perimeter_geometry', 21781, 'POLYGON', 2, true);
 CREATE INDEX in_qgep_od_groundwater_protection_zone_perimeter_geometry ON qgep.od_groundwater_protection_zone USING gist (perimeter_geometry );
 COMMENT ON COLUMN qgep.od_groundwater_protection_zone.perimeter_geometry IS 'Boundary points of the perimeter / Begrenzungspunkte der Fläche / Points de délimitation de la surface';
 -------
@@ -1517,61 +1627,9 @@ CREATE SEQUENCE qgep.seq_od_infiltration_zone_oid INCREMENT 1 MINVALUE 0 MAXVALU
 COMMENT ON COLUMN qgep.od_infiltration_zone.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
  ALTER TABLE qgep.od_infiltration_zone ADD COLUMN infiltration_capacity  integer ;
 COMMENT ON COLUMN qgep.od_infiltration_zone.infiltration_capacity IS 'ye';
-SELECT AddGeometryColumn('qgep', 'od_infiltration_zone', 'perimeter_geometry', 21781, 'POLYGON', 2);
+SELECT AddGeometryColumn('qgep', 'od_infiltration_zone', 'perimeter_geometry', 21781, 'POLYGON', 2, true);
 CREATE INDEX in_qgep_od_infiltration_zone_perimeter_geometry ON qgep.od_infiltration_zone USING gist (perimeter_geometry );
 COMMENT ON COLUMN qgep.od_infiltration_zone.perimeter_geometry IS 'Boundary points of the perimeter / Begrenzungspunkte der Fläche / Points de délimitation de la surface';
--------
-CREATE TABLE qgep.od_planning_zone
-(
-   obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_planning_zone_obj_id PRIMARY KEY (obj_id)
-)
-WITH (
-   OIDS = False
-);
-CREATE INDEX in_od_planning_zone_obj_id ON qgep.od_planning_zone USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_planning_zone_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_planning_zone ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_planning_zone');
-COMMENT ON COLUMN qgep.od_planning_zone.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_planning_zone ADD COLUMN kind  integer ;
-COMMENT ON COLUMN qgep.od_planning_zone.kind IS 'Type of planning zone / Art der Bauzone / Genre de zones à bâtir';
-SELECT AddGeometryColumn('qgep', 'od_planning_zone', 'perimeter_geometry', 21781, 'POLYGON', 2);
-CREATE INDEX in_qgep_od_planning_zone_perimeter_geometry ON qgep.od_planning_zone USING gist (perimeter_geometry );
-COMMENT ON COLUMN qgep.od_planning_zone.perimeter_geometry IS 'Boundary points of the perimeter / Begrenzungspunkte der Fläche / Points de délimitation de la surface';
--------
-CREATE TABLE qgep.od_electric_equipment
-(
-   obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_electric_equipment_obj_id PRIMARY KEY (obj_id)
-)
-WITH (
-   OIDS = False
-);
-CREATE INDEX in_od_electric_equipment_obj_id ON qgep.od_electric_equipment USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_electric_equipment_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_electric_equipment ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_electric_equipment');
-COMMENT ON COLUMN qgep.od_electric_equipment.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_electric_equipment ADD COLUMN gross_costs  decimal(8,2) ;
-COMMENT ON COLUMN qgep.od_electric_equipment.gross_costs IS ' /  / ';
- ALTER TABLE qgep.od_electric_equipment ADD COLUMN kind  integer ;
-COMMENT ON COLUMN qgep.od_electric_equipment.kind IS 'yyy_Elektrische Installationen und Geräte / Elektrische Installationen und Geräte / Installations et appareils électriques';
- ALTER TABLE qgep.od_electric_equipment ADD COLUMN year_of_replacement  smallint ;
-COMMENT ON COLUMN qgep.od_electric_equipment.year_of_replacement IS 'ye';
--------
-CREATE TABLE qgep.od_dryweather_flume
-(
-   obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_dryweather_flume_obj_id PRIMARY KEY (obj_id)
-)
-WITH (
-   OIDS = False
-);
-CREATE INDEX in_od_dryweather_flume_obj_id ON qgep.od_dryweather_flume USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_dryweather_flume_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_dryweather_flume ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_dryweather_flume');
-COMMENT ON COLUMN qgep.od_dryweather_flume.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_dryweather_flume ADD COLUMN material  integer ;
-COMMENT ON COLUMN qgep.od_dryweather_flume.material IS 'yyy_Material der Ausbildung oder Auskleidung der Trockenwetterrinne / Material der Ausbildung oder Auskleidung der Trockenwetterrinne / Matériau de fabrication ou de revêtement de la cunette de débit temps sec';
 -------
 CREATE TABLE qgep.od_cover
 (
@@ -1601,7 +1659,7 @@ COMMENT ON COLUMN qgep.od_cover.level IS 'Height of cover / Deckelhöhe / Cote d
 COMMENT ON COLUMN qgep.od_cover.material IS 'Material of cover / Deckelmaterial / Matériau du couvercle';
  ALTER TABLE qgep.od_cover ADD COLUMN positional_accuracy  integer ;
 COMMENT ON COLUMN qgep.od_cover.positional_accuracy IS 'Quantfication of accuarcy of position of cover (center hole) / Quantifizierung der Genauigkeit der Lage des Deckels (Pickelloch) / Plage de précision des coordonnées planimétriques du couvercle.';
-SELECT AddGeometryColumn('qgep', 'od_cover', 'situation_geometry', 21781, 'POINT', 2);
+SELECT AddGeometryColumn('qgep', 'od_cover', 'situation_geometry', 21781, 'POINT', 2, true);
 CREATE INDEX in_qgep_od_cover_situation_geometry ON qgep.od_cover USING gist (situation_geometry );
 COMMENT ON COLUMN qgep.od_cover.situation_geometry IS 'Situation of cover (cover hole), National position coordinates (East, North) / Lage des Deckels (Pickelloch) / Positionnement du couvercle (milieu du couvercle)';
  ALTER TABLE qgep.od_cover ADD COLUMN sludge_bucket  integer ;
@@ -1609,24 +1667,24 @@ COMMENT ON COLUMN qgep.od_cover.sludge_bucket IS 'ys';
  ALTER TABLE qgep.od_cover ADD COLUMN venting  integer ;
 COMMENT ON COLUMN qgep.od_cover.venting IS 'vn';
 -------
-CREATE TABLE qgep.od_electromechanical_equipment
+CREATE TABLE qgep.od_electric_equipment
 (
    obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_electromechanical_equipment_obj_id PRIMARY KEY (obj_id)
+   CONSTRAINT pkey_qgep_od_electric_equipment_obj_id PRIMARY KEY (obj_id)
 )
 WITH (
    OIDS = False
 );
-CREATE INDEX in_od_electromechanical_equipment_obj_id ON qgep.od_electromechanical_equipment USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_electromechanical_equipment_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_electromechanical_equipment ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_electromechanical_equipment');
-COMMENT ON COLUMN qgep.od_electromechanical_equipment.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_electromechanical_equipment ADD COLUMN gross_costs  decimal(8,2) ;
-COMMENT ON COLUMN qgep.od_electromechanical_equipment.gross_costs IS 'Gross costs of electromechanical equipment / Brutto Erstellungskosten der elektromechanischen Ausrüstung / Coûts bruts des équipements électro-mécaniques';
- ALTER TABLE qgep.od_electromechanical_equipment ADD COLUMN kind  integer ;
-COMMENT ON COLUMN qgep.od_electromechanical_equipment.kind IS 'ye';
- ALTER TABLE qgep.od_electromechanical_equipment ADD COLUMN year_of_replacement  smallint ;
-COMMENT ON COLUMN qgep.od_electromechanical_equipment.year_of_replacement IS 'yé';
+CREATE INDEX in_od_electric_equipment_obj_id ON qgep.od_electric_equipment USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_electric_equipment_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_electric_equipment ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_electric_equipment');
+COMMENT ON COLUMN qgep.od_electric_equipment.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_electric_equipment ADD COLUMN gross_costs  decimal(8,2) ;
+COMMENT ON COLUMN qgep.od_electric_equipment.gross_costs IS 'Gross costs of electromechanical equipment / Brutto Erstellungskosten der elektromechanischen Ausrüstung / Coûts bruts des équipements électromécaniques';
+ ALTER TABLE qgep.od_electric_equipment ADD COLUMN kind  integer ;
+COMMENT ON COLUMN qgep.od_electric_equipment.kind IS 'yyy_Elektrische Installationen und Geräte / Elektrische Installationen und Geräte / Installations et appareils électriques';
+ ALTER TABLE qgep.od_electric_equipment ADD COLUMN year_of_replacement  smallint ;
+COMMENT ON COLUMN qgep.od_electric_equipment.year_of_replacement IS 'ye';
 -------
 CREATE TABLE qgep.od_benching
 (
@@ -1643,6 +1701,40 @@ COMMENT ON COLUMN qgep.od_benching.obj_id IS 'INTERLIS STANDARD OID (with Postfi
  ALTER TABLE qgep.od_benching ADD COLUMN kind  integer ;
 COMMENT ON COLUMN qgep.od_benching.kind IS ' /  / ';
 -------
+CREATE TABLE qgep.od_dryweather_flume
+(
+   obj_id  varchar(16) NOT NULL,
+   CONSTRAINT pkey_qgep_od_dryweather_flume_obj_id PRIMARY KEY (obj_id)
+)
+WITH (
+   OIDS = False
+);
+CREATE INDEX in_od_dryweather_flume_obj_id ON qgep.od_dryweather_flume USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_dryweather_flume_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_dryweather_flume ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_dryweather_flume');
+COMMENT ON COLUMN qgep.od_dryweather_flume.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_dryweather_flume ADD COLUMN material  integer ;
+COMMENT ON COLUMN qgep.od_dryweather_flume.material IS 'yyy_Material der Ausbildung oder Auskleidung der Trockenwetterrinne / Material der Ausbildung oder Auskleidung der Trockenwetterrinne / Matériau de fabrication ou de revêtement de la cunette de débit temps sec';
+-------
+CREATE TABLE qgep.od_electromechanical_equipment
+(
+   obj_id  varchar(16) NOT NULL,
+   CONSTRAINT pkey_qgep_od_electromechanical_equipment_obj_id PRIMARY KEY (obj_id)
+)
+WITH (
+   OIDS = False
+);
+CREATE INDEX in_od_electromechanical_equipment_obj_id ON qgep.od_electromechanical_equipment USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_electromechanical_equipment_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_electromechanical_equipment ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_electromechanical_equipment');
+COMMENT ON COLUMN qgep.od_electromechanical_equipment.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_electromechanical_equipment ADD COLUMN gross_costs  decimal(8,2) ;
+COMMENT ON COLUMN qgep.od_electromechanical_equipment.gross_costs IS 'Gross costs of electromechanical equipment / Brutto Erstellungskosten der elektromechanischen Ausrüstung / Coûts bruts des équipements électromécaniques';
+ ALTER TABLE qgep.od_electromechanical_equipment ADD COLUMN kind  integer ;
+COMMENT ON COLUMN qgep.od_electromechanical_equipment.kind IS 'ye';
+ ALTER TABLE qgep.od_electromechanical_equipment ADD COLUMN year_of_replacement  smallint ;
+COMMENT ON COLUMN qgep.od_electromechanical_equipment.year_of_replacement IS 'yé';
+-------
 CREATE TABLE qgep.od_dryweather_downspout
 (
    obj_id  varchar(16) NOT NULL,
@@ -1657,6 +1749,57 @@ CREATE SEQUENCE qgep.seq_od_dryweather_downspout_oid INCREMENT 1 MINVALUE 0 MAXV
 COMMENT ON COLUMN qgep.od_dryweather_downspout.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
  ALTER TABLE qgep.od_dryweather_downspout ADD COLUMN diameter  smallint ;
 COMMENT ON COLUMN qgep.od_dryweather_downspout.diameter IS 'yyy_Abmessung des Deckels (bei eckigen Deckeln minimale Abmessung) / Abmessung des Deckels (bei eckigen Deckeln minimale Abmessung) / Dimension du couvercle (dimension minimale pour couvercle anguleux)';
+-------
+CREATE TABLE qgep.od_backflow_prevention
+(
+   obj_id  varchar(16) NOT NULL,
+   CONSTRAINT pkey_qgep_od_backflow_prevention_obj_id PRIMARY KEY (obj_id)
+)
+WITH (
+   OIDS = False
+);
+CREATE INDEX in_od_backflow_prevention_obj_id ON qgep.od_backflow_prevention USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_backflow_prevention_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_backflow_prevention ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_backflow_prevention');
+COMMENT ON COLUMN qgep.od_backflow_prevention.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_backflow_prevention ADD COLUMN kind  integer ;
+COMMENT ON COLUMN qgep.od_backflow_prevention.kind IS 'Ist keine Rückstausicherung vorhanden, wird keine Rueckstausicherung erfasst. /  Ist keine Rückstausicherung vorhanden, wird keine Rueckstausicherung erfasst. / En absence de protection, laisser la composante vide.';
+-------
+CREATE TABLE qgep.od_solids_retention
+(
+   obj_id  varchar(16) NOT NULL,
+   CONSTRAINT pkey_qgep_od_solids_retention_obj_id PRIMARY KEY (obj_id)
+)
+WITH (
+   OIDS = False
+);
+CREATE INDEX in_od_solids_retention_obj_id ON qgep.od_solids_retention USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_solids_retention_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_solids_retention ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_solids_retention');
+COMMENT ON COLUMN qgep.od_solids_retention.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_solids_retention ADD COLUMN gross_costs  decimal(8,2) ;
+COMMENT ON COLUMN qgep.od_solids_retention.gross_costs IS 'Gross costs of electromechanical equipment / Brutto Erstellungskosten der elektromechnischen Ausrüstung für die Beckenentleerung / Coûts bruts des équipements électromécaniques';
+ ALTER TABLE qgep.od_solids_retention ADD COLUMN type  integer ;
+COMMENT ON COLUMN qgep.od_solids_retention.type IS 'yyy_(Elektromechanische) Teile zum Feststoffrückhalt eines Bauwerks / (Elektromechanische) Teile zum Feststoffrückhalt eines Bauwerks / Eléments (électromécaniques) pour la retenue de matières solides d’un ouvrage';
+ ALTER TABLE qgep.od_solids_retention ADD COLUMN year_of_replacement  smallint ;
+COMMENT ON COLUMN qgep.od_solids_retention.year_of_replacement IS 'yé';
+-------
+CREATE TABLE qgep.od_tank_cleaning
+(
+   obj_id  varchar(16) NOT NULL,
+   CONSTRAINT pkey_qgep_od_tank_cleaning_obj_id PRIMARY KEY (obj_id)
+)
+WITH (
+   OIDS = False
+);
+CREATE INDEX in_od_tank_cleaning_obj_id ON qgep.od_tank_cleaning USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_tank_cleaning_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_tank_cleaning ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_tank_cleaning');
+COMMENT ON COLUMN qgep.od_tank_cleaning.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_tank_cleaning ADD COLUMN gross_costs  decimal(8,2) ;
+COMMENT ON COLUMN qgep.od_tank_cleaning.gross_costs IS 'Gross costs of electromechanical equipment / Brutto Erstellungskosten der elektromechnischen Ausrüstung für die Beckenentleerung / Coûts bruts des équipements électromécaniques';
+ ALTER TABLE qgep.od_tank_cleaning ADD COLUMN year_of_replacement  smallint ;
+COMMENT ON COLUMN qgep.od_tank_cleaning.year_of_replacement IS 'yé';
 -------
 CREATE TABLE qgep.od_access_aid
 (
@@ -1673,6 +1816,19 @@ COMMENT ON COLUMN qgep.od_access_aid.obj_id IS 'INTERLIS STANDARD OID (with Post
  ALTER TABLE qgep.od_access_aid ADD COLUMN kind  integer ;
 COMMENT ON COLUMN qgep.od_access_aid.kind IS 'ye';
 -------
+CREATE TABLE qgep.od_tank_emptying
+(
+   obj_id  varchar(16) NOT NULL,
+   CONSTRAINT pkey_qgep_od_tank_emptying_obj_id PRIMARY KEY (obj_id)
+)
+WITH (
+   OIDS = False
+);
+CREATE INDEX in_od_tank_emptying_obj_id ON qgep.od_tank_emptying USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_tank_emptying_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_tank_emptying ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_tank_emptying');
+COMMENT ON COLUMN qgep.od_tank_emptying.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+-------
 CREATE TABLE qgep.od_wwtp_structure
 (
    obj_id  varchar(16) NOT NULL,
@@ -1686,7 +1842,7 @@ CREATE SEQUENCE qgep.seq_od_wwtp_structure_oid INCREMENT 1 MINVALUE 0 MAXVALUE 9
  ALTER TABLE qgep.od_wwtp_structure ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_wwtp_structure');
 COMMENT ON COLUMN qgep.od_wwtp_structure.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
  ALTER TABLE qgep.od_wwtp_structure ADD COLUMN kind  integer ;
-COMMENT ON COLUMN qgep.od_wwtp_structure.kind IS ' /  / ';
+COMMENT ON COLUMN qgep.od_wwtp_structure.kind IS 'yyy_Art des Beckens oder Verfahrens im ARA Bauwerk / Art des Beckens oder Verfahrens im ARA Bauwerk / xxx_Art des Beckens oder Verfahrens im ARA Bauwerk';
 -------
 CREATE TABLE qgep.od_channel
 (
@@ -1713,10 +1869,60 @@ COMMENT ON COLUMN qgep.od_channel.jetting_interval IS 'yyy_Abstände in welchen 
  ALTER TABLE qgep.od_channel ADD COLUMN pipe_length  decimal(5,2) ;
 COMMENT ON COLUMN qgep.od_channel.pipe_length IS 'yyy_Baulänge der Einzelrohre oder Fugenabstände bei Ortsbetonkanälen / Baulänge der Einzelrohre oder Fugenabstände bei Ortsbetonkanälen / Longueur de chaque tuyau ou distance des joints pour les canalisations en béton coulé sur place';
  ALTER TABLE qgep.od_channel ADD COLUMN usage_current  integer ;
- CREATE INDEX in_od_channel_function_hierarchic_usage_current ON qgep.od_channel USING btree (function_hierarchic, usage_current);
 COMMENT ON COLUMN qgep.od_channel.usage_current IS 'yyy_Für Primäre Abwasseranlagen gilt: heute zulässige Nutzung. Für Sekundäre Abwasseranlagen gilt: heute tatsächliche Nutzung / Für primäre Abwasseranlagen gilt: Heute zulässige Nutzung. Für sekundäre Abwasseranlagen gilt: Heute tatsächliche Nutzung / Pou';
  ALTER TABLE qgep.od_channel ADD COLUMN usage_planned  integer ;
 COMMENT ON COLUMN qgep.od_channel.usage_planned IS 'y)';
+ CREATE INDEX in_od_channel_function_hierarchic_usage_current ON qgep.od_channel USING btree (function_hierarchic, usage_current);
+-------
+CREATE TABLE qgep.od_manhole
+(
+   obj_id  varchar(16) NOT NULL,
+   CONSTRAINT pkey_qgep_od_manhole_obj_id PRIMARY KEY (obj_id)
+)
+WITH (
+   OIDS = False
+);
+CREATE INDEX in_od_manhole_obj_id ON qgep.od_manhole USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_manhole_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_manhole ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_manhole');
+COMMENT ON COLUMN qgep.od_manhole.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_manhole ADD COLUMN depth  smallint ;
+COMMENT ON COLUMN qgep.od_manhole.depth IS 'yy_Funktion (berechneter Wert) = zugehöriger Abwasserknoten.Sohlenkote minus Deckel.Kote (falls Sohlenkote nicht seperat erfasst, dann ist es die tiefer liegende Haltungspunkt.Kote). Siehe auch SIA 405 2015 4.3.4. / Funktion (berechneter Wert) = zugehörig';
+ ALTER TABLE qgep.od_manhole ADD COLUMN dimension1  smallint ;
+COMMENT ON COLUMN qgep.od_manhole.dimension1 IS 'Dimension2 of infiltration installations (largest inside dimension). / Dimension1 des Schachtes (grösstes Innenmass). / Dimension1 de la chambre (plus grande mesure intérieure).';
+ ALTER TABLE qgep.od_manhole ADD COLUMN dimension2  smallint ;
+COMMENT ON COLUMN qgep.od_manhole.dimension2 IS 'Dimension2 of manhole (smallest inside dimension). With circle shaped manholes leave dimension2 empty, with ovoid manholes fill it in. With rectangular shaped manholes use detailled_geometry to describe further. / Dimension2 des Schachtes (kleinstes Innen';
+ ALTER TABLE qgep.od_manhole ADD COLUMN function  integer ;
+COMMENT ON COLUMN qgep.od_manhole.function IS 'Kn';
+ CREATE INDEX in_od_manhole_function ON qgep.od_manhole USING btree (function);
+ ALTER TABLE qgep.od_manhole ADD COLUMN material  integer ;
+COMMENT ON COLUMN qgep.od_manhole.material IS 'ye';
+ ALTER TABLE qgep.od_manhole ADD COLUMN surface_inflow  integer ;
+COMMENT ON COLUMN qgep.od_manhole.surface_inflow IS 'ye';
+-------
+CREATE TABLE qgep.od_discharge_point
+(
+   obj_id  varchar(16) NOT NULL,
+   CONSTRAINT pkey_qgep_od_discharge_point_obj_id PRIMARY KEY (obj_id)
+)
+WITH (
+   OIDS = False
+);
+CREATE INDEX in_od_discharge_point_obj_id ON qgep.od_discharge_point USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_discharge_point_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_discharge_point ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_discharge_point');
+COMMENT ON COLUMN qgep.od_discharge_point.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_discharge_point ADD COLUMN depth  smallint ;
+COMMENT ON COLUMN qgep.od_discharge_point.depth IS 'yyy_Funktion (berechneter Wert) = repräsentative Abwasserknoten.Sohlenkote minus zugehörige Deckenkote des Bauwerks falls Detailgeometrie vorhanden, sonst Funktion (berechneter Wert) = Abwasserknoten.Sohlenkote minus zugehörige Deckel.Kote des Bauwerks / ';
+ ALTER TABLE qgep.od_discharge_point ADD COLUMN highwater_level  decimal(4,3) ;
+COMMENT ON COLUMN qgep.od_discharge_point.highwater_level IS 'yyy_Massgebliche Hochwasserkote des Vorflutereinlaufs / Massgebliche Hochwasserkote des Vorflutereinlaufs / Cote de crue déterminante au point de rejet';
+ ALTER TABLE qgep.od_discharge_point ADD COLUMN relevance  integer ;
+COMMENT ON COLUMN qgep.od_discharge_point.relevance IS 'Relevance of discharge point for water course / Gewässerrelevanz der Einleitstelle / Il est conseillé d’utiliser des noms réels, tels qSignifiance pour milieu récepteur';
+ ALTER TABLE qgep.od_discharge_point ADD COLUMN upper_elevation  decimal(4,3) ;
+COMMENT ON COLUMN qgep.od_discharge_point.upper_elevation IS 'He';
+ ALTER TABLE qgep.od_discharge_point ADD COLUMN waterlevel_hydraulic  decimal(4,3) ;
+COMMENT ON COLUMN qgep.od_discharge_point.waterlevel_hydraulic IS 'yyy_Wasserspiegelkote für die hydraulische Berechnung (IST-Zustand)-
+. Berechneter Wasserspiegel bei der Einleitstelle. Wo nichts anders gefordert, ist der Wasserspiegel bei einem HQ30 einzusetzen. / Wasserspiegelkote für die hydraulische Berechnung (IST';
 -------
 CREATE TABLE qgep.od_infiltration_installation
 (
@@ -1759,32 +1965,6 @@ COMMENT ON COLUMN qgep.od_infiltration_installation.vehicle_access IS 'yyy_Zugä
  ALTER TABLE qgep.od_infiltration_installation ADD COLUMN watertightness  integer ;
 COMMENT ON COLUMN qgep.od_infiltration_installation.watertightness IS 'yyy_Wasserdichtheit gegen Oberflächenwasser.  Nur bei Anlagen mit Schächten. / Wasserdichtheit gegen Oberflächenwasser.  Nur bei Anlagen mit Schächten. / Etanchéité contre des eaux superficielles. Uniquement pour des installations avec chambres';
 -------
-CREATE TABLE qgep.od_manhole
-(
-   obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_manhole_obj_id PRIMARY KEY (obj_id)
-)
-WITH (
-   OIDS = False
-);
-CREATE INDEX in_od_manhole_obj_id ON qgep.od_manhole USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_manhole_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_manhole ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_manhole');
-COMMENT ON COLUMN qgep.od_manhole.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_manhole ADD COLUMN depth  smallint ;
-COMMENT ON COLUMN qgep.od_manhole.depth IS 'yy_Funktion (berechneter Wert) = zugehöriger Abwasserknoten.Sohlenkote minus Deckel.Kote (falls Sohlenkote nicht seperat erfasst, dann ist es die tiefer liegende Haltungspunkt.Kote). Siehe auch SIA 405 2015 4.3.4. / Funktion (berechneter Wert) = zugehörig';
- ALTER TABLE qgep.od_manhole ADD COLUMN dimension1  smallint ;
-COMMENT ON COLUMN qgep.od_manhole.dimension1 IS 'Dimension2 of infiltration installations (largest inside dimension). / Dimension1 des Schachtes (grösstes Innenmass). / Dimension1 de la chambre (plus grande mesure intérieure).';
- ALTER TABLE qgep.od_manhole ADD COLUMN dimension2  smallint ;
-COMMENT ON COLUMN qgep.od_manhole.dimension2 IS 'Dimension2 of manhole (smallest inside dimension). With circle shaped manholes leave dimension2 empty, with ovoid manholes fill it in. With rectangular shaped manholes use detailled_geometry to describe further. / Dimension2 des Schachtes (kleinstes Innen';
- ALTER TABLE qgep.od_manhole ADD COLUMN function  integer ;
-COMMENT ON COLUMN qgep.od_manhole.function IS 'Kn';
- CREATE INDEX in_od_manhole_function ON qgep.od_manhole USING btree (function);
- ALTER TABLE qgep.od_manhole ADD COLUMN material  integer ;
-COMMENT ON COLUMN qgep.od_manhole.material IS 'ye';
- ALTER TABLE qgep.od_manhole ADD COLUMN surface_inflow  integer ;
-COMMENT ON COLUMN qgep.od_manhole.surface_inflow IS 'ye';
--------
 CREATE TABLE qgep.od_special_structure
 (
    obj_id  varchar(16) NOT NULL,
@@ -1801,36 +1981,15 @@ COMMENT ON COLUMN qgep.od_special_structure.obj_id IS 'INTERLIS STANDARD OID (wi
 COMMENT ON COLUMN qgep.od_special_structure.bypass IS 'yyy_Bypass zur Umleitung des Wassers (z.B. während Unterhalt oder  im Havariefall) / Bypass zur Umleitung des Wassers (z.B. während Unterhalt oder  im Havariefall) / Bypass pour détourner les eaux (par exemple durant des opérations de maintenance ou en ca';
  ALTER TABLE qgep.od_special_structure ADD COLUMN depth  smallint ;
 COMMENT ON COLUMN qgep.od_special_structure.depth IS 'yyy_Funktion (berechneter Wert) = repräsentative Abwasserknoten.Sohlenkote minus zugehörige Deckenkote des Bauwerks falls Detailgeometrie vorhanden, sonst Funktion (berechneter Wert) = Abwasserknoten.Sohlenkote minus zugehörige Deckel.Kote des Bauwerks / ';
+ ALTER TABLE qgep.od_special_structure ADD COLUMN emergency_spillway  integer ;
+COMMENT ON COLUMN qgep.od_special_structure.emergency_spillway IS 'zzz_Das Attribut beschreibt, wohin die das Volumen übersteigende Menge abgeleitet wird (bei Regenrückhaltebecken / Regenrückhaltekanal). / Das Attribut beschreibt, wohin die das Volumen übersteigende Menge abgeleitet wird (bei Regenrückhaltebecken / Regen';
  ALTER TABLE qgep.od_special_structure ADD COLUMN function  integer ;
 COMMENT ON COLUMN qgep.od_special_structure.function IS 'Kn';
  CREATE INDEX in_od_special_structure_function ON qgep.od_special_structure USING btree (function);
- ALTER TABLE qgep.od_special_structure ADD COLUMN stormwatertank_arrangement  integer ;
-COMMENT ON COLUMN qgep.od_special_structure.stormwatertank_arrangement IS 'yl';
+ ALTER TABLE qgep.od_special_structure ADD COLUMN stormwater_tank_arrangement  integer ;
+COMMENT ON COLUMN qgep.od_special_structure.stormwater_tank_arrangement IS 'yl';
  ALTER TABLE qgep.od_special_structure ADD COLUMN upper_elevation  decimal(4,3) ;
 COMMENT ON COLUMN qgep.od_special_structure.upper_elevation IS 'Highest point of structure (ceiling), outside / Höchster Punkt des Bauwerks (Decke), aussen / Point le plus élevé de la construction';
--------
-CREATE TABLE qgep.od_discharge_point
-(
-   obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_discharge_point_obj_id PRIMARY KEY (obj_id)
-)
-WITH (
-   OIDS = False
-);
-CREATE INDEX in_od_discharge_point_obj_id ON qgep.od_discharge_point USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_discharge_point_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_discharge_point ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_discharge_point');
-COMMENT ON COLUMN qgep.od_discharge_point.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_discharge_point ADD COLUMN depth  smallint ;
-COMMENT ON COLUMN qgep.od_discharge_point.depth IS 'yyy_Funktion (berechneter Wert) = repräsentative Abwasserknoten.Sohlenkote minus zugehörige Deckenkote des Bauwerks falls Detailgeometrie vorhanden, sonst Funktion (berechneter Wert) = Abwasserknoten.Sohlenkote minus zugehörige Deckel.Kote des Bauwerks / ';
- ALTER TABLE qgep.od_discharge_point ADD COLUMN highwater_level  decimal(4,3) ;
-COMMENT ON COLUMN qgep.od_discharge_point.highwater_level IS 'yyy_Massgebliche Hochwasserkote des Vorflutereinlaufs / Massgebliche Hochwasserkote des Vorflutereinlaufs / Cote de crue déterminante au point de rejet';
- ALTER TABLE qgep.od_discharge_point ADD COLUMN relevance  integer ;
-COMMENT ON COLUMN qgep.od_discharge_point.relevance IS 'Relevance of discharge point for water course / Gewässerrelevanz der Einleitstelle / Significance pour milieu recepteur';
- ALTER TABLE qgep.od_discharge_point ADD COLUMN upper_elevation  decimal(4,3) ;
-COMMENT ON COLUMN qgep.od_discharge_point.upper_elevation IS 'He';
- ALTER TABLE qgep.od_discharge_point ADD COLUMN waterlevel_hydraulic  decimal(4,3) ;
-COMMENT ON COLUMN qgep.od_discharge_point.waterlevel_hydraulic IS 'yl';
 -------
 CREATE TABLE qgep.od_lake
 (
@@ -1844,7 +2003,7 @@ CREATE INDEX in_od_lake_obj_id ON qgep.od_lake USING btree (obj_id);
 CREATE SEQUENCE qgep.seq_od_lake_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
  ALTER TABLE qgep.od_lake ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_lake');
 COMMENT ON COLUMN qgep.od_lake.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
-SELECT AddGeometryColumn('qgep', 'od_lake', 'perimeter_geometry', 21781, 'POLYGON', 2);
+SELECT AddGeometryColumn('qgep', 'od_lake', 'perimeter_geometry', 21781, 'POLYGON', 2, true);
 CREATE INDEX in_qgep_od_lake_perimeter_geometry ON qgep.od_lake USING gist (perimeter_geometry );
 COMMENT ON COLUMN qgep.od_lake.perimeter_geometry IS 'Boundary points of the perimeter / Begrenzungspunkte der Fläche / Points de délimitation de la surface';
 -------
@@ -1863,21 +2022,6 @@ COMMENT ON COLUMN qgep.od_river.obj_id IS 'INTERLIS STANDARD OID (with Postfix/P
  ALTER TABLE qgep.od_river ADD COLUMN kind  integer ;
 COMMENT ON COLUMN qgep.od_river.kind IS 'yS';
 -------
-CREATE TABLE qgep.od_blocking_debris
-(
-   obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_blocking_debris_obj_id PRIMARY KEY (obj_id)
-)
-WITH (
-   OIDS = False
-);
-CREATE INDEX in_od_blocking_debris_obj_id ON qgep.od_blocking_debris USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_blocking_debris_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_blocking_debris ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_blocking_debris');
-COMMENT ON COLUMN qgep.od_blocking_debris.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_blocking_debris ADD COLUMN vertical_drop  decimal(5,2) ;
-COMMENT ON COLUMN qgep.od_blocking_debris.vertical_drop IS 'ye';
--------
 CREATE TABLE qgep.od_passage
 (
    obj_id  varchar(16) NOT NULL,
@@ -1890,23 +2034,6 @@ CREATE INDEX in_od_passage_obj_id ON qgep.od_passage USING btree (obj_id);
 CREATE SEQUENCE qgep.seq_od_passage_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
  ALTER TABLE qgep.od_passage ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_passage');
 COMMENT ON COLUMN qgep.od_passage.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
--------
-CREATE TABLE qgep.od_dam
-(
-   obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_dam_obj_id PRIMARY KEY (obj_id)
-)
-WITH (
-   OIDS = False
-);
-CREATE INDEX in_od_dam_obj_id ON qgep.od_dam USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_dam_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_dam ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_dam');
-COMMENT ON COLUMN qgep.od_dam.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_dam ADD COLUMN kind  integer ;
-COMMENT ON COLUMN qgep.od_dam.kind IS 'Te';
- ALTER TABLE qgep.od_dam ADD COLUMN vertical_drop  decimal(5,2) ;
-COMMENT ON COLUMN qgep.od_dam.vertical_drop IS 'Ve';
 -------
 CREATE TABLE qgep.od_ford
 (
@@ -1957,6 +2084,38 @@ COMMENT ON COLUMN qgep.od_rock_ramp.stabilisation IS 'Type of stabilisation of r
  ALTER TABLE qgep.od_rock_ramp ADD COLUMN vertical_drop  decimal(5,2) ;
 COMMENT ON COLUMN qgep.od_rock_ramp.vertical_drop IS 'Ve';
 -------
+CREATE TABLE qgep.od_blocking_debris
+(
+   obj_id  varchar(16) NOT NULL,
+   CONSTRAINT pkey_qgep_od_blocking_debris_obj_id PRIMARY KEY (obj_id)
+)
+WITH (
+   OIDS = False
+);
+CREATE INDEX in_od_blocking_debris_obj_id ON qgep.od_blocking_debris USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_blocking_debris_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_blocking_debris ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_blocking_debris');
+COMMENT ON COLUMN qgep.od_blocking_debris.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_blocking_debris ADD COLUMN vertical_drop  decimal(5,2) ;
+COMMENT ON COLUMN qgep.od_blocking_debris.vertical_drop IS 'ye';
+-------
+CREATE TABLE qgep.od_dam
+(
+   obj_id  varchar(16) NOT NULL,
+   CONSTRAINT pkey_qgep_od_dam_obj_id PRIMARY KEY (obj_id)
+)
+WITH (
+   OIDS = False
+);
+CREATE INDEX in_od_dam_obj_id ON qgep.od_dam USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_dam_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_dam ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_dam');
+COMMENT ON COLUMN qgep.od_dam.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_dam ADD COLUMN kind  integer ;
+COMMENT ON COLUMN qgep.od_dam.kind IS 'Te';
+ ALTER TABLE qgep.od_dam ADD COLUMN vertical_drop  decimal(5,2) ;
+COMMENT ON COLUMN qgep.od_dam.vertical_drop IS 'Ve';
+-------
 CREATE TABLE qgep.od_lock
 (
    obj_id  varchar(16) NOT NULL,
@@ -1971,29 +2130,6 @@ CREATE SEQUENCE qgep.seq_od_lock_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 STAR
 COMMENT ON COLUMN qgep.od_lock.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
  ALTER TABLE qgep.od_lock ADD COLUMN vertical_drop  decimal(5,2) ;
 COMMENT ON COLUMN qgep.od_lock.vertical_drop IS 'ye';
--------
-CREATE TABLE qgep.od_param_ca_general
-(
-   obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_param_ca_general_obj_id PRIMARY KEY (obj_id)
-)
-WITH (
-   OIDS = False
-);
-CREATE INDEX in_od_param_ca_general_obj_id ON qgep.od_param_ca_general USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_param_ca_general_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_param_ca_general ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_param_ca_general');
-COMMENT ON COLUMN qgep.od_param_ca_general.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_param_ca_general ADD COLUMN dry_wheather_flow  decimal(6,3) ;
-COMMENT ON COLUMN qgep.od_param_ca_general.dry_wheather_flow IS 'Dry wheather flow /  / Débit temps sec';
- ALTER TABLE qgep.od_param_ca_general ADD COLUMN flow_path_length  decimal(5,2) ;
-COMMENT ON COLUMN qgep.od_param_ca_general.flow_path_length IS 'Lt';
- ALTER TABLE qgep.od_param_ca_general ADD COLUMN flow_path_slope  smallint ;
-COMMENT ON COLUMN qgep.od_param_ca_general.flow_path_slope IS 'St';
- ALTER TABLE qgep.od_param_ca_general ADD COLUMN population_equivalent  smallint ;
-COMMENT ON COLUMN qgep.od_param_ca_general.population_equivalent IS ' /  / ';
- ALTER TABLE qgep.od_param_ca_general ADD COLUMN surfacace_ca  decimal(6,2) ;
-COMMENT ON COLUMN qgep.od_param_ca_general.surfacace_ca IS 'yyy_Surface bassin versant MOUSE1 /  / Surface bassin versant MOUSE1';
 -------
 CREATE TABLE qgep.od_param_ca_mouse1
 (
@@ -2013,25 +2149,35 @@ COMMENT ON COLUMN qgep.od_param_ca_mouse1.dry_wheather_flow IS 'PE';
 COMMENT ON COLUMN qgep.od_param_ca_mouse1.flow_path_length IS 'y ';
  ALTER TABLE qgep.od_param_ca_mouse1 ADD COLUMN flow_path_slope  smallint ;
 COMMENT ON COLUMN qgep.od_param_ca_mouse1.flow_path_slope IS 'y ';
- ALTER TABLE qgep.od_param_ca_mouse1 ADD COLUMN parameter_set  varchar(50) ;
-COMMENT ON COLUMN qgep.od_param_ca_mouse1.parameter_set IS 'Classification based on surface runoff modell MOUSE 2000/2001 / Klassifikation gemäss Oberflächenabflussmodell von MOUSE 2000/2001 / Classification selon le modèle surface de MOUSE 2000/2001';
  ALTER TABLE qgep.od_param_ca_mouse1 ADD COLUMN population_equivalent  smallint ;
 COMMENT ON COLUMN qgep.od_param_ca_mouse1.population_equivalent IS ' /  / ';
  ALTER TABLE qgep.od_param_ca_mouse1 ADD COLUMN surface_ca_mouse  decimal(6,2) ;
 COMMENT ON COLUMN qgep.od_param_ca_mouse1.surface_ca_mouse IS 'y ';
+ ALTER TABLE qgep.od_param_ca_mouse1 ADD COLUMN usage  varchar(50) ;
+COMMENT ON COLUMN qgep.od_param_ca_mouse1.usage IS 'Classification based on surface runoff modell MOUSE 2000/2001 / Klassifikation gemäss Oberflächenabflussmodell von MOUSE 2000/2001 / Classification selon le modèle surface de MOUSE 2000/2001';
 -------
-CREATE TABLE qgep.od_administrative_office
+CREATE TABLE qgep.od_param_ca_general
 (
    obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_administrative_office_obj_id PRIMARY KEY (obj_id)
+   CONSTRAINT pkey_qgep_od_param_ca_general_obj_id PRIMARY KEY (obj_id)
 )
 WITH (
    OIDS = False
 );
-CREATE INDEX in_od_administrative_office_obj_id ON qgep.od_administrative_office USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_administrative_office_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_administrative_office ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_administrative_office');
-COMMENT ON COLUMN qgep.od_administrative_office.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+CREATE INDEX in_od_param_ca_general_obj_id ON qgep.od_param_ca_general USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_param_ca_general_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_param_ca_general ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_param_ca_general');
+COMMENT ON COLUMN qgep.od_param_ca_general.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_param_ca_general ADD COLUMN dry_wheather_flow  decimal(6,3) ;
+COMMENT ON COLUMN qgep.od_param_ca_general.dry_wheather_flow IS 'Dry wheather flow /  / Débit temps sec';
+ ALTER TABLE qgep.od_param_ca_general ADD COLUMN flow_path_length  decimal(5,2) ;
+COMMENT ON COLUMN qgep.od_param_ca_general.flow_path_length IS 'Lt';
+ ALTER TABLE qgep.od_param_ca_general ADD COLUMN flow_path_slope  smallint ;
+COMMENT ON COLUMN qgep.od_param_ca_general.flow_path_slope IS 'S.';
+ ALTER TABLE qgep.od_param_ca_general ADD COLUMN population_equivalent  smallint ;
+COMMENT ON COLUMN qgep.od_param_ca_general.population_equivalent IS ' /  / ';
+ ALTER TABLE qgep.od_param_ca_general ADD COLUMN surface_ca  decimal(6,2) ;
+COMMENT ON COLUMN qgep.od_param_ca_general.surface_ca IS 'yyy_Surface bassin versant MOUSE1 /  / Surface bassin versant MOUSE1';
 -------
 CREATE TABLE qgep.od_municipality
 (
@@ -2047,7 +2193,7 @@ CREATE SEQUENCE qgep.seq_od_municipality_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999
 COMMENT ON COLUMN qgep.od_municipality.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
  ALTER TABLE qgep.od_municipality ADD COLUMN altitude  decimal(4,3) ;
 COMMENT ON COLUMN qgep.od_municipality.altitude IS 'An';
-SELECT AddGeometryColumn('qgep', 'od_municipality', 'area_geometry', 21781, 'POLYGON', 2);
+SELECT AddGeometryColumn('qgep', 'od_municipality', 'area_geometry', 21781, 'POLYGON', 2, true);
 CREATE INDEX in_qgep_od_municipality_area_geometry ON qgep.od_municipality USING gist (area_geometry );
 COMMENT ON COLUMN qgep.od_municipality.area_geometry IS 'Border of the municipality / Gemeindegrenze / Limites communales';
  ALTER TABLE qgep.od_municipality ADD COLUMN gwdp_year  smallint ;
@@ -2058,6 +2204,47 @@ COMMENT ON COLUMN qgep.od_municipality.municipality_number IS 'Oe';
 COMMENT ON COLUMN qgep.od_municipality.population IS 'Permanent opulation (based on statistics of the municipality) / Ständige Einwohner (laut Einwohnerkontrolle der Gemeinde) / Habitants permanents (selon le contrôle des habitants de la commune)';
  ALTER TABLE qgep.od_municipality ADD COLUMN total_surface  decimal(6,2) ;
 COMMENT ON COLUMN qgep.od_municipality.total_surface IS 'Total surface without lakes / Fläche ohne Seeanteil / Surface sans partie de lac';
+-------
+CREATE TABLE qgep.od_private
+(
+   obj_id  varchar(16) NOT NULL,
+   CONSTRAINT pkey_qgep_od_private_obj_id PRIMARY KEY (obj_id)
+)
+WITH (
+   OIDS = False
+);
+CREATE INDEX in_od_private_obj_id ON qgep.od_private USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_private_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_private ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_private');
+COMMENT ON COLUMN qgep.od_private.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_private ADD COLUMN kind  varchar(50) ;
+COMMENT ON COLUMN qgep.od_private.kind IS ' /  / ';
+-------
+CREATE TABLE qgep.od_cooperative
+(
+   obj_id  varchar(16) NOT NULL,
+   CONSTRAINT pkey_qgep_od_cooperative_obj_id PRIMARY KEY (obj_id)
+)
+WITH (
+   OIDS = False
+);
+CREATE INDEX in_od_cooperative_obj_id ON qgep.od_cooperative USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_cooperative_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_cooperative ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_cooperative');
+COMMENT ON COLUMN qgep.od_cooperative.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+-------
+CREATE TABLE qgep.od_administrative_office
+(
+   obj_id  varchar(16) NOT NULL,
+   CONSTRAINT pkey_qgep_od_administrative_office_obj_id PRIMARY KEY (obj_id)
+)
+WITH (
+   OIDS = False
+);
+CREATE INDEX in_od_administrative_office_obj_id ON qgep.od_administrative_office USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_administrative_office_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_administrative_office ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_administrative_office');
+COMMENT ON COLUMN qgep.od_administrative_office.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
 -------
 CREATE TABLE qgep.od_waste_water_association
 (
@@ -2084,37 +2271,9 @@ CREATE INDEX in_od_canton_obj_id ON qgep.od_canton USING btree (obj_id);
 CREATE SEQUENCE qgep.seq_od_canton_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
  ALTER TABLE qgep.od_canton ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_canton');
 COMMENT ON COLUMN qgep.od_canton.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
-SELECT AddGeometryColumn('qgep', 'od_canton', 'perimeter_geometry', 21781, 'POLYGON', 2);
+SELECT AddGeometryColumn('qgep', 'od_canton', 'perimeter_geometry', 21781, 'POLYGON', 2, true);
 CREATE INDEX in_qgep_od_canton_perimeter_geometry ON qgep.od_canton USING gist (perimeter_geometry );
 COMMENT ON COLUMN qgep.od_canton.perimeter_geometry IS 'Border of canton / Kantonsgrenze / Limites cantonales';
--------
-CREATE TABLE qgep.od_cooperative
-(
-   obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_cooperative_obj_id PRIMARY KEY (obj_id)
-)
-WITH (
-   OIDS = False
-);
-CREATE INDEX in_od_cooperative_obj_id ON qgep.od_cooperative USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_cooperative_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_cooperative ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_cooperative');
-COMMENT ON COLUMN qgep.od_cooperative.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
--------
-CREATE TABLE qgep.od_privat
-(
-   obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_privat_obj_id PRIMARY KEY (obj_id)
-)
-WITH (
-   OIDS = False
-);
-CREATE INDEX in_od_privat_obj_id ON qgep.od_privat USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_privat_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_privat ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_privat');
-COMMENT ON COLUMN qgep.od_privat.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_privat ADD COLUMN kind  varchar(50) ;
-COMMENT ON COLUMN qgep.od_privat.kind IS ' /  / ';
 -------
 CREATE TABLE qgep.od_waste_water_treatment_plant
 (
@@ -2149,6 +2308,50 @@ COMMENT ON COLUMN qgep.od_waste_water_treatment_plant.nh4 IS 'yyy_Dimensioning v
  ALTER TABLE qgep.od_waste_water_treatment_plant ADD COLUMN start_year  smallint ;
 COMMENT ON COLUMN qgep.od_waste_water_treatment_plant.start_year IS 'Start of operation (year) / Jahr der Inbetriebnahme / Année de la mise en exploitation';
 -------
+CREATE TABLE qgep.od_reach
+(
+   obj_id  varchar(16) NOT NULL,
+   CONSTRAINT pkey_qgep_od_reach_obj_id PRIMARY KEY (obj_id)
+)
+WITH (
+   OIDS = False
+);
+CREATE INDEX in_od_reach_obj_id ON qgep.od_reach USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_reach_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_reach ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_reach');
+COMMENT ON COLUMN qgep.od_reach.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_reach ADD COLUMN clear_height  smallint ;
+COMMENT ON COLUMN qgep.od_reach.clear_height IS 'Maximal height (inside) of profile / Maximale Innenhöhe des Kanalprofiles / Hauteur intérieure maximale du profil';
+ ALTER TABLE qgep.od_reach ADD COLUMN coefficient_of_friction  smallint ;
+COMMENT ON COLUMN qgep.od_reach.coefficient_of_friction IS 'yyy http://www.linguee.com/english-german/search?source=auto&query=reibungsbeiwert / Hydraulische Kenngrösse zur Beschreibung der Beschaffenheit der Kanalwandung. Beiwert für die Formeln nach Manning-Strickler (K oder kstr) / Constante de rugosité selon M';
+ ALTER TABLE qgep.od_reach ADD COLUMN elevation_determination  integer ;
+COMMENT ON COLUMN qgep.od_reach.elevation_determination IS 'y.';
+ ALTER TABLE qgep.od_reach ADD COLUMN horizontal_positioning  integer ;
+COMMENT ON COLUMN qgep.od_reach.horizontal_positioning IS 'yyy_Definiert die Lagegenauigkeit der Verlaufspunkte. / Definiert die Lagegenauigkeit der Verlaufspunkte. / Définit la précision de la détermination du tracé.';
+ ALTER TABLE qgep.od_reach ADD COLUMN inside_coating  integer ;
+COMMENT ON COLUMN qgep.od_reach.inside_coating IS 'yyy_Schutz der Innenwände des Kanals / Schutz der Innenwände des Kanals / Protection de la paroi intérieur de la canalisation';
+ ALTER TABLE qgep.od_reach ADD COLUMN length_effective  decimal(5,2) ;
+COMMENT ON COLUMN qgep.od_reach.length_effective IS 'yyy_Tatsächliche schräge Länge (d.h. nicht in horizontale Ebene projiziert)  inklusive Kanalkrümmungen / Tatsächliche schräge Länge (d.h. nicht in horizontale Ebene projiziert)  inklusive Kanalkrümmungen / Longueur effective (non projetée) incluant les pa';
+ ALTER TABLE qgep.od_reach ADD COLUMN material  integer ;
+COMMENT ON COLUMN qgep.od_reach.material IS 'Material of reach / pipe / Rohrmaterial / Matériau du tuyau';
+ ALTER TABLE qgep.od_reach ADD COLUMN progression  geometry ;
+COMMENT ON COLUMN qgep.od_reach.progression IS 'Start, inflextion and endpoints of a pipe / Anfangs-, Knick- und Endpunkte der Leitung / Points de départ, intermédiaires et d’arrivée de la conduite.';
+SELECT AddGeometryColumn('qgep', 'od_reach', 'progression_3d_geometry', 21781, 'LINESTRING', 2, true);
+CREATE INDEX in_qgep_od_reach_progression_3d_geometry ON qgep.od_reach USING gist (progression_3d_geometry );
+COMMENT ON COLUMN qgep.od_reach.progression_3d_geometry IS 'Start, inflextion and endpoints of a pipe (3D coordinates) / Anfangs-, Knick- und Endpunkte der Leitung (3D Koordinaten) / Points de départ, intermédiaires et d’arrivée de la conduite (coordonnées 3D)';
+ ALTER TABLE qgep.od_reach ADD COLUMN reliner_material  integer ;
+COMMENT ON COLUMN qgep.od_reach.reliner_material IS 'Material of reliner / Material des Reliners / Materiaux du relining';
+ ALTER TABLE qgep.od_reach ADD COLUMN relining_kind  integer ;
+COMMENT ON COLUMN qgep.od_reach.relining_kind IS 'Kind of relining / Art des Relinings / Genre du relining';
+ ALTER TABLE qgep.od_reach ADD COLUMN slope_building_plan  smallint ;
+COMMENT ON COLUMN qgep.od_reach.slope_building_plan IS 'yyy_Auf dem alten Plan eingezeichnetes Plangefälle. Nicht kontrolliert im Feld. Kann nicht für die hydraulische Berechnungen übernommen werden. Für Liegenschaftsentwässerung und Meliorationsleitungen. Darstellung als z.B. 3.5%oP auf Plänen. / Auf dem alte';
+ ALTER TABLE qgep.od_reach ADD COLUMN wall_roughness  decimal(3,2) ;
+COMMENT ON COLUMN qgep.od_reach.wall_roughness IS 'yyy Hydraulische Kenngrösse zur Beschreibung der Beschaffenheit der Kanalwandung. Beiwert für die Formeln nach Prandtl-Colebrook (ks oder kb) / Hydraulische Kenngrösse zur Beschreibung der Beschaffenheit der Kanalwandung. Beiwert für die Formeln nach Pran';
+ ALTER TABLE qgep.od_reach ADD COLUMN yyy_reliner_bautechnik  integer ;
+COMMENT ON COLUMN qgep.od_reach.yyy_reliner_bautechnik IS 'yyy_Bautechnik für das Relining. Zusätzlich wird der Einbau des Reliners als  Erhaltungsereignis abgebildet: Erhaltungsereignis.Art = Reparatur für Partieller_Liner, sonst Renovierung. / Bautechnik für das Relining. Zusätzlich wird der Einbau des Reliners';
+ ALTER TABLE qgep.od_reach ADD COLUMN yyy_reliner_nennweite  smallint ;
+COMMENT ON COLUMN qgep.od_reach.yyy_reliner_nennweite IS 'xxx_Profilhöhe des Inliners (innen). Beim Export in Hydrauliksoftware müsste dieser Wert statt Haltung.Lichte_Hoehe übernommen werden um korrekt zu simulieren. / Profilhöhe des Inliners (innen). Beim Export in Hydrauliksoftware müsste dieser Wert statt Ha';
+-------
 CREATE TABLE qgep.od_wastewater_node
 (
    obj_id  varchar(16) NOT NULL,
@@ -2165,74 +2368,30 @@ COMMENT ON COLUMN qgep.od_wastewater_node.obj_id IS 'INTERLIS STANDARD OID (with
 COMMENT ON COLUMN qgep.od_wastewater_node.backflow_level IS 'yyy_1. Massgebende Rückstaukote bezogen auf den Berechnungsregen (dss)  2. Höhe, unter der innerhalb der Grundstücksentwässerung besondere Massnahmen gegen Rückstau zu treffen sind. (DIN 4045) / 1. Massgebende Rückstaukote bezogen auf den Berechnungsregen';
  ALTER TABLE qgep.od_wastewater_node ADD COLUMN bottom_level  decimal(4,3) ;
 COMMENT ON COLUMN qgep.od_wastewater_node.bottom_level IS 'yyy_Tiefster Punkt des Abwasserbauwerks / Tiefster Punkt des Abwasserbauwerks / Point le plus bas du noeud';
-SELECT AddGeometryColumn('qgep', 'od_wastewater_node', 'situation_geometry', 21781, 'POINT', 2);
+SELECT AddGeometryColumn('qgep', 'od_wastewater_node', 'situation_geometry', 21781, 'POINT', 2, true);
 CREATE INDEX in_qgep_od_wastewater_node_situation_geometry ON qgep.od_wastewater_node USING gist (situation_geometry );
 COMMENT ON COLUMN qgep.od_wastewater_node.situation_geometry IS 'yyy Situation of node. Decisive reference point for sewer network simulation  (In der Regel Lage des Pickellochs oder Lage des Trockenwetterauslauf) / Lage des Knotens, massgebender Bezugspunkt für die Kanalnetzberechnung. (In der Regel Lage des Pickelloc';
 -------
-CREATE TABLE qgep.od_reach
+CREATE TABLE qgep.od_prank_weir
 (
    obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_reach_obj_id PRIMARY KEY (obj_id)
+   CONSTRAINT pkey_qgep_od_prank_weir_obj_id PRIMARY KEY (obj_id)
 )
 WITH (
    OIDS = False
 );
-CREATE INDEX in_od_reach_obj_id ON qgep.od_reach USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_reach_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_reach ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_reach');
-COMMENT ON COLUMN qgep.od_reach.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_reach ADD COLUMN coefficient_of_friction  smallint ;
-COMMENT ON COLUMN qgep.od_reach.coefficient_of_friction IS 'yyy http://www.linguee.com/english-german/search?source=auto&query=reibungsbeiwert / Hydraulische Kenngrösse zur Beschreibung der Beschaffenheit der Kanalwandung. Beiwert für die Formeln nach Manning-Strickler (K oder kstr) / Constante de rugosité selon M';
- ALTER TABLE qgep.od_reach ADD COLUMN elevation_determination  integer ;
-COMMENT ON COLUMN qgep.od_reach.elevation_determination IS 'y.';
- ALTER TABLE qgep.od_reach ADD COLUMN horizontal_positioning  integer ;
-COMMENT ON COLUMN qgep.od_reach.horizontal_positioning IS 'yyy_Definiert die Lagegenauigkeit der Verlaufspunkte. / Definiert die Lagegenauigkeit der Verlaufspunkte. / Définit la précision de la détermination du tracé.';
- ALTER TABLE qgep.od_reach ADD COLUMN inside_coating  integer ;
-COMMENT ON COLUMN qgep.od_reach.inside_coating IS 'yyy_Schutz der Innenwände des Kanals / Schutz der Innenwände des Kanals / Protection de la paroi intérieur de la canalisation';
- ALTER TABLE qgep.od_reach ADD COLUMN length_effective  decimal(5,2) ;
-COMMENT ON COLUMN qgep.od_reach.length_effective IS 'yyy_Tatsächliche schräge Länge (d.h. nicht in horizontale Ebene projiziert)  inklusive Kanalkrümmungen / Tatsächliche schräge Länge (d.h. nicht in horizontale Ebene projiziert)  inklusive Kanalkrümmungen / Longueur effective (non projetée) incluant les pa';
- ALTER TABLE qgep.od_reach ADD COLUMN material  integer ;
-COMMENT ON COLUMN qgep.od_reach.material IS 'Material of reach / pipe / Rohrmaterial / Matériau du tuyau';
- ALTER TABLE qgep.od_reach ADD COLUMN max_height_profile  smallint ;
-COMMENT ON COLUMN qgep.od_reach.max_height_profile IS 'Maximal height (inside) of profile / Maximale Innenhöhe des Profils / Hauteur intérieure maximale du profil';
- ALTER TABLE qgep.od_reach ADD COLUMN progression  geometry ;
-COMMENT ON COLUMN qgep.od_reach.progression IS 'yyy_Anfangs-, Knick- und Endpunkte der Leitung / Anfangs-, Knick- und Endpunkte der Leitung / Points de départ, intermédiaires et d’arrivée de la conduite.';
-SELECT AddGeometryColumn('qgep', 'od_reach', 'progression3d_geometry', 21781, 'LINESTRING', 2);
-CREATE INDEX in_qgep_od_reach_progression3d_geometry ON qgep.od_reach USING gist (progression3d_geometry );
-COMMENT ON COLUMN qgep.od_reach.progression3d_geometry IS 'yy_Reihenfolge von Punkten die den genauen Verlauf eines Kanals beschreiben, insbesondere dann, wenn keine direkte Verbindung zwischen zwei Schächten. / Reihenfolge von Punkten (3D Koordinaten) die den genauen Verlauf eines Kanals beschreiben, insbesonder';
- ALTER TABLE qgep.od_reach ADD COLUMN slope_building_plan  smallint ;
-COMMENT ON COLUMN qgep.od_reach.slope_building_plan IS 'yyy_Auf dem alten Plan eingezeichnetes Plangefälle. Nicht kontrolliert im Feld. Kann nicht für die hydraulische Berechnungen übernommen werden. Für Liegenschaftsentwässerung und Meliorationsleitungen. Darstellung als z.B. 3.5%oP auf Plänen. / Auf dem alte';
- ALTER TABLE qgep.od_reach ADD COLUMN wall_roughness  decimal(3,2) ;
-COMMENT ON COLUMN qgep.od_reach.wall_roughness IS 'yyy Hydraulische Kenngrösse zur Beschreibung der Beschaffenheit der Kanalwandung. Beiwert für die Formeln nach Prandtl-Colebrook (ks oder kb) / Hydraulische Kenngrösse zur Beschreibung der Beschaffenheit der Kanalwandung. Beiwert für die Formeln nach Pran';
--------
-CREATE TABLE qgep.od_pump
-(
-   obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_pump_obj_id PRIMARY KEY (obj_id)
-)
-WITH (
-   OIDS = False
-);
-CREATE INDEX in_od_pump_obj_id ON qgep.od_pump USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_pump_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_pump ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_pump');
-COMMENT ON COLUMN qgep.od_pump.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_pump ADD COLUMN aggregate_number  smallint ;
-COMMENT ON COLUMN qgep.od_pump.aggregate_number IS 'Nt';
- ALTER TABLE qgep.od_pump ADD COLUMN contruction_type  integer ;
-COMMENT ON COLUMN qgep.od_pump.contruction_type IS 'Types of pumpes / Pumpenarten / Types de pompe';
- ALTER TABLE qgep.od_pump ADD COLUMN operating_point  decimal(7,2) ;
-COMMENT ON COLUMN qgep.od_pump.operating_point IS 'Flow for pumps with fixed operating point / Fördermenge für Pumpen mit fixem Arbeitspunkt / Débit refoulé par la pompe avec point de travail fixe';
- ALTER TABLE qgep.od_pump ADD COLUMN placement_of_actuation  integer ;
-COMMENT ON COLUMN qgep.od_pump.placement_of_actuation IS 'Type of placement of the actuation / Art der Aufstellung des Motors / Genre de montage';
- ALTER TABLE qgep.od_pump ADD COLUMN placement_of_pump  integer ;
-COMMENT ON COLUMN qgep.od_pump.placement_of_pump IS 'Type of placement of the pomp / Art der Aufstellung der Pumpe / Genre de montage de la pompe';
- ALTER TABLE qgep.od_pump ADD COLUMN pump_characteristics  integer ;
-COMMENT ON COLUMN qgep.od_pump.pump_characteristics IS 'yyy_Bei speziellen Betriebsarten ist die Funktion separat zu dokumentieren und der Stammkarte beizulegen. / Bei speziellen Betriebsarten ist die Funktion separat zu dokumentieren und der Stammkarte beizulegen. / Pour de régime de fonctionnement spéciaux, ';
- ALTER TABLE qgep.od_pump ADD COLUMN start_level  decimal(4,3) ;
-COMMENT ON COLUMN qgep.od_pump.start_level IS 'yl';
- ALTER TABLE qgep.od_pump ADD COLUMN stop_level  decimal(4,3) ;
-COMMENT ON COLUMN qgep.od_pump.stop_level IS 'yp';
+CREATE INDEX in_od_prank_weir_obj_id ON qgep.od_prank_weir USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_prank_weir_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_prank_weir ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_prank_weir');
+COMMENT ON COLUMN qgep.od_prank_weir.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_prank_weir ADD COLUMN hydraulic_overflow_length  decimal(5,2) ;
+COMMENT ON COLUMN qgep.od_prank_weir.hydraulic_overflow_length IS 'yyy_Hydraulisch wirksame Wehrlänge / Hydraulisch wirksame Wehrlänge / Longueur du déversoir hydrauliquement active';
+ ALTER TABLE qgep.od_prank_weir ADD COLUMN level_max  decimal(4,3) ;
+COMMENT ON COLUMN qgep.od_prank_weir.level_max IS 'yyy_Höhe des höchsten Punktes der Überfallkante / Höhe des höchsten Punktes der Überfallkante / Niveau max. de la crête déversante';
+ ALTER TABLE qgep.od_prank_weir ADD COLUMN level_min  decimal(4,3) ;
+COMMENT ON COLUMN qgep.od_prank_weir.level_min IS 'yyy_Höhe des tiefsten Punktes der Überfallkante / Höhe des tiefsten Punktes der Überfallkante / Niveau min. de la crête déversante';
+ ALTER TABLE qgep.od_prank_weir ADD COLUMN weir_edge  integer ;
+COMMENT ON COLUMN qgep.od_prank_weir.weir_edge IS 'yyy_Ausbildung der Überfallkante / Ausbildung der Überfallkante / Forme de la crête';
 -------
 CREATE TABLE qgep.od_leapingweir
 (
@@ -2253,50 +2412,36 @@ COMMENT ON COLUMN qgep.od_leapingweir.opening_shape IS 'Sd';
  ALTER TABLE qgep.od_leapingweir ADD COLUMN width  decimal(5,2) ;
 COMMENT ON COLUMN qgep.od_leapingweir.width IS 'yt';
 -------
-CREATE TABLE qgep.od_prank_weir
+CREATE TABLE qgep.od_pump
 (
    obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_prank_weir_obj_id PRIMARY KEY (obj_id)
+   CONSTRAINT pkey_qgep_od_pump_obj_id PRIMARY KEY (obj_id)
 )
 WITH (
    OIDS = False
 );
-CREATE INDEX in_od_prank_weir_obj_id ON qgep.od_prank_weir USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_prank_weir_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_prank_weir ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_prank_weir');
-COMMENT ON COLUMN qgep.od_prank_weir.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_prank_weir ADD COLUMN hydraulic_overflow_length  decimal(5,2) ;
-COMMENT ON COLUMN qgep.od_prank_weir.hydraulic_overflow_length IS 'yyy_Hydraulisch wirksame Wehrlänge / Hydraulisch wirksame Wehrlänge / Longueur du déversoir hydrauliquement active';
- ALTER TABLE qgep.od_prank_weir ADD COLUMN max_level  decimal(4,3) ;
-COMMENT ON COLUMN qgep.od_prank_weir.max_level IS 'yyy_Höhe des höchsten Punktes der Überfallkante / Höhe des höchsten Punktes der Überfallkante / Niveau max. de la crête déversante';
- ALTER TABLE qgep.od_prank_weir ADD COLUMN min_level  decimal(4,3) ;
-COMMENT ON COLUMN qgep.od_prank_weir.min_level IS 'yyy_Höhe des tiefsten Punktes der Überfallkante / Höhe des tiefsten Punktes der Überfallkante / Niveau min. de la crête déversante';
- ALTER TABLE qgep.od_prank_weir ADD COLUMN weir_edge  integer ;
-COMMENT ON COLUMN qgep.od_prank_weir.weir_edge IS 'yyy_Ausbildung der Überfallkante / Ausbildung der Überfallkante / Forme de la crête';
- ALTER TABLE qgep.od_prank_weir ADD COLUMN weir_sill_number  integer ;
-COMMENT ON COLUMN qgep.od_prank_weir.weir_sill_number IS 'yyy_Anordnung der Überfallkante / Anordnung der Überfallkante / Disposition des parois déversantes';
--------
-CREATE TABLE qgep.od_individual_surface
-(
-   obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_individual_surface_obj_id PRIMARY KEY (obj_id)
-)
-WITH (
-   OIDS = False
-);
-CREATE INDEX in_od_individual_surface_obj_id ON qgep.od_individual_surface USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_individual_surface_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_individual_surface ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_individual_surface');
-COMMENT ON COLUMN qgep.od_individual_surface.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_individual_surface ADD COLUMN function  integer ;
-COMMENT ON COLUMN qgep.od_individual_surface.function IS 'Te';
- ALTER TABLE qgep.od_individual_surface ADD COLUMN pavement  integer ;
-COMMENT ON COLUMN qgep.od_individual_surface.pavement IS 'Type of pavement / Art der Befestigung / Genre de couverture du sol';
-SELECT AddGeometryColumn('qgep', 'od_individual_surface', 'perimeter_geometry', 21781, 'POLYGON', 2);
-CREATE INDEX in_qgep_od_individual_surface_perimeter_geometry ON qgep.od_individual_surface USING gist (perimeter_geometry );
-COMMENT ON COLUMN qgep.od_individual_surface.perimeter_geometry IS 'Boundary points of the perimeter / Begrenzungspunkte der Fläche / Points de délimitation de la surface';
- ALTER TABLE qgep.od_individual_surface ADD COLUMN slope  smallint ;
-COMMENT ON COLUMN qgep.od_individual_surface.slope IS 'yyy_Mittlere Neigung der Oberfläche / Mittlere Neigung der Oberfläche / Pente moyenne de la surface';
+CREATE INDEX in_od_pump_obj_id ON qgep.od_pump USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_pump_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_pump ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_pump');
+COMMENT ON COLUMN qgep.od_pump.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_pump ADD COLUMN contruction_type  integer ;
+COMMENT ON COLUMN qgep.od_pump.contruction_type IS 'Types of pumps / Pumpenarten / Types de pompe';
+ ALTER TABLE qgep.od_pump ADD COLUMN operating_point  decimal(7,2) ;
+COMMENT ON COLUMN qgep.od_pump.operating_point IS 'Flow for pumps with fixed operating point / Fördermenge für Pumpen mit fixem Arbeitspunkt / Débit refoulé par la pompe avec point de travail fixe';
+ ALTER TABLE qgep.od_pump ADD COLUMN placement_of_actuation  integer ;
+COMMENT ON COLUMN qgep.od_pump.placement_of_actuation IS 'Type of placement of the actuation / Art der Aufstellung des Motors / Genre de montage';
+ ALTER TABLE qgep.od_pump ADD COLUMN placement_of_pump  integer ;
+COMMENT ON COLUMN qgep.od_pump.placement_of_pump IS 'Type of placement of the pomp / Art der Aufstellung der Pumpe / Genre de montage de la pompe';
+ ALTER TABLE qgep.od_pump ADD COLUMN pump_flow_max_single  decimal(5,3) ;
+COMMENT ON COLUMN qgep.od_pump.pump_flow_max_single IS 'yyy_Maximaler Förderstrom der Pumpen (einzeln als Bauwerkskomponente). Tritt in der Regel bei der minimalen Förderhöhe ein. / Maximaler Förderstrom der Pumpe (einzeln als Bauwerkskomponente). Tritt in der Regel bei der minimalen Förderhöhe ein. / Débit de';
+ ALTER TABLE qgep.od_pump ADD COLUMN pump_flow_min_single  decimal(5,3) ;
+COMMENT ON COLUMN qgep.od_pump.pump_flow_min_single IS 'yyy_Minimaler Förderstrom der Pumpe (einzeln als Bauwerkskomponente). Tritt in der Regel bei der maximalen Förderhöhe ein. / Minimaler Förderstrom der Pumpe (einzeln als Bauwerkskomponente). Tritt in der Regel bei der maximalen Förderhöhe ein. / Débit de ';
+ ALTER TABLE qgep.od_pump ADD COLUMN start_level  decimal(4,3) ;
+COMMENT ON COLUMN qgep.od_pump.start_level IS 'yl';
+ ALTER TABLE qgep.od_pump ADD COLUMN stop_level  decimal(4,3) ;
+COMMENT ON COLUMN qgep.od_pump.stop_level IS 'yp';
+ ALTER TABLE qgep.od_pump ADD COLUMN usage_current  integer ;
+COMMENT ON COLUMN qgep.od_pump.usage_current IS 'ye';
 -------
 CREATE TABLE qgep.od_building
 (
@@ -2314,30 +2459,34 @@ COMMENT ON COLUMN qgep.od_building.obj_id IS 'INTERLIS STANDARD OID (with Postfi
 COMMENT ON COLUMN qgep.od_building.house_number IS 'House number based on cadastral register / Hausnummer gemäss Grundbuch / Numéro de bâtiment selon le registre foncier';
  ALTER TABLE qgep.od_building ADD COLUMN location_name  varchar(50) ;
 COMMENT ON COLUMN qgep.od_building.location_name IS 'Street name or name of the location / Strassenname oder Ortsbezeichnung / Nom de la route ou du lieu';
-SELECT AddGeometryColumn('qgep', 'od_building', 'perimeter_geometry', 21781, 'POLYGON', 2);
+SELECT AddGeometryColumn('qgep', 'od_building', 'perimeter_geometry', 21781, 'POLYGON', 2, true);
 CREATE INDEX in_qgep_od_building_perimeter_geometry ON qgep.od_building USING gist (perimeter_geometry );
 COMMENT ON COLUMN qgep.od_building.perimeter_geometry IS 'Boundary points of the perimeter / Begrenzungspunkte der Fläche / Points de délimitation de la surface';
-SELECT AddGeometryColumn('qgep', 'od_building', 'reference_point_geometry', 21781, 'POINT', 2);
+SELECT AddGeometryColumn('qgep', 'od_building', 'reference_point_geometry', 21781, 'POINT', 2, true);
 CREATE INDEX in_qgep_od_building_reference_point_geometry ON qgep.od_building USING gist (reference_point_geometry );
 COMMENT ON COLUMN qgep.od_building.reference_point_geometry IS 'Ne';
 -------
-CREATE TABLE qgep.od_reservoir
+CREATE TABLE qgep.od_individual_surface
 (
    obj_id  varchar(16) NOT NULL,
-   CONSTRAINT pkey_qgep_od_reservoir_obj_id PRIMARY KEY (obj_id)
+   CONSTRAINT pkey_qgep_od_individual_surface_obj_id PRIMARY KEY (obj_id)
 )
 WITH (
    OIDS = False
 );
-CREATE INDEX in_od_reservoir_obj_id ON qgep.od_reservoir USING btree (obj_id);
-CREATE SEQUENCE qgep.seq_od_reservoir_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE qgep.od_reservoir ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_reservoir');
-COMMENT ON COLUMN qgep.od_reservoir.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_reservoir ADD COLUMN location_name  varchar(50) ;
-COMMENT ON COLUMN qgep.od_reservoir.location_name IS 'Street name or name of the location / Strassenname oder Ortsbezeichnung / Nom de la route ou du lieu';
-SELECT AddGeometryColumn('qgep', 'od_reservoir', 'situation_geometry', 21781, 'POINT', 2);
-CREATE INDEX in_qgep_od_reservoir_situation_geometry ON qgep.od_reservoir USING gist (situation_geometry );
-COMMENT ON COLUMN qgep.od_reservoir.situation_geometry IS 'National position coordinates (East, North) / Landeskoordinate Ost/Nord / Coordonnées nationales Est/Nord';
+CREATE INDEX in_od_individual_surface_obj_id ON qgep.od_individual_surface USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_individual_surface_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_individual_surface ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_individual_surface');
+COMMENT ON COLUMN qgep.od_individual_surface.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_individual_surface ADD COLUMN function  integer ;
+COMMENT ON COLUMN qgep.od_individual_surface.function IS 'Te';
+ ALTER TABLE qgep.od_individual_surface ADD COLUMN pavement  integer ;
+COMMENT ON COLUMN qgep.od_individual_surface.pavement IS 'Type of pavement / Art der Befestigung / Genre de couverture du sol';
+SELECT AddGeometryColumn('qgep', 'od_individual_surface', 'perimeter_geometry', 21781, 'POLYGON', 2, true);
+CREATE INDEX in_qgep_od_individual_surface_perimeter_geometry ON qgep.od_individual_surface USING gist (perimeter_geometry );
+COMMENT ON COLUMN qgep.od_individual_surface.perimeter_geometry IS 'Boundary points of the perimeter / Begrenzungspunkte der Fläche / Points de délimitation de la surface';
+ ALTER TABLE qgep.od_individual_surface ADD COLUMN slope  smallint ;
+COMMENT ON COLUMN qgep.od_individual_surface.slope IS 'yyy_Mittlere Neigung der Oberfläche / Mittlere Neigung der Oberfläche / Pente moyenne de la surface';
 -------
 CREATE TABLE qgep.od_fountain
 (
@@ -2353,9 +2502,27 @@ CREATE SEQUENCE qgep.seq_od_fountain_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 
 COMMENT ON COLUMN qgep.od_fountain.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
  ALTER TABLE qgep.od_fountain ADD COLUMN location_name  varchar(50) ;
 COMMENT ON COLUMN qgep.od_fountain.location_name IS 'Street name or name of the location / Strassenname oder Ortsbezeichnung / Nom de la route ou du lieu';
-SELECT AddGeometryColumn('qgep', 'od_fountain', 'situation_geometry', 21781, 'POINT', 2);
+SELECT AddGeometryColumn('qgep', 'od_fountain', 'situation_geometry', 21781, 'POINT', 2, true);
 CREATE INDEX in_qgep_od_fountain_situation_geometry ON qgep.od_fountain USING gist (situation_geometry );
 COMMENT ON COLUMN qgep.od_fountain.situation_geometry IS 'National position coordinates (East, North) / Landeskoordinate Ost/Nord / Coordonnées nationales Est/Nord';
+-------
+CREATE TABLE qgep.od_reservoir
+(
+   obj_id  varchar(16) NOT NULL,
+   CONSTRAINT pkey_qgep_od_reservoir_obj_id PRIMARY KEY (obj_id)
+)
+WITH (
+   OIDS = False
+);
+CREATE INDEX in_od_reservoir_obj_id ON qgep.od_reservoir USING btree (obj_id);
+CREATE SEQUENCE qgep.seq_od_reservoir_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
+ ALTER TABLE qgep.od_reservoir ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_reservoir');
+COMMENT ON COLUMN qgep.od_reservoir.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
+ ALTER TABLE qgep.od_reservoir ADD COLUMN location_name  varchar(50) ;
+COMMENT ON COLUMN qgep.od_reservoir.location_name IS 'Street name or name of the location / Strassenname oder Ortsbezeichnung / Nom de la route ou du lieu';
+SELECT AddGeometryColumn('qgep', 'od_reservoir', 'situation_geometry', 21781, 'POINT', 2, true);
+CREATE INDEX in_qgep_od_reservoir_situation_geometry ON qgep.od_reservoir USING gist (situation_geometry );
+COMMENT ON COLUMN qgep.od_reservoir.situation_geometry IS 'National position coordinates (East, North) / Landeskoordinate Ost/Nord / Coordonnées nationales Est/Nord';
 ------------ Relationships and Value Tables ----------- 
 CREATE TABLE qgep.vl_text_map_type
 (
@@ -2367,17 +2534,17 @@ abbr_en character varying(3),
 abbr_de character varying(3),
 abbr_fr character varying(3),
 active boolean,
-CONSTRAINT pkey_qgep_vl_TEXT_map_type_code PRIMARY KEY (code)
+CONSTRAINT pkey_qgep_vl_text_map_type_code PRIMARY KEY (code)
 )
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_text_map_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5555,'yyy_Leitungskataster','Leitungskataster','cadastre_des_conduites_souterraines', '', '', '', 'true');
+ INSERT INTO qgep.vl_text_map_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5555,'network_asset_register','Leitungskataster','cadastre_des_conduites_souterraines', '', '', '', 'true');
  INSERT INTO qgep.vl_text_map_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5557,'overview_map','Uebersichtsplan','plan_d_ensemble', '', 'UEP', '', 'true');
- INSERT INTO qgep.vl_text_map_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5556,'yyy_Werkplan','Werkplan','plan_de_reseau', '', '', '', 'true');
--- ALTER TABLE qgep.od_text ADD CONSTRAINT fkey_vl_TEXT_map_type FOREIGN KEY (map_type)
--- REFERENCES qgep.vl_text_map_type (code) MATCH SIMPLE 
--- ON UPDATE RESTRICT ON DELETE RESTRICT;
+ INSERT INTO qgep.vl_text_map_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5556,'work_plan','Werkplan','plan_de_reseau', '', '', '', 'true');
+ --ALTER TABLE qgep.od_text ADD CONSTRAINT fkey_vl_text_map_type FOREIGN KEY (map_type)
+ --REFERENCES qgep.vl_text_map_type (code) MATCH SIMPLE 
+ --ON UPDATE RESTRICT ON DELETE RESTRICT;
 CREATE TABLE qgep.vl_text_texthali
 (
 code integer NOT NULL,
@@ -2388,7 +2555,7 @@ abbr_en character varying(3),
 abbr_de character varying(3),
 abbr_fr character varying(3),
 active boolean,
-CONSTRAINT pkey_qgep_vl_TEXT_texthali_code PRIMARY KEY (code)
+CONSTRAINT pkey_qgep_vl_text_texthali_code PRIMARY KEY (code)
 )
 WITH (
    OIDS = False
@@ -2396,9 +2563,9 @@ WITH (
  INSERT INTO qgep.vl_text_texthali (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5560,'center','Center','CENTER', '', '', '', 'true');
  INSERT INTO qgep.vl_text_texthali (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5561,'left','Left','LEFT', '', '', '', 'true');
  INSERT INTO qgep.vl_text_texthali (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5562,'right','Right','RIGHT', '', '', '', 'true');
--- ALTER TABLE qgep.od_text ADD CONSTRAINT fkey_vl_TEXT_texthali FOREIGN KEY (texthali)
--- REFERENCES qgep.vl_text_texthali (code) MATCH SIMPLE 
--- ON UPDATE RESTRICT ON DELETE RESTRICT;
+ --ALTER TABLE qgep.od_text ADD CONSTRAINT fkey_vl_text_texthali FOREIGN KEY (texthali)
+ --REFERENCES qgep.vl_text_texthali (code) MATCH SIMPLE 
+ --ON UPDATE RESTRICT ON DELETE RESTRICT;
 CREATE TABLE qgep.vl_text_textvali
 (
 code integer NOT NULL,
@@ -2409,7 +2576,7 @@ abbr_en character varying(3),
 abbr_de character varying(3),
 abbr_fr character varying(3),
 active boolean,
-CONSTRAINT pkey_qgep_vl_TEXT_textvali_code PRIMARY KEY (code)
+CONSTRAINT pkey_qgep_vl_text_textvali_code PRIMARY KEY (code)
 )
 WITH (
    OIDS = False
@@ -2419,9 +2586,9 @@ WITH (
  INSERT INTO qgep.vl_text_textvali (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5566,'cap','Cap','CAP', '', '', '', 'true');
  INSERT INTO qgep.vl_text_textvali (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5567,'half','Half','HALF', '', '', '', 'true');
  INSERT INTO qgep.vl_text_textvali (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5565,'top','Top','TOP', '', '', '', 'true');
--- ALTER TABLE qgep.od_text ADD CONSTRAINT fkey_vl_TEXT_textvali FOREIGN KEY (textvali)
--- REFERENCES qgep.vl_text_textvali (code) MATCH SIMPLE 
--- ON UPDATE RESTRICT ON DELETE RESTRICT;
+ --ALTER TABLE qgep.od_text ADD CONSTRAINT fkey_vl_text_textvali FOREIGN KEY (textvali)
+ --REFERENCES qgep.vl_text_textvali (code) MATCH SIMPLE 
+ --ON UPDATE RESTRICT ON DELETE RESTRICT;
 CREATE TABLE qgep.vl_mutation_kind
 (
 code integer NOT NULL,
@@ -2443,8 +2610,123 @@ WITH (
  ALTER TABLE qgep.od_mutation ADD CONSTRAINT fkey_vl_mutation_kind FOREIGN KEY (kind)
  REFERENCES qgep.vl_mutation_kind (code) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_wwtp_energy_use ADD COLUMN fs_waste_water_treatment_plant varchar (16);
-ALTER TABLE qgep.od_wwtp_energy_use ADD CONSTRAINT rel_wwtp_energy_use_waste_water_treatment_plant FOREIGN KEY (fs_waste_water_treatment_plant) REFERENCES qgep.od_waste_water_treatment_plant(obj_id);
+CREATE TABLE qgep.vl_hydraulic_characteristic_data_is_overflowing
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_hydraulic_characteristic_data_is_overflowing_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_hydraulic_characteristic_data_is_overflowing (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5774,'yes','ja','oui', '', '', '', 'true');
+ INSERT INTO qgep.vl_hydraulic_characteristic_data_is_overflowing (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5775,'no','nein','non', '', '', '', 'true');
+ INSERT INTO qgep.vl_hydraulic_characteristic_data_is_overflowing (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5778,'unknown','unbekannt','inconnu', '', '', '', 'true');
+ ALTER TABLE qgep.od_hydraulic_characteristic_data ADD CONSTRAINT fkey_vl_hydraulic_characteristic_data_is_overflowing FOREIGN KEY (is_overflowing)
+ REFERENCES qgep.vl_hydraulic_characteristic_data_is_overflowing (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
+CREATE TABLE qgep.vl_hydraulic_characteristic_data_main_weir_kind
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_hydraulic_characteristic_data_main_weir_kind_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_hydraulic_characteristic_data_main_weir_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6422,'leapingweir','Leapingwehr','LEAPING_WEIR', '', '', '', 'true');
+ INSERT INTO qgep.vl_hydraulic_characteristic_data_main_weir_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6420,'spillway_raised','Streichwehr_hochgezogen','deversoir_lateral_a_seuil_sureleve', '', '', '', 'true');
+ INSERT INTO qgep.vl_hydraulic_characteristic_data_main_weir_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6421,'spillway_low','Streichwehr_niedrig','deversoir_lateral_a_seuil_abaisse', '', '', '', 'true');
+ ALTER TABLE qgep.od_hydraulic_characteristic_data ADD CONSTRAINT fkey_vl_hydraulic_characteristic_data_main_weir_kind FOREIGN KEY (main_weir_kind)
+ REFERENCES qgep.vl_hydraulic_characteristic_data_main_weir_kind (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
+CREATE TABLE qgep.vl_hydraulic_characteristic_data_pump_characteristics
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_hydraulic_characteristic_data_pump_characteristics_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_hydraulic_characteristic_data_pump_characteristics (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6374,'alternating','alternierend','alterne', '', '', '', 'true');
+ INSERT INTO qgep.vl_hydraulic_characteristic_data_pump_characteristics (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6375,'other','andere','autres', '', '', '', 'true');
+ INSERT INTO qgep.vl_hydraulic_characteristic_data_pump_characteristics (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6376,'single','einzeln','individuel', '', '', '', 'true');
+ INSERT INTO qgep.vl_hydraulic_characteristic_data_pump_characteristics (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6377,'parallel','parallel','parallele', '', '', '', 'true');
+ INSERT INTO qgep.vl_hydraulic_characteristic_data_pump_characteristics (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6378,'unknown','unbekannt','inconnu', '', '', '', 'true');
+ ALTER TABLE qgep.od_hydraulic_characteristic_data ADD CONSTRAINT fkey_vl_hydraulic_characteristic_data_pump_characteristics FOREIGN KEY (pump_characteristics)
+ REFERENCES qgep.vl_hydraulic_characteristic_data_pump_characteristics (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
+CREATE TABLE qgep.vl_hydraulic_characteristic_data_pump_usage_current
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_hydraulic_characteristic_data_pump_usage_current_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_hydraulic_characteristic_data_pump_usage_current (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6361,'other','andere','autres', '', '', '', 'true');
+ INSERT INTO qgep.vl_hydraulic_characteristic_data_pump_usage_current (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6362,'creek_water','Bachwasser','eaux_cours_d_eau', '', '', '', 'true');
+ INSERT INTO qgep.vl_hydraulic_characteristic_data_pump_usage_current (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6363,'discharged_combined_wastewater','entlastetes_Mischabwasser','eaux_mixtes_deversees', '', '', '', 'true');
+ INSERT INTO qgep.vl_hydraulic_characteristic_data_pump_usage_current (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6364,'industrial_wastewater','Industrieabwasser','eaux_industrielles', '', 'CW', 'EUC', 'true');
+ INSERT INTO qgep.vl_hydraulic_characteristic_data_pump_usage_current (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6365,'combined_wastewater','Mischabwasser','eaux_mixtes', '', 'MW', 'EUM', 'true');
+ INSERT INTO qgep.vl_hydraulic_characteristic_data_pump_usage_current (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6366,'rain_wastewater','Regenabwasser','eaux_pluviales', '', 'RW', 'EUP', 'true');
+ INSERT INTO qgep.vl_hydraulic_characteristic_data_pump_usage_current (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6367,'clean_wastewater','Reinabwasser','eaux_claires', '', 'KW', 'EUR', 'true');
+ INSERT INTO qgep.vl_hydraulic_characteristic_data_pump_usage_current (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6368,'wastewater','Schmutzabwasser','eaux_usees', '', 'SW', 'EU', 'true');
+ INSERT INTO qgep.vl_hydraulic_characteristic_data_pump_usage_current (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6369,'unknown','unbekannt','inconnu', '', '', '', 'true');
+ ALTER TABLE qgep.od_hydraulic_characteristic_data ADD CONSTRAINT fkey_vl_hydraulic_characteristic_data_pump_usage_current FOREIGN KEY (pump_usage_current)
+ REFERENCES qgep.vl_hydraulic_characteristic_data_pump_usage_current (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
+CREATE TABLE qgep.vl_hydraulic_characteristic_data_status
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_hydraulic_characteristic_data_status_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_hydraulic_characteristic_data_status (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6371,'planned','geplant','prevu', '', '', '', 'true');
+ INSERT INTO qgep.vl_hydraulic_characteristic_data_status (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6372,'current','Ist','actuel', '', '', '', 'true');
+ INSERT INTO qgep.vl_hydraulic_characteristic_data_status (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6373,'current_optimized','Ist_optimiert','actuel_opt', '', '', '', 'true');
+ ALTER TABLE qgep.od_hydraulic_characteristic_data ADD CONSTRAINT fkey_vl_hydraulic_characteristic_data_status FOREIGN KEY (status)
+ REFERENCES qgep.vl_hydraulic_characteristic_data_status (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
+ALTER TABLE qgep.od_hydraulic_characteristic_data ADD COLUMN fk_wastewater_node varchar (16);
+ALTER TABLE qgep.od_hydraulic_characteristic_data ADD CONSTRAINT rel_hydraulic_characteristic_data_wastewater_node FOREIGN KEY (fk_wastewater_node) REFERENCES qgep.od_wastewater_node(obj_id);
+ALTER TABLE qgep.od_hydraulic_characteristic_data ADD COLUMN fk_overflow_characteristic varchar (16);
+ALTER TABLE qgep.od_hydraulic_characteristic_data ADD CONSTRAINT rel_hydraulic_characteristic_data_overflow_characteristic FOREIGN KEY (fk_overflow_characteristic) REFERENCES qgep.od_overflow_characteristic(obj_id);
 CREATE TABLE qgep.vl_waste_water_treatment_kind
 (
 code integer NOT NULL,
@@ -2469,10 +2751,140 @@ WITH (
  ALTER TABLE qgep.od_waste_water_treatment ADD CONSTRAINT fkey_vl_waste_water_treatment_kind FOREIGN KEY (kind)
  REFERENCES qgep.vl_waste_water_treatment_kind (code) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_waste_water_treatment ADD COLUMN fs_waste_water_treatment_plant varchar (16);
-ALTER TABLE qgep.od_waste_water_treatment ADD CONSTRAINT rel_waste_water_treatment_waste_water_treatment_plant FOREIGN KEY (fs_waste_water_treatment_plant) REFERENCES qgep.od_waste_water_treatment_plant(obj_id);
-ALTER TABLE qgep.od_sludge_treatment ADD COLUMN fs_waste_water_treatment_plant varchar (16);
-ALTER TABLE qgep.od_sludge_treatment ADD CONSTRAINT rel_sludge_treatment_waste_water_treatment_plant FOREIGN KEY (fs_waste_water_treatment_plant) REFERENCES qgep.od_waste_water_treatment_plant(obj_id);
+ALTER TABLE qgep.od_waste_water_treatment ADD COLUMN fk_waste_water_treatment_plant varchar (16);
+ALTER TABLE qgep.od_waste_water_treatment ADD CONSTRAINT rel_waste_water_treatment_waste_water_treatment_plant FOREIGN KEY (fk_waste_water_treatment_plant) REFERENCES qgep.od_waste_water_treatment_plant(obj_id);
+ALTER TABLE qgep.od_sludge_treatment ADD COLUMN fk_waste_water_treatment_plant varchar (16);
+ALTER TABLE qgep.od_sludge_treatment ADD CONSTRAINT rel_sludge_treatment_waste_water_treatment_plant FOREIGN KEY (fk_waste_water_treatment_plant) REFERENCES qgep.od_waste_water_treatment_plant(obj_id);
+ALTER TABLE qgep.od_wwtp_energy_use ADD COLUMN fk_waste_water_treatment_plant varchar (16);
+ALTER TABLE qgep.od_wwtp_energy_use ADD CONSTRAINT rel_wwtp_energy_use_waste_water_treatment_plant FOREIGN KEY (fk_waste_water_treatment_plant) REFERENCES qgep.od_waste_water_treatment_plant(obj_id);
+ALTER TABLE qgep.od_bathing_area ADD COLUMN fk_chute varchar (16);
+ALTER TABLE qgep.od_bathing_area ADD CONSTRAINT rel_bathing_area_chute FOREIGN KEY (fk_chute) REFERENCES qgep.od_surface_water_bodies(obj_id);
+ALTER TABLE qgep.od_fish_pass ADD COLUMN fk_water_control_structure varchar (16);
+ALTER TABLE qgep.od_fish_pass ADD CONSTRAINT rel_fish_pass_water_control_structure FOREIGN KEY (fk_water_control_structure) REFERENCES qgep.od_water_control_structure(obj_id);
+CREATE TABLE qgep.vl_water_catchment_kind
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_water_catchment_kind_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_water_catchment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (24,'process_water','Brauchwasser','eau_industrielle', '', '', '', 'true');
+ INSERT INTO qgep.vl_water_catchment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (25,'drinking_water','Trinkwasser','eau_potable', '', '', '', 'true');
+ INSERT INTO qgep.vl_water_catchment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3075,'unknown','unbekannt','inconnu', '', '', '', 'true');
+ ALTER TABLE qgep.od_water_catchment ADD CONSTRAINT fkey_vl_water_catchment_kind FOREIGN KEY (kind)
+ REFERENCES qgep.vl_water_catchment_kind (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
+ALTER TABLE qgep.od_water_catchment ADD COLUMN fk_aquifier varchar (16);
+ALTER TABLE qgep.od_water_catchment ADD CONSTRAINT rel_water_catchment_aquifier FOREIGN KEY (fk_aquifier) REFERENCES qgep.od_aquifier(obj_id);
+ALTER TABLE qgep.od_water_catchment ADD COLUMN fk_chute varchar (16);
+ALTER TABLE qgep.od_water_catchment ADD CONSTRAINT rel_water_catchment_chute FOREIGN KEY (fk_chute) REFERENCES qgep.od_surface_water_bodies(obj_id);
+ALTER TABLE qgep.od_water_control_structure ADD COLUMN fk_water_course_segment varchar (16);
+ALTER TABLE qgep.od_water_control_structure ADD CONSTRAINT rel_water_control_structure_water_course_segment FOREIGN KEY (fk_water_course_segment) REFERENCES qgep.od_water_course_segment(obj_id);
+CREATE TABLE qgep.vl_river_bed_control_grade_of_river
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_river_bed_control_grade_of_river_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_river_bed_control_grade_of_river (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (142,'none','keine','nul', '', '', '', 'true');
+ INSERT INTO qgep.vl_river_bed_control_grade_of_river (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2607,'moderate','maessig','moyen', '', '', '', 'true');
+ INSERT INTO qgep.vl_river_bed_control_grade_of_river (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2608,'heavily','stark','fort', '', '', '', 'true');
+ INSERT INTO qgep.vl_river_bed_control_grade_of_river (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2609,'predominantly','ueberwiegend','preponderant', '', '', '', 'true');
+ INSERT INTO qgep.vl_river_bed_control_grade_of_river (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3085,'unknown','unbekannt','inconnu', '', '', '', 'true');
+ INSERT INTO qgep.vl_river_bed_control_grade_of_river (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2606,'sporadic','vereinzelt','localise', '', '', '', 'true');
+ INSERT INTO qgep.vl_river_bed_control_grade_of_river (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2610,'complete','vollstaendig','total', '', '', '', 'true');
+ ALTER TABLE qgep.od_river_bed ADD CONSTRAINT fkey_vl_river_bed_control_grade_of_river FOREIGN KEY (control_grade_of_river)
+ REFERENCES qgep.vl_river_bed_control_grade_of_river (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
+CREATE TABLE qgep.vl_river_bed_kind
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_river_bed_kind_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_river_bed_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (290,'hard','hart','dur', '', '', '', 'true');
+ INSERT INTO qgep.vl_river_bed_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3089,'unknown','unbekannt','inconnu', '', '', '', 'true');
+ INSERT INTO qgep.vl_river_bed_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (289,'soft','weich','tendre', '', '', '', 'true');
+ ALTER TABLE qgep.od_river_bed ADD CONSTRAINT fkey_vl_river_bed_kind FOREIGN KEY (kind)
+ REFERENCES qgep.vl_river_bed_kind (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
+CREATE TABLE qgep.vl_river_bed_river_control_type
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_river_bed_river_control_type_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_river_bed_river_control_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3481,'other_impermeable','andere_dicht','autres_impermeables', '', '', '', 'true');
+ INSERT INTO qgep.vl_river_bed_river_control_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (338,'concrete_chequer_brick','Betongittersteine','briques_perforees_en_beton', '', '', '', 'true');
+ INSERT INTO qgep.vl_river_bed_river_control_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3479,'wood','Holz','bois', '', '', '', 'true');
+ INSERT INTO qgep.vl_river_bed_river_control_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3477,'no_control_structure','keine_Verbauung','aucun_amenagement', '', '', '', 'true');
+ INSERT INTO qgep.vl_river_bed_river_control_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3478,'rock_fill_or_loose_boulders','Steinschuettung_Blockwurf','pierres_naturelles', '', '', '', 'true');
+ INSERT INTO qgep.vl_river_bed_river_control_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3079,'unknown','unbekannt','inconnu', '', '', '', 'true');
+ ALTER TABLE qgep.od_river_bed ADD CONSTRAINT fkey_vl_river_bed_river_control_type FOREIGN KEY (river_control_type)
+ REFERENCES qgep.vl_river_bed_river_control_type (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
+ALTER TABLE qgep.od_river_bed ADD COLUMN fk_water_course_segment varchar (16);
+ALTER TABLE qgep.od_river_bed ADD CONSTRAINT rel_river_bed_water_course_segment FOREIGN KEY (fk_water_course_segment) REFERENCES qgep.od_water_course_segment(obj_id);
+CREATE TABLE qgep.vl_sector_water_body_kind
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_sector_water_body_kind_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_sector_water_body_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2657,'waterbody','Gewaesser','lac_ou_cours_d_eau', '', '', '', 'true');
+ INSERT INTO qgep.vl_sector_water_body_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2729,'parallel_section','ParallelerAbschnitt','troncon_parallele', '', '', '', 'true');
+ INSERT INTO qgep.vl_sector_water_body_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2728,'lake_traversal','Seetraverse','element_traversant_un_lac', '', '', '', 'true');
+ INSERT INTO qgep.vl_sector_water_body_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2656,'shore','Ufer','rives', '', '', '', 'true');
+ INSERT INTO qgep.vl_sector_water_body_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3054,'unknown','unbekannt','inconnu', '', '', '', 'true');
+ ALTER TABLE qgep.od_sector_water_body ADD CONSTRAINT fkey_vl_sector_water_body_kind FOREIGN KEY (kind)
+ REFERENCES qgep.vl_sector_water_body_kind (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
+ALTER TABLE qgep.od_sector_water_body ADD COLUMN fk_chute varchar (16);
+ALTER TABLE qgep.od_sector_water_body ADD CONSTRAINT rel_sector_water_body_chute FOREIGN KEY (fk_chute) REFERENCES qgep.od_surface_water_bodies(obj_id);
 CREATE TABLE qgep.vl_water_course_segment_algae_growth
 (
 code integer NOT NULL,
@@ -2713,7 +3125,7 @@ WITH (
    OIDS = False
 );
  INSERT INTO qgep.vl_water_course_segment_slope (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (291,'shallow_dipping','flach','plat', '', '', '', 'true');
- INSERT INTO qgep.vl_water_course_segment_slope (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (292,' moderate_slope','mittel','moyen', '', '', '', 'true');
+ INSERT INTO qgep.vl_water_course_segment_slope (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (292,'moderate_slope','mittel','moyen', '', '', '', 'true');
  INSERT INTO qgep.vl_water_course_segment_slope (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (293,'steep','steil','raide', '', '', '', 'true');
  INSERT INTO qgep.vl_water_course_segment_slope (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3019,'unknown','unbekannt','inconnu', '', '', '', 'true');
  ALTER TABLE qgep.od_water_course_segment ADD CONSTRAINT fkey_vl_water_course_segment_slope FOREIGN KEY (slope)
@@ -2784,136 +3196,8 @@ WITH (
  ALTER TABLE qgep.od_water_course_segment ADD CONSTRAINT fkey_vl_water_course_segment_width_variability FOREIGN KEY (width_variability)
  REFERENCES qgep.vl_water_course_segment_width_variability (code) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_water_course_segment ADD COLUMN fs_watercourse varchar (16);
-ALTER TABLE qgep.od_water_course_segment ADD CONSTRAINT rel_water_course_segment_watercourse FOREIGN KEY (fs_watercourse) REFERENCES qgep.od_river(obj_id);
-CREATE TABLE qgep.vl_water_catchment_kind
-(
-code integer NOT NULL,
-value_en character varying(50),
-value_de character varying(50),
-value_fr character varying(50),
-abbr_en character varying(3),
-abbr_de character varying(3),
-abbr_fr character varying(3),
-active boolean,
-CONSTRAINT pkey_qgep_vl_water_catchment_kind_code PRIMARY KEY (code)
-)
-WITH (
-   OIDS = False
-);
- INSERT INTO qgep.vl_water_catchment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (24,'process_water','Brauchwasser','eau_industrielle', '', '', '', 'true');
- INSERT INTO qgep.vl_water_catchment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (25,'drinking_water','Trinkwasser','eau_potable', '', '', '', 'true');
- INSERT INTO qgep.vl_water_catchment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3075,'unknown','unbekannt','inconnu', '', '', '', 'true');
- ALTER TABLE qgep.od_water_catchment ADD CONSTRAINT fkey_vl_water_catchment_kind FOREIGN KEY (kind)
- REFERENCES qgep.vl_water_catchment_kind (code) MATCH SIMPLE 
- ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_water_catchment ADD COLUMN fs_aquifier varchar (16);
-ALTER TABLE qgep.od_water_catchment ADD CONSTRAINT rel_water_catchment_aquifier FOREIGN KEY (fs_aquifier) REFERENCES qgep.od_aquifier(obj_id);
-ALTER TABLE qgep.od_water_catchment ADD COLUMN fs_chute varchar (16);
-ALTER TABLE qgep.od_water_catchment ADD CONSTRAINT rel_water_catchment_chute FOREIGN KEY (fs_chute) REFERENCES qgep.od_surface_water_bodies(obj_id);
-ALTER TABLE qgep.od_water_control_structure ADD COLUMN fs_water_course_segment varchar (16);
-ALTER TABLE qgep.od_water_control_structure ADD CONSTRAINT rel_water_control_structure_water_course_segment FOREIGN KEY (fs_water_course_segment) REFERENCES qgep.od_water_course_segment(obj_id);
-CREATE TABLE qgep.vl_sector_water_body_kind
-(
-code integer NOT NULL,
-value_en character varying(50),
-value_de character varying(50),
-value_fr character varying(50),
-abbr_en character varying(3),
-abbr_de character varying(3),
-abbr_fr character varying(3),
-active boolean,
-CONSTRAINT pkey_qgep_vl_sector_water_body_kind_code PRIMARY KEY (code)
-)
-WITH (
-   OIDS = False
-);
- INSERT INTO qgep.vl_sector_water_body_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2657,'waterbody','Gewaesser','lac_ou_cours_d_eau', '', '', '', 'true');
- INSERT INTO qgep.vl_sector_water_body_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2729,'parallel_section','ParallelerAbschnitt','troncon_parallele', '', '', '', 'true');
- INSERT INTO qgep.vl_sector_water_body_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2728,'lake_traversal','Seetraverse','element_traversant_un_lac', '', '', '', 'true');
- INSERT INTO qgep.vl_sector_water_body_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2656,'shore','Ufer','rives', '', '', '', 'true');
- INSERT INTO qgep.vl_sector_water_body_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3054,'unknown','unbekannt','inconnu', '', '', '', 'true');
- ALTER TABLE qgep.od_sector_water_body ADD CONSTRAINT fkey_vl_sector_water_body_kind FOREIGN KEY (kind)
- REFERENCES qgep.vl_sector_water_body_kind (code) MATCH SIMPLE 
- ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_sector_water_body ADD COLUMN fs_chute varchar (16);
-ALTER TABLE qgep.od_sector_water_body ADD CONSTRAINT rel_sector_water_body_chute FOREIGN KEY (fs_chute) REFERENCES qgep.od_surface_water_bodies(obj_id);
-ALTER TABLE qgep.od_fish_pass ADD COLUMN fs_water_control_structure varchar (16);
-ALTER TABLE qgep.od_fish_pass ADD CONSTRAINT rel_fish_pass_water_control_structure FOREIGN KEY (fs_water_control_structure) REFERENCES qgep.od_water_control_structure(obj_id);
-ALTER TABLE qgep.od_bathing_area ADD COLUMN fs_chute varchar (16);
-ALTER TABLE qgep.od_bathing_area ADD CONSTRAINT rel_bathing_area_chute FOREIGN KEY (fs_chute) REFERENCES qgep.od_surface_water_bodies(obj_id);
-CREATE TABLE qgep.vl_river_bed_control_grade_of_river
-(
-code integer NOT NULL,
-value_en character varying(50),
-value_de character varying(50),
-value_fr character varying(50),
-abbr_en character varying(3),
-abbr_de character varying(3),
-abbr_fr character varying(3),
-active boolean,
-CONSTRAINT pkey_qgep_vl_river_bed_control_grade_of_river_code PRIMARY KEY (code)
-)
-WITH (
-   OIDS = False
-);
- INSERT INTO qgep.vl_river_bed_control_grade_of_river (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (142,'none','keine','nul', '', '', '', 'true');
- INSERT INTO qgep.vl_river_bed_control_grade_of_river (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2607,'moderate','maessig','moyen', '', '', '', 'true');
- INSERT INTO qgep.vl_river_bed_control_grade_of_river (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2608,'heavily','stark','fort', '', '', '', 'true');
- INSERT INTO qgep.vl_river_bed_control_grade_of_river (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2609,'predominantly','ueberwiegend','preponderant', '', '', '', 'true');
- INSERT INTO qgep.vl_river_bed_control_grade_of_river (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3085,'unknown','unbekannt','inconnu', '', '', '', 'true');
- INSERT INTO qgep.vl_river_bed_control_grade_of_river (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2606,'sporadic','vereinzelt','localise', '', '', '', 'true');
- INSERT INTO qgep.vl_river_bed_control_grade_of_river (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2610,'complete','vollstaendig','total', '', '', '', 'true');
- ALTER TABLE qgep.od_river_bed ADD CONSTRAINT fkey_vl_river_bed_control_grade_of_river FOREIGN KEY (control_grade_of_river)
- REFERENCES qgep.vl_river_bed_control_grade_of_river (code) MATCH SIMPLE 
- ON UPDATE RESTRICT ON DELETE RESTRICT;
-CREATE TABLE qgep.vl_river_bed_kind
-(
-code integer NOT NULL,
-value_en character varying(50),
-value_de character varying(50),
-value_fr character varying(50),
-abbr_en character varying(3),
-abbr_de character varying(3),
-abbr_fr character varying(3),
-active boolean,
-CONSTRAINT pkey_qgep_vl_river_bed_kind_code PRIMARY KEY (code)
-)
-WITH (
-   OIDS = False
-);
- INSERT INTO qgep.vl_river_bed_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (290,'hard','hart','dur', '', '', '', 'true');
- INSERT INTO qgep.vl_river_bed_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3089,'unknown','unbekannt','inconnu', '', '', '', 'true');
- INSERT INTO qgep.vl_river_bed_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (289,'soft','weich','tendre', '', '', '', 'true');
- ALTER TABLE qgep.od_river_bed ADD CONSTRAINT fkey_vl_river_bed_kind FOREIGN KEY (kind)
- REFERENCES qgep.vl_river_bed_kind (code) MATCH SIMPLE 
- ON UPDATE RESTRICT ON DELETE RESTRICT;
-CREATE TABLE qgep.vl_river_bed_river_control_type
-(
-code integer NOT NULL,
-value_en character varying(50),
-value_de character varying(50),
-value_fr character varying(50),
-abbr_en character varying(3),
-abbr_de character varying(3),
-abbr_fr character varying(3),
-active boolean,
-CONSTRAINT pkey_qgep_vl_river_bed_river_control_type_code PRIMARY KEY (code)
-)
-WITH (
-   OIDS = False
-);
- INSERT INTO qgep.vl_river_bed_river_control_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3481,'other_impermeable','andere_dicht','autres_impermeables', '', '', '', 'true');
- INSERT INTO qgep.vl_river_bed_river_control_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (338,'concrete_chequer_brick','Betongittersteine','briques_perforees_en_beton', '', '', '', 'true');
- INSERT INTO qgep.vl_river_bed_river_control_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3479,'wood','Holz','bois', '', '', '', 'true');
- INSERT INTO qgep.vl_river_bed_river_control_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3477,'no_control_structure','keine_Verbauung','aucun_amenagement', '', '', '', 'true');
- INSERT INTO qgep.vl_river_bed_river_control_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3478,'rock_fill_or_loose_boulders','Steinschuettung_Blockwurf','pierres_naturelles', '', '', '', 'true');
- INSERT INTO qgep.vl_river_bed_river_control_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3079,'unknown','unbekannt','inconnu', '', '', '', 'true');
- ALTER TABLE qgep.od_river_bed ADD CONSTRAINT fkey_vl_river_bed_river_control_type FOREIGN KEY (river_control_type)
- REFERENCES qgep.vl_river_bed_river_control_type (code) MATCH SIMPLE 
- ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_river_bed ADD COLUMN fs_water_course_segment varchar (16);
-ALTER TABLE qgep.od_river_bed ADD CONSTRAINT rel_river_bed_water_course_segment FOREIGN KEY (fs_water_course_segment) REFERENCES qgep.od_water_course_segment(obj_id);
+ALTER TABLE qgep.od_water_course_segment ADD COLUMN fk_watercourse varchar (16);
+ALTER TABLE qgep.od_water_course_segment ADD CONSTRAINT rel_water_course_segment_watercourse FOREIGN KEY (fk_watercourse) REFERENCES qgep.od_river(obj_id);
 CREATE TABLE qgep.vl_river_bank_control_grade_of_river
 (
 code integer NOT NULL,
@@ -3053,63 +3337,8 @@ WITH (
  ALTER TABLE qgep.od_river_bank ADD CONSTRAINT fkey_vl_river_bank_vegetation FOREIGN KEY (vegetation)
  REFERENCES qgep.vl_river_bank_vegetation (code) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_river_bank ADD COLUMN fs_water_course_segment varchar (16);
-ALTER TABLE qgep.od_river_bank ADD CONSTRAINT rel_river_bank_water_course_segment FOREIGN KEY (fs_water_course_segment) REFERENCES qgep.od_water_course_segment(obj_id);
-ALTER TABLE qgep.od_hydr_geom_relation ADD COLUMN fs_hydr_geometry varchar (16);
-ALTER TABLE qgep.od_hydr_geom_relation ADD CONSTRAINT rel_hydr_geom_relation_hydr_geometry FOREIGN KEY (fs_hydr_geometry) REFERENCES qgep.od_hydr_geometry(obj_id);
-CREATE TABLE qgep.vl_mechanical_pretreatment_kind
-(
-code integer NOT NULL,
-value_en character varying(50),
-value_de character varying(50),
-value_fr character varying(50),
-abbr_en character varying(3),
-abbr_de character varying(3),
-abbr_fr character varying(3),
-active boolean,
-CONSTRAINT pkey_qgep_vl_mechanical_pretreatment_kind_code PRIMARY KEY (code)
-)
-WITH (
-   OIDS = False
-);
- INSERT INTO qgep.vl_mechanical_pretreatment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3317,'filter_bag','Filtersack','percolateur', '', '', '', 'true');
- INSERT INTO qgep.vl_mechanical_pretreatment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3319,'artificial_adsorber','KuenstlicherAdsorber','adsorbeur_artificiel', '', '', '', 'true');
- INSERT INTO qgep.vl_mechanical_pretreatment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3318,'yy_gravelfilled_drain_trench','MuldenRigolenSystem','systeme_cuvettes_rigoles', '', '', '', 'true');
- INSERT INTO qgep.vl_mechanical_pretreatment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3320,'slurry_collector','Schlammsammler','collecteur_de_boue', '', '', '', 'true');
- INSERT INTO qgep.vl_mechanical_pretreatment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3321,'floating_matter_separator','Schwimmstoffabscheider','separateur_materiaux_flottants', '', '', '', 'true');
- INSERT INTO qgep.vl_mechanical_pretreatment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3322,'unknown','unbekannt','inconnu', '', '', '', 'true');
- ALTER TABLE qgep.od_mechanical_pretreatment ADD CONSTRAINT fkey_vl_mechanical_pretreatment_kind FOREIGN KEY (kind)
- REFERENCES qgep.vl_mechanical_pretreatment_kind (code) MATCH SIMPLE 
- ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_mechanical_pretreatment ADD COLUMN fs_infiltration_installation varchar (16);
-ALTER TABLE qgep.od_mechanical_pretreatment ADD CONSTRAINT rel_mechanical_pretreatment_infiltration_installation FOREIGN KEY (fs_infiltration_installation) REFERENCES qgep.od_infiltration_installation(obj_id);
-ALTER TABLE qgep.od_mechanical_pretreatment ADD COLUMN fs_wastewater_structure varchar (16);
-ALTER TABLE qgep.od_mechanical_pretreatment ADD CONSTRAINT rel_mechanical_pretreatment_wastewater_structure FOREIGN KEY (fs_wastewater_structure) REFERENCES qgep.od_wastewater_structure(obj_id);
-ALTER TABLE qgep.od_hq_relation ADD COLUMN fs_overflow_characteristic varchar (16);
-ALTER TABLE qgep.od_hq_relation ADD CONSTRAINT rel_hq_relation_overflow_characteristic FOREIGN KEY (fs_overflow_characteristic) REFERENCES qgep.od_overflow_characteristic(obj_id);
-CREATE TABLE qgep.vl_structure_part_renovation_demand
-(
-code integer NOT NULL,
-value_en character varying(50),
-value_de character varying(50),
-value_fr character varying(50),
-abbr_en character varying(3),
-abbr_de character varying(3),
-abbr_fr character varying(3),
-active boolean,
-CONSTRAINT pkey_qgep_vl_structure_part_renovation_demand_code PRIMARY KEY (code)
-)
-WITH (
-   OIDS = False
-);
- INSERT INTO qgep.vl_structure_part_renovation_demand (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (138,'not_necessary','nicht_notwendig','pas_necessaire', 'NN', 'NN', 'PN', 'true');
- INSERT INTO qgep.vl_structure_part_renovation_demand (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (137,'necessary','notwendig','necessaire', 'N', 'N', 'N', 'true');
- INSERT INTO qgep.vl_structure_part_renovation_demand (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5358,'unknown','unbekannt','inconnue', '', 'U', 'I', 'true');
- ALTER TABLE qgep.od_structure_part ADD CONSTRAINT fkey_vl_structure_part_renovation_demand FOREIGN KEY (renovation_demand)
- REFERENCES qgep.vl_structure_part_renovation_demand (code) MATCH SIMPLE 
- ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_structure_part ADD COLUMN fs_wastewater_structure varchar (16);
-ALTER TABLE qgep.od_structure_part ADD CONSTRAINT rel_structure_part_wastewater_structure FOREIGN KEY (fs_wastewater_structure) REFERENCES qgep.od_wastewater_structure(obj_id);
+ALTER TABLE qgep.od_river_bank ADD COLUMN fk_water_course_segment varchar (16);
+ALTER TABLE qgep.od_river_bank ADD CONSTRAINT rel_river_bank_water_course_segment FOREIGN KEY (fk_water_course_segment) REFERENCES qgep.od_water_course_segment(obj_id);
 CREATE TABLE qgep.vl_reach_point_elevation_accuracy
 (
 code integer NOT NULL,
@@ -3156,8 +3385,8 @@ WITH (
  ALTER TABLE qgep.od_reach_point ADD CONSTRAINT fkey_vl_reach_point_outlet_shape FOREIGN KEY (outlet_shape)
  REFERENCES qgep.vl_reach_point_outlet_shape (code) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_reach_point ADD COLUMN fs_wastewater_networkelement varchar (16);
-ALTER TABLE qgep.od_reach_point ADD CONSTRAINT rel_reach_point_wastewater_networkelement FOREIGN KEY (fs_wastewater_networkelement) REFERENCES qgep.od_wastewater_networkelement(obj_id);
+ALTER TABLE qgep.od_reach_point ADD COLUMN fk_wastewater_networkelement varchar (16);
+ALTER TABLE qgep.od_reach_point ADD CONSTRAINT rel_reach_point_wastewater_networkelement FOREIGN KEY (fk_wastewater_networkelement) REFERENCES qgep.od_wastewater_networkelement(obj_id);
 CREATE TABLE qgep.vl_wastewater_structure_accessibility
 (
 code integer NOT NULL,
@@ -3196,7 +3425,7 @@ WITH (
    OIDS = False
 );
  INSERT INTO qgep.vl_wastewater_structure_financing (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5510,'public','oeffentlich','public', 'PU', 'OE', 'PU', 'true');
- INSERT INTO qgep.vl_wastewater_structure_financing (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5511,'privat','privat','prive', 'PR', 'PR', 'PR', 'true');
+ INSERT INTO qgep.vl_wastewater_structure_financing (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5511,'private','privat','prive', 'PR', 'PR', 'PR', 'true');
  INSERT INTO qgep.vl_wastewater_structure_financing (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5512,'unknown','unbekannt','inconnu', 'U', 'U', 'I', 'true');
  ALTER TABLE qgep.od_wastewater_structure ADD CONSTRAINT fkey_vl_wastewater_structure_financing FOREIGN KEY (financing)
  REFERENCES qgep.vl_wastewater_structure_financing (code) MATCH SIMPLE 
@@ -3268,7 +3497,7 @@ WITH (
  INSERT INTO qgep.vl_wastewater_structure_status (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3325,'suspended_unknown','aufgehoben_unbekannt','supprime_inconnu', 'SU', 'AU', 'AI', 'true');
  INSERT INTO qgep.vl_wastewater_structure_status (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3633,'inoperative','ausser_Betrieb','hors_service', 'NO', 'AB', 'H', 'true');
  INSERT INTO qgep.vl_wastewater_structure_status (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2763,'calculation_alternative','Berechnungsvariante','variante_de_calcul', 'CA', 'B', 'C', 'true');
- INSERT INTO qgep.vl_wastewater_structure_status (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2764,'planned','geplant','planifie', '', 'G', 'PL', 'true');
+ INSERT INTO qgep.vl_wastewater_structure_status (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2764,'planned','geplant','prevu', '', 'G', 'PL', 'true');
  INSERT INTO qgep.vl_wastewater_structure_status (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3634,'operational','in_Betrieb','en_service', '', 'I', 'E', 'true');
  INSERT INTO qgep.vl_wastewater_structure_status (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3653,'project','Projekt','projet', '', 'N', 'PR', 'true');
  INSERT INTO qgep.vl_wastewater_structure_status (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (10,'tentative','provisorisch','provisoire', 'T', 'T', 'P', 'true');
@@ -3302,10 +3531,290 @@ WITH (
  ALTER TABLE qgep.od_wastewater_structure ADD CONSTRAINT fkey_vl_wastewater_structure_structure_condition FOREIGN KEY (structure_condition)
  REFERENCES qgep.vl_wastewater_structure_structure_condition (code) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_wastewater_structure ADD COLUMN fs_owner varchar (16);
-ALTER TABLE qgep.od_wastewater_structure ADD CONSTRAINT rel_wastewater_structure_owner FOREIGN KEY (fs_owner) REFERENCES qgep.od_organisation(obj_id);
-ALTER TABLE qgep.od_wastewater_structure ADD COLUMN fs_operator varchar (16);
-ALTER TABLE qgep.od_wastewater_structure ADD CONSTRAINT rel_wastewater_structure_operator FOREIGN KEY (fs_operator) REFERENCES qgep.od_organisation(obj_id);
+ALTER TABLE qgep.od_wastewater_structure ADD COLUMN fk_owner varchar (16);
+ALTER TABLE qgep.od_wastewater_structure ADD CONSTRAINT rel_wastewater_structure_owner FOREIGN KEY (fk_owner) REFERENCES qgep.od_organisation(obj_id);
+ALTER TABLE qgep.od_wastewater_structure ADD COLUMN fk_operator varchar (16);
+ALTER TABLE qgep.od_wastewater_structure ADD CONSTRAINT rel_wastewater_structure_operator FOREIGN KEY (fk_operator) REFERENCES qgep.od_organisation(obj_id);
+CREATE TABLE qgep.vl_structure_part_renovation_demand
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_structure_part_renovation_demand_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_structure_part_renovation_demand (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (138,'not_necessary','nicht_notwendig','pas_necessaire', 'NN', 'NN', 'PN', 'true');
+ INSERT INTO qgep.vl_structure_part_renovation_demand (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (137,'necessary','notwendig','necessaire', 'N', 'N', 'N', 'true');
+ INSERT INTO qgep.vl_structure_part_renovation_demand (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5358,'unknown','unbekannt','inconnue', '', 'U', 'I', 'true');
+ ALTER TABLE qgep.od_structure_part ADD CONSTRAINT fkey_vl_structure_part_renovation_demand FOREIGN KEY (renovation_demand)
+ REFERENCES qgep.vl_structure_part_renovation_demand (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
+ALTER TABLE qgep.od_structure_part ADD COLUMN fk_wastewater_structure varchar (16);
+ALTER TABLE qgep.od_structure_part ADD CONSTRAINT rel_structure_part_wastewater_structure FOREIGN KEY (fk_wastewater_structure) REFERENCES qgep.od_wastewater_structure(obj_id);
+CREATE TABLE qgep.vl_maintenance_event_kind
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_maintenance_event_kind_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_maintenance_event_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2982,'other','andere','autres', '', '', '', 'true');
+ INSERT INTO qgep.vl_maintenance_event_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (120,'replacement','Erneuerung','renouvellement', '', '', '', 'true');
+ INSERT INTO qgep.vl_maintenance_event_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (28,'cleaning','Reinigung','nettoyage', '', '', '', 'true');
+ INSERT INTO qgep.vl_maintenance_event_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (4529,'renovation','Renovierung','renovation', '', '', '', 'true');
+ INSERT INTO qgep.vl_maintenance_event_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (4528,'repair','Reparatur','reparation', '', '', '', 'true');
+ INSERT INTO qgep.vl_maintenance_event_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (4530,'restoration','Sanierung','rehabilitation', '', '', '', 'true');
+ INSERT INTO qgep.vl_maintenance_event_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3045,'unknown','unbekannt','inconnu', '', '', '', 'true');
+ INSERT INTO qgep.vl_maintenance_event_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (4564,'survey','Untersuchung','examen', '', '', '', 'true');
+ ALTER TABLE qgep.od_maintenance_event ADD CONSTRAINT fkey_vl_maintenance_event_kind FOREIGN KEY (kind)
+ REFERENCES qgep.vl_maintenance_event_kind (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
+CREATE TABLE qgep.vl_maintenance_event_status
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_maintenance_event_status_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_maintenance_event_status (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2550,'accomplished','ausgefuehrt','execute', '', '', '', 'true');
+ INSERT INTO qgep.vl_maintenance_event_status (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2549,'planned','geplant','prevu', '', '', '', 'true');
+ INSERT INTO qgep.vl_maintenance_event_status (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3678,'not_possible','nicht_moeglich','impossible', '', '', '', 'true');
+ INSERT INTO qgep.vl_maintenance_event_status (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3047,'unknown','unbekannt','inconnu', '', '', '', 'true');
+ ALTER TABLE qgep.od_maintenance_event ADD CONSTRAINT fkey_vl_maintenance_event_status FOREIGN KEY (status)
+ REFERENCES qgep.vl_maintenance_event_status (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
+ALTER TABLE qgep.od_maintenance_event ADD COLUMN fk_wastewater_structure varchar (16);
+ALTER TABLE qgep.od_maintenance_event ADD CONSTRAINT rel_maintenance_event_wastewater_structure FOREIGN KEY (fk_wastewater_structure) REFERENCES qgep.od_wastewater_structure(obj_id);
+ALTER TABLE qgep.od_hydr_geom_relation ADD COLUMN fk_hydr_geometry varchar (16);
+ALTER TABLE qgep.od_hydr_geom_relation ADD CONSTRAINT rel_hydr_geom_relation_hydr_geometry FOREIGN KEY (fk_hydr_geometry) REFERENCES qgep.od_hydr_geometry(obj_id);
+CREATE TABLE qgep.vl_pipe_profile_profile_type
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_pipe_profile_profile_type_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_pipe_profile_profile_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5377,'other','andere','autre', 'O', 'A', 'AU', 'true');
+ INSERT INTO qgep.vl_pipe_profile_profile_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3351,'egg','Eiprofil','ovoide', 'E', 'E', 'OV', 'true');
+ INSERT INTO qgep.vl_pipe_profile_profile_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3350,'circle','Kreisprofil','circulaire', '', 'K', 'CI', 'true');
+ INSERT INTO qgep.vl_pipe_profile_profile_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3352,'mouth','Maulprofil','profil_en_voute', '', 'M', 'V', 'true');
+ INSERT INTO qgep.vl_pipe_profile_profile_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3354,'open','offenes_Profil','profil_ouvert', '', 'OP', 'PO', 'true');
+ INSERT INTO qgep.vl_pipe_profile_profile_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3353,'rectangular','Rechteckprofil','rectangulaire', '', 'R', 'R', 'true');
+ INSERT INTO qgep.vl_pipe_profile_profile_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3355,'special','Spezialprofil','profil_special', '', 'S', 'PS', 'true');
+ INSERT INTO qgep.vl_pipe_profile_profile_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3357,'unknown','unbekannt','inconnu', '', 'U', 'I', 'true');
+ ALTER TABLE qgep.od_pipe_profile ADD CONSTRAINT fkey_vl_pipe_profile_profile_type FOREIGN KEY (profile_type)
+ REFERENCES qgep.vl_pipe_profile_profile_type (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
+ALTER TABLE qgep.od_hq_relation ADD COLUMN fk_overflow_characteristic varchar (16);
+ALTER TABLE qgep.od_hq_relation ADD CONSTRAINT rel_hq_relation_overflow_characteristic FOREIGN KEY (fk_overflow_characteristic) REFERENCES qgep.od_overflow_characteristic(obj_id);
+CREATE TABLE qgep.vl_throttle_shut_off_unit_actuation
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_throttle_shut_off_unit_actuation_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_throttle_shut_off_unit_actuation (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3213,'other','andere','autres', '', '', '', 'true');
+ INSERT INTO qgep.vl_throttle_shut_off_unit_actuation (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3154,'gaz_engine','Benzinmotor','moteur_a_essence', '', '', '', 'true');
+ INSERT INTO qgep.vl_throttle_shut_off_unit_actuation (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3155,'diesel_engine','Dieselmotor','moteur_diesel', '', '', '', 'true');
+ INSERT INTO qgep.vl_throttle_shut_off_unit_actuation (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3156,'electric_engine','Elektromotor','moteur_electrique', '', '', '', 'true');
+ INSERT INTO qgep.vl_throttle_shut_off_unit_actuation (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3152,'hydraulic','hydraulisch','hydraulique', '', '', '', 'true');
+ INSERT INTO qgep.vl_throttle_shut_off_unit_actuation (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3153,'none','keiner','aucun', '', '', '', 'true');
+ INSERT INTO qgep.vl_throttle_shut_off_unit_actuation (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3157,'manual','manuell','manuel', '', '', '', 'true');
+ INSERT INTO qgep.vl_throttle_shut_off_unit_actuation (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3158,'pneumatic','pneumatisch','pneumatique', '', '', '', 'true');
+ INSERT INTO qgep.vl_throttle_shut_off_unit_actuation (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3151,'unknown','unbekannt','inconnu', '', '', '', 'true');
+ ALTER TABLE qgep.od_throttle_shut_off_unit ADD CONSTRAINT fkey_vl_throttle_shut_off_unit_actuation FOREIGN KEY (actuation)
+ REFERENCES qgep.vl_throttle_shut_off_unit_actuation (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
+CREATE TABLE qgep.vl_throttle_shut_off_unit_adjustability
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_throttle_shut_off_unit_adjustability_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_throttle_shut_off_unit_adjustability (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3159,'fixed','fest','fixe', '', '', '', 'true');
+ INSERT INTO qgep.vl_throttle_shut_off_unit_adjustability (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3161,'unknown','unbekannt','inconnu', '', '', '', 'true');
+ INSERT INTO qgep.vl_throttle_shut_off_unit_adjustability (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3160,'adjustable','verstellbar','reglable', '', '', '', 'true');
+ ALTER TABLE qgep.od_throttle_shut_off_unit ADD CONSTRAINT fkey_vl_throttle_shut_off_unit_adjustability FOREIGN KEY (adjustability)
+ REFERENCES qgep.vl_throttle_shut_off_unit_adjustability (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
+CREATE TABLE qgep.vl_throttle_shut_off_unit_control
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_throttle_shut_off_unit_control_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_throttle_shut_off_unit_control (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3162,'closed_loop_control','geregelt','avec_regulation', '', '', '', 'true');
+ INSERT INTO qgep.vl_throttle_shut_off_unit_control (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3163,'open_loop_control','gesteuert','avec_commande', '', '', '', 'true');
+ INSERT INTO qgep.vl_throttle_shut_off_unit_control (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3165,'none','keine','aucun', '', '', '', 'true');
+ INSERT INTO qgep.vl_throttle_shut_off_unit_control (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3164,'unknown','unbekannt','inconnu', '', '', '', 'true');
+ ALTER TABLE qgep.od_throttle_shut_off_unit ADD CONSTRAINT fkey_vl_throttle_shut_off_unit_control FOREIGN KEY (control)
+ REFERENCES qgep.vl_throttle_shut_off_unit_control (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
+CREATE TABLE qgep.vl_throttle_shut_off_unit_kind
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_throttle_shut_off_unit_kind_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_throttle_shut_off_unit_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2973,'other','andere','autres', '', '', '', 'true');
+ INSERT INTO qgep.vl_throttle_shut_off_unit_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2746,'orifice','Blende','diaphragme_ou_seuil', '', '', '', 'true');
+ INSERT INTO qgep.vl_throttle_shut_off_unit_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2691,'stop_log','Dammbalken','batardeau', '', '', '', 'true');
+ INSERT INTO qgep.vl_throttle_shut_off_unit_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (252,'throttle_flap','Drosselklappe','clapet_de_limitation', '', '', '', 'true');
+ INSERT INTO qgep.vl_throttle_shut_off_unit_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (135,'throttle_valve','Drosselschieber','vanne_de_limitation', '', '', '', 'true');
+ INSERT INTO qgep.vl_throttle_shut_off_unit_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2690,'backflow_flap','Rueckstauklappe','clapet_de_non_retour_a_battant', '', '', '', 'true');
+ INSERT INTO qgep.vl_throttle_shut_off_unit_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2688,'valve','Schieber','vanne', '', '', '', 'true');
+ INSERT INTO qgep.vl_throttle_shut_off_unit_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (134,'tube_throttle','Schlauchdrossel','limiteur_a_membrane', '', '', '', 'true');
+ INSERT INTO qgep.vl_throttle_shut_off_unit_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2689,'sliding_valve','Schuetze','vanne_ecluse', '', '', '', 'true');
+ INSERT INTO qgep.vl_throttle_shut_off_unit_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5755,'gate_shield','Stauschild','plaque_de_retenue', '', '', '', 'true');
+ INSERT INTO qgep.vl_throttle_shut_off_unit_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3046,'unknown','unbekannt','inconnu', '', '', '', 'true');
+ INSERT INTO qgep.vl_throttle_shut_off_unit_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (133,'whirl_throttle','Wirbeldrossel','limiteur_a_vortex', '', '', '', 'true');
+ ALTER TABLE qgep.od_throttle_shut_off_unit ADD CONSTRAINT fkey_vl_throttle_shut_off_unit_kind FOREIGN KEY (kind)
+ REFERENCES qgep.vl_throttle_shut_off_unit_kind (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
+CREATE TABLE qgep.vl_throttle_shut_off_unit_signal_transmission
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_throttle_shut_off_unit_signal_transmission_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_throttle_shut_off_unit_signal_transmission (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3171,'receiving','empfangen','recevoir', '', '', '', 'true');
+ INSERT INTO qgep.vl_throttle_shut_off_unit_signal_transmission (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3172,'sending','senden','emettre', '', '', '', 'true');
+ INSERT INTO qgep.vl_throttle_shut_off_unit_signal_transmission (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3169,'sending_receiving','senden_empfangen','emettre_recevoir', '', '', '', 'true');
+ INSERT INTO qgep.vl_throttle_shut_off_unit_signal_transmission (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3170,'unknown','unbekannt','inconnu', '', '', '', 'true');
+ ALTER TABLE qgep.od_throttle_shut_off_unit ADD CONSTRAINT fkey_vl_throttle_shut_off_unit_signal_transmission FOREIGN KEY (signal_transmission)
+ REFERENCES qgep.vl_throttle_shut_off_unit_signal_transmission (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
+ALTER TABLE qgep.od_throttle_shut_off_unit ADD COLUMN fk_wastewater_node varchar (16);
+ALTER TABLE qgep.od_throttle_shut_off_unit ADD CONSTRAINT rel_throttle_shut_off_unit_wastewater_node FOREIGN KEY (fk_wastewater_node) REFERENCES qgep.od_wastewater_node(obj_id);
+ALTER TABLE qgep.od_throttle_shut_off_unit ADD COLUMN fk_control_center varchar (16);
+ALTER TABLE qgep.od_throttle_shut_off_unit ADD CONSTRAINT rel_throttle_shut_off_unit_control_center FOREIGN KEY (fk_control_center) REFERENCES qgep.od_control_center(obj_id);
+ALTER TABLE qgep.od_profile_geometry ADD COLUMN fk_pipe_profile varchar (16);
+ALTER TABLE qgep.od_profile_geometry ADD CONSTRAINT rel_profile_geometry_pipe_profile FOREIGN KEY (fk_pipe_profile) REFERENCES qgep.od_pipe_profile(obj_id);
+ALTER TABLE qgep.od_accident ADD COLUMN fk_hazard_source varchar (16);
+ALTER TABLE qgep.od_accident ADD CONSTRAINT rel_accident_hazard_source FOREIGN KEY (fk_hazard_source) REFERENCES qgep.od_hazard_source(obj_id);
+CREATE TABLE qgep.vl_retention_body_kind
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_retention_body_kind_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_retention_body_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2992,'other','andere','autres', '', '', '', 'true');
+ INSERT INTO qgep.vl_retention_body_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (346,'retention_in_habitat','Biotop','retention_dans_bassins_et_depressions', '', '', '', 'true');
+ INSERT INTO qgep.vl_retention_body_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (345,'roof_retention','Dachretention','retention_sur_toits', '', '', '', 'true');
+ INSERT INTO qgep.vl_retention_body_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (348,'parking_lot','Parkplatz','retention_sur_routes_et_places', '', '', '', 'true');
+ INSERT INTO qgep.vl_retention_body_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (347,'accumulation_channel','Staukanal','retention_dans_canalisations_stockage', '', '', '', 'true');
+ INSERT INTO qgep.vl_retention_body_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3031,'unknown','unbekannt','inconnu', '', '', '', 'true');
+ ALTER TABLE qgep.od_retention_body ADD CONSTRAINT fkey_vl_retention_body_kind FOREIGN KEY (kind)
+ REFERENCES qgep.vl_retention_body_kind (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
+ALTER TABLE qgep.od_retention_body ADD COLUMN fk_infiltration_installation varchar (16);
+ALTER TABLE qgep.od_retention_body ADD CONSTRAINT rel_retention_body_infiltration_installation FOREIGN KEY (fk_infiltration_installation) REFERENCES qgep.od_infiltration_installation(obj_id);
+CREATE TABLE qgep.vl_overflow_characteristic_overflow_characteristic_digital
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_overflow_characteristic_overflow_characteristic_digital_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_overflow_characteristic_overflow_characteristic_digital (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6223,'yes','ja','oui', '', '', '', 'true');
+ INSERT INTO qgep.vl_overflow_characteristic_overflow_characteristic_digital (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6224,'no','nein','non', '', '', '', 'true');
+ INSERT INTO qgep.vl_overflow_characteristic_overflow_characteristic_digital (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6225,'unknown','unbekannt','inconnu', '', '', '', 'true');
+ ALTER TABLE qgep.od_overflow_characteristic ADD CONSTRAINT fkey_vl_overflow_characteristic_overflow_characteristic_digital FOREIGN KEY (overflow_characteristic_digital)
+ REFERENCES qgep.vl_overflow_characteristic_overflow_characteristic_digital (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
 CREATE TABLE qgep.vl_overflow_actuation
 (
 code integer NOT NULL,
@@ -3422,15 +3931,15 @@ WITH (
  ALTER TABLE qgep.od_overflow ADD CONSTRAINT fkey_vl_overflow_signal_transmission FOREIGN KEY (signal_transmission)
  REFERENCES qgep.vl_overflow_signal_transmission (code) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_overflow ADD COLUMN fs_wastewater_node varchar (16);
-ALTER TABLE qgep.od_overflow ADD CONSTRAINT rel_overflow_wastewater_node FOREIGN KEY (fs_wastewater_node) REFERENCES qgep.od_wastewater_node(obj_id);
-ALTER TABLE qgep.od_overflow ADD COLUMN fs_overflow_to varchar (16);
-ALTER TABLE qgep.od_overflow ADD CONSTRAINT rel_overflow_overflow_to FOREIGN KEY (fs_overflow_to) REFERENCES qgep.od_wastewater_node(obj_id);
-ALTER TABLE qgep.od_overflow ADD COLUMN fs_overflow_characteristic varchar (16);
-ALTER TABLE qgep.od_overflow ADD CONSTRAINT rel_overflow_overflow_characteristic FOREIGN KEY (fs_overflow_characteristic) REFERENCES qgep.od_overflow_characteristic(obj_id);
-ALTER TABLE qgep.od_overflow ADD COLUMN fs_control_center varchar (16);
-ALTER TABLE qgep.od_overflow ADD CONSTRAINT rel_overflow_control_center FOREIGN KEY (fs_control_center) REFERENCES qgep.od_control_center(obj_id);
-CREATE TABLE qgep.vl_throttle_shut_off_unit_actuation
+ALTER TABLE qgep.od_overflow ADD COLUMN fk_wastewater_node varchar (16);
+ALTER TABLE qgep.od_overflow ADD CONSTRAINT rel_overflow_wastewater_node FOREIGN KEY (fk_wastewater_node) REFERENCES qgep.od_wastewater_node(obj_id);
+ALTER TABLE qgep.od_overflow ADD COLUMN fk_overflow_to varchar (16);
+ALTER TABLE qgep.od_overflow ADD CONSTRAINT rel_overflow_overflow_to FOREIGN KEY (fk_overflow_to) REFERENCES qgep.od_wastewater_node(obj_id);
+ALTER TABLE qgep.od_overflow ADD COLUMN fk_overflow_characteristic varchar (16);
+ALTER TABLE qgep.od_overflow ADD CONSTRAINT rel_overflow_overflow_characteristic FOREIGN KEY (fk_overflow_characteristic) REFERENCES qgep.od_overflow_characteristic(obj_id);
+ALTER TABLE qgep.od_overflow ADD COLUMN fk_control_center varchar (16);
+ALTER TABLE qgep.od_overflow ADD CONSTRAINT rel_overflow_control_center FOREIGN KEY (fk_control_center) REFERENCES qgep.od_control_center(obj_id);
+CREATE TABLE qgep.vl_mechanical_pretreatment_kind
 (
 code integer NOT NULL,
 value_en character varying(50),
@@ -3440,235 +3949,26 @@ abbr_en character varying(3),
 abbr_de character varying(3),
 abbr_fr character varying(3),
 active boolean,
-CONSTRAINT pkey_qgep_vl_throttle_shut_off_unit_actuation_code PRIMARY KEY (code)
+CONSTRAINT pkey_qgep_vl_mechanical_pretreatment_kind_code PRIMARY KEY (code)
 )
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_throttle_shut_off_unit_actuation (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3213,'other','andere','autres', '', '', '', 'true');
- INSERT INTO qgep.vl_throttle_shut_off_unit_actuation (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3154,'gaz_engine','Benzinmotor','moteur_a_essence', '', '', '', 'true');
- INSERT INTO qgep.vl_throttle_shut_off_unit_actuation (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3155,'diesel_engine','Dieselmotor','moteur_diesel', '', '', '', 'true');
- INSERT INTO qgep.vl_throttle_shut_off_unit_actuation (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3156,'electric_engine','Elektromotor','moteur_electrique', '', '', '', 'true');
- INSERT INTO qgep.vl_throttle_shut_off_unit_actuation (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3152,'hydraulic','hydraulisch','hydraulique', '', '', '', 'true');
- INSERT INTO qgep.vl_throttle_shut_off_unit_actuation (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3153,'none','keiner','aucun', '', '', '', 'true');
- INSERT INTO qgep.vl_throttle_shut_off_unit_actuation (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3157,'manual','manuell','manuel', '', '', '', 'true');
- INSERT INTO qgep.vl_throttle_shut_off_unit_actuation (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3158,'pneumatic','pneumatisch','pneumatique', '', '', '', 'true');
- INSERT INTO qgep.vl_throttle_shut_off_unit_actuation (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3151,'unknown','unbekannt','inconnu', '', '', '', 'true');
- ALTER TABLE qgep.od_throttle_shut_off_unit ADD CONSTRAINT fkey_vl_throttle_shut_off_unit_actuation FOREIGN KEY (actuation)
- REFERENCES qgep.vl_throttle_shut_off_unit_actuation (code) MATCH SIMPLE 
+ INSERT INTO qgep.vl_mechanical_pretreatment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3317,'filter_bag','Filtersack','percolateur', '', '', '', 'true');
+ INSERT INTO qgep.vl_mechanical_pretreatment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3319,'artificial_adsorber','KuenstlicherAdsorber','adsorbeur_artificiel', '', '', '', 'true');
+ INSERT INTO qgep.vl_mechanical_pretreatment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3318,'swale_french_drain_system','MuldenRigolenSystem','systeme_cuvettes_rigoles', '', '', '', 'true');
+ INSERT INTO qgep.vl_mechanical_pretreatment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3320,'slurry_collector','Schlammsammler','collecteur_de_boue', '', '', '', 'true');
+ INSERT INTO qgep.vl_mechanical_pretreatment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3321,'floating_matter_separator','Schwimmstoffabscheider','separateur_materiaux_flottants', '', '', '', 'true');
+ INSERT INTO qgep.vl_mechanical_pretreatment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3322,'unknown','unbekannt','inconnu', '', '', '', 'true');
+ ALTER TABLE qgep.od_mechanical_pretreatment ADD CONSTRAINT fkey_vl_mechanical_pretreatment_kind FOREIGN KEY (kind)
+ REFERENCES qgep.vl_mechanical_pretreatment_kind (code) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
-CREATE TABLE qgep.vl_throttle_shut_off_unit_adjustability
-(
-code integer NOT NULL,
-value_en character varying(50),
-value_de character varying(50),
-value_fr character varying(50),
-abbr_en character varying(3),
-abbr_de character varying(3),
-abbr_fr character varying(3),
-active boolean,
-CONSTRAINT pkey_qgep_vl_throttle_shut_off_unit_adjustability_code PRIMARY KEY (code)
-)
-WITH (
-   OIDS = False
-);
- INSERT INTO qgep.vl_throttle_shut_off_unit_adjustability (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3159,'fixed','fest','fixe', '', '', '', 'true');
- INSERT INTO qgep.vl_throttle_shut_off_unit_adjustability (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3161,'unknown','unbekannt','inconnu', '', '', '', 'true');
- INSERT INTO qgep.vl_throttle_shut_off_unit_adjustability (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3160,'adjustable','verstellbar','reglable', '', '', '', 'true');
- ALTER TABLE qgep.od_throttle_shut_off_unit ADD CONSTRAINT fkey_vl_throttle_shut_off_unit_adjustability FOREIGN KEY (adjustability)
- REFERENCES qgep.vl_throttle_shut_off_unit_adjustability (code) MATCH SIMPLE 
- ON UPDATE RESTRICT ON DELETE RESTRICT;
-CREATE TABLE qgep.vl_throttle_shut_off_unit_control
-(
-code integer NOT NULL,
-value_en character varying(50),
-value_de character varying(50),
-value_fr character varying(50),
-abbr_en character varying(3),
-abbr_de character varying(3),
-abbr_fr character varying(3),
-active boolean,
-CONSTRAINT pkey_qgep_vl_throttle_shut_off_unit_control_code PRIMARY KEY (code)
-)
-WITH (
-   OIDS = False
-);
- INSERT INTO qgep.vl_throttle_shut_off_unit_control (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3162,'closed_loop_control','geregelt','avec_regulation', '', '', '', 'true');
- INSERT INTO qgep.vl_throttle_shut_off_unit_control (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3163,'open_loop_control','gesteuert','avec_commande', '', '', '', 'true');
- INSERT INTO qgep.vl_throttle_shut_off_unit_control (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3165,'none','keine','aucun', '', '', '', 'true');
- INSERT INTO qgep.vl_throttle_shut_off_unit_control (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3164,'unknown','unbekannt','inconnu', '', '', '', 'true');
- ALTER TABLE qgep.od_throttle_shut_off_unit ADD CONSTRAINT fkey_vl_throttle_shut_off_unit_control FOREIGN KEY (control)
- REFERENCES qgep.vl_throttle_shut_off_unit_control (code) MATCH SIMPLE 
- ON UPDATE RESTRICT ON DELETE RESTRICT;
-CREATE TABLE qgep.vl_throttle_shut_off_unit_kind
-(
-code integer NOT NULL,
-value_en character varying(50),
-value_de character varying(50),
-value_fr character varying(50),
-abbr_en character varying(3),
-abbr_de character varying(3),
-abbr_fr character varying(3),
-active boolean,
-CONSTRAINT pkey_qgep_vl_throttle_shut_off_unit_kind_code PRIMARY KEY (code)
-)
-WITH (
-   OIDS = False
-);
- INSERT INTO qgep.vl_throttle_shut_off_unit_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2973,'other','andere','autres', '', '', '', 'true');
- INSERT INTO qgep.vl_throttle_shut_off_unit_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2746,'orifice','Blende','diaphragme_ou_seuil', '', '', '', 'true');
- INSERT INTO qgep.vl_throttle_shut_off_unit_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2691,'stop_log','Dammbalken','batardeau', '', '', '', 'true');
- INSERT INTO qgep.vl_throttle_shut_off_unit_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (252,'throttle_flap','Drosselklappe','clapet_de_limitation', '', '', '', 'true');
- INSERT INTO qgep.vl_throttle_shut_off_unit_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (135,'throttle_valve','Drosselschieber','vanne_de_limitation', '', '', '', 'true');
- INSERT INTO qgep.vl_throttle_shut_off_unit_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2690,'backflow_flap','Rueckstauklappe','clapet_de_non_retour_a_battant', '', '', '', 'true');
- INSERT INTO qgep.vl_throttle_shut_off_unit_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2688,'valve','Schieber','vanne', '', '', '', 'true');
- INSERT INTO qgep.vl_throttle_shut_off_unit_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (134,'tube_throttle','Schlauchdrossel','limiteur_a_membrane', '', '', '', 'true');
- INSERT INTO qgep.vl_throttle_shut_off_unit_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2689,'sliding_valve','Schuetze','vanne_ecluse', '', '', '', 'true');
- INSERT INTO qgep.vl_throttle_shut_off_unit_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3046,'unknown','unbekannt','inconnu', '', '', '', 'true');
- INSERT INTO qgep.vl_throttle_shut_off_unit_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (133,'whirl_throttle','Wirbeldrossel','limiteur_a_vortex', '', '', '', 'true');
- ALTER TABLE qgep.od_throttle_shut_off_unit ADD CONSTRAINT fkey_vl_throttle_shut_off_unit_kind FOREIGN KEY (kind)
- REFERENCES qgep.vl_throttle_shut_off_unit_kind (code) MATCH SIMPLE 
- ON UPDATE RESTRICT ON DELETE RESTRICT;
-CREATE TABLE qgep.vl_throttle_shut_off_unit_signal_transmission
-(
-code integer NOT NULL,
-value_en character varying(50),
-value_de character varying(50),
-value_fr character varying(50),
-abbr_en character varying(3),
-abbr_de character varying(3),
-abbr_fr character varying(3),
-active boolean,
-CONSTRAINT pkey_qgep_vl_throttle_shut_off_unit_signal_transmission_code PRIMARY KEY (code)
-)
-WITH (
-   OIDS = False
-);
- INSERT INTO qgep.vl_throttle_shut_off_unit_signal_transmission (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3171,'receiving','empfangen','recevoir', '', '', '', 'true');
- INSERT INTO qgep.vl_throttle_shut_off_unit_signal_transmission (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3172,'sending','senden','emettre', '', '', '', 'true');
- INSERT INTO qgep.vl_throttle_shut_off_unit_signal_transmission (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3169,'sending_receiving','senden_empfangen','emettre_recevoir', '', '', '', 'true');
- INSERT INTO qgep.vl_throttle_shut_off_unit_signal_transmission (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3170,'unknown','unbekannt','inconnu', '', '', '', 'true');
- ALTER TABLE qgep.od_throttle_shut_off_unit ADD CONSTRAINT fkey_vl_throttle_shut_off_unit_signal_transmission FOREIGN KEY (signal_transmission)
- REFERENCES qgep.vl_throttle_shut_off_unit_signal_transmission (code) MATCH SIMPLE 
- ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_throttle_shut_off_unit ADD COLUMN fs_wastewater_node varchar (16);
-ALTER TABLE qgep.od_throttle_shut_off_unit ADD CONSTRAINT rel_throttle_shut_off_unit_wastewater_node FOREIGN KEY (fs_wastewater_node) REFERENCES qgep.od_wastewater_node(obj_id);
-ALTER TABLE qgep.od_throttle_shut_off_unit ADD COLUMN fs_control_center varchar (16);
-ALTER TABLE qgep.od_throttle_shut_off_unit ADD CONSTRAINT rel_throttle_shut_off_unit_control_center FOREIGN KEY (fs_control_center) REFERENCES qgep.od_control_center(obj_id);
-CREATE TABLE qgep.vl_pipe_profile_profile_type
-(
-code integer NOT NULL,
-value_en character varying(50),
-value_de character varying(50),
-value_fr character varying(50),
-abbr_en character varying(3),
-abbr_de character varying(3),
-abbr_fr character varying(3),
-active boolean,
-CONSTRAINT pkey_qgep_vl_pipe_profile_profile_type_code PRIMARY KEY (code)
-)
-WITH (
-   OIDS = False
-);
- INSERT INTO qgep.vl_pipe_profile_profile_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5377,'other','andere','autre', 'O', 'A', 'AU', 'true');
- INSERT INTO qgep.vl_pipe_profile_profile_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3351,'egg','Eiprofil','ovoide', 'E', 'E', 'OV', 'true');
- INSERT INTO qgep.vl_pipe_profile_profile_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3350,'circle','Kreisprofil','circulaire', '', 'K', 'CI', 'true');
- INSERT INTO qgep.vl_pipe_profile_profile_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3352,'mouth','Maulprofil','profil_en_voute', '', 'M', 'V', 'true');
- INSERT INTO qgep.vl_pipe_profile_profile_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3354,'open','offenes_Profil','profil_ouvert', '', 'OP', 'PO', 'true');
- INSERT INTO qgep.vl_pipe_profile_profile_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3353,'rectangular','Rechteckprofil','rectangulaire', '', 'R', 'R', 'true');
- INSERT INTO qgep.vl_pipe_profile_profile_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3355,'special','Spezialprofil','profil_special', '', 'S', 'PS', 'true');
- INSERT INTO qgep.vl_pipe_profile_profile_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3357,'unknown','unbekannt','inconnu', '', 'U', 'I', 'true');
- ALTER TABLE qgep.od_pipe_profile ADD CONSTRAINT fkey_vl_pipe_profile_profile_type FOREIGN KEY (profile_type)
- REFERENCES qgep.vl_pipe_profile_profile_type (code) MATCH SIMPLE 
- ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_wastewater_networkelement ADD COLUMN fs_wastewater_structure varchar (16);
-ALTER TABLE qgep.od_wastewater_networkelement ADD CONSTRAINT rel_wastewater_networkelement_wastewater_structure FOREIGN KEY (fs_wastewater_structure) REFERENCES qgep.od_wastewater_structure(obj_id);
-CREATE TABLE qgep.vl_maintenance_event_disposition_state
-(
-code integer NOT NULL,
-value_en character varying(50),
-value_de character varying(50),
-value_fr character varying(50),
-abbr_en character varying(3),
-abbr_de character varying(3),
-abbr_fr character varying(3),
-active boolean,
-CONSTRAINT pkey_qgep_vl_maintenance_event_disposition_state_code PRIMARY KEY (code)
-)
-WITH (
-   OIDS = False
-);
- INSERT INTO qgep.vl_maintenance_event_disposition_state (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2550,'accomplished','ausgefuehrt','execute', '', '', '', 'true');
- INSERT INTO qgep.vl_maintenance_event_disposition_state (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2549,'planned','geplant','planifie', '', '', '', 'true');
- INSERT INTO qgep.vl_maintenance_event_disposition_state (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3678,'not_possible','nicht_moeglich','impossible', '', '', '', 'true');
- INSERT INTO qgep.vl_maintenance_event_disposition_state (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3047,'unknown','unbekannt','inconnu', '', '', '', 'true');
- ALTER TABLE qgep.od_maintenance_event ADD CONSTRAINT fkey_vl_maintenance_event_disposition_state FOREIGN KEY (disposition_state)
- REFERENCES qgep.vl_maintenance_event_disposition_state (code) MATCH SIMPLE 
- ON UPDATE RESTRICT ON DELETE RESTRICT;
-CREATE TABLE qgep.vl_maintenance_event_kind
-(
-code integer NOT NULL,
-value_en character varying(50),
-value_de character varying(50),
-value_fr character varying(50),
-abbr_en character varying(3),
-abbr_de character varying(3),
-abbr_fr character varying(3),
-active boolean,
-CONSTRAINT pkey_qgep_vl_maintenance_event_kind_code PRIMARY KEY (code)
-)
-WITH (
-   OIDS = False
-);
- INSERT INTO qgep.vl_maintenance_event_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2982,'other','andere','autres', '', '', '', 'true');
- INSERT INTO qgep.vl_maintenance_event_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (120,'replacement','Erneuerung','renouvellement', '', '', '', 'true');
- INSERT INTO qgep.vl_maintenance_event_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (28,'cleaning','Reinigung','nettoyage', '', '', '', 'true');
- INSERT INTO qgep.vl_maintenance_event_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (4529,'renovation','Renovierung','renovation', '', '', '', 'true');
- INSERT INTO qgep.vl_maintenance_event_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (4528,'repair','Reparatur','reparation', '', '', '', 'true');
- INSERT INTO qgep.vl_maintenance_event_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (4530,'restoration','Sanierung','rehabilitation', '', '', '', 'true');
- INSERT INTO qgep.vl_maintenance_event_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3045,'unknown','unbekannt','inconnu', '', '', '', 'true');
- INSERT INTO qgep.vl_maintenance_event_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (4564,'survey','Untersuchung','examen', '', '', '', 'true');
- ALTER TABLE qgep.od_maintenance_event ADD CONSTRAINT fkey_vl_maintenance_event_kind FOREIGN KEY (kind)
- REFERENCES qgep.vl_maintenance_event_kind (code) MATCH SIMPLE 
- ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_maintenance_event ADD COLUMN fs_wastewater_structure varchar (16);
-ALTER TABLE qgep.od_maintenance_event ADD CONSTRAINT rel_maintenance_event_wastewater_structure FOREIGN KEY (fs_wastewater_structure) REFERENCES qgep.od_wastewater_structure(obj_id);
-CREATE TABLE qgep.vl_retention_body_kind
-(
-code integer NOT NULL,
-value_en character varying(50),
-value_de character varying(50),
-value_fr character varying(50),
-abbr_en character varying(3),
-abbr_de character varying(3),
-abbr_fr character varying(3),
-active boolean,
-CONSTRAINT pkey_qgep_vl_retention_body_kind_code PRIMARY KEY (code)
-)
-WITH (
-   OIDS = False
-);
- INSERT INTO qgep.vl_retention_body_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2992,'other','andere','autres', '', '', '', 'true');
- INSERT INTO qgep.vl_retention_body_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (346,'retention_in_habitat','Biotop','retention_dans_bassins_et_depressions', '', '', '', 'true');
- INSERT INTO qgep.vl_retention_body_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (345,'roof_retention','Dachretention','retention_sur_toits', '', '', '', 'true');
- INSERT INTO qgep.vl_retention_body_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (348,'parking_lot','Parkplatz','retention_sur_routes_et_places', '', '', '', 'true');
- INSERT INTO qgep.vl_retention_body_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (347,'accumulation_channel','Staukanal','retention_dans_canalisations_stockage', '', '', '', 'true');
- INSERT INTO qgep.vl_retention_body_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3031,'unknown','unbekannt','inconnu', '', '', '', 'true');
- ALTER TABLE qgep.od_retention_body ADD CONSTRAINT fkey_vl_retention_body_kind FOREIGN KEY (kind)
- REFERENCES qgep.vl_retention_body_kind (code) MATCH SIMPLE 
- ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_retention_body ADD COLUMN fs_infiltration_installation varchar (16);
-ALTER TABLE qgep.od_retention_body ADD CONSTRAINT rel_retention_body_infiltration_installation FOREIGN KEY (fs_infiltration_installation) REFERENCES qgep.od_infiltration_installation(obj_id);
-ALTER TABLE qgep.od_accident ADD COLUMN fs_hazard_source varchar (16);
-ALTER TABLE qgep.od_accident ADD CONSTRAINT rel_accident_hazard_source FOREIGN KEY (fs_hazard_source) REFERENCES qgep.od_hazard_source(obj_id);
-ALTER TABLE qgep.od_profile_geometry ADD COLUMN fs_pipe_profile varchar (16);
-ALTER TABLE qgep.od_profile_geometry ADD CONSTRAINT rel_profile_geometry_pipe_profile FOREIGN KEY (fs_pipe_profile) REFERENCES qgep.od_pipe_profile(obj_id);
-ALTER TABLE qgep.od_substance ADD COLUMN fs_hazard_source varchar (16);
-ALTER TABLE qgep.od_substance ADD CONSTRAINT rel_substance_hazard_source FOREIGN KEY (fs_hazard_source) REFERENCES qgep.od_hazard_source(obj_id);
-ALTER TABLE qgep.od_hazard_source ADD COLUMN fs_connection_object varchar (16);
-ALTER TABLE qgep.od_hazard_source ADD CONSTRAINT rel_hazard_source_connection_object FOREIGN KEY (fs_connection_object) REFERENCES qgep.od_connection_object(obj_id);
-ALTER TABLE qgep.od_hazard_source ADD COLUMN fs_owner varchar (16);
-ALTER TABLE qgep.od_hazard_source ADD CONSTRAINT rel_hazard_source_owner FOREIGN KEY (fs_owner) REFERENCES qgep.od_organisation(obj_id);
+ALTER TABLE qgep.od_mechanical_pretreatment ADD COLUMN fk_infiltration_installation varchar (16);
+ALTER TABLE qgep.od_mechanical_pretreatment ADD CONSTRAINT rel_mechanical_pretreatment_infiltration_installation FOREIGN KEY (fk_infiltration_installation) REFERENCES qgep.od_infiltration_installation(obj_id);
+ALTER TABLE qgep.od_mechanical_pretreatment ADD COLUMN fk_wastewater_structure varchar (16);
+ALTER TABLE qgep.od_mechanical_pretreatment ADD CONSTRAINT rel_mechanical_pretreatment_wastewater_structure FOREIGN KEY (fk_wastewater_structure) REFERENCES qgep.od_wastewater_structure(obj_id);
+ALTER TABLE qgep.od_wastewater_networkelement ADD COLUMN fk_wastewater_structure varchar (16);
+ALTER TABLE qgep.od_wastewater_networkelement ADD CONSTRAINT rel_wastewater_networkelement_wastewater_structure FOREIGN KEY (fk_wastewater_structure) REFERENCES qgep.od_wastewater_structure(obj_id);
 CREATE TABLE qgep.vl_catchment_area_direct_discharge_current
 (
 code integer NOT NULL,
@@ -3730,6 +4030,7 @@ WITH (
  INSERT INTO qgep.vl_catchment_area_drainage_system_current (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5188,'modified_system','ModifiziertesSystem','systeme_modifie', '', '', '', 'true');
  INSERT INTO qgep.vl_catchment_area_drainage_system_current (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5185,'not_connected','nicht_angeschlossen','non_raccorde', '', '', '', 'true');
  INSERT INTO qgep.vl_catchment_area_drainage_system_current (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5537,'not_drained','nicht_entwaessert','non_evacue', '', '', '', 'true');
+ INSERT INTO qgep.vl_catchment_area_drainage_system_current (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5392,'rain_wastewater_system','Regenabwassersystem','systeme_eaux_pluviales', '', '', '', 'true');
  INSERT INTO qgep.vl_catchment_area_drainage_system_current (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5187,'separated_system','Trennsystem','systeme_separatif', '', '', '', 'true');
  INSERT INTO qgep.vl_catchment_area_drainage_system_current (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5189,'unknown','unbekannt','inconnu', '', '', '', 'true');
  ALTER TABLE qgep.od_catchment_area ADD CONSTRAINT fkey_vl_catchment_area_drainage_system_current FOREIGN KEY (drainage_system_current)
@@ -3887,34 +4188,57 @@ WITH (
  ALTER TABLE qgep.od_catchment_area ADD CONSTRAINT fkey_vl_catchment_area_status FOREIGN KEY (status)
  REFERENCES qgep.vl_catchment_area_status (code) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_catchment_area ADD COLUMN fs_wastewater_networkelement_rw_current varchar (16);
-ALTER TABLE qgep.od_catchment_area ADD CONSTRAINT rel_catchment_area_wastewater_networkelement_rw_current FOREIGN KEY (fs_wastewater_networkelement_rw_current) REFERENCES qgep.od_wastewater_networkelement(obj_id);
-ALTER TABLE qgep.od_catchment_area ADD COLUMN fs_wastewater_networkelement_rw_planned varchar (16);
-ALTER TABLE qgep.od_catchment_area ADD CONSTRAINT rel_catchment_area_wastewater_networkelement_rw_planned FOREIGN KEY (fs_wastewater_networkelement_rw_planned) REFERENCES qgep.od_wastewater_networkelement(obj_id);
-ALTER TABLE qgep.od_catchment_area ADD COLUMN fs_wastewater_networkelement_ww_planned varchar (16);
-ALTER TABLE qgep.od_catchment_area ADD CONSTRAINT rel_catchment_area_wastewater_networkelement_ww_planned FOREIGN KEY (fs_wastewater_networkelement_ww_planned) REFERENCES qgep.od_wastewater_networkelement(obj_id);
-ALTER TABLE qgep.od_catchment_area ADD COLUMN fs_wastewater_networkelement_ww_current varchar (16);
-ALTER TABLE qgep.od_catchment_area ADD CONSTRAINT rel_catchment_area_wastewater_networkelement_ww_current FOREIGN KEY (fs_wastewater_networkelement_ww_current) REFERENCES qgep.od_wastewater_networkelement(obj_id);
-ALTER TABLE qgep.od_surface_runoff_parameters ADD COLUMN fs_catchment_area varchar (16);
-ALTER TABLE qgep.od_surface_runoff_parameters ADD CONSTRAINT rel_surface_runoff_parameters_catchment_area FOREIGN KEY (fs_catchment_area) REFERENCES qgep.od_catchment_area(obj_id);
-ALTER TABLE qgep.od_connection_object ADD COLUMN fs_wastewater_networkelement varchar (16);
-ALTER TABLE qgep.od_connection_object ADD CONSTRAINT rel_connection_object_wastewater_networkelement FOREIGN KEY (fs_wastewater_networkelement) REFERENCES qgep.od_wastewater_networkelement(obj_id);
-ALTER TABLE qgep.od_connection_object ADD COLUMN fs_owner varchar (16);
-ALTER TABLE qgep.od_connection_object ADD CONSTRAINT rel_connection_object_owner FOREIGN KEY (fs_owner) REFERENCES qgep.od_organisation(obj_id);
-ALTER TABLE qgep.od_connection_object ADD COLUMN fs_operator varchar (16);
-ALTER TABLE qgep.od_connection_object ADD CONSTRAINT rel_connection_object_operator FOREIGN KEY (fs_operator) REFERENCES qgep.od_organisation(obj_id);
-ALTER TABLE qgep.od_measurement_result ADD COLUMN fs_measuring_device varchar (16);
-ALTER TABLE qgep.od_measurement_result ADD CONSTRAINT rel_measurement_result_measuring_device FOREIGN KEY (fs_measuring_device) REFERENCES qgep.od_measuring_device(obj_id);
-ALTER TABLE qgep.od_measurement_result ADD COLUMN fs_measurement_series varchar (16);
-ALTER TABLE qgep.od_measurement_result ADD CONSTRAINT rel_measurement_result_measurement_series FOREIGN KEY (fs_measurement_series) REFERENCES qgep.od_measurement_series(obj_id);
-ALTER TABLE qgep.od_measuring_point ADD COLUMN fs_operator varchar (16);
-ALTER TABLE qgep.od_measuring_point ADD CONSTRAINT rel_measuring_point_operator FOREIGN KEY (fs_operator) REFERENCES qgep.od_organisation(obj_id);
-ALTER TABLE qgep.od_measuring_point ADD COLUMN fs_waste_water_treatment_plant varchar (16);
-ALTER TABLE qgep.od_measuring_point ADD CONSTRAINT rel_measuring_point_waste_water_treatment_plant FOREIGN KEY (fs_waste_water_treatment_plant) REFERENCES qgep.od_waste_water_treatment_plant(obj_id);
-ALTER TABLE qgep.od_measuring_point ADD COLUMN fs_wastewater_structure varchar (16);
-ALTER TABLE qgep.od_measuring_point ADD CONSTRAINT rel_measuring_point_wastewater_structure FOREIGN KEY (fs_wastewater_structure) REFERENCES qgep.od_wastewater_structure(obj_id);
-ALTER TABLE qgep.od_measuring_point ADD COLUMN fs_water_course_segment varchar (16);
-ALTER TABLE qgep.od_measuring_point ADD CONSTRAINT rel_measuring_point_water_course_segment FOREIGN KEY (fs_water_course_segment) REFERENCES qgep.od_water_course_segment(obj_id);
+ALTER TABLE qgep.od_catchment_area ADD COLUMN fk_wastewater_networkelement_rw_current varchar (16);
+ALTER TABLE qgep.od_catchment_area ADD CONSTRAINT rel_catchment_area_wastewater_networkelement_rw_current FOREIGN KEY (fk_wastewater_networkelement_rw_current) REFERENCES qgep.od_wastewater_networkelement(obj_id);
+ALTER TABLE qgep.od_catchment_area ADD COLUMN fk_wastewater_networkelement_rw_planned varchar (16);
+ALTER TABLE qgep.od_catchment_area ADD CONSTRAINT rel_catchment_area_wastewater_networkelement_rw_planned FOREIGN KEY (fk_wastewater_networkelement_rw_planned) REFERENCES qgep.od_wastewater_networkelement(obj_id);
+ALTER TABLE qgep.od_catchment_area ADD COLUMN fk_wastewater_networkelement_ww_planned varchar (16);
+ALTER TABLE qgep.od_catchment_area ADD CONSTRAINT rel_catchment_area_wastewater_networkelement_ww_planned FOREIGN KEY (fk_wastewater_networkelement_ww_planned) REFERENCES qgep.od_wastewater_networkelement(obj_id);
+ALTER TABLE qgep.od_catchment_area ADD COLUMN fk_wastewater_networkelement_ww_current varchar (16);
+ALTER TABLE qgep.od_catchment_area ADD CONSTRAINT rel_catchment_area_wastewater_networkelement_ww_current FOREIGN KEY (fk_wastewater_networkelement_ww_current) REFERENCES qgep.od_wastewater_networkelement(obj_id);
+ALTER TABLE qgep.od_hazard_source ADD COLUMN fk_connection_object varchar (16);
+ALTER TABLE qgep.od_hazard_source ADD CONSTRAINT rel_hazard_source_connection_object FOREIGN KEY (fk_connection_object) REFERENCES qgep.od_connection_object(obj_id);
+ALTER TABLE qgep.od_hazard_source ADD COLUMN fk_owner varchar (16);
+ALTER TABLE qgep.od_hazard_source ADD CONSTRAINT rel_hazard_source_owner FOREIGN KEY (fk_owner) REFERENCES qgep.od_organisation(obj_id);
+ALTER TABLE qgep.od_substance ADD COLUMN fk_hazard_source varchar (16);
+ALTER TABLE qgep.od_substance ADD CONSTRAINT rel_substance_hazard_source FOREIGN KEY (fk_hazard_source) REFERENCES qgep.od_hazard_source(obj_id);
+ALTER TABLE qgep.od_surface_runoff_parameters ADD COLUMN fk_catchment_area varchar (16);
+ALTER TABLE qgep.od_surface_runoff_parameters ADD CONSTRAINT rel_surface_runoff_parameters_catchment_area FOREIGN KEY (fk_catchment_area) REFERENCES qgep.od_catchment_area(obj_id);
+ALTER TABLE qgep.od_connection_object ADD COLUMN fk_wastewater_networkelement varchar (16);
+ALTER TABLE qgep.od_connection_object ADD CONSTRAINT rel_connection_object_wastewater_networkelement FOREIGN KEY (fk_wastewater_networkelement) REFERENCES qgep.od_wastewater_networkelement(obj_id);
+ALTER TABLE qgep.od_connection_object ADD COLUMN fk_owner varchar (16);
+ALTER TABLE qgep.od_connection_object ADD CONSTRAINT rel_connection_object_owner FOREIGN KEY (fk_owner) REFERENCES qgep.od_organisation(obj_id);
+ALTER TABLE qgep.od_connection_object ADD COLUMN fk_operator varchar (16);
+ALTER TABLE qgep.od_connection_object ADD CONSTRAINT rel_connection_object_operator FOREIGN KEY (fk_operator) REFERENCES qgep.od_organisation(obj_id);
+CREATE TABLE qgep.vl_measuring_device_kind
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_measuring_device_kind_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_measuring_device_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5702,'other','andere','autres', '', '', '', 'true');
+ INSERT INTO qgep.vl_measuring_device_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5703,'static_sounding_stick','Drucksonde','sonde_de_pression', '', '', '', 'true');
+ INSERT INTO qgep.vl_measuring_device_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5704,'bubbler_system','Lufteinperlung','injection_bulles_d_air', '', '', '', 'true');
+ INSERT INTO qgep.vl_measuring_device_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5705,'EMF_partly_filled','MID_teilgefuellt','MID_partiellement_rempli', '', '', '', 'true');
+ INSERT INTO qgep.vl_measuring_device_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5706,'EMF_filled','MID_vollgefuellt','MID_rempli', '', '', '', 'true');
+ INSERT INTO qgep.vl_measuring_device_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5707,'radar','Radar','radar', '', '', '', 'true');
+ INSERT INTO qgep.vl_measuring_device_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5708,'float','Schwimmer','flotteur', '', '', '', 'true');
+ INSERT INTO qgep.vl_measuring_device_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6322,'ultrasound','Ultraschall','ultrason', '', '', '', 'true');
+ INSERT INTO qgep.vl_measuring_device_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5709,'unknown','unbekannt','inconnu', '', '', '', 'true');
+ ALTER TABLE qgep.od_measuring_device ADD CONSTRAINT fkey_vl_measuring_device_kind FOREIGN KEY (kind)
+ REFERENCES qgep.vl_measuring_device_kind (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
+ALTER TABLE qgep.od_measuring_device ADD COLUMN fk_measuring_point varchar (16);
+ALTER TABLE qgep.od_measuring_device ADD CONSTRAINT rel_measuring_device_measuring_point FOREIGN KEY (fk_measuring_point) REFERENCES qgep.od_measuring_point(obj_id);
 CREATE TABLE qgep.vl_measurement_series_kind
 (
 code integer NOT NULL,
@@ -3959,10 +4283,9 @@ WITH (
  ALTER TABLE qgep.od_measurement_series ADD CONSTRAINT fkey_vl_measurement_series_purpose FOREIGN KEY (purpose)
  REFERENCES qgep.vl_measurement_series_purpose (code) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_measurement_series ADD COLUMN fs_measuring_point varchar (16);
-ALTER TABLE qgep.od_measurement_series ADD CONSTRAINT rel_measurement_series_measuring_point FOREIGN KEY (fs_measuring_point) REFERENCES qgep.od_measuring_point(obj_id);
-ALTER TABLE qgep.od_drainage_system ADD CONSTRAINT oorel_od_drainage_system_zone FOREIGN KEY (obj_id) REFERENCES qgep.od_zone(obj_id);
-CREATE TABLE qgep.vl_drainage_system_kind
+ALTER TABLE qgep.od_measurement_series ADD COLUMN fk_measuring_point varchar (16);
+ALTER TABLE qgep.od_measurement_series ADD CONSTRAINT rel_measurement_series_measuring_point FOREIGN KEY (fk_measuring_point) REFERENCES qgep.od_measuring_point(obj_id);
+CREATE TABLE qgep.vl_measurement_result_measurement_type
 (
 code integer NOT NULL,
 value_en character varying(50),
@@ -3972,21 +4295,30 @@ abbr_en character varying(3),
 abbr_de character varying(3),
 abbr_fr character varying(3),
 active boolean,
-CONSTRAINT pkey_qgep_vl_drainage_system_kind_code PRIMARY KEY (code)
+CONSTRAINT pkey_qgep_vl_measurement_result_measurement_type_code PRIMARY KEY (code)
 )
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_drainage_system_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (4783,'amelioration','Melioration','melioration', '', '', '', 'true');
- INSERT INTO qgep.vl_drainage_system_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2722,'mixed_system','Mischsystem','systeme_unitaire', '', '', '', 'true');
- INSERT INTO qgep.vl_drainage_system_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2724,'modified_system','ModifiziertesSystem','systeme_modifie', '', '', '', 'true');
- INSERT INTO qgep.vl_drainage_system_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (4544,'not_connected','nicht_angeschlossen','non_raccorde', '', '', '', 'true');
- INSERT INTO qgep.vl_drainage_system_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2723,'separated_system','Trennsystem','systeme_separatif', '', '', '', 'true');
- INSERT INTO qgep.vl_drainage_system_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3060,'unknown','unbekannt','inconnu', '', '', '', 'true');
- ALTER TABLE qgep.od_drainage_system ADD CONSTRAINT fkey_vl_drainage_system_kind FOREIGN KEY (kind)
- REFERENCES qgep.vl_drainage_system_kind (code) MATCH SIMPLE 
+ INSERT INTO qgep.vl_measurement_result_measurement_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5732,'other','andere','autres', '', '', '', 'true');
+ INSERT INTO qgep.vl_measurement_result_measurement_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5733,'flow','Durchfluss','debit', '', '', '', 'true');
+ INSERT INTO qgep.vl_measurement_result_measurement_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5734,'level','Niveau','niveau', '', '', '', 'true');
+ INSERT INTO qgep.vl_measurement_result_measurement_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5735,'unknown','unbekannt','inconnu', '', '', '', 'true');
+ ALTER TABLE qgep.od_measurement_result ADD CONSTRAINT fkey_vl_measurement_result_measurement_type FOREIGN KEY (measurement_type)
+ REFERENCES qgep.vl_measurement_result_measurement_type (code) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_ground_water_protection_perimeter ADD CONSTRAINT oorel_od_ground_water_protection_perimeter_zone FOREIGN KEY (obj_id) REFERENCES qgep.od_zone(obj_id);
+ALTER TABLE qgep.od_measurement_result ADD COLUMN fk_measuring_device varchar (16);
+ALTER TABLE qgep.od_measurement_result ADD CONSTRAINT rel_measurement_result_measuring_device FOREIGN KEY (fk_measuring_device) REFERENCES qgep.od_measuring_device(obj_id);
+ALTER TABLE qgep.od_measurement_result ADD COLUMN fk_measurement_series varchar (16);
+ALTER TABLE qgep.od_measurement_result ADD CONSTRAINT rel_measurement_result_measurement_series FOREIGN KEY (fk_measurement_series) REFERENCES qgep.od_measurement_series(obj_id);
+ALTER TABLE qgep.od_measuring_point ADD COLUMN fk_operator varchar (16);
+ALTER TABLE qgep.od_measuring_point ADD CONSTRAINT rel_measuring_point_operator FOREIGN KEY (fk_operator) REFERENCES qgep.od_organisation(obj_id);
+ALTER TABLE qgep.od_measuring_point ADD COLUMN fk_waste_water_treatment_plant varchar (16);
+ALTER TABLE qgep.od_measuring_point ADD CONSTRAINT rel_measuring_point_waste_water_treatment_plant FOREIGN KEY (fk_waste_water_treatment_plant) REFERENCES qgep.od_waste_water_treatment_plant(obj_id);
+ALTER TABLE qgep.od_measuring_point ADD COLUMN fk_wastewater_structure varchar (16);
+ALTER TABLE qgep.od_measuring_point ADD CONSTRAINT rel_measuring_point_wastewater_structure FOREIGN KEY (fk_wastewater_structure) REFERENCES qgep.od_wastewater_structure(obj_id);
+ALTER TABLE qgep.od_measuring_point ADD COLUMN fk_water_course_segment varchar (16);
+ALTER TABLE qgep.od_measuring_point ADD CONSTRAINT rel_measuring_point_water_course_segment FOREIGN KEY (fk_water_course_segment) REFERENCES qgep.od_water_course_segment(obj_id);
 ALTER TABLE qgep.od_water_body_protection_sector ADD CONSTRAINT oorel_od_water_body_protection_sector_zone FOREIGN KEY (obj_id) REFERENCES qgep.od_zone(obj_id);
 CREATE TABLE qgep.vl_water_body_protection_sector_kind
 (
@@ -4014,6 +4346,57 @@ WITH (
  ALTER TABLE qgep.od_water_body_protection_sector ADD CONSTRAINT fkey_vl_water_body_protection_sector_kind FOREIGN KEY (kind)
  REFERENCES qgep.vl_water_body_protection_sector_kind (code) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
+ALTER TABLE qgep.od_drainage_system ADD CONSTRAINT oorel_od_drainage_system_zone FOREIGN KEY (obj_id) REFERENCES qgep.od_zone(obj_id);
+CREATE TABLE qgep.vl_drainage_system_kind
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_drainage_system_kind_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_drainage_system_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (4783,'amelioration','Melioration','melioration', '', '', '', 'true');
+ INSERT INTO qgep.vl_drainage_system_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2722,'mixed_system','Mischsystem','systeme_unitaire', '', '', '', 'true');
+ INSERT INTO qgep.vl_drainage_system_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2724,'modified_system','ModifiziertesSystem','systeme_modifie', '', '', '', 'true');
+ INSERT INTO qgep.vl_drainage_system_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (4544,'not_connected','nicht_angeschlossen','non_raccorde', '', '', '', 'true');
+ INSERT INTO qgep.vl_drainage_system_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2723,'separated_system','Trennsystem','systeme_separatif', '', '', '', 'true');
+ INSERT INTO qgep.vl_drainage_system_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3060,'unknown','unbekannt','inconnu', '', '', '', 'true');
+ ALTER TABLE qgep.od_drainage_system ADD CONSTRAINT fkey_vl_drainage_system_kind FOREIGN KEY (kind)
+ REFERENCES qgep.vl_drainage_system_kind (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
+ALTER TABLE qgep.od_planning_zone ADD CONSTRAINT oorel_od_planning_zone_zone FOREIGN KEY (obj_id) REFERENCES qgep.od_zone(obj_id);
+CREATE TABLE qgep.vl_planning_zone_kind
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_planning_zone_kind_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_planning_zone_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2990,'other','andere','autres', '', '', '', 'true');
+ INSERT INTO qgep.vl_planning_zone_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (31,'commercial_zone','Gewerbezone','zone_artisanale', '', '', '', 'true');
+ INSERT INTO qgep.vl_planning_zone_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (32,'industrial_zone','Industriezone','zone_industrielle', '', '', '', 'true');
+ INSERT INTO qgep.vl_planning_zone_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (30,'agricultural_zone','Landwirtschaftszone','zone_agricole', '', '', '', 'true');
+ INSERT INTO qgep.vl_planning_zone_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3077,'unknown','unbekannt','inconnu', '', '', '', 'true');
+ INSERT INTO qgep.vl_planning_zone_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (29,'residential_zone','Wohnzone','zone_d_habitations', '', '', '', 'true');
+ ALTER TABLE qgep.od_planning_zone ADD CONSTRAINT fkey_vl_planning_zone_kind FOREIGN KEY (kind)
+ REFERENCES qgep.vl_planning_zone_kind (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
+ALTER TABLE qgep.od_ground_water_protection_perimeter ADD CONSTRAINT oorel_od_ground_water_protection_perimeter_zone FOREIGN KEY (obj_id) REFERENCES qgep.od_zone(obj_id);
 ALTER TABLE qgep.od_groundwater_protection_zone ADD CONSTRAINT oorel_od_groundwater_protection_zone_zone FOREIGN KEY (obj_id) REFERENCES qgep.od_zone(obj_id);
 CREATE TABLE qgep.vl_groundwater_protection_zone_kind
 (
@@ -4061,81 +4444,6 @@ WITH (
  INSERT INTO qgep.vl_infiltration_zone_infiltration_capacity (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2996,'not_allowed','unzulaessig','non_admis', '', '', '', 'true');
  ALTER TABLE qgep.od_infiltration_zone ADD CONSTRAINT fkey_vl_infiltration_zone_infiltration_capacity FOREIGN KEY (infiltration_capacity)
  REFERENCES qgep.vl_infiltration_zone_infiltration_capacity (code) MATCH SIMPLE 
- ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_planning_zone ADD CONSTRAINT oorel_od_planning_zone_zone FOREIGN KEY (obj_id) REFERENCES qgep.od_zone(obj_id);
-CREATE TABLE qgep.vl_planning_zone_kind
-(
-code integer NOT NULL,
-value_en character varying(50),
-value_de character varying(50),
-value_fr character varying(50),
-abbr_en character varying(3),
-abbr_de character varying(3),
-abbr_fr character varying(3),
-active boolean,
-CONSTRAINT pkey_qgep_vl_planning_zone_kind_code PRIMARY KEY (code)
-)
-WITH (
-   OIDS = False
-);
- INSERT INTO qgep.vl_planning_zone_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2990,'other','andere','autres', '', '', '', 'true');
- INSERT INTO qgep.vl_planning_zone_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (31,'commercial_zone','Gewerbezone','zone_artisanale', '', '', '', 'true');
- INSERT INTO qgep.vl_planning_zone_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (32,'industrial_zone','Industriezone','zone_industrielle', '', '', '', 'true');
- INSERT INTO qgep.vl_planning_zone_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (30,'agricultural_zone','Landwirtschaftszone','zone_agricole', '', '', '', 'true');
- INSERT INTO qgep.vl_planning_zone_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3077,'unknown','unbekannt','inconnu', '', '', '', 'true');
- INSERT INTO qgep.vl_planning_zone_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (29,'residential_zone','Wohnzone','zone_d_habitations', '', '', '', 'true');
- ALTER TABLE qgep.od_planning_zone ADD CONSTRAINT fkey_vl_planning_zone_kind FOREIGN KEY (kind)
- REFERENCES qgep.vl_planning_zone_kind (code) MATCH SIMPLE 
- ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_electric_equipment ADD CONSTRAINT oorel_od_electric_equipment_structure_part FOREIGN KEY (obj_id) REFERENCES qgep.od_structure_part(obj_id);
-CREATE TABLE qgep.vl_electric_equipment_kind
-(
-code integer NOT NULL,
-value_en character varying(50),
-value_de character varying(50),
-value_fr character varying(50),
-abbr_en character varying(3),
-abbr_de character varying(3),
-abbr_fr character varying(3),
-active boolean,
-CONSTRAINT pkey_qgep_vl_electric_equipment_kind_code PRIMARY KEY (code)
-)
-WITH (
-   OIDS = False
-);
- INSERT INTO qgep.vl_electric_equipment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2980,'other','andere','autres', '', '', '', 'true');
- INSERT INTO qgep.vl_electric_equipment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (376,'illumination','Beleuchtung','eclairage', '', '', '', 'true');
- INSERT INTO qgep.vl_electric_equipment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3255,'remote_control_system','Fernwirkanlage','installation_de_telecommande', '', '', '', 'true');
- INSERT INTO qgep.vl_electric_equipment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (378,'radio_unit','Funk','radio', '', '', '', 'true');
- INSERT INTO qgep.vl_electric_equipment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (377,'phone','Telephon','telephone', '', '', '', 'true');
- INSERT INTO qgep.vl_electric_equipment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3038,'unknown','unbekannt','inconnu', '', '', '', 'true');
- ALTER TABLE qgep.od_electric_equipment ADD CONSTRAINT fkey_vl_electric_equipment_kind FOREIGN KEY (kind)
- REFERENCES qgep.vl_electric_equipment_kind (code) MATCH SIMPLE 
- ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_dryweather_flume ADD CONSTRAINT oorel_od_dryweather_flume_structure_part FOREIGN KEY (obj_id) REFERENCES qgep.od_structure_part(obj_id);
-CREATE TABLE qgep.vl_dryweather_flume_material
-(
-code integer NOT NULL,
-value_en character varying(50),
-value_de character varying(50),
-value_fr character varying(50),
-abbr_en character varying(3),
-abbr_de character varying(3),
-abbr_fr character varying(3),
-active boolean,
-CONSTRAINT pkey_qgep_vl_dryweather_flume_material_code PRIMARY KEY (code)
-)
-WITH (
-   OIDS = False
-);
- INSERT INTO qgep.vl_dryweather_flume_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3221,'other','andere','autres', 'O', 'A', 'AU', 'true');
- INSERT INTO qgep.vl_dryweather_flume_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (354,'combined','kombiniert','combine', '', 'KOM', 'COM', 'true');
- INSERT INTO qgep.vl_dryweather_flume_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5356,'plastic','Kunststoff','matiere_synthetique', '', 'KU', 'MS', 'true');
- INSERT INTO qgep.vl_dryweather_flume_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (238,'stoneware','Steinzeug','gres', '', 'STZ', 'GR', 'true');
- INSERT INTO qgep.vl_dryweather_flume_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3017,'unknown','unbekannt','inconnu', '', 'U', 'I', 'true');
- INSERT INTO qgep.vl_dryweather_flume_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (237,'cement_mortar','Zementmoertel','mortier_de_ciment', '', 'ZM', 'MC', 'true');
- ALTER TABLE qgep.od_dryweather_flume ADD CONSTRAINT fkey_vl_dryweather_flume_material FOREIGN KEY (material)
- REFERENCES qgep.vl_dryweather_flume_material (code) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
 ALTER TABLE qgep.od_cover ADD CONSTRAINT oorel_od_cover_structure_part FOREIGN KEY (obj_id) REFERENCES qgep.od_structure_part(obj_id);
 CREATE TABLE qgep.vl_cover_cover_shape
@@ -4270,8 +4578,8 @@ WITH (
  ALTER TABLE qgep.od_cover ADD CONSTRAINT fkey_vl_cover_venting FOREIGN KEY (venting)
  REFERENCES qgep.vl_cover_venting (code) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_electromechanical_equipment ADD CONSTRAINT oorel_od_electromechanical_equipment_structure_part FOREIGN KEY (obj_id) REFERENCES qgep.od_structure_part(obj_id);
-CREATE TABLE qgep.vl_electromechanical_equipment_kind
+ALTER TABLE qgep.od_electric_equipment ADD CONSTRAINT oorel_od_electric_equipment_structure_part FOREIGN KEY (obj_id) REFERENCES qgep.od_structure_part(obj_id);
+CREATE TABLE qgep.vl_electric_equipment_kind
 (
 code integer NOT NULL,
 value_en character varying(50),
@@ -4281,24 +4589,19 @@ abbr_en character varying(3),
 abbr_de character varying(3),
 abbr_fr character varying(3),
 active boolean,
-CONSTRAINT pkey_qgep_vl_electromechanical_equipment_kind_code PRIMARY KEY (code)
+CONSTRAINT pkey_qgep_vl_electric_equipment_kind_code PRIMARY KEY (code)
 )
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_electromechanical_equipment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2981,'other','andere','autres', '', '', '', 'true');
- INSERT INTO qgep.vl_electromechanical_equipment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2663,'fine_screen','Feinrechen','grille_fine', '', '', '', 'true');
- INSERT INTO qgep.vl_electromechanical_equipment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2664,'coarse_screen','Grobrechen','grille_grossiere', '', '', '', 'true');
- INSERT INTO qgep.vl_electromechanical_equipment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (379,'injector_pump','Injektorpumpe','pompe_a_jet_d_eau', '', '', '', 'true');
- INSERT INTO qgep.vl_electromechanical_equipment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (380,'leakage_water_pump','Leckwasserpumpe','pompe_d_epuisement', '', '', '', 'true');
- INSERT INTO qgep.vl_electromechanical_equipment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (337,'air_dehumidifier','Luftentfeuchter','deshumidificateur', '', '', '', 'true');
- INSERT INTO qgep.vl_electromechanical_equipment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (381,'scraper_installation','Raeumeinrichtung','dispositif_de_curage', '', '', '', 'true');
- INSERT INTO qgep.vl_electromechanical_equipment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2665,'sieve','Sieb','tamis', '', '', '', 'true');
- INSERT INTO qgep.vl_electromechanical_equipment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (382,'yyy_Spuelkippe','Spuelkippe','rigole_basculante', '', '', '', 'true');
- INSERT INTO qgep.vl_electromechanical_equipment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2666,'scumboard','Tauchwand','paroi_plongeante', '', '', '', 'true');
- INSERT INTO qgep.vl_electromechanical_equipment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3072,'unknown','unbekannt','inconnu', '', '', '', 'true');
- ALTER TABLE qgep.od_electromechanical_equipment ADD CONSTRAINT fkey_vl_electromechanical_equipment_kind FOREIGN KEY (kind)
- REFERENCES qgep.vl_electromechanical_equipment_kind (code) MATCH SIMPLE 
+ INSERT INTO qgep.vl_electric_equipment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2980,'other','andere','autres', '', '', '', 'true');
+ INSERT INTO qgep.vl_electric_equipment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (376,'illumination','Beleuchtung','eclairage', '', '', '', 'true');
+ INSERT INTO qgep.vl_electric_equipment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3255,'remote_control_system','Fernwirkanlage','installation_de_telecommande', '', '', '', 'true');
+ INSERT INTO qgep.vl_electric_equipment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (378,'radio_unit','Funk','radio', '', '', '', 'true');
+ INSERT INTO qgep.vl_electric_equipment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (377,'phone','Telephon','telephone', '', '', '', 'true');
+ INSERT INTO qgep.vl_electric_equipment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3038,'unknown','unbekannt','inconnu', '', '', '', 'true');
+ ALTER TABLE qgep.od_electric_equipment ADD CONSTRAINT fkey_vl_electric_equipment_kind FOREIGN KEY (kind)
+ REFERENCES qgep.vl_electric_equipment_kind (code) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
 ALTER TABLE qgep.od_benching ADD CONSTRAINT oorel_od_benching_structure_part FOREIGN KEY (obj_id) REFERENCES qgep.od_structure_part(obj_id);
 CREATE TABLE qgep.vl_benching_kind
@@ -4324,7 +4627,105 @@ WITH (
  ALTER TABLE qgep.od_benching ADD CONSTRAINT fkey_vl_benching_kind FOREIGN KEY (kind)
  REFERENCES qgep.vl_benching_kind (code) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
+ALTER TABLE qgep.od_dryweather_flume ADD CONSTRAINT oorel_od_dryweather_flume_structure_part FOREIGN KEY (obj_id) REFERENCES qgep.od_structure_part(obj_id);
+CREATE TABLE qgep.vl_dryweather_flume_material
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_dryweather_flume_material_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_dryweather_flume_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3221,'other','andere','autres', 'O', 'A', 'AU', 'true');
+ INSERT INTO qgep.vl_dryweather_flume_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (354,'combined','kombiniert','combine', '', 'KOM', 'COM', 'true');
+ INSERT INTO qgep.vl_dryweather_flume_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5356,'plastic','Kunststoff','matiere_synthetique', '', 'KU', 'MS', 'true');
+ INSERT INTO qgep.vl_dryweather_flume_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (238,'stoneware','Steinzeug','gres', '', 'STZ', 'GR', 'true');
+ INSERT INTO qgep.vl_dryweather_flume_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3017,'unknown','unbekannt','inconnu', '', 'U', 'I', 'true');
+ INSERT INTO qgep.vl_dryweather_flume_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (237,'cement_mortar','Zementmoertel','mortier_de_ciment', '', 'ZM', 'MC', 'true');
+ ALTER TABLE qgep.od_dryweather_flume ADD CONSTRAINT fkey_vl_dryweather_flume_material FOREIGN KEY (material)
+ REFERENCES qgep.vl_dryweather_flume_material (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
+ALTER TABLE qgep.od_electromechanical_equipment ADD CONSTRAINT oorel_od_electromechanical_equipment_structure_part FOREIGN KEY (obj_id) REFERENCES qgep.od_structure_part(obj_id);
+CREATE TABLE qgep.vl_electromechanical_equipment_kind
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_electromechanical_equipment_kind_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_electromechanical_equipment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2981,'other','andere','autres', '', '', '', 'true');
+ INSERT INTO qgep.vl_electromechanical_equipment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (380,'leakage_water_pump','Leckwasserpumpe','pompe_d_epuisement', '', '', '', 'true');
+ INSERT INTO qgep.vl_electromechanical_equipment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (337,'air_dehumidifier','Luftentfeuchter','deshumidificateur', '', '', '', 'true');
+ INSERT INTO qgep.vl_electromechanical_equipment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (381,'scraper_installation','Raeumeinrichtung','dispositif_de_curage', '', '', '', 'true');
+ INSERT INTO qgep.vl_electromechanical_equipment_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3072,'unknown','unbekannt','inconnu', '', '', '', 'true');
+ ALTER TABLE qgep.od_electromechanical_equipment ADD CONSTRAINT fkey_vl_electromechanical_equipment_kind FOREIGN KEY (kind)
+ REFERENCES qgep.vl_electromechanical_equipment_kind (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
 ALTER TABLE qgep.od_dryweather_downspout ADD CONSTRAINT oorel_od_dryweather_downspout_structure_part FOREIGN KEY (obj_id) REFERENCES qgep.od_structure_part(obj_id);
+ALTER TABLE qgep.od_backflow_prevention ADD CONSTRAINT oorel_od_backflow_prevention_structure_part FOREIGN KEY (obj_id) REFERENCES qgep.od_structure_part(obj_id);
+CREATE TABLE qgep.vl_backflow_prevention_kind
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_backflow_prevention_kind_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_backflow_prevention_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5760,'other','andere','autres', '', '', '', 'true');
+ INSERT INTO qgep.vl_backflow_prevention_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5759,'pump','Pumpe','pompe', '', '', '', 'true');
+ INSERT INTO qgep.vl_backflow_prevention_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5757,'backflow_flap','Rueckstauklappe','clapet_de_non_retour_a_battant', '', '', '', 'true');
+ INSERT INTO qgep.vl_backflow_prevention_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5758,'gate_shield','Stauschild','plaque_de_retenue', '', '', '', 'true');
+ ALTER TABLE qgep.od_backflow_prevention ADD CONSTRAINT fkey_vl_backflow_prevention_kind FOREIGN KEY (kind)
+ REFERENCES qgep.vl_backflow_prevention_kind (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
+ALTER TABLE qgep.od_solids_retention ADD CONSTRAINT oorel_od_solids_retention_structure_part FOREIGN KEY (obj_id) REFERENCES qgep.od_structure_part(obj_id);
+CREATE TABLE qgep.vl_solids_retention_type
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_solids_retention_type_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_solids_retention_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5664,'other','andere','autres', '', '', '', 'true');
+ INSERT INTO qgep.vl_solids_retention_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5665,'fine_screen','Feinrechen','grille_fine', '', '', '', 'true');
+ INSERT INTO qgep.vl_solids_retention_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5666,'coarse_screen','Grobrechen','grille_grossiere', '', '', '', 'true');
+ INSERT INTO qgep.vl_solids_retention_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5667,'sieve','Sieb','tamis', '', '', '', 'true');
+ INSERT INTO qgep.vl_solids_retention_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5668,'scumboard','Tauchwand','paroi_plongeante', '', '', '', 'true');
+ INSERT INTO qgep.vl_solids_retention_type (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5669,'unknown','unbekannt','inconnu', '', '', '', 'true');
+ ALTER TABLE qgep.od_solids_retention ADD CONSTRAINT fkey_vl_solids_retention_type FOREIGN KEY (type)
+ REFERENCES qgep.vl_solids_retention_type (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
+ALTER TABLE qgep.od_tank_cleaning ADD CONSTRAINT oorel_od_tank_cleaning_structure_part FOREIGN KEY (obj_id) REFERENCES qgep.od_structure_part(obj_id);
 ALTER TABLE qgep.od_access_aid ADD CONSTRAINT oorel_od_access_aid_structure_part FOREIGN KEY (obj_id) REFERENCES qgep.od_structure_part(obj_id);
 CREATE TABLE qgep.vl_access_aid_kind
 (
@@ -4353,6 +4754,7 @@ WITH (
  ALTER TABLE qgep.od_access_aid ADD CONSTRAINT fkey_vl_access_aid_kind FOREIGN KEY (kind)
  REFERENCES qgep.vl_access_aid_kind (code) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
+ALTER TABLE qgep.od_tank_emptying ADD CONSTRAINT oorel_od_tank_emptying_structure_part FOREIGN KEY (obj_id) REFERENCES qgep.od_structure_part(obj_id);
 ALTER TABLE qgep.od_wwtp_structure ADD CONSTRAINT oorel_od_wwtp_structure_wastewater_structure FOREIGN KEY (obj_id) REFERENCES qgep.od_wastewater_structure(obj_id);
 CREATE TABLE qgep.vl_wwtp_structure_kind
 (
@@ -4404,10 +4806,10 @@ WITH (
  INSERT INTO qgep.vl_channel_bedding_encasement (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5337,'in_jacking_pipe_concrete','in_Vortriebsrohr_Beton','en_pousse_tube_en_beton', '', 'IVB', 'TB', 'true');
  INSERT INTO qgep.vl_channel_bedding_encasement (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5336,'in_jacking_pipe_steel','in_Vortriebsrohr_Stahl','en_pousse_tube_en_acier', '', 'IVS', 'TA', 'true');
  INSERT INTO qgep.vl_channel_bedding_encasement (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5335,'sand','Sand','sable', '', 'SA', 'SA', 'true');
- INSERT INTO qgep.vl_channel_bedding_encasement (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5333,'SIA_type_1','SIA_Typ1','SIA_type_1', '', 'B1', 'B1', 'true');
- INSERT INTO qgep.vl_channel_bedding_encasement (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5330,'SIA_type_2','SIA_Typ2','SIA_type_2', '', 'B2', 'B2', 'true');
- INSERT INTO qgep.vl_channel_bedding_encasement (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5334,'SIA_type_3','SIA_Typ3','SIA_type_3', '', 'B3', 'B3', 'true');
- INSERT INTO qgep.vl_channel_bedding_encasement (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5340,'SIA_type_4','SIA_Typ4','SIA_type_4', '', 'B4', 'B4', 'true');
+ INSERT INTO qgep.vl_channel_bedding_encasement (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5333,'sia_type_1','SIA_Typ1','SIA_type_1', '', 'B1', 'B1', 'true');
+ INSERT INTO qgep.vl_channel_bedding_encasement (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5330,'sia_type_2','SIA_Typ2','SIA_type_2', '', 'B2', 'B2', 'true');
+ INSERT INTO qgep.vl_channel_bedding_encasement (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5334,'sia_type_3','SIA_Typ3','SIA_type_3', '', 'B3', 'B3', 'true');
+ INSERT INTO qgep.vl_channel_bedding_encasement (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5340,'sia_type_4','SIA_Typ4','SIA_type_4', '', 'B4', 'B4', 'true');
  INSERT INTO qgep.vl_channel_bedding_encasement (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5327,'bed_plank','Sohlbrett','radier_en_planches', '', 'SB', 'RP', 'true');
  INSERT INTO qgep.vl_channel_bedding_encasement (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5329,'unknown','unbekannt','inconnu', '', 'U', 'I', 'true');
  ALTER TABLE qgep.od_channel ADD CONSTRAINT fkey_vl_channel_bedding_encasement FOREIGN KEY (bedding_encasement)
@@ -4559,6 +4961,109 @@ WITH (
  ALTER TABLE qgep.od_channel ADD CONSTRAINT fkey_vl_channel_usage_planned FOREIGN KEY (usage_planned)
  REFERENCES qgep.vl_channel_usage_planned (code) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
+ALTER TABLE qgep.od_manhole ADD CONSTRAINT oorel_od_manhole_wastewater_structure FOREIGN KEY (obj_id) REFERENCES qgep.od_wastewater_structure(obj_id);
+CREATE TABLE qgep.vl_manhole_function
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_manhole_function_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (4532,'drop_structure','Absturzbauwerk','ouvrage_de_chute', 'DS', 'AK', 'OC', 'true');
+ INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5344,'other','andere','autre', 'O', 'A', 'AU', 'true');
+ INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (4533,'venting','Be_Entlueftung','aeration', 'VE', 'BE', 'AE', 'true');
+ INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3267,'rain_water_manhole','Dachwasserschacht','chambre_recolte_eaux_toitures', 'RWM', 'DS', 'CRT', 'true');
+ INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3266,'gully','Einlaufschacht','chambre_avec_grille_d_entree', 'G', 'ES', 'CG', 'true');
+ INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3472,'drainage_channel','Entwaesserungsrinne','rigole_de_drainage', '', 'ER', 'RD', 'true');
+ INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (228,'rail_track_gully','Geleiseschacht','evacuation_des_eaux_des_voies_ferrees', '', 'GL', 'EVF', 'true');
+ INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (204,'manhole','Kontrollschacht','regard_de_visite', '', 'KS', 'CC', 'true');
+ INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (1008,'oil_separator','Oelabscheider','separateur_d_hydrocarbures', 'OS', 'OA', 'SH', 'true');
+ INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (4536,'pump_station','Pumpwerk','station_de_pompage', '', 'PW', 'SP', 'true');
+ INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5346,'stormwater_overflow','Regenueberlauf','deversoir_d_orage', '', 'HE', 'DO', 'true');
+ INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2742,'slurry_collector','Schlammsammler','depotoir', '', 'SA', 'D', 'true');
+ INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5347,'floating_material_separator','Schwimmstoffabscheider','separateur_de_materiaux_flottants', '', 'SW', 'SMF', 'true');
+ INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (4537,'jetting_manhole','Spuelschacht','chambre_de_chasse', '', 'SS', 'CC', 'true');
+ INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (4798,'separating_structure','Trennbauwerk','ouvrage_de_repartition', '', 'TB', 'OR', 'true');
+ INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5345,'unknown','unbekannt','inconnue', '', 'U', 'I', 'true');
+ ALTER TABLE qgep.od_manhole ADD CONSTRAINT fkey_vl_manhole_function FOREIGN KEY (function)
+ REFERENCES qgep.vl_manhole_function (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
+CREATE TABLE qgep.vl_manhole_material
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_manhole_material_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_manhole_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (4540,'other','andere','autre', '', '', '', 'true');
+ INSERT INTO qgep.vl_manhole_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (4541,'concrete','Beton','beton', '', '', '', 'true');
+ INSERT INTO qgep.vl_manhole_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (4542,'plastic','Kunststoff','matiere_plastique', '', '', '', 'true');
+ INSERT INTO qgep.vl_manhole_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (4543,'unknown','unbekannt','inconnu', '', '', '', 'true');
+ ALTER TABLE qgep.od_manhole ADD CONSTRAINT fkey_vl_manhole_material FOREIGN KEY (material)
+ REFERENCES qgep.vl_manhole_material (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
+CREATE TABLE qgep.vl_manhole_surface_inflow
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_manhole_surface_inflow_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_manhole_surface_inflow (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5342,'other','andere','autre', 'O', 'A', 'AU', 'true');
+ INSERT INTO qgep.vl_manhole_surface_inflow (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2741,'none','keiner','aucune', '', 'K', 'AN', 'true');
+ INSERT INTO qgep.vl_manhole_surface_inflow (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2739,'grid','Rost','grille_d_ecoulement', '', 'R', 'G', 'true');
+ INSERT INTO qgep.vl_manhole_surface_inflow (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5343,'unknown','unbekannt','inconnue', '', 'U', 'I', 'true');
+ INSERT INTO qgep.vl_manhole_surface_inflow (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2740,'intake_from_side','Zulauf_seitlich','arrivee_laterale', '', 'ZS', 'AL', 'true');
+ ALTER TABLE qgep.od_manhole ADD CONSTRAINT fkey_vl_manhole_surface_inflow FOREIGN KEY (surface_inflow)
+ REFERENCES qgep.vl_manhole_surface_inflow (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
+ALTER TABLE qgep.od_discharge_point ADD CONSTRAINT oorel_od_discharge_point_wastewater_structure FOREIGN KEY (obj_id) REFERENCES qgep.od_wastewater_structure(obj_id);
+CREATE TABLE qgep.vl_discharge_point_relevance
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_discharge_point_relevance_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_discharge_point_relevance (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5580,'relevant_for_water_course','gewaesserrelevant','pertinent_pour_milieu_recepteur', '', '', '', 'true');
+ INSERT INTO qgep.vl_discharge_point_relevance (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5581,'non_relevant_for_water_course','nicht_gewaesserrelevant','insignifiant_pour_milieu_recepteur', '', '', '', 'true');
+ ALTER TABLE qgep.od_discharge_point ADD CONSTRAINT fkey_vl_discharge_point_relevance FOREIGN KEY (relevance)
+ REFERENCES qgep.vl_discharge_point_relevance (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
+ALTER TABLE qgep.od_discharge_point ADD COLUMN fk_sector_water_body varchar (16);
+ALTER TABLE qgep.od_discharge_point ADD CONSTRAINT rel_discharge_point_sector_water_body FOREIGN KEY (fk_sector_water_body) REFERENCES qgep.od_sector_water_body(obj_id);
 ALTER TABLE qgep.od_infiltration_installation ADD CONSTRAINT oorel_od_infiltration_installation_wastewater_structure FOREIGN KEY (obj_id) REFERENCES qgep.od_wastewater_structure(obj_id);
 CREATE TABLE qgep.vl_infiltration_installation_defects
 (
@@ -4622,15 +5127,15 @@ WITH (
 );
  INSERT INTO qgep.vl_infiltration_installation_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3282,'with_soil_passage','andere_mit_Bodenpassage','autre_avec_passage_a_travers_sol', 'WSP', 'AMB', 'APC', 'true');
  INSERT INTO qgep.vl_infiltration_installation_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3285,'without_soil_passage','andere_ohne_Bodenpassage','autre_sans_passage_a_travers_sol', 'WOP', 'AOB', 'ASC', 'true');
- INSERT INTO qgep.vl_infiltration_installation_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3279,'surface_percolation','Flaechenfoermige_Versickerung','infiltration_superficielle_sur_place', '', 'FV', 'IS', 'true');
+ INSERT INTO qgep.vl_infiltration_installation_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3279,'surface_infiltration','Flaechenfoermige_Versickerung','infiltration_superficielle_sur_place', '', 'FV', 'IS', 'true');
  INSERT INTO qgep.vl_infiltration_installation_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (277,'gravel_formation','Kieskoerper','corps_de_gravier', '', 'KK', 'VG', 'true');
  INSERT INTO qgep.vl_infiltration_installation_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3284,'combination_manhole_pipe','Kombination_Schacht_Strang','combinaison_puits_bande', '', 'KOM', 'CPT', 'true');
- INSERT INTO qgep.vl_infiltration_installation_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3281,'yyy_depression_percolation','MuldenRigolenversickerung','cuvettes_rigoles_filtrantes', '', 'MRV', 'ICR', 'true');
+ INSERT INTO qgep.vl_infiltration_installation_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3281,'swale_french_drain_infiltration','MuldenRigolenversickerung','cuvettes_rigoles_filtrantes', '', 'MRV', 'ICR', 'true');
  INSERT INTO qgep.vl_infiltration_installation_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3087,'unknown','unbekannt','inconnu', '', 'U', 'I', 'true');
  INSERT INTO qgep.vl_infiltration_installation_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3280,'percolation_over_the_shoulder','Versickerung_ueber_die_Schulter','infiltration_par_les_bas_cotes', '', 'VUS', 'IDB', 'true');
- INSERT INTO qgep.vl_infiltration_installation_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (276,'percolation_basin','Versickerungsbecken','bassin_d_infiltration', '', 'VB', 'BI', 'true');
- INSERT INTO qgep.vl_infiltration_installation_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (278,'percolation_manhole','Versickerungsschacht','puits_d_infiltration', '', 'VS', 'PI', 'true');
- INSERT INTO qgep.vl_infiltration_installation_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3283,'percolation_pipe_gallery','Versickerungsstrang_Galerie','bande_infiltration_galerie', '', 'VG', 'TIG', 'true');
+ INSERT INTO qgep.vl_infiltration_installation_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (276,'infiltration_basin','Versickerungsbecken','bassin_d_infiltration', '', 'VB', 'BI', 'true');
+ INSERT INTO qgep.vl_infiltration_installation_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (278,'adsorbing_well','Versickerungsschacht','puits_d_infiltration', '', 'VS', 'PI', 'true');
+ INSERT INTO qgep.vl_infiltration_installation_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3283,'infiltration_pipe_sections_gallery','Versickerungsstrang_Galerie','bande_infiltration_galerie', '', 'VG', 'TIG', 'true');
  ALTER TABLE qgep.od_infiltration_installation ADD CONSTRAINT fkey_vl_infiltration_installation_kind FOREIGN KEY (kind)
  REFERENCES qgep.vl_infiltration_installation_kind (code) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
@@ -4718,89 +5223,8 @@ WITH (
  ALTER TABLE qgep.od_infiltration_installation ADD CONSTRAINT fkey_vl_infiltration_installation_watertightness FOREIGN KEY (watertightness)
  REFERENCES qgep.vl_infiltration_installation_watertightness (code) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_infiltration_installation ADD COLUMN fs_aquifier varchar (16);
-ALTER TABLE qgep.od_infiltration_installation ADD CONSTRAINT rel_infiltration_installation_aquifier FOREIGN KEY (fs_aquifier) REFERENCES qgep.od_aquifier(obj_id);
-ALTER TABLE qgep.od_manhole ADD CONSTRAINT oorel_od_manhole_wastewater_structure FOREIGN KEY (obj_id) REFERENCES qgep.od_wastewater_structure(obj_id);
-CREATE TABLE qgep.vl_manhole_function
-(
-code integer NOT NULL,
-value_en character varying(50),
-value_de character varying(50),
-value_fr character varying(50),
-abbr_en character varying(3),
-abbr_de character varying(3),
-abbr_fr character varying(3),
-active boolean,
-CONSTRAINT pkey_qgep_vl_manhole_function_code PRIMARY KEY (code)
-)
-WITH (
-   OIDS = False
-);
- INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (4532,'drop_structure','Absturzbauwerk','ouvrage_de_chute', 'DS', 'AK', 'OC', 'true');
- INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5344,'other','andere','autre', 'O', 'A', 'AU', 'true');
- INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (4533,'venting','Be_Entlueftung','aeration', 'VE', 'BE', 'AE', 'true');
- INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3267,'rain_water_manhole','Dachwasserschacht','chambre_recolte_eaux_toitures', 'RWM', 'DS', 'CRT', 'true');
- INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3266,'gully','Einlaufschacht','chambre_avec_grille_d_entree', 'G', 'ES', 'CG', 'true');
- INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3472,'drainage_channel','Entwaesserungsrinne','rigole_de_drainage', '', 'ER', 'RD', 'true');
- INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (228,'rail_track_gully','Geleiseschacht','evacuation_des_eaux_des_voies_ferrees', '', 'GL', 'EVF', 'true');
- INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (4535,'septic_tank','Klaergrube','fosse_septique', '', 'KG', 'FS', 'true');
- INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (204,'manhole','Kontrollschacht','regard_de_visite', '', 'KS', 'CC', 'true');
- INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (1008,'oil_separator','Oelabscheider','separateur_d_hydrocarbures', 'OS', 'OA', 'SH', 'true');
- INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (4536,'pump_station','Pumpwerk','station_de_pompage', '', 'PW', 'SP', 'true');
- INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5346,'stormwater_overflow','Regenueberlauf','deversoir_d_orage', '', 'HE', 'DO', 'true');
- INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2742,'slurry_collector','Schlammsammler','depotoir', '', 'SA', 'D', 'true');
- INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5347,'floating_material_separator','Schwimmstoffabscheider','separateur_de_materiaux_flottants', '', 'SW', 'SMF', 'true');
- INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (4537,'jetting_manhole','Spuelschacht','chambre_de_chasse', '', 'SS', 'CC', 'true');
- INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (4798,'separating_structure','Trennbauwerk','ouvrage_de_repartition', '', 'TB', 'OR', 'true');
- INSERT INTO qgep.vl_manhole_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5345,'unknown','unbekannt','inconnue', '', 'U', 'I', 'true');
- ALTER TABLE qgep.od_manhole ADD CONSTRAINT fkey_vl_manhole_function FOREIGN KEY (function)
- REFERENCES qgep.vl_manhole_function (code) MATCH SIMPLE 
- ON UPDATE RESTRICT ON DELETE RESTRICT;
-CREATE TABLE qgep.vl_manhole_material
-(
-code integer NOT NULL,
-value_en character varying(50),
-value_de character varying(50),
-value_fr character varying(50),
-abbr_en character varying(3),
-abbr_de character varying(3),
-abbr_fr character varying(3),
-active boolean,
-CONSTRAINT pkey_qgep_vl_manhole_material_code PRIMARY KEY (code)
-)
-WITH (
-   OIDS = False
-);
- INSERT INTO qgep.vl_manhole_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (4540,'other','andere','autre', '', '', '', 'true');
- INSERT INTO qgep.vl_manhole_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (4541,'concrete','Beton','beton', '', '', '', 'true');
- INSERT INTO qgep.vl_manhole_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (4542,'plastic','Kunststoff','matiere_plastique', '', '', '', 'true');
- INSERT INTO qgep.vl_manhole_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (4543,'unknown','unbekannt','inconnu', '', '', '', 'true');
- ALTER TABLE qgep.od_manhole ADD CONSTRAINT fkey_vl_manhole_material FOREIGN KEY (material)
- REFERENCES qgep.vl_manhole_material (code) MATCH SIMPLE 
- ON UPDATE RESTRICT ON DELETE RESTRICT;
-CREATE TABLE qgep.vl_manhole_surface_inflow
-(
-code integer NOT NULL,
-value_en character varying(50),
-value_de character varying(50),
-value_fr character varying(50),
-abbr_en character varying(3),
-abbr_de character varying(3),
-abbr_fr character varying(3),
-active boolean,
-CONSTRAINT pkey_qgep_vl_manhole_surface_inflow_code PRIMARY KEY (code)
-)
-WITH (
-   OIDS = False
-);
- INSERT INTO qgep.vl_manhole_surface_inflow (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5342,'other','andere','autre', 'O', 'A', 'AU', 'true');
- INSERT INTO qgep.vl_manhole_surface_inflow (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2741,'none','keiner','aucune', '', 'K', 'AN', 'true');
- INSERT INTO qgep.vl_manhole_surface_inflow (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2739,'grid','Rost','grille_d_ecoulement', '', 'R', 'G', 'true');
- INSERT INTO qgep.vl_manhole_surface_inflow (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5343,'unknown','unbekannt','inconnue', '', 'U', 'I', 'true');
- INSERT INTO qgep.vl_manhole_surface_inflow (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2740,'intake_from_side','Zulauf_seitlich','arrivee_laterale', '', 'ZS', 'AL', 'true');
- ALTER TABLE qgep.od_manhole ADD CONSTRAINT fkey_vl_manhole_surface_inflow FOREIGN KEY (surface_inflow)
- REFERENCES qgep.vl_manhole_surface_inflow (code) MATCH SIMPLE 
- ON UPDATE RESTRICT ON DELETE RESTRICT;
+ALTER TABLE qgep.od_infiltration_installation ADD COLUMN fk_aquifier varchar (16);
+ALTER TABLE qgep.od_infiltration_installation ADD CONSTRAINT rel_infiltration_installation_aquifier FOREIGN KEY (fk_aquifier) REFERENCES qgep.od_aquifier(obj_id);
 ALTER TABLE qgep.od_special_structure ADD CONSTRAINT oorel_od_special_structure_wastewater_structure FOREIGN KEY (obj_id) REFERENCES qgep.od_wastewater_structure(obj_id);
 CREATE TABLE qgep.vl_special_structure_bypass
 (
@@ -4823,6 +5247,30 @@ WITH (
  ALTER TABLE qgep.od_special_structure ADD CONSTRAINT fkey_vl_special_structure_bypass FOREIGN KEY (bypass)
  REFERENCES qgep.vl_special_structure_bypass (code) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
+CREATE TABLE qgep.vl_special_structure_emergency_spillway
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_special_structure_emergency_spillway_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_special_structure_emergency_spillway (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5866,'other','andere','autres', '', '', '', 'true');
+ INSERT INTO qgep.vl_special_structure_emergency_spillway (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5864,'in_combined_waste_water_drain','inMischabwasserkanalisation','dans_canalisation_eaux_mixtes', '', '', '', 'true');
+ INSERT INTO qgep.vl_special_structure_emergency_spillway (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5865,'in_rain_waste_water_drain','inRegenabwasserkanalisation','dans_canalisation_eaux_pluviales', '', '', '', 'true');
+ INSERT INTO qgep.vl_special_structure_emergency_spillway (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5863,'in_waste_water_drain','inSchmutzabwasserkanalisation','dans_canalisation_eaux_usees', '', '', '', 'true');
+ INSERT INTO qgep.vl_special_structure_emergency_spillway (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5878,'none','keiner','aucun', '', '', '', 'true');
+ INSERT INTO qgep.vl_special_structure_emergency_spillway (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5867,'unknown','unbekannt','inconnu', '', '', '', 'true');
+ ALTER TABLE qgep.od_special_structure ADD CONSTRAINT fkey_vl_special_structure_emergency_spillway FOREIGN KEY (emergency_spillway)
+ REFERENCES qgep.vl_special_structure_emergency_spillway (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
 CREATE TABLE qgep.vl_special_structure_function
 (
 code integer NOT NULL,
@@ -4838,11 +5286,14 @@ CONSTRAINT pkey_qgep_vl_special_structure_function_code PRIMARY KEY (code)
 WITH (
    OIDS = False
 );
+ INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6397,'pit_without_drain','abflussloseGrube','fosse_etanche', '', '', '', 'true');
  INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (245,'drop_structure','Absturzbauwerk','ouvrage_de_chute', 'DS', 'AK', 'OC', 'true');
+ INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6398,'privy_tank','Abwasserfaulraum','fosse_digestive', '', '', '', 'true');
  INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5371,'other','andere','autre', 'O', 'A', 'AU', 'true');
  INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (386,'venting','Be_Entlueftung','aeration', 'VE', 'BE', 'AE', 'true');
  INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3234,'inverse_syphon_chamber','Duekerkammer','chambre_avec_siphon_inverse', 'ISC', 'DK', 'SI', 'true');
- INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5091,'syphon_head','Duekeroberhaupt','entree_siphon', 'SH', 'DO', 'ES', 'true');
+ INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5091,'syphon_head','Duekeroberhaupt','entree_de_siphon', 'SH', 'DO', 'ESI', 'true');
+ INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6399,'septic_tank','Faulgrube','fosse_septique', '', '', '', 'true');
  INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3348,'terrain_depression','Gelaendemulde','depression_de_terrain', '', 'GM', 'DT', 'true');
  INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (336,'bolders_bedload_catchement_dam','Geschiebefang','depotoir_pour_alluvions', '', 'GF', 'DA', 'true');
  INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5494,'cesspit','Guellegrube','fosse_a_purin', '', '', '', 'true');
@@ -4852,11 +5303,11 @@ WITH (
  INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (246,'pump_station','Pumpwerk','station_de_pompage', '', 'PW', 'SP', 'true');
  INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3673,'stormwater_tank_with_overflow','Regenbecken_Durchlaufbecken','BEP_decantation', '', 'DB', 'BDE', 'true');
  INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3674,'stormwater_tank_retaining_first_flush','Regenbecken_Fangbecken','BEP_retention', '', 'FB', 'BRE', 'true');
- INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5574,'stormwater_tank_retaining_channel','Regenbecken_Fangkanal','BEP_canal_retention', 'TRE', 'FK', 'BCR', 'true');
+ INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5574,'stormwater_retaining_channel','Regenbecken_Fangkanal','BEP_canal_retention', 'TRE', 'FK', 'BCR', 'true');
  INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3675,'stormwater_sedimentation_tank','Regenbecken_Regenklaerbecken','BEP_clarification', '', 'RKB', 'BCL', 'true');
  INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3676,'stormwater_retention_tank','Regenbecken_Regenrueckhaltebecken','BEP_accumulation', '', 'RRB', 'BAC', 'true');
- INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5575,'stormwater_tank_retention_channel','Regenbecken_Regenrueckhaltekanal','BEP_canal_accumulation', 'TRC', 'RRK', 'BCA', 'true');
- INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5576,'stormwater_tank_storage_channel','Regenbecken_Stauraumkanal','BEP_canal_stockage', 'TSC', 'SRK', 'BCS', 'true');
+ INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5575,'stormwater_retention_channel','Regenbecken_Regenrueckhaltekanal','BEP_canal_accumulation', 'TRC', 'RRK', 'BCA', 'true');
+ INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5576,'stormwater_storage_channel','Regenbecken_Stauraumkanal','BEP_canal_stockage', 'TSC', 'SRK', 'BCS', 'true');
  INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3677,'stormwater_composite_tank','Regenbecken_Verbundbecken','BEP_combine', '', 'VB', 'BCO', 'true');
  INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5372,'stormwater_overflow','Regenueberlauf','deversoir_d_orage', '', 'RU', 'DO', 'true');
  INSERT INTO qgep.vl_special_structure_function (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5373,'floating_material_separator','Schwimmstoffabscheider','separateur_de_materiaux_flottants', '', 'SW', 'SMF', 'true');
@@ -4868,7 +5319,7 @@ WITH (
  ALTER TABLE qgep.od_special_structure ADD CONSTRAINT fkey_vl_special_structure_function FOREIGN KEY (function)
  REFERENCES qgep.vl_special_structure_function (code) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
-CREATE TABLE qgep.vl_special_structure_stormwatertank_arrangement
+CREATE TABLE qgep.vl_special_structure_stormwater_tank_arrangement
 (
 code integer NOT NULL,
 value_en character varying(50),
@@ -4878,40 +5329,17 @@ abbr_en character varying(3),
 abbr_de character varying(3),
 abbr_fr character varying(3),
 active boolean,
-CONSTRAINT pkey_qgep_vl_special_structure_stormwatertank_arrangement_code PRIMARY KEY (code)
+CONSTRAINT pkey_qgep_vl_special_structure_stormwater_tank_arrangement_code PRIMARY KEY (code)
 )
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_special_structure_stormwatertank_arrangement (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (4608,'main_connection','Hauptschluss','connexion_directe', '', 'HS', 'CD', 'true');
- INSERT INTO qgep.vl_special_structure_stormwatertank_arrangement (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (4609,'side_connection','Nebenschluss','connexion_laterale', '', 'NS', 'CL', 'true');
- INSERT INTO qgep.vl_special_structure_stormwatertank_arrangement (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (4610,'unknown','unbekannt','inconnue', '', '', '', 'true');
- ALTER TABLE qgep.od_special_structure ADD CONSTRAINT fkey_vl_special_structure_stormwatertank_arrangement FOREIGN KEY (stormwatertank_arrangement)
- REFERENCES qgep.vl_special_structure_stormwatertank_arrangement (code) MATCH SIMPLE 
+ INSERT INTO qgep.vl_special_structure_stormwater_tank_arrangement (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (4608,'main_connection','Hauptschluss','connexion_directe', '', 'HS', 'CD', 'true');
+ INSERT INTO qgep.vl_special_structure_stormwater_tank_arrangement (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (4609,'side_connection','Nebenschluss','connexion_laterale', '', 'NS', 'CL', 'true');
+ INSERT INTO qgep.vl_special_structure_stormwater_tank_arrangement (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (4610,'unknown','unbekannt','inconnue', '', '', '', 'true');
+ ALTER TABLE qgep.od_special_structure ADD CONSTRAINT fkey_vl_special_structure_stormwater_tank_arrangement FOREIGN KEY (stormwater_tank_arrangement)
+ REFERENCES qgep.vl_special_structure_stormwater_tank_arrangement (code) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_discharge_point ADD CONSTRAINT oorel_od_discharge_point_wastewater_structure FOREIGN KEY (obj_id) REFERENCES qgep.od_wastewater_structure(obj_id);
-CREATE TABLE qgep.vl_discharge_point_relevance
-(
-code integer NOT NULL,
-value_en character varying(50),
-value_de character varying(50),
-value_fr character varying(50),
-abbr_en character varying(3),
-abbr_de character varying(3),
-abbr_fr character varying(3),
-active boolean,
-CONSTRAINT pkey_qgep_vl_discharge_point_relevance_code PRIMARY KEY (code)
-)
-WITH (
-   OIDS = False
-);
- INSERT INTO qgep.vl_discharge_point_relevance (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5580,'relevant_for_water_course','gewaesserrelevant','pertinent_pour_milieu_recepteur', '', '', '', 'true');
- INSERT INTO qgep.vl_discharge_point_relevance (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5581,'non_relevant_for_water_course','nicht_gewaesserrelevant','insignifiant_pour_milieu_recepteur', '', '', '', 'true');
- ALTER TABLE qgep.od_discharge_point ADD CONSTRAINT fkey_vl_discharge_point_relevance FOREIGN KEY (relevance)
- REFERENCES qgep.vl_discharge_point_relevance (code) MATCH SIMPLE 
- ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_discharge_point ADD COLUMN fs_sector_water_body varchar (16);
-ALTER TABLE qgep.od_discharge_point ADD CONSTRAINT rel_discharge_point_sector_water_body FOREIGN KEY (fs_sector_water_body) REFERENCES qgep.od_sector_water_body(obj_id);
 ALTER TABLE qgep.od_lake ADD CONSTRAINT oorel_od_lake_surface_water_bodies FOREIGN KEY (obj_id) REFERENCES qgep.od_surface_water_bodies(obj_id);
 ALTER TABLE qgep.od_river ADD CONSTRAINT oorel_od_river_surface_water_bodies FOREIGN KEY (obj_id) REFERENCES qgep.od_surface_water_bodies(obj_id);
 CREATE TABLE qgep.vl_river_kind
@@ -4937,32 +5365,7 @@ WITH (
  ALTER TABLE qgep.od_river ADD CONSTRAINT fkey_vl_river_kind FOREIGN KEY (kind)
  REFERENCES qgep.vl_river_kind (code) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_blocking_debris ADD CONSTRAINT oorel_od_blocking_debris_water_control_structure FOREIGN KEY (obj_id) REFERENCES qgep.od_water_control_structure(obj_id);
 ALTER TABLE qgep.od_passage ADD CONSTRAINT oorel_od_passage_water_control_structure FOREIGN KEY (obj_id) REFERENCES qgep.od_water_control_structure(obj_id);
-ALTER TABLE qgep.od_dam ADD CONSTRAINT oorel_od_dam_water_control_structure FOREIGN KEY (obj_id) REFERENCES qgep.od_water_control_structure(obj_id);
-CREATE TABLE qgep.vl_dam_kind
-(
-code integer NOT NULL,
-value_en character varying(50),
-value_de character varying(50),
-value_fr character varying(50),
-abbr_en character varying(3),
-abbr_de character varying(3),
-abbr_fr character varying(3),
-active boolean,
-CONSTRAINT pkey_qgep_vl_dam_kind_code PRIMARY KEY (code)
-)
-WITH (
-   OIDS = False
-);
- INSERT INTO qgep.vl_dam_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (416,'retaining_weir','Stauwehr','digue_reservoir', '', '', '', 'true');
- INSERT INTO qgep.vl_dam_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (417,'spillway','Streichwehr','deversoir_lateral', '', '', '', 'true');
- INSERT INTO qgep.vl_dam_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (419,'dam','Talsperre','barrage', '', '', '', 'true');
- INSERT INTO qgep.vl_dam_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (418,'tyrolean_weir','Tirolerwehr','prise_tyrolienne', '', '', '', 'true');
- INSERT INTO qgep.vl_dam_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3064,'unknown','unbekannt','inconnu', '', '', '', 'true');
- ALTER TABLE qgep.od_dam ADD CONSTRAINT fkey_vl_dam_kind FOREIGN KEY (kind)
- REFERENCES qgep.vl_dam_kind (code) MATCH SIMPLE 
- ON UPDATE RESTRICT ON DELETE RESTRICT;
 ALTER TABLE qgep.od_ford ADD CONSTRAINT oorel_od_ford_water_control_structure FOREIGN KEY (obj_id) REFERENCES qgep.od_water_control_structure(obj_id);
 ALTER TABLE qgep.od_chute ADD CONSTRAINT oorel_od_chute_water_control_structure FOREIGN KEY (obj_id) REFERENCES qgep.od_water_control_structure(obj_id);
 CREATE TABLE qgep.vl_chute_kind
@@ -5031,24 +5434,46 @@ WITH (
  INSERT INTO qgep.vl_rock_ramp_stabilisation (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (415,'concrete_channel','Betonrinne','lit_en_beton', '', '', '', 'true');
  INSERT INTO qgep.vl_rock_ramp_stabilisation (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (412,'rocks_or_boulders','Blockwurf','enrochement', '', '', '', 'true');
  INSERT INTO qgep.vl_rock_ramp_stabilisation (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (413,'paved','gepflaestert','pavement', '', '', '', 'true');
- INSERT INTO qgep.vl_rock_ramp_stabilisation (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (414,'yyy_Holzbalken','Holzbalken','poutres_en_bois', '', '', '', 'true');
+ INSERT INTO qgep.vl_rock_ramp_stabilisation (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (414,'wooden_beam','Holzbalken','poutres_en_bois', '', '', '', 'true');
  INSERT INTO qgep.vl_rock_ramp_stabilisation (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3063,'unknown','unbekannt','inconnu', '', '', '', 'true');
  ALTER TABLE qgep.od_rock_ramp ADD CONSTRAINT fkey_vl_rock_ramp_stabilisation FOREIGN KEY (stabilisation)
  REFERENCES qgep.vl_rock_ramp_stabilisation (code) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
+ALTER TABLE qgep.od_blocking_debris ADD CONSTRAINT oorel_od_blocking_debris_water_control_structure FOREIGN KEY (obj_id) REFERENCES qgep.od_water_control_structure(obj_id);
+ALTER TABLE qgep.od_dam ADD CONSTRAINT oorel_od_dam_water_control_structure FOREIGN KEY (obj_id) REFERENCES qgep.od_water_control_structure(obj_id);
+CREATE TABLE qgep.vl_dam_kind
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_dam_kind_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_dam_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (416,'retaining_weir','Stauwehr','digue_reservoir', '', '', '', 'true');
+ INSERT INTO qgep.vl_dam_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (417,'spillway','Streichwehr','deversoir_lateral', '', '', '', 'true');
+ INSERT INTO qgep.vl_dam_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (419,'dam','Talsperre','barrage', '', '', '', 'true');
+ INSERT INTO qgep.vl_dam_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (418,'tyrolean_weir','Tirolerwehr','prise_tyrolienne', '', '', '', 'true');
+ INSERT INTO qgep.vl_dam_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3064,'unknown','unbekannt','inconnu', '', '', '', 'true');
+ ALTER TABLE qgep.od_dam ADD CONSTRAINT fkey_vl_dam_kind FOREIGN KEY (kind)
+ REFERENCES qgep.vl_dam_kind (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
 ALTER TABLE qgep.od_lock ADD CONSTRAINT oorel_od_lock_water_control_structure FOREIGN KEY (obj_id) REFERENCES qgep.od_water_control_structure(obj_id);
-ALTER TABLE qgep.od_param_ca_general ADD CONSTRAINT oorel_od_param_ca_general_surface_runoff_parameters FOREIGN KEY (obj_id) REFERENCES qgep.od_surface_runoff_parameters(obj_id);
 ALTER TABLE qgep.od_param_ca_mouse1 ADD CONSTRAINT oorel_od_param_ca_mouse1_surface_runoff_parameters FOREIGN KEY (obj_id) REFERENCES qgep.od_surface_runoff_parameters(obj_id);
-ALTER TABLE qgep.od_administrative_office ADD CONSTRAINT oorel_od_administrative_office_organisation FOREIGN KEY (obj_id) REFERENCES qgep.od_organisation(obj_id);
+ALTER TABLE qgep.od_param_ca_general ADD CONSTRAINT oorel_od_param_ca_general_surface_runoff_parameters FOREIGN KEY (obj_id) REFERENCES qgep.od_surface_runoff_parameters(obj_id);
 ALTER TABLE qgep.od_municipality ADD CONSTRAINT oorel_od_municipality_organisation FOREIGN KEY (obj_id) REFERENCES qgep.od_organisation(obj_id);
+ALTER TABLE qgep.od_private ADD CONSTRAINT oorel_od_private_organisation FOREIGN KEY (obj_id) REFERENCES qgep.od_organisation(obj_id);
+ALTER TABLE qgep.od_cooperative ADD CONSTRAINT oorel_od_cooperative_organisation FOREIGN KEY (obj_id) REFERENCES qgep.od_organisation(obj_id);
+ALTER TABLE qgep.od_administrative_office ADD CONSTRAINT oorel_od_administrative_office_organisation FOREIGN KEY (obj_id) REFERENCES qgep.od_organisation(obj_id);
 ALTER TABLE qgep.od_waste_water_association ADD CONSTRAINT oorel_od_waste_water_association_organisation FOREIGN KEY (obj_id) REFERENCES qgep.od_organisation(obj_id);
 ALTER TABLE qgep.od_canton ADD CONSTRAINT oorel_od_canton_organisation FOREIGN KEY (obj_id) REFERENCES qgep.od_organisation(obj_id);
-ALTER TABLE qgep.od_cooperative ADD CONSTRAINT oorel_od_cooperative_organisation FOREIGN KEY (obj_id) REFERENCES qgep.od_organisation(obj_id);
-ALTER TABLE qgep.od_privat ADD CONSTRAINT oorel_od_privat_organisation FOREIGN KEY (obj_id) REFERENCES qgep.od_organisation(obj_id);
 ALTER TABLE qgep.od_waste_water_treatment_plant ADD CONSTRAINT oorel_od_waste_water_treatment_plant_organisation FOREIGN KEY (obj_id) REFERENCES qgep.od_organisation(obj_id);
-ALTER TABLE qgep.od_wastewater_node ADD CONSTRAINT oorel_od_wastewater_node_wastewater_networkelement FOREIGN KEY (obj_id) REFERENCES qgep.od_wastewater_networkelement(obj_id);
-ALTER TABLE qgep.od_wastewater_node ADD COLUMN fs_hydr_geometry varchar (16);
-ALTER TABLE qgep.od_wastewater_node ADD CONSTRAINT rel_wastewater_node_hydr_geometry FOREIGN KEY (fs_hydr_geometry) REFERENCES qgep.od_hydr_geometry(obj_id);
 ALTER TABLE qgep.od_reach ADD CONSTRAINT oorel_od_reach_wastewater_networkelement FOREIGN KEY (obj_id) REFERENCES qgep.od_wastewater_networkelement(obj_id);
 CREATE TABLE qgep.vl_reach_elevation_determination
 (
@@ -5158,12 +5583,137 @@ WITH (
  ALTER TABLE qgep.od_reach ADD CONSTRAINT fkey_vl_reach_material FOREIGN KEY (material)
  REFERENCES qgep.vl_reach_material (code) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_reach ADD COLUMN fs_reach_point_from varchar (16);
-ALTER TABLE qgep.od_reach ADD CONSTRAINT rel_reach_reach_point_from FOREIGN KEY (fs_reach_point_from) REFERENCES qgep.od_reach_point(obj_id);
-ALTER TABLE qgep.od_reach ADD COLUMN fs_reach_point_to varchar (16);
-ALTER TABLE qgep.od_reach ADD CONSTRAINT rel_reach_reach_point_to FOREIGN KEY (fs_reach_point_to) REFERENCES qgep.od_reach_point(obj_id);
-ALTER TABLE qgep.od_reach ADD COLUMN fs_pipe_profile varchar (16);
-ALTER TABLE qgep.od_reach ADD CONSTRAINT rel_reach_pipe_profile FOREIGN KEY (fs_pipe_profile) REFERENCES qgep.od_pipe_profile(obj_id);
+CREATE TABLE qgep.vl_reach_reliner_material
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_reach_reliner_material_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_reach_reliner_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6459,'other','andere','autre', '', '', '', 'true');
+ INSERT INTO qgep.vl_reach_reliner_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6461,'yyy_Epoxidharz_Glasfaserlaminat','Epoxidharz_Glasfaserlaminat','xxx_Epoxidharz_Glasfaserlaminat', '', '', '', 'true');
+ INSERT INTO qgep.vl_reach_reliner_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6460,'yyy_Epoxidharz_Kunststofffilz','Epoxidharz_Kunststofffilz','xxx_Epoxidharz_Kunststofffilz', '', '', '', 'true');
+ INSERT INTO qgep.vl_reach_reliner_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6462,'HDPE','HDPE','HDPE', '', '', '', 'true');
+ INSERT INTO qgep.vl_reach_reliner_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6464,'yyy_Polyesterharz_Glasfaserlaminat','Polyesterharz_Glasfaserlaminat','xxx_Polyesterharz_Glasfaserlaminat', '', '', '', 'true');
+ INSERT INTO qgep.vl_reach_reliner_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6463,'yyy_Polyesterharz_Kunststofffilz','Polyesterharz_Kunststofffilz','xxx_Polyesterharz_Kunststofffilz', '', '', '', 'true');
+ INSERT INTO qgep.vl_reach_reliner_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6465,'yyy_Polyvinilchlorid','Polyvinilchlorid','xxx_Polyvinilchlorid', '', '', '', 'true');
+ INSERT INTO qgep.vl_reach_reliner_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6466,'yyy_Sohle_mit_Schale_aus_Polyesterbeton','Sohle_mit_Schale_aus_Polyesterbeton','xxx_Sohle_mit_Schale_aus_Polyesterbeton', '', '', '', 'true');
+ INSERT INTO qgep.vl_reach_reliner_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6467,'unknown','unbekannt','inconnu', '', '', '', 'true');
+ INSERT INTO qgep.vl_reach_reliner_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6468,'yyy_Vinylesterharz_Glasfaserlaminat','Vinylesterharz_Glasfaserlaminat','xxx_Vinylesterharz_Glasfaserlaminat', '', '', '', 'true');
+ INSERT INTO qgep.vl_reach_reliner_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6469,'yyy_Vinylesterharz_Kunststofffilz','Vinylesterharz_Kunststofffilz','xxx_Vinylesterharz_Kunststofffilz', '', '', '', 'true');
+ ALTER TABLE qgep.od_reach ADD CONSTRAINT fkey_vl_reach_reliner_material FOREIGN KEY (reliner_material)
+ REFERENCES qgep.vl_reach_reliner_material (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
+CREATE TABLE qgep.vl_reach_relining_kind
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_reach_relining_kind_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_reach_relining_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6455,'full_pipe','ganze_Haltung','xxx_ganze_Haltung', '', '', '', 'true');
+ INSERT INTO qgep.vl_reach_relining_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6456,'partial','partiell','partiellement', '', '', '', 'true');
+ INSERT INTO qgep.vl_reach_relining_kind (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6457,'unknown','unbekannt','inconnu', '', '', '', 'true');
+ ALTER TABLE qgep.od_reach ADD CONSTRAINT fkey_vl_reach_relining_kind FOREIGN KEY (relining_kind)
+ REFERENCES qgep.vl_reach_relining_kind (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
+CREATE TABLE qgep.vl_reach_yyy_reliner_bautechnik
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_reach_yyy_Reliner_Bautechnik_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_reach_yyy_reliner_bautechnik (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6448,'other','andere','autre', '', '', '', 'true');
+ INSERT INTO qgep.vl_reach_yyy_reliner_bautechnik (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6449,'yyy_Kurzrohrrelining','Kurzrohrrelining','xxx_Kurzrohrrelining', '', '', '', 'true');
+ INSERT INTO qgep.vl_reach_yyy_reliner_bautechnik (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6452,'yyy_Partieller_Liner','Partieller_Liner','yyy_Partieller_Liner', '', '', '', 'true');
+ INSERT INTO qgep.vl_reach_yyy_reliner_bautechnik (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6450,'yyy_Rohrstrangrelining','Rohrstrangrelining','xxx_Rohrstrangrelining', '', '', '', 'true');
+ INSERT INTO qgep.vl_reach_yyy_reliner_bautechnik (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6451,'yyy_Schlauchrelining','Schlauchrelining','xxx_Schlauchrelining', '', '', '', 'true');
+ INSERT INTO qgep.vl_reach_yyy_reliner_bautechnik (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6453,'unknown','unbekannt','inconnu', '', '', '', 'true');
+ ALTER TABLE qgep.od_reach ADD CONSTRAINT fkey_vl_reach_yyy_Reliner_Bautechnik FOREIGN KEY (yyy_Reliner_Bautechnik)
+ REFERENCES qgep.vl_reach_yyy_reliner_bautechnik (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
+ALTER TABLE qgep.od_reach ADD COLUMN fk_reach_point_from varchar (16);
+ALTER TABLE qgep.od_reach ADD CONSTRAINT rel_reach_reach_point_from FOREIGN KEY (fk_reach_point_from) REFERENCES qgep.od_reach_point(obj_id);
+ALTER TABLE qgep.od_reach ADD COLUMN fk_reach_point_to varchar (16);
+ALTER TABLE qgep.od_reach ADD CONSTRAINT rel_reach_reach_point_to FOREIGN KEY (fk_reach_point_to) REFERENCES qgep.od_reach_point(obj_id);
+ALTER TABLE qgep.od_reach ADD COLUMN fk_pipe_profile varchar (16);
+ALTER TABLE qgep.od_reach ADD CONSTRAINT rel_reach_pipe_profile FOREIGN KEY (fk_pipe_profile) REFERENCES qgep.od_pipe_profile(obj_id);
+ALTER TABLE qgep.od_wastewater_node ADD CONSTRAINT oorel_od_wastewater_node_wastewater_networkelement FOREIGN KEY (obj_id) REFERENCES qgep.od_wastewater_networkelement(obj_id);
+ALTER TABLE qgep.od_wastewater_node ADD COLUMN fk_hydr_geometry varchar (16);
+ALTER TABLE qgep.od_wastewater_node ADD CONSTRAINT rel_wastewater_node_hydr_geometry FOREIGN KEY (fk_hydr_geometry) REFERENCES qgep.od_hydr_geometry(obj_id);
+ALTER TABLE qgep.od_prank_weir ADD CONSTRAINT oorel_od_prank_weir_overflow FOREIGN KEY (obj_id) REFERENCES qgep.od_overflow(obj_id);
+CREATE TABLE qgep.vl_prank_weir_weir_edge
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_prank_weir_weir_edge_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_prank_weir_weir_edge (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2995,'other','andere','autres', '', '', '', 'true');
+ INSERT INTO qgep.vl_prank_weir_weir_edge (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (351,'rectangular','rechteckig','angulaire', '', '', '', 'true');
+ INSERT INTO qgep.vl_prank_weir_weir_edge (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (350,'round','rund','arrondie', '', '', '', 'true');
+ INSERT INTO qgep.vl_prank_weir_weir_edge (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (349,'sharp_edged','scharfkantig','arete_vive', '', '', '', 'true');
+ INSERT INTO qgep.vl_prank_weir_weir_edge (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3014,'unknown','unbekannt','inconnu', '', '', '', 'true');
+ ALTER TABLE qgep.od_prank_weir ADD CONSTRAINT fkey_vl_prank_weir_weir_edge FOREIGN KEY (weir_edge)
+ REFERENCES qgep.vl_prank_weir_weir_edge (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
+ALTER TABLE qgep.od_leapingweir ADD CONSTRAINT oorel_od_leapingweir_overflow FOREIGN KEY (obj_id) REFERENCES qgep.od_overflow(obj_id);
+CREATE TABLE qgep.vl_leapingweir_opening_shape
+(
+code integer NOT NULL,
+value_en character varying(50),
+value_de character varying(50),
+value_fr character varying(50),
+abbr_en character varying(3),
+abbr_de character varying(3),
+abbr_fr character varying(3),
+active boolean,
+CONSTRAINT pkey_qgep_vl_leapingweir_opening_shape_code PRIMARY KEY (code)
+)
+WITH (
+   OIDS = False
+);
+ INSERT INTO qgep.vl_leapingweir_opening_shape (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3581,'other','andere','autres', '', '', '', 'true');
+ INSERT INTO qgep.vl_leapingweir_opening_shape (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3582,'circle','Kreis','circulaire', '', '', '', 'true');
+ INSERT INTO qgep.vl_leapingweir_opening_shape (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3585,'parable','Parabel','parabolique', '', '', '', 'true');
+ INSERT INTO qgep.vl_leapingweir_opening_shape (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3583,'rectangular','Rechteck','rectangulaire', '', '', '', 'true');
+ INSERT INTO qgep.vl_leapingweir_opening_shape (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3584,'unknown','unbekannt','inconnu', '', '', '', 'true');
+ ALTER TABLE qgep.od_leapingweir ADD CONSTRAINT fkey_vl_leapingweir_opening_shape FOREIGN KEY (opening_shape)
+ REFERENCES qgep.vl_leapingweir_opening_shape (code) MATCH SIMPLE 
+ ON UPDATE RESTRICT ON DELETE RESTRICT;
 ALTER TABLE qgep.od_pump ADD CONSTRAINT oorel_od_pump_overflow FOREIGN KEY (obj_id) REFERENCES qgep.od_overflow(obj_id);
 CREATE TABLE qgep.vl_pump_contruction_type
 (
@@ -5232,7 +5782,7 @@ WITH (
  ALTER TABLE qgep.od_pump ADD CONSTRAINT fkey_vl_pump_placement_of_pump FOREIGN KEY (placement_of_pump)
  REFERENCES qgep.vl_pump_placement_of_pump (code) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
-CREATE TABLE qgep.vl_pump_pump_characteristics
+CREATE TABLE qgep.vl_pump_usage_current
 (
 code integer NOT NULL,
 value_en character varying(50),
@@ -5242,88 +5792,24 @@ abbr_en character varying(3),
 abbr_de character varying(3),
 abbr_fr character varying(3),
 active boolean,
-CONSTRAINT pkey_qgep_vl_pump_pump_characteristics_code PRIMARY KEY (code)
+CONSTRAINT pkey_qgep_vl_pump_usage_current_code PRIMARY KEY (code)
 )
 WITH (
    OIDS = False
 );
- INSERT INTO qgep.vl_pump_pump_characteristics (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5540,'alternating','alternierend','un_apres_l_autre', '', '', '', 'true');
- INSERT INTO qgep.vl_pump_pump_characteristics (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5543,'other','andere','autre', '', '', '', 'true');
- INSERT INTO qgep.vl_pump_pump_characteristics (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5541,'single','einzeln','single', '', '', '', 'true');
- INSERT INTO qgep.vl_pump_pump_characteristics (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5085,'parallel','parallel','parallel', '', '', '', 'true');
- INSERT INTO qgep.vl_pump_pump_characteristics (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5542,'unknown','unbekannt','inconnu', '', '', '', 'true');
- ALTER TABLE qgep.od_pump ADD CONSTRAINT fkey_vl_pump_pump_characteristics FOREIGN KEY (pump_characteristics)
- REFERENCES qgep.vl_pump_pump_characteristics (code) MATCH SIMPLE 
+ INSERT INTO qgep.vl_pump_usage_current (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6325,'other','andere','autres', '', '', '', 'true');
+ INSERT INTO qgep.vl_pump_usage_current (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6202,'creek_water','Bachwasser','eaux_cours_d_eau', '', '', '', 'true');
+ INSERT INTO qgep.vl_pump_usage_current (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6203,'discharged_combined_wastewater','entlastetes_Mischabwasser','eaux_mixtes_deversees', 'DCW', 'EW', 'EUD', 'true');
+ INSERT INTO qgep.vl_pump_usage_current (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6204,'industrial_wastewater','Industrieabwasser','eaux_industrielles', '', 'CW', 'EUC', 'true');
+ INSERT INTO qgep.vl_pump_usage_current (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6201,'combined_wastewater','Mischabwasser','eaux_mixtes', '', 'MW', 'EUM', 'true');
+ INSERT INTO qgep.vl_pump_usage_current (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6205,'rain_wastewater','Regenabwasser','eaux_pluviales', '', 'RW', 'EUP', 'true');
+ INSERT INTO qgep.vl_pump_usage_current (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6200,'clean_wastewater','Reinabwasser','eaux_claires', '', 'KW', 'EUR', 'true');
+ INSERT INTO qgep.vl_pump_usage_current (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6206,'wastewater','Schmutzabwasser','eaux_usees', '', 'SW', 'EU', 'true');
+ INSERT INTO qgep.vl_pump_usage_current (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (6326,'unknown','unbekannt','inconnu', '', '', '', 'true');
+ ALTER TABLE qgep.od_pump ADD CONSTRAINT fkey_vl_pump_usage_current FOREIGN KEY (usage_current)
+ REFERENCES qgep.vl_pump_usage_current (code) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_leapingweir ADD CONSTRAINT oorel_od_leapingweir_overflow FOREIGN KEY (obj_id) REFERENCES qgep.od_overflow(obj_id);
-CREATE TABLE qgep.vl_leapingweir_opening_shape
-(
-code integer NOT NULL,
-value_en character varying(50),
-value_de character varying(50),
-value_fr character varying(50),
-abbr_en character varying(3),
-abbr_de character varying(3),
-abbr_fr character varying(3),
-active boolean,
-CONSTRAINT pkey_qgep_vl_leapingweir_opening_shape_code PRIMARY KEY (code)
-)
-WITH (
-   OIDS = False
-);
- INSERT INTO qgep.vl_leapingweir_opening_shape (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3581,'other','andere','autres', '', '', '', 'true');
- INSERT INTO qgep.vl_leapingweir_opening_shape (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3582,'circle','Kreis','circulaire', '', '', '', 'true');
- INSERT INTO qgep.vl_leapingweir_opening_shape (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3585,'parable','Parabel','parabolique', '', '', '', 'true');
- INSERT INTO qgep.vl_leapingweir_opening_shape (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3583,'rectangular','Rechteck','rectangulaire', '', '', '', 'true');
- INSERT INTO qgep.vl_leapingweir_opening_shape (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3584,'unknown','unbekannt','inconnu', '', '', '', 'true');
- ALTER TABLE qgep.od_leapingweir ADD CONSTRAINT fkey_vl_leapingweir_opening_shape FOREIGN KEY (opening_shape)
- REFERENCES qgep.vl_leapingweir_opening_shape (code) MATCH SIMPLE 
- ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_prank_weir ADD CONSTRAINT oorel_od_prank_weir_overflow FOREIGN KEY (obj_id) REFERENCES qgep.od_overflow(obj_id);
-CREATE TABLE qgep.vl_prank_weir_weir_edge
-(
-code integer NOT NULL,
-value_en character varying(50),
-value_de character varying(50),
-value_fr character varying(50),
-abbr_en character varying(3),
-abbr_de character varying(3),
-abbr_fr character varying(3),
-active boolean,
-CONSTRAINT pkey_qgep_vl_prank_weir_weir_edge_code PRIMARY KEY (code)
-)
-WITH (
-   OIDS = False
-);
- INSERT INTO qgep.vl_prank_weir_weir_edge (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2995,'other','andere','autres', '', '', '', 'true');
- INSERT INTO qgep.vl_prank_weir_weir_edge (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (351,'rectangular','rechteckig','angulaire', '', '', '', 'true');
- INSERT INTO qgep.vl_prank_weir_weir_edge (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (350,'round','rund','arrondie', '', '', '', 'true');
- INSERT INTO qgep.vl_prank_weir_weir_edge (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (349,'sharp_edged','scharfkantig','arete_vive', '', '', '', 'true');
- INSERT INTO qgep.vl_prank_weir_weir_edge (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3014,'unknown','unbekannt','inconnu', '', '', '', 'true');
- ALTER TABLE qgep.od_prank_weir ADD CONSTRAINT fkey_vl_prank_weir_weir_edge FOREIGN KEY (weir_edge)
- REFERENCES qgep.vl_prank_weir_weir_edge (code) MATCH SIMPLE 
- ON UPDATE RESTRICT ON DELETE RESTRICT;
-CREATE TABLE qgep.vl_prank_weir_weir_sill_number
-(
-code integer NOT NULL,
-value_en character varying(50),
-value_de character varying(50),
-value_fr character varying(50),
-abbr_en character varying(3),
-abbr_de character varying(3),
-abbr_fr character varying(3),
-active boolean,
-CONSTRAINT pkey_qgep_vl_prank_weir_weir_sill_number_code PRIMARY KEY (code)
-)
-WITH (
-   OIDS = False
-);
- INSERT INTO qgep.vl_prank_weir_weir_sill_number (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (353,'double_sided','beidseitig','double', '', '', '', 'true');
- INSERT INTO qgep.vl_prank_weir_weir_sill_number (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (352,'one_sided','einseitig','simple', 'OS', '', '', 'true');
- INSERT INTO qgep.vl_prank_weir_weir_sill_number (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3041,'unknown','unbekannt','inconnu', '', '', '', 'true');
- ALTER TABLE qgep.od_prank_weir ADD CONSTRAINT fkey_vl_prank_weir_weir_sill_number FOREIGN KEY (weir_sill_number)
- REFERENCES qgep.vl_prank_weir_weir_sill_number (code) MATCH SIMPLE 
- ON UPDATE RESTRICT ON DELETE RESTRICT;
+ALTER TABLE qgep.od_building ADD CONSTRAINT oorel_od_building_connection_object FOREIGN KEY (obj_id) REFERENCES qgep.od_connection_object(obj_id);
 ALTER TABLE qgep.od_individual_surface ADD CONSTRAINT oorel_od_individual_surface_connection_object FOREIGN KEY (obj_id) REFERENCES qgep.od_connection_object(obj_id);
 CREATE TABLE qgep.vl_individual_surface_function
 (
@@ -5377,7 +5863,7 @@ WITH (
  ALTER TABLE qgep.od_individual_surface ADD CONSTRAINT fkey_vl_individual_surface_pavement FOREIGN KEY (pavement)
  REFERENCES qgep.vl_individual_surface_pavement (code) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE qgep.od_building ADD CONSTRAINT oorel_od_building_connection_object FOREIGN KEY (obj_id) REFERENCES qgep.od_connection_object(obj_id);
-ALTER TABLE qgep.od_reservoir ADD CONSTRAINT oorel_od_reservoir_connection_object FOREIGN KEY (obj_id) REFERENCES qgep.od_connection_object(obj_id);
 ALTER TABLE qgep.od_fountain ADD CONSTRAINT oorel_od_fountain_connection_object FOREIGN KEY (obj_id) REFERENCES qgep.od_connection_object(obj_id);
+ALTER TABLE qgep.od_reservoir ADD CONSTRAINT oorel_od_reservoir_connection_object FOREIGN KEY (obj_id) REFERENCES qgep.od_connection_object(obj_id);
+-------
 COMMIT;
