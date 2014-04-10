@@ -36,5 +36,3 @@ END;
 $BODY$
   LANGUAGE plpgsql VOLATILE
   COST 100;
-ALTER FUNCTION qgep.create_manhole(geometry)
-  OWNER TO an;
