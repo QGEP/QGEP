@@ -17,3 +17,5 @@ Before installation: make sure you have the hstore extension installed ( CREATE 
 06_vw_symbology_manhole_reach_specialstructure.sql - views for displaying/symbolizing the data
 
 07_views_for_network_following.sql - 2 views for network following
+
+08_qgep_functions.sql - plpgsql functions that work in collaboration with the QGEP plugin
