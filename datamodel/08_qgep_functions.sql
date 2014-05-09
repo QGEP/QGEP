@@ -30,8 +30,9 @@ BEGIN
   INSERT INTO qgep.od_wastewater_node (obj_id, situation_geometry) VALUES (oid_wastewater_networkelement.obj_id, geometry);
   --create cover
   INSERT INTO qgep.od_cover (obj_id, situation_geometry) VALUES (oid_structure_part.obj_id, geometry);
-  --return oid of cover object
-  RETURN oid_structure_part.obj_id;
+  --return oid of waste-water structure object
+  --this value is used to open the form of the od_wastewater_structure object
+  RETURN oid_wastewater_structure.obj_id;
 END;
 $BODY$
   LANGUAGE plpgsql VOLATILE
