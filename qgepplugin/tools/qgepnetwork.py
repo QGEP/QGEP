@@ -47,7 +47,6 @@ class QgepGraphManager():
     
     def __init__( self, iface ):
         self.iface = iface
-        self.snapper = QgsSnapper( self.iface.mapCanvas().mapRenderer() )
         
     def setReachLayer( self, reachLayer ):
         self.reachLayer = reachLayer
@@ -68,13 +67,7 @@ class QgepGraphManager():
         
         if nodeLayer:
             self.nodeLayerId = nodeLayer.id()
-            snapLayer = QgsSnapper.SnapLayer()
-            snapLayer.mLayer = nodeLayer
-            snapLayer.mTolerance = 10
-            snapLayer.mUnitType = QgsTolerance.Pixels
-            snapLayer.mSnapTo = QgsSnapper.SnapToVertex
-            self.snapper.setSnapLayers( [snapLayer] )
-            
+
         else:
             self.snapper.setSnapLayers( [] )
             self.nodeLayerId = 0
@@ -183,6 +176,15 @@ class QgepGraphManager():
     
     def snapPoint(self, event):
         pClicked = QPoint( event.pos().x(), event.pos().y() )
+        
+        self.snapper = QgsSnapper( self.iface.mapCanvas().mapRenderer() )
+        snapLayer = QgsSnapper.SnapLayer()
+        snapLayer.mLayer = self.nodeLayer
+        snapLayer.mTolerance = 10
+        snapLayer.mUnitType = QgsTolerance.Pixels
+        snapLayer.mSnapTo = QgsSnapper.SnapToVertex
+        self.snapper.setSnapLayers( [snapLayer] )
+        
         ( _, snappedPoints ) = self.snapper.snapPoint( pClicked, [] )
 
         if len( snappedPoints ) == 0:
