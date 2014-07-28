@@ -69,7 +69,6 @@ class QgepGraphManager():
             self.nodeLayerId = nodeLayer.id()
 
         else:
-            self.snapper.setSnapLayers( [] )
             self.nodeLayerId = 0
             
         if self.nodeLayer and self.reachLayer:
