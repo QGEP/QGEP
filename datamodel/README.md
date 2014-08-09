@@ -1,6 +1,15 @@
 Installation of the data model in PostgreSQL - Execution order of SQL files:
 
-Before installation: make sure you have the hstore extension installed ( CREATE EXTENSION hstore SCHEMA public VERSION "1.1"; ).
+Preparation / Before installation: 
+- Create new database with pgAdmin e.g. "qgeptest"
+
+- Install Postgis extension in pgAdmin (Gruppe Extensions --> neue Extension --> Choose postgis)
+- Install hstore extension in pgAdmin (Gruppe Extensions --> neue Extension --> Choose hstore)
+
+or as SQL Code:
+
+make sure you have the postgis extension installed ( CREATE EXTENSION postgis SCHEMA public VERSION "2.1.0"; ).
+make sure you have the hstore extension installed ( CREATE EXTENSION hstore SCHEMA public VERSION "1.2";).
 
 00_create_schema.sql - creates the QGEP schema
 
