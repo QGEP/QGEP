@@ -1,4 +1,4 @@
------- This file is sql code to import DABASE (Modul SIA405Abwasser) in German to QGEP in Englisch on QQIS
+﻿------ This file is sql code to import DABASE (Modul SIA405Abwasser) in German to QGEP in Englisch on QQIS
 ------ For questions etc. please contact Stefan Burckhardt stefan.burckhardt@sjib.ch
 ------ version 07.06.2014 22:00:52
 
@@ -21,8 +21,9 @@ INSERT INTO qgep.od_reach
 (obj_id, old_obj_id, clear_height, coefficient_of_friction, 
 -- elevation_determination, 
 horizontal_positioning, inside_coating, length_effective, material, 
--- progression_geometry, progression_3d_geometry, reliner_material, reliner_nominal_size, relining_construction, relining_kind, ring_stiffness, slope_building_plan, 
-wall_roughness)
+progression_geometry, 
+-- progression_3d_geometry, reliner_material, reliner_nominal_size, relining_construction, relining_kind, ring_stiffness, slope_building_plan, 
+wall_roughness, fk_reach_point_from, fk_reach_point_to, fk_pipe_profile)
 SELECT 
 q_wastewater_networkelement.obj_id,
 a_haltung.obj_id,
@@ -68,6 +69,7 @@ WHEN material = 21 THEN 2761 --- clay
 WHEN material = 22 THEN 3016 --- unknown
 WHEN material = 23 THEN 2762 --- cement
 END,
+ST_GeometryN( a_haltung.the_geom, 1 ), -- Convert single-part multilinestring to linestring by extracting the first (and only) part
 -- verlauf, 
 -- the_geom3D,  
 -- CASE WHEN reliner_material = 0 THEN 6459 --- other WHEN reliner_material = 1 THEN 6461 --- epoxy_resin_glass_fibre_laminate WHEN reliner_material = 2 THEN 6460 --- epoxy_resin_plastic_felt WHEN reliner_material = 3 THEN 6483 --- GUP_pipe WHEN reliner_material = 4 THEN 6462 --- HDPE WHEN reliner_material = 5 THEN 6484 --- isocyanate_resin_glass_fibre_laminate WHEN reliner_material = 6 THEN 6485 --- isocyanate_resin_plastic_felt WHEN reliner_material = 7 THEN 6464 --- polyester_resin_glass_fibre_laminate WHEN reliner_material = 8 THEN 6463 --- polyester_resin_plastic_felt WHEN reliner_material = 9 THEN 6482 --- polypropylene WHEN reliner_material = 10 THEN 6465 --- PVC WHEN reliner_material = 11 THEN 6466 --- bottom_with_polyester_concret_shell WHEN reliner_material = 12 THEN 6467 --- unknown WHEN reliner_material = 13 THEN 6486 --- UP_resin_LED_synthetic_fibre_liner WHEN reliner_material = 14 THEN 6468 --- vinyl_ester_resin_glass_fibre_laminate WHEN reliner_material = 15 THEN 6469 --- vinyl_ester_resin_plastic_felt END,
@@ -76,7 +78,16 @@ END,
 -- CASE WHEN reliner_art = 0 THEN 6455 --- full_reach  WHEN relining_art = 1 THEN 6456 --- partial  WHEN relining_art = 2 THEN 6457 --- unknown END,
 -- ringsteifigkeit, 
 -- plangefaelle,
-wandrauhigkeit
+wandrauhigkeit,
+q_reach_point_from.obj_id,
+q_reach_point_to.obj_id,
+q_pipe_profile.obj_id
 FROM abwasser.siedlungsentwaesserung__Haltung a_haltung
 LEFT JOIN qgep.od_wastewater_networkelement q_wastewater_networkelement
-ON q_wastewater_networkelement.old_obj_id = a_haltung.obj_id;
+ON q_wastewater_networkelement.old_obj_id = a_haltung.obj_id
+LEFT JOIN qgep.od_reach_point q_reach_point_from
+ON q_reach_point_from.old_obj_id = a_haltung.vonhaltungspunkt
+LEFT JOIN qgep.od_reach_point q_reach_point_to
+ON q_reach_point_to.old_obj_id = a_haltung.nachhaltungspunkt
+LEFT JOIN qgep.od_pipe_profile q_pipe_profile
+ON q_pipe_profile.old_obj_id = a_haltung.rohrprofil;
