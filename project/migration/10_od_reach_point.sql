@@ -13,8 +13,8 @@ DELETE FROM qgep.od_reach_point;
 
 -- 4. einsetzen der daten von siedlungsentwaesserung in qgep.
 INSERT INTO qgep.od_reach_point
-(obj_id, elevation_accuracy, identifier, level, outlet_shape, position_of_connection, remark, situation_geometry, last_modification, Dataowner, fk_wastewater_networkelement) 
-SELECT a_haltungspunkt.obj_id,
+(obj_id, elevation_accuracy, identifier, level, outlet_shape, position_of_connection, remark, situation_geometry, last_modification, Dataowner) 
+SELECT obj_id,
 CASE WHEN hoehengenauigkeit = 0 THEN 3248 --- more_than_6cm
 WHEN hoehengenauigkeit = 1 THEN 3245 --- plusminus_1cm
 WHEN hoehengenauigkeit = 2 THEN 3246 --- plusminus_3cm
@@ -30,11 +30,8 @@ WHEN auslaufform = 4 THEN 5375 --- unknown
 END,
 lage_anschluss, bemerkung, the_geom, 
 to_timestamp (LETZTE_AENDERUNG, 'DD MM YYYY'),
-MD_DATENHERR,
-q_wastewater_networkelement.obj_id
-FROM abwasser.siedlungsentwaesserung__Haltungspunkt a_haltungspunkt
-LEFT JOIN qgep.od_wastewater_networkelement q_wastewater_networkelement
-ON q_wastewater_networkelement.old_obj_id = a_haltungspunkt.abwassernetzelement;
+MD_DATENHERR
+FROM abwasser.siedlungsentwaesserung__Haltungspunkt;
 
 -- 3. update der oid spalten
 -- In Tabelle "qgep.is_dictionary" muss für jede od_xx Tabelle ein Eintrag existieren und es muss im qgep-Schema für jede od_xx Tabelle eine Sequenz geben.
