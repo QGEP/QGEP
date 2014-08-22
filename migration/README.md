@@ -3,11 +3,12 @@ These scripts convert DABASE (Modul SIA405Abwasser, German) to QGEP (English)
 Preqrequisites
 ===========
 
-These scripts assume that you already have the `postgis` extension installed.
+These scripts assume that you already have the `postgis` and 'hstore' extension installed.
 
 On your PostgreSQL server execute the following SQL statement:
 
     CREATE EXTENSION postgis;
+    CREATE EXTENSION hstore;
 
 These scripts assume that you have two schemas in a common database.
 
