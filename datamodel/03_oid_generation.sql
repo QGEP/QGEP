@@ -1,4 +1,4 @@
-﻿-- this file generates a new SQL function to create StandardOIDs for all the qgep.od_* tables.
+-- this file generates a new SQL function to create StandardOIDs for all the qgep.od_* tables.
 -- you need to add entries for your organizations into the table qgep.is_oid_prefixes
 -- questions regarding this function should be directed to Andreas Neumann, Stadt Uster
 

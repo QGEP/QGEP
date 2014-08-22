@@ -1,4 +1,4 @@
-﻿BEGIN;
+BEGIN;
 --
 -- Audited data. Lots of information is available, it's just a matter of how much
 -- you really want to record. See:

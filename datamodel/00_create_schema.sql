@@ -1,3 +1,0 @@
-BEGIN;
-CREATE SCHEMA qgep;
-COMMIT;
