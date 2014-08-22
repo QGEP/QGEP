@@ -1,9 +1,8 @@
------- This file is sql code to import DABASE (Modul SIA405Abwasser) in German to QGEP in Englisch on QQIS
+﻿------ This file is sql code to import DABASE (Modul SIA405Abwasser) in German to QGEP in Englisch on QQIS
 ------ For questions etc. please contact Stefan Burckhardt stefan.burckhardt@sjib.ch
 ------ version 07.06.2014 22:00:52
 
 -- 1. ergaenzen tabelle mit oid spalten
-ALTER TABLE qgep.od_pipe_profile DROP COLUMN IF EXISTS standardoid;
 ALTER TABLE qgep.od_pipe_profile DROP COLUMN IF EXISTS old_obj_id;
 ALTER TABLE qgep.od_pipe_profile ADD COLUMN old_obj_id text;
 
