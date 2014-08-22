@@ -3,6 +3,12 @@ These scripts convert DABASE (Modul SIA405Abwasser, German) to QGEP (English)
 Preqrequisites
 ===========
 
+These scripts assume that you already have the `postgis` extension installed.
+
+On your PostgreSQL server execute the following SQL statement:
+
+    CREATE EXTENSION postgis;
+
 These scripts assume that you have two schemas in a common database.
 
  * abwasser
@@ -21,8 +27,7 @@ You will also need
 file ili2c.jar into the current directory and execute the following command
 (linux).
 
-    export PATH=$PATH:.
-    ogr2ogr -skipfailure -a_srs "EPSG:21781" -gt 20000 -lco DIM=2 -lco schema=abwasser -lco GEOMETRY_NAME=the_geom -f "PostgreSQL" PG:"dbname='database' host='localhost' port='5432' user='user' password='password'" i1.itf,VSA_DSS_2008_1_d.ili
+    PATH=$PATH:. ogr2ogr -skipfailure -a_srs "EPSG:21781" -gt 20000 -lco DIM=2 -lco schema=abwasser -lco GEOMETRY_NAME=the_geom -f "PostgreSQL" PG:"dbname='database' host='localhost' port='5432' user='user' password='password'" i1.itf,VSA_DSS_2008_1_d.ili
 
 qgep
 -------
