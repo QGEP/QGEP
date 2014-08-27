@@ -183,7 +183,7 @@
                 <customproperties/>
             </layer-tree-layer>
         </layer-tree-group>
-        <layer-tree-group expanded="0" checked="Qt::Checked" name="Structure Parts">
+        <layer-tree-group expanded="1" checked="Qt::Checked" name="Structure Parts">
             <customproperties/>
             <layer-tree-layer expanded="1" checked="Qt::Checked" id="od_access_aid20140822221404361" name="Access Aid">
                 <customproperties/>
@@ -216,10 +216,10 @@
     <mapcanvas>
         <units>meters</units>
         <extent>
-            <xmin>748820.86198462720494717</xmin>
-            <ymin>263551.32632215041667223</ymin>
-            <xmax>749352.89315526478458196</xmax>
-            <ymax>263887.61017528921365738</ymax>
+            <xmin>749180.79381251358427107</xmin>
+            <ymin>262394.79557349439710379</ymin>
+            <xmax>749446.80939783272333443</xmax>
+            <ymax>262562.93750006414484233</ymax>
         </extent>
         <projections>1</projections>
         <destinationsrs>
@@ -565,7 +565,7 @@
                 </filegroup>
             </legendlayer>
         </legendgroup>
-        <legendgroup open="false" checked="Qt::Checked" name="Structure Parts">
+        <legendgroup open="true" checked="Qt::Checked" name="Structure Parts">
             <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Access Aid" showFeatureCount="0">
                 <filegroup open="true" hidden="false">
                     <legendlayerfile isInOverview="0" layerid="od_access_aid20140822221404361" visible="1"/>
@@ -839,10 +839,10 @@
                 <multilineenabled fieldname="" on=""/>
                 <selectedonly on=""/>
             </labelattributes>
-            <editform></editform>
+            <editform>.</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
-            <annotationform></annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -2095,7 +2095,7 @@
                 </edittype>
             </edittypes>
         </maplayer>
-        <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
+        <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
             <id>od_structure_part20140822221404369</id>
             <datasource>service='pg_qgep' key='obj_id' table="qgep"."od_structure_part" sql=</datasource>
             <title></title>
@@ -2118,14 +2118,14 @@
             </srs>
             <customproperties/>
             <provider encoding="System">postgres</provider>
-            <previewExpression></previewExpression>
+            <previewExpression>COALESCE("obj_id", '&lt;NULL>')</previewExpression>
             <vectorjoins/>
             <expressionfields/>
-            <editform>.</editform>
+            <editform>./forms/structure_part.ui</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
             <annotationform>.</annotationform>
-            <editorlayout>generatedlayout</editorlayout>
+            <editorlayout>uifilelayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
             <attributeactions/>
@@ -2159,7 +2159,7 @@
                 </edittype>
             </edittypes>
         </maplayer>
-        <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
+        <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
             <id>od_wastewater_structure20140822215511905</id>
             <datasource>service='pg_qgep' key='obj_id' srid=21781 type=POLYGON table="qgep"."od_wastewater_structure" (detail_geometry_geometry) sql=</datasource>
             <title></title>
@@ -2373,16 +2373,13 @@
                 <multilineenabled fieldname="" on=""/>
                 <selectedonly on=""/>
             </labelattributes>
-            <editform>.</editform>
+            <editform>./forms/wastewater_structure.ui</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
             <annotationform>.</annotationform>
-            <editorlayout>tablayout</editorlayout>
+            <editorlayout>uifilelayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
-            <attributeEditorForm>
-                <attributeEditorContainer name="www"/>
-            </attributeEditorForm>
             <attributeactions/>
             <edittypes>
                 <edittype widgetv2type="TextEdit" name="obj_id">
@@ -4747,8 +4744,8 @@
             <DegreeFormat type="QString">D</DegreeFormat>
         </PositionPrecision>
         <WCSUrl type="QString"></WCSUrl>
-        <WMSServiceCapabilities type="bool">false</WMSServiceCapabilities>
         <WMSContactPhone type="QString"></WMSContactPhone>
+        <WMSServiceCapabilities type="bool">false</WMSServiceCapabilities>
         <WMSServiceAbstract type="QString"></WMSServiceAbstract>
         <WMSAddWktGeometry type="bool">false</WMSAddWktGeometry>
         <Measure>
