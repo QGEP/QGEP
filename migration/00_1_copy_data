@@ -1,0 +1,4 @@
+﻿CREATE TABLE abwasser.od_wastewater_structure
+AS SELECT *
+    FROM dblink('dbname=arbon', 'select obj_id, detail_geometry_geometry from qgep.od_wastewater_structure')
+      AS od_wastewater_structure(obj_id text, the_geom geometry);
