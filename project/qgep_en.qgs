@@ -12,6 +12,12 @@
         <layer-tree-layer expanded="0" checked="Qt::Unchecked" id="od_reach_point20140822215511891" name="Reach Point">
             <customproperties/>
         </layer-tree-layer>
+        <layer-tree-layer expanded="0" checked="Qt::Checked" id="od_wastewater_structure20140822215511905" name="Wastewater Structure">
+            <customproperties/>
+        </layer-tree-layer>
+        <layer-tree-layer expanded="1" checked="Qt::Checked" id="od_catchment_area20140827102410654" name="Catchment Area">
+            <customproperties/>
+        </layer-tree-layer>
         <layer-tree-layer expanded="1" checked="Qt::Checked" id="od_pipe_profile20140822225149539" name="Pipe Profile">
             <customproperties/>
         </layer-tree-layer>
@@ -164,9 +170,6 @@
         </layer-tree-group>
         <layer-tree-group expanded="0" checked="Qt::Checked" name="Wastewater Structures">
             <customproperties/>
-            <layer-tree-layer expanded="0" checked="Qt::Checked" id="od_wastewater_structure20140822215511905" name="Wastewater Structure">
-                <customproperties/>
-            </layer-tree-layer>
             <layer-tree-layer expanded="1" checked="Qt::Checked" id="od_channel20140822221301394" name="Channel">
                 <customproperties/>
             </layer-tree-layer>
@@ -190,14 +193,33 @@
             </layer-tree-layer>
         </layer-tree-group>
     </layer-tree-group>
-    <relations/>
+    <relations>
+        <relation referencingLayer="od_reach20140822215411222" referencedLayer="od_reach_point20140822215511891" id="reach_fk_reach_point_from" name="From reach point ">
+            <fieldRef referencedField="obj_id" referencingField="fk_reach_point_from"/>
+        </relation>
+        <relation referencingLayer="od_reach20140822215411222" referencedLayer="od_reach_point20140822215511891" id="reach_fk_reach_point_to" name="To reach point">
+            <fieldRef referencedField="obj_id" referencingField="fk_reach_point_to"/>
+        </relation>
+        <relation referencingLayer="od_reach20140822215411222" referencedLayer="od_pipe_profile20140822225149539" id="reach_pipe_profile" name="Pipe profile">
+            <fieldRef referencedField="obj_id" referencingField="fk_pipe_profile"/>
+        </relation>
+        <relation referencingLayer="od_wastewater_structure20140822215511905" referencedLayer="od_reach20140822215411222" id="reach_wastewater_structure" name="Wastewater Structure">
+            <fieldRef referencedField="obj_id" referencingField="obj_id"/>
+        </relation>
+        <relation referencingLayer="od_structure_part20140822221404369" referencedLayer="od_cover20140822215511882" id="structure_part-cover" name="Structure Part">
+            <fieldRef referencedField="obj_id" referencingField="obj_id"/>
+        </relation>
+        <relation referencingLayer="od_structure_part20140822221404369" referencedLayer="od_wastewater_structure20140822215511905" id="structure_part-fk_wastewater_structure" name="Structure Parts">
+            <fieldRef referencedField="obj_id" referencingField="fk_wastewater_structure"/>
+        </relation>
+    </relations>
     <mapcanvas>
         <units>meters</units>
         <extent>
-            <xmin>749521.0350818345323205</xmin>
-            <ymin>264215.9791960638249293</ymin>
-            <xmax>749787.05066715297289193</xmax>
-            <ymax>264384.12112263310700655</ymax>
+            <xmin>748820.86198462720494717</xmin>
+            <ymin>263551.32632215041667223</ymin>
+            <xmax>749352.89315526478458196</xmax>
+            <ymax>263887.61017528921365738</ymax>
         </extent>
         <projections>1</projections>
         <destinationsrs>
@@ -225,6 +247,7 @@
             <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="od_wastewater_node20140414160716874"/>
             <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="od_cover20140414160716920"/>
             <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="od_wastewater_structure20140822215511905"/>
+            <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="od_catchment_area20140827102410654"/>
         </layer_coordinate_transform_info>
     </mapcanvas>
     <layer-tree-canvas>
@@ -277,6 +300,7 @@
             <item>vl_special_structure_stormwater_tank_arrangement20140822224556359</item>
             <item>od_pipe_profile20140822225149539</item>
             <item>vl_pipe_profile_profile_type20140822225149549</item>
+            <item>od_catchment_area20140827102410654</item>
         </custom-order>
     </layer-tree-canvas>
     <legend updateDrawingOrder="true">
@@ -293,6 +317,16 @@
         <legendlayer drawingOrder="-1" open="false" checked="Qt::Unchecked" name="Reach Point" showFeatureCount="0">
             <filegroup open="false" hidden="false">
                 <legendlayerfile isInOverview="0" layerid="od_reach_point20140822215511891" visible="0"/>
+            </filegroup>
+        </legendlayer>
+        <legendlayer drawingOrder="-1" open="false" checked="Qt::Checked" name="Wastewater Structure" showFeatureCount="0">
+            <filegroup open="false" hidden="false">
+                <legendlayerfile isInOverview="0" layerid="od_wastewater_structure20140822215511905" visible="1"/>
+            </filegroup>
+        </legendlayer>
+        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Catchment Area" showFeatureCount="0">
+            <filegroup open="true" hidden="false">
+                <legendlayerfile isInOverview="0" layerid="od_catchment_area20140827102410654" visible="1"/>
             </filegroup>
         </legendlayer>
         <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Pipe Profile" showFeatureCount="0">
@@ -510,11 +544,6 @@
             </legendgroup>
         </legendgroup>
         <legendgroup open="false" checked="Qt::Checked" name="Wastewater Structures">
-            <legendlayer drawingOrder="-1" open="false" checked="Qt::Checked" name="Wastewater Structure" showFeatureCount="0">
-                <filegroup open="false" hidden="false">
-                    <legendlayerfile isInOverview="0" layerid="od_wastewater_structure20140822215511905" visible="1"/>
-                </filegroup>
-            </legendlayer>
             <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Channel" showFeatureCount="0">
                 <filegroup open="true" hidden="false">
                     <legendlayerfile isInOverview="0" layerid="od_channel20140822221301394" visible="1"/>
@@ -549,7 +578,7 @@
             </legendlayer>
         </legendgroup>
     </legend>
-    <projectlayers layercount="48">
+    <projectlayers layercount="49">
         <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
             <id>od_access_aid20140822221404361</id>
             <datasource>service='pg_qgep' key='obj_id' table="qgep"."od_access_aid" sql=</datasource>
@@ -576,6 +605,240 @@
             <previewExpression></previewExpression>
             <vectorjoins/>
             <expressionfields/>
+            <editform>.</editform>
+            <editforminit></editforminit>
+            <featformsuppress>0</featformsuppress>
+            <annotationform>.</annotationform>
+            <editorlayout>generatedlayout</editorlayout>
+            <excludeAttributesWMS/>
+            <excludeAttributesWFS/>
+            <attributeactions/>
+            <edittypes>
+                <edittype widgetv2type="TextEdit" name="obj_id">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="ValueRelation" name="kind">
+                    <widgetv2config OrderByValue="0" AllowNull="0" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_access_aid_kind20140822222244821" Value="value_en" labelOnTop="0" AllowMulti="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="old_obj_id">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+            </edittypes>
+        </maplayer>
+        <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
+            <id>od_catchment_area20140827102410654</id>
+            <datasource>service='pg_qgep' key='obj_id' srid=21781 type=POLYGON table="qgep"."od_catchment_area" (perimeter_geometry) sql=</datasource>
+            <title></title>
+            <abstract></abstract>
+            <keywordList>
+                <value></value>
+            </keywordList>
+            <layername>Catchment Area</layername>
+            <srs>
+                <spatialrefsys>
+                    <proj4>+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=600000 +y_0=200000 +ellps=bessel +towgs84=674.4,15.1,405.3,0,0,0,0 +units=m +no_defs</proj4>
+                    <srsid>1919</srsid>
+                    <srid>21781</srid>
+                    <authid>EPSG:21781</authid>
+                    <description>CH1903 / LV03</description>
+                    <projectionacronym>somerc</projectionacronym>
+                    <ellipsoidacronym>bessel</ellipsoidacronym>
+                    <geographicflag>false</geographicflag>
+                </spatialrefsys>
+            </srs>
+            <provider encoding="System">postgres</provider>
+            <previewExpression></previewExpression>
+            <vectorjoins/>
+            <expressionfields/>
+            <renderer-v2 symbollevels="0" type="singleSymbol">
+                <symbols>
+                    <symbol alpha="1" type="fill" name="0">
+                        <layer pass="0" class="SimpleFill" locked="0">
+                            <prop k="border_width_map_unit_scale" v="0,0"/>
+                            <prop k="color" v="221,233,239,255"/>
+                            <prop k="joinstyle" v="bevel"/>
+                            <prop k="offset" v="0,0"/>
+                            <prop k="offset_map_unit_scale" v="0,0"/>
+                            <prop k="offset_unit" v="MM"/>
+                            <prop k="outline_color" v="166,206,227,255"/>
+                            <prop k="outline_style" v="solid"/>
+                            <prop k="outline_width" v="0.26"/>
+                            <prop k="outline_width_unit" v="MM"/>
+                            <prop k="style" v="solid"/>
+                        </layer>
+                    </symbol>
+                </symbols>
+                <rotation/>
+                <sizescale scalemethod="area"/>
+            </renderer-v2>
+            <customproperties>
+                <property key="labeling" value="pal"/>
+                <property key="labeling/addDirectionSymbol" value="false"/>
+                <property key="labeling/angleOffset" value="0"/>
+                <property key="labeling/blendMode" value="0"/>
+                <property key="labeling/bufferBlendMode" value="0"/>
+                <property key="labeling/bufferColorA" value="255"/>
+                <property key="labeling/bufferColorB" value="255"/>
+                <property key="labeling/bufferColorG" value="255"/>
+                <property key="labeling/bufferColorR" value="255"/>
+                <property key="labeling/bufferDraw" value="false"/>
+                <property key="labeling/bufferJoinStyle" value="64"/>
+                <property key="labeling/bufferNoFill" value="false"/>
+                <property key="labeling/bufferSize" value="1"/>
+                <property key="labeling/bufferSizeInMapUnits" value="false"/>
+                <property key="labeling/bufferSizeMapUnitMaxScale" value="0"/>
+                <property key="labeling/bufferSizeMapUnitMinScale" value="0"/>
+                <property key="labeling/bufferTransp" value="0"/>
+                <property key="labeling/centroidInside" value="false"/>
+                <property key="labeling/centroidWhole" value="false"/>
+                <property key="labeling/decimals" value="3"/>
+                <property key="labeling/displayAll" value="false"/>
+                <property key="labeling/dist" value="0"/>
+                <property key="labeling/distInMapUnits" value="false"/>
+                <property key="labeling/distMapUnitMaxScale" value="0"/>
+                <property key="labeling/distMapUnitMinScale" value="0"/>
+                <property key="labeling/enabled" value="false"/>
+                <property key="labeling/fieldName" value=""/>
+                <property key="labeling/fontBold" value="false"/>
+                <property key="labeling/fontCapitals" value="0"/>
+                <property key="labeling/fontFamily" value="Cantarell"/>
+                <property key="labeling/fontItalic" value="false"/>
+                <property key="labeling/fontLetterSpacing" value="0"/>
+                <property key="labeling/fontLimitPixelSize" value="false"/>
+                <property key="labeling/fontMaxPixelSize" value="10000"/>
+                <property key="labeling/fontMinPixelSize" value="3"/>
+                <property key="labeling/fontSize" value="11"/>
+                <property key="labeling/fontSizeInMapUnits" value="false"/>
+                <property key="labeling/fontSizeMapUnitMaxScale" value="0"/>
+                <property key="labeling/fontSizeMapUnitMinScale" value="0"/>
+                <property key="labeling/fontStrikeout" value="false"/>
+                <property key="labeling/fontUnderline" value="false"/>
+                <property key="labeling/fontWeight" value="50"/>
+                <property key="labeling/fontWordSpacing" value="0"/>
+                <property key="labeling/formatNumbers" value="false"/>
+                <property key="labeling/isExpression" value="true"/>
+                <property key="labeling/labelOffsetInMapUnits" value="true"/>
+                <property key="labeling/labelOffsetMapUnitMaxScale" value="0"/>
+                <property key="labeling/labelOffsetMapUnitMinScale" value="0"/>
+                <property key="labeling/labelPerPart" value="false"/>
+                <property key="labeling/leftDirectionSymbol" value="&lt;"/>
+                <property key="labeling/limitNumLabels" value="false"/>
+                <property key="labeling/maxCurvedCharAngleIn" value="20"/>
+                <property key="labeling/maxCurvedCharAngleOut" value="-20"/>
+                <property key="labeling/maxNumLabels" value="2000"/>
+                <property key="labeling/mergeLines" value="false"/>
+                <property key="labeling/minFeatureSize" value="0"/>
+                <property key="labeling/multilineAlign" value="0"/>
+                <property key="labeling/multilineHeight" value="1"/>
+                <property key="labeling/namedStyle" value="Regular"/>
+                <property key="labeling/obstacle" value="true"/>
+                <property key="labeling/placeDirectionSymbol" value="0"/>
+                <property key="labeling/placement" value="1"/>
+                <property key="labeling/placementFlags" value="0"/>
+                <property key="labeling/plussign" value="false"/>
+                <property key="labeling/preserveRotation" value="true"/>
+                <property key="labeling/previewBkgrdColor" value="#ffffff"/>
+                <property key="labeling/priority" value="5"/>
+                <property key="labeling/quadOffset" value="4"/>
+                <property key="labeling/repeatDistance" value="0"/>
+                <property key="labeling/repeatDistanceMapUnitMaxScale" value="0"/>
+                <property key="labeling/repeatDistanceMapUnitMinScale" value="0"/>
+                <property key="labeling/repeatDistanceUnit" value="1"/>
+                <property key="labeling/reverseDirectionSymbol" value="false"/>
+                <property key="labeling/rightDirectionSymbol" value=">"/>
+                <property key="labeling/scaleMax" value="10000000"/>
+                <property key="labeling/scaleMin" value="1"/>
+                <property key="labeling/scaleVisibility" value="false"/>
+                <property key="labeling/shadowBlendMode" value="6"/>
+                <property key="labeling/shadowColorB" value="0"/>
+                <property key="labeling/shadowColorG" value="0"/>
+                <property key="labeling/shadowColorR" value="0"/>
+                <property key="labeling/shadowDraw" value="false"/>
+                <property key="labeling/shadowOffsetAngle" value="135"/>
+                <property key="labeling/shadowOffsetDist" value="1"/>
+                <property key="labeling/shadowOffsetGlobal" value="true"/>
+                <property key="labeling/shadowOffsetMapUnitMaxScale" value="0"/>
+                <property key="labeling/shadowOffsetMapUnitMinScale" value="0"/>
+                <property key="labeling/shadowOffsetUnits" value="1"/>
+                <property key="labeling/shadowRadius" value="1.5"/>
+                <property key="labeling/shadowRadiusAlphaOnly" value="false"/>
+                <property key="labeling/shadowRadiusMapUnitMaxScale" value="0"/>
+                <property key="labeling/shadowRadiusMapUnitMinScale" value="0"/>
+                <property key="labeling/shadowRadiusUnits" value="1"/>
+                <property key="labeling/shadowScale" value="100"/>
+                <property key="labeling/shadowTransparency" value="30"/>
+                <property key="labeling/shadowUnder" value="0"/>
+                <property key="labeling/shapeBlendMode" value="0"/>
+                <property key="labeling/shapeBorderColorA" value="255"/>
+                <property key="labeling/shapeBorderColorB" value="128"/>
+                <property key="labeling/shapeBorderColorG" value="128"/>
+                <property key="labeling/shapeBorderColorR" value="128"/>
+                <property key="labeling/shapeBorderWidth" value="0"/>
+                <property key="labeling/shapeBorderWidthMapUnitMaxScale" value="0"/>
+                <property key="labeling/shapeBorderWidthMapUnitMinScale" value="0"/>
+                <property key="labeling/shapeBorderWidthUnits" value="1"/>
+                <property key="labeling/shapeDraw" value="false"/>
+                <property key="labeling/shapeFillColorA" value="255"/>
+                <property key="labeling/shapeFillColorB" value="255"/>
+                <property key="labeling/shapeFillColorG" value="255"/>
+                <property key="labeling/shapeFillColorR" value="255"/>
+                <property key="labeling/shapeJoinStyle" value="64"/>
+                <property key="labeling/shapeOffsetMapUnitMaxScale" value="0"/>
+                <property key="labeling/shapeOffsetMapUnitMinScale" value="0"/>
+                <property key="labeling/shapeOffsetUnits" value="1"/>
+                <property key="labeling/shapeOffsetX" value="0"/>
+                <property key="labeling/shapeOffsetY" value="0"/>
+                <property key="labeling/shapeRadiiMapUnitMaxScale" value="0"/>
+                <property key="labeling/shapeRadiiMapUnitMinScale" value="0"/>
+                <property key="labeling/shapeRadiiUnits" value="1"/>
+                <property key="labeling/shapeRadiiX" value="0"/>
+                <property key="labeling/shapeRadiiY" value="0"/>
+                <property key="labeling/shapeRotation" value="0"/>
+                <property key="labeling/shapeRotationType" value="0"/>
+                <property key="labeling/shapeSVGFile" value=""/>
+                <property key="labeling/shapeSizeMapUnitMaxScale" value="0"/>
+                <property key="labeling/shapeSizeMapUnitMinScale" value="0"/>
+                <property key="labeling/shapeSizeType" value="0"/>
+                <property key="labeling/shapeSizeUnits" value="1"/>
+                <property key="labeling/shapeSizeX" value="0"/>
+                <property key="labeling/shapeSizeY" value="0"/>
+                <property key="labeling/shapeTransparency" value="0"/>
+                <property key="labeling/shapeType" value="0"/>
+                <property key="labeling/textColorA" value="255"/>
+                <property key="labeling/textColorB" value="0"/>
+                <property key="labeling/textColorG" value="0"/>
+                <property key="labeling/textColorR" value="0"/>
+                <property key="labeling/textTransp" value="0"/>
+                <property key="labeling/upsidedownLabels" value="0"/>
+                <property key="labeling/wrapChar" value=""/>
+                <property key="labeling/xOffset" value="0"/>
+                <property key="labeling/yOffset" value="0"/>
+            </customproperties>
+            <blendMode>0</blendMode>
+            <featureBlendMode>0</featureBlendMode>
+            <layerTransparency>0</layerTransparency>
+            <displayfield>obj_id</displayfield>
+            <label>0</label>
+            <labelattributes>
+                <label fieldname="" text="Label"/>
+                <family fieldname="" name="Cantarell"/>
+                <size fieldname="" units="pt" value="12"/>
+                <bold fieldname="" on="0"/>
+                <italic fieldname="" on="0"/>
+                <underline fieldname="" on="0"/>
+                <strikeout fieldname="" on="0"/>
+                <color fieldname="" red="0" blue="0" green="0"/>
+                <x fieldname=""/>
+                <y fieldname=""/>
+                <offset x="0" y="0" units="pt" yfieldname="" xfieldname=""/>
+                <angle fieldname="" value="0" auto="0"/>
+                <alignment fieldname="" value="center"/>
+                <buffercolor fieldname="" red="255" blue="255" green="255"/>
+                <buffersize fieldname="" units="pt" value="1"/>
+                <bufferenabled fieldname="" on=""/>
+                <multilineenabled fieldname="" on=""/>
+                <selectedonly on=""/>
+            </labelattributes>
             <editform></editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
@@ -588,8 +851,107 @@
                 <edittype widgetv2type="TextEdit" name="obj_id">
                     <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
                 </edittype>
-                <edittype widgetv2type="ValueRelation" name="kind">
-                    <widgetv2config OrderByValue="0" AllowNull="0" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_access_aid_kind20140822222244821" Value="value_en" labelOnTop="0" AllowMulti="0"/>
+                <edittype widgetv2type="TextEdit" name="direct_discharge_current">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="direct_discharge_planned">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="discharge_coefficient_rw_current">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="discharge_coefficient_rw_planned">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="discharge_coefficient_ww_current">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="discharge_coefficient_ww_planned">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="drainage_system_current">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="drainage_system_planned">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="identifier">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="infiltration_current">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="infiltration_planned">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="population_density_current">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="population_density_planned">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="remark">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="retention_current">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="retention_planned">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="runoff_limit_current">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="runoff_limit_planned">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="seal_factor_rw_current">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="seal_factor_rw_planned">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="seal_factor_ww_current">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="seal_factor_ww_planned">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="sewer_infiltration_water_production_current">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="sewer_infiltration_water_production_planned">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="surface_area">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="waste_water_production_current">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="waste_water_production_planned">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="last_modification">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="dataowner">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="provider">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="fk_wastewater_networkelement_rw_current">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="fk_wastewater_networkelement_rw_planned">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="fk_wastewater_networkelement_ww_planned">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="fk_wastewater_networkelement_ww_current">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
                 </edittype>
                 <edittype widgetv2type="TextEdit" name="old_obj_id">
                     <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -622,10 +984,10 @@
             <previewExpression></previewExpression>
             <vectorjoins/>
             <expressionfields/>
-            <editform></editform>
+            <editform>.</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
-            <annotationform></annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -663,7 +1025,7 @@
                 </edittype>
             </edittypes>
         </maplayer>
-        <maplayer minimumScale="0" maximumScale="10000" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="1" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
+        <maplayer minimumScale="-4.65661e-10" maximumScale="10000" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="1" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
             <id>od_cover20140822215511882</id>
             <datasource>service='pg_qgep' key='obj_id' srid=21781 type=POINT table="qgep"."od_cover" (situation_geometry) sql=</datasource>
             <title></title>
@@ -685,7 +1047,7 @@
                 </spatialrefsys>
             </srs>
             <provider encoding="System">postgres</provider>
-            <previewExpression></previewExpression>
+            <previewExpression>COALESCE( "obj_id", '&lt;NULL>' )</previewExpression>
             <vectorjoins/>
             <expressionfields/>
             <renderer-v2 symbollevels="0" type="singleSymbol">
@@ -694,12 +1056,12 @@
                         <layer pass="0" class="SimpleMarker" locked="0">
                             <prop k="angle" v="0"/>
                             <prop k="color" v="0,0,0,0"/>
-                            <prop k="color_border" v="58,129,204,255"/>
                             <prop k="horizontal_anchor_point" v="1"/>
                             <prop k="name" v="circle"/>
                             <prop k="offset" v="0,0"/>
                             <prop k="offset_map_unit_scale" v="0,0"/>
                             <prop k="offset_unit" v="MM"/>
+                            <prop k="outline_color" v="58,129,204,255"/>
                             <prop k="outline_style" v="solid"/>
                             <prop k="outline_width" v="0"/>
                             <prop k="outline_width_map_unit_scale" v="0,0"/>
@@ -883,11 +1245,11 @@
                 <multilineenabled fieldname="" on=""/>
                 <selectedonly on=""/>
             </labelattributes>
-            <editform>.</editform>
+            <editform>./forms/cover.ui</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
             <annotationform>.</annotationform>
-            <editorlayout>generatedlayout</editorlayout>
+            <editorlayout>uifilelayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
             <attributeactions/>
@@ -956,10 +1318,10 @@
             <previewExpression></previewExpression>
             <vectorjoins/>
             <expressionfields/>
-            <editform></editform>
+            <editform>.</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
-            <annotationform></annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -1017,10 +1379,10 @@
             <previewExpression></previewExpression>
             <vectorjoins/>
             <expressionfields/>
-            <editform></editform>
+            <editform>.</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
-            <annotationform></annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -1078,10 +1440,10 @@
             <previewExpression></previewExpression>
             <vectorjoins/>
             <expressionfields/>
-            <editform></editform>
+            <editform>.</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
-            <annotationform></annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -1146,20 +1508,20 @@
                     <symbol alpha="1" type="line" name="0">
                         <layer pass="0" class="SimpleLine" locked="0">
                             <prop k="capstyle" v="square"/>
-                            <prop k="color" v="101,29,146,255"/>
                             <prop k="customdash" v="5;2"/>
                             <prop k="customdash_map_unit_scale" v="0,0"/>
                             <prop k="customdash_unit" v="MM"/>
                             <prop k="draw_inside_polygon" v="0"/>
                             <prop k="joinstyle" v="bevel"/>
+                            <prop k="line_color" v="101,29,146,255"/>
+                            <prop k="line_style" v="solid"/>
+                            <prop k="line_width" v="0.26"/>
+                            <prop k="line_width_unit" v="MM"/>
                             <prop k="offset" v="0"/>
                             <prop k="offset_map_unit_scale" v="0,0"/>
                             <prop k="offset_unit" v="MM"/>
-                            <prop k="penstyle" v="solid"/>
                             <prop k="use_custom_dash" v="0"/>
-                            <prop k="width" v="0.26"/>
                             <prop k="width_map_unit_scale" v="0,0"/>
-                            <prop k="width_unit" v="MM"/>
                         </layer>
                     </symbol>
                 </symbols>
@@ -1391,14 +1753,14 @@
                 <edittype widgetv2type="TextEdit" name="wall_roughness">
                     <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
                 </edittype>
-                <edittype widgetv2type="TextEdit" name="fk_reach_point_from">
-                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                <edittype widgetv2type="RelationReference" name="fk_reach_point_from">
+                    <widgetv2config fieldEditable="1" ShowForm="0" Relation="reach_fk_reach_point_from" ReadOnly="0" MapIdentification="0" labelOnTop="0" AllowNULL="0"/>
                 </edittype>
-                <edittype widgetv2type="TextEdit" name="fk_reach_point_to">
-                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                <edittype widgetv2type="RelationReference" name="fk_reach_point_to">
+                    <widgetv2config fieldEditable="1" ShowForm="0" Relation="reach_fk_reach_point_to" ReadOnly="0" MapIdentification="0" labelOnTop="0" AllowNULL="0"/>
                 </edittype>
-                <edittype widgetv2type="TextEdit" name="fk_pipe_profile">
-                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                <edittype widgetv2type="RelationReference" name="fk_pipe_profile">
+                    <widgetv2config fieldEditable="1" ShowForm="0" Relation="reach_pipe_profile" ReadOnly="0" MapIdentification="0" labelOnTop="0" AllowNULL="0"/>
                 </edittype>
                 <edittype widgetv2type="TextEdit" name="old_obj_id">
                     <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -1436,12 +1798,12 @@
                         <layer pass="0" class="SimpleMarker" locked="0">
                             <prop k="angle" v="0"/>
                             <prop k="color" v="232,16,189,255"/>
-                            <prop k="color_border" v="0,0,0,255"/>
                             <prop k="horizontal_anchor_point" v="1"/>
                             <prop k="name" v="circle"/>
                             <prop k="offset" v="0,0"/>
                             <prop k="offset_map_unit_scale" v="0,0"/>
                             <prop k="offset_unit" v="MM"/>
+                            <prop k="outline_color" v="0,0,0,255"/>
                             <prop k="outline_style" v="solid"/>
                             <prop k="outline_width" v="0"/>
                             <prop k="outline_width_map_unit_scale" v="0,0"/>
@@ -1698,10 +2060,10 @@
             <previewExpression></previewExpression>
             <vectorjoins/>
             <expressionfields/>
-            <editform></editform>
+            <editform>.</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
-            <annotationform></annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -1759,10 +2121,10 @@
             <previewExpression></previewExpression>
             <vectorjoins/>
             <expressionfields/>
-            <editform></editform>
+            <editform>.</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
-            <annotationform></annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -1797,7 +2159,7 @@
                 </edittype>
             </edittypes>
         </maplayer>
-        <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
+        <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
             <id>od_wastewater_structure20140822215511905</id>
             <datasource>service='pg_qgep' key='obj_id' srid=21781 type=POLYGON table="qgep"."od_wastewater_structure" (detail_geometry_geometry) sql=</datasource>
             <title></title>
@@ -1827,16 +2189,16 @@
                     <symbol alpha="1" type="fill" name="0">
                         <layer pass="0" class="SimpleFill" locked="0">
                             <prop k="border_width_map_unit_scale" v="0,0"/>
-                            <prop k="border_width_unit" v="MM"/>
                             <prop k="color" v="206,158,85,255"/>
-                            <prop k="color_border" v="0,0,0,255"/>
                             <prop k="joinstyle" v="bevel"/>
                             <prop k="offset" v="0,0"/>
                             <prop k="offset_map_unit_scale" v="0,0"/>
                             <prop k="offset_unit" v="MM"/>
+                            <prop k="outline_color" v="0,0,0,255"/>
+                            <prop k="outline_style" v="solid"/>
+                            <prop k="outline_width" v="0.26"/>
+                            <prop k="outline_width_unit" v="MM"/>
                             <prop k="style" v="solid"/>
-                            <prop k="style_border" v="solid"/>
-                            <prop k="width_border" v="0.26"/>
                         </layer>
                     </symbol>
                 </symbols>
@@ -2015,9 +2377,12 @@
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
             <annotationform>.</annotationform>
-            <editorlayout>generatedlayout</editorlayout>
+            <editorlayout>tablayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
+            <attributeEditorForm>
+                <attributeEditorContainer name="www"/>
+            </attributeEditorForm>
             <attributeactions/>
             <edittypes>
                 <edittype widgetv2type="TextEdit" name="obj_id">
@@ -2129,10 +2494,10 @@
             <previewExpression></previewExpression>
             <vectorjoins/>
             <expressionfields/>
-            <editform></editform>
+            <editform>.</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
-            <annotationform></annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -2190,10 +2555,10 @@
             <previewExpression></previewExpression>
             <vectorjoins/>
             <expressionfields/>
-            <editform></editform>
+            <editform>.</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
-            <annotationform></annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -2251,10 +2616,10 @@
             <previewExpression></previewExpression>
             <vectorjoins/>
             <expressionfields/>
-            <editform></editform>
+            <editform>.</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
-            <annotationform></annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -2312,10 +2677,10 @@
             <previewExpression></previewExpression>
             <vectorjoins/>
             <expressionfields/>
-            <editform></editform>
+            <editform>.</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
-            <annotationform></annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -2373,10 +2738,10 @@
             <previewExpression></previewExpression>
             <vectorjoins/>
             <expressionfields/>
-            <editform></editform>
+            <editform>.</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
-            <annotationform></annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -2434,10 +2799,10 @@
             <previewExpression></previewExpression>
             <vectorjoins/>
             <expressionfields/>
-            <editform></editform>
+            <editform>.</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
-            <annotationform></annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -2495,10 +2860,10 @@
             <previewExpression></previewExpression>
             <vectorjoins/>
             <expressionfields/>
-            <editform></editform>
+            <editform>.</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
-            <annotationform></annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -2861,10 +3226,10 @@
             <previewExpression></previewExpression>
             <vectorjoins/>
             <expressionfields/>
-            <editform></editform>
+            <editform>.</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
-            <annotationform></annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -3105,10 +3470,10 @@
             <previewExpression></previewExpression>
             <vectorjoins/>
             <expressionfields/>
-            <editform></editform>
+            <editform>.</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
-            <annotationform></annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -3166,10 +3531,10 @@
             <previewExpression></previewExpression>
             <vectorjoins/>
             <expressionfields/>
-            <editform></editform>
+            <editform>.</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
-            <annotationform></annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -3227,10 +3592,10 @@
             <previewExpression></previewExpression>
             <vectorjoins/>
             <expressionfields/>
-            <editform></editform>
+            <editform>.</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
-            <annotationform></annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -3288,10 +3653,10 @@
             <previewExpression></previewExpression>
             <vectorjoins/>
             <expressionfields/>
-            <editform></editform>
+            <editform>.</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
-            <annotationform></annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -3349,10 +3714,10 @@
             <previewExpression></previewExpression>
             <vectorjoins/>
             <expressionfields/>
-            <editform></editform>
+            <editform>.</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
-            <annotationform></annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -3410,10 +3775,10 @@
             <previewExpression></previewExpression>
             <vectorjoins/>
             <expressionfields/>
-            <editform></editform>
+            <editform>.</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
-            <annotationform></annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -3471,10 +3836,10 @@
             <previewExpression></previewExpression>
             <vectorjoins/>
             <expressionfields/>
-            <editform></editform>
+            <editform>.</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
-            <annotationform></annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -3532,10 +3897,10 @@
             <previewExpression></previewExpression>
             <vectorjoins/>
             <expressionfields/>
-            <editform></editform>
+            <editform>.</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
-            <annotationform></annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -3593,10 +3958,10 @@
             <previewExpression></previewExpression>
             <vectorjoins/>
             <expressionfields/>
-            <editform></editform>
+            <editform>.</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
-            <annotationform></annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -3654,10 +4019,10 @@
             <previewExpression></previewExpression>
             <vectorjoins/>
             <expressionfields/>
-            <editform></editform>
+            <editform>.</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
-            <annotationform></annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -3715,10 +4080,10 @@
             <previewExpression></previewExpression>
             <vectorjoins/>
             <expressionfields/>
-            <editform></editform>
+            <editform>.</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
-            <annotationform></annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -3776,10 +4141,10 @@
             <previewExpression></previewExpression>
             <vectorjoins/>
             <expressionfields/>
-            <editform></editform>
+            <editform>.</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
-            <annotationform></annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -3837,10 +4202,10 @@
             <previewExpression></previewExpression>
             <vectorjoins/>
             <expressionfields/>
-            <editform></editform>
+            <editform>.</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
-            <annotationform></annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -3898,10 +4263,10 @@
             <previewExpression></previewExpression>
             <vectorjoins/>
             <expressionfields/>
-            <editform></editform>
+            <editform>.</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
-            <annotationform></annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -4081,10 +4446,10 @@
             <previewExpression></previewExpression>
             <vectorjoins/>
             <expressionfields/>
-            <editform></editform>
+            <editform>.</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
-            <annotationform></annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -4142,10 +4507,10 @@
             <previewExpression></previewExpression>
             <vectorjoins/>
             <expressionfields/>
-            <editform></editform>
+            <editform>.</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
-            <annotationform></annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -4203,10 +4568,10 @@
             <previewExpression></previewExpression>
             <vectorjoins/>
             <expressionfields/>
-            <editform></editform>
+            <editform>.</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
-            <annotationform></annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -4264,10 +4629,10 @@
             <previewExpression></previewExpression>
             <vectorjoins/>
             <expressionfields/>
-            <editform></editform>
+            <editform>.</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
-            <annotationform></annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -4364,6 +4729,7 @@
     <properties>
         <WMSContactPerson type="QString"></WMSContactPerson>
         <WMSOnlineResource type="QString"></WMSOnlineResource>
+        <WMSUseLayerIDs type="bool">false</WMSUseLayerIDs>
         <WMSContactOrganization type="QString"></WMSContactOrganization>
         <WMSKeywordList type="QStringList">
             <value></value>
@@ -4381,13 +4747,14 @@
             <DegreeFormat type="QString">D</DegreeFormat>
         </PositionPrecision>
         <WCSUrl type="QString"></WCSUrl>
-        <WMSContactPhone type="QString"></WMSContactPhone>
         <WMSServiceCapabilities type="bool">false</WMSServiceCapabilities>
+        <WMSContactPhone type="QString"></WMSContactPhone>
         <WMSServiceAbstract type="QString"></WMSServiceAbstract>
         <WMSAddWktGeometry type="bool">false</WMSAddWktGeometry>
         <Measure>
             <Ellipsoid type="QString">NONE</Ellipsoid>
         </Measure>
+        <WMSPrecision type="QString">8</WMSPrecision>
         <WFSTLayers>
             <Insert type="QStringList"/>
             <Update type="QStringList"/>
@@ -4408,8 +4775,10 @@
                 <value>od_reach20140822215411222</value>
                 <value>od_reach_point20140822215511891</value>
                 <value>od_wastewater_structure20140822215511905</value>
+                <value>od_catchment_area20140827102410654</value>
             </LayerSnappingList>
             <LayerSnappingEnabledList type="QStringList">
+                <value>disabled</value>
                 <value>disabled</value>
                 <value>disabled</value>
                 <value>disabled</value>
@@ -4421,14 +4790,17 @@
                 <value>0</value>
                 <value>0</value>
                 <value>0</value>
+                <value>0</value>
             </LayerSnappingToleranceUnitList>
             <LayerSnapToList type="QStringList">
                 <value>to_vertex_and_segment</value>
                 <value>to_vertex_and_segment</value>
                 <value>to_vertex_and_segment</value>
                 <value>to_vertex_and_segment</value>
+                <value>to_vertex_and_segment</value>
             </LayerSnapToList>
             <LayerSnappingToleranceList type="QStringList">
+                <value>0.000000</value>
                 <value>0.000000</value>
                 <value>0.000000</value>
                 <value>0.000000</value>
@@ -4457,6 +4829,10 @@
             <AlphaInt type="int">255</AlphaInt>
             <ColorRamp type="QString"></ColorRamp>
         </DefaultStyles>
+        <Palette>
+            <Colors type="QStringList"/>
+            <Labels type="QStringList"/>
+        </Palette>
         <WMSFees type="QString"></WMSFees>
         <WMSImageQuality type="int">90</WMSImageQuality>
         <WMSUrl type="QString"></WMSUrl>

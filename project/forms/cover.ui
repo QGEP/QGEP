@@ -6,66 +6,126 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>903</width>
-    <height>573</height>
+    <width>479</width>
+    <height>245</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QFormLayout" name="formLayout">
-   <property name="fieldGrowthPolicy">
-    <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
-   </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="3">
+    <widget class="QLineEdit" name="depth"/>
+   </item>
    <item row="1" column="0">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Level</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
     <widget class="QLabel" name="label_2">
      <property name="text">
-      <string>TextLabel</string>
+      <string>Depth</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QLineEdit" name="diameter"/>
+   </item>
+   <item row="3" column="1">
+    <widget class="QComboBox" name="fastening"/>
+   </item>
+   <item row="3" column="3">
+    <widget class="QComboBox" name="sludge_bucket"/>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="label_6">
+     <property name="text">
+      <string>Fastening</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0">
+    <widget class="QLabel" name="label_7">
+     <property name="text">
+      <string>Positional accuracy</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="label_5">
+     <property name="text">
+      <string>Diameter</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="2">
+    <widget class="QLabel" name="label_3">
+     <property name="text">
+      <string>Material</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="4">
+    <widget class="QLineEdit" name="obj_id">
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="frame">
+      <bool>false</bool>
      </property>
     </widget>
    </item>
    <item row="1" column="1">
-    <widget class="QLabel" name="label">
+    <widget class="QLineEdit" name="level"/>
+   </item>
+   <item row="2" column="3">
+    <widget class="QComboBox" name="material"/>
+   </item>
+   <item row="5" column="3">
+    <widget class="QComboBox" name="venting"/>
+   </item>
+   <item row="5" column="2">
+    <widget class="QLabel" name="label_8">
      <property name="text">
-      <string>TextLabel</string>
+      <string>Venting</string>
      </property>
     </widget>
    </item>
-   <item row="3" column="0" colspan="2">
-    <widget class="QGroupBox" name="groupBox_4">
-     <property name="title">
-      <string>Structure Part</string>
-     </property>
-     <property name="qgisRelation" stdset="0">
-      <string>co_sp</string>
+   <item row="3" column="2">
+    <widget class="QLabel" name="label_4">
+     <property name="text">
+      <string>Sludge bucket</string>
      </property>
     </widget>
    </item>
-   <item row="4" column="0" colspan="2">
-    <widget class="QGroupBox" name="groupBox_2">
-     <property name="title">
-      <string>Reach Points</string>
+   <item row="6" column="3">
+    <widget class="QComboBox" name="cover_shape"/>
+   </item>
+   <item row="6" column="0">
+    <widget class="QLabel" name="label_9">
+     <property name="text">
+      <string>Brand</string>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <widget class="QWidget" name="widget" native="true">
-        <property name="qgisRelation" stdset="0">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QWidget" name="widget_2" native="true">
-        <property name="qgisRelation" stdset="0">
-         <string/>
-        </property>
-       </widget>
-      </item>
-     </layout>
     </widget>
    </item>
-   <item row="0" column="0">
-    <widget class="QWidget" name="widget_3" native="true"/>
+   <item row="6" column="2">
+    <widget class="QLabel" name="lblCoverShape">
+     <property name="text">
+      <string>Cover shape</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="1">
+    <widget class="QLineEdit" name="brand"/>
+   </item>
+   <item row="5" column="1">
+    <widget class="QLineEdit" name="positional_accuracy"/>
    </item>
   </layout>
  </widget>
