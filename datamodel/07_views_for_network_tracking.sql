@@ -51,13 +51,13 @@ CREATE OR REPLACE VIEW qgep.vw_network_node AS
    LEFT JOIN qgep.od_cover c
      ON c.obj_id = wwno.obj_id
    LEFT JOIN qgep.od_reach_point rp 
-     ON wwne.obj_id = rp.fs_wastewater_networkelement
+     ON wwne.obj_id = rp.fk_wastewater_networkelement
    LEFT JOIN qgep.od_reach re_from 
-     ON re_from.fs_reach_point_from = rp.obj_id
+     ON re_from.fk_reach_point_from = rp.obj_id
    LEFT JOIN qgep.od_channel ch_from
      ON ch_from.obj_id = re_from.obj_id
    LEFT JOIN qgep.od_reach re_to 
-     ON re_to.fs_reach_point_to = rp.obj_id
+     ON re_to.fk_reach_point_to = rp.obj_id
    LEFT JOIN qgep.od_channel ch_to
      ON ch_to.obj_id = re_to.obj_id
    GROUP BY wwne.obj_id, type, bottom_level, cover_level, backflow_level, description, wwno.situation_geometry, str.detail_geometry_geometry, str.obj_id, mh.obj_id
@@ -70,22 +70,22 @@ DROP VIEW IF EXISTS qgep.vw_network_segment CASCADE;
 CREATE VIEW qgep.vw_network_segment AS
  WITH reach_parts AS (
    SELECT 
-     row_number() OVER (ORDER BY od_reach_point.fs_wastewater_networkelement, st_line_locate_point(st_linemerge(od_reach.progression), od_reach_point.situation_geometry)) AS gid, 
+     row_number() OVER (ORDER BY od_reach_point.fk_wastewater_networkelement, st_line_locate_point(st_linemerge(od_reach.progression_geometry), od_reach_point.situation_geometry)) AS gid, 
      od_reach_point.obj_id, 
-     od_reach_point.fs_wastewater_networkelement, 
+     od_reach_point.fk_wastewater_networkelement, 
      od_reach_point.situation_geometry, 
-     od_reach.progression, 
-     od_reach.fs_reach_point_from, 
-     od_reach.fs_reach_point_to, 
-     st_linemerge(od_reach.progression) AS reach_progression, 
+     od_reach.progression_geometry, 
+     od_reach.fk_reach_point_from, 
+     od_reach.fk_reach_point_to, 
+     st_linemerge(od_reach.progression_geometry) AS reach_progression, 
      st_line_locate_point(
-       st_linemerge(od_reach.progression), 
+       st_linemerge(od_reach.progression_geometry), 
        od_reach_point.situation_geometry
      ) AS pos
    FROM qgep.od_reach_point
-   LEFT JOIN qgep.od_reach ON od_reach_point.fs_wastewater_networkelement::text = od_reach.obj_id::text
-   WHERE od_reach_point.fs_wastewater_networkelement IS NOT NULL AND od_reach.progression IS NOT NULL
-   ORDER BY od_reach_point.obj_id, st_line_locate_point(st_linemerge(od_reach.progression), od_reach_point.situation_geometry)
+   LEFT JOIN qgep.od_reach ON od_reach_point.fk_wastewater_networkelement::text = od_reach.obj_id::text
+   WHERE od_reach_point.fk_wastewater_networkelement IS NOT NULL AND od_reach.progression_geometry IS NOT NULL
+   ORDER BY od_reach_point.obj_id, st_line_locate_point(st_linemerge(od_reach.progression_geometry), od_reach_point.situation_geometry)
  )
 
  SELECT row_number() OVER () AS gid,
@@ -95,34 +95,34 @@ CREATE VIEW qgep.vw_network_segment AS
    SELECT 
      od_reach.obj_id,
      'reach' AS type,
-     max_height_profile,
-     ST_LENGTH( COALESCE( reach_progression, progression ) ) AS length_calc,
-     ST_LENGTH( progression ) AS length_full,
-     COALESCE( from_obj_id, fs_reach_point_from ) AS from_obj_id,
-     COALESCE( to_obj_id, fs_reach_point_to ) AS to_obj_id,
-     fs_reach_point_from AS from_obj_id_interpolate,
-     fs_reach_point_to AS to_obj_id_interpolate,
+     clear_height,
+     ST_LENGTH( COALESCE( reach_progression, progression_geometry ) ) AS length_calc,
+     ST_LENGTH( progression_geometry ) AS length_full,
+     COALESCE( from_obj_id, fk_reach_point_from ) AS from_obj_id,
+     COALESCE( to_obj_id, fk_reach_point_to ) AS to_obj_id,
+     fk_reach_point_from AS from_obj_id_interpolate,
+     fk_reach_point_to AS to_obj_id_interpolate,
      COALESCE( from_pos, 0 ) AS from_pos,
      COALESCE( to_pos, 1 ) AS to_pos,
      NULL AS bottom_level,
      ch.usage_current AS usage_current,
      mat.abbr_de AS material,
-     COALESCE( reach_progression, st_linemerge(progression) ) AS progression_geometry,
-     ST_Linemerge(progression) AS detail_geometry
+     COALESCE( reach_progression, st_linemerge(progression_geometry) ) AS progression_geometry,
+     ST_Linemerge(progression_geometry) AS detail_geometry
    FROM qgep.od_reach
    FULL JOIN
    (
      SELECT 
-       COALESCE(s1.fs_wastewater_networkelement, s2.fs_wastewater_networkelement) AS reach_obj_id, 
-       COALESCE(s1.obj_id, s2.fs_reach_point_from) AS from_obj_id, 
-       COALESCE(s2.obj_id, s1.fs_reach_point_to) AS to_obj_id, 
+       COALESCE(s1.fk_wastewater_networkelement, s2.fk_wastewater_networkelement) AS reach_obj_id, 
+       COALESCE(s1.obj_id, s2.fk_reach_point_from) AS from_obj_id, 
+       COALESCE(s2.obj_id, s1.fk_reach_point_to) AS to_obj_id, 
        COALESCE(s1.pos, 0::double precision) AS from_pos, 
        COALESCE(s2.pos, 1::double precision) AS to_pos, 
        st_line_substring(COALESCE(s1.reach_progression, s2.reach_progression), 
        COALESCE(s1.pos, 0::double precision), COALESCE(s2.pos, 1::double precision)) AS reach_progression
      FROM reach_parts s1
-     FULL JOIN reach_parts s2 ON s1.gid = (s2.gid - 1) AND s1.fs_wastewater_networkelement::text = s2.fs_wastewater_networkelement::text
-     ORDER BY COALESCE(s1.fs_wastewater_networkelement, s2.fs_wastewater_networkelement), COALESCE(s1.pos, 0::double precision)
+     FULL JOIN reach_parts s2 ON s1.gid = (s2.gid - 1) AND s1.fk_wastewater_networkelement::text = s2.fk_wastewater_networkelement::text
+     ORDER BY COALESCE(s1.fk_wastewater_networkelement, s2.fk_wastewater_networkelement), COALESCE(s1.pos, 0::double precision)
    ) AS rr
    ON rr.reach_obj_id = od_reach.obj_id
    LEFT JOIN qgep.od_channel ch ON ch.obj_id = od_reach.obj_id
@@ -157,10 +157,10 @@ CREATE VIEW qgep.vw_network_segment AS
      wn_from.bottom_level AS bottom_level,
      ST_LineFromMultiPoint( ST_Collect(wn_from.situation_geometry, rp_from.situation_geometry ) ) AS progression_geometry
      FROM qgep.od_reach
-       LEFT JOIN qgep.od_reach_point rp_from ON rp_from.obj_id = od_reach.fs_reach_point_from
-       LEFT JOIN qgep.od_wastewater_node wn_from ON rp_from.fs_wastewater_networkelement = wn_from.obj_id
+       LEFT JOIN qgep.od_reach_point rp_from ON rp_from.obj_id = od_reach.fk_reach_point_from
+       LEFT JOIN qgep.od_wastewater_node wn_from ON rp_from.fk_wastewater_networkelement = wn_from.obj_id
      WHERE 
-       od_reach.fs_reach_point_from IS NOT NULL
+       od_reach.fk_reach_point_from IS NOT NULL
        AND
        wn_from.obj_id IS NOT NULL
 
@@ -173,10 +173,10 @@ CREATE VIEW qgep.vw_network_segment AS
        wn_to.bottom_level AS bottom_level,
        ST_LineFromMultiPoint( ST_Collect(rp_to.situation_geometry, wn_to.situation_geometry ) ) AS progression_geometry
      FROM qgep.od_reach
-       LEFT JOIN qgep.od_reach_point rp_to ON rp_to.obj_id = od_reach.fs_reach_point_to
-       LEFT JOIN qgep.od_wastewater_node wn_to ON rp_to.fs_wastewater_networkelement = wn_to.obj_id
+       LEFT JOIN qgep.od_reach_point rp_to ON rp_to.obj_id = od_reach.fk_reach_point_to
+       LEFT JOIN qgep.od_wastewater_node wn_to ON rp_to.fk_wastewater_networkelement = wn_to.obj_id
      WHERE 
-       od_reach.fs_reach_point_to IS NOT NULL
+       od_reach.fk_reach_point_to IS NOT NULL
      AND
        wn_to.obj_id IS NOT NULL
    ) AS connectors
