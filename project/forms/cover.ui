@@ -28,20 +28,20 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="1">
+   <item row="1" column="2">
     <widget class="QLineEdit" name="level"/>
    </item>
-   <item row="2" column="1">
+   <item row="2" column="2">
     <widget class="QLineEdit" name="diameter"/>
    </item>
-   <item row="1" column="2">
+   <item row="1" column="3">
     <widget class="QLabel" name="label_2">
      <property name="text">
       <string>Depth</string>
      </property>
     </widget>
    </item>
-   <item row="0" column="0" colspan="4">
+   <item row="0" column="0" colspan="5">
     <widget class="QLineEdit" name="obj_id">
      <property name="font">
       <font>
@@ -53,9 +53,6 @@
       <bool>false</bool>
      </property>
     </widget>
-   </item>
-   <item row="5" column="1">
-    <widget class="QLineEdit" name="positional_accuracy"/>
    </item>
    <item row="5" column="0">
     <widget class="QLabel" name="label_7">
@@ -71,45 +68,52 @@
      </property>
     </widget>
    </item>
-   <item row="6" column="1">
+   <item row="6" column="2">
     <widget class="QLineEdit" name="brand"/>
    </item>
-   <item row="2" column="3">
+   <item row="2" column="4">
     <widget class="QComboBox" name="material"/>
    </item>
-   <item row="5" column="2">
+   <item row="5" column="3">
     <widget class="QLabel" name="label_8">
      <property name="text">
       <string>Venting</string>
      </property>
     </widget>
    </item>
-   <item row="3" column="1">
+   <item row="3" column="2">
     <widget class="QComboBox" name="fastening"/>
    </item>
-   <item row="5" column="3">
+   <item row="6" column="4">
+    <widget class="QComboBox" name="cover_shape"/>
+   </item>
+   <item row="5" column="4">
     <widget class="QComboBox" name="venting"/>
    </item>
    <item row="6" column="3">
-    <widget class="QComboBox" name="cover_shape"/>
-   </item>
-   <item row="6" column="2">
     <widget class="QLabel" name="lblCoverShape">
      <property name="text">
       <string>Cover shape</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="3">
+   <item row="1" column="4">
     <widget class="QLineEdit" name="depth"/>
    </item>
-   <item row="3" column="3">
+   <item row="3" column="4">
     <widget class="QComboBox" name="sludge_bucket"/>
    </item>
-   <item row="3" column="2">
+   <item row="3" column="3">
     <widget class="QLabel" name="label_4">
      <property name="text">
       <string>Sludge bucket</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="0" colspan="5">
+    <widget class="QgsRelationEditorWidget" name="mRelationEditor">
+     <property name="qgisRelation">
+      <string>structure_part-cover</string>
      </property>
     </widget>
    </item>
@@ -120,19 +124,15 @@
      </property>
     </widget>
    </item>
-   <item row="2" column="2">
+   <item row="2" column="3">
     <widget class="QLabel" name="label_3">
      <property name="text">
       <string>Material</string>
      </property>
     </widget>
    </item>
-   <item row="7" column="0" colspan="4">
-    <widget class="QgsRelationEditorWidget" name="mRelationEditor">
-     <property name="qgisRelation">
-      <string>structure_part-cover</string>
-     </property>
-    </widget>
+   <item row="5" column="2">
+    <widget class="QComboBox" name="positional_accuracy"/>
    </item>
   </layout>
  </widget>
