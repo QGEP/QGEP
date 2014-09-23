@@ -1,9 +1,9 @@
 ﻿-- Views for network following with the Python NetworkX module and the QGEP Python plugins
 -- View: qgep.vw_network_node
 
-DROP VIEW IF EXISTS qgep.vw_network_node CASCADE;
+DROP MATERIALIZED VIEW IF EXISTS qgep.vw_network_node CASCADE;
 
-CREATE OR REPLACE VIEW qgep.vw_network_node AS 
+CREATE MATERIALIZED VIEW qgep.vw_network_node AS 
  SELECT 
    row_number() OVER () AS gid,
    nodes.*
@@ -25,49 +25,52 @@ CREATE OR REPLACE VIEW qgep.vw_network_node AS
    UNION
  
    SELECT 
-     wwne.obj_id,
+     NE.obj_id,
      'wastewater_node' AS type,
      CASE 
-       WHEN mh.obj_id IS NOT NULL
+       WHEN MH.obj_id IS NOT NULL
          THEN 'manhole'
-       WHEN str.obj_id IS NOT NULL
-         THEN 'special_structure'
+       WHEN WS.obj_id IS NOT NULL
+         THEN 'special_WSucture'
        ELSE 'other'
      END AS node_type,
      bottom_level AS level,
      COALESCE( MAX( ch_from.usage_current ), MAX( ch_to.usage_current ) ) AS usage_current,
-     c.level AS cover_level,
-     wwno.backflow_level AS backflow_level,
-     wwne.identifier AS description,
-     COALESCE( str.detail_geometry_geometry, wwno.situation_geometry ) AS detail_geometry, -- Will contain different geometry types: do not visualize directly. Will be handled by plugin
-     wwno.situation_geometry
-   FROM qgep.od_wastewater_node wwno
-   LEFT JOIN qgep.od_wastewater_networkelement wwne
-     ON wwne.obj_id = wwno.obj_id
-   LEFT JOIN qgep.od_wastewater_structure str
-     ON str.obj_id = wwno.obj_id
-   LEFT JOIN qgep.od_manhole mh
-     ON mh.obj_id = wwno.obj_id
-   LEFT JOIN qgep.od_cover c
-     ON c.obj_id = wwno.obj_id
-   LEFT JOIN qgep.od_reach_point rp 
-     ON wwne.obj_id = rp.fk_wastewater_networkelement
+     MAX( CO.level ) AS cover_level,
+     WN.backflow_level AS backflow_level,
+     NE.identifier AS description,
+     COALESCE( WS.detail_geometry_geometry, WN.situation_geometry ) AS detail_geometry, -- Will contain different geometry types: do not visualize directly. Will be handled by plugin
+     WN.situation_geometry
+   FROM qgep.od_wastewater_node WN
+   LEFT JOIN qgep.od_wastewater_networkelement NE
+     ON NE.obj_id = WN.obj_id
+   LEFT JOIN qgep.od_wastewater_structure WS
+     ON WS.obj_id = NE.fk_wastewater_structure
+   LEFT JOIN qgep.od_manhole MH
+     ON MH.obj_id = WS.obj_id
+   LEFT JOIN qgep.od_structure_part SP
+     ON SP.fk_wastewater_structure = WS.obj_id
+   LEFT JOIN qgep.od_cover CO
+     ON CO.obj_id = SP.obj_id
+   LEFT JOIN qgep.od_reach_point RP 
+     ON NE.obj_id = RP.fk_wastewater_networkelement
    LEFT JOIN qgep.od_reach re_from 
-     ON re_from.fk_reach_point_from = rp.obj_id
+     ON re_from.fk_reach_point_from = RP.obj_id
    LEFT JOIN qgep.od_channel ch_from
      ON ch_from.obj_id = re_from.obj_id
    LEFT JOIN qgep.od_reach re_to 
-     ON re_to.fk_reach_point_to = rp.obj_id
+     ON re_to.fk_reach_point_to = RP.obj_id
    LEFT JOIN qgep.od_channel ch_to
      ON ch_to.obj_id = re_to.obj_id
-   GROUP BY wwne.obj_id, type, bottom_level, cover_level, backflow_level, description, wwno.situation_geometry, str.detail_geometry_geometry, str.obj_id, mh.obj_id
+   GROUP BY NE.obj_id, type, bottom_level, backflow_level, description, WN.situation_geometry, WS.detail_geometry_geometry, WS.obj_id, MH.obj_id, SP.fk_wastewater_structure
   ) AS nodes;
+
 
 -- View: qgep.vw_network_segment
 
-DROP VIEW IF EXISTS qgep.vw_network_segment CASCADE;
+DROP MATERIALIZED VIEW IF EXISTS qgep.vw_network_segment CASCADE;
 
-CREATE VIEW qgep.vw_network_segment AS
+CREATE MATERIALIZED VIEW qgep.vw_network_segment AS
  WITH reach_parts AS (
    SELECT 
      row_number() OVER (ORDER BY od_reach_point.fk_wastewater_networkelement, st_line_locate_point(st_linemerge(od_reach.progression_geometry), od_reach_point.situation_geometry)) AS gid, 
