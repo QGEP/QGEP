@@ -10,10 +10,10 @@
         <file>svgprofile/index.html</file>
         <file>svgprofile/dojo.js</file>
         <file>svgprofile/d3.v2.min.js</file>
-        <file>svgprofile/profile/terrain.js</file>
         <file>svgprofile/profile/specialStructure.js</file>
         <file>svgprofile/profile/reach.js</file>
         <file>svgprofile/profile/profileElement.js</file>
+        <file>svgprofile/profile/surface.js</file>
         <file>svgprofile/screen.css</file>
         <file>svgprofile/print.css</file>
         <file>i18n/qgepplugin_de.qm</file>
