@@ -41,7 +41,7 @@ class QgepSettingsDialog(QDialog, Ui_QgepSettingsDialog):
         project = QgsProject.instance()
         
         svgProfilePath = self.settings.value( "/QGEP/SvgProfilePath", None )
-        if svgProfilePath != u'':
+        if svgProfilePath:
             self.mGbOverrideDefaultProfileTemplate.setChecked( True )
             self.mProfileTemplateFile.setText( svgProfilePath )
         else:
@@ -92,7 +92,7 @@ class QgepSettingsDialog(QDialog, Ui_QgepSettingsDialog):
         qgepLogger = logging.getLogger( 'qgep' )
         # General settings
         if self.mGbOverrideDefaultProfileTemplate.isChecked() \
-        and self.mProfileTemplateFile != '':
+        and self.mProfileTemplateFile.text():
             self.settings.setValue( "/QGEP/SvgProfilePath", self.mProfileTemplateFile.text())
         else:
             self.settings.remove( "/QGEP/SvgProfilePath" )
