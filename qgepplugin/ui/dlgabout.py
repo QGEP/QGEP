@@ -40,9 +40,9 @@ class DlgAbout(QDialog, Ui_DlgAbout):
 		fp = os.path.join( os.path.abspath(os.path.join(os.path.dirname(__file__),"..")) , "metadata.txt")
 
 		iniText = QSettings(fp, QSettings.IniFormat)
-		verno = iniText.value("version").toString()
-		name = iniText.value("name").toString()
-		description = iniText.value("description").toString()
+		verno = iniText.value("version")
+		name = iniText.value("name")
+		description = iniText.value("description")
 
 		self.title.setText( name )
 		self.description.setText( description  + " - " + verno)
