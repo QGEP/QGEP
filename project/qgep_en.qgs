@@ -168,7 +168,7 @@
                 </layer-tree-layer>
             </layer-tree-group>
         </layer-tree-group>
-        <layer-tree-group expanded="1" checked="Qt::Unchecked" name="Wastewater Structures">
+        <layer-tree-group expanded="0" checked="Qt::Unchecked" name="Wastewater Structures">
             <customproperties/>
             <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="vw_manhole20141013203257827" name="Manhole">
                 <customproperties/>
@@ -225,10 +225,10 @@
     <mapcanvas>
         <units>meters</units>
         <extent>
-            <xmin>749147.56979354645591229</xmin>
-            <ymin>264189.7495423904620111</ymin>
-            <xmax>749678.2727077224990353</xmax>
-            <ymax>264480.46419082838110626</ymax>
+            <xmin>749960.22970390191767365</xmin>
+            <ymin>264269.52763102645985782</ymin>
+            <xmax>750225.58116099296603352</xmax>
+            <ymax>264437.10027927835471928</ymax>
         </extent>
         <projections>1</projections>
         <destinationsrs>
@@ -567,7 +567,7 @@
                 </legendlayer>
             </legendgroup>
         </legendgroup>
-        <legendgroup open="true" checked="Qt::Unchecked" name="Wastewater Structures">
+        <legendgroup open="false" checked="Qt::Unchecked" name="Wastewater Structures">
             <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Manhole" showFeatureCount="0">
                 <filegroup open="true" hidden="false">
                     <legendlayerfile isInOverview="0" layerid="vw_manhole20141013203257827" visible="0"/>
@@ -6374,7 +6374,7 @@
                 </edittype>
             </edittypes>
         </maplayer>
-        <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Line" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
+        <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Line" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
             <id>vw_reach20141013202956655</id>
             <datasource>service='pg_qgep' key='obj_id' srid=21781 type=LINESTRING table="qgep"."vw_reach" (progression_geometry) sql=</datasource>
             <title></title>
@@ -6406,6 +6406,9 @@
                 <edittype widgetv2type="Range" name="clear_height">
                     <widgetv2config AllowNull="1" fieldEditable="1" Step="100" Style="SpinBox" labelOnTop="0" Min="0" Max="99999" Suffix=" mm"/>
                 </edittype>
+                <edittype widgetv2type="TextEdit" name="width">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
                 <edittype widgetv2type="Range" name="coefficient_of_friction">
                     <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="999" Suffix=" m^(1/3)/s"/>
                 </edittype>
@@ -6421,8 +6424,14 @@
                 <edittype widgetv2type="Range" name="length_effective">
                     <widgetv2config AllowNull="1" fieldEditable="1" Step="10" Style="SpinBox" labelOnTop="0" Min="0" Max="30000" Suffix=" m"/>
                 </edittype>
+                <edittype widgetv2type="TextEdit" name="slope_per_mill">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
                 <edittype widgetv2type="ValueRelation" name="material">
                     <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_reach_material20140822223630086" Value="value_en" labelOnTop="0" AllowMulti="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="material_abbrev_en">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
                 </edittype>
                 <edittype widgetv2type="Hidden" name="progression_3d_geometry">
                     <widgetv2config fieldEditable="1" labelOnTop="0"/>
@@ -6450,6 +6459,12 @@
                 </edittype>
                 <edittype widgetv2type="RelationReference" name="fk_pipe_profile">
                     <widgetv2config fieldEditable="1" ShowForm="0" Relation="reach-fk_pipe_profile" ReadOnly="0" MapIdentification="0" labelOnTop="0" AllowNULL="1"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="ch_usage_current">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="ch_function_hierarchic">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
                 </edittype>
                 <edittype widgetv2type="TextEdit" name="identifier">
                     <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -6563,7 +6578,7 @@
             </renderer-v2>
             <customproperties>
                 <property key="labeling" value="pal"/>
-                <property key="labeling/addDirectionSymbol" value="false"/>
+                <property key="labeling/addDirectionSymbol" value="true"/>
                 <property key="labeling/angleOffset" value="0"/>
                 <property key="labeling/blendMode" value="0"/>
                 <property key="labeling/bufferBlendMode" value="0"/>
@@ -6581,23 +6596,25 @@
                 <property key="labeling/bufferTransp" value="0"/>
                 <property key="labeling/centroidInside" value="false"/>
                 <property key="labeling/centroidWhole" value="false"/>
+                <property key="labeling/dataDefined/Color" value="1~~1~~CASE&#xa;  WHEN  ch_usage_current IN (4514,4520) THEN '0,0,255,255' &#xa;  WHEN ch_usage_current = 4516 THEN '0,255,0,255'&#xa;  WHEN ch_usage_current = 4518 THEN '0,170,255,255'&#xa;  WHEN ch_usage_current = 4522 THEN '102,0,102,255'&#xa;  WHEN ch_usage_current IN (4524,4526) THEN '255,0,0,255'&#xa;ELSE '161,161,161,255'&#xa;END~~"/>
+                <property key="labeling/dataDefined/LabelDistance" value="1~~1~~COALESCE(width,0) / 500~~"/>
                 <property key="labeling/decimals" value="3"/>
                 <property key="labeling/displayAll" value="false"/>
-                <property key="labeling/dist" value="0"/>
-                <property key="labeling/distInMapUnits" value="false"/>
+                <property key="labeling/dist" value="0.3"/>
+                <property key="labeling/distInMapUnits" value="true"/>
                 <property key="labeling/distMapUnitMaxScale" value="0"/>
                 <property key="labeling/distMapUnitMinScale" value="0"/>
-                <property key="labeling/enabled" value="false"/>
-                <property key="labeling/fieldName" value=""/>
+                <property key="labeling/enabled" value="true"/>
+                <property key="labeling/fieldName" value="COALESCE(material_abbrev_en,'') || COALESCE(' ' || width || ' ','') || COALESCE('-' || length_effective || '-') || COALESCE(' ' || slope_per_mill || '‰','')"/>
                 <property key="labeling/fontBold" value="false"/>
                 <property key="labeling/fontCapitals" value="0"/>
-                <property key="labeling/fontFamily" value="Cantarell"/>
+                <property key="labeling/fontFamily" value="Cadastra Regular Condensed"/>
                 <property key="labeling/fontItalic" value="false"/>
                 <property key="labeling/fontLetterSpacing" value="0"/>
                 <property key="labeling/fontLimitPixelSize" value="false"/>
                 <property key="labeling/fontMaxPixelSize" value="10000"/>
                 <property key="labeling/fontMinPixelSize" value="3"/>
-                <property key="labeling/fontSize" value="11"/>
+                <property key="labeling/fontSize" value="8"/>
                 <property key="labeling/fontSizeInMapUnits" value="false"/>
                 <property key="labeling/fontSizeMapUnitMaxScale" value="0"/>
                 <property key="labeling/fontSizeMapUnitMinScale" value="0"/>
@@ -6616,11 +6633,11 @@
                 <property key="labeling/maxCurvedCharAngleIn" value="20"/>
                 <property key="labeling/maxCurvedCharAngleOut" value="-20"/>
                 <property key="labeling/maxNumLabels" value="2000"/>
-                <property key="labeling/mergeLines" value="false"/>
-                <property key="labeling/minFeatureSize" value="0"/>
+                <property key="labeling/mergeLines" value="true"/>
+                <property key="labeling/minFeatureSize" value="12"/>
                 <property key="labeling/multilineAlign" value="0"/>
                 <property key="labeling/multilineHeight" value="1"/>
-                <property key="labeling/namedStyle" value="Regular"/>
+                <property key="labeling/namedStyle" value="Regular Condensed"/>
                 <property key="labeling/obstacle" value="true"/>
                 <property key="labeling/placeDirectionSymbol" value="0"/>
                 <property key="labeling/placement" value="2"/>
@@ -6636,9 +6653,9 @@
                 <property key="labeling/repeatDistanceUnit" value="1"/>
                 <property key="labeling/reverseDirectionSymbol" value="false"/>
                 <property key="labeling/rightDirectionSymbol" value=">"/>
-                <property key="labeling/scaleMax" value="10000000"/>
+                <property key="labeling/scaleMax" value="2001"/>
                 <property key="labeling/scaleMin" value="1"/>
-                <property key="labeling/scaleVisibility" value="false"/>
+                <property key="labeling/scaleVisibility" value="true"/>
                 <property key="labeling/shadowBlendMode" value="6"/>
                 <property key="labeling/shadowColorB" value="0"/>
                 <property key="labeling/shadowColorG" value="0"/>
@@ -6744,6 +6761,9 @@
                 <edittype widgetv2type="Range" name="clear_height">
                     <widgetv2config AllowNull="1" fieldEditable="1" Step="100" Style="SpinBox" labelOnTop="0" Min="0" Max="99999" Suffix=" mm"/>
                 </edittype>
+                <edittype widgetv2type="TextEdit" name="width">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
                 <edittype widgetv2type="Range" name="coefficient_of_friction">
                     <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="999" Suffix=" m^(1/3)/s"/>
                 </edittype>
@@ -6759,8 +6779,14 @@
                 <edittype widgetv2type="Range" name="length_effective">
                     <widgetv2config AllowNull="1" fieldEditable="1" Step="10" Style="SpinBox" labelOnTop="0" Min="0" Max="30000" Suffix=" m"/>
                 </edittype>
+                <edittype widgetv2type="TextEdit" name="slope_per_mill">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
                 <edittype widgetv2type="ValueRelation" name="material">
                     <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_reach_material20140822223630086" Value="value_en" labelOnTop="0" AllowMulti="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="material_abbrev_en">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
                 </edittype>
                 <edittype widgetv2type="Hidden" name="progression_3d_geometry">
                     <widgetv2config fieldEditable="1" labelOnTop="0"/>
@@ -6788,6 +6814,12 @@
                 </edittype>
                 <edittype widgetv2type="RelationReference" name="fk_pipe_profile">
                     <widgetv2config fieldEditable="1" ShowForm="0" Relation="reach-fk_pipe_profile" ReadOnly="0" MapIdentification="0" labelOnTop="0" AllowNULL="1"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="ch_usage_current">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="ch_function_hierarchic">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
                 </edittype>
                 <edittype widgetv2type="TextEdit" name="identifier">
                     <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
