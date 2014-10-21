@@ -47,9 +47,6 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
-        <widget class="QLineEdit" name="level"/>
-       </item>
        <item row="1" column="0">
         <widget class="QLabel" name="label_7">
          <property name="text">
@@ -62,6 +59,13 @@
        </item>
        <item row="2" column="0" colspan="2">
         <widget class="QgsRelationReferenceWidget" name="fk_wastewater_structure"/>
+       </item>
+       <item row="0" column="1">
+        <widget class="QDoubleSpinBox" name="level">
+         <property name="suffix">
+          <string> m.a.s.l.</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
