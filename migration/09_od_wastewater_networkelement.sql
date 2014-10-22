@@ -9,8 +9,8 @@ ALTER TABLE qgep.od_wastewater_networkelement ADD COLUMN old_obj_id text;
 -------
 -- 2. loeschen vorhandener daten
 DELETE FROM qgep.od_wastewater_node;
-DELETE FROM qgep.od_reach_point;
 DELETE FROM qgep.od_wastewater_networkelement;
+DELETE FROM qgep.od_reach_point;
 
 
 
@@ -23,7 +23,7 @@ to_timestamp (LETZTE_AENDERUNG, 'DD MMM YYYY'),
 MD_DATENHERR,
 q_wastewater_structure.obj_id
 FROM abwasser.siedlungsentwaesserung__abwassernetzelement a_abwassernetzelement
-LEFT JOIN qgep.od_wastewater_structure q_wastewater_structure ON (q_wastewater_structure.old_obj_id = a_abwassernetzelement.obj_id);
+LEFT JOIN qgep.od_wastewater_structure q_wastewater_structure ON (q_wastewater_structure.old_obj_id = a_abwassernetzelement.abwasserbauwerk);
 
 -- update der oid spalten
 UPDATE qgep.od_wastewater_networkelement SET old_obj_id=qgep.od_wastewater_networkelement.obj_id;
