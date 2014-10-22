@@ -5497,22 +5497,22 @@ WITH (
  INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3641,'concrete_special','Beton_Spezialbeton','beton_special', 'CS', 'SB', 'BS', 'true');
  INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3256,'concrete_unknown','Beton_unbekannt','beton_inconnu', 'CU', 'BU', 'BI', 'true');
  INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (147,'fiber_cement','Faserzement','fibrociment', 'FC', 'FZ', 'FC', 'true');
- INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2755,'bricks','Gebrannte_Steine','terre_cuite', '', 'SG', 'TC', 'true');
+ INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2755,'bricks','Gebrannte_Steine','terre_cuite', 'BR', 'SG', 'TC', 'true');
  INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (148,'cast_ductile_iron','Guss_duktil','fonte_ductile', 'ID', 'GD', 'FD', 'true');
- INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3648,'cast_gray_iron','Guss_Grauguss','fonte_grise', '', 'GG', 'FG', 'true');
- INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5076,'plastic_epoxy_resin','Kunststoff_Epoxydharz','matiere_synthetique_resine_d_epoxy', '', 'EP', 'EP', 'true');
- INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5077,'plastic_highdensity_polyethylene','Kunststoff_Hartpolyethylen','matiere_synthetique_polyethylene_dur', '', 'HPE', 'PD', 'true');
- INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5078,'plastic_polyester_GUP','Kunststoff_Polyester_GUP','matiere_synthetique_polyester_GUP', '', 'GUP', 'GUP', 'true');
- INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5079,'plastic_polyethylene','Kunststoff_Polyethylen','matiere_synthetique_polyethylene', '', 'PE', 'PE', 'true');
- INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5080,'plastic_polypropylene','Kunststoff_Polypropylen','matiere_synthetique_polypropylene', '', 'PP', 'PP', 'true');
- INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5081,'plastic_PVC','Kunststoff_Polyvinilchlorid','matiere_synthetique_PVC', '', 'PVC', 'PVC', 'true');
- INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5382,'plastic_unknown','Kunststoff_unbekannt','matiere_synthetique_inconnue', '', 'KUU', 'MSI', 'true');
+ INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3648,'cast_gray_iron','Guss_Grauguss','fonte_grise', 'CGI', 'GG', 'FG', 'true');
+ INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5076,'plastic_epoxy_resin','Kunststoff_Epoxydharz','matiere_synthetique_resine_d_epoxy', 'PER', 'EP', 'EP', 'true');
+ INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5077,'plastic_highdensity_polyethylene','Kunststoff_Hartpolyethylen','matiere_synthetique_polyethylene_dur', 'HPE', 'HPE', 'PD', 'true');
+ INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5078,'plastic_polyester_GUP','Kunststoff_Polyester_GUP','matiere_synthetique_polyester_GUP', 'GUP', 'GUP', 'GUP', 'true');
+ INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5079,'plastic_polyethylene','Kunststoff_Polyethylen','matiere_synthetique_polyethylene', 'PE', 'PE', 'PE', 'true');
+ INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5080,'plastic_polypropylene','Kunststoff_Polypropylen','matiere_synthetique_polypropylene', 'PP', 'PP', 'PP', 'true');
+ INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5081,'plastic_PVC','Kunststoff_Polyvinilchlorid','matiere_synthetique_PVC', 'PVC', 'PVC', 'PVC', 'true');
+ INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (5382,'plastic_unknown','Kunststoff_unbekannt','matiere_synthetique_inconnue', 'PU', 'KUU', 'MSI', 'true');
  INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (153,'steel','Stahl','acier', 'ST', 'ST', 'AC', 'true');
- INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3654,'steel_stainless','Stahl_rostfrei','acier_inoxydable', '', 'STI', 'ACI', 'true');
+ INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3654,'steel_stainless','Stahl_rostfrei','acier_inoxydable', 'SST', 'STI', 'ACI', 'true');
  INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (154,'stoneware','Steinzeug','gres', 'SW', 'STZ', 'GR', 'true');
- INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2761,'clay','Ton','argile', '', 'T', 'AR', 'true');
- INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3016,'unknown','unbekannt','inconnu', '', 'U', 'I', 'true');
- INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2762,'cement','Zement','ciment', '', 'Z', 'C', 'true');
+ INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2761,'clay','Ton','argile', 'CL', 'T', 'AR', 'true');
+ INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (3016,'unknown','unbekannt','inconnu', 'U', 'U', 'I', 'true');
+ INSERT INTO qgep.vl_reach_material (code, value_en, value_de, value_fr, abbr_en, abbr_de, abbr_fr, active) VALUES (2762,'cement','Zement','ciment', 'C', 'Z', 'C', 'true');
  ALTER TABLE qgep.od_reach ADD CONSTRAINT fkey_vl_reach_material FOREIGN KEY (material)
  REFERENCES qgep.vl_reach_material (code) MATCH SIMPLE 
  ON UPDATE RESTRICT ON DELETE RESTRICT;
