@@ -129,7 +129,7 @@ END; $BODY$
 ALTER FUNCTION qgep.vw_discharge_point_insert()
   OWNER TO qgep;
 
-DROP TRIGGER vw_discharge_point_ON_INSERT ON qgep.vw_discharge_point;
+-- DROP TRIGGER vw_discharge_point_ON_INSERT ON qgep.vw_discharge_point;
 
 CREATE TRIGGER vw_discharge_point_ON_INSERT INSTEAD OF INSERT ON qgep.vw_discharge_point
   FOR EACH ROW EXECUTE PROCEDURE qgep.vw_discharge_point_insert();

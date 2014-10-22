@@ -57,7 +57,7 @@ LEFT JOIN qgep.od_wastewater_networkelement NE
 LEFT JOIN qgep.od_reach_point RP_FROM
   ON RP_FROM.obj_id = RE.fk_reach_point_from
 LEFT JOIN qgep.od_reach_point RP_TO
-  ON RP_TO.obj_id = RE.fk_reach_point_to
+  ON RP_TO.obj_id = RE.fk_reach_point_to;
 
 -- REACH INSERT
 -- Function: vw_reach_insert()
@@ -195,7 +195,7 @@ END; $BODY$
 ALTER FUNCTION qgep.vw_reach_insert()
   OWNER TO qgep;
 
-DROP TRIGGER vw_reach_ON_INSERT ON qgep.vw_reach;
+-- DROP TRIGGER vw_reach_ON_INSERT ON qgep.vw_reach;
 
 CREATE TRIGGER vw_reach_ON_INSERT INSTEAD OF INSERT ON qgep.vw_reach
   FOR EACH ROW EXECUTE PROCEDURE qgep.vw_reach_INSERT();
