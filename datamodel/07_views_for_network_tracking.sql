@@ -56,12 +56,16 @@ CREATE MATERIALIZED VIEW qgep.vw_network_node AS
      ON NE.obj_id = RP.fk_wastewater_networkelement
    LEFT JOIN qgep.od_reach re_from 
      ON re_from.fk_reach_point_from = RP.obj_id
+   LEFT JOIN qgep.od_wastewater_networkelement ne_from
+     ON ne_from.obj_id = re_from.obj_id
    LEFT JOIN qgep.od_channel ch_from
-     ON ch_from.obj_id = re_from.obj_id
+     ON ch_from.obj_id = ne_from.fk_wastewater_structure
    LEFT JOIN qgep.od_reach re_to 
      ON re_to.fk_reach_point_to = RP.obj_id
+   LEFT JOIN qgep.od_wastewater_networkelement ne_to
+     ON ne_to.obj_id = re_to.obj_id
    LEFT JOIN qgep.od_channel ch_to
-     ON ch_to.obj_id = re_to.obj_id
+     ON ch_to.obj_id = ne_to.fk_wastewater_structure
    GROUP BY NE.obj_id, type, bottom_level, backflow_level, description, WN.situation_geometry, WS.detail_geometry_geometry, WS.obj_id, MH.obj_id, SP.fk_wastewater_structure
   ) AS nodes;
 
@@ -96,7 +100,7 @@ CREATE MATERIALIZED VIEW qgep.vw_network_segment AS
  FROM
  (
    SELECT 
-     od_reach.obj_id,
+     re.obj_id,
      'reach' AS type,
      clear_height,
      ST_LENGTH( COALESCE( reach_progression, progression_geometry ) ) AS length_calc,
@@ -112,7 +116,7 @@ CREATE MATERIALIZED VIEW qgep.vw_network_segment AS
      mat.abbr_de AS material,
      COALESCE( reach_progression, st_linemerge(progression_geometry) ) AS progression_geometry,
      ST_Linemerge(progression_geometry) AS detail_geometry
-   FROM qgep.od_reach
+   FROM qgep.od_reach re
    FULL JOIN
    (
      SELECT 
@@ -127,9 +131,10 @@ CREATE MATERIALIZED VIEW qgep.vw_network_segment AS
      FULL JOIN reach_parts s2 ON s1.gid = (s2.gid - 1) AND s1.fk_wastewater_networkelement::text = s2.fk_wastewater_networkelement::text
      ORDER BY COALESCE(s1.fk_wastewater_networkelement, s2.fk_wastewater_networkelement), COALESCE(s1.pos, 0::double precision)
    ) AS rr
-   ON rr.reach_obj_id = od_reach.obj_id
-   LEFT JOIN qgep.od_channel ch ON ch.obj_id = od_reach.obj_id
-   LEFT JOIN qgep.vl_reach_material mat ON od_reach.material = mat.code
+   ON rr.reach_obj_id = re.obj_id
+   LEFT JOIN qgep.od_wastewater_networkelement ne ON ne.obj_id = re.obj_id
+   LEFT JOIN qgep.od_channel ch ON ch.obj_id = ne.fk_wastewater_structure
+   LEFT JOIN qgep.vl_reach_material mat ON re.material = mat.code
 
    UNION 
 
