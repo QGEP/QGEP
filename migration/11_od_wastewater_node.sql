@@ -1,4 +1,4 @@
------- This file is sql code to import DABASE (Modul SIA405Abwasser) in German to QGEP in Englisch on QQIS
+﻿------ This file is sql code to import DABASE (Modul SIA405Abwasser) in German to QGEP in Englisch on QQIS
 ------ For questions etc. please contact Stefan Burckhardt stefan.burckhardt@sjib.ch
 ------ version 07.06.2014 22:00:52
 
@@ -8,6 +8,7 @@ ALTER TABLE qgep.od_wastewater_node ADD COLUMN old_obj_id text;
 
 -------
 -- 2. loeschen vorhandener daten
+DELETE FROM qgep.od_wastewater_networkelement;
 DELETE FROM qgep.od_wastewater_node;
 
 -- 3. update der oid spalten
