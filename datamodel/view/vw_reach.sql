@@ -1,63 +1,63 @@
 ﻿CREATE OR REPLACE VIEW qgep.vw_reach AS
 
-SELECT
-RE.obj_id
-, RE.clear_height
-, RE.coefficient_of_friction
-, RE.elevation_determination
-, RE.horizontal_positioning
-, RE.inside_coating
-, RE.length_effective
-, RE.material
-, RE.progression_geometry
-, RE.progression_3d_geometry
-, RE.reliner_material
-, RE.reliner_nominal_size
-, RE.relining_construction
-, RE.relining_kind
-, RE.ring_stiffness
-, RE.slope_building_plan
-, RE.wall_roughness
-, RE.fk_pipe_profile
-
-, NE.identifier
-, NE.remark
-, NE.last_modification
-, NE.dataowner
-, NE.provider
-, NE.fk_wastewater_structure
-
-, RP_FROM.obj_id AS rp_from_obj_id
-, RP_FROM.elevation_accuracy AS rp_from_elevation_accuracy
-, RP_FROM.identifier AS rp_from_identifier
-, RP_FROM.level AS rp_from_level
-, RP_FROM.outlet_shape AS rp_from_outlet_shape
-, RP_FROM.position_of_connection AS rp_from_position_of_connection
-, RP_FROM.remark AS rp_from_remark 
-, RP_FROM.last_modification AS rp_from_last_modification
-, RP_FROM.dataowner AS rp_from_dataowner
-, RP_FROM.provider AS rp_from_provider
-, RP_FROM.fk_wastewater_networkelement AS rp_from_fk_wastewater_networkelement
-
-, RP_TO.obj_id AS rp_to_obj_id
-, RP_TO.elevation_accuracy AS rp_to_elevation_accuracy
-, RP_TO.identifier AS rp_to_identifier
-, RP_TO.level AS rp_to_level
-, RP_TO.outlet_shape AS rp_to_outlet_shape
-, RP_TO.position_of_connection AS rp_to_position_of_connection
-, RP_TO.remark AS rp_to_remark 
-, RP_TO.last_modification AS rp_to_last_modification
-, RP_TO.dataowner AS rp_to_dataowner
-, RP_TO.provider AS rp_to_provider
-, RP_TO.fk_wastewater_networkelement AS rp_to_fk_wastewater_networkelement
-
- FROM qgep.od_reach RE
-LEFT JOIN qgep.od_wastewater_networkelement NE
-  ON NE.obj_id = RE.obj_id
-LEFT JOIN qgep.od_reach_point RP_FROM
-  ON RP_FROM.obj_id = RE.fk_reach_point_from
-LEFT JOIN qgep.od_reach_point RP_TO
-  ON RP_TO.obj_id = RE.fk_reach_point_to;
+ SELECT re.obj_id,
+    re.clear_height AS clear_height,
+    round((re.clear_height::numeric * pp.height_width_ratio))::smallint AS width,
+    re.coefficient_of_friction,
+    re.elevation_determination,
+    re.horizontal_positioning,
+    re.inside_coating,
+    re.length_effective,
+    CASE WHEN rp_from.level > 0 AND rp_to.level > 0 THEN round((rp_from.level - rp_to.level)/re.length_effective*1000,1) ELSE NULL END AS slope_per_mill,
+    re.material,
+    re.progression_geometry,
+    re.progression_3d_geometry,
+    re.reliner_material,
+    re.reliner_nominal_size,
+    re.relining_construction,
+    re.relining_kind,
+    re.ring_stiffness,
+    re.slope_building_plan,
+    re.wall_roughness,
+    re.fk_pipe_profile,
+    ch.usage_current AS usage_current,
+    ch.function_hierarchic AS function_hierarchic,
+    ne.identifier,
+    ne.remark,
+    ne.last_modification,
+    ne.dataowner,
+    ne.provider,
+    ne.fk_wastewater_structure,
+    rp_from.obj_id AS rp_from_obj_id,
+    rp_from.elevation_accuracy AS rp_from_elevation_accuracy,
+    rp_from.identifier AS rp_from_identifier,
+    rp_from.level AS rp_from_level,
+    rp_from.outlet_shape AS rp_from_outlet_shape,
+    rp_from.position_of_connection AS rp_from_position_of_connection,
+    rp_from.remark AS rp_from_remark,
+    rp_from.last_modification AS rp_from_last_modification,
+    rp_from.dataowner AS rp_from_dataowner,
+    rp_from.provider AS rp_from_provider,
+    rp_from.fk_wastewater_networkelement AS rp_from_fk_wastewater_networkelement,
+    rp_to.obj_id AS rp_to_obj_id,
+    rp_to.elevation_accuracy AS rp_to_elevation_accuracy,
+    rp_to.identifier AS rp_to_identifier,
+    rp_to.level AS rp_to_level,
+    rp_to.outlet_shape AS rp_to_outlet_shape,
+    rp_to.position_of_connection AS rp_to_position_of_connection,
+    rp_to.remark AS rp_to_remark,
+    rp_to.last_modification AS rp_to_last_modification,
+    rp_to.dataowner AS rp_to_dataowner,
+    rp_to.provider AS rp_to_provider,
+    rp_to.fk_wastewater_networkelement AS rp_to_fk_wastewater_networkelement
+   FROM qgep.od_reach re
+     LEFT JOIN qgep.od_wastewater_networkelement ne ON ne.obj_id = re.obj_id
+     LEFT JOIN qgep.od_reach_point rp_from ON rp_from.obj_id = re.fk_reach_point_from
+     LEFT JOIN qgep.od_reach_point rp_to ON rp_to.obj_id = re.fk_reach_point_to
+     LEFT JOIN qgep.od_wastewater_structure str ON ne.fk_wastewater_structure = str.obj_id
+     LEFT JOIN qgep.od_channel ch ON ch.obj_id = str.obj_id
+     LEFT JOIN qgep.od_pipe_profile pp ON re.fk_pipe_profile = pp.obj_id
+     LEFT JOIN qgep.vl_reach_material mat ON re.material = mat.code;
 
 -- REACH INSERT
 -- Function: vw_reach_insert()
