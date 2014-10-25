@@ -30,7 +30,7 @@
        <item row="1" column="0">
         <widget class="QLabel" name="label_15">
          <property name="text">
-          <string>Pipe profile</string>
+          <string>pipe_profile</string>
          </property>
         </widget>
        </item>
@@ -135,7 +135,7 @@
             <x>0</x>
             <y>0</y>
             <width>563</width>
-            <height>687</height>
+            <height>649</height>
            </rect>
           </property>
           <layout class="QFormLayout" name="formLayout_2">
@@ -325,7 +325,7 @@
                <x>0</x>
                <y>0</y>
                <width>522</width>
-               <height>349</height>
+               <height>331</height>
               </rect>
              </property>
              <layout class="QFormLayout" name="formLayout_3">
@@ -444,7 +444,7 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>535</width>
+               <width>522</width>
                <height>331</height>
               </rect>
              </property>
@@ -547,6 +547,13 @@
     <widget class="QLabel" name="label_17">
      <property name="text">
       <string>Identifier</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="2">
+    <widget class="QgsRelationReferenceWidget" name="fk_wastewater_structure">
+     <property name="openFormButtonVisible">
+      <bool>true</bool>
      </property>
     </widget>
    </item>

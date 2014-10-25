@@ -43,27 +43,27 @@
        <item row="0" column="0">
         <widget class="QLabel" name="label">
          <property name="text">
-          <string>Level</string>
+          <string>level</string>
          </property>
         </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="label_7">
-         <property name="text">
-          <string>Positional accuracy</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QComboBox" name="positional_accuracy"/>
-       </item>
-       <item row="2" column="0" colspan="2">
-        <widget class="QgsRelationReferenceWidget" name="fk_wastewater_structure"/>
        </item>
        <item row="0" column="1">
         <widget class="QDoubleSpinBox" name="level">
          <property name="suffix">
           <string> m.a.s.l.</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="2">
+        <widget class="QgsRelationReferenceWidget" name="fk_wastewater_structure"/>
+       </item>
+       <item row="1" column="1">
+        <widget class="QComboBox" name="positional_accuracy"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>positional_accuracy</string>
          </property>
         </widget>
        </item>
@@ -98,7 +98,7 @@
            <item row="0" column="0">
             <widget class="QLabel" name="label_9">
              <property name="text">
-              <string>Brand</string>
+              <string>brand</string>
              </property>
             </widget>
            </item>
@@ -108,7 +108,7 @@
            <item row="1" column="0">
             <widget class="QLabel" name="lblCoverShape">
              <property name="text">
-              <string>Cover shape</string>
+              <string>cover_shape</string>
              </property>
             </widget>
            </item>
@@ -118,7 +118,7 @@
            <item row="2" column="0">
             <widget class="QLabel" name="label_2">
              <property name="text">
-              <string>Depth</string>
+              <string>depth</string>
              </property>
             </widget>
            </item>
@@ -128,7 +128,7 @@
            <item row="3" column="0">
             <widget class="QLabel" name="label_5">
              <property name="text">
-              <string>Diameter</string>
+              <string>diameter</string>
              </property>
             </widget>
            </item>
@@ -138,7 +138,7 @@
            <item row="4" column="0">
             <widget class="QLabel" name="label_6">
              <property name="text">
-              <string>Fastening</string>
+              <string>fastening</string>
              </property>
             </widget>
            </item>
@@ -148,7 +148,7 @@
            <item row="5" column="0">
             <widget class="QLabel" name="label_3">
              <property name="text">
-              <string>Material</string>
+              <string>material</string>
              </property>
             </widget>
            </item>
@@ -158,7 +158,7 @@
            <item row="6" column="0">
             <widget class="QLabel" name="label_4">
              <property name="text">
-              <string>Sludge bucket</string>
+              <string>sludge_bucket</string>
              </property>
             </widget>
            </item>
@@ -168,7 +168,7 @@
            <item row="7" column="0">
             <widget class="QLabel" name="label_8">
              <property name="text">
-              <string>Venting</string>
+              <string>venting</string>
              </property>
             </widget>
            </item>
