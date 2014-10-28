@@ -14,26 +14,6 @@
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string>Identifier</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="1">
-    <widget class="QLineEdit" name="identifier"/>
-   </item>
-   <item row="0" column="2">
-    <widget class="QLabel" name="label_2">
-     <property name="text">
-      <string>Location</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="3">
-    <widget class="QLineEdit" name="location_name"/>
-   </item>
    <item row="4" column="0" colspan="4">
     <widget class="QWidget" name="widget" native="true">
      <layout class="QGridLayout" name="gridLayout_2">
@@ -320,13 +300,33 @@
         </widget>
         <widget class="QWidget" name="tab_4">
          <attribute name="title">
-          <string>Structure Parts</string>
+          <string>Covers</string>
          </attribute>
          <layout class="QGridLayout" name="gridLayout_3">
+          <property name="margin">
+           <number>0</number>
+          </property>
+          <item row="0" column="0">
+           <widget class="QgsRelationEditorWidget" name="mRelationEditor_2">
+            <property name="qgisRelation">
+             <string notr="true">cover-manhole</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tab_3">
+         <attribute name="title">
+          <string>Access Aids</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_6">
+          <property name="margin">
+           <number>0</number>
+          </property>
           <item row="0" column="0">
            <widget class="QgsRelationEditorWidget" name="mRelationEditor">
             <property name="qgisRelation">
-             <string notr="true">structure_part-fk_wastewater_structure</string>
+             <string notr="true">access_aid-manhole</string>
             </property>
            </widget>
           </item>
@@ -335,6 +335,26 @@
        </widget>
       </item>
      </layout>
+    </widget>
+   </item>
+   <item row="0" column="3">
+    <widget class="QLineEdit" name="location_name"/>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Identifier</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLineEdit" name="identifier"/>
+   </item>
+   <item row="0" column="2">
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>Location</string>
+     </property>
     </widget>
    </item>
   </layout>

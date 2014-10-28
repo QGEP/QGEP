@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>744</width>
-    <height>727</height>
+    <width>813</width>
+    <height>493</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -94,7 +94,7 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>689</width>
+               <width>357</width>
                <height>663</height>
               </rect>
              </property>
@@ -419,16 +419,10 @@
    <item row="4" column="1">
     <widget class="QComboBox" name="function"/>
    </item>
-   <item row="8" column="3">
-    <widget class="QLineEdit" name="status"/>
-   </item>
    <item row="8" column="2">
     <widget class="QLabel" name="label_9">
      <property name="text">
       <string>status</string>
-     </property>
-     <property name="buddy">
-      <cstring>status</cstring>
      </property>
     </widget>
    </item>
@@ -517,16 +511,10 @@
    <item row="2" column="3">
     <widget class="QLineEdit" name="remark"/>
    </item>
-   <item row="4" column="3">
-    <widget class="QLineEdit" name="renovation_necessity"/>
-   </item>
    <item row="4" column="2">
     <widget class="QLabel" name="label_13">
      <property name="text">
       <string>renovation_necessity</string>
-     </property>
-     <property name="buddy">
-      <cstring>renovation_necessity</cstring>
      </property>
     </widget>
    </item>
@@ -556,6 +544,12 @@
      </property>
     </widget>
    </item>
+   <item row="4" column="3">
+    <widget class="QComboBox" name="renovation_necessity"/>
+   </item>
+   <item row="8" column="3">
+    <widget class="QComboBox" name="status"/>
+   </item>
   </layout>
  </widget>
  <tabstops>
@@ -564,11 +558,9 @@
   <tabstop>year_of_construction</tabstop>
   <tabstop>remark</tabstop>
   <tabstop>function</tabstop>
-  <tabstop>renovation_necessity</tabstop>
   <tabstop>level</tabstop>
   <tabstop>positional_accuracy</tabstop>
   <tabstop>dataowner</tabstop>
-  <tabstop>status</tabstop>
   <tabstop>venting</tabstop>
   <tabstop>fastening</tabstop>
   <tabstop>tabWidget</tabstop>
