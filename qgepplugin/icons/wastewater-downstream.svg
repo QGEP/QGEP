@@ -14,7 +14,7 @@
    height="48px"
    id="svg2985"
    version="1.1"
-   inkscape:version="0.48.2 r9819"
+   inkscape:version="0.48.5 r10040"
    inkscape:export-filename="/home/kk/Documents/svg/wastewater-profile.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90"
@@ -35,11 +35,11 @@
     <linearGradient
        id="linearGradient3789">
       <stop
-         style="stop-color:#cbd44a;stop-opacity:1;"
+         style="stop-color:#4a7fd4;stop-opacity:1;"
          offset="0"
          id="stop3791" />
       <stop
-         style="stop-color:#99a126;stop-opacity:1"
+         style="stop-color:#4326a1;stop-opacity:1;"
          offset="1"
          id="stop3793" />
     </linearGradient>
@@ -120,14 +120,14 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="12.6875"
-     inkscape:cx="9.8522167"
+     inkscape:cx="-4.1379311"
      inkscape:cy="24"
      inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:grid-bbox="true"
      inkscape:document-units="px"
-     inkscape:window-width="1440"
-     inkscape:window-height="845"
+     inkscape:window-width="1920"
+     inkscape:window-height="1014"
      inkscape:window-x="0"
      inkscape:window-y="27"
      inkscape:window-maximized="1" />
@@ -139,7 +139,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
