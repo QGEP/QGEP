@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>813</width>
-    <height>493</height>
+    <height>664</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -550,8 +550,25 @@
    <item row="8" column="3">
     <widget class="QComboBox" name="status"/>
    </item>
+   <item row="11" column="1">
+    <widget class="QgsRelationReferenceWidget" name="fk_owner"/>
+   </item>
+   <item row="11" column="0">
+    <widget class="QLabel" name="label_19">
+     <property name="text">
+      <string>owner</string>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QgsRelationReferenceWidget</class>
+   <extends>QWidget</extends>
+   <header>qgsrelationreferencewidget.h</header>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>identifier</tabstop>
   <tabstop>location_name</tabstop>

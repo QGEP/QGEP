@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis projectname="" version="2.5.0-Master">
+<qgis projectname="" version="2.6.0-Brighton">
     <title></title>
     <layer-tree-group expanded="1" checked="Qt::PartiallyChecked" name="">
         <customproperties/>
@@ -18,8 +18,11 @@
         <layer-tree-layer expanded="1" checked="Qt::Checked" id="od_pipe_profile20140822225149539" name="Pipe Profile">
             <customproperties/>
         </layer-tree-layer>
-        <layer-tree-group expanded="0" checked="Qt::Unchecked" name="Value Lists">
+        <layer-tree-group expanded="1" checked="Qt::Unchecked" name="Value Lists">
             <customproperties/>
+            <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="od_organisation20141103144957832" name="Organisation">
+                <customproperties/>
+            </layer-tree-layer>
             <layer-tree-group expanded="0" checked="Qt::Unchecked" name="VL Cover">
                 <customproperties/>
                 <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="vl_cover_positional_accuracy20140909160109629" name="Positional Accuracy">
@@ -46,7 +49,7 @@
                 <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="vl_manhole_surface_inflow20140414162551735" name="Surface Inflow">
                     <customproperties/>
                 </layer-tree-layer>
-                <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="vl_manhole_material20140414162551766" name="Material">
+                <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="vl_manhole_material20140414162551766" name="MH Material">
                     <customproperties/>
                 </layer-tree-layer>
                 <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="vl_manhole_function20140414162421213" name="Function">
@@ -233,6 +236,9 @@
         <relation referencingLayer="vw_reach20141013202956655" referencedLayer="vw_channel20140822221301394" id="reach-fk_wastewater_structure-channel" name="Reaches">
             <fieldRef referencedField="obj_id" referencingField="fk_wastewater_structure"/>
         </relation>
+        <relation referencingLayer="vw_wizard_cover_manhole20141025170618565" referencedLayer="od_organisation20141103144957832" id="wizard-manhole-fk_owner" name="Manholes">
+            <fieldRef referencedField="obj_id" referencingField="fk_owner"/>
+        </relation>
     </relations>
     <mapcanvas>
         <units>meters</units>
@@ -343,6 +349,7 @@
             <item>vw_manhole20141013203257827</item>
             <item>vw_wizard_cover_manhole20141025170618565</item>
             <item>vw_wizard_reach_channel20141025180143924</item>
+            <item>od_organisation20141103144957832</item>
         </custom-order>
     </layer-tree-canvas>
     <legend updateDrawingOrder="true">
@@ -371,7 +378,12 @@
                 <legendlayerfile isInOverview="0" layerid="od_pipe_profile20140822225149539" visible="1"/>
             </filegroup>
         </legendlayer>
-        <legendgroup open="false" checked="Qt::Unchecked" name="Value Lists">
+        <legendgroup open="true" checked="Qt::Unchecked" name="Value Lists">
+            <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Organisation" showFeatureCount="0">
+                <filegroup open="true" hidden="false">
+                    <legendlayerfile isInOverview="0" layerid="od_organisation20141103144957832" visible="0"/>
+                </filegroup>
+            </legendlayer>
             <legendgroup open="false" checked="Qt::Unchecked" name="VL Cover">
                 <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Positional Accuracy" showFeatureCount="0">
                     <filegroup open="true" hidden="false">
@@ -410,7 +422,7 @@
                         <legendlayerfile isInOverview="0" layerid="vl_manhole_surface_inflow20140414162551735" visible="0"/>
                     </filegroup>
                 </legendlayer>
-                <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Material" showFeatureCount="0">
+                <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="MH Material" showFeatureCount="0">
                     <filegroup open="true" hidden="false">
                         <legendlayerfile isInOverview="0" layerid="vl_manhole_material20140414162551766" visible="0"/>
                     </filegroup>
@@ -651,7 +663,7 @@
             </legendlayer>
         </legendgroup>
     </legend>
-    <projectlayers layercount="54">
+    <projectlayers layercount="55">
         <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
             <id>od_catchment_area20140827102410654</id>
             <datasource>service='pg_qgep' key='obj_id' srid=21781 type=POLYGON table="qgep"."od_catchment_area" (perimeter_geometry) sql=</datasource>
@@ -1169,6 +1181,93 @@
                     <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
                 </edittype>
                 <edittype widgetv2type="TextEdit" name="waterlevel_hydraulic">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="old_obj_id">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+            </edittypes>
+        </maplayer>
+        <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
+            <id>od_organisation20141103144957832</id>
+            <datasource>service='pg_qgep' key='obj_id' table="qgep"."od_organisation" sql=</datasource>
+            <title></title>
+            <abstract></abstract>
+            <keywordList>
+                <value></value>
+            </keywordList>
+            <layername>Organisation</layername>
+            <srs>
+                <spatialrefsys>
+                    <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+                    <srsid>30903</srsid>
+                    <srid>4326</srid>
+                    <authid>EPSG:4326</authid>
+                    <description>Imported from GDAL</description>
+                    <projectionacronym>longlat</projectionacronym>
+                    <ellipsoidacronym></ellipsoidacronym>
+                    <geographicflag>true</geographicflag>
+                </spatialrefsys>
+            </srs>
+            <customproperties/>
+            <provider encoding="System">postgres</provider>
+            <previewExpression>COALESCE( "identifier", '&lt;NULL>' )</previewExpression>
+            <vectorjoins/>
+            <expressionfields/>
+            <edittypes>
+                <edittype widgetv2type="Hidden" name="obj_id">
+                    <widgetv2config fieldEditable="1" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="identifier">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="remark">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="uid">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="last_modification">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="dataowner">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="provider">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="old_obj_id">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+            </edittypes>
+            <editform></editform>
+            <editforminit></editforminit>
+            <featformsuppress>0</featformsuppress>
+            <annotationform></annotationform>
+            <editorlayout>generatedlayout</editorlayout>
+            <excludeAttributesWMS/>
+            <excludeAttributesWFS/>
+            <attributeactions/>
+            <edittypes>
+                <edittype widgetv2type="Hidden" name="obj_id">
+                    <widgetv2config fieldEditable="1" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="identifier">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="remark">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="uid">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="last_modification">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="dataowner">
+                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                </edittype>
+                <edittype widgetv2type="TextEdit" name="provider">
                     <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
                 </edittype>
                 <edittype widgetv2type="TextEdit" name="old_obj_id">
@@ -3061,7 +3160,7 @@
             <keywordList>
                 <value></value>
             </keywordList>
-            <layername>Material</layername>
+            <layername>MH Material</layername>
             <srs>
                 <spatialrefsys>
                     <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
@@ -7838,7 +7937,7 @@
                 </spatialrefsys>
             </srs>
             <provider encoding="System">postgres</provider>
-            <previewExpression></previewExpression>
+            <previewExpression>COALESCE( "location_name", '&lt;NULL>' )</previewExpression>
             <vectorjoins/>
             <expressionfields/>
             <edittypes>
@@ -7956,8 +8055,8 @@
                 <edittype widgetv2type="Range" name="year_of_replacement">
                     <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="3000"/>
                 </edittype>
-                <edittype widgetv2type="TextEdit" name="fk_owner">
-                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                <edittype widgetv2type="RelationReference" name="fk_owner">
+                    <widgetv2config fieldEditable="1" ShowForm="0" Relation="wizard-manhole-fk_owner" ReadOnly="0" MapIdentification="0" labelOnTop="0" AllowNULL="1"/>
                 </edittype>
                 <edittype widgetv2type="TextEdit" name="fk_operator">
                     <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -8287,8 +8386,8 @@
                 <edittype widgetv2type="Range" name="year_of_replacement">
                     <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="3000"/>
                 </edittype>
-                <edittype widgetv2type="TextEdit" name="fk_owner">
-                    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+                <edittype widgetv2type="RelationReference" name="fk_owner">
+                    <widgetv2config fieldEditable="1" ShowForm="0" Relation="wizard-manhole-fk_owner" ReadOnly="0" MapIdentification="0" labelOnTop="0" AllowNULL="1"/>
                 </edittype>
                 <edittype widgetv2type="TextEdit" name="fk_operator">
                     <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
