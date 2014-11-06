@@ -1,0 +1,807 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1152</width>
+    <height>885</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QLabel" name="label_17">
+     <property name="text">
+      <string>Identifier</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="label_15">
+     <property name="text">
+      <string>pipe_profile</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="3">
+    <widget class="QgsRelationReferenceWidget" name="fk_owner"/>
+   </item>
+   <item row="3" column="1">
+    <widget class="QDoubleSpinBox" name="rp_from_level"/>
+   </item>
+   <item row="2" column="2">
+    <widget class="QLabel" name="label_38">
+     <property name="text">
+      <string>owner</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="3">
+    <widget class="QDoubleSpinBox" name="length_effective"/>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="label_8">
+     <property name="text">
+      <string>material</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QgsRelationReferenceWidget" name="fk_pipe_profile">
+     <property name="embedForm" stdset="0">
+      <bool>true</bool>
+     </property>
+     <property name="readOnlySelector" stdset="0">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLineEdit" name="identifier">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>clear_height</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QLabel" name="label_7">
+     <property name="text">
+      <string>length_effective</string>
+     </property>
+    </widget>
+   </item>
+   <item row="11" column="0" colspan="4">
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>2</number>
+     </property>
+     <widget class="QWidget" name="tab_4">
+      <attribute name="title">
+       <string>Channel</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QScrollArea" name="scrollArea_4">
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents_4">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>-182</y>
+            <width>1117</width>
+            <height>830</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_8">
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_40">
+             <property name="text">
+              <string>usage_current</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="2">
+            <widget class="QLineEdit" name="year_of_replacement"/>
+           </item>
+           <item row="17" column="0">
+            <widget class="QLabel" name="label_57">
+             <property name="text">
+              <string>rv_base_year</string>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="2">
+            <widget class="QComboBox" name="bedding_encasement"/>
+           </item>
+           <item row="9" column="0">
+            <widget class="QLabel" name="label_61">
+             <property name="text">
+              <string>connection_type</string>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="2">
+            <widget class="QLineEdit" name="contract_section"/>
+           </item>
+           <item row="8" column="0">
+            <widget class="QLabel" name="label_52">
+             <property name="text">
+              <string>bedding_encasement</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="2">
+            <widget class="QLineEdit" name="status"/>
+           </item>
+           <item row="10" column="0">
+            <widget class="QLabel" name="label_58">
+             <property name="text">
+              <string>financing</string>
+             </property>
+            </widget>
+           </item>
+           <item row="14" column="0">
+            <widget class="QLabel" name="label_56">
+             <property name="text">
+              <string>pipe_length</string>
+             </property>
+            </widget>
+           </item>
+           <item row="19" column="2">
+            <widget class="QComboBox" name="structure_condition"/>
+           </item>
+           <item row="9" column="2">
+            <widget class="QComboBox" name="connection_type"/>
+           </item>
+           <item row="16" column="0">
+            <widget class="QLabel" name="label_60">
+             <property name="text">
+              <string>replacement_value</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_47">
+             <property name="text">
+              <string>year_of_construction</string>
+             </property>
+            </widget>
+           </item>
+           <item row="13" column="2">
+            <widget class="QDoubleSpinBox" name="jetting_interval"/>
+           </item>
+           <item row="0" column="0" colspan="2">
+            <widget class="QLabel" name="label_43">
+             <property name="text">
+              <string>accessibility</string>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="0">
+            <widget class="QLabel" name="label_50">
+             <property name="text">
+              <string>contract_section</string>
+             </property>
+            </widget>
+           </item>
+           <item row="20" column="0">
+            <widget class="QLabel" name="label_63">
+             <property name="text">
+              <string>subsidies</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2">
+            <widget class="QLineEdit" name="year_of_construction"/>
+           </item>
+           <item row="14" column="2">
+            <widget class="QDoubleSpinBox" name="pipe_length"/>
+           </item>
+           <item row="10" column="2">
+            <widget class="QLineEdit" name="financing"/>
+           </item>
+           <item row="22" column="2">
+            <widget class="QLineEdit" name="inspection_interval"/>
+           </item>
+           <item row="22" column="0">
+            <widget class="QLabel" name="label_55">
+             <property name="text">
+              <string>inspection_interval</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="label_46">
+             <property name="text">
+              <string>year_of_replacement</string>
+             </property>
+            </widget>
+           </item>
+           <item row="21" column="0">
+            <widget class="QLabel" name="label_54">
+             <property name="text">
+              <string>usage_planned</string>
+             </property>
+            </widget>
+           </item>
+           <item row="11" column="2">
+            <widget class="QComboBox" name="function_hydraulic"/>
+           </item>
+           <item row="18" column="0">
+            <widget class="QLabel" name="label_59">
+             <property name="text">
+              <string>rv_construction_type</string>
+             </property>
+            </widget>
+           </item>
+           <item row="19" column="0">
+            <widget class="QLabel" name="label_53">
+             <property name="text">
+              <string>structure_condition</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="0" colspan="2">
+            <widget class="QLabel" name="label_41">
+             <property name="text">
+              <string>status</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QComboBox" name="usage_current"/>
+           </item>
+           <item row="11" column="0">
+            <widget class="QLabel" name="label_62">
+             <property name="text">
+              <string>function_hydraulic</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QComboBox" name="accessibility"/>
+           </item>
+           <item row="3" column="2">
+            <widget class="QComboBox" name="function_hierarchic"/>
+           </item>
+           <item row="15" column="0">
+            <widget class="QLabel" name="label_49">
+             <property name="text">
+              <string>renovation_necessity</string>
+             </property>
+            </widget>
+           </item>
+           <item row="13" column="0">
+            <widget class="QLabel" name="label_48">
+             <property name="text">
+              <string>jetting_interval</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_39">
+             <property name="text">
+              <string>function_hierarchic</string>
+             </property>
+            </widget>
+           </item>
+           <item row="12" column="2">
+            <widget class="QLineEdit" name="gross_costs"/>
+           </item>
+           <item row="21" column="2">
+            <widget class="QComboBox" name="usage_planned"/>
+           </item>
+           <item row="12" column="0">
+            <widget class="QLabel" name="label_51">
+             <property name="text">
+              <string>gross_costs</string>
+             </property>
+            </widget>
+           </item>
+           <item row="15" column="2">
+            <widget class="QComboBox" name="renovation_necessity"/>
+           </item>
+           <item row="16" column="2">
+            <widget class="QDoubleSpinBox" name="replacement_value"/>
+           </item>
+           <item row="17" column="2">
+            <widget class="QSpinBox" name="rv_base_year"/>
+           </item>
+           <item row="18" column="2">
+            <widget class="QComboBox" name="rv_construction_type"/>
+           </item>
+           <item row="20" column="2">
+            <widget class="QDoubleSpinBox" name="subsidies"/>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
+       <string>Reach</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QScrollArea" name="scrollArea">
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1130</width>
+            <height>636</height>
+           </rect>
+          </property>
+          <layout class="QFormLayout" name="formLayout_2">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label">
+             <property name="text">
+              <string>coefficient_of_friction</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="label_4">
+             <property name="text">
+              <string>elevation_determination</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="label_3">
+             <property name="text">
+              <string>horizontal_positioning</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1">
+            <widget class="QComboBox" name="horizontal_positioning"/>
+           </item>
+           <item row="6" column="0">
+            <widget class="QLabel" name="label_5">
+             <property name="text">
+              <string>inside_coating</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="1">
+            <widget class="QComboBox" name="inside_coating"/>
+           </item>
+           <item row="8" column="0">
+            <widget class="QLabel" name="label_6">
+             <property name="text">
+              <string>ring_stiffness</string>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="1">
+            <widget class="QgsFilterLineEdit" name="ring_stiffness"/>
+           </item>
+           <item row="9" column="0">
+            <widget class="QLabel" name="label_13">
+             <property name="text">
+              <string>slope_building_plan</string>
+             </property>
+            </widget>
+           </item>
+           <item row="9" column="1">
+            <widget class="QgsFilterLineEdit" name="slope_building_plan"/>
+           </item>
+           <item row="10" column="0">
+            <widget class="QLabel" name="label_14">
+             <property name="text">
+              <string>wall_roughness</string>
+             </property>
+            </widget>
+           </item>
+           <item row="12" column="0" colspan="2">
+            <widget class="QGroupBox" name="groupBox">
+             <property name="title">
+              <string>Reliner</string>
+             </property>
+             <layout class="QFormLayout" name="formLayout">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_9">
+                <property name="text">
+                 <string>reliner_material</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QComboBox" name="reliner_material"/>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_10">
+                <property name="text">
+                 <string>reliner_nominal_size</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QgsFilterLineEdit" name="reliner_nominal_size"/>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_12">
+                <property name="text">
+                 <string>relining_construction</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QComboBox" name="relining_construction"/>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="label_11">
+                <property name="text">
+                 <string>relining_kind</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QComboBox" name="relining_kind"/>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="10" column="1">
+            <widget class="QDoubleSpinBox" name="wall_roughness"/>
+           </item>
+           <item row="1" column="1">
+            <widget class="QgsFilterLineEdit" name="dataowner"/>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_19">
+             <property name="text">
+              <string>dataowner</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QgsFilterLineEdit" name="provider"/>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_20">
+             <property name="text">
+              <string>provider</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QComboBox" name="elevation_determination"/>
+           </item>
+           <item row="0" column="1">
+            <widget class="QSpinBox" name="coefficient_of_friction"/>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_3">
+      <attribute name="title">
+       <string>Reach Points</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_5">
+       <item row="0" column="0">
+        <widget class="QgsCollapsibleGroupBox" name="mGroupBox">
+         <property name="title">
+          <string>From</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_6">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item row="0" column="0">
+           <widget class="QScrollArea" name="scrollArea_2">
+            <property name="widgetResizable">
+             <bool>true</bool>
+            </property>
+            <widget class="QWidget" name="scrollAreaWidgetContents_2">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>-15</y>
+               <width>1089</width>
+               <height>292</height>
+              </rect>
+             </property>
+             <layout class="QFormLayout" name="formLayout_3">
+              <property name="fieldGrowthPolicy">
+               <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+              </property>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_21">
+                <property name="text">
+                 <string>identifier</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLineEdit" name="rp_from_identifier"/>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_25">
+                <property name="text">
+                 <string>dataowner</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QLineEdit" name="rp_from_dataowner"/>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="label_24">
+                <property name="text">
+                 <string>elevation_accuracy</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QComboBox" name="rp_from_elevation_accuracy"/>
+              </item>
+              <item row="5" column="0">
+               <widget class="QLabel" name="label_23">
+                <property name="text">
+                 <string>outlet_shape</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="1">
+               <widget class="QLineEdit" name="rp_from_outlet_shape"/>
+              </item>
+              <item row="6" column="0">
+               <widget class="QLabel" name="label_22">
+                <property name="text">
+                 <string>position_of_connection</string>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="1">
+               <widget class="QLineEdit" name="rp_from_position_of_connection"/>
+              </item>
+              <item row="7" column="0">
+               <widget class="QLabel" name="label_27">
+                <property name="text">
+                 <string>provider</string>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="1">
+               <widget class="QLineEdit" name="rp_from_provider"/>
+              </item>
+              <item row="8" column="0">
+               <widget class="QLabel" name="label_28">
+                <property name="text">
+                 <string>wastewater_networkelement</string>
+                </property>
+               </widget>
+              </item>
+              <item row="8" column="1">
+               <widget class="QgsRelationReferenceWidget" name="rp_from_fk_wastewater_networkelement"/>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QgsCollapsibleGroupBox" name="mGroupBox_2">
+         <property name="title">
+          <string>To</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_7">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item row="0" column="0">
+           <widget class="QScrollArea" name="scrollArea_3">
+            <property name="widgetResizable">
+             <bool>true</bool>
+            </property>
+            <widget class="QWidget" name="scrollAreaWidgetContents_3">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>1089</width>
+               <height>292</height>
+              </rect>
+             </property>
+             <layout class="QFormLayout" name="formLayout_4">
+              <property name="fieldGrowthPolicy">
+               <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+              </property>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_29">
+                <property name="text">
+                 <string>identifier</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLineEdit" name="rp_to_identifier"/>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_30">
+                <property name="text">
+                 <string>dataowner</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QLineEdit" name="rp_to_dataowner"/>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="label_31">
+                <property name="text">
+                 <string>elevation_accuracy</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QComboBox" name="rp_to_elevation_accuracy"/>
+              </item>
+              <item row="5" column="0">
+               <widget class="QLabel" name="label_32">
+                <property name="text">
+                 <string>outlet_shape</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="1">
+               <widget class="QLineEdit" name="rp_to_outlet_shape"/>
+              </item>
+              <item row="6" column="0">
+               <widget class="QLabel" name="label_33">
+                <property name="text">
+                 <string>position_of_connection</string>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="1">
+               <widget class="QLineEdit" name="rp_to_position_of_connection"/>
+              </item>
+              <item row="7" column="0">
+               <widget class="QLabel" name="label_34">
+                <property name="text">
+                 <string>provider</string>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="1">
+               <widget class="QLineEdit" name="rp_to_provider"/>
+              </item>
+              <item row="8" column="0">
+               <widget class="QLabel" name="label_36">
+                <property name="text">
+                 <string>wastewater_networkelement</string>
+                </property>
+               </widget>
+              </item>
+              <item row="8" column="1">
+               <widget class="QgsRelationReferenceWidget" name="rp_to_fk_wastewater_networkelement"/>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item row="3" column="3">
+    <widget class="QDoubleSpinBox" name="rp_to_level"/>
+   </item>
+   <item row="3" column="2">
+    <widget class="QLabel" name="label_18">
+     <property name="text">
+      <string>rp_to_level</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="3">
+    <widget class="QSpinBox" name="clear_height"/>
+   </item>
+   <item row="1" column="1">
+    <widget class="QComboBox" name="material">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="label_16">
+     <property name="text">
+      <string>rp_from_level</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QLabel" name="label_37">
+     <property name="text">
+      <string>remark</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="1">
+    <widget class="QLineEdit" name="remark"/>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QgsCollapsibleGroupBox</class>
+   <extends>QGroupBox</extends>
+   <header>qgscollapsiblegroupbox.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>QgsRelationReferenceWidget</class>
+   <extends>QWidget</extends>
+   <header>qgsrelationreferencewidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QgsFilterLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>qgsfilterlineedit.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>813</width>
-    <height>493</height>
+    <height>664</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -33,7 +33,7 @@
       <item row="0" column="0">
        <widget class="QTabWidget" name="tabWidget">
         <property name="currentIndex">
-         <number>0</number>
+         <number>2</number>
         </property>
         <widget class="QWidget" name="tab">
          <attribute name="title">
@@ -94,7 +94,7 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>357</width>
+               <width>758</width>
                <height>663</height>
               </rect>
              </property>
@@ -379,12 +379,12 @@
              <string>material</string>
             </property>
             <property name="buddy">
-             <cstring>material_2</cstring>
+             <cstring>cover_material</cstring>
             </property>
            </widget>
           </item>
           <item row="4" column="1">
-           <widget class="QComboBox" name="material_2"/>
+           <widget class="QComboBox" name="cover_material"/>
           </item>
           <item row="5" column="0">
            <widget class="QLabel" name="label_31">
@@ -550,8 +550,25 @@
    <item row="8" column="3">
     <widget class="QComboBox" name="status"/>
    </item>
+   <item row="11" column="1">
+    <widget class="QgsRelationReferenceWidget" name="fk_owner"/>
+   </item>
+   <item row="11" column="0">
+    <widget class="QLabel" name="label_19">
+     <property name="text">
+      <string>owner</string>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QgsRelationReferenceWidget</class>
+   <extends>QWidget</extends>
+   <header>qgsrelationreferencewidget.h</header>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>identifier</tabstop>
   <tabstop>location_name</tabstop>
@@ -581,7 +598,7 @@
   <tabstop>brand</tabstop>
   <tabstop>cover_shape</tabstop>
   <tabstop>diameter</tabstop>
-  <tabstop>material_2</tabstop>
+  <tabstop>cover_material</tabstop>
   <tabstop>sludge_bucket</tabstop>
   <tabstop>dimension2</tabstop>
   <tabstop>surface_inflow</tabstop>
