@@ -57,17 +57,17 @@ END,
 -- END,
 -- wbw_basisjahr, 
 -- wbw_bauart, 
-CASE WHEN status = 0 THEN 3633 --- inoperative
-WHEN status = 1 THEN 6528 --- operational.operational
-WHEN status = 2 THEN 6530 --- operational.tentative
-WHEN status = 3 THEN 6533 --- operational.will_be_suspended
-WHEN status = 4 THEN 6523 --- abanndoned.suspended_not_filled
-WHEN status = 5 THEN 6524 --- abanndoned.suspended_unknown
-WHEN status = 6 THEN 6532 --- abanndoned.filled
-WHEN status = 7 THEN 3027 --- unknown
-WHEN status = 8 THEN 6526 --- other.calculation_alternative
-WHEN status = 9 THEN 6527 --- other.planned
-WHEN status = 10 THEN 6529 --- other.project
+CASE WHEN status = 0 THEN 7 --- suspeded not filled
+WHEN status = 1 THEN 3325 --- suspended unkonwn
+WHEN status = 2 THEN 3633 --- inoperative
+WHEN status = 3 THEN 2763 --- calculation alternative
+WHEN status = 4 THEN 2764 --- planned
+WHEN status = 5 THEN 3634 --- operational
+WHEN status = 6 THEN 3653 --- project
+WHEN status = 7 THEN 10 --- tentative
+WHEN status = 8 THEN 3027 --- unknown
+WHEN status = 9 THEN 8 --- filled
+WHEN status = 10 THEN 2683 --- will be suspended
 END,
 CASE WHEN baulicherzustand = 0 THEN 3037 --- unknown
 WHEN baulicherzustand  = 1 THEN 3363 --- Z0
