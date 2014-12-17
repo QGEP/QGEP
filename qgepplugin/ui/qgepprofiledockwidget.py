@@ -29,7 +29,7 @@ from ui_qgepdockwidget import Ui_QgepDockWidget
 
 
 
-class QgepDockWidget( QDockWidget, Ui_QgepDockWidget ):
+class QgepProfileDockWidget( QDockWidget, Ui_QgepDockWidget ):
     # Signal emitted when the widget is closed
     closed = pyqtSignal()
     canvas = None
