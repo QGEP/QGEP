@@ -4,7 +4,7 @@ name=QGEP
 qgisMinimumVersion=2.0
 description=Plugin to manage wastewater networks
 category=Vector
-version=0.5.0
+version=0.5.1
 ; end of mandatory metadata
 
 ; start of optional metadata
