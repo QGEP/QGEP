@@ -31,6 +31,7 @@ qgepplugin/ui/qgepwizard.ui
 qgepplugin/ui/ui_dlgabout.py
 qgepplugin/ui/ui_qgepdockwidget.py
 qgepplugin/ui/ui_qgepsettingsdialog.py
+qgepplugin/ui/ui_qgepwizard.py
 qgepplugin/utils
 qgepplugin/utils/__init__.py
 qgepplugin/utils/qgeplayermanager.py
