@@ -86,6 +86,7 @@ class QgepMapToolAddFeature( QgsMapTool ):
         f = QgsFeature( self.layer.pendingFields() )
         f.setGeometry( self.rubberband.asGeometry() )
         dlg = self.iface.getFeatureForm( self.layer, f )
+        dlg.setIsAddDialog(True)
         dlg.exec_()
         self.rubberband.reset()
         self.tempRubberband.reset()
@@ -163,5 +164,6 @@ class QgepMapToolAddReach( QgepMapToolAddFeature ):
             f.setAttribute(tofield, toNetworkElement.attribute('obj_id'))
 
         dlg = self.iface.getFeatureForm(self.layer, f)
+        dlg.setIsAddDialog(True)
         dlg.exec_()
         self.rubberband.reset()
