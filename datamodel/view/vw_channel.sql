@@ -47,8 +47,6 @@ LEFT JOIN qgep.od_wastewater_structure WS
 CREATE OR REPLACE FUNCTION qgep.vw_channel_insert()
   RETURNS trigger AS
 $BODY$
-DECLARE
-  ws_obj_id character varying(16);
 BEGIN
   INSERT INTO qgep.od_wastewater_structure (
             obj_id
@@ -104,7 +102,7 @@ BEGIN
             , NEW.fk_owner
             , NEW.fk_operator
            )
-           RETURNING obj_id INTO ws_obj_id;
+           RETURNING obj_id INTO NEW.obj_id;
 
   INSERT INTO qgep.od_channel(
               obj_id
@@ -118,7 +116,7 @@ BEGIN
             , usage_planned
             )
             VALUES(
-              ws_obj_id -- obj_id
+              NEW.obj_id -- obj_id
             , NEW.bedding_encasement
             , NEW.connection_type
             , NEW.function_hierarchic
