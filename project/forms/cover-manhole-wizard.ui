@@ -33,7 +33,7 @@
       <item row="0" column="0">
        <widget class="QTabWidget" name="tabWidget">
         <property name="currentIndex">
-         <number>2</number>
+         <number>1</number>
         </property>
         <widget class="QWidget" name="tab">
          <attribute name="title">
@@ -93,9 +93,9 @@
              <property name="geometry">
               <rect>
                <x>0</x>
-               <y>0</y>
+               <y>-315</y>
                <width>758</width>
-               <height>663</height>
+               <height>659</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_5">
@@ -208,9 +208,6 @@
                 <property name="text">
                  <string>surface_inflow</string>
                 </property>
-                <property name="buddy">
-                 <cstring>surface_inflow</cstring>
-                </property>
                </widget>
               </item>
               <item row="17" column="0">
@@ -222,9 +219,6 @@
                  <cstring>inspection_interval</cstring>
                 </property>
                </widget>
-              </item>
-              <item row="22" column="1">
-               <widget class="QSpinBox" name="surface_inflow"/>
               </item>
               <item row="2" column="0">
                <widget class="QLabel" name="label_4">
@@ -319,6 +313,9 @@
               </item>
               <item row="14" column="1">
                <widget class="QLineEdit" name="year_of_replacement"/>
+              </item>
+              <item row="22" column="1">
+               <widget class="QComboBox" name="surface_inflow"/>
               </item>
              </layout>
             </widget>
@@ -597,7 +594,6 @@
   <tabstop>cover_material</tabstop>
   <tabstop>sludge_bucket</tabstop>
   <tabstop>dimension2</tabstop>
-  <tabstop>surface_inflow</tabstop>
   <tabstop>material</tabstop>
   <tabstop>dimension1</tabstop>
   <tabstop>inspection_interval</tabstop>
