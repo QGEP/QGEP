@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis projectname="" version="2.6.0-Brighton">
+<qgis projectname="" version="2.7.0-Master">
     <title></title>
     <layer-tree-group expanded="1" checked="Qt::PartiallyChecked" name="">
         <customproperties/>
@@ -204,7 +204,7 @@
                 <customproperties/>
             </layer-tree-layer>
         </layer-tree-group>
-        <layer-tree-group expanded="0" checked="Qt::Checked" name="Wizardry">
+        <layer-tree-group expanded="1" checked="Qt::Checked" name="Wizardry">
             <customproperties/>
             <layer-tree-layer expanded="1" checked="Qt::Checked" id="vw_wizard_reach_channel20141025180143924" name="vw_wizard_reach_channel">
                 <customproperties/>
@@ -249,11 +249,12 @@
     <mapcanvas>
         <units>meters</units>
         <extent>
-            <xmin>747476.92827528598718345</xmin>
-            <ymin>262751.64980050281155854</ymin>
-            <xmax>749211.72465745243243873</xmax>
-            <ymax>263797.81510789052117616</ymax>
+            <xmin>747475.66935193189419806</xmin>
+            <ymin>262627.01638843130785972</ymin>
+            <xmax>749210.46573409833945334</xmax>
+            <ymax>263673.18169581901747733</ymax>
         </extent>
+        <rotation>0</rotation>
         <projections>1</projections>
         <destinationsrs>
             <spatialrefsys>
@@ -646,7 +647,7 @@
                 </filegroup>
             </legendlayer>
         </legendgroup>
-        <legendgroup open="false" checked="Qt::Checked" name="Wizardry">
+        <legendgroup open="true" checked="Qt::Checked" name="Wizardry">
             <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="vw_wizard_reach_channel" showFeatureCount="0">
                 <filegroup open="true" hidden="false">
                     <legendlayerfile isInOverview="0" layerid="vw_wizard_reach_channel20141025180143924" visible="1"/>
@@ -2257,7 +2258,7 @@
             </srs>
             <customproperties/>
             <provider encoding="UTF-8">postgres</provider>
-            <previewExpression></previewExpression>
+            <previewExpression>COALESCE("code", '&lt;NULL>')</previewExpression>
             <vectorjoins/>
             <expressionfields/>
             <edittypes>
@@ -7626,10 +7627,10 @@
                 <multilineenabled fieldname="" on=""/>
                 <selectedonly on=""/>
             </labelattributes>
-            <editform></editform>
+            <editform>.</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
-            <annotationform></annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -7664,7 +7665,7 @@
                 </edittype>
             </edittypes>
         </maplayer>
-        <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
+        <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
             <id>vw_wizard_cover_manhole20141025170618565</id>
             <datasource>service='pg_qgep' key='obj_id' srid=21781 type=POINT table="qgep"."vw_wizard_cover_manhole" (situation_geometry) sql=</datasource>
             <title></title>
@@ -7746,6 +7747,9 @@
                 </edittype>
                 <edittype widgetv2type="Range" name="dimension2">
                     <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="5"/>
+                </edittype>
+                <edittype widgetv2type="Range" name="depth">
+                    <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="10000" Suffix=" mm."/>
                 </edittype>
                 <edittype widgetv2type="ValueRelation" name="function">
                     <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_manhole_function20140414162421213" Value="value_en" labelOnTop="0" AllowMulti="0"/>
@@ -8077,6 +8081,9 @@
                 </edittype>
                 <edittype widgetv2type="Range" name="dimension2">
                     <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="5"/>
+                </edittype>
+                <edittype widgetv2type="Range" name="depth">
+                    <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="10000" Suffix=" mm."/>
                 </edittype>
                 <edittype widgetv2type="ValueRelation" name="function">
                     <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_manhole_function20140414162421213" Value="value_en" labelOnTop="0" AllowMulti="0"/>
