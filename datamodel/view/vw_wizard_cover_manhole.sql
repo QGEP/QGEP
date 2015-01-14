@@ -2,7 +2,7 @@
 
 -- DROP VIEW vw_wizard_cover_manhole;
 
-CREATE OR REPLACE VIEW vw_wizard_cover_manhole AS 
+CREATE OR REPLACE VIEW qgep.vw_wizard_cover_manhole AS 
  SELECT co.obj_id,
     co.brand,
     co.cover_shape,
@@ -46,12 +46,12 @@ CREATE OR REPLACE VIEW vw_wizard_cover_manhole AS
     mh.fk_operator,
     wn.backflow_level,
     wn.bottom_level
-   FROM vw_cover co
-     LEFT JOIN vw_manhole mh ON mh.obj_id::text = co.fk_wastewater_structure::text
-     LEFT JOIN vw_wastewater_node wn ON wn.fk_wastewater_structure::text = mh.obj_id::text
+   FROM qgep.vw_cover co
+     LEFT JOIN qgep.vw_manhole mh ON mh.obj_id::text = co.fk_wastewater_structure::text
+     LEFT JOIN qgep.vw_wastewater_node wn ON wn.fk_wastewater_structure::text = mh.obj_id::text
   WHERE false;
 
-ALTER TABLE vw_wizard_cover_manhole
+ALTER TABLE qgep.vw_wizard_cover_manhole
   OWNER TO qgep;
 
 -- INSERT function
@@ -62,7 +62,7 @@ $BODY$
 DECLARE
   mh_obj_id character varying(16);
 BEGIN
-  INSERT INTO vw_manhole(
+  INSERT INTO qgep.vw_manhole(
          dimension1
        , dimension2
        , function
@@ -128,7 +128,7 @@ BEGIN
        , NEW.fk_operator
        ) RETURNING obj_id INTO mh_obj_id;
 
-  INSERT INTO vw_wastewater_node(
+  INSERT INTO qgep.vw_wastewater_node(
       backflow_level
     , bottom_level
     , situation_geometry
@@ -152,7 +152,7 @@ BEGIN
     , mh_obj_id
   );
 
-  INSERT INTO vw_cover(
+  INSERT INTO qgep.vw_cover(
       brand
     , cover_shape
 --    , depth
@@ -197,7 +197,7 @@ BEGIN
 END; $BODY$ LANGUAGE plpgsql VOLATILE
   COST 100;
 
-DROP TRIGGER vw_wizard_cover_manhole_ON_INSERT ON qgep.vw_wizard_cover_manhole;
+DROP TRIGGER IF EXISTS vw_wizard_cover_manhole_ON_INSERT ON qgep.vw_wizard_cover_manhole;
 
 CREATE TRIGGER vw_wizard_cover_manhole_ON_INSERT INSTEAD OF INSERT ON qgep.vw_wizard_cover_manhole
   FOR EACH ROW EXECUTE PROCEDURE qgep.vw_wizard_cover_manhole_INSERT();
