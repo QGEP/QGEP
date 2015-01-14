@@ -2,7 +2,7 @@
 
 -- DROP VIEW vw_wizard_reach_channel;
 
-CREATE OR REPLACE VIEW vw_wizard_reach_channel AS 
+CREATE OR REPLACE VIEW qgep.vw_wizard_reach_channel AS 
  SELECT 
      re.obj_id
    , bedding_encasement
@@ -76,11 +76,11 @@ CREATE OR REPLACE VIEW vw_wizard_reach_channel AS
    , rp_to_provider
    , rp_to_fk_wastewater_networkelement
    
-   FROM vw_channel ch
-     LEFT JOIN vw_reach re ON ch.obj_id = re.fk_wastewater_structure
+   FROM qgep.vw_channel ch
+     LEFT JOIN qgep.vw_reach re ON ch.obj_id = re.fk_wastewater_structure
   WHERE false;
 
-ALTER TABLE vw_wizard_reach_channel
+ALTER TABLE qgep.vw_wizard_reach_channel
   OWNER TO qgep;
 
 -- INSERT function
