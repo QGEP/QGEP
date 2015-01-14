@@ -1,5 +1,7 @@
 ﻿-- View: vw_wizard_cover_manhole
 
+BEGIN TRANSACTION;
+
 -- DROP VIEW vw_wizard_cover_manhole;
 
 CREATE OR REPLACE VIEW qgep.vw_wizard_cover_manhole AS 
@@ -23,6 +25,7 @@ CREATE OR REPLACE VIEW qgep.vw_wizard_cover_manhole AS
     mh.obj_id AS manhole_obj_id,
     mh.dimension1,
     mh.dimension2,
+    mh.depth,
     mh.function,
     mh.material,
     mh.surface_inflow,
@@ -65,6 +68,7 @@ BEGIN
   INSERT INTO qgep.vw_manhole(
          dimension1
        , dimension2
+       , depth
        , function
        , material
        , surface_inflow
@@ -99,6 +103,7 @@ BEGIN
          NEW.dimension1
        , NEW.dimension2
        , NEW.function
+       , NEW.depth
        , NEW.material
        , NEW.surface_inflow
        , NEW.accessibility
@@ -155,11 +160,10 @@ BEGIN
   INSERT INTO qgep.vw_cover(
       brand
     , cover_shape
---    , depth
     , diameter
     , fastening
     , level
-    , material
+    , cover_material
     , positional_accuracy
     , situation_geometry
     , sludge_bucket
@@ -176,7 +180,6 @@ BEGIN
   (
       NEW.brand
     , NEW.cover_shape
---    , NEW.depth
     , NEW.diameter
     , NEW.fastening
     , NEW.level
@@ -202,3 +205,4 @@ DROP TRIGGER IF EXISTS vw_wizard_cover_manhole_ON_INSERT ON qgep.vw_wizard_cover
 CREATE TRIGGER vw_wizard_cover_manhole_ON_INSERT INSTEAD OF INSERT ON qgep.vw_wizard_cover_manhole
   FOR EACH ROW EXECUTE PROCEDURE qgep.vw_wizard_cover_manhole_INSERT();
 
+END TRANSACTION;
