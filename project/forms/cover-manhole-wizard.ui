@@ -365,13 +365,7 @@
             <property name="text">
              <string>diameter</string>
             </property>
-            <property name="buddy">
-             <cstring>diameter</cstring>
-            </property>
            </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QLineEdit" name="diameter"/>
           </item>
           <item row="4" column="0">
            <widget class="QLabel" name="label_33">
@@ -398,6 +392,9 @@
           </item>
           <item row="5" column="1">
            <widget class="QComboBox" name="sludge_bucket"/>
+          </item>
+          <item row="2" column="1">
+           <widget class="QSpinBox" name="diameter"/>
           </item>
          </layout>
         </widget>
@@ -551,7 +548,7 @@
     <widget class="QComboBox" name="status"/>
    </item>
    <item row="11" column="1">
-    <widget class="QgsRelationReferenceWidget" name="fk_owner"/>
+    <widget class="QgsRelationReferenceWidget" name="fk_owner" native="true"/>
    </item>
    <item row="11" column="0">
     <widget class="QLabel" name="label_19">
@@ -597,7 +594,6 @@
   <tabstop>lineEdit_7</tabstop>
   <tabstop>brand</tabstop>
   <tabstop>cover_shape</tabstop>
-  <tabstop>diameter</tabstop>
   <tabstop>cover_material</tabstop>
   <tabstop>sludge_bucket</tabstop>
   <tabstop>dimension2</tabstop>
