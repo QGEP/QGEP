@@ -7701,7 +7701,7 @@
                     <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_cover_cover_shape20140414164000158" Value="value_en" labelOnTop="0" AllowMulti="0"/>
                 </edittype>
                 <edittype widgetv2type="Range" name="diameter">
-                    <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="5"/>
+                    <widgetv2config AllowNull="1" fieldEditable="1" Step="10" Style="SpinBox" labelOnTop="0" Min="0" Max="9999" Suffix=" mm."/>
                 </edittype>
                 <edittype widgetv2type="ValueRelation" name="fastening">
                     <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_cover_fastening20140414164000205" Value="value_en" labelOnTop="0" AllowMulti="0"/>
@@ -7743,10 +7743,10 @@
                     <widgetv2config fieldEditable="1" labelOnTop="0"/>
                 </edittype>
                 <edittype widgetv2type="Range" name="dimension1">
-                    <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="5"/>
+                    <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="4000" Suffix=" mm."/>
                 </edittype>
                 <edittype widgetv2type="Range" name="dimension2">
-                    <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="5"/>
+                    <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="4000" Suffix=" mm."/>
                 </edittype>
                 <edittype widgetv2type="Range" name="depth">
                     <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="10000" Suffix=" mm."/>
