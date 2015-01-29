@@ -131,19 +131,26 @@ class QgepMapToolAddReach( QgepMapToolAddFeature ):
         snapNodeLayer.mTolerance = 10
         snapNodeLayer.mUnitType = QgsTolerance.Pixels
         snapNodeLayer.mSnapTo = QgsSnapper.SnapToVertex
-#        snapReachLayer = QgsSnapper.SnapLayer()
-#        snapReachLayer.mLayer = self.reachLayer
-#        snapReachLayer.mTolerance = 10
-#        snapReachLayer.mUnitType = QgsTolerance.Pixels
-#        snapReachLayer.mSnapTo = QgsSnapper.SnapToVertexAndSegment
         snapper.setSnapLayers([snapNodeLayer])
         (_, snappedPoints) = snapper.snapPoint(pos)
         if len(snappedPoints) >= 1:
             self.currentSnappingResult = snappedPoints[0]
             return self.currentSnappingResult.snappedVertex
         else:
-            self.currentSnappingResult = None
-            return pos
+            snapper = QgsSnapper( self.iface.mapCanvas().mapSettings() )
+            snapReachLayer = QgsSnapper.SnapLayer()
+            snapReachLayer.mLayer = self.reachLayer
+            snapReachLayer.mTolerance = 10
+            snapReachLayer.mUnitType = QgsTolerance.Pixels
+            snapReachLayer.mSnapTo = QgsSnapper.SnapToVertexAndSegment
+            snapper.setSnapLayers([snapReachLayer])
+            (_, snappedPoints) = snapper.snapPoint(pos)
+            if len(snappedPoints) >= 1:
+                self.currentSnappingResult = snappedPoints[0]
+                return self.currentSnappingResult.snappedVertex
+            else:
+                self.currentSnappingResult = None
+                return pos
 
     def rightClicked(self, event):
         self.tempRubberband.reset()
