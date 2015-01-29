@@ -33,7 +33,7 @@
       <item row="0" column="0">
        <widget class="QTabWidget" name="tabWidget">
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="tab">
          <attribute name="title">
@@ -93,9 +93,9 @@
              <property name="geometry">
               <rect>
                <x>0</x>
-               <y>0</y>
+               <y>-187</y>
                <width>758</width>
-               <height>659</height>
+               <height>655</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_5">
@@ -114,26 +114,14 @@
                 <property name="text">
                  <string>replacement_value_base_year</string>
                 </property>
-                <property name="buddy">
-                 <cstring>replacement_value_base_year</cstring>
-                </property>
                </widget>
-              </item>
-              <item row="11" column="1">
-               <widget class="QLineEdit" name="replacement_value_base_year"/>
               </item>
               <item row="12" column="0">
                <widget class="QLabel" name="label_10">
                 <property name="text">
                  <string>replacement_value_construction_type</string>
                 </property>
-                <property name="buddy">
-                 <cstring>replacement_value_construction_type</cstring>
-                </property>
                </widget>
-              </item>
-              <item row="12" column="1">
-               <widget class="QLineEdit" name="replacement_value_construction_type"/>
               </item>
               <item row="15" column="0">
                <widget class="QLabel" name="label_18">
@@ -153,13 +141,7 @@
                 <property name="text">
                  <string>subsidies</string>
                 </property>
-                <property name="buddy">
-                 <cstring>lineEdit_7</cstring>
-                </property>
                </widget>
-              </item>
-              <item row="16" column="1">
-               <widget class="QLineEdit" name="lineEdit_7"/>
               </item>
               <item row="17" column="1">
                <widget class="QLineEdit" name="inspection_interval"/>
@@ -271,21 +253,12 @@
                 <property name="text">
                  <string>replacement_value</string>
                 </property>
-                <property name="buddy">
-                 <cstring>replacement_value</cstring>
-                </property>
                </widget>
-              </item>
-              <item row="10" column="1">
-               <widget class="QLineEdit" name="replacement_value"/>
               </item>
               <item row="14" column="0">
                <widget class="QLabel" name="label_15">
                 <property name="text">
                  <string>year_of_replacement</string>
-                </property>
-                <property name="buddy">
-                 <cstring>year_of_replacement</cstring>
                 </property>
                </widget>
               </item>
@@ -305,14 +278,26 @@
               <item row="6" column="1">
                <widget class="QLineEdit" name="provider"/>
               </item>
-              <item row="14" column="1">
-               <widget class="QLineEdit" name="year_of_replacement"/>
-              </item>
               <item row="22" column="1">
                <widget class="QComboBox" name="surface_inflow"/>
               </item>
               <item row="3" column="1">
-               <widget class="QSpinBox" name="spinBox"/>
+               <widget class="QSpinBox" name="depth"/>
+              </item>
+              <item row="11" column="1">
+               <widget class="QSpinBox" name="rv_base_year"/>
+              </item>
+              <item row="12" column="1">
+               <widget class="QComboBox" name="rv_construction_type"/>
+              </item>
+              <item row="14" column="1">
+               <widget class="QSpinBox" name="year_of_replacement"/>
+              </item>
+              <item row="10" column="1">
+               <widget class="QDoubleSpinBox" name="replacement_value"/>
+              </item>
+              <item row="16" column="1">
+               <widget class="QDoubleSpinBox" name="subsidies"/>
               </item>
              </layout>
             </widget>
@@ -542,7 +527,7 @@
     <widget class="QComboBox" name="status"/>
    </item>
    <item row="11" column="1">
-    <widget class="QgsRelationReferenceWidget" name="fk_owner" native="true"/>
+    <widget class="QgsRelationReferenceWidget" name="fk_owner"/>
    </item>
    <item row="11" column="0">
     <widget class="QLabel" name="label_19">
@@ -579,12 +564,7 @@
   <tabstop>financing</tabstop>
   <tabstop>provider</tabstop>
   <tabstop>gross_costs</tabstop>
-  <tabstop>replacement_value</tabstop>
-  <tabstop>replacement_value_base_year</tabstop>
-  <tabstop>replacement_value_construction_type</tabstop>
-  <tabstop>year_of_replacement</tabstop>
   <tabstop>structure_condition</tabstop>
-  <tabstop>lineEdit_7</tabstop>
   <tabstop>brand</tabstop>
   <tabstop>cover_shape</tabstop>
   <tabstop>cover_material</tabstop>
