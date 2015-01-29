@@ -191,6 +191,9 @@
       <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="vw_wastewater_node20141111091100662" name="Wastewater Node">
         <customproperties/>
       </layer-tree-layer>
+      <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="od_wastewater_networkelement20150129173137457" name="od_wastewater_networkelement">
+        <customproperties/>
+      </layer-tree-layer>
       <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="vw_access_aid20140822221404361" name="Access Aid">
         <customproperties/>
       </layer-tree-layer>
@@ -239,10 +242,10 @@
     <relation referencingLayer="vw_wizard_reach_channel20141025180143924" referencedLayer="od_pipe_profile20140822225149539" id="vw_wizard_reach_channel-fk_pipe_profile" name="Profiles">
       <fieldRef referencedField="obj_id" referencingField="fk_pipe_profile"/>
     </relation>
-    <relation referencingLayer="vw_wizard_reach_channel20141025180143924" referencedLayer="vw_wastewater_node20141111091100662" id="vw_wizard_reach_channel-rp_from_fk_wastewater_networkelement" name="Reach Points">
+    <relation referencingLayer="vw_wizard_reach_channel20141025180143924" referencedLayer="od_wastewater_networkelement20150129173137457" id="vw_wizard_reach_channel-rp_from_fk_wastewater_networkelement" name="Reach Points">
       <fieldRef referencedField="obj_id" referencingField="rp_from_fk_wastewater_networkelement"/>
     </relation>
-    <relation referencingLayer="vw_wizard_reach_channel20141025180143924" referencedLayer="vw_wastewater_node20141111091100662" id="vw_wizard_reach_channel-rp_to_fk_wastewater_networkelement" name="Reach Points">
+    <relation referencingLayer="vw_wizard_reach_channel20141025180143924" referencedLayer="od_wastewater_networkelement20150129173137457" id="vw_wizard_reach_channel-rp_to_fk_wastewater_networkelement" name="Reach Points">
       <fieldRef referencedField="obj_id" referencingField="rp_to_fk_wastewater_networkelement"/>
     </relation>
     <relation referencingLayer="vw_wizard_cover_manhole20141025170618565" referencedLayer="od_organisation20141103144957832" id="wizard-manhole-fk_owner" name="Manholes">
@@ -281,8 +284,8 @@
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_manhole20141013203257827"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="od_reach_point20140728163138843"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_network_node20140827212753645"/>
-      <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_wizard_cover_manhole20141025170618565"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_wizard_cover_special_structure20150129140416706"/>
+      <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_wizard_cover_manhole20141025170618565"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_network_segment20140827212755598"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_wastewater_node20141111091100662"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_reach20140925140846596"/>
@@ -359,6 +362,7 @@
       <item>od_organisation20141103144957832</item>
       <item>vw_wastewater_node20141111091100662</item>
       <item>vw_wizard_cover_special_structure20150129140416706</item>
+      <item>od_wastewater_networkelement20150129173137457</item>
     </custom-order>
   </layer-tree-canvas>
   <legend updateDrawingOrder="true">
@@ -634,6 +638,11 @@
           <legendlayerfile isInOverview="0" layerid="vw_wastewater_node20141111091100662" visible="0"/>
         </filegroup>
       </legendlayer>
+      <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="od_wastewater_networkelement" showFeatureCount="0">
+        <filegroup open="true" hidden="false">
+          <legendlayerfile isInOverview="0" layerid="od_wastewater_networkelement20150129173137457" visible="0"/>
+        </filegroup>
+      </legendlayer>
       <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Access Aid" showFeatureCount="0">
         <filegroup open="true" hidden="false">
           <legendlayerfile isInOverview="0" layerid="vw_access_aid20140822221404361" visible="0"/>
@@ -670,7 +679,7 @@
       </legendlayer>
     </legendgroup>
   </legend>
-  <projectlayers layercount="55">
+  <projectlayers layercount="56">
     <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>od_catchment_area20140827102410654</id>
       <datasource>service='pg_qgep' key='obj_id' srid=21781 type=POLYGON table="qgep"."od_catchment_area" (perimeter_geometry) sql=</datasource>
@@ -1478,6 +1487,96 @@
       </edittypes>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
+      <id>od_wastewater_networkelement20150129173137457</id>
+      <datasource>service='pg_qgep' key='obj_id' table="qgep"."od_wastewater_networkelement" sql=</datasource>
+      <title></title>
+      <abstract></abstract>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>od_wastewater_networkelement</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+          <srsid>3452</srsid>
+          <srid>4326</srid>
+          <authid>EPSG:4326</authid>
+          <description>WGS 84</description>
+          <projectionacronym>longlat</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>true</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <customproperties/>
+      <provider encoding="System">postgres</provider>
+      <previewExpression>COALESCE("obj_id", '&lt;NULL>')</previewExpression>
+      <vectorjoins/>
+      <expressionfields/>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <edittypes>
+        <edittype widgetv2type="TextEdit" name="obj_id">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="identifier">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="remark">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="last_modification">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="dataowner">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="fk_wastewater_structure">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="old_obj_id">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+      </edittypes>
+      <editform></editform>
+      <editforminit/>
+      <featformsuppress>0</featformsuppress>
+      <annotationform></annotationform>
+      <editorlayout>generatedlayout</editorlayout>
+      <excludeAttributesWMS/>
+      <excludeAttributesWFS/>
+      <attributeactions/>
+      <edittypes>
+        <edittype widgetv2type="TextEdit" name="obj_id">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="identifier">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="remark">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="last_modification">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="dataowner">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="fk_wastewater_structure">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="old_obj_id">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+      </edittypes>
+    </maplayer>
+    <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_access_aid_kind20140822222244821</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_access_aid_kind" sql=</datasource>
       <title></title>
@@ -1801,9 +1900,6 @@
         <edittype widgetv2type="TextEdit" name="active">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="order_fct_hierarchic">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
       </edittypes>
       <editform>.</editform>
       <editforminit/>
@@ -1836,9 +1932,6 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="active">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="order_fct_hierarchic">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
@@ -1987,9 +2080,6 @@
         <edittype widgetv2type="TextEdit" name="active">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="order_usage_current">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
       </edittypes>
       <editform>.</editform>
       <editforminit/>
@@ -2022,9 +2112,6 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="active">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="order_usage_current">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
@@ -5334,15 +5421,6 @@
         <edittype widgetv2type="RelationReference" name="fk_wastewater_structure">
           <widgetv2config fieldEditable="1" ShowForm="1" Relation="cover-fk_wastewater_structure-manhole" ReadOnly="0" MapIdentification="0" labelOnTop="0" AllowNULL="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="manhole_function">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="channel_usage_current">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="channel_function_hierarchic">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
       </edittypes>
       <renderer-v2 symbollevels="0" type="RuleRenderer">
         <rules key="{6736e613-3750-466f-8a9f-3310fefc92b3}">
@@ -6342,15 +6420,6 @@
         </edittype>
         <edittype widgetv2type="RelationReference" name="fk_wastewater_structure">
           <widgetv2config fieldEditable="1" ShowForm="1" Relation="cover-fk_wastewater_structure-manhole" ReadOnly="0" MapIdentification="0" labelOnTop="0" AllowNULL="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="manhole_function">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="channel_usage_current">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="channel_function_hierarchic">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
     </maplayer>
@@ -9246,7 +9315,7 @@
           <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="1900" Max="2100"/>
         </edittype>
         <edittype widgetv2type="RelationReference" name="fk_owner">
-          <widgetv2config OrderByValue="1" fieldEditable="1" ShowForm="0" Relation="wizard-special_structure-organisation" ReadOnly="0" MapIdentification="0" labelOnTop="0" AllowNULL="0"/>
+          <widgetv2config fieldEditable="1" ShowForm="0" Relation="wizard-special_structure-organisation" ReadOnly="0" MapIdentification="0" labelOnTop="0" AllowNULL="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="fk_operator">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -9456,7 +9525,7 @@
       <editform>./forms/cover-special_structure-wizard.ui</editform>
       <editforminit/>
       <featformsuppress>0</featformsuppress>
-      <annotationform></annotationform>
+      <annotationform>.</annotationform>
       <editorlayout>uifilelayout</editorlayout>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -9583,7 +9652,7 @@
           <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="1900" Max="2100"/>
         </edittype>
         <edittype widgetv2type="RelationReference" name="fk_owner">
-          <widgetv2config OrderByValue="1" fieldEditable="1" ShowForm="0" Relation="wizard-special_structure-organisation" ReadOnly="0" MapIdentification="0" labelOnTop="0" AllowNULL="0"/>
+          <widgetv2config fieldEditable="1" ShowForm="0" Relation="wizard-special_structure-organisation" ReadOnly="0" MapIdentification="0" labelOnTop="0" AllowNULL="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="fk_operator">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
