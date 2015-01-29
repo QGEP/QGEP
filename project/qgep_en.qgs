@@ -204,15 +204,15 @@
         <customproperties/>
       </layer-tree-layer>
     </layer-tree-group>
-    <layer-tree-group expanded="0" checked="Qt::Checked" name="Wizardry">
+    <layer-tree-group expanded="0" checked="Qt::Unchecked" name="Wizardry">
       <customproperties/>
-      <layer-tree-layer expanded="1" checked="Qt::Checked" id="vw_wizard_cover_special_structure20150129140416706" name="vw_wizard_cover_special_structure">
+      <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="vw_wizard_cover_special_structure20150129140416706" name="vw_wizard_cover_special_structure">
         <customproperties/>
       </layer-tree-layer>
-      <layer-tree-layer expanded="1" checked="Qt::Checked" id="vw_wizard_reach_channel20141025180143924" name="vw_wizard_reach_channel">
+      <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="vw_wizard_reach_channel20141025180143924" name="vw_wizard_reach_channel">
         <customproperties/>
       </layer-tree-layer>
-      <layer-tree-layer expanded="1" checked="Qt::Checked" id="vw_wizard_cover_manhole20141025170618565" name="vw_wizard_cover_manhole">
+      <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="vw_wizard_cover_manhole20141025170618565" name="vw_wizard_cover_manhole">
         <customproperties/>
       </layer-tree-layer>
     </layer-tree-group>
@@ -652,20 +652,20 @@
         </filegroup>
       </legendlayer>
     </legendgroup>
-    <legendgroup open="true" checked="Qt::Checked" name="Wizardry">
-      <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="vw_wizard_cover_special_structure" showFeatureCount="0">
+    <legendgroup open="false" checked="Qt::Unchecked" name="Wizardry">
+      <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="vw_wizard_cover_special_structure" showFeatureCount="0">
         <filegroup open="true" hidden="false">
-          <legendlayerfile isInOverview="0" layerid="vw_wizard_cover_special_structure20150129140416706" visible="1"/>
+          <legendlayerfile isInOverview="0" layerid="vw_wizard_cover_special_structure20150129140416706" visible="0"/>
         </filegroup>
       </legendlayer>
-      <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="vw_wizard_reach_channel" showFeatureCount="0">
+      <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="vw_wizard_reach_channel" showFeatureCount="0">
         <filegroup open="true" hidden="false">
-          <legendlayerfile isInOverview="0" layerid="vw_wizard_reach_channel20141025180143924" visible="1"/>
+          <legendlayerfile isInOverview="0" layerid="vw_wizard_reach_channel20141025180143924" visible="0"/>
         </filegroup>
       </legendlayer>
-      <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="vw_wizard_cover_manhole" showFeatureCount="0">
+      <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="vw_wizard_cover_manhole" showFeatureCount="0">
         <filegroup open="true" hidden="false">
-          <legendlayerfile isInOverview="0" layerid="vw_wizard_cover_manhole20141025170618565" visible="1"/>
+          <legendlayerfile isInOverview="0" layerid="vw_wizard_cover_manhole20141025170618565" visible="0"/>
         </filegroup>
       </legendlayer>
     </legendgroup>
@@ -8688,6 +8688,9 @@
         <edittype widgetv2type="Range" name="dimension2">
           <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="4000" Suffix=" mm."/>
         </edittype>
+        <edittype widgetv2type="Range" name="depth">
+          <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="10000" Suffix=" mm."/>
+        </edittype>
         <edittype widgetv2type="ValueRelation" name="function">
           <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_manhole_function20140414162421213" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
@@ -9019,6 +9022,9 @@
         <edittype widgetv2type="Range" name="dimension2">
           <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="4000" Suffix=" mm."/>
         </edittype>
+        <edittype widgetv2type="Range" name="depth">
+          <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="10000" Suffix=" mm."/>
+        </edittype>
         <edittype widgetv2type="ValueRelation" name="function">
           <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_manhole_function20140414162421213" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
@@ -9112,7 +9118,7 @@
         </spatialrefsys>
       </srs>
       <provider encoding="System">postgres</provider>
-      <previewExpression></previewExpression>
+      <previewExpression>COALESCE( "location_name", '&lt;NULL>' )</previewExpression>
       <vectorjoins/>
       <expressionfields/>
       <map-layer-style-manager current="">
@@ -9125,29 +9131,29 @@
         <edittype widgetv2type="TextEdit" name="brand">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="cover_shape">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="cover_shape">
+          <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_cover_cover_shape20140414164000158" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="diameter">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="Range" name="diameter">
+          <widgetv2config AllowNull="1" fieldEditable="1" Step="10" Style="SpinBox" labelOnTop="0" Min="0" Max="9999" Suffix=" mm."/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="fastening">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="fastening">
+          <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_cover_fastening20140414164000205" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="level">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="Range" name="level">
+          <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="4000"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="cover_material">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="cover_material">
+          <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_cover_material20140414164000235" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="positional_accuracy">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="positional_accuracy">
+          <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_cover_positional_accuracy20140909160109629" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="sludge_bucket">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="sludge_bucket">
+          <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_cover_sludge_bucket20140414164000292" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="venting">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="venting">
+          <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_cover_venting20140414164000319" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="identifier">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -9155,8 +9161,8 @@
         <edittype widgetv2type="TextEdit" name="remark">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="renovation_demand">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="renovation_demand">
+          <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_structure_part_renovation_demand20140414162114871" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -9164,47 +9170,47 @@
         <edittype widgetv2type="TextEdit" name="provider">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="special_structure_obj_id">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="Hidden" name="special_structure_obj_id">
+          <widgetv2config fieldEditable="1" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="bypass">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="bypass">
+          <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_special_structure_bypass20140822224556332" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="depth">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="Range" name="depth">
+          <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="10000" Suffix=" mm."/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="emergency_spillway">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="emergency_spillway">
+          <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_special_structure_emergency_spillway20140822224556342" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="function">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="function">
+          <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_special_structure_function20140822224556351" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="stormwater_tank_arrangement">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="stormwater_tank_arrangement">
+          <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_special_structure_stormwater_tank_arrangement20140822224556359" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="upper_elevation">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="Range" name="upper_elevation">
+          <widgetv2config AllowNull="1" fieldEditable="1" Step="10" Style="SpinBox" labelOnTop="0" Min="0" Max="4000" Suffix=" m.a.s.l."/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="accessibility">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="accessibility">
+          <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_wastewater_structure_accessibility20140414170644831" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="contract_section">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="detail_geometry_geometry">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="Hidden" name="detail_geometry_geometry">
+          <widgetv2config fieldEditable="1" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="detail_geometry_3d_geometry">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="Hidden" name="detail_geometry_3d_geometry">
+          <widgetv2config fieldEditable="1" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="financing">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="financing">
+          <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_wastewater_structure_financing20140822223132657" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="gross_costs">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="Range" name="gross_costs">
+          <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="100000" Suffix=" CHF."/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="inspection_interval">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="Range" name="inspection_interval">
+          <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="1000"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="location_name">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -9212,44 +9218,44 @@
         <edittype widgetv2type="TextEdit" name="records">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="renovation_necessity">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="renovation_necessity">
+          <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_wastewater_structure_renovation_necessity20140822223132668" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="replacement_value">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="Range" name="replacement_value">
+          <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="100000"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="rv_base_year">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="Range" name="rv_base_year">
+          <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="1900" Max="2100"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="rv_construction_type">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="rv_construction_type">
+          <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" fieldEditable="1" Key="value_en" Layer="vl_reach_relining_construction20140822223630041" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="status">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="status">
+          <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_wastewater_structure_status20140822223132688" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="structure_condition">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="structure_condition">
+          <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_wastewater_structure_structure_condition20140414170644881" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="subsidies">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="Range" name="subsidies">
+          <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="100000"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="year_of_construction">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="Range" name="year_of_construction">
+          <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="1900" Max="2100"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="year_of_replacement">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="Range" name="year_of_replacement">
+          <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="1900" Max="2100"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="fk_owner">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="RelationReference" name="fk_owner">
+          <widgetv2config OrderByValue="1" fieldEditable="1" ShowForm="0" Relation="wizard-special_structure-organisation" ReadOnly="0" MapIdentification="0" labelOnTop="0" AllowNULL="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="fk_operator">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="backflow_level">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="Range" name="backflow_level">
+          <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="4000" Suffix=" m.a.s.l."/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="bottom_level">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="Range" name="bottom_level">
+          <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="4000" Suffix=" m.a.s.l."/>
         </edittype>
       </edittypes>
       <renderer-v2 symbollevels="0" type="singleSymbol">
@@ -9462,29 +9468,29 @@
         <edittype widgetv2type="TextEdit" name="brand">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="cover_shape">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="cover_shape">
+          <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_cover_cover_shape20140414164000158" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="diameter">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="Range" name="diameter">
+          <widgetv2config AllowNull="1" fieldEditable="1" Step="10" Style="SpinBox" labelOnTop="0" Min="0" Max="9999" Suffix=" mm."/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="fastening">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="fastening">
+          <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_cover_fastening20140414164000205" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="level">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="Range" name="level">
+          <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="4000"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="cover_material">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="cover_material">
+          <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_cover_material20140414164000235" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="positional_accuracy">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="positional_accuracy">
+          <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_cover_positional_accuracy20140909160109629" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="sludge_bucket">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="sludge_bucket">
+          <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_cover_sludge_bucket20140414164000292" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="venting">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="venting">
+          <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_cover_venting20140414164000319" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="identifier">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -9492,8 +9498,8 @@
         <edittype widgetv2type="TextEdit" name="remark">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="renovation_demand">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="renovation_demand">
+          <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_structure_part_renovation_demand20140414162114871" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -9501,47 +9507,47 @@
         <edittype widgetv2type="TextEdit" name="provider">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="special_structure_obj_id">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="Hidden" name="special_structure_obj_id">
+          <widgetv2config fieldEditable="1" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="bypass">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="bypass">
+          <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_special_structure_bypass20140822224556332" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="depth">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="Range" name="depth">
+          <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="10000" Suffix=" mm."/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="emergency_spillway">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="emergency_spillway">
+          <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_special_structure_emergency_spillway20140822224556342" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="function">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="function">
+          <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_special_structure_function20140822224556351" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="stormwater_tank_arrangement">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="stormwater_tank_arrangement">
+          <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_special_structure_stormwater_tank_arrangement20140822224556359" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="upper_elevation">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="Range" name="upper_elevation">
+          <widgetv2config AllowNull="1" fieldEditable="1" Step="10" Style="SpinBox" labelOnTop="0" Min="0" Max="4000" Suffix=" m.a.s.l."/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="accessibility">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="accessibility">
+          <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_wastewater_structure_accessibility20140414170644831" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="contract_section">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="detail_geometry_geometry">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="Hidden" name="detail_geometry_geometry">
+          <widgetv2config fieldEditable="1" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="detail_geometry_3d_geometry">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="Hidden" name="detail_geometry_3d_geometry">
+          <widgetv2config fieldEditable="1" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="financing">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="financing">
+          <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_wastewater_structure_financing20140822223132657" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="gross_costs">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="Range" name="gross_costs">
+          <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="100000" Suffix=" CHF."/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="inspection_interval">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="Range" name="inspection_interval">
+          <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="1000"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="location_name">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -9549,44 +9555,44 @@
         <edittype widgetv2type="TextEdit" name="records">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="renovation_necessity">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="renovation_necessity">
+          <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_wastewater_structure_renovation_necessity20140822223132668" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="replacement_value">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="Range" name="replacement_value">
+          <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="100000"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="rv_base_year">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="Range" name="rv_base_year">
+          <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="1900" Max="2100"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="rv_construction_type">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="rv_construction_type">
+          <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" fieldEditable="1" Key="value_en" Layer="vl_reach_relining_construction20140822223630041" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="status">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="status">
+          <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_wastewater_structure_status20140822223132688" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="structure_condition">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="structure_condition">
+          <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" fieldEditable="1" Key="code" Layer="vl_wastewater_structure_structure_condition20140414170644881" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="subsidies">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="Range" name="subsidies">
+          <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="100000"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="year_of_construction">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="Range" name="year_of_construction">
+          <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="1900" Max="2100"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="year_of_replacement">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="Range" name="year_of_replacement">
+          <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="1900" Max="2100"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="fk_owner">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="RelationReference" name="fk_owner">
+          <widgetv2config OrderByValue="1" fieldEditable="1" ShowForm="0" Relation="wizard-special_structure-organisation" ReadOnly="0" MapIdentification="0" labelOnTop="0" AllowNULL="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="fk_operator">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="backflow_level">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="Range" name="backflow_level">
+          <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="4000" Suffix=" m.a.s.l."/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="bottom_level">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="Range" name="bottom_level">
+          <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="4000" Suffix=" m.a.s.l."/>
         </edittype>
       </edittypes>
     </maplayer>
@@ -10305,9 +10311,11 @@
         <value>vw_special_structure20141013203257795</value>
         <value>vw_wastewater_node20141111091100662</value>
         <value>vw_wizard_cover_manhole20141025170618565</value>
+        <value>vw_wizard_cover_special_structure20150129140416706</value>
         <value>vw_wizard_reach_channel20141025180143924</value>
       </LayerSnappingList>
       <LayerSnappingEnabledList type="QStringList">
+        <value>disabled</value>
         <value>disabled</value>
         <value>disabled</value>
         <value>disabled</value>
@@ -10332,8 +10340,10 @@
         <value>0</value>
         <value>0</value>
         <value>0</value>
+        <value>0</value>
       </LayerSnappingToleranceUnitList>
       <LayerSnapToList type="QStringList">
+        <value>to_vertex_and_segment</value>
         <value>to_vertex_and_segment</value>
         <value>to_vertex_and_segment</value>
         <value>to_vertex_and_segment</value>
@@ -10348,6 +10358,7 @@
       <DefaultSnapType type="QString">to vertex</DefaultSnapType>
       <DefaultSnapTolerance type="double">0</DefaultSnapTolerance>
       <LayerSnappingToleranceList type="QStringList">
+        <value>0.000000</value>
         <value>0.000000</value>
         <value>0.000000</value>
         <value>0.000000</value>
