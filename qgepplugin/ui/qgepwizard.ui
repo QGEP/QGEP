@@ -44,6 +44,11 @@
       </item>
       <item>
        <property name="text">
+        <string>Special Structure</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
         <string>Reach</string>
        </property>
       </item>

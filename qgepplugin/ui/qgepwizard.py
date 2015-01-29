@@ -59,6 +59,12 @@ class QgepWizard( QDockWidget, Ui_QgepDockWidget ):
             lyr.startEditing()
             self.iface.mapCanvas().setMapTool( self.mapToolAddReach )
 
+        elif self.layerComboBox.currentText() == 'Special Structure':
+            lyr = QgepLayerManager.layer('vw_wizard_cover_special_structure')
+            lyr.startEditing()
+            self.iface.setActiveLayer(lyr)
+            self.iface.actionAddFeature().trigger()
+
     @pyqtSlot()
     def stateChanged(self):
         if self.stateButton.text() == 'Start Data Entry':
@@ -66,7 +72,9 @@ class QgepWizard( QDockWidget, Ui_QgepDockWidget ):
             self.layerChanged(0)
             self.stateButton.setText( 'Stop Data Entry' )
         else:
-            for lyr in [QgepLayerManager.layer('vw_wizard_cover_manhole'), QgepLayerManager.layer('vw_wizard_reach_channel')]:
+            for lyr in [ QgepLayerManager.layer('vw_wizard_cover_manhole')
+                       , QgepLayerManager.layer('vw_wizard_reach_channel')
+                       , QgepLayerManager.layer('vw_wizard_cover_special_structure') ]:
                 lyr.commitChanges()
                 self.layerComboBox.setEnabled(False)
                 self.stateButton.setText( 'Start Data Entry' )
