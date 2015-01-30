@@ -171,9 +171,9 @@
         </layer-tree-layer>
       </layer-tree-group>
     </layer-tree-group>
-    <layer-tree-group expanded="0" checked="Qt::Unchecked" name="Wastewater Structures">
+    <layer-tree-group expanded="0" checked="Qt::PartiallyChecked" name="Wastewater Structures">
       <customproperties/>
-      <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="vw_manhole20141013203257827" name="Manhole">
+      <layer-tree-layer expanded="1" checked="Qt::Checked" id="vw_manhole20141013203257827" name="Manhole">
         <customproperties/>
       </layer-tree-layer>
       <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="vw_channel20140822221301394" name="Channel">
@@ -610,10 +610,10 @@
         </legendlayer>
       </legendgroup>
     </legendgroup>
-    <legendgroup open="false" checked="Qt::Unchecked" name="Wastewater Structures">
-      <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Manhole" showFeatureCount="0">
+    <legendgroup open="false" checked="Qt::PartiallyChecked" name="Wastewater Structures">
+      <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Manhole" showFeatureCount="0">
         <filegroup open="true" hidden="false">
-          <legendlayerfile isInOverview="0" layerid="vw_manhole20141013203257827" visible="0"/>
+          <legendlayerfile isInOverview="0" layerid="vw_manhole20141013203257827" visible="1"/>
         </filegroup>
       </legendlayer>
       <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Channel" showFeatureCount="0">
@@ -1541,10 +1541,10 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform></editform>
+      <editform>.</editform>
       <editforminit/>
       <featformsuppress>0</featformsuppress>
-      <annotationform></annotationform>
+      <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -6736,7 +6736,7 @@
         <selectedonly on=""/>
       </labelattributes>
       <editform>./forms/manhole.ui</editform>
-      <editforminit/>
+      <editforminit>qgepplugin.ui.forms.manholeOpen</editforminit>
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>uifilelayout</editorlayout>
