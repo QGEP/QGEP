@@ -6,6 +6,11 @@
 
 -- DROP FUNCTION qgep.manhole_symbology_attribs(text);
 
+-- NEW return type necessary for the function below
+CREATE TYPE qgep.manhole_symbology_attribs AS
+   (function_hierarchic smallint,
+    usage_current smallint);
+
 CREATE OR REPLACE FUNCTION qgep.manhole_symbology_attribs(manhole_object_id text)
   RETURNS qgep.manhole_symbology_attribs AS
 $BODY$DECLARE
