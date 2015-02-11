@@ -2,7 +2,7 @@
 
 BEGIN TRANSACTION;
 
--- DROP VIEW vw_wizard_cover_manhole;
+-- DROP VIEW qgep.vw_wizard_cover_manhole;
 
 CREATE OR REPLACE VIEW qgep.vw_wizard_cover_manhole AS 
  SELECT co.obj_id,
@@ -102,8 +102,8 @@ BEGIN
        (
          NEW.dimension1
        , NEW.dimension2
-       , NEW.function
        , NEW.depth
+       , NEW.function
        , NEW.material
        , NEW.surface_inflow
        , NEW.accessibility
@@ -163,7 +163,7 @@ BEGIN
     , diameter
     , fastening
     , level
-    , cover_material
+    , material
     , positional_accuracy
     , situation_geometry
     , sludge_bucket

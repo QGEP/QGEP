@@ -242,7 +242,7 @@ BEGIN
 END; $BODY$ LANGUAGE plpgsql VOLATILE
   COST 100;
 
--- DROP TRIGGER vw_wizard_reach_channel_ON_INSERT ON qgep.vw_wizard_reach_channel;
+DROP TRIGGER IF EXISTS vw_wizard_reach_channel_ON_INSERT ON qgep.vw_wizard_reach_channel;
 
 CREATE TRIGGER vw_wizard_reach_channel_ON_INSERT INSTEAD OF INSERT ON qgep.vw_wizard_reach_channel
   FOR EACH ROW EXECUTE PROCEDURE qgep.vw_wizard_reach_channel_INSERT();
