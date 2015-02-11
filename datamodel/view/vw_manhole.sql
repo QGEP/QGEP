@@ -1,4 +1,6 @@
-﻿CREATE OR REPLACE VIEW qgep.vw_manhole AS
+﻿BEGIN TRANSACTION;
+
+CREATE OR REPLACE VIEW qgep.vw_manhole AS
 
 SELECT
   MH.obj_id
@@ -130,7 +132,7 @@ END; $BODY$
 ALTER FUNCTION qgep.vw_manhole_insert()
   OWNER TO qgep;
 
--- DROP TRIGGER vw_manhole_ON_INSERT ON qgep.vw_manhole;
+DROP TRIGGER IF EXISTS vw_manhole_ON_INSERT ON qgep.vw_manhole;
 
 CREATE TRIGGER vw_manhole_ON_INSERT INSTEAD OF INSERT ON qgep.vw_manhole
   FOR EACH ROW EXECUTE PROCEDURE qgep.vw_manhole_insert();
@@ -189,3 +191,5 @@ CREATE OR REPLACE RULE vw_manhole_ON_DELETE AS ON DELETE TO qgep.vw_manhole DO I
   DELETE FROM qgep.od_manhole WHERE obj_id = OLD.obj_id;
   DELETE FROM qgep.od_wastewater_structure WHERE obj_id = OLD.obj_id;
 );
+
+END TRANSACTION;

@@ -1,5 +1,8 @@
-﻿CREATE OR REPLACE VIEW qgep.vw_cover AS
+﻿BEGIN TRANSACTION;
 
+DROP VIEW qgep.vw_cover CASCADE;
+
+CREATE OR REPLACE VIEW qgep.vw_cover AS
 SELECT co.obj_id,
     co.brand,
     co.cover_shape,
@@ -142,3 +145,5 @@ CREATE OR REPLACE RULE vw_cover_ON_DELETE AS ON DELETE TO qgep.vw_cover DO INSTE
   DELETE FROM qgep.od_cover WHERE obj_id = OLD.obj_id;
   DELETE FROM qgep.od_structure_part WHERE obj_id = OLD.obj_id;
 );
+
+END TRANSACTION;
