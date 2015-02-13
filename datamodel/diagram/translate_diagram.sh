@@ -6,10 +6,10 @@
 
 show_help() {
 cat << EOF
-Usage: ${0##*/} [-r] [-s PG_SERVICE] [-l LANGUAGE] [-o OUTFILE] [FILE]...
+Usage: ${0##*/} [-v] [-s PG_SERVICE] [-l LANGUAGE] [-o OUTFILE] [FILE]...
 
 Translates the diagram of QGEP schema.
-	-r			report translated and untranslated terms
+	-v			full report of untranslated terms
 	-s			specify Postgres service name (qgep by default)
 	-l LANGUAGE	specify the language: en, fr or de.
 	-o OUTFILE	specify output file (ovewrite existing otherwise)
@@ -38,20 +38,25 @@ EOF
 # ---------
 
 
+
 #************************
-# PARSE ARGUMENTS
-REPORT=0
+# INIT VARS
+LIMITREPORT=500
 OUTFILE=
 export PGSERVICE=qgep
+TMPFOLDER=.qgep_diagram_translation
+TMPFILE=$TMPFOLDER/uncompressed.pdf
 
-while getopts "l:rs:o:" opt; do
+#************************
+# PARSE ARGUMENTS
+while getopts "l:vs:o:" opt; do
   case $opt in
     l)
       echo "Translate to: $OPTARG" >&2
       LANG=$OPTARG
       ;;
-    r)
-      REPORT=1
+    v)
+      LIMITREPORT=25000
       ;;
     s)
       EXPORT PGSERVICE=$OPTARG
@@ -85,6 +90,11 @@ else
 fi
 
 #************************
+# PREPARE REPORT COMMANDS
+REPORT_PRE="MD5=\`md5sum $TMPFILE\` && "
+REPORT_POST=" && if [ \"\$MD5\" = \"\`md5sum $TMPFILE\`\" ]; then ITEM_NOTTR=\$((\$ITEM_NOTTR+1)); ITEM_NOTTR_NAME=\"\$ITEM_NOTTR_NAME, \$CURRENTITEM\"; else ITEM_TR=\$((\$ITEM_TR+1)); fi"
+
+#************************
 # Fake translation request (list all comments) until we have a proper translation table
 ODTRTABLE="
 SELECT 
@@ -104,17 +114,16 @@ INNER JOIN information_schema.columns c ON (pgd.objsubid=c.ordinal_position
             AND c.table_name=st.relname 
             AND c.table_schema = 'qgep'
             AND c.table_name LIKE 'od_%')"
-            
- 
+
+
 
 #************************
 # temporary folder
-TMPFOLDER=.qgep_diagram_translation # if change, also change in awk commands
 mkdir -p $TMPFOLDER
 
 #************************
 # uncompress pdf
-pdftk $DIAFILE output $TMPFOLDER/uncompressed.pdf uncompress
+pdftk $DIAFILE output $TMPFILE uncompress
 
 #************************
 # NAME OF TABLES
@@ -124,7 +133,9 @@ psql --no-align -c "SELECT tablename, name_$LANG FROM qgep.is_dictionary" > $TMP
 # remove first and last lines
 tail -n +2 $TMPFOLDER/od_table.tr | head -n -1 > $TMPFOLDER/od_table.tr.new && mv $TMPFOLDER/od_table.tr.new $TMPFOLDER/od_table.tr
 # create shell script
-awk -F\| '{print "sed -i -e \"s|\\$?\\$" $1 "|" $2 "|g\" .qgep_diagram_translation/uncompressed.pdf "}' $TMPFOLDER/od_table.tr > $TMPFOLDER/od_table.sh
+awk -v filepath="$TMPFILE" -v report_pre="$REPORT_PRE" -v report_post="$REPORT_POST" -F\| '{print report_pre "CURRENTITEM=\""$1"\" && sed -i -e \"s|\\$?\\$" $1 "|" $2 "|g\" " filepath report_post }' $TMPFOLDER/od_table.tr > $TMPFOLDER/od_table.sh
+sed -i '1s/^/ITEM_TR=0\nITEM_NOTTR=0\nITEM_NOTTR_NAME=\n/' $TMPFOLDER/od_table.sh
+sed -i -e '$aecho "OD tables names:"\necho "  * Translated: \$ITEM_TR"\necho "  * Not Translated: \$ITEM_NOTTR"\necho "\$ITEM_NOTTR_NAME" | cut -c5-'$LIMITREPORT $TMPFOLDER/od_table.sh
 bash $TMPFOLDER/od_table.sh
 
 #************************
@@ -134,7 +145,9 @@ psql --no-align -c "SELECT table_name, column_name, replace(field_$LANG,'\"','\\
 # remove first and last lines
 tail -n +2 $TMPFOLDER/od_fields.tr | head -n -1 > $TMPFOLDER/od_fields.tr.new && mv $TMPFOLDER/od_fields.tr.new $TMPFOLDER/od_fields.tr
 # create shell script
-awk -F\| '{print "sed -i -e \"s|\\$\\\\\\#\\$" $1 "\\$" $2 "\\$name|" $3 "|g\" .qgep_diagram_translation/uncompressed.pdf && sed -i -e \"s|\\$\\\\\\#\\$" $1 "\\$" $2 "\\$description|" $4 "|g\" .qgep_diagram_translation/uncompressed.pdf"}' $TMPFOLDER/od_fields.tr > $TMPFOLDER/od_fields.sh
+awk -v filepath="$TMPFILE" -v report_pre="$REPORT_PRE" -v report_post="$REPORT_POST" -F\| '{print report_pre "CURRENTITEM=\""$1"/"$2"\" && sed -i -e \"s|\\$\\\\\\#\\$" $1 "\\$" $2 "\\$name|" $3 "|g\" .qgep_diagram_translation/uncompressed.pdf && sed -i -e \"s|\\$\\\\\\#\\$" $1 "\\$" $2 "\\$description|" $4 "|g\" " filepath report_post }' $TMPFOLDER/od_fields.tr > $TMPFOLDER/od_fields.sh
+sed -i '1s/^/ITEM_TR=0\nITEM_NOTTR=0\nITEM_NOTTR_NAME=\n/' $TMPFOLDER/od_fields.sh
+sed -i -e '$aecho "OD fields:"\necho "  * Translated: \$ITEM_TR"\necho "  * Not Translated: \$ITEM_NOTTR"\necho "\$ITEM_NOTTR_NAME" | cut -c5-'$LIMITREPORT $TMPFOLDER/od_fields.sh
 bash $TMPFOLDER/od_fields.sh
 
 #************************
@@ -147,7 +160,9 @@ psql --no-align -c "SELECT table_name, code, value_$LANG, abbr_$LANG FROM ($LIST
 # remove first and last lines
 tail -n +2 $TMPFOLDER/vl_list.tr | head -n -1 > $TMPFOLDER/vl_list.tr.new && mv $TMPFOLDER/vl_list.tr.new $TMPFOLDER/vl_list.tr
 # create shell script
-awk -F\| '{print "sed -i -e \"s|\\$\\\\\\#\\$" $1 "\\$" $2 "\\$name|" $3 "|g\" .qgep_diagram_translation/uncompressed.pdf "}' $TMPFOLDER/vl_list.tr > $TMPFOLDER/vl_list.sh
+awk -v filepath="$TMPFILE" -v report_pre="$REPORT_PRE" -v report_post="$REPORT_POST" -F\| '{print report_pre "CURRENTITEM=\""$1"/"$2"\" && sed -i -e \"s|\\$\\\\\\#\\$" $1 "\\$" $2 "\\$name|" $3 "|g\" " filepath report_post }' $TMPFOLDER/vl_list.tr > $TMPFOLDER/vl_list.sh
+sed -i '1s/^/ITEM_TR=0\nITEM_NOTTR=0\nITEM_NOTTR_NAME=\n/' $TMPFOLDER/vl_list.sh
+sed -i -e '$aecho "Value lists:"\necho "  * Translated: \$ITEM_TR"\necho "  * Not Translated: \$ITEM_NOTTR"\necho "\$ITEM_NOTTR_NAME" | cut -c5-'$LIMITREPORT $TMPFOLDER/vl_list.sh
 bash $TMPFOLDER/vl_list.sh
 
 
