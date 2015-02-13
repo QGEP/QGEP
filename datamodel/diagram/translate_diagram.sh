@@ -21,7 +21,7 @@
 #
 # ---------
 
-export PGSERVICE=qWat
+export PGSERVICE=qgep
 
 # Fake translation request (list all comments) until we have a proper translation table
 ODTRTABLE="
