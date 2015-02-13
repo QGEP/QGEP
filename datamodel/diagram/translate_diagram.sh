@@ -145,7 +145,7 @@ psql --no-align -c "SELECT table_name, column_name, replace(field_$LANG,'\"','\\
 # remove first and last lines
 tail -n +2 $TMPFOLDER/od_fields.tr | head -n -1 > $TMPFOLDER/od_fields.tr.new && mv $TMPFOLDER/od_fields.tr.new $TMPFOLDER/od_fields.tr
 # create shell script
-awk -v filepath="$TMPFILE" -v report_pre="$REPORT_PRE" -v report_post="$REPORT_POST" -F\| '{print report_pre "CURRENTITEM=\""$1"/"$2"\" && sed -i -e \"s|\\$\\\\\\#\\$" $1 "\\$" $2 "\\$name|" $3 "|g\" .qgep_diagram_translation/uncompressed.pdf && sed -i -e \"s|\\$\\\\\\#\\$" $1 "\\$" $2 "\\$description|" $4 "|g\" " filepath report_post }' $TMPFOLDER/od_fields.tr > $TMPFOLDER/od_fields.sh
+awk -v filepath="$TMPFILE" -v report_pre="$REPORT_PRE" -v report_post="$REPORT_POST" -F\| '{print report_pre "CURRENTITEM=\""$1"/"$2"\" && sed -i -e \"s|\\$\\\\\\#\\$" $1 "\\$" $2 "\\$name|" $3 "|g\" "filepath" && sed -i -e \"s|\\$\\\\\\#\\$" $1 "\\$" $2 "\\$description|" $4 "|g\" " filepath report_post }' $TMPFOLDER/od_fields.tr > $TMPFOLDER/od_fields.sh
 sed -i '1s/^/ITEM_TR=0\nITEM_NOTTR=0\nITEM_NOTTR_NAME=\n/' $TMPFOLDER/od_fields.sh
 sed -i -e '$aecho "OD fields:"\necho "  * Translated: \$ITEM_TR"\necho "  * Not Translated: \$ITEM_NOTTR"\necho "\$ITEM_NOTTR_NAME" | cut -c5-'$LIMITREPORT $TMPFOLDER/od_fields.sh
 bash $TMPFOLDER/od_fields.sh
