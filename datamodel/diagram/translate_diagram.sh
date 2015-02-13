@@ -7,15 +7,23 @@
 # Translation of the schema diagram in PDF
 #
 # Translation are read from the database:
-#    table names: table qgep.is_dictionnary
-#    fiels of OD tables: fake table at the moment (read the comments of the fields)
-#    value lists: directly from qgep.vl_*
+#   * table names: table qgep.is_dictionnary
+#   * fiels of OD tables: fake table at the moment (read the comments of the fields)
+#   * value lists: directly from qgep.vl_*
 #    
 # run: bash translate_diagram.sh LANG FILE
 # LANG: language: en / fr / fr
 # FILE: PDF file to translate
 #
 # for example: bash translate_diagram.sh fr 9925_17_mut_150212.pdf
+#
+# How it works:
+#  table names, fields and value lists are tagged with
+#  special signs so they can be found and translated.
+#  text in (...) should be replaced:
+#    * od table names should be named $?$(od_table_name)
+#    * field names and descriptions: $#($od_table_name)$(field_name)$name and $#($od_table_name)$(field_name)$description
+#    * value lists: $#$(vl_table_name)$(key)$name
 #
 # TODO: report number of translated and not translated elements
 #
