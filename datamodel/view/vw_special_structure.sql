@@ -126,7 +126,7 @@ END; $BODY$
 ALTER FUNCTION qgep.vw_special_structure_insert()
   OWNER TO qgep;
 
--- DROP TRIGGER vw_special_structure_ON_INSERT ON qgep.vw_special_structure;
+DROP TRIGGER IF EXISTS vw_special_structure_ON_INSERT ON qgep.vw_special_structure;
 
 CREATE TRIGGER vw_special_structure_ON_INSERT INSTEAD OF INSERT ON qgep.vw_special_structure
   FOR EACH ROW EXECUTE PROCEDURE qgep.vw_special_structure_insert();
