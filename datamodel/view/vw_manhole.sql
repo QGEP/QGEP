@@ -104,7 +104,7 @@ BEGIN
             , NEW.fk_owner
             , NEW.fk_operator
            )
-           RETURNING obj_id INTO ws_obj_id;
+           RETURNING obj_id INTO NEW.obj_id;
 
   INSERT INTO qgep.od_manhole(
               obj_id
@@ -116,7 +116,7 @@ BEGIN
             , surface_inflow
             )
             VALUES(
-              ws_obj_id -- obj_id
+              NEW.obj_id -- obj_id
             , NEW.depth -- depth
             , NEW.dimension1 -- dimension1
             , NEW.dimension2 -- dimension2

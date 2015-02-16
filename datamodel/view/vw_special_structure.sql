@@ -45,8 +45,6 @@ LEFT JOIN qgep.od_wastewater_structure WS
 CREATE OR REPLACE FUNCTION qgep.vw_special_structure_insert()
   RETURNS trigger AS
 $BODY$
-DECLARE
-  ws_obj_id character varying(16);
 BEGIN
   INSERT INTO qgep.od_wastewater_structure (
             obj_id
@@ -102,7 +100,7 @@ BEGIN
             , NEW.fk_owner
             , NEW.fk_operator
            )
-           RETURNING obj_id INTO ws_obj_id;
+           RETURNING obj_id INTO NEW.obj_id;
 
   INSERT INTO qgep.od_special_structure(
             obj_id, 
@@ -113,7 +111,7 @@ BEGIN
             stormwater_tank_arrangement, 
             upper_elevation)
     VALUES (
-            ws_obj_id, 
+            NEW.obj_id, 
             NEW.bypass, 
             NEW.depth, 
             NEW.emergency_spillway, 

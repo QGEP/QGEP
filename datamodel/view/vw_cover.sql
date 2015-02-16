@@ -39,8 +39,6 @@ SELECT co.obj_id,
 CREATE OR REPLACE FUNCTION qgep.vw_cover_insert()
   RETURNS trigger AS
 $BODY$
-DECLARE
-  sp_obj_id character varying(16);
 BEGIN
   INSERT INTO qgep.od_structure_part(
             obj_id
@@ -61,7 +59,7 @@ BEGIN
             , NEW.provider
             , NEW.fk_wastewater_structure
            )
-           RETURNING obj_id INTO sp_obj_id;
+           RETURNING obj_id INTO NEW.obj_id;
 
   INSERT INTO qgep.od_cover(
                 obj_id 
@@ -78,7 +76,7 @@ BEGIN
               , venting
             )
             VALUES(
-              sp_obj_id -- obj_id
+              NEW.obj_id -- obj_id
             , NEW.brand
             , NEW.cover_shape
             , NEW.depth

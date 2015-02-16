@@ -24,8 +24,6 @@ LEFT JOIN qgep.od_structure_part SP
 CREATE OR REPLACE FUNCTION qgep.vw_dryweather_flume_insert()
   RETURNS trigger AS
 $BODY$
-DECLARE
-  sp_obj_id character varying(16);
 BEGIN
   INSERT INTO qgep.od_structure_part(
             obj_id
@@ -46,14 +44,14 @@ BEGIN
             , NEW.provider
             , NEW.fk_wastewater_structure
            )
-           RETURNING obj_id INTO sp_obj_id;
+           RETURNING obj_id INTO NEW.obj_id;
 
   INSERT INTO qgep.od_dryweather_flume(
                 obj_id 
               , material
             )
             VALUES(
-              sp_obj_id -- obj_id
+              NEW.obj_id -- obj_id
             , NEW.material
             );
   RETURN NEW;

@@ -65,10 +65,6 @@
 CREATE OR REPLACE FUNCTION qgep.vw_reach_insert()
   RETURNS trigger AS
 $BODY$
-DECLARE
-  rp_from_obj_id character varying(16);
-  rp_to_obj_id character varying(16);
-  ne_obj_id character varying(16);
 BEGIN
   INSERT INTO qgep.od_reach_point(
             obj_id
@@ -98,7 +94,7 @@ BEGIN
             , NEW.rp_from_provider -- provider
             , NEW.rp_from_fk_wastewater_networkelement -- fk_wastewater_networkelement
           )
-    RETURNING obj_id INTO rp_from_obj_id;
+    RETURNING obj_id INTO NEW.rp_from_obj_id;
 
 
     INSERT INTO qgep.od_reach_point(
@@ -129,7 +125,7 @@ BEGIN
             , NEW.rp_to_provider -- provider
             , NEW.rp_to_fk_wastewater_networkelement -- fk_wastewater_networkelement
           )
-    RETURNING obj_id INTO rp_to_obj_id;
+    RETURNING obj_id INTO NEW.rp_to_obj_id;
     
   INSERT INTO qgep.od_wastewater_networkelement (
             obj_id
@@ -147,7 +143,7 @@ BEGIN
             , NEW.provider -- provider
             , NEW.fk_wastewater_structure -- fk_wastewater_structure
            )
-           RETURNING obj_id INTO ne_obj_id;
+           RETURNING obj_id INTO NEW.obj_id;
 
   INSERT INTO qgep.od_reach (
             obj_id
@@ -169,7 +165,8 @@ BEGIN
             , fk_reach_point_from
             , fk_reach_point_to
             , fk_pipe_profile )
-    VALUES( ne_obj_id -- obj_id
+    VALUES(
+              NEW.obj_id -- obj_id
             , NEW.clear_height
             , NEW.coefficient_of_friction
             , NEW.elevation_determination
@@ -185,8 +182,8 @@ BEGIN
             , NEW.ring_stiffness
             , NEW.slope_building_plan
             , NEW.wall_roughness
-            , rp_from_obj_id
-            , rp_to_obj_id
+            , NEW.rp_from_obj_id
+            , NEW.rp_to_obj_id
             , NEW.fk_pipe_profile);
   RETURN NEW;
 END; $BODY$

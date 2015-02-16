@@ -45,8 +45,6 @@ LEFT JOIN qgep.od_wastewater_structure WS
 CREATE OR REPLACE FUNCTION qgep.vw_discharge_point_insert()
   RETURNS trigger AS
 $BODY$
-DECLARE
-  ws_obj_id character varying(16);
 BEGIN
   INSERT INTO qgep.od_wastewater_structure (
             obj_id
@@ -102,7 +100,7 @@ BEGIN
             , NEW.fk_owner
             , NEW.fk_operator
            )
-           RETURNING obj_id INTO ws_obj_id;
+           RETURNING obj_id INTO NEW.obj_id;
 
   INSERT INTO qgep.od_discharge_point(
               obj_id
@@ -113,7 +111,7 @@ BEGIN
             , upper_elevation
             , waterlevel_hydraulic )
             VALUES (
-            ws.obj_id
+            NEW.obj_id
             , NEW.depth
             , NEW.highwater_level
             , NEW.relevance
@@ -121,7 +119,7 @@ BEGIN
             , NEW.upper_elevation
             , NEW.waterlevel_hydraulic
             );
-            
+
   RETURN NEW;
 END; $BODY$
   LANGUAGE plpgsql VOLATILE
