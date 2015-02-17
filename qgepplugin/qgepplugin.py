@@ -25,7 +25,7 @@
 
 import logging
 import os
-import resources #@UnusedImport needed to make icons etc. appear
+import resources_rc #@UnusedImport needed to make icons etc. appear
 
 from PyQt4.QtCore import pyqtSlot, QSettings, QCoreApplication, Qt
 from PyQt4.QtGui import QAction, QIcon
