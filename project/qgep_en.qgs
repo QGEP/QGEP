@@ -6324,7 +6324,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_catchment_area_direct_discharge_current20150216165040908</id>
-      <datasource>service='pg_qgep' user='qgep' sslmode=disable key='code' estimatedmetadata=true table="qgep"."vl_catchment_area_direct_discharge_current" sql=</datasource>
+      <datasource>service='pg_qgep' sslmode=disable key='code' estimatedmetadata=true table="qgep"."vl_catchment_area_direct_discharge_current" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -6414,7 +6414,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_catchment_area_direct_discharge_planned20150216165040986</id>
-      <datasource>service='pg_qgep' user='qgep' sslmode=disable key='code' estimatedmetadata=true table="qgep"."vl_catchment_area_direct_discharge_planned" sql=</datasource>
+      <datasource>service='pg_qgep' sslmode=disable key='code' estimatedmetadata=true table="qgep"."vl_catchment_area_direct_discharge_planned" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -6504,7 +6504,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_catchment_area_drainage_system_current20150216165040977</id>
-      <datasource>service='pg_qgep' user='qgep' sslmode=disable key='code' estimatedmetadata=true table="qgep"."vl_catchment_area_drainage_system_current" sql=</datasource>
+      <datasource>service='pg_qgep' sslmode=disable key='code' estimatedmetadata=true table="qgep"."vl_catchment_area_drainage_system_current" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -6594,7 +6594,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_catchment_area_drainage_system_planned20150216165040968</id>
-      <datasource>service='pg_qgep' user='qgep' sslmode=disable key='code' estimatedmetadata=true table="qgep"."vl_catchment_area_drainage_system_planned" sql=</datasource>
+      <datasource>service='pg_qgep' sslmode=disable key='code' estimatedmetadata=true table="qgep"."vl_catchment_area_drainage_system_planned" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -6684,7 +6684,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_catchment_area_infiltration_current20150216165040959</id>
-      <datasource>service='pg_qgep' user='qgep' sslmode=disable key='code' estimatedmetadata=true table="qgep"."vl_catchment_area_infiltration_current" sql=</datasource>
+      <datasource>service='pg_qgep' sslmode=disable key='code' estimatedmetadata=true table="qgep"."vl_catchment_area_infiltration_current" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -6774,7 +6774,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_catchment_area_infiltration_planned20150216165040949</id>
-      <datasource>service='pg_qgep' user='qgep' sslmode=disable key='code' estimatedmetadata=true table="qgep"."vl_catchment_area_infiltration_planned" sql=</datasource>
+      <datasource>service='pg_qgep' sslmode=disable key='code' estimatedmetadata=true table="qgep"."vl_catchment_area_infiltration_planned" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -6864,7 +6864,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_catchment_area_retention_current20150216165040940</id>
-      <datasource>service='pg_qgep' user='qgep' sslmode=disable key='code' estimatedmetadata=true table="qgep"."vl_catchment_area_retention_current" sql=</datasource>
+      <datasource>service='pg_qgep' sslmode=disable key='code' estimatedmetadata=true table="qgep"."vl_catchment_area_retention_current" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -6954,7 +6954,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_catchment_area_retention_planned20150216165040931</id>
-      <datasource>service='pg_qgep' user='qgep' sslmode=disable key='code' estimatedmetadata=true table="qgep"."vl_catchment_area_retention_planned" sql=</datasource>
+      <datasource>service='pg_qgep' sslmode=disable key='code' estimatedmetadata=true table="qgep"."vl_catchment_area_retention_planned" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
