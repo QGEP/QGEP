@@ -205,7 +205,7 @@ BEGIN
    , NEW.elevation_determination
    , NEW.horizontal_positioning
    , NEW.inside_coating
-   , NEW.length_effective
+   , CASE WHEN NEW.length_effective IS NULL THEN round(ST_Length(NEW.progression_geometry)::numeric,2) ELSE NEW.length_effective END
    , NEW.material
    , NEW.progression_geometry
    , NEW.reliner_material
