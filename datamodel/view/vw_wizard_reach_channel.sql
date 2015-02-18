@@ -91,7 +91,7 @@ $BODY$
 DECLARE
   ch_obj_id character varying(16);
 BEGIN
-  INSERT INTO vw_channel(
+  INSERT INTO qgep.vw_channel(
          bedding_encasement
        , connection_type
        , function_hierarchic
@@ -159,7 +159,7 @@ BEGIN
        , NEW.fk_operator
        ) RETURNING obj_id INTO ch_obj_id;
 
-  INSERT INTO vw_reach(
+  INSERT INTO qgpe.vw_reach(
      clear_height
    , coefficient_of_friction
    , elevation_determination
