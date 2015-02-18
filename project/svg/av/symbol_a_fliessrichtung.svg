@@ -1,0 +1,9 @@
+<?xml version="1.0" standalone="no"?>
+<svg width="100%" height="100%" viewBox="-10 -10 20 20" xmlns="http://www.w3.org/2000/svg">
+<metadata>
+Taken from Cadastra Symbol-Font (Swisstopo)
+Created 2006/2007/2008 by Atelier Ursula Heilig SGD, SVG conversion 2009-05 by Andreas Neumann
+</metadata>
+<title>Fliessrichtung, character a</title>
+<path fill="black" stroke="none" stroke-width="0" d="M 0.31348981,-6.1536984 C 0.1688022,-5.431105 0.024114605,-4.6385833 0.024114605,-3.2633249 C 0.024114605,0 1.1333862,0 1.1333862,3.2633249 C 1.1333862,6.5266495 0.40994821,6.5266495 0.40994821,9.789975 L -0.26526061,9.789975 C -0.26526061,6.5266495 0.45817741,6.5266495 0.45817741,3.2633249 C 0.45817741,0 -0.65109423,0 -0.65109423,-3.2633249 C -0.65109423,-4.6385833 -0.50640657,-5.431105 -0.36171901,-6.1536984 L -1.326303,-6.1536984 L 4.7239824e-09,-9.789975 L 1.326303,-6.1536984 L 0.31348981,-6.1536984 z" />
+</svg>
