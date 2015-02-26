@@ -1,4 +1,4 @@
--- table od_manhole is extended to hold additional attributes necessary for symbology reasons
+﻿-- table od_manhole is extended to hold additional attributes necessary for symbology reasons
 -- extended attributes are started with an underscore
 -- _usage_current is necessary for coloring the manhole/cover symbols
 -- _function_hierarchic is necessary for scale-based filtering (display minor manholes only at larger scales)
@@ -20,20 +20,20 @@ added solely for QGEP';
 
 -- this column is an extension to the VSA data model and puts the _function_hierarchic in order
 ALTER TABLE qgep.vl_channel_function_hierarchic ADD COLUMN order_fct_hierarchic smallint;
-UPDATE qgep.vl_channel_function_hierarchic SET order_fct_hierarchic=5 WHERE code = 5062;
-UPDATE qgep.vl_channel_function_hierarchic SET order_fct_hierarchic=7 WHERE code = 5063;
-UPDATE qgep.vl_channel_function_hierarchic SET order_fct_hierarchic=6 WHERE code = 5064;
-UPDATE qgep.vl_channel_function_hierarchic SET order_fct_hierarchic=8 WHERE code = 5065;
-UPDATE qgep.vl_channel_function_hierarchic SET order_fct_hierarchic=10 WHERE code = 5066;
-UPDATE qgep.vl_channel_function_hierarchic SET order_fct_hierarchic=13 WHERE code = 5067;
-UPDATE qgep.vl_channel_function_hierarchic SET order_fct_hierarchic=1 WHERE code = 5068;
-UPDATE qgep.vl_channel_function_hierarchic SET order_fct_hierarchic=3 WHERE code = 5069;
-UPDATE qgep.vl_channel_function_hierarchic SET order_fct_hierarchic=2 WHERE code = 5070;
-UPDATE qgep.vl_channel_function_hierarchic SET order_fct_hierarchic=4 WHERE code = 5071;
-UPDATE qgep.vl_channel_function_hierarchic SET order_fct_hierarchic=9 WHERE code = 5072;
-UPDATE qgep.vl_channel_function_hierarchic SET order_fct_hierarchic=12 WHERE code = 5073;
-UPDATE qgep.vl_channel_function_hierarchic SET order_fct_hierarchic=11 WHERE code = 5074;
-UPDATE qgep.vl_channel_function_hierarchic SET order_fct_hierarchic=14 WHERE code = 5075;
+UPDATE qgep.vl_channel_function_hierarchic SET order_fct_hierarchic=5 WHERE code=5062;
+UPDATE qgep.vl_channel_function_hierarchic SET order_fct_hierarchic=7 WHERE code=5063;
+UPDATE qgep.vl_channel_function_hierarchic SET order_fct_hierarchic=6 WHERE code=5064;
+UPDATE qgep.vl_channel_function_hierarchic SET order_fct_hierarchic=8 WHERE code=5065;
+UPDATE qgep.vl_channel_function_hierarchic SET order_fct_hierarchic=10 WHERE code=5066;
+UPDATE qgep.vl_channel_function_hierarchic SET order_fct_hierarchic=13 WHERE code=5067;
+UPDATE qgep.vl_channel_function_hierarchic SET order_fct_hierarchic=1 WHERE code=5068;
+UPDATE qgep.vl_channel_function_hierarchic SET order_fct_hierarchic=3 WHERE code=5069;
+UPDATE qgep.vl_channel_function_hierarchic SET order_fct_hierarchic=2 WHERE code=5070;
+UPDATE qgep.vl_channel_function_hierarchic SET order_fct_hierarchic=4 WHERE code=5071;
+UPDATE qgep.vl_channel_function_hierarchic SET order_fct_hierarchic=9 WHERE code=5072;
+UPDATE qgep.vl_channel_function_hierarchic SET order_fct_hierarchic=12 WHERE code=5073;
+UPDATE qgep.vl_channel_function_hierarchic SET order_fct_hierarchic=11 WHERE code=5074;
+UPDATE qgep.vl_channel_function_hierarchic SET order_fct_hierarchic=14 WHERE code=5075;
 
 -- this column is an extension to the VSA data model and puts the _usage_current in order
 ALTER TABLE qgep.vl_channel_usage_current ADD COLUMN order_usage_current smallint;
