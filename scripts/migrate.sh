@@ -30,7 +30,9 @@ echo "*** co ***"
 psql "service=pg_qgep user=postgres" < ../migration/17_od_cover.sql
 echo "*** ca ***"
 psql "service=pg_qgep user=postgres" < ../migration/27_od_catchment_area.sql
-echo "*** sym ***"
-psql "service=pg_qgep user=postgres" < ../migration/50_update_symbology_attribs.sql
 echo "*** fk ***"
-psql "service=pg_qgep user=postgres" < ../migration/99_foreign_keys.sql
+psql "service=pg_qgep user=postgres" < ../migration/50_foreign_keys.sql
+echo "*** fixup ***"
+psql "service=pg_qgep user=postgres" < ../migration/fixup/function_remap.sql
+echo "*** sym ***"
+psql "service=pg_qgep user=postgres" < ../migration/90_update_symbology_attribs.sql
