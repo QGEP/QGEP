@@ -1,7 +1,5 @@
 ﻿BEGIN TRANSACTION;
 
-DROP VIEW qgep.vw_cover CASCADE;
-
 CREATE OR REPLACE VIEW qgep.vw_cover AS
 SELECT co.obj_id,
     co.brand,
