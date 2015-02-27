@@ -48,16 +48,16 @@ fk_wastewater_networkelement_rw_current
 )
 SELECT
 a_ezg.obj_id,
-abflussbei,
+abflussbeiwert,
 --- art,
-bezeichnun,
-ST_GeometryN( the_geom, 1 ),
+bezeichnung,
+ST_MakePolygon( ST_GeometryN( the_geom, 1 ) ),
 bemerkung,
-flaeche,
+ST_Area(ST_GeometryN( the_geom, 1 ))/1000, -- m^2 zu ha
 q_wastewater_networkelement.obj_id
 FROM abwasser.siedlungsentwaesserung__einzugsgebiet a_ezg
 LEFT JOIN qgep.od_wastewater_networkelement q_wastewater_networkelement
-on a_ezg.abwasserne = q_wastewater_networkelement.old_obj_id;
+on a_ezg.abwassernetzelement = q_wastewater_networkelement.old_obj_id;
 
 
 

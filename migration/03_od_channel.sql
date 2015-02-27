@@ -1,4 +1,4 @@
------- This file is sql code to import DABASE (Modul SIA405Abwasser) in German to QGEP in Englisch on QQIS
+﻿------ This file is sql code to import DABASE (Modul SIA405Abwasser) in German to QGEP in Englisch on QQIS
 ------ For questions etc. please contact Stefan Burckhardt stefan.burckhardt@sjib.ch
 ------ version 07.06.2014 22:00:52
 
@@ -35,7 +35,7 @@ WHEN bettung_umhuellung = 9 THEN 5330 --- sia_type_2
 WHEN bettung_umhuellung = 10 THEN 5334 --- sia_type_3
 WHEN bettung_umhuellung = 11 THEN 5340 --- sia_type_4
 WHEN bettung_umhuellung = 12 THEN 5327 --- bed_plank
-WHEN bettung_umhuellung = 13 THEN 5329 --- unknown
+ELSE 5329 --- unknown
 END,
 CASE WHEN verbindungsart = 0 THEN 5341 --- other
 WHEN verbindungsart = 1 THEN 190 --- electric_welded_sleeves
@@ -48,8 +48,8 @@ WHEN verbindungsart = 7 THEN 189 --- butt_welded
 WHEN verbindungsart = 8 THEN 186 --- beaked_sleeves
 WHEN verbindungsart = 9 THEN 191 --- push_fit_sleeves
 WHEN verbindungsart = 10 THEN 188 --- slip_on_sleeves
-WHEN verbindungsart = 11 THEN 3036 --- unknown
 WHEN verbindungsart = 12 THEN 3666 --- jacking_pipe_coupling
+ELSE 3036 --- unknown
 END,
 CASE WHEN funktionhierarchisch = 0 THEN 5066 --- pwwf.other
 WHEN funktionhierarchisch = 1 THEN 5068 --- pwwf.water_bodies
@@ -75,8 +75,8 @@ WHEN funktionhydraulisch = 5 THEN 23 --- pump_pressure_pipe
 WHEN funktionhydraulisch = 6 THEN 145 --- seepage_water_drain
 WHEN funktionhydraulisch = 7 THEN 21 --- retention_pipe
 WHEN funktionhydraulisch = 8 THEN 144 --- jetting_pipe
-WHEN funktionhydraulisch = 9 THEN 5321 --- unknown
 WHEN funktionhydraulisch = 10 THEN 3655 --- vacuum_pipe
+ELSE 5321 --- unknown
 END,
 spuelintervall,
 rohrlaenge,
@@ -88,7 +88,7 @@ WHEN nutzungsart_ist = 4 THEN 4522 --- combined_wastewater
 WHEN nutzungsart_ist = 5 THEN 4520 --- rain_wastewater
 WHEN nutzungsart_ist = 6 THEN 4514 --- clean_wastewater
 WHEN nutzungsart_ist = 7 THEN 4526 --- wastewater
-WHEN nutzungsart_ist = 8 THEN 4571 --- unknown
+ELSE 4571 --- unknown
 END,
 CASE WHEN nutzungsart_geplant = 0 THEN 5323 --- other
 WHEN nutzungsart_geplant = 1 THEN 4519 --- creek_water
@@ -98,7 +98,7 @@ WHEN nutzungsart_geplant = 4 THEN 4523 --- combined_wastewater
 WHEN nutzungsart_geplant = 5 THEN 4521 --- rain_wastewater
 WHEN nutzungsart_geplant = 6 THEN 4515 --- clean_wastewater
 WHEN nutzungsart_geplant = 7 THEN 4527 --- wastewater
-WHEN nutzungsart_geplant = 8 THEN 4569 --- unknown
+ELSE 4569 --- unknown
 END
 FROM abwasser.siedlungsentwaesserung__Kanal a_kanal
 LEFT JOIN qgep.od_wastewater_structure q_wastewater_structure

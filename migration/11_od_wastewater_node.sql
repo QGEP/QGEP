@@ -8,7 +8,6 @@ ALTER TABLE qgep.od_wastewater_node ADD COLUMN old_obj_id text;
 
 -------
 -- 2. loeschen vorhandener daten
-DELETE FROM qgep.od_wastewater_networkelement;
 DELETE FROM qgep.od_wastewater_node;
 
 -- 3. update der oid spalten

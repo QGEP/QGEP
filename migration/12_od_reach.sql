@@ -32,16 +32,18 @@ lichte_hoehe, reibungsbeiwert,
 -- WHEN hoehenbestimmung = 1 THEN 4778 --- unknown
 -- WHEN hoehenbestimmung = 2 THEN 4779 --- inaccurate
 -- END,
-CASE WHEN lagebestimmung = 0 THEN 5378 --- accurate
+CASE 
 WHEN lagebestimmung = 1 THEN 5379 --- unknown
 WHEN lagebestimmung = 2 THEN 5380 --- inaccurate
+ELSE 5378 --- accurate
 END,
-CASE WHEN innenschutz = 0 THEN 5383 --- other
+CASE 
 WHEN innenschutz = 1 THEN 248 --- coating
 WHEN innenschutz = 2 THEN 250 --- brick_lining
 WHEN innenschutz = 3 THEN 251 --- stoneware_lining
 WHEN innenschutz = 4 THEN 5384 --- unknown
 WHEN innenschutz = 5 THEN 249 --- cement_mortar_lining
+ELSE 5383 --- other
 END,
 laengeeffektiv, 
 CASE WHEN material = 0 THEN 5381 --- other
@@ -66,8 +68,8 @@ WHEN material = 18 THEN 153 --- steel
 WHEN material = 19 THEN 3654 --- steel_stainless
 WHEN material = 20 THEN 154 --- stoneware
 WHEN material = 21 THEN 2761 --- clay
-WHEN material = 22 THEN 3016 --- unknown
 WHEN material = 23 THEN 2762 --- cement
+ELSE 3016 --- unknown
 END,
 ST_GeometryN( a_haltung.the_geom, 1 ), -- Convert single-part multilinestring to linestring by extracting the first (and only) part
 -- verlauf, 
