@@ -88,7 +88,7 @@
    <item row="11" column="0" colspan="4">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab_4">
       <attribute name="title">
@@ -110,9 +110,9 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-182</y>
+            <y>0</y>
             <width>1117</width>
-            <height>830</height>
+            <height>826</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_8">
@@ -152,9 +152,6 @@
               <string>bedding_encasement</string>
              </property>
             </widget>
-           </item>
-           <item row="6" column="2">
-            <widget class="QLineEdit" name="status"/>
            </item>
            <item row="10" column="0">
             <widget class="QLabel" name="label_58">
@@ -336,6 +333,9 @@
            <item row="20" column="2">
             <widget class="QDoubleSpinBox" name="subsidies"/>
            </item>
+           <item row="6" column="2">
+            <widget class="QComboBox" name="status"/>
+           </item>
           </layout>
          </widget>
         </widget>
@@ -363,8 +363,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>1130</width>
-            <height>636</height>
+            <width>269</width>
+            <height>549</height>
            </rect>
           </property>
           <layout class="QFormLayout" name="formLayout_2">
@@ -542,7 +542,7 @@
              <property name="geometry">
               <rect>
                <x>0</x>
-               <y>-15</y>
+               <y>0</y>
                <width>1089</width>
                <height>292</height>
               </rect>
@@ -792,14 +792,14 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>QgsRelationReferenceWidget</class>
-   <extends>QWidget</extends>
-   <header>qgsrelationreferencewidget.h</header>
-  </customwidget>
-  <customwidget>
    <class>QgsFilterLineEdit</class>
    <extends>QLineEdit</extends>
    <header>qgsfilterlineedit.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QgsRelationReferenceWidget</class>
+   <extends>QWidget</extends>
+   <header>qgsrelationreferencewidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
