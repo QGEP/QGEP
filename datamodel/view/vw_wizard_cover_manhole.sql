@@ -183,7 +183,7 @@ BEGIN
     , NEW.diameter
     , NEW.fastening
     , NEW.level
-    , NEW.material
+    , NEW.cover_material
     , NEW.positional_accuracy
     , NEW.situation_geometry
     , NEW.sludge_bucket
