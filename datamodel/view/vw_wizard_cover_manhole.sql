@@ -48,7 +48,8 @@ CREATE OR REPLACE VIEW qgep.vw_wizard_cover_manhole AS
     mh.fk_owner,
     mh.fk_operator,
     wn.backflow_level,
-    wn.bottom_level
+    wn.bottom_level,
+    wn.situation_geometry AS node_geometry
    FROM qgep.vw_cover co
      LEFT JOIN qgep.vw_manhole mh ON mh.obj_id::text = co.fk_wastewater_structure::text
      LEFT JOIN qgep.vw_wastewater_node wn ON wn.fk_wastewater_structure::text = mh.obj_id::text
@@ -148,7 +149,7 @@ BEGIN
   (
       NEW.backflow_level
     , NEW.bottom_level
-    , NEW.situation_geometry
+    , COALESCE(NEW.node_geometry, NEW.situation_geometry)
     , NEW.identifier
     , NEW.remark
     , NEW.last_modification
