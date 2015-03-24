@@ -129,8 +129,6 @@ BEGIN
 END; $BODY$
   LANGUAGE plpgsql VOLATILE
   COST 100;
-ALTER FUNCTION qgep.vw_manhole_insert()
-  OWNER TO qgep;
 
 DROP TRIGGER IF EXISTS vw_manhole_ON_INSERT ON qgep.vw_manhole;
 

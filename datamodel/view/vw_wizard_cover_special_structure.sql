@@ -53,9 +53,6 @@ CREATE OR REPLACE VIEW qgep.vw_wizard_cover_special_structure AS
      LEFT JOIN qgep.vw_wastewater_node wn ON wn.fk_wastewater_structure::text = ss.obj_id::text
   WHERE false;
 
- ALTER TABLE qgep.vw_wizard_cover_special_structure
-  OWNER TO qgep;
-
 -- INSERT function
 
 CREATE OR REPLACE FUNCTION qgep.vw_wizard_cover_special_structure_INSERT()

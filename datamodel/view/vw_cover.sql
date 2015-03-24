@@ -91,8 +91,6 @@ BEGIN
 END; $BODY$
   LANGUAGE plpgsql VOLATILE
   COST 100;
-ALTER FUNCTION qgep.vw_cover_insert()
-  OWNER TO qgep;
 
 -- DROP TRIGGER vw_cover_ON_INSERT ON qgep.vw_cover;
 

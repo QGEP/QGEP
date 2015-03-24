@@ -124,8 +124,6 @@ BEGIN
 END; $BODY$
   LANGUAGE plpgsql VOLATILE
   COST 100;
-ALTER FUNCTION qgep.vw_discharge_point_insert()
-  OWNER TO qgep;
 
 -- DROP TRIGGER vw_discharge_point_ON_INSERT ON qgep.vw_discharge_point;
 

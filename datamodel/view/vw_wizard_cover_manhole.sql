@@ -55,9 +55,6 @@ CREATE OR REPLACE VIEW qgep.vw_wizard_cover_manhole AS
      LEFT JOIN qgep.vw_wastewater_node wn ON wn.fk_wastewater_structure::text = mh.obj_id::text
   WHERE false;
 
-ALTER TABLE qgep.vw_wizard_cover_manhole
-  OWNER TO qgep;
-
 -- INSERT function
 
 CREATE OR REPLACE FUNCTION qgep.vw_wizard_cover_manhole_INSERT()

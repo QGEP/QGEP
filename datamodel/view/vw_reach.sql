@@ -189,8 +189,6 @@ BEGIN
 END; $BODY$
   LANGUAGE plpgsql VOLATILE
   COST 100;
-ALTER FUNCTION qgep.vw_reach_insert()
-  OWNER TO qgep;
 
 -- DROP TRIGGER vw_reach_ON_INSERT ON qgep.vw_reach;
 

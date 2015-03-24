@@ -80,9 +80,6 @@ CREATE OR REPLACE VIEW qgep.vw_wizard_reach_channel AS
      LEFT JOIN qgep.vw_reach re ON ch.obj_id = re.fk_wastewater_structure
   WHERE false;
 
-ALTER TABLE qgep.vw_wizard_reach_channel
-  OWNER TO qgep;
-
 -- INSERT function
 
 CREATE OR REPLACE FUNCTION qgep.vw_wizard_reach_channel_INSERT()

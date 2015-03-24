@@ -190,4 +190,4 @@ CREATE MATERIALIZED VIEW qgep.vw_network_segment AS
    ) AS connectors
    LEFT JOIN qgep.od_wastewater_networkelement ne ON ne.obj_id = connectors.obj_id 
  ) AS parts
-WHERE GeometryType(progression_geometry) <> 'GEOMETRYCOLLECTION'
+WHERE GeometryType(progression_geometry) <> 'GEOMETRYCOLLECTION';

@@ -131,8 +131,6 @@ BEGIN
 END; $BODY$
   LANGUAGE plpgsql VOLATILE
   COST 100;
-ALTER FUNCTION qgep.vw_channel_insert()
-  OWNER TO qgep;
 
 -- DROP TRIGGER vw_channel_ON_INSERT ON qgep.vw_channel;
 

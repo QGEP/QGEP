@@ -123,8 +123,6 @@ BEGIN
 END; $BODY$
   LANGUAGE plpgsql VOLATILE
   COST 100;
-ALTER FUNCTION qgep.vw_special_structure_insert()
-  OWNER TO qgep;
 
 DROP TRIGGER IF EXISTS vw_special_structure_ON_INSERT ON qgep.vw_special_structure;
 
