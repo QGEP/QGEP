@@ -725,7 +725,7 @@ CREATE SEQUENCE qgep.seq_od_structure_part_oid INCREMENT 1 MINVALUE 0 MAXVALUE 9
  ALTER TABLE qgep.od_structure_part ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_structure_part');
 COMMENT ON COLUMN qgep.od_structure_part.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
  ALTER TABLE qgep.od_structure_part ADD COLUMN identifier  varchar(20) ;
- CREATE UNIQUE INDEX in_od_structure_part_identifier ON qgep.od_structure_part USING btree (identifier);
+ CREATE INDEX in_od_structure_part_identifier ON qgep.od_structure_part USING btree (identifier);
 COMMENT ON COLUMN qgep.od_structure_part.identifier IS '';
  ALTER TABLE qgep.od_structure_part ADD COLUMN remark  varchar(80) ;
 COMMENT ON COLUMN qgep.od_structure_part.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
@@ -899,7 +899,7 @@ CREATE SEQUENCE qgep.seq_od_wastewater_networkelement_oid INCREMENT 1 MINVALUE 0
  ALTER TABLE qgep.od_wastewater_networkelement ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_wastewater_networkelement');
 COMMENT ON COLUMN qgep.od_wastewater_networkelement.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
  ALTER TABLE qgep.od_wastewater_networkelement ADD COLUMN identifier  varchar(20) ;
- CREATE UNIQUE INDEX in_od_wastewater_networkelement_identifier ON qgep.od_wastewater_networkelement USING btree (identifier);
+ CREATE INDEX in_od_wastewater_networkelement_identifier ON qgep.od_wastewater_networkelement USING btree (identifier);
 COMMENT ON COLUMN qgep.od_wastewater_networkelement.identifier IS '';
  ALTER TABLE qgep.od_wastewater_networkelement ADD COLUMN remark  varchar(80) ;
 COMMENT ON COLUMN qgep.od_wastewater_networkelement.remark IS 'General remarks / Allgemeine Bemerkungen / Remarques générales';
@@ -1007,7 +1007,7 @@ COMMENT ON COLUMN qgep.od_wastewater_structure.financing IS ' Method of financin
  ALTER TABLE qgep.od_wastewater_structure ADD COLUMN gross_costs  decimal(10,2) ;
 COMMENT ON COLUMN qgep.od_wastewater_structure.gross_costs IS 'Gross costs of construction / Brutto Erstellungskosten / Coûts bruts des travaux de construction';
  ALTER TABLE qgep.od_wastewater_structure ADD COLUMN identifier  varchar(20) ;
- CREATE UNIQUE INDEX in_od_wastewater_structure_identifier ON qgep.od_wastewater_structure USING btree (identifier);
+ CREATE INDEX in_od_wastewater_structure_identifier ON qgep.od_wastewater_structure USING btree (identifier);
 COMMENT ON COLUMN qgep.od_wastewater_structure.identifier IS 'yyy_Pro Datenherr eindeutige Bezeichnung / Pro Datenherr eindeutige Bezeichnung / Désignation unique pour chaque maître des données';
  ALTER TABLE qgep.od_wastewater_structure ADD COLUMN inspection_interval  decimal(4,2) ;
 COMMENT ON COLUMN qgep.od_wastewater_structure.inspection_interval IS 'yyy_Abstände, in welchen das Abwasserbauwerk inspiziert werden sollte (Jahre) / Abstände, in welchen das Abwasserbauwerk inspiziert werden sollte (Jahre) / Fréquence à laquelle un ouvrage du réseau dassainissement devrait subir une inspection (années)';

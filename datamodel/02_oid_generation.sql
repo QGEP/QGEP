@@ -54,7 +54,7 @@ BEGIN
   END IF;
   --get table 2char shortcut
   BEGIN
-    SELECT shortcut_en INTO STRICT myrec_shortcut FROM qgep.is_dictionary WHERE tablename = table_name;
+    SELECT shortcut_en INTO STRICT myrec_shortcut FROM qgep.is_dictionary_od_table WHERE tablename = table_name;
     EXCEPTION
         WHEN NO_DATA_FOUND THEN
             RAISE EXCEPTION 'dictionary entry for table % not found', table_name;
