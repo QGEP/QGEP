@@ -1,6 +1,6 @@
 
 CREATE VIEW qgep.is_dictionary_value_list AS 
-  SELECT p.relname, vl.* 
+  SELECT p.relname AS vl_name, vl.* 
   FROM qgep.is_value_list_base vl, pg_class p 
   WHERE vl.tableoid = p.oid;
 
