@@ -5,29 +5,28 @@ use warnings;
 use Getopt::Long;
 use Pod::Usage;
 use DBI;
+use File::Basename;
 
 Getopt::Long::Configure ("bundling");
 
 # input argument
-my $outputfile = "";
 my $verbose = 0;
-my $pgservice = "qgep";
+my $pgservice = "pg_qgep";
 my $language;
 my $man = 0;
 my $help = 0;
-my $diafile="";
 
-# temporary files
-my $tmpfile1 = ".~qgep_diagram_translate.1.svg";
-my $tmpfile2 = ".~qgep_diagram_translate.2.svg";
+# files
+my $diafile;
+my $outputfile = "output.pdf";
+my $filename;
+my $fileext;
+my $filepath;
+my $tmpfile1 = ".~qgep_diagram_translate.1.tmp";
+my $tmpfile2 = ".~qgep_diagram_translate.2.tmp";
 my $fid;
 
 # postgres connection
-my $dbname = "qgep_demo";
-my $host = "172.24.171.203";
-my $port = "5432";
-my $user = "sige";
-my $password = "db4wat\$";
 my $dbh;
 my $prep;
 my $row;
@@ -67,12 +66,18 @@ else
 	$diafile = $ARGV[0];
 }
 
+# ************************
+# ************************
+($filename,$filepath,$fileext) = fileparse($diafile);
+print $fileext;
+
 
 # ************************
 # ************************
 print "Transforming PDF diagram into editable SVG...\n";
 try {
-	my $cmd = "inkscape --without-gui --file=$diafile --export-plain-svg=$tmpfile1";
+	#my $cmd = "inkscape --without-gui --file=$diafile --export-plain-svg=$tmpfile1";
+	my $cmd = "qpdf --stream-data=uncompress $diafile $tmpfile1";
 	system($cmd);
 } catch {
 	warn "could not run inkscape";
@@ -83,11 +88,8 @@ try {
 # ************************
 print "Creating dictionaries...\n";
 
-$dbh = DBI->connect("DBI:Pg:dbname=$dbname;host=$host;port=$port", 
-						$user, 
-						$password, 
-						{ RaiseError => 1,}
-) or die "Could not connect to database !\n $! \n $@\n$DBI::errstr";
+$dbh = DBI->connect("DBI:Pg:service=$pgservice", "", "", { RaiseError => 1,})
+ or die "Could not connect to database !\n $! \n $@\n$DBI::errstr";
 
 $prep = $dbh->prepare("SELECT tablename, name_$language AS translated FROM qgep.is_dictionary_od_table") or die $dbh->errstr;
 $prep->execute() or die "Request failed\n";
@@ -117,11 +119,16 @@ while ( $row = $prep->fetchrow_hashref ) {
 # ************************
 # ************************
 print "Translating file...\n";
-open($fid, "> :encoding(UTF-8)", $tmpfile2) or die ("could not write output file.");
+open($fid, ">", $tmpfile2) or die ("could not write output file.");
+
+binmode($fid);
+
 open(INFO, $tmpfile1) or die("Could not open temporary file.");
 foreach $_ (<INFO>)  {
-	while ( /(\$\?\$.*?(<|\s))/g ) {
+	#while ( /(\$\?\$.*?(<|\s))/g ) {  # for svf
+	while ( /(\$\?\$.*?(\)|\s))/g ) {  # for pdf
 		$table_name = substr $1, 3, -1;
+		print "$table_name\n";
 		if ( $dict_od_table{$table_name} ){
 			$dict_od_table{$table_name}{count}++;
 			$replace = $dict_od_table{$table_name}{translation};
@@ -131,15 +138,16 @@ foreach $_ (<INFO>)  {
 			print " table does not exists\n";
 		}		
 	}	
-	while ( /(\$#\$.*?(<|\s))/g ) {
+	while ( /(\$\\#\$.*?(\)|\s))/g ) {
 		@fields = split( '\$', substr $1, 0, -1);
 		$table_name = $fields[2];
 		$field = $fields[3];
 		$type = $fields[4];
+		print "$table_name $field $type\n";
 		if ( $dict_field{$table_name}{$field}{$type} ){
 			$dict_field{$table_name}{$field}{count}++;
 			$replace = $dict_field{$table_name}{$field}{$type};
-			$_ =~ s/\$#\$$table_name\$$field\$$type/$replace/g;
+			$_ =~ s/\$\\#\$$table_name\$$field\$$type/$replace/g;
 			
 		} else {
 			# TODO report missing
@@ -155,7 +163,8 @@ close $fid;
 # ************************
 print "Writing output PDF file...\n";
 try {
-	my $cmd = "inkscape --without-gui --file=$tmpfile2 --export-pdf=output.pdf";
+	#my $cmd = "inkscape --without-gui --file=$tmpfile2 --export-pdf=output.pdf";
+	my $cmd = "qpdf --stream-data=compress $tmpfile2 $outputfile";
 	system($cmd);
 } catch {
 	warn "could not run inkscape";
@@ -200,7 +209,7 @@ Translates to the given language (en, fr or de).
 
 =item B<-o outfile,--output=outfile>
 
-Specifies the output file. If not given, input file will be overwritten.
+Specifies the output file. If not given, file is named as output.pdf in current directory.
 
 =item B<-v,--verbose>
 
