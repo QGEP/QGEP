@@ -5,7 +5,8 @@ use warnings;
 use Getopt::Long;
 use Pod::Usage;
 use DBI;
-use File::Basename;
+use CAM::PDF;
+use Encode qw(encode decode);
 
 Getopt::Long::Configure ("bundling");
 
@@ -15,16 +16,9 @@ my $pgservice = "pg_qgep";
 my $language;
 my $man = 0;
 my $help = 0;
-
-# files
-my $diafile;
+my $description_width = 62;
+my $inputfile;
 my $outputfile = "output.pdf";
-my $filename;
-my $fileext;
-my $filepath;
-my $tmpfile1 = ".~qgep_diagram_translate.1.tmp";
-my $tmpfile2 = ".~qgep_diagram_translate.2.tmp";
-my $fid;
 
 # postgres connection
 my $dbh;
@@ -50,6 +44,7 @@ GetOptions (
 		"l|language=s" => \$language,
         "o|output=s" => \$outputfile,
         "pgservice=s" => \$pgservice,
+        "w|width=s" => \$description_width,
         "v|verbose" => \$verbose,
         "h|help|?" => \$help,
         man => \$man
@@ -63,30 +58,12 @@ if (!@ARGV) {
 }
 else
 {
-	$diafile = $ARGV[0];
+	$inputfile = $ARGV[0];
 }
 
 # ************************
 # ************************
-($filename,$filepath,$fileext) = fileparse($diafile);
-print $fileext;
-
-
-# ************************
-# ************************
-print "Transforming PDF diagram into editable SVG...\n";
-try {
-	#my $cmd = "inkscape --without-gui --file=$diafile --export-plain-svg=$tmpfile1";
-	my $cmd = "qpdf --stream-data=uncompress $diafile $tmpfile1";
-	system($cmd);
-} catch {
-	warn "could not run inkscape";
-};
-
-
-# ************************
-# ************************
-print "Creating dictionaries...\n";
+print " # Creating dictionaries...\n";
 
 $dbh = DBI->connect("DBI:Pg:service=$pgservice", "", "", { RaiseError => 1,})
  or die "Could not connect to database !\n $! \n $@\n$DBI::errstr";
@@ -94,81 +71,77 @@ $dbh = DBI->connect("DBI:Pg:service=$pgservice", "", "", { RaiseError => 1,})
 $prep = $dbh->prepare("SELECT tablename, name_$language AS translated FROM qgep.is_dictionary_od_table") or die $dbh->errstr;
 $prep->execute() or die "Request failed\n";
 while ( $row = $prep->fetchrow_hashref ) {
-	$dict_od_table{$row->{tablename}}{translation} = $row->{translated}; 
+	$dict_od_table{$row->{tablename}}{translation} = $row->{translated};
 	$dict_od_table{$row->{tablename}}{count} = 0;
 }
 
-$prep = $dbh->prepare("SELECT table_name, field_name, field_name_$language AS translated, field_description_$language AS description FROM qgep.is_dictionary_od_field") or die $dbh->errstr;
+$prep = $dbh->prepare("SELECT table_name, field_name, field_name_$language AS translated, \
+	convert_to( left( field_description_$language, $description_width ), 'ISO 8859-15' ) AS description \
+	FROM qgep.is_dictionary_od_field") or die $dbh->errstr;
 $prep->execute() or die "Request failed\n";
 while ( $row = $prep->fetchrow_hashref ) {
-	$dict_field{$row->{table_name}}{$row->{field_name}}{name} = $row->{translated}; 
-	$dict_field{$row->{table_name}}{$row->{field_name}}{description} = $row->{description}; 
+	$dict_field{$row->{table_name}}{$row->{field_name}}{name} = $row->{translated};
+	$dict_field{$row->{table_name}}{$row->{field_name}}{description} = $row->{description};
 	$dict_field{$row->{table_name}}{$row->{field_name}}{count} = 0;
 }
 
 $prep = $dbh->prepare("SELECT vl_name AS table_name, code AS field_name, value_$language AS translated FROM qgep.is_dictionary_value_list") or die $dbh->errstr;
 $prep->execute() or die "Request failed\n";
 while ( $row = $prep->fetchrow_hashref ) {
-	$dict_field{$row->{table_name}}{$row->{field_name}}{name} = $row->{translated}; 
-	$dict_field{$row->{table_name}}{$row->{field_name}}{description} = ""; 
+	$dict_field{$row->{table_name}}{$row->{field_name}}{name} = $row->{translated};
+	$dict_field{$row->{table_name}}{$row->{field_name}}{description} = "";
 	$dict_field{$row->{table_name}}{$row->{field_name}}{count} = 0;
 }
 
 
-
 # ************************
 # ************************
-print "Translating file...\n";
-open($fid, ">", $tmpfile2) or die ("could not write output file.");
+print " # Translating file...\n";
 
-binmode($fid);
+my $doc = CAM::PDF->new($inputfile) || die "$CAM::PDF::errstr\n";
 
-open(INFO, $tmpfile1) or die("Could not open temporary file.");
-foreach $_ (<INFO>)  {
-	#while ( /(\$\?\$.*?(<|\s))/g ) {  # for svf
-	while ( /(\$\?\$.*?(\)|\s))/g ) {  # for pdf
-		$table_name = substr $1, 3, -1;
-		print "$table_name\n";
-		if ( $dict_od_table{$table_name} ){
-			$dict_od_table{$table_name}{count}++;
-			$replace = $dict_od_table{$table_name}{translation};
-			$_ =~ s/\$\?\$$table_name/$replace/g;
-		} else {
-			# TODO report non translated elements
-			print " table does not exists\n";
-		}		
-	}	
-	while ( /(\$\\#\$.*?(\)|\s))/g ) {
-		@fields = split( '\$', substr $1, 0, -1);
-		$table_name = $fields[2];
-		$field = $fields[3];
-		$type = $fields[4];
-		print "$table_name $field $type\n";
-		if ( $dict_field{$table_name}{$field}{$type} ){
-			$dict_field{$table_name}{$field}{count}++;
-			$replace = $dict_field{$table_name}{$field}{$type};
-			$_ =~ s/\$\\#\$$table_name\$$field\$$type/$replace/g;
-			
-		} else {
-			# TODO report missing
-			print " missing translation for $table_name $field $type \n";
+foreach my $p (1 .. $doc->numPages())
+{
+	my $newcontent;
+	my $content = $doc->getPageContent($p);
+	my @lines = split /\n/, $content;
+	foreach my $line (@lines) {
+		while ( $line =~ /(\$\?\$.*?(\)|\s))/g ) {
+			$table_name = substr $1, 3, -1;
+			if ( $dict_od_table{$table_name} ){
+				$dict_od_table{$table_name}{count}++;
+				$replace = $dict_od_table{$table_name}{translation};
+				$line =~ s/\$\?\$$table_name/$replace/g;
+				print "  ! $table_name found in dictionary\n" if $verbose;
+			} else {
+				# TODO report non translated elements
+				print "  * $table_name not found in dictionary\n";
+			}
 		}
+		while ( $line =~ /(\$\\#\$.*?(\)|\s))/g ) {
+			@fields = split( '\$', substr $1, 0, -1);
+			$table_name = $fields[2];
+			$field = $fields[3];
+			$type = $fields[4];
+			if ( $dict_field{$table_name}{$field}{$type} ){
+				$dict_field{$table_name}{$field}{count}++;
+				$replace = $dict_field{$table_name}{$field}{$type};
+				$line =~ s/\$\\#\$$table_name\$$field\$$type/$replace/g;
+				print "  * $table_name $field $type found in dictionary \n" if $verbose;
+			} else {
+				# TODO report missing
+				print "  ! $table_name $field $type not found in dictionary \n";
+			}
+		}
+		$newcontent .= encode('ISO 8859-15',"$line\n");
 	}
-	print $fid "$_\n";
+	$doc->setPageContent($p, $newcontent);
 }
-close(INFO);
-close $fid;
 
 # ************************
 # ************************
-print "Writing output PDF file...\n";
-try {
-	#my $cmd = "inkscape --without-gui --file=$tmpfile2 --export-pdf=output.pdf";
-	my $cmd = "qpdf --stream-data=compress $tmpfile2 $outputfile";
-	system($cmd);
-} catch {
-	warn "could not run inkscape";
-};
+print " # Writing output file...\n";
+$doc->output($outputfile);
 
 
 # ************************
@@ -180,9 +153,9 @@ __END__
 my-prog.pl - Customized mysqldump utility
 
 =head1 SYNOPSIS
-    
+
     translate_diagram.pl [OPTIONS] diagram_file
-    
+
     Options:
          --help
          --man
@@ -190,7 +163,7 @@ my-prog.pl - Customized mysqldump utility
          -o outfile,--output=outfile
          -p service,--pgservice=service
          -v,--verbose
- 
+
 =head1 OPTIONS
 
 =over 8
@@ -210,6 +183,10 @@ Translates to the given language (en, fr or de).
 =item B<-o outfile,--output=outfile>
 
 Specifies the output file. If not given, file is named as output.pdf in current directory.
+
+=item B<-w,--width>
+
+Width of description columns in number of characters. Default is 62. 0 will not cut the description.
 
 =item B<-v,--verbose>
 
