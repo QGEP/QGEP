@@ -4,10 +4,7 @@ then
   PGSERVICE=pg_qgep
 fi
 
-rm .~qgep_import.sql
-
-touch .~qgep_import.sql
-
+echo "" > .~qgep_import.sql
 
 cat ../datamodel/00_qgep_schema.sql                         >> .~qgep_import.sql
 cat ../datamodel/01_audit.sql                               >> .~qgep_import.sql
@@ -38,4 +35,4 @@ sed -i 's/\xEF\xBB\xBF//' .~qgep_import.sql
 
 psql "service=$PGSERVICE" -v ON_ERROR_STOP=1 -f .~qgep_import.sql
 
-#rm .~qgep_import.sql
+rm .~qgep_import.sql
