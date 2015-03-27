@@ -2,7 +2,7 @@
 
  SELECT re.obj_id,
     re.clear_height AS clear_height,
-    round((re.clear_height::numeric * pp.height_width_ratio))::smallint AS width,
+    CASE WHEN pp.height_width_ratio IS NOT NULL THEN round(re.clear_height::numeric * pp.height_width_ratio)::smallint ELSE clear_height END AS width,
     re.coefficient_of_friction,
     re.elevation_determination,
     re.horizontal_positioning,
