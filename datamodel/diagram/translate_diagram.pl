@@ -28,6 +28,8 @@ my $row;
 # dictionary arrays
 my %dict_od_table = ();
 my %dict_field = ();
+my $dict_table_count = 0;
+my $dict_field_count = 0;
 
 # translation
 my $table_name;
@@ -73,6 +75,7 @@ $prep->execute() or die "Request failed\n";
 while ( $row = $prep->fetchrow_hashref ) {
 	$dict_od_table{$row->{tablename}}{translation} = $row->{translated};
 	$dict_od_table{$row->{tablename}}{count} = 0;
+	$dict_table_count++;
 }
 
 $prep = $dbh->prepare("SELECT table_name, field_name, field_name_$language AS translated, \
@@ -83,6 +86,7 @@ while ( $row = $prep->fetchrow_hashref ) {
 	$dict_field{$row->{table_name}}{$row->{field_name}}{name} = $row->{translated};
 	$dict_field{$row->{table_name}}{$row->{field_name}}{description} = $row->{description};
 	$dict_field{$row->{table_name}}{$row->{field_name}}{count} = 0;
+	$dict_field_count++;
 }
 
 $prep = $dbh->prepare("SELECT vl_name AS table_name, code AS field_name, value_$language AS translated FROM qgep.is_dictionary_value_list") or die $dbh->errstr;
@@ -91,7 +95,9 @@ while ( $row = $prep->fetchrow_hashref ) {
 	$dict_field{$row->{table_name}}{$row->{field_name}}{name} = $row->{translated};
 	$dict_field{$row->{table_name}}{$row->{field_name}}{description} = "";
 	$dict_field{$row->{table_name}}{$row->{field_name}}{count} = 0;
+	$dict_field_count++;
 }
+print "  * $dict_table_count tables and $dict_field_count fiels listed in dictionary.\n";
 
 
 # ************************
