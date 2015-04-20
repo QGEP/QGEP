@@ -898,7 +898,7 @@ CREATE INDEX in_od_wastewater_networkelement_obj_id ON qgep.od_wastewater_networ
 CREATE SEQUENCE qgep.seq_od_wastewater_networkelement_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
  ALTER TABLE qgep.od_wastewater_networkelement ALTER COLUMN obj_id SET DEFAULT qgep.generate_oid('od_wastewater_networkelement');
 COMMENT ON COLUMN qgep.od_wastewater_networkelement.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix) or UUOID, see www.interlis.ch';
- ALTER TABLE qgep.od_wastewater_networkelement ADD COLUMN identifier  varchar(20) ;
+ ALTER TABLE qgep.od_wastewater_networkelement ADD COLUMN identifier  varchar(25) ;
  CREATE INDEX in_od_wastewater_networkelement_identifier ON qgep.od_wastewater_networkelement USING btree (identifier);
 COMMENT ON COLUMN qgep.od_wastewater_networkelement.identifier IS '';
  ALTER TABLE qgep.od_wastewater_networkelement ADD COLUMN remark  varchar(80) ;
@@ -1006,7 +1006,7 @@ COMMENT ON COLUMN qgep.od_wastewater_structure.detail_geometry_3d_geometry IS 'D
 COMMENT ON COLUMN qgep.od_wastewater_structure.financing IS ' Method of financing  (Financing based on GschG Art. 60a). / Finanzierungart (Finanzierung gemäss GschG Art. 60a). / Type de financement (financement selon LEaux Art. 60a)';
  ALTER TABLE qgep.od_wastewater_structure ADD COLUMN gross_costs  decimal(10,2) ;
 COMMENT ON COLUMN qgep.od_wastewater_structure.gross_costs IS 'Gross costs of construction / Brutto Erstellungskosten / Coûts bruts des travaux de construction';
- ALTER TABLE qgep.od_wastewater_structure ADD COLUMN identifier  varchar(20) ;
+ ALTER TABLE qgep.od_wastewater_structure ADD COLUMN identifier  varchar(25) ;
  CREATE INDEX in_od_wastewater_structure_identifier ON qgep.od_wastewater_structure USING btree (identifier);
 COMMENT ON COLUMN qgep.od_wastewater_structure.identifier IS 'yyy_Pro Datenherr eindeutige Bezeichnung / Pro Datenherr eindeutige Bezeichnung / Désignation unique pour chaque maître des données';
  ALTER TABLE qgep.od_wastewater_structure ADD COLUMN inspection_interval  decimal(4,2) ;
