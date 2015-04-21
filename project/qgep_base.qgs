@@ -13709,11 +13709,11 @@
         <edittype widgetv2type="TextEdit" name="subsidies">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="DateTime" name="year_of_construction">
-          <widgetv2config fieldEditable="1" calendar_popup="0" allow_null="0" display_format="yyyy-MM-dd" field_format="yyyy-MM-dd" labelOnTop="0"/>
+        <edittype widgetv2type="Range" name="year_of_construction">
+          <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="1900" Max="2100"/>
         </edittype>
-        <edittype widgetv2type="DateTime" name="year_of_replacement">
-          <widgetv2config fieldEditable="1" calendar_popup="0" allow_null="0" display_format="yyyy-MM-dd" field_format="yyyy-MM-dd" labelOnTop="0"/>
+        <edittype widgetv2type="Range" name="year_of_replacement">
+          <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="1900" Max="2100"/>
         </edittype>
         <edittype widgetv2type="DateTime" name="last_modification">
           <widgetv2config fieldEditable="1" calendar_popup="0" allow_null="0" display_format="yyyy-MM-dd" field_format="yyyy-MM-dd" labelOnTop="0"/>
@@ -14050,11 +14050,11 @@
         <edittype widgetv2type="TextEdit" name="subsidies">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="DateTime" name="year_of_construction">
-          <widgetv2config fieldEditable="1" calendar_popup="0" allow_null="0" display_format="yyyy-MM-dd" field_format="yyyy-MM-dd" labelOnTop="0"/>
+        <edittype widgetv2type="Range" name="year_of_construction">
+          <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="1900" Max="2100"/>
         </edittype>
-        <edittype widgetv2type="DateTime" name="year_of_replacement">
-          <widgetv2config fieldEditable="1" calendar_popup="0" allow_null="0" display_format="yyyy-MM-dd" field_format="yyyy-MM-dd" labelOnTop="0"/>
+        <edittype widgetv2type="Range" name="year_of_replacement">
+          <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="1900" Max="2100"/>
         </edittype>
         <edittype widgetv2type="DateTime" name="last_modification">
           <widgetv2config fieldEditable="1" calendar_popup="0" allow_null="0" display_format="yyyy-MM-dd" field_format="yyyy-MM-dd" labelOnTop="0"/>
