@@ -130,100 +130,98 @@ print " # Translating file...\n";
 # ************ USING UNCOMPRESSED ************#
 # ************ PDF FROM THE FILE  ************#
 ###############################################
-system( "qpdf --stream-data=uncompress $inputfile  .~qgep_diagram_translate_1.tmp" );
-
-local $^I='.bak';
-local @ARGV=(".~qgep_diagram_translate_1.tmp");
-while(<>)
-{
-	print "$_\n";
-	while ( /(\[\(\$\#(\)\d+(\.\d+)?\()?\$.*\)\]TJ)/g ) # in PDF, letters seem to be written by blocks of few letters
-	{
-		my $find = substr $1, 2, -4;   # take actually what has to be replaced
-		my $rawstring =  $find =~ s/(\)\d+(\.\d+)?\()//gr;   # extract rawstring by removing blocks
-		@fields = split( '\$', $rawstring);
-		$table_name = $fields[1];
-		$field = $fields[2];
-		$type = $fields[3];
-		print "$table_name $field $type \n";
-		if ( $dict_field{$table_name}{$field}{$type} )
-		{
-			$dict_field{$table_name}{$field}{count}++;
-			$replace = $dict_field{$table_name}{$field}{$type};
-			
-			# escape characters so they can be used in the in place editing
-			$find =~ s/\(/\\\(/g; 
-			$find =~ s/\)/\\\)/g;
-			
-			print "$find\n";
-			print "$replace\n";
-			
-			s/$find/$replace/ig;
-			
-			print "result: $_\n";
-			
-			print "  * $table_name $field $type found in dictionary \n" if $verbose;
-		} else {
-			# TODO report missing
-			print "  ! $table_name $field $type not found in dictionary \n";
-		}			
-	}
-}
-close(INFO);
-system( "qpdf --stream-data=compress .~qgep_diagram_translate_1.tmp $outputfile" );
+# system( "qpdf --stream-data=uncompress $inputfile  .~qgep_diagram_translate_1.tmp" );
+# 
+# local $^I='.bak';
+# local @ARGV=(".~qgep_diagram_translate_1.tmp");
+# while(<>)
+# {
+# 	print "$_\n";
+# 	while ( /(\[\(\$\#(\)\d+(\.\d+)?\()?\$.*\)\]TJ)/g ) # in PDF, letters seem to be written by blocks of few letters
+# 	{
+# 		my $find = substr $1, 2, -4;   # take actually what has to be replaced
+# 		my $rawstring =  $find =~ s/(\)\d+(\.\d+)?\()//gr;   # extract rawstring by removing blocks
+# 		@fields = split( '\$', $rawstring);
+# 		$table_name = $fields[1];
+# 		$field = $fields[2];
+# 		$type = $fields[3];
+# 		print "$table_name $field $type \n";
+# 		if ( $dict_field{$table_name}{$field}{$type} )
+# 		{
+# 			$dict_field{$table_name}{$field}{count}++;
+# 			$replace = $dict_field{$table_name}{$field}{$type};
+# 			
+# 			# escape characters so they can be used in the in place editing
+# 			$find =~ s/\(/\\\(/g; 
+# 			$find =~ s/\)/\\\)/g;
+# 			
+# 			print "$find\n";
+# 			print "$replace\n";
+# 			
+# 			s/$find/$replace/ig;
+# 			
+# 			print "result: $_\n";
+# 			
+# 			print "  * $table_name $field $type found in dictionary \n" if $verbose;
+# 		} else {
+# 			# TODO report missing
+# 			print "  ! $table_name $field $type not found in dictionary \n";
+# 		}			
+# 	}
+# }
+# close(INFO);
+# system( "qpdf --stream-data=compress .~qgep_diagram_translate_1.tmp $outputfile" );
 
 ###########################################
 # ************ USING CAM::PDF ************#
 ###########################################
-	# 
-	# 
-	# my $doc = CAM::PDF->new($inputfile) || die "$CAM::PDF::errstr\n";
-	# 
-	# foreach my $p (1 .. $doc->numPages())
-	# {
-	# 	my $newcontent;
-	# 	my $content = $doc->getPageContent($p);
-	# 	my @lines = split /\n/, $content;
-	# 	foreach my $line (@lines) {
-	# 		while ( $line =~ /(\$\?\$.*?(\)|\s))/g ) {
-	# 			$table_name = substr $1, 3, -1;
-	# 			if ( $dict_od_table{$table_name} ){
-	# 				$dict_od_table{$table_name}{count}++;
-	# 				$replace = $dict_od_table{$table_name}{translation};
-	# 				$line =~ s/\$\?\$$table_name/$replace/g;
-	# 				print "  ! $table_name found in dictionary\n" if $verbose;
-	# 			} else {
-	# 				# TODO report non translated elements
-	# 				print "  * $table_name not found in dictionary\n";
-	# 			}
-	# 		}
-	# 		while ( $line =~ /(\$\\#\$.*?(\)|\s))/g ) {
-	# 			@fields = split( '\$', substr $1, 0, -1);
-	# 			$table_name = $fields[2];
-	# 			$field = $fields[3];
-	# 			$type = $fields[4];
-	# 			if ( $dict_field{$table_name}{$field}{$type} ){
-	# 				$dict_field{$table_name}{$field}{count}++;
-	# 				$replace = $dict_field{$table_name}{$field}{$type};
-	# 				$line =~ s/\$\\#\$$table_name\$$field\$$type/$replace/g;
-	# 				print "  * $table_name $field $type found in dictionary \n" if $verbose;
-	# 			} else {
-	# 				# TODO report missing
-	# 				print "  ! $table_name $field $type not found in dictionary \n";
-	# 			}
-	# 		}
-	# 		$newcontent .= encode('ISO 8859-15',"$line\n");
-	# 	}
-	# 	$doc->setPageContent($p, $newcontent);
-	# }
-	# 
-	# # ************************
-	# # ************************
-	# print " # Writing output file...\n";
-	# $doc->output($outputfile);
-	# 
-	# 
 
+my $doc = CAM::PDF->new($inputfile) || die "$CAM::PDF::errstr\n";
+
+foreach my $p (1 .. $doc->numPages())
+{
+	my $newcontent;
+	my $content = $doc->getPageContent($p);
+	my @lines = split /\n/, $content;
+	foreach my $line (@lines) {
+		print "in: $line\n" if $verbose;
+		while ( $line =~ /(\$\?\$.*?(\)|\s))/g ) {
+			$table_name = substr $1, 3, -1;
+			if ( $dict_od_table{$table_name} ){
+				$dict_od_table{$table_name}{count}++;
+				$replace = $dict_od_table{$table_name}{translation};
+				$line =~ s/\$\?\$$table_name/$replace/g;
+				print "  ! $table_name found in dictionary\n" if $verbose;
+			} else {
+				# TODO report non translated elements
+				print "  * $table_name not found in dictionary\n";
+			}
+		}
+		while ( $line =~ /(\$\\#\$.*?(\)|\s))/g ) {
+			@fields = split( '\$', substr $1, 0, -1);
+			$table_name = $fields[2];
+			$field = $fields[3];
+			$type = $fields[4];
+			if ( $dict_field{$table_name}{$field}{$type} ){
+				$dict_field{$table_name}{$field}{count}++;
+				$replace = $dict_field{$table_name}{$field}{$type};
+				$line =~ s/\$\\#\$$table_name\$$field\$$type/$replace/g;
+				print "  * $table_name $field $type found in dictionary \n" if $verbose;
+			} else {
+				# TODO report missing
+				print "  ! $table_name $field $type not found in dictionary \n";
+			}
+		}
+		print "out: $line\n\n" if $verbose;
+		$newcontent .= encode('ISO 8859-15',"$line\n");
+	}
+	$doc->setPageContent($p, $newcontent);
+}
+
+# ************************
+# ************************
+print " # Writing output file...\n";
+$doc->output($outputfile);
 
 
 
