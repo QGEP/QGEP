@@ -52,7 +52,7 @@ GetOptions (
 pod2usage(1) if $help;
 pod2usage(-exitval => 0, -verbose => 2) if $man;
 
-if (!@ARGV) 
+if (!@ARGV)
 {
 	pod2usage(-verbose => 0, -message => "\ndiagram_file: argument required\n")
 }
@@ -72,7 +72,7 @@ $dbh = DBI->connect("DBI:Pg:service=$pgservice", "", "", { RaiseError => 1,})
 
 $prep = $dbh->prepare("SELECT tablename, name_$language AS translated FROM qgep.is_dictionary_od_table") or die $dbh->errstr;
 $prep->execute() or die "Request failed\n";
-while ( $row = $prep->fetchrow_hashref ) 
+while ( $row = $prep->fetchrow_hashref )
 {
 	$dict_od_table{$row->{tablename}}{translation} = $row->{translated};
 	$dict_od_table{$row->{tablename}}{count} = 0;
@@ -82,7 +82,7 @@ $prep = $dbh->prepare("SELECT table_name, field_name, field_name_$language AS tr
 	convert_to( left( field_description_$language, $description_width ), 'ISO 8859-15' ) AS description \
 	FROM qgep.is_dictionary_od_field") or die $dbh->errstr;
 $prep->execute() or die "Request failed\n";
-while ( $row = $prep->fetchrow_hashref ) 
+while ( $row = $prep->fetchrow_hashref )
 {
 	$dict_field{$row->{table_name}}{$row->{field_name}}{name} = $row->{translated};
 	$dict_field{$row->{table_name}}{$row->{field_name}}{description} = $row->{description};
@@ -91,7 +91,7 @@ while ( $row = $prep->fetchrow_hashref )
 
 $prep = $dbh->prepare("SELECT vl_name AS table_name, code AS field_name, value_$language AS translated FROM qgep.is_dictionary_value_list") or die $dbh->errstr;
 $prep->execute() or die "Request failed\n";
-while ( $row = $prep->fetchrow_hashref ) 
+while ( $row = $prep->fetchrow_hashref )
 {
 	$dict_field{$row->{table_name}}{$row->{field_name}}{name} = $row->{translated};
 	$dict_field{$row->{table_name}}{$row->{field_name}}{description} = "";
@@ -105,7 +105,7 @@ print " # Translating project file...\n";
 
 my $newcontent;
 
-open my $doc, $inputfile . '/qgep_base.qgs' || die "Could not open file $inputfile/qgep_base.qgs\n";
+open ( my $doc, '<:encoding(UTF-8)', $inputfile . '/qgep_base.qgs' ) || die "Could not open file $inputfile/qgep_base.qgs\n";
 
 while ( my $line = <$doc> )
 {
@@ -120,14 +120,14 @@ while ( my $line = <$doc> )
 				$line =~ s/%%$table_name%%/$replace/g;
 				print "  ! $table_name found in dictionary\n" if $verbose;
 		}
-    else 
+    else
     {
 			# TODO report non translated elements
 			print "  * $table_name not found in dictionary\n";
 		}
 	}
   # Field names
-  while ( $line =~ /%#(.*)#(.*)#(name|description)#%/g ) 
+  while ( $line =~ /%#(.*)#(.*)#(name|description)#%/g )
   {
     $table_name = $1;
     $field = $2;
@@ -139,7 +139,7 @@ while ( my $line = <$doc> )
       $line =~ s/%#$table_name#$field#$type#%/$replace/g;
       print "  * $table_name $field $type found in dictionary \n" if $verbose;
     }
-    else 
+    else
     {
       # TODO report missing
       print "  ! $table_name $field $type not found in dictionary \n";
