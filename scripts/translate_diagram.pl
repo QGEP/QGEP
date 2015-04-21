@@ -108,67 +108,69 @@ print " # Translating file...\n";
 # ************ USING UNCOMPRESSED ************#
 # ************ PDF FROM THE DICTS ************#
 ###############################################
-system( "qpdf --stream-data=uncompress $inputfile  .~qgep_diagram_translate_1.tmp" );
-while ( ($table_name, my $value) = each %dict_field )
-{
-  foreach $field ( keys %{$dict_field{$table_name}} )
-	{
-	  $toreplace = "\$#\$$table_name\$$field\$name";
-	  $replace = $dict_field{$table_name}{$field}{name};
-	  if ( $replace ne "" )
-	  {
-		  print "$table_name $field $dict_field{$table_name}{$field}{name}\n";
-		  system( "sed -i -e \"s|$toreplace|$replace|g\" .~qgep_diagram_translate_1.tmp" ) ;
-		  print "sed -i -e \"s|$toreplace|$replace|g\" .~qgep_diagram_translate_1.tmp \n" if $verbose ;
-	  }
-  }
-}
-system( "qpdf --stream-data=compress .~qgep_diagram_translate_1.tmp $outputfile" );
+	#	system( "qpdf --stream-data=uncompress $inputfile  .~qgep_diagram_translate_1.tmp" );
+	#	while ( ($table_name, my $value) = each %dict_field )
+	#	{
+	#		foreach $field ( keys %{$dict_field{$table_name}} )
+	#		{
+	#			$toreplace = "\$#\$$table_name\$$field\$name";
+	#			$replace = $dict_field{$table_name}{$field}{name};
+	#			if ( $replace ne "" )
+	#			{
+	#				print "$table_name $field $dict_field{$table_name}{$field}{name}\n";
+	#				system( "sed -i -e \"s|$toreplace|$replace|g\" .~qgep_diagram_translate_1.tmp" ) ;
+	#				print "sed -i -e \"s|$toreplace|$replace|g\" .~qgep_diagram_translate_1.tmp \n" if $verbose ;
+	#			}
+	#		}
+	#	}
+	#	system( "qpdf --stream-data=compress .~qgep_diagram_translate_1.tmp $outputfile" );
 
 
 ###############################################
 # ************ USING UNCOMPRESSED ************#
 # ************ PDF FROM THE FILE  ************#
 ###############################################
-	# system( "qpdf --stream-data=uncompress $inputfile  .~qgep_diagram_translate_1.tmp" );
-	#my $fid;
-	#open($fid, ">", ".~qgep_diagram_translate_2.tmp") or die ("could not write output file.");
-	#open(INFO, ".~qgep_diagram_translate_1.tmp") or die("Could not open temporary file.");
-	#foreach $_ (<INFO>)
-	#{
-	#	print "$_\n";
-	#	while ( /(\[\(\$\#(\)\d+(\.\d+)?\()?\$.*\)\]TJ)/g )
-	#	{
-	#		my $find = substr $1, 2, -4;
-	#		my $rawstring =  $find =~ s/(\)\d+(\.\d+)?\()//gr;
-	#		@fields = split( '\$', $rawstring);
-	#		$table_name = $fields[2];
-	#		$field = $fields[3];
-	#		$type = $fields[4];
-	#		if ( $dict_field{$table_name}{$field}{$type} )
-	#		{
-	#			$dict_field{$table_name}{$field}{count}++;
-	#			$replace = $dict_field{$table_name}{$field}{$type};
-	#			
-	#			my $idx = index $_, $find;
-	#			if ($idx >= 0) {
-	#				substr ($_, $idx, length($find), $replace ); 
-	#			}
-	#			
-	#			#my $line = $_ =~ s|$find|$replace|gr;
-	#			#print "$replace\n";
-	#			#print "result: $line\n";
-	#			print "  * $table_name $field $type found in dictionary \n" if $verbose;
-	#		} else {
-	#			# TODO report missing
-	#			print "  ! $table_name $field $type not found in dictionary \n";
-	#		}			
-	#	}
-	#	print $fid encode('ISO 8859-15',"$_\n");
-	#}
-	#close(INFO);
-	#close $fid;
-	#system( "qpdf --stream-data=compress .~qgep_diagram_translate_2.tmp $outputfile" );
+system( "qpdf --stream-data=uncompress $inputfile  .~qgep_diagram_translate_1.tmp" );
+
+local $^I='.bak';
+local @ARGV=(".~qgep_diagram_translate_1.tmp");
+while(<>)
+{
+	print "$_\n";
+	while ( /(\[\(\$\#(\)\d+(\.\d+)?\()?\$.*\)\]TJ)/g ) # in PDF, letters seem to be written by blocks of few letters
+	{
+		my $find = substr $1, 2, -4;   # take actually what has to be replaced
+		my $rawstring =  $find =~ s/(\)\d+(\.\d+)?\()//gr;   # extract rawstring by removing blocks
+		@fields = split( '\$', $rawstring);
+		$table_name = $fields[1];
+		$field = $fields[2];
+		$type = $fields[3];
+		print "$table_name $field $type \n";
+		if ( $dict_field{$table_name}{$field}{$type} )
+		{
+			$dict_field{$table_name}{$field}{count}++;
+			$replace = $dict_field{$table_name}{$field}{$type};
+			
+			# escape characters so they can be used in the in place editing
+			$find =~ s/\(/\\\(/g; 
+			$find =~ s/\)/\\\)/g;
+			
+			print "$find\n";
+			print "$replace\n";
+			
+			s/$find/$replace/ig;
+			
+			print "result: $_\n";
+			
+			print "  * $table_name $field $type found in dictionary \n" if $verbose;
+		} else {
+			# TODO report missing
+			print "  ! $table_name $field $type not found in dictionary \n";
+		}			
+	}
+}
+close(INFO);
+system( "qpdf --stream-data=compress .~qgep_diagram_translate_1.tmp $outputfile" );
 
 ###########################################
 # ************ USING CAM::PDF ************#
