@@ -78,7 +78,7 @@ while ( $row = $prep->fetchrow_hashref ) {
 	$dict_table_count++;
 }
 
-$prep = $dbh->prepare("SELECT table_name, field_name, field_name_$language AS translated, \
+$prep = $dbh->prepare("SELECT table_name, field_name, COALESCE(field_name_$language, '') AS translated, \
 	convert_to( left( field_description_$language, $description_width ), 'ISO 8859-15' ) AS description \
 	FROM qgep.is_dictionary_od_field") or die $dbh->errstr;
 $prep->execute() or die "Request failed\n";
@@ -89,7 +89,7 @@ while ( $row = $prep->fetchrow_hashref ) {
 	$dict_field_count++;
 }
 
-$prep = $dbh->prepare("SELECT vl_name AS table_name, code AS field_name, value_$language AS translated FROM qgep.is_dictionary_value_list") or die $dbh->errstr;
+$prep = $dbh->prepare("SELECT vl_name AS table_name, code AS field_name, COALESCE(value_$language, '') AS translated FROM qgep.is_dictionary_value_list") or die $dbh->errstr;
 $prep->execute() or die "Request failed\n";
 while ( $row = $prep->fetchrow_hashref ) {
 	$dict_field{$row->{table_name}}{$row->{field_name}}{name} = $row->{translated};
@@ -113,10 +113,14 @@ while ( ($table_name, my $value) = each %dict_field )
 {
   foreach $field ( keys %{$dict_field{$table_name}} )
 	{
-	  my $find = "\$#\$$table_name\$$field\$name";
-	  my $replace = $dict_field{$table_name}{$field}{name};
-	  system( "sed -i -e \"s|$find|$replace|g\" .~qgep_diagram_translate_1.tmp" ) ;
-	  print "sed -i -e \"s|$find|$replace|g\" .~qgep_diagram_translate_1.tmp \n" ;
+	  $toreplace = "\$#\$$table_name\$$field\$name";
+	  $replace = $dict_field{$table_name}{$field}{name};
+	  if ( $replace ne "" )
+	  {
+		  print "$table_name $field $dict_field{$table_name}{$field}{name}\n";
+		  system( "sed -i -e \"s|$toreplace|$replace|g\" .~qgep_diagram_translate_1.tmp" ) ;
+		  print "sed -i -e \"s|$toreplace|$replace|g\" .~qgep_diagram_translate_1.tmp \n" if $verbose ;
+	  }
   }
 }
 system( "qpdf --stream-data=compress .~qgep_diagram_translate_1.tmp $outputfile" );
