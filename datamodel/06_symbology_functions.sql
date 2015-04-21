@@ -23,12 +23,32 @@ function_hierarchic smallint := NULL;
 usage_current smallint := NULL;
 BEGIN
 -- first get the relevant network_element obj_id
-SELECT INTO myrec ne.obj_id FROM qgep.od_manhole mh LEFT JOIN qgep.od_wastewater_structure str ON mh.obj_id = str.obj_id LEFT JOIN qgep.od_wastewater_networkelement ne ON ne.fk_wastewater_structure = str.obj_id
-WHERE mh.obj_id = manhole_object_id;
+SELECT INTO myrec ne.obj_id
+  FROM qgep.od_manhole mh
+  LEFT JOIN qgep.od_wastewater_structure str ON mh.obj_id = str.obj_id
+  LEFT JOIN qgep.od_wastewater_networkelement ne ON ne.fk_wastewater_structure = str.obj_id
+  WHERE mh.obj_id = manhole_object_id;
 network_element_obj_id := myrec.obj_id;
 -- process first only outgoing channels/reaches
 -- need to process multiple outgoing reaches in order of function_hierarchic and usage_current
-FOR myrec IN SELECT channel_from.function_hierarchic, vl_fct_hier.order_fct_hierarchic, channel_from.usage_current, vl_usg_curr.order_usage_current FROM qgep.od_wastewater_networkelement ne LEFT JOIN qgep.od_reach_point rp ON ne.obj_id = rp.fk_wastewater_networkelement LEFT JOIN qgep.od_reach re_from ON re_from.fk_reach_point_from = rp.obj_id LEFT JOIN qgep.od_wastewater_networkelement ne_from ON ne_from.obj_id = re_from.obj_id LEFT JOIN qgep.od_wastewater_structure struct_from ON ne_from.fk_wastewater_structure = struct_from.obj_id LEFT JOIN qgep.od_channel channel_from ON channel_from.obj_id = struct_from.obj_id LEFT JOIN qgep.vl_channel_function_hierarchic vl_fct_hier ON channel_from.function_hierarchic = vl_fct_hier.code LEFT JOIN qgep.vl_channel_usage_current vl_usg_curr ON channel_from.usage_current = vl_usg_curr.code WHERE ne.obj_id = network_element_obj_id AND channel_from.function_hierarchic IS NOT NULL AND channel_from.usage_current IS NOT NULL ORDER BY vl_fct_hier.order_fct_hierarchic ASC, vl_usg_curr.order_usage_current ASC LOOP
+FOR myrec
+  IN SELECT
+    channel_from.function_hierarchic,
+    vl_fct_hier.order_fct_hierarchic,
+    channel_from.usage_current,
+    vl_usg_curr.order_usage_current
+    FROM qgep.od_wastewater_networkelement ne
+    LEFT JOIN qgep.od_reach_point rp ON ne.obj_id = rp.fk_wastewater_networkelement
+    LEFT JOIN qgep.od_reach re_from ON re_from.fk_reach_point_from = rp.obj_id
+    LEFT JOIN qgep.od_wastewater_networkelement ne_from ON ne_from.obj_id = re_from.obj_id
+    LEFT JOIN qgep.od_wastewater_structure struct_from ON ne_from.fk_wastewater_structure = struct_from.obj_id
+    LEFT JOIN qgep.od_channel channel_from ON channel_from.obj_id = struct_from.obj_id
+    LEFT JOIN qgep.vl_channel_function_hierarchic vl_fct_hier ON channel_from.function_hierarchic = vl_fct_hier.code
+    LEFT JOIN qgep.vl_channel_usage_current vl_usg_curr ON channel_from.usage_current = vl_usg_curr.code
+    WHERE ne.obj_id = network_element_obj_id AND channel_from.function_hierarchic IS NOT NULL
+    AND channel_from.usage_current IS NOT NULL
+    ORDER BY vl_fct_hier.order_fct_hierarchic ASC, vl_usg_curr.order_usage_current ASC
+LOOP
   IF myrec.order_fct_hierarchic IS NOT NULL AND myrec.order_usage_current IS NOT NULL THEN
 	IF myrec.order_fct_hierarchic <= order_fct_hierarchic THEN
 		order_fct_hierarchic := myrec.order_fct_hierarchic;
@@ -42,7 +62,25 @@ FOR myrec IN SELECT channel_from.function_hierarchic, vl_fct_hier.order_fct_hier
 END LOOP;
 -- in case there is no outgoing channel/reach we need to examine incoming reaches
 IF function_hierarchic IS NULL THEN
-  FOR myrec IN SELECT channel_to.function_hierarchic, vl_fct_hier.order_fct_hierarchic, channel_to.usage_current, vl_usg_curr.order_usage_current FROM qgep.od_wastewater_networkelement ne LEFT JOIN qgep.od_reach_point rp ON ne.obj_id = rp.fk_wastewater_networkelement LEFT JOIN qgep.od_reach re_to ON re_to.fk_reach_point_to = rp.obj_id LEFT JOIN qgep.od_wastewater_networkelement ne_to ON ne_to.obj_id = re_to.obj_id LEFT JOIN qgep.od_wastewater_structure struct_to ON ne_to.fk_wastewater_structure = struct_to.obj_id LEFT JOIN qgep.od_channel channel_to ON channel_to.obj_id = struct_to.obj_id LEFT JOIN qgep.vl_channel_function_hierarchic vl_fct_hier ON channel_to.function_hierarchic = vl_fct_hier.code LEFT JOIN qgep.vl_channel_usage_current vl_usg_curr ON channel_to.usage_current = vl_usg_curr.code WHERE ne.obj_id = network_element_obj_id AND channel_to.function_hierarchic IS NOT NULL AND channel_to.usage_current IS NOT NULL ORDER BY vl_fct_hier.order_fct_hierarchic ASC, vl_usg_curr.order_usage_current ASC LOOP
+  FOR myrec
+    IN SELECT
+	  channel_to.function_hierarchic,
+	  vl_fct_hier.order_fct_hierarchic,
+	  channel_to.usage_current,
+	  vl_usg_curr.order_usage_current
+      FROM qgep.od_wastewater_networkelement ne
+      LEFT JOIN qgep.od_reach_point rp ON ne.obj_id = rp.fk_wastewater_networkelement
+      LEFT JOIN qgep.od_reach re_to ON re_to.fk_reach_point_to = rp.obj_id
+      LEFT JOIN qgep.od_wastewater_networkelement ne_to ON ne_to.obj_id = re_to.obj_id
+      LEFT JOIN qgep.od_wastewater_structure struct_to ON ne_to.fk_wastewater_structure = struct_to.obj_id
+      LEFT JOIN qgep.od_channel channel_to ON channel_to.obj_id = struct_to.obj_id
+      LEFT JOIN qgep.vl_channel_function_hierarchic vl_fct_hier ON channel_to.function_hierarchic = vl_fct_hier.code
+      LEFT JOIN qgep.vl_channel_usage_current vl_usg_curr ON channel_to.usage_current = vl_usg_curr.code
+      WHERE ne.obj_id = network_element_obj_id
+      AND channel_to.function_hierarchic IS NOT NULL
+      AND channel_to.usage_current IS NOT NULL
+      ORDER BY vl_fct_hier.order_fct_hierarchic ASC, vl_usg_curr.order_usage_current ASC
+  LOOP
     IF myrec.order_fct_hierarchic IS NOT NULL AND myrec.order_usage_current IS NOT NULL THEN
 	IF myrec.order_fct_hierarchic <= order_fct_hierarchic THEN
 		order_fct_hierarchic := myrec.order_fct_hierarchic;
@@ -82,10 +120,10 @@ BEGIN
 END;
 IF myrec_struct_identifier.identifier IS NOT NULL THEN
   label = myrec_struct_identifier.identifier;
-ELSE 
+ELSE
   label = myrec_struct_identifier.obj_id;
 END IF;
-FOR myrec_cover IN SELECT 'D='||round(cov.level,2) AS text_cover FROM qgep.od_cover cov WHERE cov.obj_id = structure_obj_id ORDER BY cov.level DESC LIMIT 1 LOOP 
+FOR myrec_cover IN SELECT 'D='||round(cov.level,2) AS text_cover FROM qgep.od_cover cov WHERE cov.obj_id = structure_obj_id ORDER BY cov.level DESC LIMIT 1 LOOP
   label = label || '
 ' || myrec_cover.text_cover;
 END LOOP;
