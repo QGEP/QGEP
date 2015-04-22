@@ -80,7 +80,7 @@ while ( $row = $prep->fetchrow_hashref )
 
 $prep = $dbh->prepare("SELECT table_name, field_name, field_name_$language AS translated, \
 	convert_to( left( field_description_$language, $description_width ), 'ISO 8859-15' ) AS description \
-	FROM qgep.is_dictionary_od_field") or die $dbh->errstr;
+	FROM qgep.vw_dictionary_field") or die $dbh->errstr;
 $prep->execute() or die "Request failed\n";
 while ( $row = $prep->fetchrow_hashref )
 {
