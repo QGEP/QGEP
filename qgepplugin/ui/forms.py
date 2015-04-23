@@ -30,23 +30,31 @@ def digitizeDrainageChannel(form,feature,layer):
     )
 
 def manholeOpen(form,layer,feature):
-    btn = form.findChildren(QPushButton, 'btn_digitize_drainage_channel')
+    btn = form.findChild(QPushButton, 'btn_digitize_drainage_channel')
 
     try:
-        btn[0].clicked.disconnect()
+        btn.clicked.disconnect()
     except TypeError:
         pass
 
     if feature.isValid():
-        btn[0].clicked.connect(
+        btn.clicked.connect(
             lambda: digitizeDrainageChannel(form,feature,layer)
         )
-        btn[0].setEnabled(layer.isEditable())
+        btn.setEnabled(layer.isEditable())
+
+        enableButton = lambda: btn.setEnabled(True)
+        disableButton = lambda: btn.setEnabled(False)
+
         layer.editingStarted.connect(
-            lambda: btn[0].setEnabled(True)
+            enableButton
         )
         layer.editingStopped.connect(
-            lambda: btn[0].setEnabled(False)
+            disableButton
         )
+        form.destroyed.connect( lambda: layer.editingStarted.disconnect( enableButton ) )
+        form.destroyed.connect( lambda: layer.editingStopped.disconnect( disableButton ) )
     else:
-        btn[0].setEnabled(False)
+        btn.setEnabled(False)
+
+
