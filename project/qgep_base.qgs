@@ -1171,22 +1171,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="_tid" index="1" name="%#building_addresses__building_entrance_pos#_tid#name#%"/>
-        <alias field="fosnr" index="10" name="%#building_addresses__building_entrance_pos#fosnr#name#%"/>
-        <alias field="hali" index="8" name="%#building_addresses__building_entrance_pos#hali#name#%"/>
-        <alias field="hali_txt" index="13" name="%#building_addresses__building_entrance_pos#hali_txt#name#%"/>
-        <alias field="number_name" index="4" name="%#building_addresses__building_entrance_pos#number_name#name#%"/>
-        <alias field="ogc_fid" index="0" name="%#building_addresses__building_entrance_pos#ogc_fid#name#%"/>
-        <alias field="ori" index="7" name="%#building_addresses__building_entrance_pos#ori#name#%"/>
-        <alias field="ori_altgrad" index="11" name="%#building_addresses__building_entrance_pos#ori_altgrad#name#%"/>
-        <alias field="pos_0" index="5" name="%#building_addresses__building_entrance_pos#pos_0#name#%"/>
-        <alias field="pos_1" index="6" name="%#building_addresses__building_entrance_pos#pos_1#name#%"/>
-        <alias field="pos_of" index="2" name="%#building_addresses__building_entrance_pos#pos_of#name#%"/>
-        <alias field="type" index="3" name="%#building_addresses__building_entrance_pos#type#name#%"/>
-        <alias field="vali" index="9" name="%#building_addresses__building_entrance_pos#vali#name#%"/>
-        <alias field="vali_txt" index="12" name="%#building_addresses__building_entrance_pos#vali_txt#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -1526,21 +1510,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="_tid" index="1" name="%#building_addresses__street_name_pos#_tid#name#%"/>
-        <alias field="fosnr" index="9" name="%#building_addresses__street_name_pos#fosnr#name#%"/>
-        <alias field="hali" index="7" name="%#building_addresses__street_name_pos#hali#name#%"/>
-        <alias field="hali_txt" index="12" name="%#building_addresses__street_name_pos#hali_txt#name#%"/>
-        <alias field="ogc_fid" index="0" name="%#building_addresses__street_name_pos#ogc_fid#name#%"/>
-        <alias field="ori" index="6" name="%#building_addresses__street_name_pos#ori#name#%"/>
-        <alias field="ori_altgrad" index="10" name="%#building_addresses__street_name_pos#ori_altgrad#name#%"/>
-        <alias field="pos_0" index="4" name="%#building_addresses__street_name_pos#pos_0#name#%"/>
-        <alias field="pos_1" index="5" name="%#building_addresses__street_name_pos#pos_1#name#%"/>
-        <alias field="street_name" index="3" name="%#building_addresses__street_name_pos#street_name#name#%"/>
-        <alias field="street_name_of" index="2" name="%#building_addresses__street_name_pos#street_name_of#name#%"/>
-        <alias field="vali" index="8" name="%#building_addresses__street_name_pos#vali#name#%"/>
-        <alias field="vali_txt" index="11" name="%#building_addresses__street_name_pos#vali_txt#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -2390,15 +2359,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="_tid" index="1" name="%#land_cover__lcsurface#_tid#name#%"/>
-        <alias field="fosnr" index="6" name="%#land_cover__lcsurface#fosnr#name#%"/>
-        <alias field="ogc_fid" index="0" name="%#land_cover__lcsurface#ogc_fid#name#%"/>
-        <alias field="quality" index="2" name="%#land_cover__lcsurface#quality#name#%"/>
-        <alias field="regbl_egid" index="4" name="%#land_cover__lcsurface#regbl_egid#name#%"/>
-        <alias field="state_of" index="5" name="%#land_cover__lcsurface#state_of#name#%"/>
-        <alias field="type" index="3" name="%#land_cover__lcsurface#type#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -2720,22 +2680,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="_tid" index="1" name="%#land_cover__lcsurface_postext#_tid#name#%"/>
-        <alias field="fosnr" index="10" name="%#land_cover__lcsurface_postext#fosnr#name#%"/>
-        <alias field="hali" index="8" name="%#land_cover__lcsurface_postext#hali#name#%"/>
-        <alias field="hali_txt" index="13" name="%#land_cover__lcsurface_postext#hali_txt#name#%"/>
-        <alias field="number_name" index="4" name="%#land_cover__lcsurface_postext#number_name#name#%"/>
-        <alias field="ogc_fid" index="0" name="%#land_cover__lcsurface_postext#ogc_fid#name#%"/>
-        <alias field="ori" index="7" name="%#land_cover__lcsurface_postext#ori#name#%"/>
-        <alias field="ori_altgrad" index="11" name="%#land_cover__lcsurface_postext#ori_altgrad#name#%"/>
-        <alias field="pos_0" index="5" name="%#land_cover__lcsurface_postext#pos_0#name#%"/>
-        <alias field="pos_1" index="6" name="%#land_cover__lcsurface_postext#pos_1#name#%"/>
-        <alias field="postext_of" index="2" name="%#land_cover__lcsurface_postext#postext_of#name#%"/>
-        <alias field="type" index="3" name="%#land_cover__lcsurface_postext#type#name#%"/>
-        <alias field="vali" index="9" name="%#land_cover__lcsurface_postext#vali#name#%"/>
-        <alias field="vali_txt" index="12" name="%#land_cover__lcsurface_postext#vali_txt#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -3150,7 +3094,6 @@
         <alias field="infiltration_current" index="10" name="%#od_catchment_area#infiltration_current#name#%"/>
         <alias field="infiltration_planned" index="11" name="%#od_catchment_area#infiltration_planned#name#%"/>
         <alias field="last_modification" index="28" name="%#od_catchment_area#last_modification#name#%"/>
-        <alias field="obj_id" index="0" name="%#od_catchment_area#obj_id#name#%"/>
         <alias field="old_obj_id" index="35" name="%#od_catchment_area#old_obj_id#name#%"/>
         <alias field="population_density_current" index="12" name="%#od_catchment_area#population_density_current#name#%"/>
         <alias field="population_density_planned" index="13" name="%#od_catchment_area#population_density_planned#name#%"/>
@@ -3388,7 +3331,6 @@
       <aliases>
         <alias field="depth" index="1" name="%#od_discharge_point#depth#name#%"/>
         <alias field="highwater_level" index="2" name="%#od_discharge_point#highwater_level#name#%"/>
-        <alias field="obj_id" index="0" name="%#od_discharge_point#obj_id#name#%"/>
         <alias field="old_obj_id" index="7" name="%#od_discharge_point#old_obj_id#name#%"/>
         <alias field="relevance" index="3" name="%#od_discharge_point#relevance#name#%"/>
         <alias field="terrain_level" index="4" name="%#od_discharge_point#terrain_level#name#%"/>
@@ -3486,14 +3428,13 @@
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="dataowner" index="5" name="%#Organisation#dataowner#name#%"/>
-        <alias field="identifier" index="1" name="%#Organisation#identifier#name#%"/>
-        <alias field="last_modification" index="4" name="%#Organisation#last_modification#name#%"/>
-        <alias field="obj_id" index="0" name="%#Organisation#obj_id#name#%"/>
-        <alias field="old_obj_id" index="7" name="%#Organisation#old_obj_id#name#%"/>
-        <alias field="provider" index="6" name="%#Organisation#provider#name#%"/>
-        <alias field="remark" index="2" name="%#Organisation#remark#name#%"/>
-        <alias field="uid" index="3" name="%#Organisation#uid#name#%"/>
+        <alias field="dataowner" index="5" name="%#od_organisation#dataowner#name#%"/>
+        <alias field="identifier" index="1" name="%#od_organisation#identifier#name#%"/>
+        <alias field="last_modification" index="4" name="%#od_organisation#last_modification#name#%"/>
+        <alias field="old_obj_id" index="7" name="%#od_organisation#old_obj_id#name#%"/>
+        <alias field="provider" index="6" name="%#od_organisation#provider#name#%"/>
+        <alias field="remark" index="2" name="%#od_organisation#remark#name#%"/>
+        <alias field="uid" index="3" name="%#od_organisation#uid#name#%"/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -3593,7 +3534,6 @@
         <alias field="height_width_ratio" index="1" name="%#od_pipe_profile#height_width_ratio#name#%"/>
         <alias field="identifier" index="2" name="%#od_pipe_profile#identifier#name#%"/>
         <alias field="last_modification" index="5" name="%#od_pipe_profile#last_modification#name#%"/>
-        <alias field="obj_id" index="0" name="%#od_pipe_profile#obj_id#name#%"/>
         <alias field="old_obj_id" index="8" name="%#od_pipe_profile#old_obj_id#name#%"/>
         <alias field="profile_type" index="3" name="%#od_pipe_profile#profile_type#name#%"/>
         <alias field="provider" index="7" name="%#od_pipe_profile#provider#name#%"/>
@@ -3697,7 +3637,6 @@
         <alias field="depth" index="2" name="%#od_special_structure#depth#name#%"/>
         <alias field="emergency_spillway" index="3" name="%#od_special_structure#emergency_spillway#name#%"/>
         <alias field="function" index="4" name="%#od_special_structure#function#name#%"/>
-        <alias field="obj_id" index="0" name="%#od_special_structure#obj_id#name#%"/>
         <alias field="old_obj_id" index="7" name="%#od_special_structure#old_obj_id#name#%"/>
         <alias field="stormwater_tank_arrangement" index="5" name="%#od_special_structure#stormwater_tank_arrangement#name#%"/>
         <alias field="upper_elevation" index="6" name="%#od_special_structure#upper_elevation#name#%"/>
@@ -3797,7 +3736,6 @@
         <alias field="fk_wastewater_structure" index="6" name="%#od_wastewater_networkelement#fk_wastewater_structure#name#%"/>
         <alias field="identifier" index="1" name="%#od_wastewater_networkelement#identifier#name#%"/>
         <alias field="last_modification" index="3" name="%#od_wastewater_networkelement#last_modification#name#%"/>
-        <alias field="obj_id" index="0" name="%#od_wastewater_networkelement#obj_id#name#%"/>
         <alias field="old_obj_id" index="7" name="%#od_wastewater_networkelement#old_obj_id#name#%"/>
         <alias field="provider" index="5" name="%#od_wastewater_networkelement#provider#name#%"/>
         <alias field="remark" index="2" name="%#od_wastewater_networkelement#remark#name#%"/>
@@ -4292,18 +4230,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="_tid" index="1" name="%#ownership__boundary_point#_tid#name#%"/>
-        <alias field="fosnr" index="9" name="%#ownership__boundary_point#fosnr#name#%"/>
-        <alias field="geometry_0" index="2" name="%#ownership__boundary_point#geometry_0#name#%"/>
-        <alias field="geometry_1" index="3" name="%#ownership__boundary_point#geometry_1#name#%"/>
-        <alias field="mark" index="7" name="%#ownership__boundary_point#mark#name#%"/>
-        <alias field="ogc_fid" index="0" name="%#ownership__boundary_point#ogc_fid#name#%"/>
-        <alias field="plan_accuracy" index="5" name="%#ownership__boundary_point#plan_accuracy#name#%"/>
-        <alias field="plan_reliability" index="6" name="%#ownership__boundary_point#plan_reliability#name#%"/>
-        <alias field="state_of" index="8" name="%#ownership__boundary_point#state_of#name#%"/>
-        <alias field="validity" index="4" name="%#ownership__boundary_point#validity#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -4611,17 +4537,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="_tid" index="1" name="%#ownership__realestate#_tid#name#%"/>
-        <alias field="area" index="6" name="%#ownership__realestate#area#name#%"/>
-        <alias field="completeness" index="5" name="%#ownership__realestate#completeness#name#%"/>
-        <alias field="egris_egrid" index="4" name="%#ownership__realestate#egris_egrid#name#%"/>
-        <alias field="fosnr" index="8" name="%#ownership__realestate#fosnr#name#%"/>
-        <alias field="identnd" index="2" name="%#ownership__realestate#identnd#name#%"/>
-        <alias field="number" index="3" name="%#ownership__realestate#number#name#%"/>
-        <alias field="ogc_fid" index="0" name="%#ownership__realestate#ogc_fid#name#%"/>
-        <alias field="state_of" index="7" name="%#ownership__realestate#state_of#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -4949,22 +4864,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="_tid" index="1" name="%#ownership__realestate_posnumber#_tid#name#%"/>
-        <alias field="fosnr" index="10" name="%#ownership__realestate_posnumber#fosnr#name#%"/>
-        <alias field="hali" index="8" name="%#ownership__realestate_posnumber#hali#name#%"/>
-        <alias field="hali_txt" index="13" name="%#ownership__realestate_posnumber#hali_txt#name#%"/>
-        <alias field="identnd" index="3" name="%#ownership__realestate_posnumber#identnd#name#%"/>
-        <alias field="number" index="4" name="%#ownership__realestate_posnumber#number#name#%"/>
-        <alias field="ogc_fid" index="0" name="%#ownership__realestate_posnumber#ogc_fid#name#%"/>
-        <alias field="ori" index="7" name="%#ownership__realestate_posnumber#ori#name#%"/>
-        <alias field="ori_altgrad" index="11" name="%#ownership__realestate_posnumber#ori_altgrad#name#%"/>
-        <alias field="pos_0" index="5" name="%#ownership__realestate_posnumber#pos_0#name#%"/>
-        <alias field="pos_1" index="6" name="%#ownership__realestate_posnumber#pos_1#name#%"/>
-        <alias field="posnumber_of" index="2" name="%#ownership__realestate_posnumber#posnumber_of#name#%"/>
-        <alias field="vali" index="9" name="%#ownership__realestate_posnumber#vali#name#%"/>
-        <alias field="vali_txt" index="12" name="%#ownership__realestate_posnumber#vali_txt#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -6045,15 +5944,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="_tid" index="1" name="%#single_objects__linear_element#_tid#name#%"/>
-        <alias field="fosnr" index="6" name="%#single_objects__linear_element#fosnr#name#%"/>
-        <alias field="ogc_fid" index="0" name="%#single_objects__linear_element#ogc_fid#name#%"/>
-        <alias field="quality" index="4" name="%#single_objects__linear_element#quality#name#%"/>
-        <alias field="state_of" index="5" name="%#single_objects__linear_element#state_of#name#%"/>
-        <alias field="type" index="3" name="%#single_objects__linear_element#type#name#%"/>
-        <alias field="validity" index="2" name="%#single_objects__linear_element#validity#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -6857,16 +6747,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="_tid" index="1" name="%#single_objects__surface_element#_tid#name#%"/>
-        <alias field="fosnr" index="7" name="%#single_objects__surface_element#fosnr#name#%"/>
-        <alias field="ogc_fid" index="0" name="%#single_objects__surface_element#ogc_fid#name#%"/>
-        <alias field="quality" index="4" name="%#single_objects__surface_element#quality#name#%"/>
-        <alias field="regbl_egid" index="5" name="%#single_objects__surface_element#regbl_egid#name#%"/>
-        <alias field="state_of" index="6" name="%#single_objects__surface_element#state_of#name#%"/>
-        <alias field="type" index="3" name="%#single_objects__surface_element#type#name#%"/>
-        <alias field="validity" index="2" name="%#single_objects__surface_element#validity#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -7156,13 +7036,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>C:/Users/oliver.schweizer/Desktop/QGIS/QGEP-master150211/4421_Horn</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="_tid" index="1" name="%#territorial_boundaries__municipal_boundary#_tid#name#%"/>
-        <alias field="fosnr" index="4" name="%#territorial_boundaries__municipal_boundary#fosnr#name#%"/>
-        <alias field="name" index="2" name="%#territorial_boundaries__municipal_boundary#name#name#%"/>
-        <alias field="ogc_fid" index="0" name="%#territorial_boundaries__municipal_boundary#ogc_fid#name#%"/>
-        <alias field="state_of" index="3" name="%#territorial_boundaries__municipal_boundary#state_of#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -7244,16 +7117,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#Kind#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#Kind#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#Kind#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#Kind#active#name#%"/>
-        <alias field="code" index="0" name="%#Kind#code#name#%"/>
-        <alias field="value_de" index="2" name="%#Kind#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#Kind#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#Kind#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -7344,16 +7207,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#vl_catchment_area_direct_discharge_current#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#vl_catchment_area_direct_discharge_current#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#vl_catchment_area_direct_discharge_current#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#vl_catchment_area_direct_discharge_current#active#name#%"/>
-        <alias field="code" index="0" name="%#vl_catchment_area_direct_discharge_current#code#name#%"/>
-        <alias field="value_de" index="2" name="%#vl_catchment_area_direct_discharge_current#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#vl_catchment_area_direct_discharge_current#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#vl_catchment_area_direct_discharge_current#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -7444,16 +7297,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#vl_catchment_area_direct_discharge_planned#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#vl_catchment_area_direct_discharge_planned#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#vl_catchment_area_direct_discharge_planned#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#vl_catchment_area_direct_discharge_planned#active#name#%"/>
-        <alias field="code" index="0" name="%#vl_catchment_area_direct_discharge_planned#code#name#%"/>
-        <alias field="value_de" index="2" name="%#vl_catchment_area_direct_discharge_planned#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#vl_catchment_area_direct_discharge_planned#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#vl_catchment_area_direct_discharge_planned#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -7544,16 +7387,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#vl_catchment_area_drainage_system_current#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#vl_catchment_area_drainage_system_current#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#vl_catchment_area_drainage_system_current#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#vl_catchment_area_drainage_system_current#active#name#%"/>
-        <alias field="code" index="0" name="%#vl_catchment_area_drainage_system_current#code#name#%"/>
-        <alias field="value_de" index="2" name="%#vl_catchment_area_drainage_system_current#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#vl_catchment_area_drainage_system_current#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#vl_catchment_area_drainage_system_current#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -7644,16 +7477,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#vl_catchment_area_drainage_system_planned#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#vl_catchment_area_drainage_system_planned#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#vl_catchment_area_drainage_system_planned#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#vl_catchment_area_drainage_system_planned#active#name#%"/>
-        <alias field="code" index="0" name="%#vl_catchment_area_drainage_system_planned#code#name#%"/>
-        <alias field="value_de" index="2" name="%#vl_catchment_area_drainage_system_planned#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#vl_catchment_area_drainage_system_planned#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#vl_catchment_area_drainage_system_planned#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -7744,16 +7567,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#vl_catchment_area_infiltration_current#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#vl_catchment_area_infiltration_current#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#vl_catchment_area_infiltration_current#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#vl_catchment_area_infiltration_current#active#name#%"/>
-        <alias field="code" index="0" name="%#vl_catchment_area_infiltration_current#code#name#%"/>
-        <alias field="value_de" index="2" name="%#vl_catchment_area_infiltration_current#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#vl_catchment_area_infiltration_current#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#vl_catchment_area_infiltration_current#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -7844,16 +7657,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#vl_catchment_area_infiltration_planned#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#vl_catchment_area_infiltration_planned#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#vl_catchment_area_infiltration_planned#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#vl_catchment_area_infiltration_planned#active#name#%"/>
-        <alias field="code" index="0" name="%#vl_catchment_area_infiltration_planned#code#name#%"/>
-        <alias field="value_de" index="2" name="%#vl_catchment_area_infiltration_planned#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#vl_catchment_area_infiltration_planned#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#vl_catchment_area_infiltration_planned#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -7944,16 +7747,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#vl_catchment_area_retention_current#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#vl_catchment_area_retention_current#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#vl_catchment_area_retention_current#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#vl_catchment_area_retention_current#active#name#%"/>
-        <alias field="code" index="0" name="%#vl_catchment_area_retention_current#code#name#%"/>
-        <alias field="value_de" index="2" name="%#vl_catchment_area_retention_current#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#vl_catchment_area_retention_current#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#vl_catchment_area_retention_current#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -8044,16 +7837,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#vl_catchment_area_retention_planned#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#vl_catchment_area_retention_planned#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#vl_catchment_area_retention_planned#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#vl_catchment_area_retention_planned#active#name#%"/>
-        <alias field="code" index="0" name="%#vl_catchment_area_retention_planned#code#name#%"/>
-        <alias field="value_de" index="2" name="%#vl_catchment_area_retention_planned#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#vl_catchment_area_retention_planned#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#vl_catchment_area_retention_planned#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -8144,16 +7927,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#Bedding Encasement#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#Bedding Encasement#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#Bedding Encasement#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#Bedding Encasement#active#name#%"/>
-        <alias field="code" index="0" name="%#Bedding Encasement#code#name#%"/>
-        <alias field="value_de" index="2" name="%#Bedding Encasement#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#Bedding Encasement#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#Bedding Encasement#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -8244,16 +8017,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#Connection Type#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#Connection Type#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#Connection Type#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#Connection Type#active#name#%"/>
-        <alias field="code" index="0" name="%#Connection Type#code#name#%"/>
-        <alias field="value_de" index="2" name="%#Connection Type#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#Connection Type#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#Connection Type#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -8347,17 +8110,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#Function Hierarchic#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#Function Hierarchic#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#Function Hierarchic#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#Function Hierarchic#active#name#%"/>
-        <alias field="code" index="0" name="%#Function Hierarchic#code#name#%"/>
-        <alias field="order_fct_hierarchic" index="8" name="%#Function Hierarchic#order_fct_hierarchic#name#%"/>
-        <alias field="value_de" index="2" name="%#Function Hierarchic#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#Function Hierarchic#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#Function Hierarchic#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -8451,16 +8203,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#Function Hydraulic#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#Function Hydraulic#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#Function Hydraulic#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#Function Hydraulic#active#name#%"/>
-        <alias field="code" index="0" name="%#Function Hydraulic#code#name#%"/>
-        <alias field="value_de" index="2" name="%#Function Hydraulic#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#Function Hydraulic#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#Function Hydraulic#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -8554,17 +8296,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#Usage Current#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#Usage Current#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#Usage Current#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#Usage Current#active#name#%"/>
-        <alias field="code" index="0" name="%#Usage Current#code#name#%"/>
-        <alias field="order_usage_current" index="8" name="%#Usage Current#order_usage_current#name#%"/>
-        <alias field="value_de" index="2" name="%#Usage Current#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#Usage Current#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#Usage Current#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -8658,16 +8389,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#Usage Planned#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#Usage Planned#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#Usage Planned#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#Usage Planned#active#name#%"/>
-        <alias field="code" index="0" name="%#Usage Planned#code#name#%"/>
-        <alias field="value_de" index="2" name="%#Usage Planned#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#Usage Planned#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#Usage Planned#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -8758,16 +8479,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#Shape#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#Shape#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#Shape#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#Shape#active#name#%"/>
-        <alias field="code" index="0" name="%#Shape#code#name#%"/>
-        <alias field="value_de" index="2" name="%#Shape#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#Shape#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#Shape#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -8858,16 +8569,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#Fastening#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#Fastening#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#Fastening#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#Fastening#active#name#%"/>
-        <alias field="code" index="0" name="%#Fastening#code#name#%"/>
-        <alias field="value_de" index="2" name="%#Fastening#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#Fastening#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#Fastening#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -8958,16 +8659,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#C Material#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#C Material#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#C Material#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#C Material#active#name#%"/>
-        <alias field="code" index="0" name="%#C Material#code#name#%"/>
-        <alias field="value_de" index="2" name="%#C Material#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#C Material#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#C Material#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -9058,16 +8749,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#Positional Accuracy#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#Positional Accuracy#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#Positional Accuracy#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#Positional Accuracy#active#name#%"/>
-        <alias field="code" index="0" name="%#Positional Accuracy#code#name#%"/>
-        <alias field="value_de" index="2" name="%#Positional Accuracy#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#Positional Accuracy#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#Positional Accuracy#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -9158,16 +8839,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#Sludge Bucket#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#Sludge Bucket#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#Sludge Bucket#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#Sludge Bucket#active#name#%"/>
-        <alias field="code" index="0" name="%#Sludge Bucket#code#name#%"/>
-        <alias field="value_de" index="2" name="%#Sludge Bucket#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#Sludge Bucket#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#Sludge Bucket#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -9258,16 +8929,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#Venting#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#Venting#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#Venting#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#Venting#active#name#%"/>
-        <alias field="code" index="0" name="%#Venting#code#name#%"/>
-        <alias field="value_de" index="2" name="%#Venting#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#Venting#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#Venting#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -9358,16 +9019,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#Relevance#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#Relevance#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#Relevance#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#Relevance#active#name#%"/>
-        <alias field="code" index="0" name="%#Relevance#code#name#%"/>
-        <alias field="value_de" index="2" name="%#Relevance#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#Relevance#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#Relevance#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -9458,16 +9109,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#Function#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#Function#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#Function#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#Function#active#name#%"/>
-        <alias field="code" index="0" name="%#Function#code#name#%"/>
-        <alias field="value_de" index="2" name="%#Function#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#Function#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#Function#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -9558,16 +9199,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#MH Material#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#MH Material#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#MH Material#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#MH Material#active#name#%"/>
-        <alias field="code" index="0" name="%#MH Material#code#name#%"/>
-        <alias field="value_de" index="2" name="%#MH Material#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#MH Material#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#MH Material#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -9658,16 +9289,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#Surface Inflow#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#Surface Inflow#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#Surface Inflow#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#Surface Inflow#active#name#%"/>
-        <alias field="code" index="0" name="%#Surface Inflow#code#name#%"/>
-        <alias field="value_de" index="2" name="%#Surface Inflow#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#Surface Inflow#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#Surface Inflow#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -9758,16 +9379,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#Type#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#Type#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#Type#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#Type#active#name#%"/>
-        <alias field="code" index="0" name="%#Type#code#name#%"/>
-        <alias field="value_de" index="2" name="%#Type#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#Type#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#Type#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -9858,16 +9469,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#Elevation Determination#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#Elevation Determination#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#Elevation Determination#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#Elevation Determination#active#name#%"/>
-        <alias field="code" index="0" name="%#Elevation Determination#code#name#%"/>
-        <alias field="value_de" index="2" name="%#Elevation Determination#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#Elevation Determination#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#Elevation Determination#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -9958,16 +9559,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#Horizontal Positioning#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#Horizontal Positioning#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#Horizontal Positioning#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#Horizontal Positioning#active#name#%"/>
-        <alias field="code" index="0" name="%#Horizontal Positioning#code#name#%"/>
-        <alias field="value_de" index="2" name="%#Horizontal Positioning#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#Horizontal Positioning#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#Horizontal Positioning#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -10058,16 +9649,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#Inside Coating#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#Inside Coating#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#Inside Coating#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#Inside Coating#active#name#%"/>
-        <alias field="code" index="0" name="%#Inside Coating#code#name#%"/>
-        <alias field="value_de" index="2" name="%#Inside Coating#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#Inside Coating#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#Inside Coating#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -10158,16 +9739,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#Reach Material#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#Reach Material#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#Reach Material#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#Reach Material#active#name#%"/>
-        <alias field="code" index="0" name="%#Reach Material#code#name#%"/>
-        <alias field="value_de" index="2" name="%#Reach Material#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#Reach Material#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#Reach Material#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -10258,16 +9829,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#Elevation Accuracy#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#Elevation Accuracy#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#Elevation Accuracy#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#Elevation Accuracy#active#name#%"/>
-        <alias field="code" index="0" name="%#Elevation Accuracy#code#name#%"/>
-        <alias field="value_de" index="2" name="%#Elevation Accuracy#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#Elevation Accuracy#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#Elevation Accuracy#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -10358,16 +9919,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#Outlet Shape#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#Outlet Shape#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#Outlet Shape#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#Outlet Shape#active#name#%"/>
-        <alias field="code" index="0" name="%#Outlet Shape#code#name#%"/>
-        <alias field="value_de" index="2" name="%#Outlet Shape#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#Outlet Shape#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#Outlet Shape#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -10458,16 +10009,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#Reliner Material#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#Reliner Material#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#Reliner Material#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#Reliner Material#active#name#%"/>
-        <alias field="code" index="0" name="%#Reliner Material#code#name#%"/>
-        <alias field="value_de" index="2" name="%#Reliner Material#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#Reliner Material#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#Reliner Material#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -10558,16 +10099,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#Relining Construction#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#Relining Construction#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#Relining Construction#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#Relining Construction#active#name#%"/>
-        <alias field="code" index="0" name="%#Relining Construction#code#name#%"/>
-        <alias field="value_de" index="2" name="%#Relining Construction#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#Relining Construction#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#Relining Construction#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -10658,16 +10189,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#Relining Kind#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#Relining Kind#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#Relining Kind#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#Relining Kind#active#name#%"/>
-        <alias field="code" index="0" name="%#Relining Kind#code#name#%"/>
-        <alias field="value_de" index="2" name="%#Relining Kind#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#Relining Kind#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#Relining Kind#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -10758,16 +10279,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#Bypass#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#Bypass#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#Bypass#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#Bypass#active#name#%"/>
-        <alias field="code" index="0" name="%#Bypass#code#name#%"/>
-        <alias field="value_de" index="2" name="%#Bypass#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#Bypass#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#Bypass#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -10858,16 +10369,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#Emergency Spillway#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#Emergency Spillway#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#Emergency Spillway#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#Emergency Spillway#active#name#%"/>
-        <alias field="code" index="0" name="%#Emergency Spillway#code#name#%"/>
-        <alias field="value_de" index="2" name="%#Emergency Spillway#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#Emergency Spillway#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#Emergency Spillway#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -10958,16 +10459,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#Function#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#Function#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#Function#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#Function#active#name#%"/>
-        <alias field="code" index="0" name="%#Function#code#name#%"/>
-        <alias field="value_de" index="2" name="%#Function#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#Function#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#Function#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -11058,16 +10549,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#Stormwater Tank Arrangement#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#Stormwater Tank Arrangement#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#Stormwater Tank Arrangement#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#Stormwater Tank Arrangement#active#name#%"/>
-        <alias field="code" index="0" name="%#Stormwater Tank Arrangement#code#name#%"/>
-        <alias field="value_de" index="2" name="%#Stormwater Tank Arrangement#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#Stormwater Tank Arrangement#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#Stormwater Tank Arrangement#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -11158,16 +10639,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#Renovation Demand#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#Renovation Demand#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#Renovation Demand#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#Renovation Demand#active#name#%"/>
-        <alias field="code" index="0" name="%#Renovation Demand#code#name#%"/>
-        <alias field="value_de" index="2" name="%#Renovation Demand#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#Renovation Demand#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#Renovation Demand#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -11258,16 +10729,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#Accessibility#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#Accessibility#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#Accessibility#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#Accessibility#active#name#%"/>
-        <alias field="code" index="0" name="%#Accessibility#code#name#%"/>
-        <alias field="value_de" index="2" name="%#Accessibility#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#Accessibility#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#Accessibility#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -11358,16 +10819,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#Financing#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#Financing#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#Financing#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#Financing#active#name#%"/>
-        <alias field="code" index="0" name="%#Financing#code#name#%"/>
-        <alias field="value_de" index="2" name="%#Financing#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#Financing#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#Financing#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -11458,16 +10909,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#Renovation Necessity#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#Renovation Necessity#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#Renovation Necessity#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#Renovation Necessity#active#name#%"/>
-        <alias field="code" index="0" name="%#Renovation Necessity#code#name#%"/>
-        <alias field="value_de" index="2" name="%#Renovation Necessity#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#Renovation Necessity#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#Renovation Necessity#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -11558,16 +10999,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#RV Construction Type#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#RV Construction Type#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#RV Construction Type#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#RV Construction Type#active#name#%"/>
-        <alias field="code" index="0" name="%#RV Construction Type#code#name#%"/>
-        <alias field="value_de" index="2" name="%#RV Construction Type#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#RV Construction Type#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#RV Construction Type#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -11658,16 +11089,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#Status#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#Status#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#Status#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#Status#active#name#%"/>
-        <alias field="code" index="0" name="%#Status#code#name#%"/>
-        <alias field="value_de" index="2" name="%#Status#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#Status#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#Status#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -11758,16 +11179,6 @@
       <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
-      <aliases>
-        <alias field="abbr_de" index="5" name="%#Condition#abbr_de#name#%"/>
-        <alias field="abbr_en" index="4" name="%#Condition#abbr_en#name#%"/>
-        <alias field="abbr_fr" index="6" name="%#Condition#abbr_fr#name#%"/>
-        <alias field="active" index="7" name="%#Condition#active#name#%"/>
-        <alias field="code" index="0" name="%#Condition#code#name#%"/>
-        <alias field="value_de" index="2" name="%#Condition#value_de#name#%"/>
-        <alias field="value_en" index="1" name="%#Condition#value_en#name#%"/>
-        <alias field="value_fr" index="3" name="%#Condition#value_fr#name#%"/>
-      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
@@ -11862,15 +11273,14 @@
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="dataowner" index="6" name="%#od_access_aid#dataowner#name#%"/>
-        <alias field="fk_wastewater_structure" index="8" name="%#od_access_aid#fk_wastewater_structure#name#%"/>
-        <alias field="identifier" index="2" name="%#od_access_aid#identifier#name#%"/>
-        <alias field="kind" index="1" name="%#od_access_aid#kind#name#%"/>
-        <alias field="last_modification" index="5" name="%#od_access_aid#last_modification#name#%"/>
-        <alias field="obj_id" index="0" name="%#od_access_aid#obj_id#name#%"/>
-        <alias field="provider" index="7" name="%#od_access_aid#provider#name#%"/>
-        <alias field="remark" index="3" name="%#od_access_aid#remark#name#%"/>
-        <alias field="renovation_demand" index="4" name="%#od_access_aid#renovation_demand#name#%"/>
+        <alias field="dataowner" index="6" name="%#vw_access_aid#dataowner#name#%"/>
+        <alias field="fk_wastewater_structure" index="8" name="%#vw_access_aid#fk_wastewater_structure#name#%"/>
+        <alias field="identifier" index="2" name="%#vw_access_aid#identifier#name#%"/>
+        <alias field="kind" index="1" name="%#vw_access_aid#kind#name#%"/>
+        <alias field="last_modification" index="5" name="%#vw_access_aid#last_modification#name#%"/>
+        <alias field="provider" index="7" name="%#vw_access_aid#provider#name#%"/>
+        <alias field="remark" index="3" name="%#vw_access_aid#remark#name#%"/>
+        <alias field="renovation_demand" index="4" name="%#vw_access_aid#renovation_demand#name#%"/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -12044,40 +11454,39 @@
       <annotationform>.</annotationform>
       <editorlayout>uifilelayout</editorlayout>
       <aliases>
-        <alias field="accessibility" index="9" name="%#od_channel#accessibility#name#%"/>
-        <alias field="bedding_encasement" index="1" name="%#od_channel#bedding_encasement#name#%"/>
-        <alias field="connection_type" index="2" name="%#od_channel#connection_type#name#%"/>
-        <alias field="contract_section" index="10" name="%#od_channel#contract_section#name#%"/>
-        <alias field="dataowner" index="30" name="%#od_channel#dataowner#name#%"/>
-        <alias field="detail_geometry_3d_geometry" index="12" name="%#od_channel#detail_geometry_3d_geometry#name#%"/>
-        <alias field="detail_geometry_geometry" index="11" name="%#od_channel#detail_geometry_geometry#name#%"/>
-        <alias field="financing" index="13" name="%#od_channel#financing#name#%"/>
-        <alias field="fk_operator" index="33" name="%#od_channel#fk_operator#name#%"/>
-        <alias field="fk_owner" index="32" name="%#od_channel#fk_owner#name#%"/>
-        <alias field="function_hierarchic" index="3" name="%#od_channel#function_hierarchic#name#%"/>
-        <alias field="function_hydraulic" index="4" name="%#od_channel#function_hydraulic#name#%"/>
-        <alias field="gross_costs" index="14" name="%#od_channel#gross_costs#name#%"/>
-        <alias field="identifier" index="15" name="%#od_channel#identifier#name#%"/>
-        <alias field="inspection_interval" index="16" name="%#od_channel#inspection_interval#name#%"/>
-        <alias field="jetting_interval" index="5" name="%#od_channel#jetting_interval#name#%"/>
-        <alias field="last_modification" index="29" name="%#od_channel#last_modification#name#%"/>
-        <alias field="location_name" index="17" name="%#od_channel#location_name#name#%"/>
-        <alias field="obj_id" index="0" name="%#od_channel#obj_id#name#%"/>
-        <alias field="pipe_length" index="6" name="%#od_channel#pipe_length#name#%"/>
-        <alias field="provider" index="31" name="%#od_channel#provider#name#%"/>
-        <alias field="records" index="18" name="%#od_channel#records#name#%"/>
-        <alias field="remark" index="19" name="%#od_channel#remark#name#%"/>
-        <alias field="renovation_necessity" index="20" name="%#od_channel#renovation_necessity#name#%"/>
-        <alias field="replacement_value" index="21" name="%#od_channel#replacement_value#name#%"/>
-        <alias field="rv_base_year" index="22" name="%#od_channel#rv_base_year#name#%"/>
-        <alias field="rv_construction_type" index="23" name="%#od_channel#rv_construction_type#name#%"/>
-        <alias field="status" index="24" name="%#od_channel#status#name#%"/>
-        <alias field="structure_condition" index="25" name="%#od_channel#structure_condition#name#%"/>
-        <alias field="subsidies" index="26" name="%#od_channel#subsidies#name#%"/>
-        <alias field="usage_current" index="7" name="%#od_channel#usage_current#name#%"/>
-        <alias field="usage_planned" index="8" name="%#od_channel#usage_planned#name#%"/>
-        <alias field="year_of_construction" index="27" name="%#od_channel#year_of_construction#name#%"/>
-        <alias field="year_of_replacement" index="28" name="%#od_channel#year_of_replacement#name#%"/>
+        <alias field="accessibility" index="9" name="%#vw_channel#accessibility#name#%"/>
+        <alias field="bedding_encasement" index="1" name="%#vw_channel#bedding_encasement#name#%"/>
+        <alias field="connection_type" index="2" name="%#vw_channel#connection_type#name#%"/>
+        <alias field="contract_section" index="10" name="%#vw_channel#contract_section#name#%"/>
+        <alias field="dataowner" index="30" name="%#vw_channel#dataowner#name#%"/>
+        <alias field="detail_geometry_3d_geometry" index="12" name="%#vw_channel#detail_geometry_3d_geometry#name#%"/>
+        <alias field="detail_geometry_geometry" index="11" name="%#vw_channel#detail_geometry_geometry#name#%"/>
+        <alias field="financing" index="13" name="%#vw_channel#financing#name#%"/>
+        <alias field="fk_operator" index="33" name="%#vw_channel#fk_operator#name#%"/>
+        <alias field="fk_owner" index="32" name="%#vw_channel#fk_owner#name#%"/>
+        <alias field="function_hierarchic" index="3" name="%#vw_channel#function_hierarchic#name#%"/>
+        <alias field="function_hydraulic" index="4" name="%#vw_channel#function_hydraulic#name#%"/>
+        <alias field="gross_costs" index="14" name="%#vw_channel#gross_costs#name#%"/>
+        <alias field="identifier" index="15" name="%#vw_channel#identifier#name#%"/>
+        <alias field="inspection_interval" index="16" name="%#vw_channel#inspection_interval#name#%"/>
+        <alias field="jetting_interval" index="5" name="%#vw_channel#jetting_interval#name#%"/>
+        <alias field="last_modification" index="29" name="%#vw_channel#last_modification#name#%"/>
+        <alias field="location_name" index="17" name="%#vw_channel#location_name#name#%"/>
+        <alias field="pipe_length" index="6" name="%#vw_channel#pipe_length#name#%"/>
+        <alias field="provider" index="31" name="%#vw_channel#provider#name#%"/>
+        <alias field="records" index="18" name="%#vw_channel#records#name#%"/>
+        <alias field="remark" index="19" name="%#vw_channel#remark#name#%"/>
+        <alias field="renovation_necessity" index="20" name="%#vw_channel#renovation_necessity#name#%"/>
+        <alias field="replacement_value" index="21" name="%#vw_channel#replacement_value#name#%"/>
+        <alias field="rv_base_year" index="22" name="%#vw_channel#rv_base_year#name#%"/>
+        <alias field="rv_construction_type" index="23" name="%#vw_channel#rv_construction_type#name#%"/>
+        <alias field="status" index="24" name="%#vw_channel#status#name#%"/>
+        <alias field="structure_condition" index="25" name="%#vw_channel#structure_condition#name#%"/>
+        <alias field="subsidies" index="26" name="%#vw_channel#subsidies#name#%"/>
+        <alias field="usage_current" index="7" name="%#vw_channel#usage_current#name#%"/>
+        <alias field="usage_planned" index="8" name="%#vw_channel#usage_planned#name#%"/>
+        <alias field="year_of_construction" index="27" name="%#vw_channel#year_of_construction#name#%"/>
+        <alias field="year_of_replacement" index="28" name="%#vw_channel#year_of_replacement#name#%"/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -13513,28 +12922,27 @@
       <annotationform>.</annotationform>
       <editorlayout>uifilelayout</editorlayout>
       <aliases>
-        <alias field="brand" index="1" name="%#od_cover#brand#name#%"/>
-        <alias field="channel_function_hierarchic" index="20" name="%#od_cover#channel_function_hierarchic#name#%"/>
-        <alias field="channel_usage_current" index="19" name="%#od_cover#channel_usage_current#name#%"/>
-        <alias field="cover_shape" index="2" name="%#od_cover#cover_shape#name#%"/>
-        <alias field="dataowner" index="15" name="%#od_cover#dataowner#name#%"/>
-        <alias field="depth" index="3" name="%#od_cover#depth#name#%"/>
-        <alias field="diameter" index="4" name="%#od_cover#diameter#name#%"/>
-        <alias field="fastening" index="5" name="%#od_cover#fastening#name#%"/>
-        <alias field="fk_wastewater_structure" index="17" name="%#od_cover#fk_wastewater_structure#name#%"/>
-        <alias field="identifier" index="11" name="%#od_cover#identifier#name#%"/>
-        <alias field="last_modification" index="14" name="%#od_cover#last_modification#name#%"/>
-        <alias field="level" index="6" name="%#od_cover#level#name#%"/>
-        <alias field="manhole_function" index="18" name="%#od_cover#manhole_function#name#%"/>
-        <alias field="manhole_orientation" index="21" name="%#od_cover#manhole_orientation#name#%"/>
-        <alias field="material" index="7" name="%#od_cover#material#name#%"/>
-        <alias field="obj_id" index="0" name="%#od_cover#obj_id#name#%"/>
-        <alias field="positional_accuracy" index="8" name="%#od_cover#positional_accuracy#name#%"/>
-        <alias field="provider" index="16" name="%#od_cover#provider#name#%"/>
-        <alias field="remark" index="12" name="%#od_cover#remark#name#%"/>
-        <alias field="renovation_demand" index="13" name="%#od_cover#renovation_demand#name#%"/>
-        <alias field="sludge_bucket" index="9" name="%#od_cover#sludge_bucket#name#%"/>
-        <alias field="venting" index="10" name="%#od_cover#venting#name#%"/>
+        <alias field="brand" index="1" name="%#vw_cover#brand#name#%"/>
+        <alias field="channel_function_hierarchic" index="20" name="%#vw_cover#channel_function_hierarchic#name#%"/>
+        <alias field="channel_usage_current" index="19" name="%#vw_cover#channel_usage_current#name#%"/>
+        <alias field="cover_shape" index="2" name="%#vw_cover#cover_shape#name#%"/>
+        <alias field="dataowner" index="15" name="%#vw_cover#dataowner#name#%"/>
+        <alias field="depth" index="3" name="%#vw_cover#depth#name#%"/>
+        <alias field="diameter" index="4" name="%#vw_cover#diameter#name#%"/>
+        <alias field="fastening" index="5" name="%#vw_cover#fastening#name#%"/>
+        <alias field="fk_wastewater_structure" index="17" name="%#vw_cover#fk_wastewater_structure#name#%"/>
+        <alias field="identifier" index="11" name="%#vw_cover#identifier#name#%"/>
+        <alias field="last_modification" index="14" name="%#vw_cover#last_modification#name#%"/>
+        <alias field="level" index="6" name="%#vw_cover#level#name#%"/>
+        <alias field="manhole_function" index="18" name="%#vw_cover#manhole_function#name#%"/>
+        <alias field="manhole_orientation" index="21" name="%#vw_cover#manhole_orientation#name#%"/>
+        <alias field="material" index="7" name="%#vw_cover#material#name#%"/>
+        <alias field="positional_accuracy" index="8" name="%#vw_cover#positional_accuracy#name#%"/>
+        <alias field="provider" index="16" name="%#vw_cover#provider#name#%"/>
+        <alias field="remark" index="12" name="%#vw_cover#remark#name#%"/>
+        <alias field="renovation_demand" index="13" name="%#vw_cover#renovation_demand#name#%"/>
+        <alias field="sludge_bucket" index="9" name="%#vw_cover#sludge_bucket#name#%"/>
+        <alias field="venting" index="10" name="%#vw_cover#venting#name#%"/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -13942,37 +13350,36 @@
       <annotationform>.</annotationform>
       <editorlayout>uifilelayout</editorlayout>
       <aliases>
-        <alias field="accessibility" index="7" name="%#od_manhole#accessibility#name#%"/>
-        <alias field="contract_section" index="8" name="%#od_manhole#contract_section#name#%"/>
-        <alias field="dataowner" index="27" name="%#od_manhole#dataowner#name#%"/>
-        <alias field="depth" index="1" name="%#od_manhole#depth#name#%"/>
-        <alias field="detail_geometry_3d_geometry" index="9" name="%#od_manhole#detail_geometry_3d_geometry#name#%"/>
-        <alias field="dimension1" index="2" name="%#od_manhole#dimension1#name#%"/>
-        <alias field="dimension2" index="3" name="%#od_manhole#dimension2#name#%"/>
-        <alias field="financing" index="10" name="%#od_manhole#financing#name#%"/>
-        <alias field="fk_operator" index="30" name="%#od_manhole#fk_operator#name#%"/>
-        <alias field="fk_owner" index="29" name="%#od_manhole#fk_owner#name#%"/>
-        <alias field="function" index="4" name="%#od_manhole#function#name#%"/>
-        <alias field="gross_costs" index="11" name="%#od_manhole#gross_costs#name#%"/>
-        <alias field="identifier" index="12" name="%#od_manhole#identifier#name#%"/>
-        <alias field="inspection_interval" index="13" name="%#od_manhole#inspection_interval#name#%"/>
-        <alias field="last_modification" index="26" name="%#od_manhole#last_modification#name#%"/>
-        <alias field="location_name" index="14" name="%#od_manhole#location_name#name#%"/>
-        <alias field="material" index="5" name="%#od_manhole#material#name#%"/>
-        <alias field="obj_id" index="0" name="%#od_manhole#obj_id#name#%"/>
-        <alias field="provider" index="28" name="%#od_manhole#provider#name#%"/>
-        <alias field="records" index="15" name="%#od_manhole#records#name#%"/>
-        <alias field="remark" index="16" name="%#od_manhole#remark#name#%"/>
-        <alias field="renovation_necessity" index="17" name="%#od_manhole#renovation_necessity#name#%"/>
-        <alias field="replacement_value" index="18" name="%#od_manhole#replacement_value#name#%"/>
-        <alias field="rv_base_year" index="19" name="%#od_manhole#rv_base_year#name#%"/>
-        <alias field="rv_construction_type" index="20" name="%#od_manhole#rv_construction_type#name#%"/>
-        <alias field="status" index="21" name="%#od_manhole#status#name#%"/>
-        <alias field="structure_condition" index="22" name="%#od_manhole#structure_condition#name#%"/>
-        <alias field="subsidies" index="23" name="%#od_manhole#subsidies#name#%"/>
-        <alias field="surface_inflow" index="6" name="%#od_manhole#surface_inflow#name#%"/>
-        <alias field="year_of_construction" index="24" name="%#od_manhole#year_of_construction#name#%"/>
-        <alias field="year_of_replacement" index="25" name="%#od_manhole#year_of_replacement#name#%"/>
+        <alias field="accessibility" index="7" name="%#vw_manhole#accessibility#name#%"/>
+        <alias field="contract_section" index="8" name="%#vw_manhole#contract_section#name#%"/>
+        <alias field="dataowner" index="27" name="%#vw_manhole#dataowner#name#%"/>
+        <alias field="depth" index="1" name="%#vw_manhole#depth#name#%"/>
+        <alias field="detail_geometry_3d_geometry" index="9" name="%#vw_manhole#detail_geometry_3d_geometry#name#%"/>
+        <alias field="dimension1" index="2" name="%#vw_manhole#dimension1#name#%"/>
+        <alias field="dimension2" index="3" name="%#vw_manhole#dimension2#name#%"/>
+        <alias field="financing" index="10" name="%#vw_manhole#financing#name#%"/>
+        <alias field="fk_operator" index="30" name="%#vw_manhole#fk_operator#name#%"/>
+        <alias field="fk_owner" index="29" name="%#vw_manhole#fk_owner#name#%"/>
+        <alias field="function" index="4" name="%#vw_manhole#function#name#%"/>
+        <alias field="gross_costs" index="11" name="%#vw_manhole#gross_costs#name#%"/>
+        <alias field="identifier" index="12" name="%#vw_manhole#identifier#name#%"/>
+        <alias field="inspection_interval" index="13" name="%#vw_manhole#inspection_interval#name#%"/>
+        <alias field="last_modification" index="26" name="%#vw_manhole#last_modification#name#%"/>
+        <alias field="location_name" index="14" name="%#vw_manhole#location_name#name#%"/>
+        <alias field="material" index="5" name="%#vw_manhole#material#name#%"/>
+        <alias field="provider" index="28" name="%#vw_manhole#provider#name#%"/>
+        <alias field="records" index="15" name="%#vw_manhole#records#name#%"/>
+        <alias field="remark" index="16" name="%#vw_manhole#remark#name#%"/>
+        <alias field="renovation_necessity" index="17" name="%#vw_manhole#renovation_necessity#name#%"/>
+        <alias field="replacement_value" index="18" name="%#vw_manhole#replacement_value#name#%"/>
+        <alias field="rv_base_year" index="19" name="%#vw_manhole#rv_base_year#name#%"/>
+        <alias field="rv_construction_type" index="20" name="%#vw_manhole#rv_construction_type#name#%"/>
+        <alias field="status" index="21" name="%#vw_manhole#status#name#%"/>
+        <alias field="structure_condition" index="22" name="%#vw_manhole#structure_condition#name#%"/>
+        <alias field="subsidies" index="23" name="%#vw_manhole#subsidies#name#%"/>
+        <alias field="surface_inflow" index="6" name="%#vw_manhole#surface_inflow#name#%"/>
+        <alias field="year_of_construction" index="24" name="%#vw_manhole#year_of_construction#name#%"/>
+        <alias field="year_of_replacement" index="25" name="%#vw_manhole#year_of_replacement#name#%"/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -14215,7 +13622,6 @@
         <alias field="gid" index="0" name="%#vw_network_node#gid#name#%"/>
         <alias field="level" index="4" name="%#vw_network_node#level#name#%"/>
         <alias field="node_type" index="3" name="%#vw_network_node#node_type#name#%"/>
-        <alias field="obj_id" index="1" name="%#vw_network_node#obj_id#name#%"/>
         <alias field="type" index="2" name="%#vw_network_node#type#name#%"/>
         <alias field="usage_current" index="5" name="%#vw_network_node#usage_current#name#%"/>
       </aliases>
@@ -14416,7 +13822,6 @@
         <alias field="length_calc" index="4" name="%#vw_network_segment#length_calc#name#%"/>
         <alias field="length_full" index="5" name="%#vw_network_segment#length_full#name#%"/>
         <alias field="material" index="14" name="%#vw_network_segment#material#name#%"/>
-        <alias field="obj_id" index="1" name="%#vw_network_segment#obj_id#name#%"/>
         <alias field="to_obj_id" index="7" name="%#vw_network_segment#to_obj_id#name#%"/>
         <alias field="to_obj_id_interpolate" index="9" name="%#vw_network_segment#to_obj_id_interpolate#name#%"/>
         <alias field="to_pos" index="11" name="%#vw_network_segment#to_pos#name#%"/>
@@ -15413,55 +14818,54 @@
       <annotationform>.</annotationform>
       <editorlayout>uifilelayout</editorlayout>
       <aliases>
-        <alias field="clear_height" index="1" name="%#od_reach#clear_height#name#%"/>
-        <alias field="coefficient_of_friction" index="3" name="%#od_reach#coefficient_of_friction#name#%"/>
-        <alias field="dataowner" index="24" name="%#od_reach#dataowner#name#%"/>
-        <alias field="elevation_determination" index="4" name="%#od_reach#elevation_determination#name#%"/>
-        <alias field="fk_pipe_profile" index="18" name="%#od_reach#fk_pipe_profile#name#%"/>
-        <alias field="fk_wastewater_structure" index="26" name="%#od_reach#fk_wastewater_structure#name#%"/>
-        <alias field="function_hierarchic" index="20" name="%#od_reach#function_hierarchic#name#%"/>
-        <alias field="horizontal_positioning" index="5" name="%#od_reach#horizontal_positioning#name#%"/>
-        <alias field="identifier" index="21" name="%#od_reach#identifier#name#%"/>
-        <alias field="inside_coating" index="6" name="%#od_reach#inside_coating#name#%"/>
-        <alias field="last_modification" index="23" name="%#od_reach#last_modification#name#%"/>
-        <alias field="length_effective" index="7" name="%#od_reach#length_effective#name#%"/>
-        <alias field="material" index="9" name="%#od_reach#material#name#%"/>
-        <alias field="obj_id" index="0" name="%#od_reach#obj_id#name#%"/>
-        <alias field="progression_3d_geometry" index="10" name="%#od_reach#progression_3d_geometry#name#%"/>
-        <alias field="provider" index="25" name="%#od_reach#provider#name#%"/>
-        <alias field="reliner_material" index="11" name="%#od_reach#reliner_material#name#%"/>
-        <alias field="reliner_nominal_size" index="12" name="%#od_reach#reliner_nominal_size#name#%"/>
-        <alias field="relining_construction" index="13" name="%#od_reach#relining_construction#name#%"/>
-        <alias field="relining_kind" index="14" name="%#od_reach#relining_kind#name#%"/>
-        <alias field="remark" index="22" name="%#od_reach#remark#name#%"/>
-        <alias field="ring_stiffness" index="15" name="%#od_reach#ring_stiffness#name#%"/>
-        <alias field="rp_from_dataowner" index="35" name="%#od_reach#rp_from_dataowner#name#%"/>
-        <alias field="rp_from_elevation_accuracy" index="28" name="%#od_reach#rp_from_elevation_accuracy#name#%"/>
-        <alias field="rp_from_fk_wastewater_networkelement" index="37" name="%#od_reach#rp_from_fk_wastewater_networkelement#name#%"/>
-        <alias field="rp_from_identifier" index="29" name="%#od_reach#rp_from_identifier#name#%"/>
-        <alias field="rp_from_last_modification" index="34" name="%#od_reach#rp_from_last_modification#name#%"/>
-        <alias field="rp_from_level" index="30" name="%#od_reach#rp_from_level#name#%"/>
-        <alias field="rp_from_obj_id" index="27" name="%#od_reach#rp_from_obj_id#name#%"/>
-        <alias field="rp_from_outlet_shape" index="31" name="%#od_reach#rp_from_outlet_shape#name#%"/>
-        <alias field="rp_from_position_of_connection" index="32" name="%#od_reach#rp_from_position_of_connection#name#%"/>
-        <alias field="rp_from_provider" index="36" name="%#od_reach#rp_from_provider#name#%"/>
-        <alias field="rp_from_remark" index="33" name="%#od_reach#rp_from_remark#name#%"/>
-        <alias field="rp_to_dataowner" index="46" name="%#od_reach#rp_to_dataowner#name#%"/>
-        <alias field="rp_to_elevation_accuracy" index="39" name="%#od_reach#rp_to_elevation_accuracy#name#%"/>
-        <alias field="rp_to_fk_wastewater_networkelement" index="48" name="%#od_reach#rp_to_fk_wastewater_networkelement#name#%"/>
-        <alias field="rp_to_identifier" index="40" name="%#od_reach#rp_to_identifier#name#%"/>
-        <alias field="rp_to_last_modification" index="45" name="%#od_reach#rp_to_last_modification#name#%"/>
-        <alias field="rp_to_level" index="41" name="%#od_reach#rp_to_level#name#%"/>
-        <alias field="rp_to_obj_id" index="38" name="%#od_reach#rp_to_obj_id#name#%"/>
-        <alias field="rp_to_outlet_shape" index="42" name="%#od_reach#rp_to_outlet_shape#name#%"/>
-        <alias field="rp_to_position_of_connection" index="43" name="%#od_reach#rp_to_position_of_connection#name#%"/>
-        <alias field="rp_to_provider" index="47" name="%#od_reach#rp_to_provider#name#%"/>
-        <alias field="rp_to_remark" index="44" name="%#od_reach#rp_to_remark#name#%"/>
-        <alias field="slope_building_plan" index="16" name="%#od_reach#slope_building_plan#name#%"/>
-        <alias field="slope_per_mill" index="8" name="%#od_reach#slope_per_mill#name#%"/>
-        <alias field="usage_current" index="19" name="%#od_reach#usage_current#name#%"/>
-        <alias field="wall_roughness" index="17" name="%#od_reach#wall_roughness#name#%"/>
-        <alias field="width" index="2" name="%#od_reach#width#name#%"/>
+        <alias field="clear_height" index="1" name="%#vw_reach#clear_height#name#%"/>
+        <alias field="coefficient_of_friction" index="3" name="%#vw_reach#coefficient_of_friction#name#%"/>
+        <alias field="dataowner" index="24" name="%#vw_reach#dataowner#name#%"/>
+        <alias field="elevation_determination" index="4" name="%#vw_reach#elevation_determination#name#%"/>
+        <alias field="fk_pipe_profile" index="18" name="%#vw_reach#fk_pipe_profile#name#%"/>
+        <alias field="fk_wastewater_structure" index="26" name="%#vw_reach#fk_wastewater_structure#name#%"/>
+        <alias field="function_hierarchic" index="20" name="%#vw_reach#function_hierarchic#name#%"/>
+        <alias field="horizontal_positioning" index="5" name="%#vw_reach#horizontal_positioning#name#%"/>
+        <alias field="identifier" index="21" name="%#vw_reach#identifier#name#%"/>
+        <alias field="inside_coating" index="6" name="%#vw_reach#inside_coating#name#%"/>
+        <alias field="last_modification" index="23" name="%#vw_reach#last_modification#name#%"/>
+        <alias field="length_effective" index="7" name="%#vw_reach#length_effective#name#%"/>
+        <alias field="material" index="9" name="%#vw_reach#material#name#%"/>
+        <alias field="progression_3d_geometry" index="10" name="%#vw_reach#progression_3d_geometry#name#%"/>
+        <alias field="provider" index="25" name="%#vw_reach#provider#name#%"/>
+        <alias field="reliner_material" index="11" name="%#vw_reach#reliner_material#name#%"/>
+        <alias field="reliner_nominal_size" index="12" name="%#vw_reach#reliner_nominal_size#name#%"/>
+        <alias field="relining_construction" index="13" name="%#vw_reach#relining_construction#name#%"/>
+        <alias field="relining_kind" index="14" name="%#vw_reach#relining_kind#name#%"/>
+        <alias field="remark" index="22" name="%#vw_reach#remark#name#%"/>
+        <alias field="ring_stiffness" index="15" name="%#vw_reach#ring_stiffness#name#%"/>
+        <alias field="rp_from_dataowner" index="35" name="%#vw_reach#rp_from_dataowner#name#%"/>
+        <alias field="rp_from_elevation_accuracy" index="28" name="%#vw_reach#rp_from_elevation_accuracy#name#%"/>
+        <alias field="rp_from_fk_wastewater_networkelement" index="37" name="%#vw_reach#rp_from_fk_wastewater_networkelement#name#%"/>
+        <alias field="rp_from_identifier" index="29" name="%#vw_reach#rp_from_identifier#name#%"/>
+        <alias field="rp_from_last_modification" index="34" name="%#vw_reach#rp_from_last_modification#name#%"/>
+        <alias field="rp_from_level" index="30" name="%#vw_reach#rp_from_level#name#%"/>
+        <alias field="rp_from_obj_id" index="27" name="%#vw_reach#rp_from_obj_id#name#%"/>
+        <alias field="rp_from_outlet_shape" index="31" name="%#vw_reach#rp_from_outlet_shape#name#%"/>
+        <alias field="rp_from_position_of_connection" index="32" name="%#vw_reach#rp_from_position_of_connection#name#%"/>
+        <alias field="rp_from_provider" index="36" name="%#vw_reach#rp_from_provider#name#%"/>
+        <alias field="rp_from_remark" index="33" name="%#vw_reach#rp_from_remark#name#%"/>
+        <alias field="rp_to_dataowner" index="46" name="%#vw_reach#rp_to_dataowner#name#%"/>
+        <alias field="rp_to_elevation_accuracy" index="39" name="%#vw_reach#rp_to_elevation_accuracy#name#%"/>
+        <alias field="rp_to_fk_wastewater_networkelement" index="48" name="%#vw_reach#rp_to_fk_wastewater_networkelement#name#%"/>
+        <alias field="rp_to_identifier" index="40" name="%#vw_reach#rp_to_identifier#name#%"/>
+        <alias field="rp_to_last_modification" index="45" name="%#vw_reach#rp_to_last_modification#name#%"/>
+        <alias field="rp_to_level" index="41" name="%#vw_reach#rp_to_level#name#%"/>
+        <alias field="rp_to_obj_id" index="38" name="%#vw_reach#rp_to_obj_id#name#%"/>
+        <alias field="rp_to_outlet_shape" index="42" name="%#vw_reach#rp_to_outlet_shape#name#%"/>
+        <alias field="rp_to_position_of_connection" index="43" name="%#vw_reach#rp_to_position_of_connection#name#%"/>
+        <alias field="rp_to_provider" index="47" name="%#vw_reach#rp_to_provider#name#%"/>
+        <alias field="rp_to_remark" index="44" name="%#vw_reach#rp_to_remark#name#%"/>
+        <alias field="slope_building_plan" index="16" name="%#vw_reach#slope_building_plan#name#%"/>
+        <alias field="slope_per_mill" index="8" name="%#vw_reach#slope_per_mill#name#%"/>
+        <alias field="usage_current" index="19" name="%#vw_reach#usage_current#name#%"/>
+        <alias field="wall_roughness" index="17" name="%#vw_reach#wall_roughness#name#%"/>
+        <alias field="width" index="2" name="%#vw_reach#width#name#%"/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -15950,37 +15354,36 @@
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="accessibility" index="7" name="%#od_special_structure#accessibility#name#%"/>
-        <alias field="bypass" index="1" name="%#od_special_structure#bypass#name#%"/>
-        <alias field="contract_section" index="8" name="%#od_special_structure#contract_section#name#%"/>
-        <alias field="dataowner" index="27" name="%#od_special_structure#dataowner#name#%"/>
-        <alias field="depth" index="2" name="%#od_special_structure#depth#name#%"/>
-        <alias field="detail_geometry_3d_geometry" index="9" name="%#od_special_structure#detail_geometry_3d_geometry#name#%"/>
-        <alias field="emergency_spillway" index="3" name="%#od_special_structure#emergency_spillway#name#%"/>
-        <alias field="financing" index="10" name="%#od_special_structure#financing#name#%"/>
-        <alias field="fk_operator" index="30" name="%#od_special_structure#fk_operator#name#%"/>
-        <alias field="fk_owner" index="29" name="%#od_special_structure#fk_owner#name#%"/>
-        <alias field="function" index="4" name="%#od_special_structure#function#name#%"/>
-        <alias field="gross_costs" index="11" name="%#od_special_structure#gross_costs#name#%"/>
-        <alias field="identifier" index="12" name="%#od_special_structure#identifier#name#%"/>
-        <alias field="inspection_interval" index="13" name="%#od_special_structure#inspection_interval#name#%"/>
-        <alias field="last_modification" index="26" name="%#od_special_structure#last_modification#name#%"/>
-        <alias field="location_name" index="14" name="%#od_special_structure#location_name#name#%"/>
-        <alias field="obj_id" index="0" name="%#od_special_structure#obj_id#name#%"/>
-        <alias field="provider" index="28" name="%#od_special_structure#provider#name#%"/>
-        <alias field="records" index="15" name="%#od_special_structure#records#name#%"/>
-        <alias field="remark" index="16" name="%#od_special_structure#remark#name#%"/>
-        <alias field="renovation_necessity" index="17" name="%#od_special_structure#renovation_necessity#name#%"/>
-        <alias field="replacement_value" index="18" name="%#od_special_structure#replacement_value#name#%"/>
-        <alias field="rv_base_year" index="19" name="%#od_special_structure#rv_base_year#name#%"/>
-        <alias field="rv_construction_type" index="20" name="%#od_special_structure#rv_construction_type#name#%"/>
-        <alias field="status" index="21" name="%#od_special_structure#status#name#%"/>
-        <alias field="stormwater_tank_arrangement" index="5" name="%#od_special_structure#stormwater_tank_arrangement#name#%"/>
-        <alias field="structure_condition" index="22" name="%#od_special_structure#structure_condition#name#%"/>
-        <alias field="subsidies" index="23" name="%#od_special_structure#subsidies#name#%"/>
-        <alias field="upper_elevation" index="6" name="%#od_special_structure#upper_elevation#name#%"/>
-        <alias field="year_of_construction" index="24" name="%#od_special_structure#year_of_construction#name#%"/>
-        <alias field="year_of_replacement" index="25" name="%#od_special_structure#year_of_replacement#name#%"/>
+        <alias field="accessibility" index="7" name="%#vw_special_structure#accessibility#name#%"/>
+        <alias field="bypass" index="1" name="%#vw_special_structure#bypass#name#%"/>
+        <alias field="contract_section" index="8" name="%#vw_special_structure#contract_section#name#%"/>
+        <alias field="dataowner" index="27" name="%#vw_special_structure#dataowner#name#%"/>
+        <alias field="depth" index="2" name="%#vw_special_structure#depth#name#%"/>
+        <alias field="detail_geometry_3d_geometry" index="9" name="%#vw_special_structure#detail_geometry_3d_geometry#name#%"/>
+        <alias field="emergency_spillway" index="3" name="%#vw_special_structure#emergency_spillway#name#%"/>
+        <alias field="financing" index="10" name="%#vw_special_structure#financing#name#%"/>
+        <alias field="fk_operator" index="30" name="%#vw_special_structure#fk_operator#name#%"/>
+        <alias field="fk_owner" index="29" name="%#vw_special_structure#fk_owner#name#%"/>
+        <alias field="function" index="4" name="%#vw_special_structure#function#name#%"/>
+        <alias field="gross_costs" index="11" name="%#vw_special_structure#gross_costs#name#%"/>
+        <alias field="identifier" index="12" name="%#vw_special_structure#identifier#name#%"/>
+        <alias field="inspection_interval" index="13" name="%#vw_special_structure#inspection_interval#name#%"/>
+        <alias field="last_modification" index="26" name="%#vw_special_structure#last_modification#name#%"/>
+        <alias field="location_name" index="14" name="%#vw_special_structure#location_name#name#%"/>
+        <alias field="provider" index="28" name="%#vw_special_structure#provider#name#%"/>
+        <alias field="records" index="15" name="%#vw_special_structure#records#name#%"/>
+        <alias field="remark" index="16" name="%#vw_special_structure#remark#name#%"/>
+        <alias field="renovation_necessity" index="17" name="%#vw_special_structure#renovation_necessity#name#%"/>
+        <alias field="replacement_value" index="18" name="%#vw_special_structure#replacement_value#name#%"/>
+        <alias field="rv_base_year" index="19" name="%#vw_special_structure#rv_base_year#name#%"/>
+        <alias field="rv_construction_type" index="20" name="%#vw_special_structure#rv_construction_type#name#%"/>
+        <alias field="status" index="21" name="%#vw_special_structure#status#name#%"/>
+        <alias field="stormwater_tank_arrangement" index="5" name="%#vw_special_structure#stormwater_tank_arrangement#name#%"/>
+        <alias field="structure_condition" index="22" name="%#vw_special_structure#structure_condition#name#%"/>
+        <alias field="subsidies" index="23" name="%#vw_special_structure#subsidies#name#%"/>
+        <alias field="upper_elevation" index="6" name="%#vw_special_structure#upper_elevation#name#%"/>
+        <alias field="year_of_construction" index="24" name="%#vw_special_structure#year_of_construction#name#%"/>
+        <alias field="year_of_replacement" index="25" name="%#vw_special_structure#year_of_replacement#name#%"/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -16213,15 +15616,14 @@
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="backflow_level" index="1" name="%#od_wastewater_node#backflow_level#name#%"/>
-        <alias field="bottom_level" index="2" name="%#od_wastewater_node#bottom_level#name#%"/>
-        <alias field="dataowner" index="6" name="%#od_wastewater_node#dataowner#name#%"/>
-        <alias field="fk_wastewater_structure" index="8" name="%#od_wastewater_node#fk_wastewater_structure#name#%"/>
-        <alias field="identifier" index="3" name="%#od_wastewater_node#identifier#name#%"/>
-        <alias field="last_modification" index="5" name="%#od_wastewater_node#last_modification#name#%"/>
-        <alias field="obj_id" index="0" name="%#od_wastewater_node#obj_id#name#%"/>
-        <alias field="provider" index="7" name="%#od_wastewater_node#provider#name#%"/>
-        <alias field="remark" index="4" name="%#od_wastewater_node#remark#name#%"/>
+        <alias field="backflow_level" index="1" name="%#vw_wastewater_node#backflow_level#name#%"/>
+        <alias field="bottom_level" index="2" name="%#vw_wastewater_node#bottom_level#name#%"/>
+        <alias field="dataowner" index="6" name="%#vw_wastewater_node#dataowner#name#%"/>
+        <alias field="fk_wastewater_structure" index="8" name="%#vw_wastewater_node#fk_wastewater_structure#name#%"/>
+        <alias field="identifier" index="3" name="%#vw_wastewater_node#identifier#name#%"/>
+        <alias field="last_modification" index="5" name="%#vw_wastewater_node#last_modification#name#%"/>
+        <alias field="provider" index="7" name="%#vw_wastewater_node#provider#name#%"/>
+        <alias field="remark" index="4" name="%#vw_wastewater_node#remark#name#%"/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -16661,7 +16063,6 @@
         <alias field="manhole_obj_id" index="16" name="%#vw_wizard_cover_manhole#manhole_obj_id#name#%"/>
         <alias field="material" index="21" name="%#vw_wizard_cover_manhole#material#name#%"/>
         <alias field="node_geometry" index="43" name="%#vw_wizard_cover_manhole#node_geometry#name#%"/>
-        <alias field="obj_id" index="0" name="%#vw_wizard_cover_manhole#obj_id#name#%"/>
         <alias field="positional_accuracy" index="7" name="%#vw_wizard_cover_manhole#positional_accuracy#name#%"/>
         <alias field="provider" index="15" name="%#vw_wizard_cover_manhole#provider#name#%"/>
         <alias field="records" index="29" name="%#vw_wizard_cover_manhole#records#name#%"/>
@@ -17221,7 +16622,6 @@
         <alias field="inspection_interval" index="28" name="%#vw_wizard_cover_special_structure#inspection_interval#name#%"/>
         <alias field="level" index="5" name="%#vw_wizard_cover_special_structure#level#name#%"/>
         <alias field="location_name" index="29" name="%#vw_wizard_cover_special_structure#location_name#name#%"/>
-        <alias field="obj_id" index="0" name="%#vw_wizard_cover_special_structure#obj_id#name#%"/>
         <alias field="positional_accuracy" index="7" name="%#vw_wizard_cover_special_structure#positional_accuracy#name#%"/>
         <alias field="provider" index="14" name="%#vw_wizard_cover_special_structure#provider#name#%"/>
         <alias field="records" index="30" name="%#vw_wizard_cover_special_structure#records#name#%"/>
@@ -17860,7 +17260,6 @@
         <alias field="length_effective" index="37" name="%#vw_wizard_reach_channel#length_effective#name#%"/>
         <alias field="location_name" index="15" name="%#vw_wizard_reach_channel#location_name#name#%"/>
         <alias field="material" index="38" name="%#vw_wizard_reach_channel#material#name#%"/>
-        <alias field="obj_id" index="0" name="%#vw_wizard_reach_channel#obj_id#name#%"/>
         <alias field="pipe_length" index="6" name="%#vw_wizard_reach_channel#pipe_length#name#%"/>
         <alias field="provider" index="29" name="%#vw_wizard_reach_channel#provider#name#%"/>
         <alias field="records" index="16" name="%#vw_wizard_reach_channel#records#name#%"/>
