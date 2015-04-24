@@ -176,7 +176,9 @@ print " # Translating file...\n";
 # ************ USING CAM::PDF ************#
 ###########################################
 
-my $doc = CAM::PDF->new($inputfile) || die "$CAM::PDF::errstr\n";
+system( "gs -q -dBATCH -dNOPAUSE -dSAFER -sDEVICE=pdfwrite      -dPDFSETTINGS=/printer -sOutputFile=.~qgep_diagram_translate.pdf $inputfile" );
+
+my $doc = CAM::PDF->new(".~qgep_diagram_translate.pdf") || die "$CAM::PDF::errstr\n";
 
 foreach my $p (1 .. $doc->numPages())
 {
@@ -197,26 +199,60 @@ foreach my $p (1 .. $doc->numPages())
 				print "  * $table_name not found in dictionary\n";
 			}
 		}
-		while ( $line =~ /(\$\\#\$.*?(\)|\s))/g ) {
+		
+		# fields/vl with first version PDF (~15mb)
+		while ( $line =~ /(\$#\$.*?(\)|\s))/g ) {
 			@fields = split( '\$', substr $1, 0, -1);
 			$table_name = $fields[2];
 			$field = $fields[3];
 			$type = $fields[4];
+			print "$table_name $field $type \n";
 			if ( $dict_field{$table_name}{$field}{$type} ){
 				$dict_field{$table_name}{$field}{count}++;
 				$replace = $dict_field{$table_name}{$field}{$type};
-				$line =~ s/\$\\#\$$table_name\$$field\$$type/$replace/g;
+				$line =~ s/\$#\$$table_name\$$field\$$type/$replace/g;
 				print "  * $table_name $field $type found in dictionary \n" if $verbose;
 			} else {
 				# TODO report missing
 				print "  ! $table_name $field $type not found in dictionary \n";
 			}
 		}
+
+		# fields/vl with last version PDF (~250kb)
+		while ( $line =~ /(\[\(\$(\)\d+(\.\d+)?\()?\#(\)\d+(\.\d+)?\()?\$.*\)\]TJ)/g ) {
+			my $find = substr $1, 2, -3;   # take actually what has to be replaced
+			my $rawstring =  $find =~ s/(\)\d+(\.\d+)?\()//gr;   # extract rawstring by removing blocks
+			@fields = split( '\$', substr $rawstring, 0, -1);
+			$table_name = $fields[2];
+			$field = $fields[3];
+			$type = $fields[4];
+			print "$table_name $field $type \n";
+			if ( $dict_field{$table_name}{$field}{$type} ){
+				$dict_field{$table_name}{$field}{count}++;
+				$replace = $dict_field{$table_name}{$field}{$type}.")";
+				print "$find\n";
+				print "$line\n";
+				my $index = index $line, $find;
+				if ($index >= 0) {
+					substr ($line, $index, length($find), $replace ); 
+				}
+				print "$line\n";
+				print "  * $table_name $field $type found in dictionary \n" if $verbose;
+			} else {
+				# TODO report missing
+				print "  ! $table_name $field $type not found in dictionary \n";
+			}
+		}
+
 		print "out: $line\n\n" if $verbose;
 		$newcontent .= encode('ISO 8859-15',"$line\n");
+
+
 	}
 	$doc->setPageContent($p, $newcontent);
 }
+
+system( "rm .~qgep_diagram_translate.pdf" );
 
 # ************************
 # ************************
