@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1214</width>
-    <height>799</height>
+    <width>732</width>
+    <height>905</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -33,7 +33,7 @@
       <item row="0" column="0">
        <widget class="QTabWidget" name="tabWidget">
         <property name="currentIndex">
-         <number>0</number>
+         <number>2</number>
         </property>
         <widget class="QWidget" name="tab">
          <attribute name="title">
@@ -93,60 +93,53 @@
              <property name="geometry">
               <rect>
                <x>0</x>
-               <y>-183</y>
-               <width>1159</width>
-               <height>651</height>
+               <y>-100</y>
+               <width>677</width>
+               <height>708</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_5">
-              <item row="19" column="0">
-               <widget class="QLabel" name="label_23">
+              <item row="1" column="1">
+               <widget class="QComboBox" name="bypass"/>
+              </item>
+              <item row="3" column="1">
+               <widget class="QLineEdit" name="dataowner"/>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_22">
                 <property name="text">
-                 <string>emergency_spillway</string>
+                 <string>bypass</string>
                 </property>
                </widget>
               </item>
-              <item row="11" column="1">
+              <item row="16" column="1">
                <widget class="QSpinBox" name="rv_base_year"/>
               </item>
-              <item row="16" column="1">
-               <widget class="QDoubleSpinBox" name="subsidies"/>
-              </item>
-              <item row="10" column="1">
+              <item row="15" column="1">
                <widget class="QDoubleSpinBox" name="replacement_value"/>
               </item>
-              <item row="20" column="0">
+              <item row="25" column="0">
                <widget class="QLabel" name="label_25">
                 <property name="text">
                  <string>stormwater_tank_arrangement</string>
                 </property>
                </widget>
               </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_3">
-                <property name="text">
-                 <string>accessibility</string>
-                </property>
-                <property name="buddy">
-                 <cstring>accessibility</cstring>
-                </property>
-               </widget>
-              </item>
-              <item row="11" column="0">
+              <item row="16" column="0">
                <widget class="QLabel" name="label_11">
                 <property name="text">
                  <string>replacement_value_base_year</string>
                 </property>
                </widget>
               </item>
-              <item row="12" column="0">
+              <item row="17" column="0">
                <widget class="QLabel" name="label_10">
                 <property name="text">
                  <string>replacement_value_construction_type</string>
                 </property>
                </widget>
               </item>
-              <item row="15" column="0">
+              <item row="20" column="0">
                <widget class="QLabel" name="label_18">
                 <property name="text">
                  <string>structure_condition</string>
@@ -156,36 +149,16 @@
                 </property>
                </widget>
               </item>
-              <item row="15" column="1">
+              <item row="20" column="1">
                <widget class="QComboBox" name="structure_condition"/>
               </item>
-              <item row="16" column="0">
-               <widget class="QLabel" name="label_17">
-                <property name="text">
-                 <string>subsidies</string>
-                </property>
-               </widget>
-              </item>
-              <item row="6" column="0">
+              <item row="11" column="0">
                <widget class="QLabel" name="label_21">
                 <property name="text">
                  <string>provider</string>
                 </property>
                 <property name="buddy">
                  <cstring>provider</cstring>
-                </property>
-               </widget>
-              </item>
-              <item row="17" column="1">
-               <widget class="QLineEdit" name="inspection_interval"/>
-              </item>
-              <item row="17" column="0">
-               <widget class="QLabel" name="label_8">
-                <property name="text">
-                 <string>inspection_interval</string>
-                </property>
-                <property name="buddy">
-                 <cstring>inspection_interval</cstring>
                 </property>
                </widget>
               </item>
@@ -202,7 +175,7 @@
               <item row="2" column="1">
                <widget class="QLineEdit" name="contract_section"/>
               </item>
-              <item row="5" column="0">
+              <item row="7" column="0">
                <widget class="QLabel" name="label_6">
                 <property name="text">
                  <string>financing</string>
@@ -212,8 +185,93 @@
                 </property>
                </widget>
               </item>
-              <item row="5" column="1">
+              <item row="7" column="1">
                <widget class="QLineEdit" name="financing"/>
+              </item>
+              <item row="4" column="0">
+               <widget class="QLabel" name="label_5">
+                <property name="text">
+                 <string>depth</string>
+                </property>
+               </widget>
+              </item>
+              <item row="15" column="0">
+               <widget class="QLabel" name="label_12">
+                <property name="text">
+                 <string>replacement_value</string>
+                </property>
+               </widget>
+              </item>
+              <item row="11" column="1">
+               <widget class="QLineEdit" name="provider"/>
+              </item>
+              <item row="4" column="1">
+               <widget class="QSpinBox" name="depth"/>
+              </item>
+              <item row="27" column="0">
+               <widget class="QLabel" name="label_26">
+                <property name="text">
+                 <string>upper_elevation</string>
+                </property>
+               </widget>
+              </item>
+              <item row="25" column="1">
+               <widget class="QComboBox" name="stormwater_tank_arrangement"/>
+              </item>
+              <item row="27" column="1">
+               <widget class="QDoubleSpinBox" name="upper_elevation"/>
+              </item>
+              <item row="17" column="1">
+               <widget class="QComboBox" name="rv_construction_type"/>
+              </item>
+              <item row="9" column="0">
+               <widget class="QLabel" name="label_8">
+                <property name="text">
+                 <string>inspection_interval</string>
+                </property>
+                <property name="buddy">
+                 <cstring>inspection_interval</cstring>
+                </property>
+               </widget>
+              </item>
+              <item row="26" column="0">
+               <widget class="QLabel" name="label_17">
+                <property name="text">
+                 <string>subsidies</string>
+                </property>
+               </widget>
+              </item>
+              <item row="9" column="1">
+               <widget class="QLineEdit" name="inspection_interval"/>
+              </item>
+              <item row="6" column="1">
+               <widget class="QComboBox" name="emergency_spillway"/>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="label_20">
+                <property name="text">
+                 <string>dataowner</string>
+                </property>
+                <property name="buddy">
+                 <cstring>dataowner</cstring>
+                </property>
+               </widget>
+              </item>
+              <item row="26" column="1">
+               <widget class="QDoubleSpinBox" name="subsidies"/>
+              </item>
+              <item row="28" column="1">
+               <widget class="QLineEdit" name="year_of_replacement"/>
+              </item>
+              <item row="6" column="0">
+               <widget class="QLabel" name="label_23">
+                <property name="text">
+                 <string>emergency_spillway</string>
+                </property>
+               </widget>
+              </item>
+              <item row="8" column="1">
+               <widget class="QLineEdit" name="gross_costs"/>
               </item>
               <item row="8" column="0">
                <widget class="QLabel" name="label_7">
@@ -225,24 +283,7 @@
                 </property>
                </widget>
               </item>
-              <item row="3" column="0">
-               <widget class="QLabel" name="label_5">
-                <property name="text">
-                 <string>depth</string>
-                </property>
-               </widget>
-              </item>
-              <item row="8" column="1">
-               <widget class="QLineEdit" name="gross_costs"/>
-              </item>
-              <item row="10" column="0">
-               <widget class="QLabel" name="label_12">
-                <property name="text">
-                 <string>replacement_value</string>
-                </property>
-               </widget>
-              </item>
-              <item row="14" column="0">
+              <item row="28" column="0">
                <widget class="QLabel" name="label_15">
                 <property name="text">
                  <string>year_of_replacement</string>
@@ -252,46 +293,15 @@
                 </property>
                </widget>
               </item>
-              <item row="0" column="1">
-               <widget class="QComboBox" name="accessibility"/>
-              </item>
-              <item row="6" column="1">
-               <widget class="QLineEdit" name="provider"/>
-              </item>
-              <item row="14" column="1">
-               <widget class="QLineEdit" name="year_of_replacement"/>
-              </item>
-              <item row="3" column="1">
-               <widget class="QSpinBox" name="depth"/>
-              </item>
-              <item row="18" column="0">
-               <widget class="QLabel" name="label_22">
+              <item row="10" column="0">
+               <widget class="QLabel" name="label_19">
                 <property name="text">
-                 <string>bypass</string>
+                 <string>owner</string>
                 </property>
                </widget>
               </item>
-              <item row="21" column="0">
-               <widget class="QLabel" name="label_26">
-                <property name="text">
-                 <string>upper_elevation</string>
-                </property>
-               </widget>
-              </item>
-              <item row="18" column="1">
-               <widget class="QComboBox" name="bypass"/>
-              </item>
-              <item row="19" column="1">
-               <widget class="QComboBox" name="emergency_spillway"/>
-              </item>
-              <item row="20" column="1">
-               <widget class="QComboBox" name="stormwater_tank_arrangement"/>
-              </item>
-              <item row="21" column="1">
-               <widget class="QDoubleSpinBox" name="upper_elevation"/>
-              </item>
-              <item row="12" column="1">
-               <widget class="QComboBox" name="rv_construction_type"/>
+              <item row="10" column="1">
+               <widget class="QgsRelationReferenceWidget" name="fk_owner"/>
               </item>
              </layout>
             </widget>
@@ -376,16 +386,6 @@
      </layout>
     </widget>
    </item>
-   <item row="8" column="0">
-    <widget class="QLabel" name="label_20">
-     <property name="text">
-      <string>dataowner</string>
-     </property>
-     <property name="buddy">
-      <cstring>dataowner</cstring>
-     </property>
-    </widget>
-   </item>
    <item row="4" column="1">
     <widget class="QComboBox" name="function"/>
    </item>
@@ -393,19 +393,6 @@
     <widget class="QLabel" name="label_9">
      <property name="text">
       <string>status</string>
-     </property>
-    </widget>
-   </item>
-   <item row="10" column="1">
-    <widget class="QComboBox" name="venting"/>
-   </item>
-   <item row="10" column="0">
-    <widget class="QLabel" name="label_35">
-     <property name="text">
-      <string>venting</string>
-     </property>
-     <property name="buddy">
-      <cstring>venting</cstring>
      </property>
     </widget>
    </item>
@@ -498,9 +485,6 @@
      </property>
     </widget>
    </item>
-   <item row="8" column="1">
-    <widget class="QLineEdit" name="dataowner"/>
-   </item>
    <item row="10" column="3">
     <widget class="QComboBox" name="fastening"/>
    </item>
@@ -520,15 +504,31 @@
    <item row="8" column="3">
     <widget class="QComboBox" name="status"/>
    </item>
-   <item row="11" column="1">
-    <widget class="QgsRelationReferenceWidget" name="fk_owner"/>
-   </item>
-   <item row="11" column="0">
-    <widget class="QLabel" name="label_19">
+   <item row="8" column="0">
+    <widget class="QLabel" name="label_35">
      <property name="text">
-      <string>owner</string>
+      <string>venting</string>
+     </property>
+     <property name="buddy">
+      <cstring>venting</cstring>
      </property>
     </widget>
+   </item>
+   <item row="8" column="1">
+    <widget class="QComboBox" name="venting"/>
+   </item>
+   <item row="10" column="0">
+    <widget class="QLabel" name="label_3">
+     <property name="text">
+      <string>accessibility</string>
+     </property>
+     <property name="buddy">
+      <cstring>accessibility</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="10" column="1">
+    <widget class="QComboBox" name="accessibility"/>
    </item>
   </layout>
  </widget>
@@ -545,26 +545,38 @@
   <tabstop>year_of_construction</tabstop>
   <tabstop>remark</tabstop>
   <tabstop>function</tabstop>
+  <tabstop>renovation_necessity</tabstop>
   <tabstop>level</tabstop>
   <tabstop>positional_accuracy</tabstop>
-  <tabstop>dataowner</tabstop>
   <tabstop>venting</tabstop>
+  <tabstop>status</tabstop>
+  <tabstop>accessibility</tabstop>
   <tabstop>fastening</tabstop>
-  <tabstop>tabWidget</tabstop>
   <tabstop>backflow_level</tabstop>
   <tabstop>bottom_level</tabstop>
-  <tabstop>accessibility</tabstop>
+  <tabstop>bypass</tabstop>
   <tabstop>contract_section</tabstop>
+  <tabstop>dataowner</tabstop>
+  <tabstop>depth</tabstop>
+  <tabstop>emergency_spillway</tabstop>
   <tabstop>financing</tabstop>
-  <tabstop>provider</tabstop>
   <tabstop>gross_costs</tabstop>
-  <tabstop>year_of_replacement</tabstop>
+  <tabstop>inspection_interval</tabstop>
+  <tabstop>provider</tabstop>
+  <tabstop>replacement_value</tabstop>
+  <tabstop>rv_base_year</tabstop>
+  <tabstop>rv_construction_type</tabstop>
   <tabstop>structure_condition</tabstop>
+  <tabstop>stormwater_tank_arrangement</tabstop>
+  <tabstop>subsidies</tabstop>
+  <tabstop>upper_elevation</tabstop>
+  <tabstop>year_of_replacement</tabstop>
   <tabstop>brand</tabstop>
   <tabstop>cover_shape</tabstop>
+  <tabstop>diameter</tabstop>
   <tabstop>cover_material</tabstop>
   <tabstop>sludge_bucket</tabstop>
-  <tabstop>inspection_interval</tabstop>
+  <tabstop>tabWidget</tabstop>
   <tabstop>scrollArea</tabstop>
  </tabstops>
  <resources/>

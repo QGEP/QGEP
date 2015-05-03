@@ -6,51 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1152</width>
-    <height>885</height>
+    <width>740</width>
+    <height>856</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <widget class="QLabel" name="label_17">
-     <property name="text">
-      <string>Identifier</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0">
-    <widget class="QLabel" name="label_15">
-     <property name="text">
-      <string>pipe_profile</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="3">
-    <widget class="QgsRelationReferenceWidget" name="fk_owner"/>
-   </item>
-   <item row="3" column="1">
-    <widget class="QDoubleSpinBox" name="rp_from_level"/>
-   </item>
-   <item row="2" column="2">
-    <widget class="QLabel" name="label_38">
-     <property name="text">
-      <string>owner</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="3">
-    <widget class="QDoubleSpinBox" name="length_effective"/>
-   </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="label_8">
-     <property name="text">
-      <string>material</string>
-     </property>
-    </widget>
-   </item>
    <item row="2" column="1">
     <widget class="QgsRelationReferenceWidget" name="fk_pipe_profile">
      <property name="embedForm" stdset="0">
@@ -61,34 +24,82 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="1">
-    <widget class="QLineEdit" name="identifier">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
+   <item row="8" column="0">
+    <widget class="QLabel" name="label_47">
+     <property name="text">
+      <string>year_of_construction</string>
      </property>
     </widget>
+   </item>
+   <item row="2" column="4">
+    <widget class="QgsRelationReferenceWidget" name="fk_owner"/>
+   </item>
+   <item row="2" column="2">
+    <widget class="QLabel" name="label_38">
+     <property name="text">
+      <string>owner</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QDoubleSpinBox" name="rp_from_level"/>
+   </item>
+   <item row="7" column="2">
+    <widget class="QLabel" name="label_41">
+     <property name="text">
+      <string>status</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="label_15">
+     <property name="text">
+      <string>pipe_profile</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="2">
+    <widget class="QLabel" name="label_62">
+     <property name="text">
+      <string>function_hydraulic</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="1">
+    <widget class="QComboBox" name="usage_current"/>
    </item>
    <item row="0" column="2">
-    <widget class="QLabel" name="label_2">
-     <property name="text">
-      <string>clear_height</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="2">
     <widget class="QLabel" name="label_7">
      <property name="text">
       <string>length_effective</string>
      </property>
     </widget>
    </item>
-   <item row="11" column="0" colspan="4">
+   <item row="0" column="0">
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>clear_height</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="label_8">
+     <property name="text">
+      <string>material</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="2">
+    <widget class="QLabel" name="label_18">
+     <property name="text">
+      <string>rp_to_level</string>
+     </property>
+    </widget>
+   </item>
+   <item row="14" column="0" colspan="6">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tab_4">
       <attribute name="title">
@@ -110,231 +121,198 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>0</y>
-            <width>1117</width>
-            <height>826</height>
+            <y>-199</y>
+            <width>705</width>
+            <height>686</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_8">
-           <item row="1" column="0">
-            <widget class="QLabel" name="label_40">
-             <property name="text">
-              <string>usage_current</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="2">
-            <widget class="QLineEdit" name="year_of_replacement"/>
-           </item>
-           <item row="17" column="0">
-            <widget class="QLabel" name="label_57">
-             <property name="text">
-              <string>rv_base_year</string>
-             </property>
-            </widget>
-           </item>
-           <item row="8" column="2">
-            <widget class="QComboBox" name="bedding_encasement"/>
-           </item>
            <item row="9" column="0">
-            <widget class="QLabel" name="label_61">
-             <property name="text">
-              <string>connection_type</string>
-             </property>
-            </widget>
-           </item>
-           <item row="7" column="2">
-            <widget class="QLineEdit" name="contract_section"/>
-           </item>
-           <item row="8" column="0">
             <widget class="QLabel" name="label_52">
              <property name="text">
               <string>bedding_encasement</string>
              </property>
             </widget>
            </item>
-           <item row="10" column="0">
-            <widget class="QLabel" name="label_58">
-             <property name="text">
-              <string>financing</string>
-             </property>
-            </widget>
+           <item row="16" column="2">
+            <widget class="QComboBox" name="renovation_necessity"/>
            </item>
-           <item row="14" column="0">
-            <widget class="QLabel" name="label_56">
-             <property name="text">
-              <string>pipe_length</string>
-             </property>
-            </widget>
-           </item>
-           <item row="19" column="2">
-            <widget class="QComboBox" name="structure_condition"/>
-           </item>
-           <item row="9" column="2">
-            <widget class="QComboBox" name="connection_type"/>
-           </item>
-           <item row="16" column="0">
-            <widget class="QLabel" name="label_60">
-             <property name="text">
-              <string>replacement_value</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0">
-            <widget class="QLabel" name="label_47">
-             <property name="text">
-              <string>year_of_construction</string>
-             </property>
-            </widget>
-           </item>
-           <item row="13" column="2">
-            <widget class="QDoubleSpinBox" name="jetting_interval"/>
-           </item>
-           <item row="0" column="0" colspan="2">
-            <widget class="QLabel" name="label_43">
-             <property name="text">
-              <string>accessibility</string>
-             </property>
-            </widget>
-           </item>
-           <item row="7" column="0">
-            <widget class="QLabel" name="label_50">
-             <property name="text">
-              <string>contract_section</string>
-             </property>
-            </widget>
-           </item>
-           <item row="20" column="0">
-            <widget class="QLabel" name="label_63">
-             <property name="text">
-              <string>subsidies</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="2">
-            <widget class="QLineEdit" name="year_of_construction"/>
-           </item>
-           <item row="14" column="2">
-            <widget class="QDoubleSpinBox" name="pipe_length"/>
-           </item>
-           <item row="10" column="2">
-            <widget class="QLineEdit" name="financing"/>
-           </item>
-           <item row="22" column="2">
+           <item row="23" column="2">
             <widget class="QLineEdit" name="inspection_interval"/>
            </item>
-           <item row="22" column="0">
-            <widget class="QLabel" name="label_55">
-             <property name="text">
-              <string>inspection_interval</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="0">
-            <widget class="QLabel" name="label_46">
-             <property name="text">
-              <string>year_of_replacement</string>
-             </property>
-            </widget>
-           </item>
-           <item row="21" column="0">
-            <widget class="QLabel" name="label_54">
-             <property name="text">
-              <string>usage_planned</string>
-             </property>
-            </widget>
-           </item>
-           <item row="11" column="2">
-            <widget class="QComboBox" name="function_hydraulic"/>
-           </item>
-           <item row="18" column="0">
-            <widget class="QLabel" name="label_59">
-             <property name="text">
-              <string>rv_construction_type</string>
-             </property>
-            </widget>
-           </item>
-           <item row="19" column="0">
-            <widget class="QLabel" name="label_53">
-             <property name="text">
-              <string>structure_condition</string>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="0" colspan="2">
-            <widget class="QLabel" name="label_41">
-             <property name="text">
-              <string>status</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="2">
-            <widget class="QComboBox" name="usage_current"/>
-           </item>
-           <item row="11" column="0">
-            <widget class="QLabel" name="label_62">
-             <property name="text">
-              <string>function_hydraulic</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="2">
-            <widget class="QComboBox" name="accessibility"/>
-           </item>
-           <item row="3" column="2">
-            <widget class="QComboBox" name="function_hierarchic"/>
-           </item>
-           <item row="15" column="0">
+           <item row="16" column="0">
             <widget class="QLabel" name="label_49">
              <property name="text">
               <string>renovation_necessity</string>
              </property>
             </widget>
            </item>
-           <item row="13" column="0">
+           <item row="8" column="2">
+            <widget class="QLineEdit" name="contract_section"/>
+           </item>
+           <item row="8" column="0">
+            <widget class="QLabel" name="label_50">
+             <property name="text">
+              <string>contract_section</string>
+             </property>
+            </widget>
+           </item>
+           <item row="22" column="0">
+            <widget class="QLabel" name="label_54">
+             <property name="text">
+              <string>usage_planned</string>
+             </property>
+            </widget>
+           </item>
+           <item row="17" column="2">
+            <widget class="QDoubleSpinBox" name="replacement_value"/>
+           </item>
+           <item row="15" column="2">
+            <widget class="QDoubleSpinBox" name="pipe_length"/>
+           </item>
+           <item row="19" column="0">
+            <widget class="QLabel" name="label_59">
+             <property name="text">
+              <string>rv_construction_type</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" colspan="2">
+            <widget class="QLabel" name="label_43">
+             <property name="text">
+              <string>accessibility</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="label_46">
+             <property name="text">
+              <string>year_of_replacement</string>
+             </property>
+            </widget>
+           </item>
+           <item row="20" column="0">
+            <widget class="QLabel" name="label_53">
+             <property name="text">
+              <string>structure_condition</string>
+             </property>
+            </widget>
+           </item>
+           <item row="20" column="2">
+            <widget class="QComboBox" name="structure_condition"/>
+           </item>
+           <item row="10" column="2">
+            <widget class="QComboBox" name="connection_type"/>
+           </item>
+           <item row="21" column="0">
+            <widget class="QLabel" name="label_63">
+             <property name="text">
+              <string>subsidies</string>
+             </property>
+            </widget>
+           </item>
+           <item row="11" column="0">
+            <widget class="QLabel" name="label_58">
+             <property name="text">
+              <string>financing</string>
+             </property>
+            </widget>
+           </item>
+           <item row="13" column="2">
+            <widget class="QLineEdit" name="gross_costs"/>
+           </item>
+           <item row="5" column="2">
+            <widget class="QLineEdit" name="year_of_replacement"/>
+           </item>
+           <item row="1" column="2">
+            <widget class="QComboBox" name="accessibility"/>
+           </item>
+           <item row="14" column="2">
+            <widget class="QDoubleSpinBox" name="jetting_interval"/>
+           </item>
+           <item row="9" column="2">
+            <widget class="QComboBox" name="bedding_encasement"/>
+           </item>
+           <item row="14" column="0">
             <widget class="QLabel" name="label_48">
              <property name="text">
               <string>jetting_interval</string>
              </property>
             </widget>
            </item>
-           <item row="3" column="0">
-            <widget class="QLabel" name="label_39">
+           <item row="15" column="0">
+            <widget class="QLabel" name="label_56">
              <property name="text">
-              <string>function_hierarchic</string>
+              <string>pipe_length</string>
              </property>
             </widget>
            </item>
-           <item row="12" column="2">
-            <widget class="QLineEdit" name="gross_costs"/>
-           </item>
            <item row="21" column="2">
+            <widget class="QDoubleSpinBox" name="subsidies"/>
+           </item>
+           <item row="22" column="2">
             <widget class="QComboBox" name="usage_planned"/>
            </item>
-           <item row="12" column="0">
+           <item row="13" column="0">
             <widget class="QLabel" name="label_51">
              <property name="text">
               <string>gross_costs</string>
              </property>
             </widget>
            </item>
-           <item row="15" column="2">
-            <widget class="QComboBox" name="renovation_necessity"/>
-           </item>
-           <item row="16" column="2">
-            <widget class="QDoubleSpinBox" name="replacement_value"/>
-           </item>
-           <item row="17" column="2">
-            <widget class="QSpinBox" name="rv_base_year"/>
-           </item>
-           <item row="18" column="2">
+           <item row="19" column="2">
             <widget class="QComboBox" name="rv_construction_type"/>
            </item>
-           <item row="20" column="2">
-            <widget class="QDoubleSpinBox" name="subsidies"/>
+           <item row="10" column="0">
+            <widget class="QLabel" name="label_61">
+             <property name="text">
+              <string>connection_type</string>
+             </property>
+            </widget>
            </item>
-           <item row="6" column="2">
-            <widget class="QComboBox" name="status"/>
+           <item row="11" column="2">
+            <widget class="QLineEdit" name="financing"/>
+           </item>
+           <item row="18" column="2">
+            <widget class="QSpinBox" name="rv_base_year"/>
+           </item>
+           <item row="18" column="0">
+            <widget class="QLabel" name="label_57">
+             <property name="text">
+              <string>rv_base_year</string>
+             </property>
+            </widget>
+           </item>
+           <item row="23" column="0">
+            <widget class="QLabel" name="label_55">
+             <property name="text">
+              <string>inspection_interval</string>
+             </property>
+            </widget>
+           </item>
+           <item row="17" column="0">
+            <widget class="QLabel" name="label_60">
+             <property name="text">
+              <string>replacement_value</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_17">
+             <property name="text">
+              <string>Identifier</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QLineEdit" name="identifier">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+            </widget>
            </item>
           </layout>
          </widget>
@@ -363,8 +341,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>269</width>
-            <height>549</height>
+            <width>705</width>
+            <height>491</height>
            </rect>
           </property>
           <layout class="QFormLayout" name="formLayout_2">
@@ -381,26 +359,6 @@
               <string>elevation_determination</string>
              </property>
             </widget>
-           </item>
-           <item row="5" column="0">
-            <widget class="QLabel" name="label_3">
-             <property name="text">
-              <string>horizontal_positioning</string>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="1">
-            <widget class="QComboBox" name="horizontal_positioning"/>
-           </item>
-           <item row="6" column="0">
-            <widget class="QLabel" name="label_5">
-             <property name="text">
-              <string>inside_coating</string>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="1">
-            <widget class="QComboBox" name="inside_coating"/>
            </item>
            <item row="8" column="0">
             <widget class="QLabel" name="label_6">
@@ -542,9 +500,9 @@
              <property name="geometry">
               <rect>
                <x>0</x>
-               <y>0</y>
-               <width>1089</width>
-               <height>292</height>
+               <y>-105</y>
+               <width>677</width>
+               <height>307</height>
               </rect>
              </property>
              <layout class="QFormLayout" name="formLayout_3">
@@ -652,9 +610,9 @@
              <property name="geometry">
               <rect>
                <x>0</x>
-               <y>0</y>
-               <width>1089</width>
-               <height>292</height>
+               <y>-104</y>
+               <width>677</width>
+               <height>307</height>
               </rect>
              </property>
              <layout class="QFormLayout" name="formLayout_4">
@@ -742,18 +700,42 @@
      </widget>
     </widget>
    </item>
-   <item row="3" column="3">
-    <widget class="QDoubleSpinBox" name="rp_to_level"/>
-   </item>
-   <item row="3" column="2">
-    <widget class="QLabel" name="label_18">
+   <item row="7" column="0">
+    <widget class="QLabel" name="label_40">
      <property name="text">
-      <string>rp_to_level</string>
+      <string>usage_current</string>
      </property>
     </widget>
    </item>
-   <item row="0" column="3">
-    <widget class="QSpinBox" name="clear_height"/>
+   <item row="4" column="0">
+    <widget class="QLabel" name="label_37">
+     <property name="text">
+      <string>remark</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0">
+    <widget class="QLabel" name="label_39">
+     <property name="text">
+      <string>function_hierarchic</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="4">
+    <widget class="QComboBox" name="status"/>
+   </item>
+   <item row="4" column="2">
+    <widget class="QLabel" name="label_3">
+     <property name="text">
+      <string>horizontal_positioning</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="4">
+    <widget class="QComboBox" name="horizontal_positioning"/>
+   </item>
+   <item row="5" column="1">
+    <widget class="QComboBox" name="function_hierarchic"/>
    </item>
    <item row="1" column="1">
     <widget class="QComboBox" name="material">
@@ -772,15 +754,33 @@
      </property>
     </widget>
    </item>
-   <item row="4" column="0">
-    <widget class="QLabel" name="label_37">
+   <item row="4" column="1">
+    <widget class="QLineEdit" name="remark"/>
+   </item>
+   <item row="5" column="4">
+    <widget class="QComboBox" name="function_hydraulic"/>
+   </item>
+   <item row="0" column="1">
+    <widget class="QSpinBox" name="clear_height"/>
+   </item>
+   <item row="8" column="1">
+    <widget class="QLineEdit" name="year_of_construction"/>
+   </item>
+   <item row="3" column="4">
+    <widget class="QDoubleSpinBox" name="rp_to_level"/>
+   </item>
+   <item row="0" column="4">
+    <widget class="QDoubleSpinBox" name="length_effective"/>
+   </item>
+   <item row="1" column="2">
+    <widget class="QLabel" name="label_5">
      <property name="text">
-      <string>remark</string>
+      <string>inside_coating</string>
      </property>
     </widget>
    </item>
-   <item row="4" column="1">
-    <widget class="QLineEdit" name="remark"/>
+   <item row="1" column="4">
+    <widget class="QComboBox" name="inside_coating"/>
    </item>
   </layout>
  </widget>
@@ -802,6 +802,69 @@
    <header>qgsrelationreferencewidget.h</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>clear_height</tabstop>
+  <tabstop>length_effective</tabstop>
+  <tabstop>material</tabstop>
+  <tabstop>inside_coating</tabstop>
+  <tabstop>rp_from_level</tabstop>
+  <tabstop>rp_to_level</tabstop>
+  <tabstop>remark</tabstop>
+  <tabstop>horizontal_positioning</tabstop>
+  <tabstop>function_hierarchic</tabstop>
+  <tabstop>function_hydraulic</tabstop>
+  <tabstop>usage_current</tabstop>
+  <tabstop>status</tabstop>
+  <tabstop>year_of_construction</tabstop>
+  <tabstop>identifier</tabstop>
+  <tabstop>accessibility</tabstop>
+  <tabstop>year_of_replacement</tabstop>
+  <tabstop>contract_section</tabstop>
+  <tabstop>bedding_encasement</tabstop>
+  <tabstop>connection_type</tabstop>
+  <tabstop>financing</tabstop>
+  <tabstop>gross_costs</tabstop>
+  <tabstop>jetting_interval</tabstop>
+  <tabstop>pipe_length</tabstop>
+  <tabstop>renovation_necessity</tabstop>
+  <tabstop>replacement_value</tabstop>
+  <tabstop>rv_base_year</tabstop>
+  <tabstop>rv_construction_type</tabstop>
+  <tabstop>structure_condition</tabstop>
+  <tabstop>subsidies</tabstop>
+  <tabstop>usage_planned</tabstop>
+  <tabstop>inspection_interval</tabstop>
+  <tabstop>coefficient_of_friction</tabstop>
+  <tabstop>dataowner</tabstop>
+  <tabstop>provider</tabstop>
+  <tabstop>elevation_determination</tabstop>
+  <tabstop>ring_stiffness</tabstop>
+  <tabstop>slope_building_plan</tabstop>
+  <tabstop>wall_roughness</tabstop>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>scrollArea</tabstop>
+  <tabstop>reliner_material</tabstop>
+  <tabstop>reliner_nominal_size</tabstop>
+  <tabstop>relining_construction</tabstop>
+  <tabstop>relining_kind</tabstop>
+  <tabstop>rp_from_identifier</tabstop>
+  <tabstop>rp_from_dataowner</tabstop>
+  <tabstop>rp_from_elevation_accuracy</tabstop>
+  <tabstop>rp_from_outlet_shape</tabstop>
+  <tabstop>rp_from_position_of_connection</tabstop>
+  <tabstop>rp_from_provider</tabstop>
+  <tabstop>mGroupBox_2</tabstop>
+  <tabstop>rp_to_identifier</tabstop>
+  <tabstop>rp_to_dataowner</tabstop>
+  <tabstop>rp_to_elevation_accuracy</tabstop>
+  <tabstop>rp_to_outlet_shape</tabstop>
+  <tabstop>rp_to_position_of_connection</tabstop>
+  <tabstop>rp_to_provider</tabstop>
+  <tabstop>scrollArea_3</tabstop>
+  <tabstop>scrollArea_4</tabstop>
+  <tabstop>mGroupBox</tabstop>
+  <tabstop>scrollArea_2</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
