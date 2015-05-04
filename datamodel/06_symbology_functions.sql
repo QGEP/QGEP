@@ -139,3 +139,159 @@ RETURN label;
 END;$BODY$
   LANGUAGE plpgsql VOLATILE
   COST 100;
+
+
+  -------------------- SYMBOLOGY UPDATE ON CHANNEL TABLE CHANGES ----------------------
+
+CREATE OR REPLACE FUNCTION qgep.mh_symbology_update_by_channel()
+  RETURNS trigger AS
+$BODY$
+DECLARE
+  mh_obj_id RECORD;
+  symb_attribs RECORD;
+  affected_obj_ids TEXT[];
+BEGIN
+  CASE
+    WHEN TG_OP = 'UPDATE' THEN
+      affected_obj_ids = ARRAY[NEW.obj_id, OLD.obj_id];
+    WHEN TG_OP = 'INSERT' THEN
+      affected_obj_ids = ARRAY[NEW.obj_id];
+    WHEN TG_OP = 'DELETE' THEN
+      affected_obj_ids = ARRAY[OLD.obj_id];
+  END CASE;
+
+  FOR mh_obj_id IN
+    SELECT mh.obj_id
+      FROM qgep.od_manhole mh
+      LEFT JOIN qgep.od_wastewater_networkelement ne ON mh.obj_id = ne.fk_wastewater_structure
+      LEFT JOIN qgep.od_reach_point rp ON ne.obj_id = rp.fk_wastewater_networkelement
+      LEFT JOIN qgep.od_reach re ON (re.fk_reach_point_from = rp.obj_id OR re.fk_reach_point_to = rp.obj_id )
+      LEFT JOIN qgep.od_wastewater_networkelement rene ON rene.obj_id = re.obj_id
+      WHERE rene.fk_wastewater_structure = ANY ( affected_obj_ids )
+  LOOP
+      SELECT * FROM qgep.manhole_symbology_attribs( mh_obj_id.obj_id  )
+        INTO symb_attribs;
+      UPDATE qgep.od_manhole
+      SET
+        _usage_current = symb_attribs.usage_current,
+        _function_hierarchic = symb_attribs.function_hierarchic
+      WHERE
+        obj_id = mh_obj_id.obj_id;
+
+      -- RAISE NOTICE 'Updating manhole (%, %)', mh_obj_id.obj_id, symb_attribs.usage_current;
+  END LOOP;
+  RETURN NEW;
+END; $BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+
+DROP TRIGGER IF EXISTS mh_symbology_update_by_channel ON qgep.od_channel;
+
+CREATE TRIGGER mh_symbology_update_by_channel
+  AFTER INSERT OR UPDATE OR DELETE
+  ON qgep.od_channel
+  FOR EACH ROW
+  EXECUTE PROCEDURE qgep.mh_symbology_update_by_channel();
+
+  -------------------- SYMBOLOGY UPDATE ON REACH POINT TABLE CHANGES ----------------------
+
+CREATE OR REPLACE FUNCTION qgep.mh_symbology_update_by_reach_point()
+  RETURNS trigger AS
+$BODY$
+DECLARE
+  mh_obj_id RECORD;
+  symb_attribs RECORD;
+  affected_obj_ids TEXT[];
+BEGIN
+  CASE
+    WHEN TG_OP = 'UPDATE' THEN
+      affected_obj_ids = ARRAY[NEW.obj_id, OLD.obj_id];
+    WHEN TG_OP = 'INSERT' THEN
+      affected_obj_ids = ARRAY[NEW.obj_id];
+    WHEN TG_OP = 'DELETE' THEN
+      affected_obj_ids = ARRAY[OLD.obj_id];
+  END CASE;
+
+  FOR mh_obj_id IN
+    SELECT mh.obj_id
+      FROM qgep.od_manhole mh
+      LEFT JOIN qgep.od_wastewater_networkelement ne ON mh.obj_id = ne.fk_wastewater_structure
+      LEFT JOIN qgep.od_reach_point rp ON ne.obj_id = rp.fk_wastewater_networkelement
+      WHERE rp.obj_id = ANY ( affected_obj_ids )
+  LOOP
+    SELECT * FROM qgep.manhole_symbology_attribs( mh_obj_id.obj_id  )
+        INTO symb_attribs;
+      UPDATE qgep.od_manhole
+      SET
+        _usage_current = symb_attribs.usage_current,
+        _function_hierarchic = symb_attribs.function_hierarchic
+      WHERE
+        obj_id = mh_obj_id.obj_id;
+
+      -- RAISE NOTICE 'Updating manhole (%, %)', mh_obj_id.obj_id, symb_attribs.usage_current;
+  END LOOP;
+  RETURN NEW;
+END; $BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+
+  DROP TRIGGER IF EXISTS mh_symbology_update_by_reach_point ON qgep.od_reach_point;
+
+-- only update -> insert and delete are handled by reach trigger
+CREATE TRIGGER mh_symbology_update_by_reach_point
+  AFTER UPDATE
+    ON qgep.od_reach_point
+  FOR EACH ROW
+    EXECUTE PROCEDURE qgep.mh_symbology_update_by_reach_point();
+
+
+  -------------------- SYMBOLOGY UPDATE ON REACH TABLE CHANGES ----------------------
+
+CREATE OR REPLACE FUNCTION qgep.mh_symbology_update_by_reach()
+  RETURNS trigger AS
+$BODY$
+DECLARE
+  mh_obj_id RECORD;
+  symb_attribs RECORD;
+  affected_obj_ids TEXT[];
+BEGIN
+  CASE
+    WHEN TG_OP = 'UPDATE' THEN
+      affected_obj_ids = ARRAY[NEW.obj_id, OLD.obj_id];
+    WHEN TG_OP = 'INSERT' THEN
+      affected_obj_ids = ARRAY[NEW.obj_id];
+    WHEN TG_OP = 'DELETE' THEN
+      affected_obj_ids = ARRAY[OLD.obj_id];
+  END CASE;
+
+  FOR mh_obj_id IN
+    SELECT mh.obj_id
+      FROM qgep.od_manhole mh
+      LEFT JOIN qgep.od_wastewater_networkelement ne ON mh.obj_id = ne.fk_wastewater_structure
+      LEFT JOIN qgep.od_reach_point rp ON ne.obj_id = rp.fk_wastewater_networkelement
+      LEFT JOIN qgep.od_reach re ON ( rp.obj_id = re.fk_reach_point_from OR rp.obj_id = re.fk_reach_point_to )
+      WHERE re.obj_id = ANY ( affected_obj_ids )
+  LOOP
+    SELECT * FROM qgep.manhole_symbology_attribs( mh_obj_id.obj_id  )
+        INTO symb_attribs;
+      UPDATE qgep.od_manhole
+      SET
+        _usage_current = symb_attribs.usage_current,
+        _function_hierarchic = symb_attribs.function_hierarchic
+      WHERE
+        obj_id = mh_obj_id.obj_id;
+
+      -- RAISE NOTICE 'Updating manhole (%, %)', mh_obj_id.obj_id, symb_attribs.usage_current;
+  END LOOP;
+  RETURN NEW;
+END; $BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+
+  DROP TRIGGER IF EXISTS mh_symbology_update_by_reach ON qgep.od_reach;
+
+CREATE TRIGGER mh_symbology_update_by_reach
+  AFTER INSERT OR UPDATE OR DELETE
+    ON qgep.od_reach
+  FOR EACH ROW
+    EXECUTE PROCEDURE qgep.mh_symbology_update_by_reach();
