@@ -115,12 +115,15 @@ UPDATE qgep.od_channel SET function_hierarchic =
   END
 
 · Messgeraet.Art: Neu Wertebereich statt Text: [andere, Drucksonde, Lufteinperlung,
-MID_teilgefuellt, MID_vollgefuellt, Radar, Schwimmer, Ultraschall, unbekannt] (Wegleitung
-GEP-Daten Stammkarten 2014)
+MID_teilgefuellt, MID_vollgefuellt, Radar, Schwimmer, Ultraschall, unbekannt] 
+Neuerung Wegleitung aufgrund GEP-Daten Stammkarten 2014
+-> kann das mit SQL gelöst werden?
 
 · Messresultat.Messart: Neu Wertebereich statt Text: [andere, Durchfluss, Niveau, unbekannt]
+-> kann das mit SQL gelöst werden?
+
 · Normschacht.Funktion: Neue Werte [Regenueberlauf], ersetzt Hochwasserentlastung,
-(Wegleitung GEP-Daten).
+(Wegleitung GEP-Daten). -> no change needed in English, only translation German (is_dictionary)
 
 UPDATE qgep.od_manhole SET function =
   CASE 
@@ -139,6 +142,8 @@ Regenbecken_Regenrueckhaltekanal, Regenbecken_Stauraumkanal, Regenueberlauf].
 Regenueberlauf ersetzt Hochwasserentlastung.
 Guellegrube ersetzt Jauchegrube (Wegleitung GEP-Daten und Abwasserentsorgung im
 ländlichen Raum (ALR)).
+-> no change needed in English, only translation German (is_dictionary)
+
 Neue Werte abflussloseGrube, Abwasserfaulraum, Faulgrube (Abwasserentsorgung im
 ländlichen Raum (ALR) 2014)
 
@@ -226,8 +231,104 @@ Check AREA:
 Seeflächen dürfen sich zwar nicht überlappen, die Seen sind aber auch keine lückenlose
 Fläche.
 
-Rebuilding of catchement areas from version 2008 to 2012
+Rebuilding of catchement areas from version 2008 to 2012:
+Einzugssgebiet.Abwassernetzelement wird aufgehoben und ersetzt durch:
+Einzugsgebiet.Abwassernetzelement_RW_ist, _RW_geplant, TW_Ist, _TW_geplant. Alle
+Einzugsgebiete gehören an primäre Abwasserknoten (und nicht an Haltungen, in VSA-DSS
+modelltechnisch möglich). Falls nicht wird das Einzugsgebiet beim Transfer nach VSA-DSSMini
+dem oberliegenden Knoten zugeordnet.
 
+In version 2008 there are only the following attributes that were matched to *_current
+discharge_coefficient_rw_current,
+drainage_system_current,
+population_density_current,
+seal_factor_rw_current,
+
+there is the attribut kind (Art) with the following values: Ist_und_Planungszustand, Ist_Zustand, Planungszustand, unbekannt
+
+and the attribut status (Status) with the follwoing values: Regen_und_Trockenwetter, Regenwetter, Trockenwetter, unbekannt
+
+discharge_coefficient has in 2008 the following values: Mischsystem, ModifiziertesSystem and Trennsystem
+
+Create new attributes in `abwasser` 
+
+discharge_coefficient_rw_current,
+-- discharge_coefficient_rw_planned,
+-- discharge_coefficient_ww_current,
+-- discharge_coefficient_ww_planned,
+drainage_system_current,
+-- drainage_system_planned,
+population_density_current,
+-- population_density_planned,
+seal_factor_rw_current,
+-- seal_factor_rw_planned,
+-- seal_factor_ww_current,
+-- seal_factor_ww_planned,
+
+
+If catchement_area.kind = Regenwasser
+
+    If catchement_area.status = Ist_und_Planungszustand
+    -- Ist-Zustand zusätzlich auf Planungszustand kopieren
+        then fk_wastewater_networkelement_rw_planned = fk_wastewater_networkelement_rw_current
+        then discharge_coefficient_rw_planned = discharge_coefficient_rw_current
+        then population_density_planned = population_density_current
+    
+    If catchement_area.status = Planungszustand
+    -- Ist-Zustand auf Planungszustand verschieben
+        then fk_wastewater_networkelement_rw_planned = fk_wastewater_networkelement_rw_current
+        then delete fk_wastewater_networkelement_rw_current
+        then fk_wastewater_networkelement_rw_planned = fk_wastewater_networkelement_rw_current
+        then delete fk_wastewater_networkelement_rw_current
+        then discharge_coefficient_rw_planned = discharge_coefficient_rw_current
+        then delete discharge_coefficient_rw_current
+        then population_density_planned = population_density_current
+        then delete population_density_current
+    
+    
+    If catchement_area.drainage_system_current = Mischsystem 
+        then fk_wastewater_networkelement_ww_current = fk_wastewater_networkelement_rw_current
+    
+    If catchement_area.drainage_system_current = ModifiziertesSystem 
+        -- was machen?
+        ?? then fk_wastewater_networkelement_ww_current = fk_wastewater_networkelement_rw_current
+    
+    If catchement_area.drainage_system_current = Trennsystem 
+        then fk_wastewater_networkelement_dw_current has to be added manually
+
+If catchement_area.kind = Regen_und_Trockenwetter
+
+    If catchement_area.status = Ist_und_Planungszustand
+    -- Ist-Zustand zusätzlich auf Planungszustand kopieren
+        then fk_wastewater_networkelement_rw_planned = fk_wastewater_networkelement_rw_current
+        then discharge_coefficient_rw_planned = discharge_coefficient_rw_current
+        then population_density_planned = population_density_current
+        -- Trockenwetter übernehmen von Regenwetter
+        then fk_wastewater_networkelement_ww_current = fk_wastewater_networkelement_rw_current
+        then fk_wastewater_networkelement_ww_planned = fk_wastewater_networkelement_rw_current
+        
+    If catchement_area.status = Planungszustand
+    -- Ist-Zustand auf Planungszustand verschieben
+        then fk_wastewater_networkelement_rw_planned = fk_wastewater_networkelement_rw_current
+        then fk_wastewater_networkelement_ww_planned = fk_wastewater_networkelement_rw_current
+        then discharge_coefficient_rw_planned = discharge_coefficient_rw_current
+        then delete discharge_coefficient_rw_current
+        then population_density_planned = population_density_current
+        then delete population_density_current
+
+    If catchement_area.drainage_system_current = Mischsystem 
+        then fk_wastewater_networkelement_ww_planned = fk_wastewater_networkelement_rw_current
+        
+    If catchement_area.drainage_system_current = ModifiziertesSystem 
+        -- was machen?
+        ?? then fk_wastewater_networkelement_ww_current = fk_wastewater_networkelement_rw_current
+    
+    If catchement_area.drainage_system_current = Trennsystem 
+        then fk_wastewater_networkelement_ww_current = fk_wastewater_networkelement_rw_current
+
+If catchement_area.kind = Trockenwetter
+ -- Informationen nur für Trockenwetter vorhanden, Regenwetter auf Trockenwetter verschieben
+TO DO
 
 
 Individual remappings from project Arbon
