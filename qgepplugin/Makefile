@@ -1,65 +1,91 @@
-#/***************************************************************************
-# Qgep
-# 
-# Qgep
-#                             -------------------
-#        begin                : 2012-08-31
-#        copyright            : (C) 2012 by matthias kuhn
-#        email                : matthias (dot) kuhn (at) gmx (dot) ch
-# ***************************************************************************/
-# 
-#/***************************************************************************
-# *                                                                         *
-# *   This program is free software; you can redistribute it and/or modify  *
-# *   it under the terms of the GNU General Public License as published by  *
-# *   the Free Software Foundation; either version 2 of the License, or     *
-# *   (at your option) any later version.                                   *
-# *                                                                         *
-# ***************************************************************************/
-# Makefile for a PyQGIS plugin 
-PLUGINNAME = qgepplugin
-PY_FILES =  __init__.py  qgepplugin.py
-EXTRAS = metadata.txt resources.qrc
-RESOURCE_FILES = resources.py
-TOOL_DIR = tools ui
-ICONS_DIR = icons
+####################################################
+# Ultimate QGIS plugin Makefile
+####################################################
 
-UI_SOURCES=$(wildcard ui/*.ui)
-#UI_FILES=$(notdir $(UI_SOURCES))
-UI_FILES=$(join $(addsuffix ui_, $(dir $(UI_SOURCES))), $(notdir $(UI_SOURCES:%.ui=ui_%.py)))
-RC_SOURCES=$(wildcard *.qrc)
-RC_FILES=$(patsubst %.qrc,%.py,$(RC_SOURCES))
+# REQUIREMENTS
+# 1. This Makefile is for linux environment. It shall be extended to be used on other OS.
+# 2. Folder name is the plugin name
+
+# TIPS
+# 1. If .ui files are in a subfolder and resources on top level
+#     create a file resources_rc.py with:
+#     from ..resources_rc import *
+
+####################################################
+# CONFIGURATION
+
+# QGIS DIR
+QGISDIR = $(HOME)/.qgis2
+
+# i18n
+LN_DIR = i18n
+TRANSLATED_LANG = fr de
+
+# COMMAND TO RUN DEFAULT APPLICATION (launch a URL)
+# Linux 'open' or 'xdg-open' / OSX: 'open' / Win: 'start'
+OPEN = xdg-open
+
+
+
+###################################################
+# DO NOT EDIT BELOW !
+
+PLUGINNAME =$(shell basename $(CURDIR))
+VERSION = `cat $(PLUGINNAME)/metadata.txt | grep version | sed 's/version=//'`
+
+PY_FILES = $(filter-out ui_%.py, $(wildcard *.py) $(wildcard **/*.py))
+EXTRAS = metadata.txt resources.qrc
+
+UI_SOURCES=$(wildcard *.ui) $(wildcard **/*.ui)
+UI_FILES=$(join $(dir $(UI_SOURCES)), $(notdir $(UI_SOURCES:%.ui=%.py)))
+
+RC_SOURCES=$(wildcard *.qrc) $(wildcard **/*.qrc)
+RC_FILES=$(join $(dir $(RC_SOURCES)), $(notdir $(RC_SOURCES:%.qrc=%_rc.py)))
+
+LN_SOURCES=$(wildcard *.ts) $(wildcard **/*.ts)
+LN_FILES=$(join $(dir $(LN_SOURCES)), $(notdir $(LN_SOURCES:%.ts=%.qm)))
 
 GEN_FILES = ${UI_FILES} ${RC_FILES}
 
 all: $(GEN_FILES)
-ui: $(UI_FILES)
-resources: $(RC_FILES)
 
-$(UI_FILES): ui/ui_%.py: ui/%.ui
+$(UI_FILES): %.py: %.ui
 	pyuic4 -o $@ $<
-	
-$(RC_FILES): %.py: %.qrc
+
+$(RC_FILES): %_rc.py: %.qrc
 	pyrcc4 -o $@ $<
+
+$(LN_FILES): %.qm: %.ts
+	lrelease-qt4 $<
 
 clean:
 	rm -f $(GEN_FILES) *.pyc
+	find $(CURDIR) -iname "*.pyc" -delete
 
+compile: $(UI_FILES) $(RC_FILES) $(LN_FILES)
 
-compile: $(UI_FILES) $(RESOURCE_FILES)
+transup:
+	$(foreach lang,$(TRANSLATED_LANG),pylupdate4 -noobsolete $(UI_SOURCES) $(PY_FILES) -ts $(LN_DIR)/$(PLUGINNAME)_$(lang).ts;)
 
-# The deploy  target only works on unix like operating system where
-# the Python plugin directory is located at:
-# $HOME/.qgis/python/plugins
-deploy:
-	mkdir -p $(HOME)/.qgis/python/plugins/$(PLUGINNAME)
-	mkdir -p $(HOME)/.qgis/python/plugins/$(PLUGINNAME)/tools
-	mkdir -p $(HOME)/.qgis/python/plugins/$(PLUGINNAME)/icons
-	cp -vf $(PY_FILES) $(HOME)/.qgis/python/plugins/$(PLUGINNAME)
-	cp -vf $(UI_FILES1) $(HOME)/.qgis/python/plugins/$(PLUGINNAME)/tools
-	cp -vf $(RESOURCE_FILES) $(HOME)/.qgis/python/plugins/$(PLUGINNAME)
-#	cp -vf $(RC_FILES) $(HOME)/.qgis/python/plugins/$(PLUGINNAME)
-	cp -vf $(EXTRAS) $(HOME)/.qgis/python/plugins/$(PLUGINNAME)
-	cp -rvf $(TOOL_DIR) $(HOME)/.qgis/python/plugins/$(PLUGINNAME)
-	cp -rvf $(ICONS_DIR) $(HOME)/.qgis/python/plugins/$(PLUGINNAME)
+deploy: compile transup
+	mkdir -p $(QGISDIR)/python/plugins/$(PLUGINNAME)
+	cp -rvf * $(QGISDIR)/python/plugins/$(PLUGINNAME)/
+	rm -f $(QGISDIR)/python/plugins/$(PLUGINNAME)/$(PLUGINNAME)*.zip
+
+# The dclean target removes compiled python files from plugin directory
+dclean:
+	find $(QGISDIR)/python/plugins/$(PLUGINNAME) -iname "*.pyc" -delete
+	rm -f $(QGISDIR)/python/plugins/$(PLUGINNAME)/$(PLUGINNAME)*.zip
+
+# The derase deletes deployed plugin
+derase:
+	rm -Rf $(QGISDIR)/python/plugins/$(PLUGINNAME)
+
+zip: clean deploy dclean
+	rm -f $(PLUGINNAME)-$(VERSION).zip
+	cd $(QGISDIR)/python/plugins; zip -9r $(CURDIR)/$(PLUGINNAME)-$(VERSION).zip $(PLUGINNAME)
+
+publish: zip
+	$(OPEN) http://plugins.qgis.org/plugins/$(PLUGINNAME)/version/add/ &
+
 
