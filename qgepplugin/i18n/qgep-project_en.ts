@@ -1,488 +1,490 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="en" sourcelanguage="en" version="2.0">
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE TS>
+<TS version="2.0" sourcelanguage="en" language="de">
+ <context>
+  <name>vw_cover</name>
+  <message>
+   <source>obj_id</source>
+   <translation/>
+  </message>
+  <message>
+   <source>brand</source>
+   <translation/>
+  </message>
+  <message>
+   <source>cover_shape</source>
+   <translation/>
+  </message>
+  <message>
+   <source>depth</source>
+   <translation/>
+  </message>
+  <message>
+   <source>diameter</source>
+   <translation/>
+  </message>
+  <message>
+   <source>fastening</source>
+   <translation/>
+  </message>
+  <message>
+   <source>level</source>
+   <translation/>
+  </message>
+  <message>
+   <source>material</source>
+   <translation/>
+  </message>
+  <message>
+   <source>positional_accuracy</source>
+   <translation/>
+  </message>
+  <message>
+   <source>sludge_bucket</source>
+   <translation/>
+  </message>
+  <message>
+   <source>venting</source>
+   <translation/>
+  </message>
+  <message>
+   <source>identifier</source>
+   <translation/>
+  </message>
+  <message>
+   <source>remark</source>
+   <translation/>
+  </message>
+  <message>
+   <source>renovation_demand</source>
+   <translation/>
+  </message>
+  <message>
+   <source>last_modification</source>
+   <translation/>
+  </message>
+  <message>
+   <source>dataowner</source>
+   <translation/>
+  </message>
+  <message>
+   <source>provider</source>
+   <translation/>
+  </message>
+  <message>
+   <source>fk_wastewater_structure</source>
+   <translation/>
+  </message>
+ </context>
  <context>
   <name>vw_dryweather_downspout</name>
   <message>
    <source>obj_id</source>
-   <translation>obj_id</translation>
+   <translation/>
   </message>
   <message>
    <source>diameter</source>
-   <translation>diameter</translation>
+   <translation/>
   </message>
   <message>
    <source>identifier</source>
-   <translation>identifier</translation>
+   <translation/>
   </message>
   <message>
    <source>remark</source>
-   <translation>remark</translation>
+   <translation/>
   </message>
   <message>
    <source>renovation_demand</source>
-   <translation>renovation_demand</translation>
+   <translation/>
   </message>
   <message>
    <source>last_modification</source>
-   <translation>last_modification</translation>
+   <translation/>
   </message>
   <message>
    <source>dataowner</source>
-   <translation>dataowner</translation>
+   <translation/>
   </message>
   <message>
    <source>provider</source>
-   <translation>provider</translation>
+   <translation/>
   </message>
   <message>
    <source>fk_wastewater_structure</source>
-   <translation>fk_wastewater_structure</translation>
+   <translation/>
   </message>
  </context>
  <context>
   <name>vw_dryweather_flume</name>
   <message>
    <source>obj_id</source>
-   <translation>obj_id</translation>
+   <translation/>
   </message>
   <message>
    <source>material</source>
-   <translation>material</translation>
+   <translation/>
   </message>
   <message>
    <source>identifier</source>
-   <translation>identifier</translation>
+   <translation/>
   </message>
   <message>
    <source>remark</source>
-   <translation>remark</translation>
+   <translation/>
   </message>
   <message>
    <source>renovation_demand</source>
-   <translation>renovation_demand</translation>
+   <translation/>
   </message>
   <message>
    <source>last_modification</source>
-   <translation>last_modification</translation>
+   <translation/>
   </message>
   <message>
    <source>dataowner</source>
-   <translation>dataowner</translation>
+   <translation/>
   </message>
   <message>
    <source>provider</source>
-   <translation>provider</translation>
+   <translation/>
   </message>
   <message>
    <source>fk_wastewater_structure</source>
-   <translation>fk_wastewater_structure</translation>
+   <translation/>
   </message>
  </context>
  <context>
   <name>vw_access_aid</name>
   <message>
    <source>obj_id</source>
-   <translation>obj_id</translation>
+   <translation/>
   </message>
   <message>
    <source>kind</source>
-   <translation>kind</translation>
+   <translation/>
   </message>
   <message>
    <source>identifier</source>
-   <translation>identifier</translation>
+   <translation/>
   </message>
   <message>
    <source>remark</source>
-   <translation>remark</translation>
+   <translation/>
   </message>
   <message>
    <source>renovation_demand</source>
-   <translation>renovation_demand</translation>
+   <translation/>
   </message>
   <message>
    <source>last_modification</source>
-   <translation>last_modification</translation>
+   <translation/>
   </message>
   <message>
    <source>dataowner</source>
-   <translation>dataowner</translation>
+   <translation/>
   </message>
   <message>
    <source>provider</source>
-   <translation>provider</translation>
+   <translation/>
   </message>
   <message>
    <source>fk_wastewater_structure</source>
-   <translation>fk_wastewater_structure</translation>
+   <translation/>
   </message>
  </context>
  <context>
   <name>vw_benching</name>
   <message>
    <source>obj_id</source>
-   <translation>obj_id</translation>
+   <translation/>
   </message>
   <message>
    <source>kind</source>
-   <translation>kind</translation>
+   <translation/>
   </message>
   <message>
    <source>identifier</source>
-   <translation>identifier</translation>
+   <translation/>
   </message>
   <message>
    <source>remark</source>
-   <translation>remark</translation>
+   <translation/>
   </message>
   <message>
    <source>renovation_demand</source>
-   <translation>renovation_demand</translation>
+   <translation/>
   </message>
   <message>
    <source>last_modification</source>
-   <translation>last_modification</translation>
+   <translation/>
   </message>
   <message>
    <source>dataowner</source>
-   <translation>dataowner</translation>
+   <translation/>
   </message>
   <message>
    <source>provider</source>
-   <translation>provider</translation>
+   <translation/>
   </message>
   <message>
    <source>fk_wastewater_structure</source>
-   <translation>fk_wastewater_structure</translation>
+   <translation/>
   </message>
  </context>
  <context>
   <name>vw_qgep_cover</name>
   <message>
    <source>obj_id</source>
-   <translation>obj_id</translation>
+   <translation/>
   </message>
   <message>
    <source>brand</source>
-   <translation>brand</translation>
+   <translation/>
   </message>
   <message>
    <source>cover_shape</source>
-   <translation>cover_shape</translation>
+   <translation/>
   </message>
   <message>
    <source>diameter</source>
-   <translation>diameter</translation>
+   <translation/>
   </message>
   <message>
    <source>fastening</source>
-   <translation>fastening</translation>
+   <translation/>
   </message>
   <message>
    <source>level</source>
-   <translation>level</translation>
+   <translation/>
   </message>
   <message>
    <source>cover_material</source>
-   <translation>cover_material</translation>
+   <translation/>
   </message>
   <message>
    <source>positional_accuracy</source>
-   <translation>positional_accuracy</translation>
+   <translation/>
   </message>
   <message>
    <source>sludge_bucket</source>
-   <translation>sludge_bucket</translation>
+   <translation/>
   </message>
   <message>
    <source>venting</source>
-   <translation>venting</translation>
+   <translation/>
   </message>
   <message>
    <source>identifier</source>
-   <translation>identifier</translation>
+   <translation/>
   </message>
   <message>
    <source>remark</source>
-   <translation>remark</translation>
+   <translation/>
   </message>
   <message>
    <source>renovation_demand</source>
-   <translation>renovation_demand</translation>
+   <translation/>
   </message>
   <message>
    <source>last_modification</source>
-   <translation>last_modification</translation>
+   <translation/>
   </message>
   <message>
    <source>dataowner</source>
-   <translation>dataowner</translation>
+   <translation/>
   </message>
   <message>
    <source>provider</source>
-   <translation>provider</translation>
+   <translation/>
   </message>
   <message>
    <source>ws_type</source>
-   <translation>ws_type</translation>
+   <translation/>
   </message>
   <message>
    <source>ws_obj_id</source>
-   <translation>ws_obj_id</translation>
+   <translation/>
   </message>
   <message>
    <source>accessibility</source>
-   <translation>accessibility</translation>
+   <translation/>
   </message>
   <message>
    <source>contract_section</source>
-   <translation>contract_section</translation>
+   <translation/>
   </message>
   <message>
    <source>financing</source>
-   <translation>financing</translation>
+   <translation/>
   </message>
   <message>
    <source>gross_costs</source>
-   <translation>gross_costs</translation>
+   <translation/>
   </message>
   <message>
    <source>inspection_interval</source>
-   <translation>inspection_interval</translation>
+   <translation/>
   </message>
   <message>
    <source>location_name</source>
-   <translation>location_name</translation>
+   <translation/>
   </message>
   <message>
    <source>records</source>
-   <translation>records</translation>
+   <translation/>
   </message>
   <message>
    <source>renovation_necessity</source>
-   <translation>renovation_necessity</translation>
+   <translation/>
   </message>
   <message>
    <source>replacement_value</source>
-   <translation>replacement_value</translation>
+   <translation/>
   </message>
   <message>
    <source>rv_base_year</source>
-   <translation>rv_base_year</translation>
+   <translation/>
   </message>
   <message>
    <source>rv_construction_type</source>
-   <translation>rv_construction_type</translation>
+   <translation/>
   </message>
   <message>
    <source>status</source>
-   <translation>status</translation>
+   <translation/>
   </message>
   <message>
    <source>structure_condition</source>
-   <translation>structure_condition</translation>
+   <translation/>
   </message>
   <message>
    <source>subsidies</source>
-   <translation>subsidies</translation>
+   <translation/>
   </message>
   <message>
    <source>year_of_construction</source>
-   <translation>year_of_construction</translation>
+   <translation/>
   </message>
   <message>
    <source>year_of_replacement</source>
-   <translation>year_of_replacement</translation>
+   <translation/>
   </message>
   <message>
    <source>fk_owner</source>
-   <translation>fk_owner</translation>
+   <translation/>
   </message>
   <message>
    <source>fk_operator</source>
-   <translation>fk_operator</translation>
+   <translation/>
   </message>
   <message>
    <source>depth</source>
-   <translation>depth</translation>
+   <translation/>
   </message>
   <message>
    <source>dimension1</source>
-   <translation>dimension1</translation>
+   <translation/>
   </message>
   <message>
    <source>dimension2</source>
-   <translation>dimension2</translation>
+   <translation/>
   </message>
   <message>
    <source>upper_elevation</source>
-   <translation>upper_elevation</translation>
+   <translation/>
   </message>
   <message>
    <source>manhole_function</source>
-   <translation>manhole_function</translation>
+   <translation/>
   </message>
   <message>
    <source>material</source>
-   <translation>material</translation>
+   <translation/>
   </message>
   <message>
    <source>surface_inflow</source>
-   <translation>surface_inflow</translation>
+   <translation/>
   </message>
   <message>
    <source>channel_usage_current</source>
-   <translation>channel_usage_current</translation>
+   <translation/>
   </message>
   <message>
    <source>channel_function_hierarchic</source>
-   <translation>channel_function_hierarchic</translation>
+   <translation/>
   </message>
   <message>
    <source>manhole_orientation</source>
-   <translation>manhole_orientation</translation>
+   <translation/>
   </message>
   <message>
    <source>bypass</source>
-   <translation>bypass</translation>
+   <translation/>
   </message>
   <message>
    <source>special_structure_function</source>
-   <translation>special_structure_function</translation>
+   <translation/>
   </message>
   <message>
    <source>stormwater_tank_arrangement</source>
-   <translation>stormwater_tank_arrangement</translation>
+   <translation/>
   </message>
   <message>
    <source>highwater_level</source>
-   <translation>highwater_level</translation>
+   <translation/>
   </message>
   <message>
    <source>relevance</source>
-   <translation>relevance</translation>
+   <translation/>
   </message>
   <message>
    <source>terrain_level</source>
-   <translation>terrain_level</translation>
+   <translation/>
   </message>
   <message>
    <source>waterlevel_hydraulic</source>
-   <translation>waterlevel_hydraulic</translation>
+   <translation/>
   </message>
   <message>
    <source>absorption_capacity</source>
-   <translation>absorption_capacity</translation>
+   <translation/>
   </message>
   <message>
    <source>defects</source>
-   <translation>defects</translation>
+   <translation/>
   </message>
   <message>
    <source>distance_to_aquifer</source>
-   <translation>distance_to_aquifer</translation>
+   <translation/>
   </message>
   <message>
    <source>effective_area</source>
-   <translation>effective_area</translation>
+   <translation/>
   </message>
   <message>
    <source>emergency_spillway</source>
-   <translation>emergency_spillway</translation>
+   <translation/>
   </message>
   <message>
    <source>kind</source>
-   <translation>kind</translation>
+   <translation/>
   </message>
   <message>
    <source>labeling</source>
-   <translation>labeling</translation>
+   <translation/>
   </message>
   <message>
    <source>seepage_utilization</source>
-   <translation>seepage_utilization</translation>
+   <translation/>
   </message>
   <message>
    <source>vehicle_access</source>
-   <translation>vehicle_access</translation>
+   <translation/>
   </message>
   <message>
    <source>watertightness</source>
-   <translation>watertightness</translation>
-  </message>
- </context>
- <context>
-  <name>20150515150958240</name>
-  <message>
-   <source>obj_id</source>
-   <translation>obj_id</translation>
-  </message>
-  <message>
-   <source>brand</source>
-   <translation>brand</translation>
-  </message>
-  <message>
-   <source>cover_shape</source>
-   <translation>cover_shape</translation>
-  </message>
-  <message>
-   <source>depth</source>
-   <translation>depth</translation>
-  </message>
-  <message>
-   <source>diameter</source>
-   <translation>diameter</translation>
-  </message>
-  <message>
-   <source>fastening</source>
-   <translation>fastening</translation>
-  </message>
-  <message>
-   <source>level</source>
-   <translation>level</translation>
-  </message>
-  <message>
-   <source>material</source>
-   <translation>material</translation>
-  </message>
-  <message>
-   <source>positional_accuracy</source>
-   <translation>positional_accuracy</translation>
-  </message>
-  <message>
-   <source>sludge_bucket</source>
-   <translation>sludge_bucket</translation>
-  </message>
-  <message>
-   <source>venting</source>
-   <translation>venting</translation>
-  </message>
-  <message>
-   <source>identifier</source>
-   <translation>identifier</translation>
-  </message>
-  <message>
-   <source>remark</source>
-   <translation>remark</translation>
-  </message>
-  <message>
-   <source>renovation_demand</source>
-   <translation>renovation_demand</translation>
-  </message>
-  <message>
-   <source>last_modification</source>
-   <translation>last_modification</translation>
-  </message>
-  <message>
-   <source>dataowner</source>
-   <translation>dataowner</translation>
-  </message>
-  <message>
-   <source>provider</source>
-   <translation>provider</translation>
-  </message>
-  <message>
-   <source>fk_wastewater_structure</source>
-   <translation>fk_wastewater_structure</translation>
+   <translation/>
   </message>
  </context>
 </TS>
