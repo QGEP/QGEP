@@ -1,13 +1,11 @@
 #/***************************************************************************
-# Qgep
-# 
-# Qgep
+#  Makefile for the QGEP Plugin
 #                             -------------------
 #        begin                : 2012-08-31
-#        copyright            : (C) 2012 by matthias kuhn
-#        email                : matthias (dot) kuhn (at) gmx (dot) ch
+#        copyright            : (C) 2015 Matthias Kuhn
+#        email                : matthias (at) opengis (dot) ch
 # ***************************************************************************/
-# 
+#
 #/***************************************************************************
 # *                                                                         *
 # *   This program is free software; you can redistribute it and/or modify  *
@@ -16,7 +14,6 @@
 # *   (at your option) any later version.                                   *
 # *                                                                         *
 # ***************************************************************************/
-# Makefile for a PyQGIS plugin 
 PLUGINNAME = qgepplugin
 PY_FILES =  __init__.py  qgepplugin.py
 EXTRAS = metadata.txt resources.qrc
@@ -29,8 +26,10 @@ UI_SOURCES=$(wildcard ui/*.ui)
 UI_FILES=$(join $(addsuffix ui_, $(dir $(UI_SOURCES))), $(notdir $(UI_SOURCES:%.ui=ui_%.py)))
 RC_SOURCES=$(wildcard *.qrc)
 RC_FILES=$(patsubst %.qrc,%.py,$(RC_SOURCES))
+TS_SOURCES=$(wildcard i18n/*.ts)
+TS_FILES=$(patsubst %.ts,%.qm,$(TS_SOURCES))
 
-GEN_FILES = ${UI_FILES} ${RC_FILES}
+GEN_FILES = ${UI_FILES} ${RC_FILES} ${TS_FILES}
 
 all: $(GEN_FILES)
 ui: $(UI_FILES)
@@ -38,9 +37,12 @@ resources: $(RC_FILES)
 
 $(UI_FILES): ui/ui_%.py: ui/%.ui
 	pyuic4 -o $@ $<
-	
+
 $(RC_FILES): %.py: %.qrc
 	pyrcc4 -o $@ $<
+
+$(TS_FILES): i18n/%.qm: i18n/%.ts
+	lrelease-qt4 $< -qm $@
 
 clean:
 	rm -f $(GEN_FILES) *.pyc

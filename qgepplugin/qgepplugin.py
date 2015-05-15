@@ -27,8 +27,8 @@ import logging
 import os
 import resources #@UnusedImport needed to make icons etc. appear
 
-from PyQt4.QtCore import pyqtSlot, QSettings, QCoreApplication, Qt
-from PyQt4.QtGui import QAction, QIcon
+from PyQt4.QtCore import pyqtSlot, QSettings, Qt
+from PyQt4.QtGui import QAction, QIcon, QApplication
 from tools.qgepmaptools import QgepProfileMapTool, QgepTreeMapTool
 from tools.qgepnetwork import QgepGraphManager
 from ui.qgepprofiledockwidget import QgepProfileDockWidget
@@ -72,7 +72,7 @@ class QgepPlugin:
         setupI18n()
         
     def tr( self, sourceText ):
-        return QCoreApplication.translate( 'qgepplugin', sourceText )
+        return QApplication.translate( 'QgepPlugin', sourceText )
         
     def initLogger( self ):
         '''
@@ -122,19 +122,19 @@ class QgepPlugin:
         self.toolbarButtons = []
         
         # Create toolbar button
-        self.profileAction = QAction( QIcon( ":/plugins/qgepplugin/icons/wastewater-profile.svg" ), "Profile", self.iface.mainWindow() )
+        self.profileAction = QAction( QIcon( ":/plugins/qgepplugin/icons/wastewater-profile.svg" ), self.tr("Profile"), self.iface.mainWindow() )
         self.profileAction.setWhatsThis( self.tr( "Reach trace" ) )
         self.profileAction.setEnabled( False )
         self.profileAction.setCheckable( True )
         self.profileAction.triggered.connect( self.profileToolClicked )
 
-        self.downstreamAction = QAction( QIcon( ":/plugins/qgepplugin/icons/wastewater-downstream.svg" ), "Downstream", self.iface.mainWindow() )
+        self.downstreamAction = QAction( QIcon( ":/plugins/qgepplugin/icons/wastewater-downstream.svg" ), self.tr("Downstream"), self.iface.mainWindow() )
         self.downstreamAction.setWhatsThis( self.tr( "Downstream reaches" ) )
         self.downstreamAction.setEnabled( False )
         self.downstreamAction.setCheckable( True )
         self.downstreamAction.triggered.connect( self.downstreamToolClicked )
 
-        self.upstreamAction = QAction( QIcon( ":/plugins/qgepplugin/icons/wastewater-upstream.svg" ), "Upstream", self.iface.mainWindow() )
+        self.upstreamAction = QAction( QIcon( ":/plugins/qgepplugin/icons/wastewater-upstream.svg" ), self.tr("Upstream"), self.iface.mainWindow() )
         self.upstreamAction.setWhatsThis( self.tr( "Upstream reaches" ) )
         self.upstreamAction.setEnabled( False )
         self.upstreamAction.setCheckable( True )

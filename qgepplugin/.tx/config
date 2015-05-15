@@ -1,0 +1,30 @@
+[main]
+host = https://www.transifex.com
+
+[QGEP.qgep-project]
+source_file = i18n/qgep-project_en.ts
+file_filter = i18n/qgep-project_<lang>.ts
+source_lang = en
+trans.de = i18n/qgep-project_de.ts
+trans.fr = i18n/qgep-project_fr.ts
+trans.it = i18n/qgep-project_it.ts
+type = QT
+
+[QGEP.qgepplugin]
+source_file = i18n/qgepplugin_en.ts
+file_filter = i18n/qgepplugin_<lang>.ts
+source_lang = en
+trans.de = i18n/qgepplugin_de.ts
+trans.fr = i18n/qgepplugin_fr.ts
+trans.it = i18n/qgepplugin_it.ts
+type = QT
+
+[QGEP.qgepplugin-js]
+source_file = i18n/qgepplugin-js_en.ts
+file_filter = i18n/qgepplugin-js_<lang>.ts
+source_lang = en
+trans.de = i18n/qgepplugin-js_de.ts
+trans.fr = i18n/qgepplugin-js_fr.ts
+trans.it = i18n/qgepplugin-js_it.ts
+type = QT
+
