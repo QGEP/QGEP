@@ -1,21 +1,21 @@
-﻿-- Function: qgep.manhole_symbology_attribs(text)
--- This function allows to determine the function_hierarchic and usage_current of a given manhole
--- in order to properly style the manhole.
+﻿-- Function: qgep.wastewater_structure_symbology_attribs(text)
+-- This function allows to determine the function_hierarchic and usage_current of a given wastewater_structure
+-- in order to properly style the wastewater_structure.
 -- Determination of these attributes is based on the outgoing reaches (ordered by hierarchy) - if any - or incoming reaches
 -- if there are no outgoing reaches
 
--- DROP FUNCTION qgep.manhole_symbology_attribs(text);
+-- DROP FUNCTION qgep.wastewater_structure_symbology_attribs(text);
 
 -- NEW return type necessary for the function below
-CREATE TYPE qgep.manhole_symbology_attribs AS
+CREATE TYPE qgep.wastewater_structure_symbology_attribs AS
    (function_hierarchic smallint,
     usage_current smallint);
 
-CREATE OR REPLACE FUNCTION qgep.manhole_symbology_attribs(manhole_object_id text)
-  RETURNS qgep.manhole_symbology_attribs AS
+CREATE OR REPLACE FUNCTION qgep.wastewater_structure_symbology_attribs(wastewater_structure_object_id text)
+  RETURNS qgep.wastewater_structure_symbology_attribs AS
 $BODY$DECLARE
 myrec record;
-return_vals qgep.manhole_symbology_attribs;
+return_vals qgep.wastewater_structure_symbology_attribs;
 network_element_obj_id character varying(16);
 order_fct_hierarchic smallint := 99;
 order_usage_current smallint := 99;
@@ -24,10 +24,10 @@ usage_current smallint := NULL;
 BEGIN
 -- first get the relevant network_element obj_id
 SELECT INTO myrec ne.obj_id
-  FROM qgep.od_manhole mh
-  LEFT JOIN qgep.od_wastewater_structure str ON mh.obj_id = str.obj_id
+  FROM qgep.od_wastewater_structure ws
+  LEFT JOIN qgep.od_wastewater_structure str ON ws.obj_id = str.obj_id
   LEFT JOIN qgep.od_wastewater_networkelement ne ON ne.fk_wastewater_structure = str.obj_id
-  WHERE mh.obj_id = manhole_object_id;
+  WHERE ws.obj_id = wastewater_structure_object_id;
 network_element_obj_id := myrec.obj_id;
 -- process first only outgoing channels/reaches
 -- need to process multiple outgoing reaches in order of function_hierarchic and usage_current
@@ -100,8 +100,8 @@ END;$BODY$
   LANGUAGE plpgsql VOLATILE
   COST 100;
 
--- Function to create the labels for manholes with elevation values from incoming reaches
-CREATE OR REPLACE FUNCTION qgep.manhole_label_detailed(structure_obj_id character varying, network_element_obj_id character varying)
+-- Function to create the labels for wastewater_structures with elevation values from incoming reaches
+CREATE OR REPLACE FUNCTION qgep.wastewater_structure_label_detailed(structure_obj_id character varying, network_element_obj_id character varying)
   RETURNS text AS
 $BODY$DECLARE
 myrec_struct_identifier record;
@@ -143,11 +143,11 @@ END;$BODY$
 
   -------------------- SYMBOLOGY UPDATE ON CHANNEL TABLE CHANGES ----------------------
 
-CREATE OR REPLACE FUNCTION qgep.mh_symbology_update_by_channel()
+CREATE OR REPLACE FUNCTION qgep.ws_symbology_update_by_channel()
   RETURNS trigger AS
 $BODY$
 DECLARE
-  mh_obj_id RECORD;
+  ws_obj_id RECORD;
   symb_attribs RECORD;
   affected_obj_ids TEXT[];
 BEGIN
@@ -160,46 +160,46 @@ BEGIN
       affected_obj_ids = ARRAY[OLD.obj_id];
   END CASE;
 
-  FOR mh_obj_id IN
-    SELECT mh.obj_id
-      FROM qgep.od_manhole mh
-      LEFT JOIN qgep.od_wastewater_networkelement ne ON mh.obj_id = ne.fk_wastewater_structure
+  FOR ws_obj_id IN
+    SELECT ws.obj_id
+      FROM qgep.od_wastewater_structure ws
+      LEFT JOIN qgep.od_wastewater_networkelement ne ON ws.obj_id = ne.fk_wastewater_structure
       LEFT JOIN qgep.od_reach_point rp ON ne.obj_id = rp.fk_wastewater_networkelement
       LEFT JOIN qgep.od_reach re ON (re.fk_reach_point_from = rp.obj_id OR re.fk_reach_point_to = rp.obj_id )
       LEFT JOIN qgep.od_wastewater_networkelement rene ON rene.obj_id = re.obj_id
       WHERE rene.fk_wastewater_structure = ANY ( affected_obj_ids )
   LOOP
-      SELECT * FROM qgep.manhole_symbology_attribs( mh_obj_id.obj_id  )
+      SELECT * FROM qgep.wastewater_structure_symbology_attribs( ws_obj_id.obj_id  )
         INTO symb_attribs;
-      UPDATE qgep.od_manhole
+      UPDATE qgep.od_wastewater_structure
       SET
         _usage_current = symb_attribs.usage_current,
         _function_hierarchic = symb_attribs.function_hierarchic
       WHERE
-        obj_id = mh_obj_id.obj_id;
+        obj_id = ws_obj_id.obj_id;
 
-      -- RAISE NOTICE 'Updating manhole (%, %)', mh_obj_id.obj_id, symb_attribs.usage_current;
+      -- RAISE NOTICE 'Updating wastewater_structure (%, %)', ws_obj_id.obj_id, symb_attribs.usage_current;
   END LOOP;
   RETURN NEW;
 END; $BODY$
   LANGUAGE plpgsql VOLATILE
   COST 100;
 
-DROP TRIGGER IF EXISTS mh_symbology_update_by_channel ON qgep.od_channel;
+DROP TRIGGER IF EXISTS ws_symbology_update_by_channel ON qgep.od_channel;
 
-CREATE TRIGGER mh_symbology_update_by_channel
+CREATE TRIGGER ws_symbology_update_by_channel
   AFTER INSERT OR UPDATE OR DELETE
   ON qgep.od_channel
   FOR EACH ROW
-  EXECUTE PROCEDURE qgep.mh_symbology_update_by_channel();
+  EXECUTE PROCEDURE qgep.ws_symbology_update_by_channel();
 
   -------------------- SYMBOLOGY UPDATE ON REACH POINT TABLE CHANGES ----------------------
 
-CREATE OR REPLACE FUNCTION qgep.mh_symbology_update_by_reach_point()
+CREATE OR REPLACE FUNCTION qgep.ws_symbology_update_by_reach_point()
   RETURNS trigger AS
 $BODY$
 DECLARE
-  mh_obj_id RECORD;
+  ws_obj_id RECORD;
   symb_attribs RECORD;
   affected_obj_ids TEXT[];
 BEGIN
@@ -212,46 +212,46 @@ BEGIN
       affected_obj_ids = ARRAY[OLD.obj_id];
   END CASE;
 
-  FOR mh_obj_id IN
-    SELECT mh.obj_id
-      FROM qgep.od_manhole mh
-      LEFT JOIN qgep.od_wastewater_networkelement ne ON mh.obj_id = ne.fk_wastewater_structure
+  FOR ws_obj_id IN
+    SELECT ws.obj_id
+      FROM qgep.od_wastewater_structure ws
+      LEFT JOIN qgep.od_wastewater_networkelement ne ON ws.obj_id = ne.fk_wastewater_structure
       LEFT JOIN qgep.od_reach_point rp ON ne.obj_id = rp.fk_wastewater_networkelement
       WHERE rp.obj_id = ANY ( affected_obj_ids )
   LOOP
-    SELECT * FROM qgep.manhole_symbology_attribs( mh_obj_id.obj_id  )
+    SELECT * FROM qgep.wastewater_structure_symbology_attribs( ws_obj_id.obj_id  )
         INTO symb_attribs;
-      UPDATE qgep.od_manhole
+      UPDATE qgep.od_wastewater_structure
       SET
         _usage_current = symb_attribs.usage_current,
         _function_hierarchic = symb_attribs.function_hierarchic
       WHERE
-        obj_id = mh_obj_id.obj_id;
+        obj_id = ws_obj_id.obj_id;
 
-      -- RAISE NOTICE 'Updating manhole (%, %)', mh_obj_id.obj_id, symb_attribs.usage_current;
+      -- RAISE NOTICE 'Updating wastewater_structure (%, %)', ws_obj_id.obj_id, symb_attribs.usage_current;
   END LOOP;
   RETURN NEW;
 END; $BODY$
   LANGUAGE plpgsql VOLATILE
   COST 100;
 
-  DROP TRIGGER IF EXISTS mh_symbology_update_by_reach_point ON qgep.od_reach_point;
+  DROP TRIGGER IF EXISTS ws_symbology_update_by_reach_point ON qgep.od_reach_point;
 
 -- only update -> insert and delete are handled by reach trigger
-CREATE TRIGGER mh_symbology_update_by_reach_point
+CREATE TRIGGER ws_symbology_update_by_reach_point
   AFTER UPDATE
     ON qgep.od_reach_point
   FOR EACH ROW
-    EXECUTE PROCEDURE qgep.mh_symbology_update_by_reach_point();
+    EXECUTE PROCEDURE qgep.ws_symbology_update_by_reach_point();
 
 
   -------------------- SYMBOLOGY UPDATE ON REACH TABLE CHANGES ----------------------
 
-CREATE OR REPLACE FUNCTION qgep.mh_symbology_update_by_reach()
+CREATE OR REPLACE FUNCTION qgep.ws_symbology_update_by_reach()
   RETURNS trigger AS
 $BODY$
 DECLARE
-  mh_obj_id RECORD;
+  ws_obj_id RECORD;
   symb_attribs RECORD;
   affected_obj_ids TEXT[];
 BEGIN
@@ -264,34 +264,34 @@ BEGIN
       affected_obj_ids = ARRAY[OLD.obj_id];
   END CASE;
 
-  FOR mh_obj_id IN
-    SELECT mh.obj_id
-      FROM qgep.od_manhole mh
-      LEFT JOIN qgep.od_wastewater_networkelement ne ON mh.obj_id = ne.fk_wastewater_structure
+  FOR ws_obj_id IN
+    SELECT ws.obj_id
+      FROM qgep.od_wastewater_structure ws
+      LEFT JOIN qgep.od_wastewater_networkelement ne ON ws.obj_id = ne.fk_wastewater_structure
       LEFT JOIN qgep.od_reach_point rp ON ne.obj_id = rp.fk_wastewater_networkelement
       LEFT JOIN qgep.od_reach re ON ( rp.obj_id = re.fk_reach_point_from OR rp.obj_id = re.fk_reach_point_to )
       WHERE re.obj_id = ANY ( affected_obj_ids )
   LOOP
-    SELECT * FROM qgep.manhole_symbology_attribs( mh_obj_id.obj_id  )
+    SELECT * FROM qgep.wastewater_structure_symbology_attribs( ws_obj_id.obj_id  )
         INTO symb_attribs;
-      UPDATE qgep.od_manhole
+      UPDATE qgep.od_wastewater_structure
       SET
         _usage_current = symb_attribs.usage_current,
         _function_hierarchic = symb_attribs.function_hierarchic
       WHERE
-        obj_id = mh_obj_id.obj_id;
+        obj_id = ws_obj_id.obj_id;
 
-      -- RAISE NOTICE 'Updating manhole (%, %)', mh_obj_id.obj_id, symb_attribs.usage_current;
+      -- RAISE NOTICE 'Updating wastewater_structure (%, %)', ws_obj_id.obj_id, symb_attribs.usage_current;
   END LOOP;
   RETURN NEW;
 END; $BODY$
   LANGUAGE plpgsql VOLATILE
   COST 100;
 
-  DROP TRIGGER IF EXISTS mh_symbology_update_by_reach ON qgep.od_reach;
+  DROP TRIGGER IF EXISTS ws_symbology_update_by_reach ON qgep.od_reach;
 
-CREATE TRIGGER mh_symbology_update_by_reach
+CREATE TRIGGER ws_symbology_update_by_reach
   AFTER INSERT OR UPDATE OR DELETE
     ON qgep.od_reach
   FOR EACH ROW
-    EXECUTE PROCEDURE qgep.mh_symbology_update_by_reach();
+    EXECUTE PROCEDURE qgep.ws_symbology_update_by_reach();
