@@ -17,7 +17,7 @@
   <name>fld_vw_qgep_cover</name>
   <message>
    <source>special_structure_function</source>
-   <translation>Funktion (Spezialbauwerk)</translation>
+   <translation>Funktion</translation>
   </message>
   <message>
    <source>diameter</source>
@@ -29,47 +29,47 @@
   </message>
   <message>
    <source>contract_section</source>
-   <translation type="unfinished" />
+   <translation>Baulos</translation>
   </message>
   <message>
    <source>inspection_interval</source>
-   <translation type="unfinished" />
+   <translation>Inspektionsintervall</translation>
   </message>
   <message>
    <source>cover_material</source>
-   <translation>Deckel Material</translation>
+   <translation>Material</translation>
   </message>
   <message>
    <source>subsidies</source>
-   <translation type="unfinished" />
+   <translation>Subventionen</translation>
   </message>
   <message>
    <source>accessibility</source>
-   <translation>Zugänglichkeit</translation>
+   <translation>Zugaenglichkeit</translation>
   </message>
   <message>
    <source>dimension1</source>
-   <translation type="unfinished" />
+   <translation>Dimension1</translation>
   </message>
   <message>
    <source>renovation_necessity</source>
-   <translation type="unfinished" />
+   <translation>Sanierungsbedarf</translation>
   </message>
   <message>
    <source>sludge_bucket</source>
-   <translation type="unfinished" />
+   <translation>Schlammeimer</translation>
   </message>
   <message>
    <source>waterlevel_hydraulic</source>
-   <translation type="unfinished" />
+   <translation>Wasserspiegel_Hydraulik</translation>
   </message>
   <message>
    <source>gross_costs</source>
-   <translation type="unfinished" />
+   <translation>Bruttokosten</translation>
   </message>
   <message>
    <source>defects</source>
-   <translation type="unfinished" />
+   <translation>Maengel</translation>
   </message>
   <message>
    <source>manhole_orientation</source>
@@ -77,11 +77,11 @@
   </message>
   <message>
    <source>rv_construction_type</source>
-   <translation type="unfinished" />
+   <translation>WBW_Bauart</translation>
   </message>
   <message>
    <source>absorption_capacity</source>
-   <translation type="unfinished" />
+   <translation>Schluckvermoegen</translation>
   </message>
   <message>
    <source>channel_function_hierarchic</source>
@@ -89,27 +89,27 @@
   </message>
   <message>
    <source>financing</source>
-   <translation type="unfinished" />
+   <translation>Finanzierung</translation>
   </message>
   <message>
    <source>replacement_value</source>
-   <translation type="unfinished" />
+   <translation>Wiederbeschaffungswert</translation>
   </message>
   <message>
    <source>location_name</source>
-   <translation type="unfinished" />
+   <translation>Standortname</translation>
   </message>
   <message>
    <source>renovation_demand</source>
-   <translation type="unfinished" />
+   <translation>Instandstellung</translation>
   </message>
   <message>
    <source>manhole_function</source>
-   <translation type="unfinished" />
+   <translation>Funktion</translation>
   </message>
   <message>
    <source>upper_elevation</source>
-   <translation type="unfinished" />
+   <translation>Deckenkote</translation>
   </message>
   <message>
    <source>dataowner</source>
@@ -117,23 +117,23 @@
   </message>
   <message>
    <source>kind</source>
-   <translation type="unfinished" />
+   <translation>Art</translation>
   </message>
   <message>
    <source>effective_area</source>
-   <translation type="unfinished" />
+   <translation>Wirksameflaeche</translation>
   </message>
   <message>
    <source>venting</source>
-   <translation type="unfinished" />
+   <translation>Entlueftung</translation>
   </message>
   <message>
    <source>positional_accuracy</source>
-   <translation type="unfinished" />
+   <translation>Lagegenauigkeit</translation>
   </message>
   <message>
    <source>bypass</source>
-   <translation type="unfinished" />
+   <translation>Bypass</translation>
   </message>
   <message>
    <source>provider</source>
@@ -141,31 +141,31 @@
   </message>
   <message>
    <source>relevance</source>
-   <translation type="unfinished" />
+   <translation>Relevanz</translation>
   </message>
   <message>
    <source>structure_condition</source>
-   <translation type="unfinished" />
+   <translation>BaulicherZustand</translation>
   </message>
   <message>
    <source>stormwater_tank_arrangement</source>
-   <translation type="unfinished" />
+   <translation>Regenbecken_Anordnung</translation>
   </message>
   <message>
    <source>rv_base_year</source>
-   <translation type="unfinished" />
+   <translation>WBW_Basisjahr</translation>
   </message>
   <message>
    <source>surface_inflow</source>
-   <translation type="unfinished" />
+   <translation>Oberflaechenzulauf</translation>
   </message>
   <message>
    <source>seepage_utilization</source>
-   <translation type="unfinished" />
+   <translation>Versickerungswasser</translation>
   </message>
   <message>
    <source>brand</source>
-   <translation type="unfinished" />
+   <translation>Fabrikat</translation>
   </message>
   <message>
    <source>material</source>
@@ -181,43 +181,43 @@
   </message>
   <message>
    <source>records</source>
-   <translation type="unfinished" />
+   <translation>Akten</translation>
   </message>
   <message>
    <source>emergency_spillway</source>
-   <translation type="unfinished" />
+   <translation>Notueberlauf</translation>
   </message>
   <message>
    <source>distance_to_aquifer</source>
-   <translation type="unfinished" />
+   <translation>GWDistanz</translation>
   </message>
   <message>
    <source>fastening</source>
-   <translation type="unfinished" />
+   <translation>Verschluss</translation>
   </message>
   <message>
    <source>highwater_level</source>
-   <translation type="unfinished" />
+   <translation>Hochwasserkote</translation>
   </message>
   <message>
    <source>vehicle_access</source>
-   <translation type="unfinished" />
+   <translation>Saugwagen</translation>
   </message>
   <message>
    <source>remark</source>
-   <translation type="unfinished" />
+   <translation>Bemerkung</translation>
   </message>
   <message>
    <source>year_of_replacement</source>
-   <translation type="unfinished" />
+   <translation>Ersatzjahr</translation>
   </message>
   <message>
    <source>dimension2</source>
-   <translation type="unfinished" />
+   <translation>Dimension2</translation>
   </message>
   <message>
    <source>terrain_level</source>
-   <translation type="unfinished" />
+   <translation>Terrainkote</translation>
   </message>
   <message>
    <source>level</source>
@@ -237,11 +237,11 @@
   </message>
   <message>
    <source>cover_shape</source>
-   <translation type="unfinished" />
+   <translation>Deckelform</translation>
   </message>
   <message>
    <source>depth</source>
-   <translation type="unfinished" />
+   <translation>Maechtigkeit</translation>
   </message>
   <message>
    <source>status</source>
@@ -253,19 +253,19 @@
   </message>
   <message>
    <source>year_of_construction</source>
-   <translation type="unfinished" />
+   <translation>Baujahr</translation>
   </message>
   <message>
    <source>identifier</source>
-   <translation type="unfinished" />
+   <translation>Bezeichnung</translation>
   </message>
   <message>
    <source>watertightness</source>
-   <translation type="unfinished" />
+   <translation>Wasserdichtheit</translation>
   </message>
   <message>
    <source>labeling</source>
-   <translation type="unfinished" />
+   <translation>Beschriftung</translation>
   </message>
  </context>
  <context>

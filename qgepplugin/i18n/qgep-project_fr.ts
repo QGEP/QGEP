@@ -17,11 +17,11 @@
   <name>fld_vw_qgep_cover</name>
   <message>
    <source>special_structure_function</source>
-   <translation type="unfinished" />
+   <translation>fonction</translation>
   </message>
   <message>
    <source>diameter</source>
-   <translation type="unfinished" />
+   <translation>diametre</translation>
   </message>
   <message>
    <source>fk_owner</source>
@@ -29,47 +29,47 @@
   </message>
   <message>
    <source>contract_section</source>
-   <translation type="unfinished" />
+   <translation>lot_construction</translation>
   </message>
   <message>
    <source>inspection_interval</source>
-   <translation type="unfinished" />
+   <translation>intervalle_inspection</translation>
   </message>
   <message>
    <source>cover_material</source>
-   <translation type="unfinished" />
+   <translation>materiau</translation>
   </message>
   <message>
    <source>subsidies</source>
-   <translation type="unfinished" />
+   <translation>subventions</translation>
   </message>
   <message>
    <source>accessibility</source>
-   <translation type="unfinished" />
+   <translation>acces</translation>
   </message>
   <message>
    <source>dimension1</source>
-   <translation type="unfinished" />
+   <translation>dimension1</translation>
   </message>
   <message>
    <source>renovation_necessity</source>
-   <translation type="unfinished" />
+   <translation>necessite_assainir</translation>
   </message>
   <message>
    <source>sludge_bucket</source>
-   <translation type="unfinished" />
+   <translation>ramasse_boues</translation>
   </message>
   <message>
    <source>waterlevel_hydraulic</source>
-   <translation type="unfinished" />
+   <translation>niveau_eau_hydraulique</translation>
   </message>
   <message>
    <source>gross_costs</source>
-   <translation type="unfinished" />
+   <translation>couts_bruts</translation>
   </message>
   <message>
    <source>defects</source>
-   <translation type="unfinished" />
+   <translation>lacunes</translation>
   </message>
   <message>
    <source>manhole_orientation</source>
@@ -77,11 +77,11 @@
   </message>
   <message>
    <source>rv_construction_type</source>
-   <translation type="unfinished" />
+   <translation>vr_type_construction</translation>
   </message>
   <message>
    <source>absorption_capacity</source>
-   <translation type="unfinished" />
+   <translation>capacite_absorption_sol</translation>
   </message>
   <message>
    <source>channel_function_hierarchic</source>
@@ -89,27 +89,27 @@
   </message>
   <message>
    <source>financing</source>
-   <translation type="unfinished" />
+   <translation>financement</translation>
   </message>
   <message>
    <source>replacement_value</source>
-   <translation type="unfinished" />
+   <translation>valeur_remplacement</translation>
   </message>
   <message>
    <source>location_name</source>
-   <translation type="unfinished" />
+   <translation>lieu_dit</translation>
   </message>
   <message>
    <source>renovation_demand</source>
-   <translation type="unfinished" />
+   <translation>remise_en_etat</translation>
   </message>
   <message>
    <source>manhole_function</source>
-   <translation type="unfinished" />
+   <translation>fonction</translation>
   </message>
   <message>
    <source>upper_elevation</source>
-   <translation type="unfinished" />
+   <translation>cote_plafond</translation>
   </message>
   <message>
    <source>dataowner</source>
@@ -117,23 +117,23 @@
   </message>
   <message>
    <source>kind</source>
-   <translation type="unfinished" />
+   <translation>genre</translation>
   </message>
   <message>
    <source>effective_area</source>
-   <translation type="unfinished" />
+   <translation>surface_utile</translation>
   </message>
   <message>
    <source>venting</source>
-   <translation type="unfinished" />
+   <translation>aeration</translation>
   </message>
   <message>
    <source>positional_accuracy</source>
-   <translation type="unfinished" />
+   <translation>determination_planimetrique</translation>
   </message>
   <message>
    <source>bypass</source>
-   <translation type="unfinished" />
+   <translation>bypass</translation>
   </message>
   <message>
    <source>provider</source>
@@ -141,35 +141,35 @@
   </message>
   <message>
    <source>relevance</source>
-   <translation type="unfinished" />
+   <translation>signifiance</translation>
   </message>
   <message>
    <source>structure_condition</source>
-   <translation type="unfinished" />
+   <translation>etat_constructif</translation>
   </message>
   <message>
    <source>stormwater_tank_arrangement</source>
-   <translation type="unfinished" />
+   <translation>bep_disposition</translation>
   </message>
   <message>
    <source>rv_base_year</source>
-   <translation type="unfinished" />
+   <translation>vr_annee_reference</translation>
   </message>
   <message>
    <source>surface_inflow</source>
-   <translation type="unfinished" />
+   <translation>arrivee_eaux_sup</translation>
   </message>
   <message>
    <source>seepage_utilization</source>
-   <translation type="unfinished" />
+   <translation>eau_infiltration</translation>
   </message>
   <message>
    <source>brand</source>
-   <translation type="unfinished" />
+   <translation>fabricant</translation>
   </message>
   <message>
    <source>material</source>
-   <translation type="unfinished" />
+   <translation>materiau</translation>
   </message>
   <message>
    <source>ws_type</source>
@@ -181,47 +181,47 @@
   </message>
   <message>
    <source>records</source>
-   <translation type="unfinished" />
+   <translation>dossier</translation>
   </message>
   <message>
    <source>emergency_spillway</source>
-   <translation type="unfinished" />
+   <translation>trop_plein_de_secours</translation>
   </message>
   <message>
    <source>distance_to_aquifer</source>
-   <translation type="unfinished" />
+   <translation>distance_aquifere</translation>
   </message>
   <message>
    <source>fastening</source>
-   <translation type="unfinished" />
+   <translation>fermeture</translation>
   </message>
   <message>
    <source>highwater_level</source>
-   <translation type="unfinished" />
+   <translation>cote_crue</translation>
   </message>
   <message>
    <source>vehicle_access</source>
-   <translation type="unfinished" />
+   <translation>vehicule_d_aspiration</translation>
   </message>
   <message>
    <source>remark</source>
-   <translation type="unfinished" />
+   <translation>remarque</translation>
   </message>
   <message>
    <source>year_of_replacement</source>
-   <translation type="unfinished" />
+   <translation>annee_de_remplacement</translation>
   </message>
   <message>
    <source>dimension2</source>
-   <translation type="unfinished" />
+   <translation>dimension2</translation>
   </message>
   <message>
    <source>terrain_level</source>
-   <translation type="unfinished" />
+   <translation>cote_terrain</translation>
   </message>
   <message>
    <source>level</source>
-   <translation type="unfinished" />
+   <translation>cote</translation>
   </message>
   <message>
    <source>obj_id</source>
@@ -237,15 +237,15 @@
   </message>
   <message>
    <source>cover_shape</source>
-   <translation type="unfinished" />
+   <translation>forme_couvercle</translation>
   </message>
   <message>
    <source>depth</source>
-   <translation type="unfinished" />
+   <translation>epaisseur</translation>
   </message>
   <message>
    <source>status</source>
-   <translation type="unfinished" />
+   <translation>etat</translation>
   </message>
   <message>
    <source>last_modification</source>
@@ -253,19 +253,19 @@
   </message>
   <message>
    <source>year_of_construction</source>
-   <translation type="unfinished" />
+   <translation>annee_de_construction</translation>
   </message>
   <message>
    <source>identifier</source>
-   <translation type="unfinished" />
+   <translation>designation</translation>
   </message>
   <message>
    <source>watertightness</source>
-   <translation type="unfinished" />
+   <translation>etancheite</translation>
   </message>
   <message>
    <source>labeling</source>
-   <translation type="unfinished" />
+   <translation>signalisation</translation>
   </message>
  </context>
  <context>
