@@ -1,0 +1,114 @@
+{
+  "__comment__": "QGEP",
+
+  "vw_qgep_cover": {
+    "parents": {
+      "od_structure_part": {},
+      "od_cover": {
+        "remap": {
+          "cover_material": "material"
+        }
+      },
+      "od_wastewater_structure": {},
+      "od_manhole": {
+        "remap": {
+          "manhole_function": "function"
+        }
+      },
+      "od_special_structure": {
+        "remap": {
+          "special_structure_function": "function"
+        }
+      },
+      "od_discharge_point": {},
+      "od_infiltration_installation": {}
+    }
+  },
+
+
+  "__comment__": "WASTEWATER STRUCTURE",
+
+
+  "vw_channel": {
+    "parents": {
+      "od_channel": {},
+      "od_wastewater_structure": {}
+    }
+  },
+  "vw_discharge_point": {
+    "parents": {
+      "od_discharge_point": {},
+      "od_wastewater_structure": {}
+    }
+  },
+  "vw_manhole": {
+    "parents": {
+      "od_manhole": {},
+      "od_wastewater_structure": {}
+    }
+  },
+  "vw_special_structure": {
+    "parents": {
+      "od_special_structure": {},
+      "od_wastewater_structure": {}
+    }
+  },
+
+
+  "__comment__": "STRUCTURE PART",
+
+
+  "vw_cover": {
+    "parents": {
+      "od_cover": {},
+      "od_structure_part": {}
+    }
+  },
+  "vw_access_aid": {
+    "parents": {
+      "od_access_aid": {},
+      "od_structure_part": {}
+    }
+  },
+  "vw_dryweather_flume": {
+    "parents": {
+      "od_dryweather_flume": {},
+      "od_structure_part": {}
+    }
+  },
+  "vw_dryweather_downspout": {
+    "parents": {
+      "od_dryweather_downspout": {},
+      "od_structure_part": {}
+    }
+  },
+  "vw_benching": {
+    "parents": {
+      "od_benching": {},
+      "od_structure_part": {}
+    }
+  },
+  "vw_backflow_prevention": {
+    "parents": {
+      "od_backflow_prevention": {},
+      "od_structure_part": {}
+    }
+  },
+
+
+  "__comment__": "WASTEWATER NETWORKELEMENT",
+
+
+  "vw_reach": {
+    "parents": {
+      "od_reach": {},
+      "od_wastewater_networkelement": {}
+    }
+  },
+  "vw_wastewater_node": {
+    "parents": {
+      "od_wastewater_node": {},
+      "od_wastewater_networkelement": {}
+    }
+  }
+}
