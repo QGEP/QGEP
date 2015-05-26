@@ -32,6 +32,7 @@ psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ../datamodel/08_qgep_functions
 psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ../datamodel/09_qgep_dictionaries.sql
 psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ../datamodel/view/vw_access_aid.sql
 psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ../datamodel/view/vw_benching.sql
+psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ../datamodel/view/vw_backflow_prevention.sql
 psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ../datamodel/view/vw_channel.sql
 psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ../datamodel/view/vw_cover.sql
 psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ../datamodel/view/vw_discharge_point.sql
@@ -41,6 +42,5 @@ psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ../datamodel/view/vw_manhole.s
 psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ../datamodel/view/vw_reach.sql
 psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ../datamodel/view/vw_special_structure.sql
 psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ../datamodel/view/vw_wastewater_node.sql
-psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ../datamodel/view/vw_wizard_cover_manhole.sql
-psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ../datamodel/view/vw_wizard_cover_special_structure.sql
+psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ../datamodel/view/vw_qgep_cover.sql
 psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ../datamodel/view/vw_wizard_reach_channel.sql
