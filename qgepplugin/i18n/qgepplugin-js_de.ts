@@ -5,12 +5,12 @@
     <message>
         <source>Reach</source>
         <comment>Reach</comment>
-        <translation type="unfinished"/>
+        <translation>Haltung</translation>
     </message>
     <message>
         <source>Material:</source>
         <comment>Material:</comment>
-        <translation type="unfinished"/>
+        <translation>Material:</translation>
     </message>
     <message>
         <source>Width:</source>
@@ -20,12 +20,12 @@
     <message>
         <source>Length:</source>
         <comment>Length:</comment>
-        <translation type="unfinished"/>
+        <translation>Länge:</translation>
     </message>
     <message>
         <source>Gradient:</source>
         <comment>Gradient:</comment>
-        <translation type="unfinished"/>
+        <translation>Gefälle:</translation>
     </message>
     <message>
         <source>Entry level:</source>
@@ -43,17 +43,17 @@
     <message>
         <source>Manhole</source>
         <comment>Manhole</comment>
-        <translation type="unfinished"/>
+        <translation>Normschacht</translation>
     </message>
     <message>
         <source>Cover level:</source>
         <comment>Cover level:</comment>
-        <translation type="unfinished"/>
+        <translation>Deckelkote:</translation>
     </message>
     <message>
         <source>Bottom level:</source>
         <comment>Bottom level:</comment>
-        <translation type="unfinished"/>
+        <translation>Sohlenkote:</translation>
     </message>
     <message>
         <source>Entry level:</source>

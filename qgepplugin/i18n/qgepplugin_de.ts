@@ -310,7 +310,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="qgepsettingsdialog.py" line="149"/>
         <source>HTML files(*.htm *.html)</source>
-        <translation type="unfinished"/>
+        <translation>HTML Dateien(*.htm *.html)</translation>
     </message>
     <message>
         <location filename="qgepsettingsdialog.py" line="154"/>
