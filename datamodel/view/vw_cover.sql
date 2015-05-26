@@ -19,15 +19,9 @@ SELECT co.obj_id,
     sp.last_modification,
     sp.dataowner,
     sp.provider,
-    sp.fk_wastewater_structure,
-    mh.function AS manhole_function,
-    mh._usage_current AS channel_usage_current,
-    mh._function_hierarchic AS channel_function_hierarchic,
-    mh._orientation AS manhole_orientation
+    sp.fk_wastewater_structure
    FROM qgep.od_cover co
-     LEFT JOIN qgep.od_structure_part sp ON sp.obj_id::text = co.obj_id::text
-     LEFT JOIN qgep.od_wastewater_structure str ON str.obj_id::text = sp.fk_wastewater_structure::text
-     LEFT JOIN qgep.od_manhole mh ON mh.obj_id::text = str.obj_id::text;
+     LEFT JOIN qgep.od_structure_part sp ON sp.obj_id::text = co.obj_id::text;
 
 -------------------------------------------------------
 -- cover INSERT
