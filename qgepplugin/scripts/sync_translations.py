@@ -8,21 +8,30 @@ import io
 import codecs
 from pprint import pprint
 
+force = False
+
+# Enable this option if you want to overwrite already translated strings. This is dangerous as it vill void manual
+# manual translation performed on the .ts file (e.g. on Transifex)
+# force = True
+
 basepath = os.path.dirname(os.path.realpath(__file__))
 
 with open(os.path.join(basepath, '../../datamodel/defs.json')) as defs_file:
     views = json.load(defs_file)
 
-def set_translation(message, text):
 
-    if text and text[:4] != 'zzz_':
-        print u'{} {} {}'.format(text, text[:4], text[:4] == 'zzz_')
+def set_translation(message, text):
+    if (text and text[:4] != 'zzz_') and (message.find('translation').get('type') == 'unfinished' or force is True):
+        print ' * Translating {} to {}'.format(message.find('source').text, text)
         message.find('translation').text = text
         message.find('translation').attrib.pop('type')
 
+
 def sync_language(lang_code):
     fields = {}
+    tables = {}
 
+    # Load field translations from the database
     with pg.connect("service=pg_qgep") as conn:
         with conn.cursor() as cur:
             pg.extensions.register_type(pg.extensions.UNICODE, cur)
@@ -39,6 +48,23 @@ def sync_language(lang_code):
                 fields[record[3]][record[4]] = dict()
                 fields[record[3]][record[4]]['name'] = record[nameidx]
                 fields[record[3]][record[4]]['description'] = record[descidx]
+
+    # Load table translations from the database
+    with pg.connect("service=pg_qgep") as conn:
+        with conn.cursor() as cur:
+            pg.extensions.register_type(pg.extensions.UNICODE, cur)
+
+            cur.execute('SELECT * FROM qgep.is_dictionary_od_table;')
+
+            cols = [desc[0] for desc in cur.description]
+            # print(' * Dealing with the following fields from is_dictionary_od_table: \n  * {}'.format('\n  * '.join(cols)))
+            nameidx = cols.index('name_{}'.format(lang_code))
+            abbridx = cols.index('shortcut_{}'.format(lang_code))
+
+            for record in cur:
+                tables[record[1]] = dict()
+                tables[record[1]]['name'] = record[nameidx]
+                tables[record[1]]['abbr'] = record[abbridx]
 
     tsfile = os.path.join(basepath, '../i18n/qgep-project_{}.ts').format(
         lang_code)
@@ -74,6 +100,19 @@ def sync_language(lang_code):
                                 set_translation(message, fields[lyr][src]['name'])
                             except KeyError:
                                 pass
+        elif ltype == 'lyr':
+            for message in context.findall('message'):
+                source = message.find('source')
+                tblname = source.text
+                try:
+                    set_translation(tblname, tables[tblname]['name'])
+                except KeyError:
+                    tblname = 'od_{}'.format(tblname[3:])
+                    try:
+                        set_translation(tblname, tables[tblname]['name'])
+                    except KeyError:
+                        pass
+
 
     with codecs.open(tsfile, 'w', encoding='utf8') as f:
         f.write(u'<?xml version="1.0" ?><!DOCTYPE TS>')
@@ -82,7 +121,10 @@ def sync_language(lang_code):
 
 for lang in ['fr', 'de', 'it', 'en']:
     print 'Translating {}'.format(lang)
-    sync_language(lang)
+    try:
+        sync_language(lang)
+    except ValueError:
+        print 'Translation error for language {}, missing translation source in the database'.format(lang)
 
 # Uncomment to debug views definitions:
 # pprint(views)
