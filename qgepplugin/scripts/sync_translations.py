@@ -21,6 +21,15 @@ with open(os.path.join(basepath, '../../datamodel/defs.json')) as defs_file:
 
 
 def set_translation(message, text):
+    '''
+
+    :param message:
+    :param text:
+    :return:
+    '''
+    if message.find('translation') == -1:
+        print 'Message not found {} -> {}'.format(text, message)
+        return
     if (text and text[:4] != 'zzz_') and (message.find('translation').get('type') == 'unfinished' or force is True):
         print ' * Translating {} to {}'.format(message.find('source').text, text)
         message.find('translation').text = text
@@ -68,6 +77,7 @@ def sync_language(lang_code):
 
     tsfile = os.path.join(basepath, '../i18n/qgep-project_{}.ts').format(
         lang_code)
+    print tsfile
     tree = ET.parse(tsfile)
     root = tree.getroot()
 
@@ -112,7 +122,6 @@ def sync_language(lang_code):
                         set_translation(tblname, tables[tblname]['name'])
                     except KeyError:
                         pass
-
 
     with codecs.open(tsfile, 'w', encoding='utf8') as f:
         f.write(u'<?xml version="1.0" ?><!DOCTYPE TS>')
