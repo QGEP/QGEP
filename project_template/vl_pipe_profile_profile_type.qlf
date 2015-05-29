@@ -1,12 +1,12 @@
 <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
- <id>vl_special_structure_stormwater_tank_arrangement</id>
- <datasource>service='pg_qgep' key='code' table="qgep"."vl_special_structure_stormwater_tank_arrangement" sql=</datasource>
+ <id>vl_pipe_profile_profile_type</id>
+ <datasource>service='pg_qgep' key='code' table="qgep"."vl_pipe_profile_profile_type" sql=</datasource>
  <title></title>
  <abstract></abstract>
  <keywordList>
   <value></value>
  </keywordList>
- <layername>Stormwater Tank Arrangement</layername>
+ <layername>Type</layername>
  <srs>
   <spatialrefsys>
    <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
@@ -29,7 +29,7 @@
  </map-layer-style-manager>
  <relations/>
  <layer-tree-group name="Value Lists">
-  <layer-tree-group name="special structure"/>
+  <layer-tree-group name="Pipe Profile"/>
  </layer-tree-group>
  <dependencies/>
 </maplayer>

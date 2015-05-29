@@ -1,0 +1,43 @@
+<maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
+ <id>od_organisation</id>
+ <datasource>service='pg_qgep' key='obj_id' table="qgep"."od_organisation" sql=</datasource>
+ <title></title>
+ <abstract></abstract>
+ <keywordList>
+  <value></value>
+ </keywordList>
+ <layername>Organisation</layername>
+ <srs>
+  <spatialrefsys>
+   <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+   <srsid>3452</srsid>
+   <srid>4326</srid>
+   <authid>EPSG:4326</authid>
+   <description>WGS 84</description>
+   <projectionacronym>longlat</projectionacronym>
+   <ellipsoidacronym>WGS84</ellipsoidacronym>
+   <geographicflag>true</geographicflag>
+  </spatialrefsys>
+ </srs>
+ <customproperties/>
+ <provider encoding="System">postgres</provider>
+ <previewExpression>COALESCE( "identifier", '&lt;NULL>' )</previewExpression>
+ <vectorjoins/>
+ <expressionfields/>
+ <map-layer-style-manager current="">
+  <map-layer-style name=""/>
+ </map-layer-style-manager>
+ <relations>
+  <relation referencingLayer="vw_wizard_cover_special_structure" referencedLayer="od_organisation" id="vw_wizard_cover_special_structure-fk_owner-od_organization" name="Special Structures">
+   <fieldRef referencedField="obj_id" referencingField="fk_owner"/>
+  </relation>
+  <relation referencingLayer="vw_wizard_reach_channel" referencedLayer="od_organisation" id="vw_wizard_reach_channel-fk_owner" name="Reaches">
+   <fieldRef referencedField="obj_id" referencingField="fk_owner"/>
+  </relation>
+ </relations>
+ <layer-tree-group name="Value Lists"/>
+ <dependencies>
+  <dependency>vw_wizard_cover_special_structure</dependency>
+  <dependency>vw_wizard_reach_channel</dependency>
+ </dependencies>
+</maplayer>

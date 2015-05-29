@@ -1,0 +1,900 @@
+<maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Line" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
+ <id>vw_qgep_reach</id>
+ <datasource>service='pg_qgep' key='obj_id' srid=21781 type=LineString table="qgep"."vw_qgep_reach" (progression_geometry) sql=</datasource>
+ <title></title>
+ <abstract></abstract>
+ <keywordList>
+  <value></value>
+ </keywordList>
+ <layername>vw_qgep_reach</layername>
+ <srs>
+  <spatialrefsys>
+   <proj4>+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=600000 +y_0=200000 +ellps=bessel +towgs84=674.4,15.1,405.3,0,0,0,0 +units=m +no_defs</proj4>
+   <srsid>1919</srsid>
+   <srid>21781</srid>
+   <authid>EPSG:21781</authid>
+   <description>CH1903 / LV03</description>
+   <projectionacronym>somerc</projectionacronym>
+   <ellipsoidacronym>bessel</ellipsoidacronym>
+   <geographicflag>false</geographicflag>
+  </spatialrefsys>
+ </srs>
+ <provider encoding="System">postgres</provider>
+ <previewExpression>COALESCE( "obj_id", '&lt;NULL>' )</previewExpression>
+ <vectorjoins/>
+ <expressionfields/>
+ <map-layer-style-manager current="">
+  <map-layer-style name=""/>
+ </map-layer-style-manager>
+ <renderer-v2 symbollevels="0" type="RuleRenderer">
+  <rules key="{b3f3f0a1-c8d2-4416-8d68-3de95a17bc02}">
+   <rule scalemaxdenom="2001" filter="width >= 300 and horizontal_positioning = 5378" key="{9e580459-8bfa-4f04-be8f-68986341bd8e}" symbol="0" scalemindenom="1" label="Wide reaches, accurate positioning, scale &lt;=2000"/>
+   <rule scalemaxdenom="2001" filter="width >= 300 and horizontal_positioning &lt;> 5378" key="{a424a253-3ec2-46b0-9b46-a4a4cb732fb7}" symbol="1" scalemindenom="1" label="Wide reaches, inaccurate positioning, scale &lt;=2000"/>
+   <rule scalemaxdenom="2001" filter="(width &lt; 300 OR width IS NULL) AND function_hierarchic IN (5068,5069,5070,5071) AND horizontal_positioning = 5378" key="{dd8104d5-d8fe-4f14-93dc-feb27d310ac3}" symbol="2" scalemindenom="1" label="Narrow main reaches, accurate positioning, scale &lt;=2000"/>
+   <rule scalemaxdenom="2001" filter="(width &lt; 300 OR width IS NULL) AND function_hierarchic IN (5068,5069,5070,5071) AND horizontal_positioning &lt;> 5378" key="{1a35f8ac-80d4-4195-95e4-076f6dbe1ecc}" symbol="3" scalemindenom="1" label="Narrow main reaches, inaccurate positioning, scale &lt;=2000"/>
+   <rule scalemaxdenom="2001" filter="(width &lt; 300 OR width IS NULL) AND function_hierarchic NOT IN (5068,5069,5070,5071) AND horizontal_positioning = 5378" key="{05072394-efd2-4299-abf8-f34a029a23a6}" symbol="4" scalemindenom="1" label="Narrow minor reaches, accurate positioning, scale &lt;=2000"/>
+   <rule scalemaxdenom="2001" filter="(width &lt; 300 OR width IS NULL) AND function_hierarchic NOT IN (5068,5069,5070,5071) AND horizontal_positioning &lt;> 5378" key="{e1b5e5a1-8ad6-447d-9483-c38ab0e189e6}" symbol="5" scalemindenom="1" label="Narrow minor reaches, inaccurate positioning, scale &lt;=2000"/>
+   <rule scalemaxdenom="5001" filter="width >= 600 and horizontal_positioning = 5378" key="{37d45500-ee03-4438-8431-1f6c18bc8ac9}" symbol="6" scalemindenom="2001" label="Wide reaches, accurate positioning, scale 2000-5000"/>
+   <rule scalemaxdenom="5001" filter="width >= 600 and horizontal_positioning &lt;> 5378" key="{5085b144-096c-4a99-b901-c48d8ccab0de}" symbol="7" scalemindenom="2001" label="Wide reaches, inaccurate positioning, scale 2000-5000"/>
+   <rule scalemaxdenom="5001" filter="(width &lt; 600 OR width IS NULL) AND function_hierarchic IN (5068,5069,5070,5071) AND horizontal_positioning = 5378" key="{4d7a3723-99a5-420a-b1e6-ff0a12b8ede4}" symbol="8" scalemindenom="2001" label="Narrow main reaches, accurate positioning, scale 1000-3000"/>
+   <rule scalemaxdenom="5001" filter="(width &lt; 600 OR width IS NULL) AND function_hierarchic IN (5068,5069,5070,5071) AND horizontal_positioning &lt;> 5378" key="{551fba99-38e1-4d21-9007-1e1ebba2a1d8}" symbol="9" scalemindenom="2001" label="Narrow main reaches, inaccurate positioning, scale 1000-3000"/>
+   <rule scalemaxdenom="100000" filter="function_hierarchic IN (5068,5069,5070,5071) AND horizontal_positioning = 5378" key="{d0a8418c-2231-46eb-abe3-d840c2c67437}" symbol="10" scalemindenom="5001" label="Main reaches, accurate positioning, scale >5000"/>
+   <rule scalemaxdenom="100000" filter="function_hierarchic IN (5068,5069,5070,5071) AND horizontal_positioning &lt;> 5378" key="{c7db9a9a-3d0f-4ab1-b0d3-301987626cab}" symbol="11" scalemindenom="5001" label="Main reaches, accurate positioning, scale >5000"/>
+  </rules>
+  <symbols>
+   <symbol alpha="1" clip_to_extent="1" type="line" name="0">
+    <layer pass="0" class="SimpleLine" locked="0">
+     <prop k="capstyle" v="flat"/>
+     <prop k="color_dd_active" v="1"/>
+     <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,30' WHEN usage_current = 4516 THEN '0,255,0,30' WHEN usage_current = 4518 THEN '0,170,255,30' WHEN usage_current = 4522 THEN '102,0,102,30' WHEN usage_current IN (4524, 4526) THEN '255,0,0,30' ELSE '161,161,161,30' END"/>
+     <prop k="color_dd_field" v=""/>
+     <prop k="color_dd_useexpr" v="1"/>
+     <prop k="customdash" v="5;2"/>
+     <prop k="customdash_map_unit_scale" v="0,0"/>
+     <prop k="customdash_unit" v="MM"/>
+     <prop k="draw_inside_polygon" v="0"/>
+     <prop k="joinstyle" v="bevel"/>
+     <prop k="line_color" v="0,0,0,255"/>
+     <prop k="line_style" v="solid"/>
+     <prop k="line_width" v="0.26"/>
+     <prop k="line_width_unit" v="MapUnit"/>
+     <prop k="offset" v="0"/>
+     <prop k="offset_map_unit_scale" v="0,0"/>
+     <prop k="offset_unit" v="MM"/>
+     <prop k="use_custom_dash" v="0"/>
+     <prop k="width_dd_active" v="1"/>
+     <prop k="width_dd_expression" v="toreal(width) / 1000"/>
+     <prop k="width_dd_field" v=""/>
+     <prop k="width_dd_useexpr" v="1"/>
+     <prop k="width_map_unit_scale" v="0,0"/>
+     <effect enabled="0" type="effectStack">
+      <effect type="drawSource">
+       <prop k="blend_mode" v="0"/>
+       <prop k="draw_mode" v="2"/>
+       <prop k="enabled" v="1"/>
+       <prop k="transparency" v="0"/>
+      </effect>
+     </effect>
+    </layer>
+    <layer pass="0" class="SimpleLine" locked="0">
+     <prop k="capstyle" v="flat"/>
+     <prop k="color_dd_active" v="1"/>
+     <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN usage_current = 4516 THEN '0,255,0,255' WHEN usage_current = 4518 THEN '0,170,255,255' WHEN usage_current = 4522 THEN '102,0,102,255' WHEN usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+     <prop k="color_dd_field" v=""/>
+     <prop k="color_dd_useexpr" v="1"/>
+     <prop k="customdash" v="5;2"/>
+     <prop k="customdash_map_unit_scale" v="0,0"/>
+     <prop k="customdash_unit" v="MM"/>
+     <prop k="draw_inside_polygon" v="0"/>
+     <prop k="joinstyle" v="bevel"/>
+     <prop k="line_color" v="203,176,112,255"/>
+     <prop k="line_style" v="solid"/>
+     <prop k="line_width" v="0.3"/>
+     <prop k="line_width_unit" v="MM"/>
+     <prop k="offset" v="0"/>
+     <prop k="offset_dd_active" v="1"/>
+     <prop k="offset_dd_expression" v="toreal(width) / 2000"/>
+     <prop k="offset_dd_field" v=""/>
+     <prop k="offset_dd_useexpr" v="1"/>
+     <prop k="offset_map_unit_scale" v="0,0"/>
+     <prop k="offset_unit" v="MapUnit"/>
+     <prop k="use_custom_dash" v="0"/>
+     <prop k="width_map_unit_scale" v="0,0"/>
+     <effect enabled="0" type="effectStack">
+      <effect type="drawSource">
+       <prop k="blend_mode" v="0"/>
+       <prop k="draw_mode" v="2"/>
+       <prop k="enabled" v="1"/>
+       <prop k="transparency" v="0"/>
+      </effect>
+     </effect>
+    </layer>
+    <layer pass="0" class="SimpleLine" locked="0">
+     <prop k="capstyle" v="flat"/>
+     <prop k="color_dd_active" v="1"/>
+     <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN usage_current = 4516 THEN '0,255,0,255' WHEN usage_current = 4518 THEN '0,170,255,255' WHEN usage_current = 4522 THEN '102,0,102,255' WHEN usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+     <prop k="color_dd_field" v=""/>
+     <prop k="color_dd_useexpr" v="1"/>
+     <prop k="customdash" v="5;2"/>
+     <prop k="customdash_map_unit_scale" v="0,0"/>
+     <prop k="customdash_unit" v="MM"/>
+     <prop k="draw_inside_polygon" v="0"/>
+     <prop k="joinstyle" v="bevel"/>
+     <prop k="line_color" v="0,0,0,255"/>
+     <prop k="line_style" v="solid"/>
+     <prop k="line_width" v="0.3"/>
+     <prop k="line_width_unit" v="MM"/>
+     <prop k="offset" v="0"/>
+     <prop k="offset_dd_active" v="1"/>
+     <prop k="offset_dd_expression" v="toreal(width) / - 2000"/>
+     <prop k="offset_dd_field" v=""/>
+     <prop k="offset_dd_useexpr" v="1"/>
+     <prop k="offset_map_unit_scale" v="0,0"/>
+     <prop k="offset_unit" v="MapUnit"/>
+     <prop k="use_custom_dash" v="0"/>
+     <prop k="width_map_unit_scale" v="0,0"/>
+     <effect enabled="0" type="effectStack">
+      <effect type="drawSource">
+       <prop k="blend_mode" v="0"/>
+       <prop k="draw_mode" v="2"/>
+       <prop k="enabled" v="1"/>
+       <prop k="transparency" v="0"/>
+      </effect>
+     </effect>
+    </layer>
+   </symbol>
+   <symbol alpha="1" clip_to_extent="1" type="line" name="1">
+    <layer pass="0" class="SimpleLine" locked="0">
+     <prop k="capstyle" v="flat"/>
+     <prop k="color_dd_active" v="1"/>
+     <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,30' WHEN usage_current = 4516 THEN '0,255,0,30' WHEN usage_current = 4518 THEN '0,170,255,30' WHEN usage_current = 4522 THEN '102,0,102,30' WHEN usage_current IN (4524, 4526) THEN '255,0,0,30' ELSE '161,161,161,30' END"/>
+     <prop k="color_dd_field" v=""/>
+     <prop k="color_dd_useexpr" v="1"/>
+     <prop k="customdash" v="5;2"/>
+     <prop k="customdash_map_unit_scale" v="0,0"/>
+     <prop k="customdash_unit" v="MM"/>
+     <prop k="draw_inside_polygon" v="0"/>
+     <prop k="joinstyle" v="bevel"/>
+     <prop k="line_color" v="0,0,0,255"/>
+     <prop k="line_style" v="solid"/>
+     <prop k="line_width" v="0.26"/>
+     <prop k="line_width_unit" v="MapUnit"/>
+     <prop k="offset" v="0"/>
+     <prop k="offset_map_unit_scale" v="0,0"/>
+     <prop k="offset_unit" v="MM"/>
+     <prop k="use_custom_dash" v="0"/>
+     <prop k="width_dd_active" v="1"/>
+     <prop k="width_dd_expression" v="toreal(width) / 1000"/>
+     <prop k="width_dd_field" v=""/>
+     <prop k="width_dd_useexpr" v="1"/>
+     <prop k="width_map_unit_scale" v="0,0"/>
+     <effect enabled="0" type="effectStack">
+      <effect type="drawSource">
+       <prop k="blend_mode" v="0"/>
+       <prop k="draw_mode" v="2"/>
+       <prop k="enabled" v="1"/>
+       <prop k="transparency" v="0"/>
+      </effect>
+     </effect>
+    </layer>
+    <layer pass="0" class="SimpleLine" locked="0">
+     <prop k="capstyle" v="flat"/>
+     <prop k="color_dd_active" v="1"/>
+     <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN usage_current = 4516 THEN '0,255,0,255' WHEN usage_current = 4518 THEN '0,170,255,255' WHEN usage_current = 4522 THEN '102,0,102,255' WHEN usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+     <prop k="color_dd_field" v=""/>
+     <prop k="color_dd_useexpr" v="1"/>
+     <prop k="customdash" v="1.5;1"/>
+     <prop k="customdash_map_unit_scale" v="0,0"/>
+     <prop k="customdash_unit" v="MM"/>
+     <prop k="draw_inside_polygon" v="0"/>
+     <prop k="joinstyle" v="bevel"/>
+     <prop k="line_color" v="203,176,112,255"/>
+     <prop k="line_style" v="solid"/>
+     <prop k="line_width" v="0.3"/>
+     <prop k="line_width_unit" v="MM"/>
+     <prop k="offset" v="0"/>
+     <prop k="offset_dd_active" v="1"/>
+     <prop k="offset_dd_expression" v="toreal(width) / 2000"/>
+     <prop k="offset_dd_field" v=""/>
+     <prop k="offset_dd_useexpr" v="1"/>
+     <prop k="offset_map_unit_scale" v="0,0"/>
+     <prop k="offset_unit" v="MapUnit"/>
+     <prop k="use_custom_dash" v="1"/>
+     <prop k="width_map_unit_scale" v="0,0"/>
+     <effect enabled="0" type="effectStack">
+      <effect type="drawSource">
+       <prop k="blend_mode" v="0"/>
+       <prop k="draw_mode" v="2"/>
+       <prop k="enabled" v="1"/>
+       <prop k="transparency" v="0"/>
+      </effect>
+     </effect>
+    </layer>
+    <layer pass="0" class="SimpleLine" locked="0">
+     <prop k="capstyle" v="flat"/>
+     <prop k="color_dd_active" v="1"/>
+     <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN usage_current = 4516 THEN '0,255,0,255' WHEN usage_current = 4518 THEN '0,170,255,255' WHEN usage_current = 4522 THEN '102,0,102,255' WHEN usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+     <prop k="color_dd_field" v=""/>
+     <prop k="color_dd_useexpr" v="1"/>
+     <prop k="customdash" v="1.5;1"/>
+     <prop k="customdash_map_unit_scale" v="0,0"/>
+     <prop k="customdash_unit" v="MM"/>
+     <prop k="draw_inside_polygon" v="0"/>
+     <prop k="joinstyle" v="bevel"/>
+     <prop k="line_color" v="0,0,0,255"/>
+     <prop k="line_style" v="solid"/>
+     <prop k="line_width" v="0.3"/>
+     <prop k="line_width_unit" v="MM"/>
+     <prop k="offset" v="0"/>
+     <prop k="offset_dd_active" v="1"/>
+     <prop k="offset_dd_expression" v="toreal(width) / - 2000"/>
+     <prop k="offset_dd_field" v=""/>
+     <prop k="offset_dd_useexpr" v="1"/>
+     <prop k="offset_map_unit_scale" v="0,0"/>
+     <prop k="offset_unit" v="MapUnit"/>
+     <prop k="use_custom_dash" v="1"/>
+     <prop k="width_map_unit_scale" v="0,0"/>
+     <effect enabled="0" type="effectStack">
+      <effect type="drawSource">
+       <prop k="blend_mode" v="0"/>
+       <prop k="draw_mode" v="2"/>
+       <prop k="enabled" v="1"/>
+       <prop k="transparency" v="0"/>
+      </effect>
+     </effect>
+    </layer>
+   </symbol>
+   <symbol alpha="1" clip_to_extent="1" type="line" name="10">
+    <layer pass="0" class="SimpleLine" locked="0">
+     <prop k="capstyle" v="flat"/>
+     <prop k="color_dd_active" v="1"/>
+     <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN usage_current = 4516 THEN '0,255,0,255' WHEN usage_current = 4518 THEN '0,170,255,255' WHEN usage_current = 4522 THEN '102,0,102,255' WHEN usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+     <prop k="color_dd_field" v=""/>
+     <prop k="color_dd_useexpr" v="1"/>
+     <prop k="customdash" v="5;2"/>
+     <prop k="customdash_map_unit_scale" v="0,0"/>
+     <prop k="customdash_unit" v="MM"/>
+     <prop k="draw_inside_polygon" v="0"/>
+     <prop k="joinstyle" v="bevel"/>
+     <prop k="line_color" v="0,0,0,255"/>
+     <prop k="line_style" v="solid"/>
+     <prop k="line_width" v="0.5"/>
+     <prop k="line_width_unit" v="MM"/>
+     <prop k="offset" v="0"/>
+     <prop k="offset_map_unit_scale" v="0,0"/>
+     <prop k="offset_unit" v="MM"/>
+     <prop k="use_custom_dash" v="0"/>
+     <prop k="width_map_unit_scale" v="0,0"/>
+     <effect enabled="0" type="effectStack">
+      <effect type="drawSource">
+       <prop k="blend_mode" v="0"/>
+       <prop k="draw_mode" v="2"/>
+       <prop k="enabled" v="1"/>
+       <prop k="transparency" v="0"/>
+      </effect>
+     </effect>
+    </layer>
+   </symbol>
+   <symbol alpha="1" clip_to_extent="1" type="line" name="11">
+    <layer pass="0" class="SimpleLine" locked="0">
+     <prop k="capstyle" v="flat"/>
+     <prop k="color_dd_active" v="1"/>
+     <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN usage_current = 4516 THEN '0,255,0,255' WHEN usage_current = 4518 THEN '0,170,255,255' WHEN usage_current = 4522 THEN '102,0,102,255' WHEN usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+     <prop k="color_dd_field" v=""/>
+     <prop k="color_dd_useexpr" v="1"/>
+     <prop k="customdash" v="1.5;1"/>
+     <prop k="customdash_map_unit_scale" v="0,0"/>
+     <prop k="customdash_unit" v="MM"/>
+     <prop k="draw_inside_polygon" v="0"/>
+     <prop k="joinstyle" v="bevel"/>
+     <prop k="line_color" v="0,0,0,255"/>
+     <prop k="line_style" v="solid"/>
+     <prop k="line_width" v="0.5"/>
+     <prop k="line_width_unit" v="MM"/>
+     <prop k="offset" v="0"/>
+     <prop k="offset_map_unit_scale" v="0,0"/>
+     <prop k="offset_unit" v="MM"/>
+     <prop k="use_custom_dash" v="1"/>
+     <prop k="width_map_unit_scale" v="0,0"/>
+     <effect enabled="0" type="effectStack">
+      <effect type="drawSource">
+       <prop k="blend_mode" v="0"/>
+       <prop k="draw_mode" v="2"/>
+       <prop k="enabled" v="1"/>
+       <prop k="transparency" v="0"/>
+      </effect>
+     </effect>
+    </layer>
+   </symbol>
+   <symbol alpha="1" clip_to_extent="1" type="line" name="2">
+    <layer pass="0" class="SimpleLine" locked="0">
+     <prop k="capstyle" v="flat"/>
+     <prop k="color_dd_active" v="1"/>
+     <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN usage_current = 4516 THEN '0,255,0,255' WHEN usage_current = 4518 THEN '0,170,255,255' WHEN usage_current = 4522 THEN '102,0,102,255' WHEN usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+     <prop k="color_dd_field" v=""/>
+     <prop k="color_dd_useexpr" v="1"/>
+     <prop k="customdash" v="5;2"/>
+     <prop k="customdash_map_unit_scale" v="0,0"/>
+     <prop k="customdash_unit" v="MM"/>
+     <prop k="draw_inside_polygon" v="0"/>
+     <prop k="joinstyle" v="bevel"/>
+     <prop k="line_color" v="0,0,0,255"/>
+     <prop k="line_style" v="solid"/>
+     <prop k="line_width" v="0.5"/>
+     <prop k="line_width_unit" v="MM"/>
+     <prop k="offset" v="0"/>
+     <prop k="offset_map_unit_scale" v="0,0"/>
+     <prop k="offset_unit" v="MM"/>
+     <prop k="use_custom_dash" v="0"/>
+     <prop k="width_map_unit_scale" v="0,0"/>
+     <effect enabled="0" type="effectStack">
+      <effect type="drawSource">
+       <prop k="blend_mode" v="0"/>
+       <prop k="draw_mode" v="2"/>
+       <prop k="enabled" v="1"/>
+       <prop k="transparency" v="0"/>
+      </effect>
+     </effect>
+    </layer>
+   </symbol>
+   <symbol alpha="1" clip_to_extent="1" type="line" name="3">
+    <layer pass="0" class="SimpleLine" locked="0">
+     <prop k="capstyle" v="flat"/>
+     <prop k="color_dd_active" v="1"/>
+     <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN usage_current = 4516 THEN '0,255,0,255' WHEN usage_current = 4518 THEN '0,170,255,255' WHEN usage_current = 4522 THEN '102,0,102,255' WHEN usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+     <prop k="color_dd_field" v=""/>
+     <prop k="color_dd_useexpr" v="1"/>
+     <prop k="customdash" v="1.5;1"/>
+     <prop k="customdash_map_unit_scale" v="0,0"/>
+     <prop k="customdash_unit" v="MM"/>
+     <prop k="draw_inside_polygon" v="0"/>
+     <prop k="joinstyle" v="bevel"/>
+     <prop k="line_color" v="0,0,0,255"/>
+     <prop k="line_style" v="solid"/>
+     <prop k="line_width" v="0.5"/>
+     <prop k="line_width_unit" v="MM"/>
+     <prop k="offset" v="0"/>
+     <prop k="offset_map_unit_scale" v="0,0"/>
+     <prop k="offset_unit" v="MM"/>
+     <prop k="use_custom_dash" v="1"/>
+     <prop k="width_map_unit_scale" v="0,0"/>
+     <effect enabled="0" type="effectStack">
+      <effect type="drawSource">
+       <prop k="blend_mode" v="0"/>
+       <prop k="draw_mode" v="2"/>
+       <prop k="enabled" v="1"/>
+       <prop k="transparency" v="0"/>
+      </effect>
+     </effect>
+    </layer>
+   </symbol>
+   <symbol alpha="1" clip_to_extent="1" type="line" name="4">
+    <layer pass="0" class="SimpleLine" locked="0">
+     <prop k="capstyle" v="flat"/>
+     <prop k="color_dd_active" v="1"/>
+     <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN usage_current = 4516 THEN '0,255,0,255' WHEN usage_current = 4518 THEN '0,170,255,255' WHEN usage_current = 4522 THEN '102,0,102,255' WHEN usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+     <prop k="color_dd_field" v=""/>
+     <prop k="color_dd_useexpr" v="1"/>
+     <prop k="customdash" v="5;2"/>
+     <prop k="customdash_map_unit_scale" v="0,0"/>
+     <prop k="customdash_unit" v="MM"/>
+     <prop k="draw_inside_polygon" v="0"/>
+     <prop k="joinstyle" v="bevel"/>
+     <prop k="line_color" v="0,0,0,255"/>
+     <prop k="line_style" v="solid"/>
+     <prop k="line_width" v="0.3"/>
+     <prop k="line_width_unit" v="MM"/>
+     <prop k="offset" v="0"/>
+     <prop k="offset_map_unit_scale" v="0,0"/>
+     <prop k="offset_unit" v="MM"/>
+     <prop k="use_custom_dash" v="0"/>
+     <prop k="width_map_unit_scale" v="0,0"/>
+     <effect enabled="0" type="effectStack">
+      <effect type="drawSource">
+       <prop k="blend_mode" v="0"/>
+       <prop k="draw_mode" v="2"/>
+       <prop k="enabled" v="1"/>
+       <prop k="transparency" v="0"/>
+      </effect>
+     </effect>
+    </layer>
+   </symbol>
+   <symbol alpha="1" clip_to_extent="1" type="line" name="5">
+    <layer pass="0" class="SimpleLine" locked="0">
+     <prop k="capstyle" v="flat"/>
+     <prop k="color_dd_active" v="1"/>
+     <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN usage_current = 4516 THEN '0,255,0,255' WHEN usage_current = 4518 THEN '0,170,255,255' WHEN usage_current = 4522 THEN '102,0,102,255' WHEN usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+     <prop k="color_dd_field" v=""/>
+     <prop k="color_dd_useexpr" v="1"/>
+     <prop k="customdash" v="1.5;1"/>
+     <prop k="customdash_map_unit_scale" v="0,0"/>
+     <prop k="customdash_unit" v="MM"/>
+     <prop k="draw_inside_polygon" v="0"/>
+     <prop k="joinstyle" v="bevel"/>
+     <prop k="line_color" v="0,0,0,255"/>
+     <prop k="line_style" v="solid"/>
+     <prop k="line_width" v="0.3"/>
+     <prop k="line_width_unit" v="MM"/>
+     <prop k="offset" v="0"/>
+     <prop k="offset_map_unit_scale" v="0,0"/>
+     <prop k="offset_unit" v="MM"/>
+     <prop k="use_custom_dash" v="1"/>
+     <prop k="width_map_unit_scale" v="0,0"/>
+     <effect enabled="0" type="effectStack">
+      <effect type="drawSource">
+       <prop k="blend_mode" v="0"/>
+       <prop k="draw_mode" v="2"/>
+       <prop k="enabled" v="1"/>
+       <prop k="transparency" v="0"/>
+      </effect>
+     </effect>
+    </layer>
+   </symbol>
+   <symbol alpha="1" clip_to_extent="1" type="line" name="6">
+    <layer pass="0" class="SimpleLine" locked="0">
+     <prop k="capstyle" v="flat"/>
+     <prop k="color_dd_active" v="1"/>
+     <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,30' WHEN usage_current = 4516 THEN '0,255,0,30' WHEN usage_current = 4518 THEN '0,170,255,30' WHEN usage_current = 4522 THEN '102,0,102,30' WHEN usage_current IN (4524, 4526) THEN '255,0,0,30' ELSE '161,161,161,30' END"/>
+     <prop k="color_dd_field" v=""/>
+     <prop k="color_dd_useexpr" v="1"/>
+     <prop k="customdash" v="5;2"/>
+     <prop k="customdash_map_unit_scale" v="0,0"/>
+     <prop k="customdash_unit" v="MM"/>
+     <prop k="draw_inside_polygon" v="0"/>
+     <prop k="joinstyle" v="bevel"/>
+     <prop k="line_color" v="0,0,0,255"/>
+     <prop k="line_style" v="solid"/>
+     <prop k="line_width" v="0.26"/>
+     <prop k="line_width_unit" v="MapUnit"/>
+     <prop k="offset" v="0"/>
+     <prop k="offset_map_unit_scale" v="0,0"/>
+     <prop k="offset_unit" v="MM"/>
+     <prop k="use_custom_dash" v="0"/>
+     <prop k="width_dd_active" v="1"/>
+     <prop k="width_dd_expression" v="toreal(width) / 1000"/>
+     <prop k="width_dd_field" v=""/>
+     <prop k="width_dd_useexpr" v="1"/>
+     <prop k="width_map_unit_scale" v="0,0"/>
+     <effect enabled="0" type="effectStack">
+      <effect type="drawSource">
+       <prop k="blend_mode" v="0"/>
+       <prop k="draw_mode" v="2"/>
+       <prop k="enabled" v="1"/>
+       <prop k="transparency" v="0"/>
+      </effect>
+     </effect>
+    </layer>
+    <layer pass="0" class="SimpleLine" locked="0">
+     <prop k="capstyle" v="flat"/>
+     <prop k="color_dd_active" v="1"/>
+     <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN usage_current = 4516 THEN '0,255,0,255' WHEN usage_current = 4518 THEN '0,170,255,255' WHEN usage_current = 4522 THEN '102,0,102,255' WHEN usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+     <prop k="color_dd_field" v=""/>
+     <prop k="color_dd_useexpr" v="1"/>
+     <prop k="customdash" v="5;2"/>
+     <prop k="customdash_map_unit_scale" v="0,0"/>
+     <prop k="customdash_unit" v="MM"/>
+     <prop k="draw_inside_polygon" v="0"/>
+     <prop k="joinstyle" v="bevel"/>
+     <prop k="line_color" v="203,176,112,255"/>
+     <prop k="line_style" v="solid"/>
+     <prop k="line_width" v="0.3"/>
+     <prop k="line_width_unit" v="MM"/>
+     <prop k="offset" v="0"/>
+     <prop k="offset_dd_active" v="1"/>
+     <prop k="offset_dd_expression" v="toreal(width) / 2000"/>
+     <prop k="offset_dd_field" v=""/>
+     <prop k="offset_dd_useexpr" v="1"/>
+     <prop k="offset_map_unit_scale" v="0,0"/>
+     <prop k="offset_unit" v="MapUnit"/>
+     <prop k="use_custom_dash" v="0"/>
+     <prop k="width_map_unit_scale" v="0,0"/>
+     <effect enabled="0" type="effectStack">
+      <effect type="drawSource">
+       <prop k="blend_mode" v="0"/>
+       <prop k="draw_mode" v="2"/>
+       <prop k="enabled" v="1"/>
+       <prop k="transparency" v="0"/>
+      </effect>
+     </effect>
+    </layer>
+    <layer pass="0" class="SimpleLine" locked="0">
+     <prop k="capstyle" v="flat"/>
+     <prop k="color_dd_active" v="1"/>
+     <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN usage_current = 4516 THEN '0,255,0,255' WHEN usage_current = 4518 THEN '0,170,255,255' WHEN usage_current = 4522 THEN '102,0,102,255' WHEN usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+     <prop k="color_dd_field" v=""/>
+     <prop k="color_dd_useexpr" v="1"/>
+     <prop k="customdash" v="5;2"/>
+     <prop k="customdash_map_unit_scale" v="0,0"/>
+     <prop k="customdash_unit" v="MM"/>
+     <prop k="draw_inside_polygon" v="0"/>
+     <prop k="joinstyle" v="bevel"/>
+     <prop k="line_color" v="0,0,0,255"/>
+     <prop k="line_style" v="solid"/>
+     <prop k="line_width" v="0.3"/>
+     <prop k="line_width_unit" v="MM"/>
+     <prop k="offset" v="0"/>
+     <prop k="offset_dd_active" v="1"/>
+     <prop k="offset_dd_expression" v="toreal(width) / - 2000"/>
+     <prop k="offset_dd_field" v=""/>
+     <prop k="offset_dd_useexpr" v="1"/>
+     <prop k="offset_map_unit_scale" v="0,0"/>
+     <prop k="offset_unit" v="MapUnit"/>
+     <prop k="use_custom_dash" v="0"/>
+     <prop k="width_map_unit_scale" v="0,0"/>
+     <effect enabled="0" type="effectStack">
+      <effect type="drawSource">
+       <prop k="blend_mode" v="0"/>
+       <prop k="draw_mode" v="2"/>
+       <prop k="enabled" v="1"/>
+       <prop k="transparency" v="0"/>
+      </effect>
+     </effect>
+    </layer>
+   </symbol>
+   <symbol alpha="1" clip_to_extent="1" type="line" name="7">
+    <layer pass="0" class="SimpleLine" locked="0">
+     <prop k="capstyle" v="flat"/>
+     <prop k="color_dd_active" v="1"/>
+     <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,30' WHEN usage_current = 4516 THEN '0,255,0,30' WHEN usage_current = 4518 THEN '0,170,255,30' WHEN usage_current = 4522 THEN '102,0,102,30' WHEN usage_current IN (4524, 4526) THEN '255,0,0,30' ELSE '161,161,161,30' END"/>
+     <prop k="color_dd_field" v=""/>
+     <prop k="color_dd_useexpr" v="1"/>
+     <prop k="customdash" v="5;2"/>
+     <prop k="customdash_map_unit_scale" v="0,0"/>
+     <prop k="customdash_unit" v="MM"/>
+     <prop k="draw_inside_polygon" v="0"/>
+     <prop k="joinstyle" v="bevel"/>
+     <prop k="line_color" v="0,0,0,255"/>
+     <prop k="line_style" v="solid"/>
+     <prop k="line_width" v="0.26"/>
+     <prop k="line_width_unit" v="MapUnit"/>
+     <prop k="offset" v="0"/>
+     <prop k="offset_map_unit_scale" v="0,0"/>
+     <prop k="offset_unit" v="MM"/>
+     <prop k="use_custom_dash" v="0"/>
+     <prop k="width_dd_active" v="1"/>
+     <prop k="width_dd_expression" v="toreal(width) / 1000"/>
+     <prop k="width_dd_field" v=""/>
+     <prop k="width_dd_useexpr" v="1"/>
+     <prop k="width_map_unit_scale" v="0,0"/>
+     <effect enabled="0" type="effectStack">
+      <effect type="drawSource">
+       <prop k="blend_mode" v="0"/>
+       <prop k="draw_mode" v="2"/>
+       <prop k="enabled" v="1"/>
+       <prop k="transparency" v="0"/>
+      </effect>
+     </effect>
+    </layer>
+    <layer pass="0" class="SimpleLine" locked="0">
+     <prop k="capstyle" v="flat"/>
+     <prop k="color_dd_active" v="1"/>
+     <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN usage_current = 4516 THEN '0,255,0,255' WHEN usage_current = 4518 THEN '0,170,255,255' WHEN usage_current = 4522 THEN '102,0,102,255' WHEN usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+     <prop k="color_dd_field" v=""/>
+     <prop k="color_dd_useexpr" v="1"/>
+     <prop k="customdash" v="1.5;1"/>
+     <prop k="customdash_map_unit_scale" v="0,0"/>
+     <prop k="customdash_unit" v="MM"/>
+     <prop k="draw_inside_polygon" v="0"/>
+     <prop k="joinstyle" v="bevel"/>
+     <prop k="line_color" v="203,176,112,255"/>
+     <prop k="line_style" v="solid"/>
+     <prop k="line_width" v="0.3"/>
+     <prop k="line_width_unit" v="MM"/>
+     <prop k="offset" v="0"/>
+     <prop k="offset_dd_active" v="1"/>
+     <prop k="offset_dd_expression" v="toreal(width) / 2000"/>
+     <prop k="offset_dd_field" v=""/>
+     <prop k="offset_dd_useexpr" v="1"/>
+     <prop k="offset_map_unit_scale" v="0,0"/>
+     <prop k="offset_unit" v="MapUnit"/>
+     <prop k="use_custom_dash" v="1"/>
+     <prop k="width_map_unit_scale" v="0,0"/>
+     <effect enabled="0" type="effectStack">
+      <effect type="drawSource">
+       <prop k="blend_mode" v="0"/>
+       <prop k="draw_mode" v="2"/>
+       <prop k="enabled" v="1"/>
+       <prop k="transparency" v="0"/>
+      </effect>
+     </effect>
+    </layer>
+    <layer pass="0" class="SimpleLine" locked="0">
+     <prop k="capstyle" v="flat"/>
+     <prop k="color_dd_active" v="1"/>
+     <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN usage_current = 4516 THEN '0,255,0,255' WHEN usage_current = 4518 THEN '0,170,255,255' WHEN usage_current = 4522 THEN '102,0,102,255' WHEN usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+     <prop k="color_dd_field" v=""/>
+     <prop k="color_dd_useexpr" v="1"/>
+     <prop k="customdash" v="1.5;1"/>
+     <prop k="customdash_map_unit_scale" v="0,0"/>
+     <prop k="customdash_unit" v="MM"/>
+     <prop k="draw_inside_polygon" v="0"/>
+     <prop k="joinstyle" v="bevel"/>
+     <prop k="line_color" v="0,0,0,255"/>
+     <prop k="line_style" v="solid"/>
+     <prop k="line_width" v="0.3"/>
+     <prop k="line_width_unit" v="MM"/>
+     <prop k="offset" v="0"/>
+     <prop k="offset_dd_active" v="1"/>
+     <prop k="offset_dd_expression" v="toreal(width) / - 2000"/>
+     <prop k="offset_dd_field" v=""/>
+     <prop k="offset_dd_useexpr" v="1"/>
+     <prop k="offset_map_unit_scale" v="0,0"/>
+     <prop k="offset_unit" v="MapUnit"/>
+     <prop k="use_custom_dash" v="1"/>
+     <prop k="width_map_unit_scale" v="0,0"/>
+     <effect enabled="0" type="effectStack">
+      <effect type="drawSource">
+       <prop k="blend_mode" v="0"/>
+       <prop k="draw_mode" v="2"/>
+       <prop k="enabled" v="1"/>
+       <prop k="transparency" v="0"/>
+      </effect>
+     </effect>
+    </layer>
+   </symbol>
+   <symbol alpha="1" clip_to_extent="1" type="line" name="8">
+    <layer pass="0" class="SimpleLine" locked="0">
+     <prop k="capstyle" v="flat"/>
+     <prop k="color_dd_active" v="1"/>
+     <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN usage_current = 4516 THEN '0,255,0,255' WHEN usage_current = 4518 THEN '0,170,255,255' WHEN usage_current = 4522 THEN '102,0,102,255' WHEN usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+     <prop k="color_dd_field" v=""/>
+     <prop k="color_dd_useexpr" v="1"/>
+     <prop k="customdash" v="5;2"/>
+     <prop k="customdash_map_unit_scale" v="0,0"/>
+     <prop k="customdash_unit" v="MM"/>
+     <prop k="draw_inside_polygon" v="0"/>
+     <prop k="joinstyle" v="bevel"/>
+     <prop k="line_color" v="0,0,0,255"/>
+     <prop k="line_style" v="solid"/>
+     <prop k="line_width" v="0.5"/>
+     <prop k="line_width_unit" v="MM"/>
+     <prop k="offset" v="0"/>
+     <prop k="offset_map_unit_scale" v="0,0"/>
+     <prop k="offset_unit" v="MM"/>
+     <prop k="use_custom_dash" v="0"/>
+     <prop k="width_map_unit_scale" v="0,0"/>
+     <effect enabled="0" type="effectStack">
+      <effect type="drawSource">
+       <prop k="blend_mode" v="0"/>
+       <prop k="draw_mode" v="2"/>
+       <prop k="enabled" v="1"/>
+       <prop k="transparency" v="0"/>
+      </effect>
+     </effect>
+    </layer>
+   </symbol>
+   <symbol alpha="1" clip_to_extent="1" type="line" name="9">
+    <layer pass="0" class="SimpleLine" locked="0">
+     <prop k="capstyle" v="flat"/>
+     <prop k="color_dd_active" v="1"/>
+     <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN usage_current = 4516 THEN '0,255,0,255' WHEN usage_current = 4518 THEN '0,170,255,255' WHEN usage_current = 4522 THEN '102,0,102,255' WHEN usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+     <prop k="color_dd_field" v=""/>
+     <prop k="color_dd_useexpr" v="1"/>
+     <prop k="customdash" v="1.5;1"/>
+     <prop k="customdash_map_unit_scale" v="0,0"/>
+     <prop k="customdash_unit" v="MM"/>
+     <prop k="draw_inside_polygon" v="0"/>
+     <prop k="joinstyle" v="bevel"/>
+     <prop k="line_color" v="0,0,0,255"/>
+     <prop k="line_style" v="solid"/>
+     <prop k="line_width" v="0.5"/>
+     <prop k="line_width_unit" v="MM"/>
+     <prop k="offset" v="0"/>
+     <prop k="offset_map_unit_scale" v="0,0"/>
+     <prop k="offset_unit" v="MM"/>
+     <prop k="use_custom_dash" v="1"/>
+     <prop k="width_map_unit_scale" v="0,0"/>
+     <effect enabled="0" type="effectStack">
+      <effect type="drawSource">
+       <prop k="blend_mode" v="0"/>
+       <prop k="draw_mode" v="2"/>
+       <prop k="enabled" v="1"/>
+       <prop k="transparency" v="0"/>
+      </effect>
+     </effect>
+    </layer>
+   </symbol>
+  </symbols>
+  <effect enabled="0" type="effectStack">
+   <effect type="drawSource">
+    <prop k="blend_mode" v="0"/>
+    <prop k="draw_mode" v="2"/>
+    <prop k="enabled" v="1"/>
+    <prop k="transparency" v="0"/>
+   </effect>
+  </effect>
+ </renderer-v2>
+ <customproperties>
+  <property key="labeling" value="pal"/>
+  <property key="labeling/addDirectionSymbol" value="true"/>
+  <property key="labeling/angleOffset" value="0"/>
+  <property key="labeling/blendMode" value="0"/>
+  <property key="labeling/bufferBlendMode" value="0"/>
+  <property key="labeling/bufferColorA" value="255"/>
+  <property key="labeling/bufferColorB" value="255"/>
+  <property key="labeling/bufferColorG" value="255"/>
+  <property key="labeling/bufferColorR" value="255"/>
+  <property key="labeling/bufferDraw" value="false"/>
+  <property key="labeling/bufferJoinStyle" value="64"/>
+  <property key="labeling/bufferNoFill" value="false"/>
+  <property key="labeling/bufferSize" value="1"/>
+  <property key="labeling/bufferSizeInMapUnits" value="false"/>
+  <property key="labeling/bufferSizeMapUnitMaxScale" value="0"/>
+  <property key="labeling/bufferSizeMapUnitMinScale" value="0"/>
+  <property key="labeling/bufferTransp" value="0"/>
+  <property key="labeling/centroidInside" value="false"/>
+  <property key="labeling/centroidWhole" value="false"/>
+  <property key="labeling/dataDefined/Color" value="1~~1~~CASE&#xa;  WHEN  usage_current IN (4514,4520) THEN '0,0,255,255' &#xa;  WHEN usage_current = 4516 THEN '0,255,0,255'&#xa;  WHEN usage_current = 4518 THEN '0,170,255,255'&#xa;  WHEN usage_current = 4522 THEN '102,0,102,255'&#xa;  WHEN usage_current IN (4524,4526) THEN '255,0,0,255'&#xa;ELSE '161,161,161,255'&#xa;END~~"/>
+  <property key="labeling/dataDefined/LabelDistance" value="1~~1~~COALESCE(width,0) / 2000.0 + 0.1~~"/>
+  <property key="labeling/dataDefined/Show" value="1~~1~~CASE WHEN $scale &lt;= 1000 THEN 1&#xa;ELSE&#xa; CASE WHEN function_hierarchic IN (5068,5069,5070,5071) THEN 1 ELSE 0 END&#xa;END~~"/>
+  <property key="labeling/decimals" value="3"/>
+  <property key="labeling/displayAll" value="false"/>
+  <property key="labeling/dist" value="0.3"/>
+  <property key="labeling/distInMapUnits" value="true"/>
+  <property key="labeling/distMapUnitMaxScale" value="0"/>
+  <property key="labeling/distMapUnitMinScale" value="0"/>
+  <property key="labeling/enabled" value="true"/>
+  <property key="labeling/fieldName" value="attribute(getFeature('Reach Material','code',material),'abbr_en') || COALESCE(' ' || width || ' ','') || COALESCE('-' || length_effective || '-') || COALESCE(' ' || slope_per_mill || '‰','')"/>
+  <property key="labeling/fontBold" value="false"/>
+  <property key="labeling/fontCapitals" value="0"/>
+  <property key="labeling/fontFamily" value="Ubuntu"/>
+  <property key="labeling/fontItalic" value="false"/>
+  <property key="labeling/fontLetterSpacing" value="0"/>
+  <property key="labeling/fontLimitPixelSize" value="false"/>
+  <property key="labeling/fontMaxPixelSize" value="10000"/>
+  <property key="labeling/fontMinPixelSize" value="3"/>
+  <property key="labeling/fontSize" value="8"/>
+  <property key="labeling/fontSizeInMapUnits" value="false"/>
+  <property key="labeling/fontSizeMapUnitMaxScale" value="0"/>
+  <property key="labeling/fontSizeMapUnitMinScale" value="0"/>
+  <property key="labeling/fontStrikeout" value="false"/>
+  <property key="labeling/fontUnderline" value="false"/>
+  <property key="labeling/fontWeight" value="50"/>
+  <property key="labeling/fontWordSpacing" value="0"/>
+  <property key="labeling/formatNumbers" value="false"/>
+  <property key="labeling/isExpression" value="true"/>
+  <property key="labeling/labelOffsetInMapUnits" value="true"/>
+  <property key="labeling/labelOffsetMapUnitMaxScale" value="0"/>
+  <property key="labeling/labelOffsetMapUnitMinScale" value="0"/>
+  <property key="labeling/labelPerPart" value="false"/>
+  <property key="labeling/leftDirectionSymbol" value="&lt;"/>
+  <property key="labeling/limitNumLabels" value="false"/>
+  <property key="labeling/maxCurvedCharAngleIn" value="20"/>
+  <property key="labeling/maxCurvedCharAngleOut" value="-20"/>
+  <property key="labeling/maxNumLabels" value="2000"/>
+  <property key="labeling/mergeLines" value="true"/>
+  <property key="labeling/minFeatureSize" value="12"/>
+  <property key="labeling/multilineAlign" value="0"/>
+  <property key="labeling/multilineHeight" value="1"/>
+  <property key="labeling/namedStyle" value="Regular"/>
+  <property key="labeling/obstacle" value="true"/>
+  <property key="labeling/placeDirectionSymbol" value="0"/>
+  <property key="labeling/placement" value="2"/>
+  <property key="labeling/placementFlags" value="10"/>
+  <property key="labeling/plussign" value="false"/>
+  <property key="labeling/preserveRotation" value="true"/>
+  <property key="labeling/previewBkgrdColor" value="#ffffff"/>
+  <property key="labeling/priority" value="5"/>
+  <property key="labeling/quadOffset" value="4"/>
+  <property key="labeling/repeatDistance" value="0"/>
+  <property key="labeling/repeatDistanceMapUnitMaxScale" value="0"/>
+  <property key="labeling/repeatDistanceMapUnitMinScale" value="0"/>
+  <property key="labeling/repeatDistanceUnit" value="1"/>
+  <property key="labeling/reverseDirectionSymbol" value="false"/>
+  <property key="labeling/rightDirectionSymbol" value=">"/>
+  <property key="labeling/scaleMax" value="2001"/>
+  <property key="labeling/scaleMin" value="1"/>
+  <property key="labeling/scaleVisibility" value="true"/>
+  <property key="labeling/shadowBlendMode" value="6"/>
+  <property key="labeling/shadowColorB" value="0"/>
+  <property key="labeling/shadowColorG" value="0"/>
+  <property key="labeling/shadowColorR" value="0"/>
+  <property key="labeling/shadowDraw" value="false"/>
+  <property key="labeling/shadowOffsetAngle" value="135"/>
+  <property key="labeling/shadowOffsetDist" value="1"/>
+  <property key="labeling/shadowOffsetGlobal" value="true"/>
+  <property key="labeling/shadowOffsetMapUnitMaxScale" value="0"/>
+  <property key="labeling/shadowOffsetMapUnitMinScale" value="0"/>
+  <property key="labeling/shadowOffsetUnits" value="1"/>
+  <property key="labeling/shadowRadius" value="1.5"/>
+  <property key="labeling/shadowRadiusAlphaOnly" value="false"/>
+  <property key="labeling/shadowRadiusMapUnitMaxScale" value="0"/>
+  <property key="labeling/shadowRadiusMapUnitMinScale" value="0"/>
+  <property key="labeling/shadowRadiusUnits" value="1"/>
+  <property key="labeling/shadowScale" value="100"/>
+  <property key="labeling/shadowTransparency" value="30"/>
+  <property key="labeling/shadowUnder" value="0"/>
+  <property key="labeling/shapeBlendMode" value="0"/>
+  <property key="labeling/shapeBorderColorA" value="255"/>
+  <property key="labeling/shapeBorderColorB" value="128"/>
+  <property key="labeling/shapeBorderColorG" value="128"/>
+  <property key="labeling/shapeBorderColorR" value="128"/>
+  <property key="labeling/shapeBorderWidth" value="0"/>
+  <property key="labeling/shapeBorderWidthMapUnitMaxScale" value="0"/>
+  <property key="labeling/shapeBorderWidthMapUnitMinScale" value="0"/>
+  <property key="labeling/shapeBorderWidthUnits" value="1"/>
+  <property key="labeling/shapeDraw" value="false"/>
+  <property key="labeling/shapeFillColorA" value="255"/>
+  <property key="labeling/shapeFillColorB" value="255"/>
+  <property key="labeling/shapeFillColorG" value="255"/>
+  <property key="labeling/shapeFillColorR" value="255"/>
+  <property key="labeling/shapeJoinStyle" value="64"/>
+  <property key="labeling/shapeOffsetMapUnitMaxScale" value="0"/>
+  <property key="labeling/shapeOffsetMapUnitMinScale" value="0"/>
+  <property key="labeling/shapeOffsetUnits" value="1"/>
+  <property key="labeling/shapeOffsetX" value="0"/>
+  <property key="labeling/shapeOffsetY" value="0"/>
+  <property key="labeling/shapeRadiiMapUnitMaxScale" value="0"/>
+  <property key="labeling/shapeRadiiMapUnitMinScale" value="0"/>
+  <property key="labeling/shapeRadiiUnits" value="1"/>
+  <property key="labeling/shapeRadiiX" value="0"/>
+  <property key="labeling/shapeRadiiY" value="0"/>
+  <property key="labeling/shapeRotation" value="0"/>
+  <property key="labeling/shapeRotationType" value="0"/>
+  <property key="labeling/shapeSVGFile" value=""/>
+  <property key="labeling/shapeSizeMapUnitMaxScale" value="0"/>
+  <property key="labeling/shapeSizeMapUnitMinScale" value="0"/>
+  <property key="labeling/shapeSizeType" value="0"/>
+  <property key="labeling/shapeSizeUnits" value="1"/>
+  <property key="labeling/shapeSizeX" value="0"/>
+  <property key="labeling/shapeSizeY" value="0"/>
+  <property key="labeling/shapeTransparency" value="0"/>
+  <property key="labeling/shapeType" value="0"/>
+  <property key="labeling/textColorA" value="255"/>
+  <property key="labeling/textColorB" value="0"/>
+  <property key="labeling/textColorG" value="0"/>
+  <property key="labeling/textColorR" value="0"/>
+  <property key="labeling/textTransp" value="0"/>
+  <property key="labeling/upsidedownLabels" value="0"/>
+  <property key="labeling/wrapChar" value=""/>
+  <property key="labeling/xOffset" value="0"/>
+  <property key="labeling/yOffset" value="0"/>
+ </customproperties>
+ <blendMode>0</blendMode>
+ <featureBlendMode>0</featureBlendMode>
+ <layerTransparency>0</layerTransparency>
+ <displayfield>obj_id</displayfield>
+ <label>0</label>
+ <labelattributes>
+  <label fieldname="" text="Label"/>
+  <family fieldname="" name="Cantarell"/>
+  <size fieldname="" units="pt" value="12"/>
+  <bold fieldname="" on="0"/>
+  <italic fieldname="" on="0"/>
+  <underline fieldname="" on="0"/>
+  <strikeout fieldname="" on="0"/>
+  <color fieldname="" red="0" blue="0" green="0"/>
+  <x fieldname=""/>
+  <y fieldname=""/>
+  <offset x="0" y="0" units="pt" yfieldname="" xfieldname=""/>
+  <angle fieldname="" value="0" auto="0"/>
+  <alignment fieldname="" value="center"/>
+  <buffercolor fieldname="" red="255" blue="255" green="255"/>
+  <buffersize fieldname="" units="pt" value="1"/>
+  <bufferenabled fieldname="" on=""/>
+  <multilineenabled fieldname="" on=""/>
+  <selectedonly on=""/>
+ </labelattributes>
+ <relations>
+  <relation referencingLayer="vw_qgep_reach" referencedLayer="od_pipe_profile" id="reach-fk_pipe_profile" name="Reaches">
+   <fieldRef referencedField="obj_id" referencingField="fk_pipe_profile"/>
+  </relation>
+  <relation referencingLayer="vw_qgep_reach" referencedLayer="vw_channel_" id="reach-fk_wastewater_structure-channel" name="Reaches">
+   <fieldRef referencedField="obj_id" referencingField="fk_wastewater_structure"/>
+  </relation>
+ </relations>
+ <dependencies>
+  <dependency>od_pipe_profile</dependency>
+  <dependency>vw_channel_</dependency>
+  <dependency>vl_reach_elevation_determination</dependency>
+  <dependency>vl_reach_horizontal_positioning</dependency>
+  <dependency>vl_reach_material</dependency>
+  <dependency>vl_reach_reliner_material</dependency>
+  <dependency>vl_reach_relining_construction</dependency>
+  <dependency>vl_reach_relining_kind</dependency>
+  <dependency>vl_reach_point_elevation_accuracy</dependency>
+  <dependency>vl_reach_point_outlet_shape</dependency>
+  <dependency>vl_reach_point_elevation_accuracy</dependency>
+  <dependency>vl_reach_point_outlet_shape</dependency>
+ </dependencies>
+</maplayer>

@@ -29,7 +29,7 @@
  </map-layer-style-manager>
  <relations/>
  <layer-tree-group name="Value Lists">
-  <layer-tree-group name="Spezialbauwerk"/>
+  <layer-tree-group name="special structure"/>
  </layer-tree-group>
  <dependencies/>
 </maplayer>
