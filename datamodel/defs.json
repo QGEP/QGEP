@@ -25,6 +25,37 @@
     }
   },
 
+  "vw_qgep_reach": {
+    "parents": {
+      "od_reach": {},
+      "od_wastewater_networkelement": {},
+      "od_channel": {},
+      "od_wastewater_structure": {},
+      "od_reach_point": {
+        "remap": {
+          "rp_from_elevation_accuracy": "elevation_accuracy",
+          "rp_from_identifier": "identifier",
+          "rp_from_level": "level",
+          "rp_from_outlet_shape": "outlet_shape",
+          "rp_from_position_of_connection": "last_modification",
+          "rp_from_remark": "remark",
+          "rp_from_data_owner": "data_owner",
+          "rp_from_provider": "provider",
+          "rp_from_fk_wastewater_networkelement": "wastewater_networkelement",
+          "rp_to_elevation_accuracy": "elevation_accuracy",
+          "rp_to_identifier": "identifier",
+          "rp_to_level": "level",
+          "rp_to_outlet_shape": "outlet_shape",
+          "rp_to_position_of_connection": "last_modification",
+          "rp_to_remark": "remark",
+          "rp_to_data_owner": "data_owner",
+          "rp_to_provider": "provider",
+          "rp_to_fk_wastewater_networkelement": "wastewater_networkelement"
+        }
+      }
+    }
+  },
+
 
   "__comment__": "WASTEWATER STRUCTURE",
 
