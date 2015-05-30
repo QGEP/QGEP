@@ -2,7 +2,7 @@
 host = https://www.transifex.com
 
 [QGEP.qgep-project]
-source_file = i18n/qgep-project_en.ts
+source_file = i18n/qgep-project.ts
 file_filter = i18n/qgep-project_<lang>.ts
 source_lang = en
 trans.de = i18n/qgep-project_de.ts

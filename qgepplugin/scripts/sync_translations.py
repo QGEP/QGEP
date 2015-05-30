@@ -12,7 +12,7 @@ force = False
 
 # Enable this option if you want to overwrite already translated strings. This is dangerous as it vill void manual
 # manual translation performed on the .ts file (e.g. on Transifex)
-# force = True
+force = True
 
 basepath = os.path.dirname(os.path.realpath(__file__))
 
@@ -28,7 +28,7 @@ def set_translation(message, text):
     :return:
     '''
     if message.find('translation') == -1:
-        print 'Message not found {} -> {}'.format(text, message)
+        print u'Message not found {} -> {}'.format(text, message)
         return
     if (text and text[:4] != 'zzz_') and (message.find('translation').get('type') == 'unfinished' or force is True):
         print ' * Translating {} to {}'.format(message.find('source').text, text)
@@ -128,12 +128,12 @@ def sync_language(lang_code):
         tree.write(f)
 
 
-for lang in ['fr', 'de', 'it', 'en']:
+for lang in ['fr']:
     print 'Translating {}'.format(lang)
-    try:
-        sync_language(lang)
-    except ValueError:
-        print 'Translation error for language {}, missing translation source in the database'.format(lang)
+#    try:
+    sync_language(lang)
+#    except ValueError:
+#        print 'Translation error for language {}, missing translation source in the database'.format(lang)
 
 # Uncomment to debug views definitions:
 # pprint(views)

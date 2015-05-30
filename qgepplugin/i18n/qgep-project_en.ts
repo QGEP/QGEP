@@ -17,7 +17,7 @@
   <name>fld_vw_qgep_cover</name>
   <message>
    <source>special_structure_function</source>
-   <translation>special_structure_function</translation>
+   <translation>function</translation>
   </message>
   <message>
    <source>diameter</source>
@@ -37,7 +37,7 @@
   </message>
   <message>
    <source>cover_material</source>
-   <translation>cover_material</translation>
+   <translation>material</translation>
   </message>
   <message>
    <source>subsidies</source>
@@ -105,7 +105,7 @@
   </message>
   <message>
    <source>manhole_function</source>
-   <translation>manhole_function</translation>
+   <translation>function</translation>
   </message>
   <message>
    <source>upper_elevation</source>
