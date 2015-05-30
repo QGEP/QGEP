@@ -1,9 +1,10 @@
-﻿-- this post-processing script updates non-standard attributes necessary for symbology - e.g. for manholes
--- update _usage_current and _function_hierarchic for manholes
+﻿-- this post-processing script updates non-standard attributes necessary for
+-- symbology - e.g. for wastewaster_structures, in particular manholes
+-- update _usage_current and _function_hierarchic for wastewater_structure
 -- caution: this script can run for several minutes!
-UPDATE qgep.od_manhole
-   SET _usage_current=(SELECT usage_current FROM qgep.manhole_symbology_attribs(obj_id)),
-       _function_hierarchic=(SELECT function_hierarchic FROM qgep.manhole_symbology_attribs(obj_id))
+UPDATE qgep.od_wastewater_structure
+   SET _usage_current=(SELECT usage_current FROM qgep.wastewater_structure_symbology_attribs(obj_id)),
+       _function_hierarchic=(SELECT function_hierarchic FROM qgep.wastewater_structure_symbology_attribs(obj_id))
 ;
 -- set manhole orientation to zero where it isn't already set
 UPDATE qgep.od_manhole SET _orientation = 0 WHERE _orientation IS NULL;

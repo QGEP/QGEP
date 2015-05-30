@@ -43,4 +43,4 @@ psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ../datamodel/view/vw_reach.sql
 psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ../datamodel/view/vw_special_structure.sql
 psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ../datamodel/view/vw_wastewater_node.sql
 psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ../datamodel/view/vw_qgep_cover.sql
-psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ../datamodel/view/vw_wizard_reach_channel.sql
+psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ../datamodel/view/vw_qgep_reach.sql
