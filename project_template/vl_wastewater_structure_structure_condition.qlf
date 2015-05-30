@@ -6,7 +6,7 @@
  <keywordList>
   <value></value>
  </keywordList>
- <layername>Condition</layername>
+ <layername>vl_wastewater_structure_structure_condition</layername>
  <srs>
   <spatialrefsys>
    <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>

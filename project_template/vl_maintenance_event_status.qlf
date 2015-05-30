@@ -1,12 +1,12 @@
 <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
- <id>od_pipe_profile</id>
- <datasource>service='pg_qgep' key='obj_id' table="qgep"."od_pipe_profile" sql=</datasource>
+ <id>vl_maintenance_event_status</id>
+ <datasource>service='pg_qgep' user='qgep' sslmode=disable key='code' estimatedmetadata=true table="qgep"."vl_maintenance_event_status" sql=</datasource>
  <title></title>
  <abstract></abstract>
  <keywordList>
   <value></value>
  </keywordList>
- <layername>od_pipe_profile</layername>
+ <layername>vl_maintenance_event_status</layername>
  <srs>
   <spatialrefsys>
    <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
@@ -21,20 +21,15 @@
  </srs>
  <customproperties/>
  <provider encoding="System">postgres</provider>
- <previewExpression>identifier</previewExpression>
+ <previewExpression></previewExpression>
  <vectorjoins/>
  <expressionfields/>
  <map-layer-style-manager current="">
   <map-layer-style name=""/>
  </map-layer-style-manager>
- <relations>
-  <relation referencingLayer="vw_qgep_reach" referencedLayer="od_pipe_profile" id="reach-fk_pipe_profile" name="Reaches">
-   <fieldRef referencedField="obj_id" referencingField="fk_pipe_profile"/>
-  </relation>
- </relations>
- <layer-tree-group name="Value Lists"/>
- <dependencies>
-  <dependency>vw_qgep_reach</dependency>
-  <dependency>vl_pipe_profile_profile_type</dependency>
- </dependencies>
+ <relations/>
+ <layer-tree-group name="Value Lists">
+  <layer-tree-group name="VL Maintenance Event"/>
+ </layer-tree-group>
+ <dependencies/>
 </maplayer>

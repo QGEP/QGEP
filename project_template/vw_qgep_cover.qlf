@@ -1,6 +1,6 @@
 <maplayer minimumScale="-4.65661e-10" maximumScale="5000" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="1" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
  <id>vw_qgep_cover</id>
- <datasource>service='pg_qgep' user='qgep' sslmode=disable key='obj_id' estimatedmetadata=true srid=21781 type=POINT table="qgep"."vw_qgep_cover" (situation_geometry) sql=</datasource>
+ <datasource>service='pg_qgep' user='qgep' sslmode=disable key='obj_id' estimatedmetadata=true srid=21781 type=Point table="qgep"."vw_qgep_cover" (situation_geometry) sql=</datasource>
  <title></title>
  <abstract></abstract>
  <keywordList>
@@ -1359,23 +1359,27 @@
  </SingleCategoryDiagramRenderer>
  <DiagramLayerSettings yPosColumn="-1" linePlacementFlags="10" placement="0" dist="0" xPosColumn="-1" priority="0" obstacle="0" showAll="1"/>
  <relations>
+  <relation referencingLayer="od_maintenance_event" referencedLayer="vw_qgep_cover" id="od_maintenance_event20150530130856307_fk_wastewater_structure_vw_qgep_cover_obj_id" name="Maintenances">
+   <fieldRef referencedField="ws_obj_id" referencingField="fk_wastewater_structure"/>
+  </relation>
   <relation referencingLayer="vw_access_aid" referencedLayer="vw_qgep_cover" id="vw_access_aid20150507162234295_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id" name="Access Aids">
-   <fieldRef referencedField="obj_id" referencingField="fk_wastewater_structure"/>
+   <fieldRef referencedField="ws_obj_id" referencingField="fk_wastewater_structure"/>
   </relation>
   <relation referencingLayer="vw_benching" referencedLayer="vw_qgep_cover" id="vw_benching20150507162234281_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id" name="Benchings">
-   <fieldRef referencedField="obj_id" referencingField="fk_wastewater_structure"/>
+   <fieldRef referencedField="ws_obj_id" referencingField="fk_wastewater_structure"/>
   </relation>
   <relation referencingLayer="vw_cover___" referencedLayer="vw_qgep_cover" id="vw_cover20150507162234308_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id" name="Covers">
-   <fieldRef referencedField="obj_id" referencingField="fk_wastewater_structure"/>
+   <fieldRef referencedField="ws_obj_id" referencingField="fk_wastewater_structure"/>
   </relation>
   <relation referencingLayer="vw_dryweather_downspout" referencedLayer="vw_qgep_cover" id="vw_dryweather_downspout20150507162234268_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id" name="Dryweather Downspouts">
-   <fieldRef referencedField="obj_id" referencingField="fk_wastewater_structure"/>
+   <fieldRef referencedField="ws_obj_id" referencingField="fk_wastewater_structure"/>
   </relation>
   <relation referencingLayer="vw_dryweather_flume" referencedLayer="vw_qgep_cover" id="vw_dryweather_flume20150507162234250_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id" name="Dryweather Flumes">
-   <fieldRef referencedField="obj_id" referencingField="fk_wastewater_structure"/>
+   <fieldRef referencedField="ws_obj_id" referencingField="fk_wastewater_structure"/>
   </relation>
  </relations>
  <dependencies>
+  <dependency>od_maintenance_event</dependency>
   <dependency>vw_access_aid</dependency>
   <dependency>vw_benching</dependency>
   <dependency>vw_cover___</dependency>

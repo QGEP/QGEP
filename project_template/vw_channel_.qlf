@@ -6,7 +6,7 @@
  <keywordList>
   <value></value>
  </keywordList>
- <layername>channel</layername>
+ <layername>vw_channel</layername>
  <srs>
   <spatialrefsys>
    <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>

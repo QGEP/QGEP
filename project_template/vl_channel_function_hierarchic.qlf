@@ -6,7 +6,7 @@
  <keywordList>
   <value></value>
  </keywordList>
- <layername>Function Hierarchic</layername>
+ <layername>vl_channel_function_hierarchic</layername>
  <srs>
   <spatialrefsys>
    <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>

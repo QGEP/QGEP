@@ -1,31 +1,28 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
 <qgis version="2.9.0-Master" minimumScale="0" maximumScale="1e+08" hasScaleBasedVisibilityFlag="0">
  <edittypes>
-  <edittype widgetv2type="TextEdit" name="obj_id">
+  <edittype widgetv2type="TextEdit" name="code">
    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
   </edittype>
-  <edittype widgetv2type="TextEdit" name="kind">
+  <edittype widgetv2type="TextEdit" name="value_en">
    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
   </edittype>
-  <edittype widgetv2type="TextEdit" name="identifier">
+  <edittype widgetv2type="TextEdit" name="value_de">
    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
   </edittype>
-  <edittype widgetv2type="TextEdit" name="remark">
+  <edittype widgetv2type="TextEdit" name="value_fr">
    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
   </edittype>
-  <edittype widgetv2type="TextEdit" name="renovation_demand">
+  <edittype widgetv2type="TextEdit" name="abbr_en">
    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
   </edittype>
-  <edittype widgetv2type="TextEdit" name="last_modification">
+  <edittype widgetv2type="TextEdit" name="abbr_de">
    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
   </edittype>
-  <edittype widgetv2type="TextEdit" name="dataowner">
+  <edittype widgetv2type="TextEdit" name="abbr_fr">
    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
   </edittype>
-  <edittype widgetv2type="TextEdit" name="provider">
-   <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-  </edittype>
-  <edittype widgetv2type="TextEdit" name="fk_wastewater_structure">
+  <edittype widgetv2type="TextEdit" name="active">
    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
   </edittype>
  </edittypes>
@@ -34,17 +31,6 @@
  <featformsuppress>0</featformsuppress>
  <annotationform>.</annotationform>
  <editorlayout>generatedlayout</editorlayout>
- <aliases>
-  <alias field="dataowner" index="6" name="dataowner"/>
-  <alias field="fk_wastewater_structure" index="8" name="fk_wastewater_structure"/>
-  <alias field="identifier" index="2" name="identifier"/>
-  <alias field="kind" index="1" name="kind"/>
-  <alias field="last_modification" index="5" name="last_modification"/>
-  <alias field="obj_id" index="0" name="obj_id"/>
-  <alias field="provider" index="7" name="provider"/>
-  <alias field="remark" index="3" name="remark"/>
-  <alias field="renovation_demand" index="4" name="renovation_demand"/>
- </aliases>
  <excludeAttributesWMS/>
  <excludeAttributesWFS/>
  <attributeactions/>

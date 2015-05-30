@@ -6,7 +6,7 @@
  <keywordList>
   <value></value>
  </keywordList>
- <layername>Usage Current</layername>
+ <layername>vl_channel_usage_current</layername>
  <srs>
   <spatialrefsys>
    <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>

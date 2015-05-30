@@ -737,7 +737,7 @@
   <property key="labeling/fieldName" value="attribute(getFeature('Reach Material','code',material),'abbr_en') || COALESCE(' ' || width || ' ','') || COALESCE('-' || length_effective || '-') || COALESCE(' ' || slope_per_mill || '‰','')"/>
   <property key="labeling/fontBold" value="false"/>
   <property key="labeling/fontCapitals" value="0"/>
-  <property key="labeling/fontFamily" value="Ubuntu"/>
+  <property key="labeling/fontFamily" value="Cantarell"/>
   <property key="labeling/fontItalic" value="false"/>
   <property key="labeling/fontLetterSpacing" value="0"/>
   <property key="labeling/fontLimitPixelSize" value="false"/>
@@ -875,6 +875,12 @@
   <multilineenabled fieldname="" on=""/>
   <selectedonly on=""/>
  </labelattributes>
+ <SingleCategoryDiagramRenderer diagramType="Pie">
+  <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" font="Cantarell,11,-1,5,50,0,0,0,0,0" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" sizeType="MM" minScaleDenominator="0">
+   <attribute field="" color="#000000" label=""/>
+  </DiagramCategory>
+ </SingleCategoryDiagramRenderer>
+ <DiagramLayerSettings yPosColumn="-1" linePlacementFlags="10" placement="2" dist="0" xPosColumn="-1" priority="0" obstacle="0" showAll="1"/>
  <relations>
   <relation referencingLayer="vw_qgep_reach" referencedLayer="od_pipe_profile" id="reach-fk_pipe_profile" name="Reaches">
    <fieldRef referencedField="obj_id" referencingField="fk_pipe_profile"/>
@@ -882,16 +888,32 @@
   <relation referencingLayer="vw_qgep_reach" referencedLayer="vw_channel_" id="reach-fk_wastewater_structure-channel" name="Reaches">
    <fieldRef referencedField="obj_id" referencingField="fk_wastewater_structure"/>
   </relation>
+  <relation referencingLayer="od_maintenance_event" referencedLayer="vw_qgep_reach" id="od_maintenance_event20150530130856307_fk_wastewater_structure_vw_reach20141013202956655_ws_obj_id" name="Maintenances">
+   <fieldRef referencedField="ws_obj_id" referencingField="fk_wastewater_structure"/>
+  </relation>
  </relations>
  <dependencies>
   <dependency>od_pipe_profile</dependency>
   <dependency>vw_channel_</dependency>
+  <dependency>od_maintenance_event</dependency>
   <dependency>vl_reach_elevation_determination</dependency>
   <dependency>vl_reach_horizontal_positioning</dependency>
+  <dependency>vl_reach_inside_coating</dependency>
   <dependency>vl_reach_material</dependency>
   <dependency>vl_reach_reliner_material</dependency>
   <dependency>vl_reach_relining_construction</dependency>
   <dependency>vl_reach_relining_kind</dependency>
+  <dependency>vl_channel_function_hierarchic</dependency>
+  <dependency>vl_channel_connection_type</dependency>
+  <dependency>vl_channel_function_hydraulic</dependency>
+  <dependency>vl_channel_usage_current</dependency>
+  <dependency>vl_channel_usage_planned</dependency>
+  <dependency>vl_wastewater_structure_accessibility</dependency>
+  <dependency>vl_wastewater_structure_financing</dependency>
+  <dependency>vl_wastewater_structure_renovation_necessity</dependency>
+  <dependency>vl_wastewater_structure_rv_construction_type</dependency>
+  <dependency>vl_wastewater_structure_status</dependency>
+  <dependency>vl_wastewater_structure_structure_condition</dependency>
   <dependency>vl_reach_point_elevation_accuracy</dependency>
   <dependency>vl_reach_point_outlet_shape</dependency>
   <dependency>vl_reach_point_elevation_accuracy</dependency>

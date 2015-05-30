@@ -1532,23 +1532,69 @@
  <annotationform>.</annotationform>
  <editorlayout>tablayout</editorlayout>
  <aliases>
-  <alias field="brand" index="1" name="Fabrikat"/>
-  <alias field="cover_shape" index="2" name="Deckelform"/>
-  <alias field="dataowner" index="14" name="%#vw_cover#dataowner#name#%"/>
-  <alias field="depth" index="36" name="Maechtigkeit"/>
-  <alias field="diameter" index="3" name="Durchmesser"/>
-  <alias field="fastening" index="4" name="Verschluss"/>
-  <alias field="identifier" index="10" name="%#vw_cover#identifier#name#%"/>
-  <alias field="last_modification" index="13" name="%#vw_cover#last_modification#name#%"/>
-  <alias field="level" index="5" name="Kote"/>
-  <alias field="manhole_function" index="40" name="%#vw_cover#manhole_function#name#%"/>
-  <alias field="material" index="41" name="Material"/>
-  <alias field="positional_accuracy" index="7" name="Lagegenauigkeit"/>
-  <alias field="provider" index="15" name="%#vw_cover#provider#name#%"/>
-  <alias field="remark" index="11" name="Bemerkung"/>
-  <alias field="renovation_demand" index="12" name="Instandstellung"/>
-  <alias field="sludge_bucket" index="8" name="Schlammeimer"/>
-  <alias field="venting" index="9" name="Entlueftung"/>
+  <alias field="absorption_capacity" index="53" name="absorption_capacity"/>
+  <alias field="accessibility" index="18" name="accessibility"/>
+  <alias field="brand" index="1" name="brand"/>
+  <alias field="bypass" index="46" name="bypass"/>
+  <alias field="channel_function_hierarchic" index="44" name="channel_function_hierarchic"/>
+  <alias field="channel_usage_current" index="43" name="channel_usage_current"/>
+  <alias field="contract_section" index="19" name="contract_section"/>
+  <alias field="cover_material" index="6" name="cover_material"/>
+  <alias field="cover_shape" index="2" name="cover_shape"/>
+  <alias field="dataowner" index="14" name="dataowner"/>
+  <alias field="defects" index="54" name="defects"/>
+  <alias field="depth" index="36" name="depth"/>
+  <alias field="diameter" index="3" name="diameter"/>
+  <alias field="dimension1" index="37" name="dimension1"/>
+  <alias field="dimension2" index="38" name="dimension2"/>
+  <alias field="distance_to_aquifer" index="55" name="distance_to_aquifer"/>
+  <alias field="effective_area" index="56" name="effective_area"/>
+  <alias field="emergency_spillway" index="57" name="emergency_spillway"/>
+  <alias field="fastening" index="4" name="fastening"/>
+  <alias field="financing" index="20" name="financing"/>
+  <alias field="fk_operator" index="35" name="fk_operator"/>
+  <alias field="fk_owner" index="34" name="fk_owner"/>
+  <alias field="gross_costs" index="21" name="gross_costs"/>
+  <alias field="highwater_level" index="49" name="highwater_level"/>
+  <alias field="identifier" index="10" name="identifier"/>
+  <alias field="inspection_interval" index="22" name="inspection_interval"/>
+  <alias field="kind" index="58" name="kind"/>
+  <alias field="labeling" index="59" name="labeling"/>
+  <alias field="last_modification" index="13" name="last_modification"/>
+  <alias field="level" index="5" name="level"/>
+  <alias field="location_name" index="23" name="location_name"/>
+  <alias field="manhole_function" index="40" name="manhole_function"/>
+  <alias field="manhole_orientation" index="45" name="manhole_orientation"/>
+  <alias field="material" index="41" name="material"/>
+  <alias field="obj_id" index="0" name="obj_id"/>
+  <alias field="positional_accuracy" index="7" name="positional_accuracy"/>
+  <alias field="provider" index="15" name="provider"/>
+  <alias field="records" index="24" name="records"/>
+  <alias field="relevance" index="50" name="relevance"/>
+  <alias field="remark" index="11" name="remark"/>
+  <alias field="renovation_demand" index="12" name="renovation_demand"/>
+  <alias field="renovation_necessity" index="25" name="renovation_necessity"/>
+  <alias field="replacement_value" index="26" name="replacement_value"/>
+  <alias field="rv_base_year" index="27" name="rv_base_year"/>
+  <alias field="rv_construction_type" index="28" name="rv_construction_type"/>
+  <alias field="seepage_utilization" index="60" name="seepage_utilization"/>
+  <alias field="sludge_bucket" index="8" name="sludge_bucket"/>
+  <alias field="special_structure_function" index="47" name="special_structure_function"/>
+  <alias field="status" index="29" name="status"/>
+  <alias field="stormwater_tank_arrangement" index="48" name="stormwater_tank_arrangement"/>
+  <alias field="structure_condition" index="30" name="structure_condition"/>
+  <alias field="subsidies" index="31" name="subsidies"/>
+  <alias field="surface_inflow" index="42" name="surface_inflow"/>
+  <alias field="terrain_level" index="51" name="terrain_level"/>
+  <alias field="upper_elevation" index="39" name="upper_elevation"/>
+  <alias field="vehicle_access" index="61" name="vehicle_access"/>
+  <alias field="venting" index="9" name="venting"/>
+  <alias field="waterlevel_hydraulic" index="52" name="waterlevel_hydraulic"/>
+  <alias field="watertightness" index="62" name="watertightness"/>
+  <alias field="ws_obj_id" index="17" name="ws_obj_id"/>
+  <alias field="ws_type" index="16" name="ws_type"/>
+  <alias field="year_of_construction" index="32" name="year_of_construction"/>
+  <alias field="year_of_replacement" index="33" name="year_of_replacement"/>
  </aliases>
  <excludeAttributesWMS/>
  <excludeAttributesWFS/>
@@ -1656,6 +1702,9 @@
   </attributeEditorContainer>
   <attributeEditorContainer name="Dryweather Downspout">
    <attributeEditorRelation relation="vw_dryweather_downspout20150507162234268_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id" name="vw_dryweather_downspout20150507162234268_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id"/>
+  </attributeEditorContainer>
+  <attributeEditorContainer name="Maintenance">
+   <attributeEditorRelation relation="od_maintenance_event20150530130856307_fk_wastewater_structure_vw_qgep_cover_obj_id" name="od_maintenance_event20150530130856307_fk_wastewater_structure_vw_qgep_cover_obj_id"/>
   </attributeEditorContainer>
  </attributeEditorForm>
  <attributeactions/>

@@ -21,7 +21,7 @@
  </srs>
  <customproperties/>
  <provider encoding="System">postgres</provider>
- <previewExpression></previewExpression>
+ <previewExpression>COALESCE("obj_id", '&lt;NULL>')</previewExpression>
  <vectorjoins/>
  <expressionfields/>
  <map-layer-style-manager current="">
@@ -29,10 +29,12 @@
  </map-layer-style-manager>
  <relations>
   <relation referencingLayer="vw_dryweather_downspout" referencedLayer="vw_qgep_cover" id="vw_dryweather_downspout20150507162234268_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id" name="Dryweather Downspouts">
-   <fieldRef referencedField="obj_id" referencingField="fk_wastewater_structure"/>
+   <fieldRef referencedField="ws_obj_id" referencingField="fk_wastewater_structure"/>
   </relation>
  </relations>
- <layer-tree-group name="Structure Parts"/>
+ <layer-tree-group name="Wastewater Structures">
+  <layer-tree-group name="Structure Parts"/>
+ </layer-tree-group>
  <dependencies>
   <dependency>vw_qgep_cover</dependency>
  </dependencies>

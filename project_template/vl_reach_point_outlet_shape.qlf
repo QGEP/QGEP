@@ -6,7 +6,7 @@
  <keywordList>
   <value></value>
  </keywordList>
- <layername>Outlet Shape</layername>
+ <layername>vl_reach_point_outlet_shape</layername>
  <srs>
   <spatialrefsys>
    <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>

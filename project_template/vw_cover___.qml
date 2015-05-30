@@ -89,7 +89,7 @@
    </symbol>
   </symbols>
   <rotation/>
-  <sizescale scalemethod="area"/>
+  <sizescale scalemethod="diameter"/>
   <effect enabled="0" type="effectStack">
    <effect type="drawSource">
     <prop k="blend_mode" v="0"/>
@@ -278,6 +278,26 @@
  <featformsuppress>0</featformsuppress>
  <annotationform>.</annotationform>
  <editorlayout>generatedlayout</editorlayout>
+ <aliases>
+  <alias field="brand" index="1" name="brand"/>
+  <alias field="cover_shape" index="2" name="cover_shape"/>
+  <alias field="dataowner" index="15" name="dataowner"/>
+  <alias field="depth" index="3" name="depth"/>
+  <alias field="diameter" index="4" name="diameter"/>
+  <alias field="fastening" index="5" name="fastening"/>
+  <alias field="fk_wastewater_structure" index="17" name="fk_wastewater_structure"/>
+  <alias field="identifier" index="11" name="identifier"/>
+  <alias field="last_modification" index="14" name="last_modification"/>
+  <alias field="level" index="6" name="level"/>
+  <alias field="material" index="7" name="material"/>
+  <alias field="obj_id" index="0" name="obj_id"/>
+  <alias field="positional_accuracy" index="8" name="positional_accuracy"/>
+  <alias field="provider" index="16" name="provider"/>
+  <alias field="remark" index="12" name="remark"/>
+  <alias field="renovation_demand" index="13" name="renovation_demand"/>
+  <alias field="sludge_bucket" index="9" name="sludge_bucket"/>
+  <alias field="venting" index="10" name="venting"/>
+ </aliases>
  <excludeAttributesWMS/>
  <excludeAttributesWFS/>
  <attributeactions/>

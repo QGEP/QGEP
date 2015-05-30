@@ -1,6 +1,6 @@
 <maplayer minimumScale="-4.65661e-10" maximumScale="1000" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="1" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
  <id>vw_cover___</id>
- <datasource>service='pg_qgep' user='qgep' sslmode=disable key='obj_id' estimatedmetadata=true srid=21781 type=POINT table="qgep"."vw_cover" (situation_geometry) sql=</datasource>
+ <datasource>service='pg_qgep' user='qgep' sslmode=disable key='obj_id' estimatedmetadata=true srid=21781 type=Point table="qgep"."vw_cover" (situation_geometry) sql=</datasource>
  <title></title>
  <abstract></abstract>
  <keywordList>
@@ -59,7 +59,7 @@
    </symbol>
   </symbols>
   <rotation/>
-  <sizescale scalemethod="area"/>
+  <sizescale scalemethod="diameter"/>
   <effect enabled="0" type="effectStack">
    <effect type="drawSource">
     <prop k="blend_mode" v="0"/>
@@ -245,10 +245,12 @@
  <DiagramLayerSettings yPosColumn="-1" linePlacementFlags="10" placement="0" dist="0" xPosColumn="-1" priority="0" obstacle="0" showAll="1"/>
  <relations>
   <relation referencingLayer="vw_cover___" referencedLayer="vw_qgep_cover" id="vw_cover20150507162234308_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id" name="Covers">
-   <fieldRef referencedField="obj_id" referencingField="fk_wastewater_structure"/>
+   <fieldRef referencedField="ws_obj_id" referencingField="fk_wastewater_structure"/>
   </relation>
  </relations>
- <layer-tree-group name="Structure Parts"/>
+ <layer-tree-group name="Wastewater Structures">
+  <layer-tree-group name="Structure Parts"/>
+ </layer-tree-group>
  <dependencies>
   <dependency>vw_qgep_cover</dependency>
  </dependencies>
