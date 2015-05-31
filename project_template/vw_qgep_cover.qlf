@@ -1382,6 +1382,7 @@
   </relation>
  </relations>
  <dependencies>
+  <dependency>od_wastewater_structure</dependency>
   <dependency>od_maintenance_event</dependency>
   <dependency>vw_access_aid</dependency>
   <dependency>vw_backflow_prevention</dependency>

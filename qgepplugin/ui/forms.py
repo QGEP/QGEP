@@ -1,5 +1,6 @@
 from PyQt4.QtGui import *
 import qgis
+from qgis.core import QgsMapLayerRegistry
 from qgis.gui import QgsEditorWidgetWrapper
 
 from ..tools.qgepmaptooladdfeature import QgepMapToolDigitizeDrainageChannel
@@ -7,30 +8,30 @@ from ..tools.qgepmaptooladdfeature import QgepMapToolDigitizeDrainageChannel
 DEBUGMODE = 1
 
 
-def geometryDigitized(feature, layer, tool):
-    layer.changeGeometry(feature.id(), tool.geometry)
+def geometryDigitized(fid, layer, tool):
+    layer.changeGeometry(fid, tool.geometry)
     layer.triggerRepaint()
     tool.deactivate()
 
 
-def mapToolDeactivated(form, tool):
+def mapToolDeactivated(tool):
     if qgis.utils.plugins['qgepplugin'].iface.mapCanvas().mapTool() == tool:
         qgis.utils.plugins['qgepplugin'].iface.mapCanvas().unsetMapTool(tool)
 
-    form.window().show()
-    form.window().raise_()
     tool.deleteLater()
 
 
-def digitizeDrainageChannel(form, feature, layer):
+def digitizeDrainageChannel(fid, layerid):
+    layer = QgsMapLayerRegistry.instance().mapLayer(layerid)
+    layer.startEditing()
     tool = QgepMapToolDigitizeDrainageChannel(qgis.utils.plugins['qgepplugin'].iface, layer)
     qgis.utils.plugins['qgepplugin'].iface.mapCanvas().setMapTool(tool)
     tool.geometryDigitized.connect(
-        lambda: geometryDigitized(feature, layer, tool)
+        lambda: geometryDigitized(fid, layer, tool)
     )
-    form.window().hide()
+    # form.window().hide()
     tool.deactivated.connect(
-        lambda: mapToolDeactivated(form, tool)
+        lambda: mapToolDeactivated(tool)
     )
 
 

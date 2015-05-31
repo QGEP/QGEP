@@ -8,13 +8,13 @@
    <widgetv2config fieldEditable="1" labelOnTop="0" Editable="1"/>
   </edittype>
   <edittype widgetv2type="ValueRelation" name="cover_shape">
-   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_cover_cover_shape" Value="value_de" labelOnTop="0" AllowMulti="0"/>
+   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_cover_cover_shape" Value="value_en" labelOnTop="0" AllowMulti="0"/>
   </edittype>
   <edittype widgetv2type="Range" name="diameter">
    <widgetv2config AllowNull="1" fieldEditable="1" Step="10" Style="SpinBox" labelOnTop="0" Min="0" Max="99999" Suffix=" mm"/>
   </edittype>
   <edittype widgetv2type="ValueRelation" name="fastening">
-   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_cover_fastening" Value="value_de" labelOnTop="0" AllowMulti="0"/>
+   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_cover_fastening" Value="value_en" labelOnTop="0" AllowMulti="0"/>
   </edittype>
   <edittype widgetv2type="Range" name="level">
    <widgetv2config AllowNull="1" fieldEditable="1" Step="10" Style="SpinBox" labelOnTop="0" Min="0" Max="4000" Suffix=" m.a.s.l."/>
@@ -26,10 +26,10 @@
    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
   </edittype>
   <edittype widgetv2type="ValueRelation" name="sludge_bucket">
-   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_cover_sludge_bucket" Value="value_de" labelOnTop="0" AllowMulti="0"/>
+   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_cover_sludge_bucket" Value="value_en" labelOnTop="0" AllowMulti="0"/>
   </edittype>
   <edittype widgetv2type="ValueRelation" name="venting">
-   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_cover_venting" Value="value_de" labelOnTop="0" AllowMulti="0"/>
+   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_cover_venting" Value="value_en" labelOnTop="0" AllowMulti="0"/>
   </edittype>
   <edittype widgetv2type="TextEdit" name="identifier">
    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -38,7 +38,7 @@
    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
   </edittype>
   <edittype widgetv2type="ValueRelation" name="renovation_demand">
-   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_structure_part_renovation_demand" Value="value_de" labelOnTop="0" AllowMulti="0"/>
+   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_structure_part_renovation_demand" Value="value_en" labelOnTop="0" AllowMulti="0"/>
   </edittype>
   <edittype widgetv2type="DateTime" name="last_modification">
    <widgetv2config fieldEditable="1" calendar_popup="0" allow_null="0" display_format="yyyy-MM-dd" field_format="yyyy-MM-dd" labelOnTop="0"/>
@@ -127,10 +127,10 @@
    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
   </edittype>
   <edittype widgetv2type="ValueRelation" name="manhole_function">
-   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_manhole_function" Value="value_de" labelOnTop="0" AllowMulti="0"/>
+   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_manhole_function" Value="value_en" labelOnTop="0" AllowMulti="0"/>
   </edittype>
   <edittype widgetv2type="ValueRelation" name="material">
-   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_cover_material" Value="value_de" labelOnTop="0" AllowMulti="0"/>
+   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_cover_material" Value="value_en" labelOnTop="0" AllowMulti="0"/>
   </edittype>
   <edittype widgetv2type="Range" name="surface_inflow">
    <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="5"/>
@@ -1560,12 +1560,14 @@
  <aliases>
   <alias field="absorption_capacity" index="53" name="absorption_capacity"/>
   <alias field="accessibility" index="18" name="accessibility"/>
+  <alias field="backflow_level" index="64" name=""/>
+  <alias field="bottom_level" index="65" name=""/>
   <alias field="brand" index="1" name="brand"/>
   <alias field="bypass" index="46" name="bypass"/>
   <alias field="channel_function_hierarchic" index="44" name="channel_function_hierarchic"/>
   <alias field="channel_usage_current" index="43" name="channel_usage_current"/>
   <alias field="contract_section" index="19" name="contract_section"/>
-  <alias field="cover_material" index="6" name="cover_material"/>
+  <alias field="cover_material" index="6" name="material"/>
   <alias field="cover_shape" index="2" name="cover_shape"/>
   <alias field="dataowner" index="14" name="dataowner"/>
   <alias field="defects" index="54" name="defects"/>
@@ -1589,7 +1591,7 @@
   <alias field="last_modification" index="13" name="last_modification"/>
   <alias field="level" index="5" name="level"/>
   <alias field="location_name" index="23" name="location_name"/>
-  <alias field="manhole_function" index="40" name="manhole_function"/>
+  <alias field="manhole_function" index="40" name="function"/>
   <alias field="manhole_orientation" index="45" name="manhole_orientation"/>
   <alias field="material" index="41" name="material"/>
   <alias field="obj_id" index="0" name="obj_id"/>
@@ -1605,7 +1607,7 @@
   <alias field="rv_construction_type" index="28" name="rv_construction_type"/>
   <alias field="seepage_utilization" index="60" name="seepage_utilization"/>
   <alias field="sludge_bucket" index="8" name="sludge_bucket"/>
-  <alias field="special_structure_function" index="47" name="special_structure_function"/>
+  <alias field="special_structure_function" index="47" name="function"/>
   <alias field="status" index="29" name="status"/>
   <alias field="stormwater_tank_arrangement" index="48" name="stormwater_tank_arrangement"/>
   <alias field="structure_condition" index="30" name="structure_condition"/>
@@ -1617,6 +1619,12 @@
   <alias field="venting" index="9" name="venting"/>
   <alias field="waterlevel_hydraulic" index="52" name="waterlevel_hydraulic"/>
   <alias field="watertightness" index="62" name="watertightness"/>
+  <alias field="wn_dataowner" index="69" name=""/>
+  <alias field="wn_identifier" index="66" name=""/>
+  <alias field="wn_last_modification" index="68" name=""/>
+  <alias field="wn_obj_id" index="63" name=""/>
+  <alias field="wn_provider" index="70" name=""/>
+  <alias field="wn_remark" index="67" name=""/>
   <alias field="ws_obj_id" index="17" name="ws_obj_id"/>
   <alias field="ws_type" index="16" name="ws_type"/>
   <alias field="year_of_construction" index="32" name="year_of_construction"/>
@@ -1714,7 +1722,17 @@
    <attributeEditorField index="38" name="dimension2"/>
    <attributeEditorField index="39" name="upper_elevation"/>
   </attributeEditorContainer>
-  <attributeEditorContainer name="Cover">
+  <attributeEditorContainer name="Wastewater Node">
+   <attributeEditorField index="63" name="wn_obj_id"/>
+   <attributeEditorField index="64" name="backflow_level"/>
+   <attributeEditorField index="65" name="bottom_level"/>
+   <attributeEditorField index="66" name="wn_identifier"/>
+   <attributeEditorField index="67" name="wn_remark"/>
+   <attributeEditorField index="68" name="wn_last_modification"/>
+   <attributeEditorField index="69" name="wn_dataowner"/>
+   <attributeEditorField index="70" name="wn_provider"/>
+  </attributeEditorContainer>
+  <attributeEditorContainer name="Covers">
    <attributeEditorRelation relation="vw_cover20150507162234308_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id" name="vw_cover20150507162234308_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id"/>
   </attributeEditorContainer>
   <attributeEditorContainer name="Access Aid">
@@ -1735,16 +1753,8 @@
   <attributeEditorContainer name="Maintenance">
    <attributeEditorRelation relation="od_maintenance_event20150530130856307_fk_wastewater_structure_vw_qgep_cover_obj_id" name="od_maintenance_event20150530130856307_fk_wastewater_structure_vw_qgep_cover_obj_id"/>
   </attributeEditorContainer>
-  <attributeEditorContainer name="Wastewater Node">
-   <attributeEditorField index="63" name="wn_obj_id"/>
-   <attributeEditorField index="64" name="backflow_level"/>
-   <attributeEditorField index="65" name="bottom_level"/>
-   <attributeEditorField index="66" name="wn_identifier"/>
-   <attributeEditorField index="67" name="wn_remark"/>
-   <attributeEditorField index="68" name="wn_last_modification"/>
-   <attributeEditorField index="69" name="wn_dataowner"/>
-   <attributeEditorField index="70" name="wn_provider"/>
-  </attributeEditorContainer>
  </attributeEditorForm>
- <attributeactions/>
+ <attributeactions>
+  <actionsetting action="feature = QgsMapLayerRegistry.instance().mapLayer('od_wastewater_structure').getFeatures( QgsFeatureRequest().setFilterExpression( 'obj_id = \'{}\''.format( '[% &quot;ws_obj_id&quot; %]' ) ) ).next()&#xa;qgepplugin.ui.forms.digitizeDrainageChannel(feature.id(), 'od_wastewater_structure')" icon="" capture="0" type="1" name="Digitize"/>
+ </attributeactions>
 </qgis>
