@@ -253,6 +253,38 @@
    <source>labeling</source>
    <translation>signalisation</translation>
   </message>
+  <message>
+   <source>wn_provider</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>wn_last_modification</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>bottom_level</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>backflow_level</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>wn_obj_id</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>wn_remark</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>wn_dataowner</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>wn_identifier</source>
+   <translation type="unfinished" />
+  </message>
  </context>
  <context>
   <name>fld_vw_access_aid</name>

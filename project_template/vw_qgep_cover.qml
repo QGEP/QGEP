@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis version="2.9.0-Master" minimumScale="-4.65661e-10" maximumScale="5000" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" simplifyMaxScale="1" hasScaleBasedVisibilityFlag="1" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
+<qgis version="2.9.0-Master" minimumScale="0" maximumScale="5000" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" simplifyMaxScale="1" hasScaleBasedVisibilityFlag="1" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
  <edittypes>
   <edittype widgetv2type="TextEdit" name="obj_id">
    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -191,6 +191,30 @@
    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
   </edittype>
   <edittype widgetv2type="TextEdit" name="watertightness">
+   <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+  </edittype>
+  <edittype widgetv2type="TextEdit" name="wn_obj_id">
+   <widgetv2config IsMultiline="0" fieldEditable="0" UseHtml="0" labelOnTop="0"/>
+  </edittype>
+  <edittype widgetv2type="TextEdit" name="backflow_level">
+   <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+  </edittype>
+  <edittype widgetv2type="TextEdit" name="bottom_level">
+   <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+  </edittype>
+  <edittype widgetv2type="TextEdit" name="wn_identifier">
+   <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+  </edittype>
+  <edittype widgetv2type="TextEdit" name="wn_remark">
+   <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+  </edittype>
+  <edittype widgetv2type="TextEdit" name="wn_last_modification">
+   <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+  </edittype>
+  <edittype widgetv2type="TextEdit" name="wn_dataowner">
+   <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+  </edittype>
+  <edittype widgetv2type="TextEdit" name="wn_provider">
    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
   </edittype>
  </edittypes>
@@ -1521,7 +1545,7 @@
   <selectedonly on=""/>
  </labelattributes>
  <SingleCategoryDiagramRenderer diagramType="Pie">
-  <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="5000" font="Cantarell,11,-1,5,50,0,0,0,0,0" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="1" enabled="0" height="15" sizeType="MM" minScaleDenominator="-4.65661e-10">
+  <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="5000" font="Cantarell,11,-1,5,50,0,0,0,0,0" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="1" enabled="0" height="15" sizeType="MM" minScaleDenominator="0">
    <attribute field="" color="#000000" label=""/>
   </DiagramCategory>
  </SingleCategoryDiagramRenderer>
@@ -1708,6 +1732,16 @@
   </attributeEditorContainer>
   <attributeEditorContainer name="Maintenance">
    <attributeEditorRelation relation="od_maintenance_event20150530130856307_fk_wastewater_structure_vw_qgep_cover_obj_id" name="od_maintenance_event20150530130856307_fk_wastewater_structure_vw_qgep_cover_obj_id"/>
+  </attributeEditorContainer>
+  <attributeEditorContainer name="Wastewater Node">
+   <attributeEditorField index="63" name="wn_obj_id"/>
+   <attributeEditorField index="64" name="backflow_level"/>
+   <attributeEditorField index="65" name="bottom_level"/>
+   <attributeEditorField index="66" name="wn_identifier"/>
+   <attributeEditorField index="67" name="wn_remark"/>
+   <attributeEditorField index="68" name="wn_last_modification"/>
+   <attributeEditorField index="69" name="wn_dataowner"/>
+   <attributeEditorField index="70" name="wn_provider"/>
   </attributeEditorContainer>
  </attributeEditorForm>
  <attributeactions/>

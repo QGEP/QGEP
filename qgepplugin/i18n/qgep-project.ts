@@ -255,6 +255,38 @@
    <source>labeling</source>
    <translation>labeling</translation>
   </message>
+  <message>
+   <source>wn_provider</source>
+   <translation>wn_provider</translation>
+  </message>
+  <message>
+   <source>wn_last_modification</source>
+   <translation>wn_last_modification</translation>
+  </message>
+  <message>
+   <source>bottom_level</source>
+   <translation>bottom_level</translation>
+  </message>
+  <message>
+   <source>backflow_level</source>
+   <translation>backflow_level</translation>
+  </message>
+  <message>
+   <source>wn_obj_id</source>
+   <translation>wn_obj_id</translation>
+  </message>
+  <message>
+   <source>wn_remark</source>
+   <translation>wn_remark</translation>
+  </message>
+  <message>
+   <source>wn_dataowner</source>
+   <translation>wn_dataowner</translation>
+  </message>
+  <message>
+   <source>wn_identifier</source>
+   <translation>wn_identifier</translation>
+  </message>
  </context>
  <context>
   <name>fld_vw_access_aid</name>

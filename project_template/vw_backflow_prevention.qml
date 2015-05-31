@@ -35,10 +35,10 @@
    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
   </edittype>
  </edittypes>
- <editform/>
+ <editform>.</editform>
  <editforminit/>
  <featformsuppress>0</featformsuppress>
- <annotationform/>
+ <annotationform>.</annotationform>
  <editorlayout>generatedlayout</editorlayout>
  <excludeAttributesWMS/>
  <excludeAttributesWFS/>
