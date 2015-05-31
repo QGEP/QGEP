@@ -4,7 +4,7 @@ BEGIN TRANSACTION;
 
 DROP VIEW IF EXISTS qgep.vw_qgep_cover;
 
-CREATE OR REPLACE VIEW qgep.vw_qgep_cover AS
+CREATE OR REPLACE VIEW qgep.vw_qgep_cover AS 
  SELECT co.obj_id,
     co.brand,
     co.cover_shape,
@@ -55,7 +55,7 @@ CREATE OR REPLACE VIEW qgep.vw_qgep_cover AS
     COALESCE( mh.dimension1, ii.dimension1 ) AS dimension1,
     COALESCE( mh.dimension2, ii.dimension2 ) AS dimension2,
     COALESCE( ss.upper_elevation, dp.upper_elevation, ii.upper_elevation ) AS upper_elevation,
-
+    
     mh.function AS manhole_function,
     mh.material,
     mh.surface_inflow,
@@ -63,7 +63,7 @@ CREATE OR REPLACE VIEW qgep.vw_qgep_cover AS
     ws._usage_current AS channel_usage_current,
     ws._function_hierarchic AS channel_function_hierarchic,
     mh._orientation AS manhole_orientation,
-
+    
     ss.bypass,
     ss.function as special_structure_function,
     ss.stormwater_tank_arrangement,
@@ -82,26 +82,14 @@ CREATE OR REPLACE VIEW qgep.vw_qgep_cover AS
     ii.labeling,
     ii.seepage_utilization,
     ii.vehicle_access,
-    ii.watertightness,
-
-    wn.obj_id AS wn_obj_id,
-    wn.backflow_level,
-    wn.bottom_level,
-    -- wn.situation_geometry ,
-    wn.identifier AS wn_identifier,
-    wn.remark AS wn_remark,
-    wn.last_modification AS wn_last_modification,
-    wn.dataowner AS wn_dataowner,
-    wn.provider AS wn_provider
+    ii.watertightness
 
    FROM qgep.vw_cover co
      LEFT JOIN qgep.od_wastewater_structure ws ON ws.obj_id = co.fk_wastewater_structure
      LEFT JOIN qgep.od_manhole mh ON mh.obj_id = co.fk_wastewater_structure
      LEFT JOIN qgep.od_special_structure ss ON ss.obj_id = co.fk_wastewater_structure
      LEFT JOIN qgep.od_discharge_point dp ON dp.obj_id = co.fk_wastewater_structure
-     LEFT JOIN qgep.od_infiltration_installation ii ON ii.obj_id = co.fk_wastewater_structure
-
-     LEFT JOIN qgep.vw_wastewater_node wn ON wn.fk_wastewater_structure = ws.obj_id;
+     LEFT JOIN qgep.od_infiltration_installation ii ON ii.obj_id = co.fk_wastewater_structure;
 
 -- INSERT function
 
@@ -113,7 +101,7 @@ DECLARE
 BEGIN
   -- Manhole
   CASE
-    WHEN NEW.ws_type = 'manhole' THEN
+    WHEN ws_type = 'manhole' THEN
       INSERT INTO qgep.vw_manhole(
              dimension1
            , dimension2
@@ -181,11 +169,11 @@ BEGIN
            , NEW.fk_owner
            , NEW.fk_operator
            ) RETURNING obj_id INTO ws_obj_id;
-
+           
     -- Special Structure
-    WHEN NEW.ws_type = 'special_structure' THEN
-      INSERT INTO qgep.vw_special_structure(
-             depth
+    WHEN ws_type = 'special_structure' THEN 
+      INSERT INTO qgep.vw_special_structure
+           , depth
            , emergency_spillway
            , function
            , stormwater_tank_arrangement
@@ -219,13 +207,13 @@ BEGIN
            )
            VALUES
            (
-             NEW.depth
+           , NEW.depth
            , NEW.emergency_spillway
            , NEW.special_structure_function
            , NEW.stormwater_tank_arrangement
            , NEW.upper_elevation
 
-
+           
            , NEW.accessibility
            , NEW.contract_section
     --       , NEW.detail_geometry_geometry
@@ -252,11 +240,11 @@ BEGIN
            , NEW.fk_owner
            , NEW.fk_operator
            ) RETURNING obj_id INTO ws_obj_id;
-
+           
     -- Discharge Point
-    WHEN NEW.ws_type = 'discharge_point' THEN
-      INSERT INTO qgep.vw_discharge_point(
-             depth
+    WHEN ws_type = 'discharge_point' THEN
+      INSERT INTO qgep.vw_discharge_point
+           , depth
            , highwater_level
            , relevance
            , terrain_level
@@ -291,13 +279,13 @@ BEGIN
            )
            VALUES
            (
-             NEW.depth
+           , NEW.depth
            , NEW.highwater_level
            , NEW.relevance
            , NEW.terrain_level
            , NEW.upper_elevation
            , NEW.waterlevel_hydraulic
-
+           
            , NEW.accessibility
            , NEW.contract_section
     --       , NEW.detail_geometry_geometry
@@ -324,14 +312,13 @@ BEGIN
            , NEW.fk_owner
            , NEW.fk_operator
            ) RETURNING obj_id INTO ws_obj_id;
-
+           
     -- Infiltration Installation
-    WHEN NEW.ws_type = 'infiltration_installation' THEN
-     RAISE NOTICE 'Wastewater structure type not known (%)', ws_type; -- ERROR
+    WHEN ws_type = 'infiltration_installation' THEN
      -- TODO
-    ELSE
-     RAISE NOTICE 'Wastewater structure type not known (%)', ws_type; -- ERROR
-  END CASE;
+    ELSE -- ERROR
+  END AS ws_type,
+
 
   INSERT INTO qgep.vw_wastewater_node(
       backflow_level
@@ -348,13 +335,13 @@ BEGIN
   (
       NEW.backflow_level
     , NEW.bottom_level
-    , NEW.situation_geometry
-    , COALESCE(NULLIF(NEW.wn_identifier,''), NEW.identifier)
-    , COALESCE(NULLIF(NEW.wn_remark,''), NEW.remark)
-    , NOW()
-    , COALESCE(NULLIF(NEW.wn_provider,''), NEW.provider) -- TODO will need to be switched to fk
-    , COALESCE(NULLIF(NEW.wn_dataowner,''), NEW.dataowner) -- TODO will need to be switched to fk
-    , ws_obj_id
+    , COALESCE(NEW.node_geometry, NEW.situation_geometry)
+    , NEW.identifier
+    , NEW.remark
+    , NEW.last_modification
+    , NEW.dataowner
+    , NEW.provider
+    , mh_obj_id
   );
 
   INSERT INTO qgep.vw_cover(
@@ -391,10 +378,10 @@ BEGIN
     , NEW.identifier
     , NEW.remark
     , NEW.renovation_demand
-    , NOW()
+    , NEW.last_modification
     , NEW.dataowner
     , NEW.provider
-    , ws_obj_id
+    , mh_obj_id
   );
   RETURN NEW;
 END; $BODY$ LANGUAGE plpgsql VOLATILE
