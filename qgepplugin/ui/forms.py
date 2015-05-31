@@ -80,8 +80,7 @@ def cover_ws_type_changed(form, feature, layer):
     elif 'infiltration_installation' == ws_type:
         disabledtabs.remove('Infiltration Installation')
 
-
-    for tabidx in range( tabs.count() ):
+    for tabidx in range(tabs.count()):
         if tabs.tabText(tabidx) in disabledtabs:
             tabs.setTabEnabled(tabidx, False)
         else:
@@ -90,8 +89,11 @@ def cover_ws_type_changed(form, feature, layer):
     # Needs to be done after every change as it triggers the recalculation of the tab offsets
     tabs.setStyleSheet('QTabBar::tab:disabled { width: 0; height: 0; margin: 0; padding: 0; border: none; }')
 
+
 def vw_cover_open(form, layer, feature):
     ws_type_selector = form.findChild(QComboBox, 'ws_type')
     ws_type_selector.currentIndexChanged.connect(
         lambda: cover_ws_type_changed(form, feature, layer)
     )
+
+    cover_ws_type_changed(form, feature, layer)

@@ -1,8 +1,8 @@
-#-----------------------------------------------------------
+# -----------------------------------------------------------
 # 
 # QGEP
 # Copyright (C) 2012  Matthias Kuhn
-#-----------------------------------------------------------
+# -----------------------------------------------------------
 # 
 # licensed under the terms of GNU GPL 2
 # 
@@ -20,16 +20,19 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 # 
-#---------------------------------------------------------------------
+# ---------------------------------------------------------------------
 
 import os
 from PyQt4.QtCore import QSettings, QLocale
 from qgis.utils import qgsfunction
 
+
 def classFactory(iface):
     from qgepplugin import QgepPlugin
+
     return QgepPlugin(iface)
 
-@qgsfunction(0,"System")
+
+@qgsfunction(0, "System")
 def locale(values, feature, parent):
-	return QSettings().value("locale/userLocale", QLocale.system().name())
+    return QSettings().value("locale/userLocale", QLocale.system().name())
