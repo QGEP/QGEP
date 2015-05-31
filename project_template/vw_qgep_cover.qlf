@@ -1365,6 +1365,9 @@
   <relation referencingLayer="vw_access_aid" referencedLayer="vw_qgep_cover" id="vw_access_aid20150507162234295_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id" name="Access Aids">
    <fieldRef referencedField="ws_obj_id" referencingField="fk_wastewater_structure"/>
   </relation>
+  <relation referencingLayer="vw_backflow_prevention" referencedLayer="vw_qgep_cover" id="vw_backflow_prevention20150531093552085_fk_wastewater_structure_vw_qgep_cover_ws_obj_id" name="Backflow Prevention">
+   <fieldRef referencedField="ws_obj_id" referencingField="fk_wastewater_structure"/>
+  </relation>
   <relation referencingLayer="vw_benching" referencedLayer="vw_qgep_cover" id="vw_benching20150507162234281_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id" name="Benchings">
    <fieldRef referencedField="ws_obj_id" referencingField="fk_wastewater_structure"/>
   </relation>
@@ -1381,6 +1384,7 @@
  <dependencies>
   <dependency>od_maintenance_event</dependency>
   <dependency>vw_access_aid</dependency>
+  <dependency>vw_backflow_prevention</dependency>
   <dependency>vw_benching</dependency>
   <dependency>vw_cover___</dependency>
   <dependency>vw_dryweather_downspout</dependency>
