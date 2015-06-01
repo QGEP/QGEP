@@ -128,7 +128,7 @@ def sync_language(lang_code):
         tree.write(f)
 
 
-for lang in ['fr']:
+for lang in ['fr', 'de', 'it']:
     print 'Translating {}'.format(lang)
 #    try:
     sync_language(lang)

@@ -1185,4 +1185,228 @@
    <translation type="unfinished" />
   </message>
  </context>
+ <context>
+  <name>lyr_od_wastewater_structure</name>
+  <message>
+   <source>od_wastewater_structure</source>
+   <translation type="unfinished" />
+  </message>
+ </context>
+ <context>
+  <name>fld_od_wastewater_structure</name>
+  <message>
+   <source>inspection_interval</source>
+   <translation>intervalle_inspection</translation>
+  </message>
+  <message>
+   <source>contract_section</source>
+   <translation>lot_construction</translation>
+  </message>
+  <message>
+   <source>fk_owner</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>subsidies</source>
+   <translation>subventions</translation>
+  </message>
+  <message>
+   <source>accessibility</source>
+   <translation>acces</translation>
+  </message>
+  <message>
+   <source>renovation_necessity</source>
+   <translation>necessite_assainir</translation>
+  </message>
+  <message>
+   <source>gross_costs</source>
+   <translation>couts_bruts</translation>
+  </message>
+  <message>
+   <source>rv_construction_type</source>
+   <translation>vr_type_construction</translation>
+  </message>
+  <message>
+   <source>replacement_value</source>
+   <translation>valeur_remplacement</translation>
+  </message>
+  <message>
+   <source>location_name</source>
+   <translation>lieu_dit</translation>
+  </message>
+  <message>
+   <source>dataowner</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>old_obj_id</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>provider</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>_function_hierarchic</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>rv_base_year</source>
+   <translation>vr_annee_reference</translation>
+  </message>
+  <message>
+   <source>structure_condition</source>
+   <translation>etat_constructif</translation>
+  </message>
+  <message>
+   <source>remark</source>
+   <translation>remarque</translation>
+  </message>
+  <message>
+   <source>records</source>
+   <translation>dossier</translation>
+  </message>
+  <message>
+   <source>detail_geometry_3d_geometry</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>financing</source>
+   <translation>financement</translation>
+  </message>
+  <message>
+   <source>year_of_replacement</source>
+   <translation>annee_de_remplacement</translation>
+  </message>
+  <message>
+   <source>obj_id</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>_usage_current</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>fk_operator</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>status</source>
+   <translation>etat</translation>
+  </message>
+  <message>
+   <source>last_modification</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>year_of_construction</source>
+   <translation>annee_de_construction</translation>
+  </message>
+  <message>
+   <source>identifier</source>
+   <translation>designation</translation>
+  </message>
+ </context>
+ <context>
+  <name>frm_vw_qgep_reach</name>
+  <message>
+   <source>From</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>Wastewater Structure</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>Wastewater Networkelement</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>Reach</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>General</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>To</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>Reach Points</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>Maintenance</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>Channel</source>
+   <translation type="unfinished" />
+  </message>
+ </context>
+ <context>
+  <name>frm_vw_qgep_cover</name>
+  <message>
+   <source>Dryweather Flume</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>Special Structure</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>Wastewater Structure</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>Wastewater Node</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>Cover</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>Covers</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>General</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>Infiltration Installation</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>Dryweather Downspout</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>Manhole</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>Maintenance</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>Benching</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>Access Aid</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>Backflow Prevention</source>
+   <translation type="unfinished" />
+  </message>
+  <message>
+   <source>Discharge Point</source>
+   <translation type="unfinished" />
+  </message>
+ </context>
 </TS>

@@ -1187,4 +1187,228 @@
    <translation>identifier</translation>
   </message>
  </context>
+ <context>
+  <name>lyr_od_wastewater_structure</name>
+  <message>
+   <source>od_wastewater_structure</source>
+   <translation>od_wastewater_structure</translation>
+  </message>
+ </context>
+ <context>
+  <name>fld_od_wastewater_structure</name>
+  <message>
+   <source>inspection_interval</source>
+   <translation>inspection_interval</translation>
+  </message>
+  <message>
+   <source>contract_section</source>
+   <translation>contract_section</translation>
+  </message>
+  <message>
+   <source>fk_owner</source>
+   <translation>fk_owner</translation>
+  </message>
+  <message>
+   <source>subsidies</source>
+   <translation>subsidies</translation>
+  </message>
+  <message>
+   <source>accessibility</source>
+   <translation>accessibility</translation>
+  </message>
+  <message>
+   <source>renovation_necessity</source>
+   <translation>renovation_necessity</translation>
+  </message>
+  <message>
+   <source>gross_costs</source>
+   <translation>gross_costs</translation>
+  </message>
+  <message>
+   <source>rv_construction_type</source>
+   <translation>rv_construction_type</translation>
+  </message>
+  <message>
+   <source>replacement_value</source>
+   <translation>replacement_value</translation>
+  </message>
+  <message>
+   <source>location_name</source>
+   <translation>location_name</translation>
+  </message>
+  <message>
+   <source>dataowner</source>
+   <translation>dataowner</translation>
+  </message>
+  <message>
+   <source>old_obj_id</source>
+   <translation>old_obj_id</translation>
+  </message>
+  <message>
+   <source>provider</source>
+   <translation>provider</translation>
+  </message>
+  <message>
+   <source>_function_hierarchic</source>
+   <translation>_function_hierarchic</translation>
+  </message>
+  <message>
+   <source>rv_base_year</source>
+   <translation>rv_base_year</translation>
+  </message>
+  <message>
+   <source>structure_condition</source>
+   <translation>structure_condition</translation>
+  </message>
+  <message>
+   <source>remark</source>
+   <translation>remark</translation>
+  </message>
+  <message>
+   <source>records</source>
+   <translation>records</translation>
+  </message>
+  <message>
+   <source>detail_geometry_3d_geometry</source>
+   <translation>detail_geometry_3d_geometry</translation>
+  </message>
+  <message>
+   <source>financing</source>
+   <translation>financing</translation>
+  </message>
+  <message>
+   <source>year_of_replacement</source>
+   <translation>year_of_replacement</translation>
+  </message>
+  <message>
+   <source>obj_id</source>
+   <translation>obj_id</translation>
+  </message>
+  <message>
+   <source>_usage_current</source>
+   <translation>_usage_current</translation>
+  </message>
+  <message>
+   <source>fk_operator</source>
+   <translation>fk_operator</translation>
+  </message>
+  <message>
+   <source>status</source>
+   <translation>status</translation>
+  </message>
+  <message>
+   <source>last_modification</source>
+   <translation>last_modification</translation>
+  </message>
+  <message>
+   <source>year_of_construction</source>
+   <translation>year_of_construction</translation>
+  </message>
+  <message>
+   <source>identifier</source>
+   <translation>identifier</translation>
+  </message>
+ </context>
+ <context>
+  <name>frm_vw_qgep_reach</name>
+  <message>
+   <source>From</source>
+   <translation>From</translation>
+  </message>
+  <message>
+   <source>Wastewater Structure</source>
+   <translation>Wastewater Structure</translation>
+  </message>
+  <message>
+   <source>Wastewater Networkelement</source>
+   <translation>Wastewater Networkelement</translation>
+  </message>
+  <message>
+   <source>Reach</source>
+   <translation>Reach</translation>
+  </message>
+  <message>
+   <source>General</source>
+   <translation>General</translation>
+  </message>
+  <message>
+   <source>To</source>
+   <translation>To</translation>
+  </message>
+  <message>
+   <source>Reach Points</source>
+   <translation>Reach Points</translation>
+  </message>
+  <message>
+   <source>Maintenance</source>
+   <translation>Maintenance</translation>
+  </message>
+  <message>
+   <source>Channel</source>
+   <translation>Channel</translation>
+  </message>
+ </context>
+ <context>
+  <name>frm_vw_qgep_cover</name>
+  <message>
+   <source>Dryweather Flume</source>
+   <translation>Dryweather Flume</translation>
+  </message>
+  <message>
+   <source>Special Structure</source>
+   <translation>Special Structure</translation>
+  </message>
+  <message>
+   <source>Wastewater Structure</source>
+   <translation>Wastewater Structure</translation>
+  </message>
+  <message>
+   <source>Wastewater Node</source>
+   <translation>Wastewater Node</translation>
+  </message>
+  <message>
+   <source>Cover</source>
+   <translation>Cover</translation>
+  </message>
+  <message>
+   <source>Covers</source>
+   <translation>Covers</translation>
+  </message>
+  <message>
+   <source>General</source>
+   <translation>General</translation>
+  </message>
+  <message>
+   <source>Infiltration Installation</source>
+   <translation>Infiltration Installation</translation>
+  </message>
+  <message>
+   <source>Dryweather Downspout</source>
+   <translation>Dryweather Downspout</translation>
+  </message>
+  <message>
+   <source>Manhole</source>
+   <translation>Manhole</translation>
+  </message>
+  <message>
+   <source>Maintenance</source>
+   <translation>Maintenance</translation>
+  </message>
+  <message>
+   <source>Benching</source>
+   <translation>Benching</translation>
+  </message>
+  <message>
+   <source>Access Aid</source>
+   <translation>Access Aid</translation>
+  </message>
+  <message>
+   <source>Backflow Prevention</source>
+   <translation>Backflow Prevention</translation>
+  </message>
+  <message>
+   <source>Discharge Point</source>
+   <translation>Discharge Point</translation>
+  </message>
+ </context>
 </TS>
