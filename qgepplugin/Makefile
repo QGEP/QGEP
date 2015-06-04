@@ -58,7 +58,7 @@ deploy:
 	mkdir -p $(HOME)/.qgis/python/plugins/$(PLUGINNAME)/tools
 	mkdir -p $(HOME)/.qgis/python/plugins/$(PLUGINNAME)/icons
 	cp -vf $(PY_FILES) $(HOME)/.qgis/python/plugins/$(PLUGINNAME)
-	cp -vf $(UI_FILES1) $(HOME)/.qgis/python/plugins/$(PLUGINNAME)/tools
+	cp -vf $(UI_FILES) $(HOME)/.qgis/python/plugins/$(PLUGINNAME)/tools
 	cp -vf $(RESOURCE_FILES) $(HOME)/.qgis/python/plugins/$(PLUGINNAME)
 #	cp -vf $(RC_FILES) $(HOME)/.qgis/python/plugins/$(PLUGINNAME)
 	cp -vf $(EXTRAS) $(HOME)/.qgis/python/plugins/$(PLUGINNAME)
