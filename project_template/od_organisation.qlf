@@ -27,17 +27,5 @@
  <map-layer-style-manager current="">
   <map-layer-style name=""/>
  </map-layer-style-manager>
- <relations>
-  <relation referencingLayer="vw_wizard_cover_special_structure" referencedLayer="od_organisation" id="vw_wizard_cover_special_structure-fk_owner-od_organization" name="Special Structures">
-   <fieldRef referencedField="obj_id" referencingField="fk_owner"/>
-  </relation>
-  <relation referencingLayer="vw_wizard_reach_channel" referencedLayer="od_organisation" id="vw_wizard_reach_channel-fk_owner" name="Reaches">
-   <fieldRef referencedField="obj_id" referencingField="fk_owner"/>
-  </relation>
- </relations>
  <layer-tree-group name="Value Lists"/>
- <dependencies>
-  <dependency>vw_wizard_cover_special_structure</dependency>
-  <dependency>vw_wizard_reach_channel</dependency>
- </dependencies>
 </maplayer>

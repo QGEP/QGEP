@@ -27,17 +27,4 @@
  <map-layer-style-manager current="">
   <map-layer-style name=""/>
  </map-layer-style-manager>
- <relations>
-  <relation referencingLayer="vw_wizard_reach_channel" referencedLayer="od_wastewater_networkelement" id="vw_wizard_reach_channel-rp_from_fk_wastewater_networkelement" name="Reach Points">
-   <fieldRef referencedField="obj_id" referencingField="rp_from_fk_wastewater_networkelement"/>
-  </relation>
-  <relation referencingLayer="vw_wizard_reach_channel" referencedLayer="od_wastewater_networkelement" id="vw_wizard_reach_channel-rp_to_fk_wastewater_networkelement" name="Reach Points">
-   <fieldRef referencedField="obj_id" referencingField="rp_to_fk_wastewater_networkelement"/>
-  </relation>
- </relations>
- <layer-tree-group name="Structure Parts"/>
- <dependencies>
-  <dependency>vw_wizard_reach_channel</dependency>
-  <dependency>vw_wizard_reach_channel</dependency>
- </dependencies>
 </maplayer>
