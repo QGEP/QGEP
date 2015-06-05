@@ -287,6 +287,14 @@
    <source>wn_identifier</source>
    <translation>wn_identifier</translation>
   </message>
+  <message>
+   <source>ws_remark</source>
+   <translation>ws_remark</translation>
+  </message>
+  <message>
+   <source>ws_identifier</source>
+   <translation>ws_identifier</translation>
+  </message>
  </context>
  <context>
   <name>fld_vw_access_aid</name>
@@ -912,6 +920,10 @@
    <source>slope_building_plan</source>
    <translation>slope_building_plan</translation>
   </message>
+  <message>
+   <source>bedding_encasement</source>
+   <translation>bedding_encasement</translation>
+  </message>
  </context>
  <context>
   <name>lyr_vw_dryweather_downspout</name>
@@ -1409,6 +1421,10 @@
   <message>
    <source>Discharge Point</source>
    <translation>Discharge Point</translation>
+  </message>
+  <message>
+   <source>Structure Parts</source>
+   <translation>Structure Parts</translation>
   </message>
  </context>
 </TS>
