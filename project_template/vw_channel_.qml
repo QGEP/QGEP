@@ -110,39 +110,40 @@
  <annotationform>.</annotationform>
  <editorlayout>uifilelayout</editorlayout>
  <aliases>
-  <alias field="accessibility" index="9" name="accessibility"/>
-  <alias field="bedding_encasement" index="1" name="bedding_encasement"/>
-  <alias field="connection_type" index="2" name="connection_type"/>
-  <alias field="contract_section" index="10" name="contract_section"/>
-  <alias field="dataowner" index="30" name="dataowner"/>
-  <alias field="detail_geometry_3d_geometry" index="12" name="detail_geometry_3d_geometry"/>
-  <alias field="detail_geometry_geometry" index="11" name="detail_geometry_geometry"/>
-  <alias field="financing" index="13" name="financing"/>
-  <alias field="fk_operator" index="33" name="%#vw_channel#fk_operator#name#%"/>
-  <alias field="fk_owner" index="32" name="%#vw_channel#fk_owner#name#%"/>
-  <alias field="function_hierarchic" index="3" name="function_hierarchic"/>
-  <alias field="function_hydraulic" index="4" name="function_hydraulic"/>
-  <alias field="gross_costs" index="14" name="gross_costs"/>
-  <alias field="identifier" index="15" name="identifier"/>
-  <alias field="inspection_interval" index="16" name="inspection_interval"/>
-  <alias field="jetting_interval" index="5" name="jetting_interval"/>
-  <alias field="last_modification" index="29" name="last_modification"/>
-  <alias field="location_name" index="17" name="location_name"/>
-  <alias field="pipe_length" index="6" name="pipe_length"/>
-  <alias field="provider" index="31" name="provider"/>
-  <alias field="records" index="18" name="records"/>
-  <alias field="remark" index="19" name="remark"/>
-  <alias field="renovation_necessity" index="20" name="renovation_necessity"/>
-  <alias field="replacement_value" index="21" name="replacement_value"/>
-  <alias field="rv_base_year" index="22" name="rv_base_year"/>
-  <alias field="rv_construction_type" index="23" name="rv_construction_type"/>
-  <alias field="status" index="24" name="status"/>
-  <alias field="structure_condition" index="25" name="structure_condition"/>
-  <alias field="subsidies" index="26" name="subsidies"/>
-  <alias field="usage_current" index="7" name="usage_current"/>
-  <alias field="usage_planned" index="8" name="usage_planned"/>
-  <alias field="year_of_construction" index="27" name="year_of_construction"/>
-  <alias field="year_of_replacement" index="28" name="year_of_replacement"/>
+  <alias field="accessibility" index="9" name=""/>
+  <alias field="bedding_encasement" index="1" name=""/>
+  <alias field="connection_type" index="2" name=""/>
+  <alias field="contract_section" index="10" name=""/>
+  <alias field="dataowner" index="30" name=""/>
+  <alias field="detail_geometry_3d_geometry" index="12" name=""/>
+  <alias field="detail_geometry_geometry" index="11" name=""/>
+  <alias field="financing" index="13" name=""/>
+  <alias field="fk_operator" index="33" name=""/>
+  <alias field="fk_owner" index="32" name=""/>
+  <alias field="function_hierarchic" index="3" name=""/>
+  <alias field="function_hydraulic" index="4" name=""/>
+  <alias field="gross_costs" index="14" name=""/>
+  <alias field="identifier" index="15" name=""/>
+  <alias field="inspection_interval" index="16" name=""/>
+  <alias field="jetting_interval" index="5" name=""/>
+  <alias field="last_modification" index="29" name=""/>
+  <alias field="location_name" index="17" name=""/>
+  <alias field="obj_id" index="0" name=""/>
+  <alias field="pipe_length" index="6" name=""/>
+  <alias field="provider" index="31" name=""/>
+  <alias field="records" index="18" name=""/>
+  <alias field="remark" index="19" name=""/>
+  <alias field="renovation_necessity" index="20" name=""/>
+  <alias field="replacement_value" index="21" name=""/>
+  <alias field="rv_base_year" index="22" name=""/>
+  <alias field="rv_construction_type" index="23" name=""/>
+  <alias field="status" index="24" name=""/>
+  <alias field="structure_condition" index="25" name=""/>
+  <alias field="subsidies" index="26" name=""/>
+  <alias field="usage_current" index="7" name=""/>
+  <alias field="usage_planned" index="8" name=""/>
+  <alias field="year_of_construction" index="27" name=""/>
+  <alias field="year_of_replacement" index="28" name=""/>
  </aliases>
  <excludeAttributesWMS/>
  <excludeAttributesWFS/>

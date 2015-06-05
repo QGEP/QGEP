@@ -35,15 +35,15 @@
  <annotationform>.</annotationform>
  <editorlayout>generatedlayout</editorlayout>
  <aliases>
-  <alias field="dataowner" index="6" name="dataowner"/>
-  <alias field="fk_wastewater_structure" index="8" name="fk_wastewater_structure"/>
-  <alias field="identifier" index="2" name="identifier"/>
-  <alias field="last_modification" index="5" name="last_modification"/>
-  <alias field="material" index="1" name="material"/>
-  <alias field="obj_id" index="0" name="obj_id"/>
-  <alias field="provider" index="7" name="provider"/>
-  <alias field="remark" index="3" name="remark"/>
-  <alias field="renovation_demand" index="4" name="renovation_demand"/>
+  <alias field="dataowner" index="6" name=""/>
+  <alias field="fk_wastewater_structure" index="8" name=""/>
+  <alias field="identifier" index="2" name=""/>
+  <alias field="last_modification" index="5" name=""/>
+  <alias field="material" index="1" name=""/>
+  <alias field="obj_id" index="0" name=""/>
+  <alias field="provider" index="7" name=""/>
+  <alias field="remark" index="3" name=""/>
+  <alias field="renovation_demand" index="4" name=""/>
  </aliases>
  <excludeAttributesWMS/>
  <excludeAttributesWFS/>

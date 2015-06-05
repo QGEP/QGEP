@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis version="2.9.0-Master" minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" simplifyMaxScale="1" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
+<qgis version="2.9.0-Master" minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" simplifyMaxScale="1" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
  <edittypes>
   <edittype widgetv2type="TextEdit" name="obj_id">
    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -909,7 +909,7 @@
   <property key="labeling/bufferColorB" value="255"/>
   <property key="labeling/bufferColorG" value="255"/>
   <property key="labeling/bufferColorR" value="255"/>
-  <property key="labeling/bufferDraw" value="false"/>
+  <property key="labeling/bufferDraw" value="true"/>
   <property key="labeling/bufferJoinStyle" value="64"/>
   <property key="labeling/bufferNoFill" value="false"/>
   <property key="labeling/bufferSize" value="1"/>
@@ -1071,7 +1071,7 @@
   <selectedonly on=""/>
  </labelattributes>
  <SingleCategoryDiagramRenderer diagramType="Pie">
-  <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" font="Cantarell,11,-1,5,50,0,0,0,0,0" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" sizeType="MM" minScaleDenominator="-4.65661e-10">
+  <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" font="Cantarell,11,-1,5,50,0,0,0,0,0" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" sizeType="MM" minScaleDenominator="0">
    <attribute field="" color="#000000" label=""/>
   </DiagramCategory>
  </SingleCategoryDiagramRenderer>
@@ -1082,54 +1082,79 @@
  <annotationform>.</annotationform>
  <editorlayout>tablayout</editorlayout>
  <aliases>
-  <alias field="clear_height" index="1" name="clear_height"/>
-  <alias field="coefficient_of_friction" index="3" name="coefficient_of_friction"/>
-  <alias field="dataowner" index="48" name="dataowner"/>
-  <alias field="elevation_determination" index="4" name="elevation_determination"/>
-  <alias field="fk_pipe_profile" index="18" name="%#vw_reach#fk_pipe_profile#name#%"/>
-  <alias field="fk_wastewater_structure" index="50" name="%#vw_reach#fk_wastewater_structure#name#%"/>
-  <alias field="function_hierarchic" index="19" name="%#vw_reach#function_hierarchic#name#%"/>
-  <alias field="horizontal_positioning" index="5" name="horizontal_positioning"/>
-  <alias field="identifier" index="45" name="%#vw_reach#identifier#name#%"/>
-  <alias field="inside_coating" index="6" name="inside_coating"/>
-  <alias field="last_modification" index="47" name="last_modification"/>
-  <alias field="length_effective" index="7" name="length_effective"/>
-  <alias field="material" index="9" name="material"/>
-  <alias field="progression_3d_geometry" index="10" name="progression_3d_geometry"/>
-  <alias field="provider" index="49" name="provider"/>
-  <alias field="reliner_material" index="11" name="reliner_material"/>
-  <alias field="reliner_nominal_size" index="12" name="reliner_nominal_size"/>
-  <alias field="relining_construction" index="13" name="relining_construction"/>
-  <alias field="relining_kind" index="14" name="relining_kind"/>
-  <alias field="remark" index="46" name="remark"/>
-  <alias field="ring_stiffness" index="15" name="ring_stiffness"/>
-  <alias field="rp_from_dataowner" index="59" name="rp_from_dataowner"/>
-  <alias field="rp_from_elevation_accuracy" index="52" name="rp_from_elevation_accuracy"/>
-  <alias field="rp_from_fk_wastewater_networkelement" index="61" name="%#vw_reach#rp_from_fk_wastewater_networkelement#name#%"/>
-  <alias field="rp_from_identifier" index="53" name="rp_from_identifier"/>
-  <alias field="rp_from_last_modification" index="58" name="rp_from_last_modification"/>
-  <alias field="rp_from_level" index="54" name="rp_from_level"/>
-  <alias field="rp_from_obj_id" index="51" name="rp_from_obj_id"/>
-  <alias field="rp_from_outlet_shape" index="55" name="rp_from_outlet_shape"/>
-  <alias field="rp_from_position_of_connection" index="56" name="rp_from_position_of_connection"/>
-  <alias field="rp_from_provider" index="60" name="rp_from_provider"/>
-  <alias field="rp_from_remark" index="57" name="rp_from_remark"/>
-  <alias field="rp_to_dataowner" index="70" name="rp_to_dataowner"/>
-  <alias field="rp_to_elevation_accuracy" index="63" name="rp_to_elevation_accuracy"/>
-  <alias field="rp_to_fk_wastewater_networkelement" index="72" name="%#vw_reach#rp_to_fk_wastewater_networkelement#name#%"/>
-  <alias field="rp_to_identifier" index="64" name="rp_to_identifier"/>
-  <alias field="rp_to_last_modification" index="69" name="rp_to_last_modification"/>
-  <alias field="rp_to_level" index="65" name="rp_to_level"/>
-  <alias field="rp_to_obj_id" index="62" name="rp_to_obj_id"/>
-  <alias field="rp_to_outlet_shape" index="66" name="rp_to_outlet_shape"/>
-  <alias field="rp_to_position_of_connection" index="67" name="rp_to_position_of_connection"/>
-  <alias field="rp_to_provider" index="71" name="rp_to_provider"/>
-  <alias field="rp_to_remark" index="68" name="rp_to_remark"/>
-  <alias field="slope_building_plan" index="16" name="slope_building_plan"/>
-  <alias field="slope_per_mill" index="8" name="%#vw_reach#slope_per_mill#name#%"/>
-  <alias field="usage_current" index="24" name="%#vw_reach#usage_current#name#%"/>
-  <alias field="wall_roughness" index="17" name="wall_roughness"/>
-  <alias field="width" index="2" name="%#vw_reach#width#name#%"/>
+  <alias field="accessibility" index="27" name=""/>
+  <alias field="clear_height" index="1" name=""/>
+  <alias field="coefficient_of_friction" index="3" name=""/>
+  <alias field="connection_type" index="20" name=""/>
+  <alias field="contract_section" index="28" name=""/>
+  <alias field="dataowner" index="48" name=""/>
+  <alias field="elevation_determination" index="4" name=""/>
+  <alias field="financing" index="29" name=""/>
+  <alias field="fk_operator" index="44" name=""/>
+  <alias field="fk_owner" index="43" name=""/>
+  <alias field="fk_pipe_profile" index="18" name=""/>
+  <alias field="fk_wastewater_structure" index="50" name=""/>
+  <alias field="function_hierarchic" index="19" name=""/>
+  <alias field="function_hydraulic" index="21" name=""/>
+  <alias field="gross_costs" index="30" name=""/>
+  <alias field="horizontal_positioning" index="5" name=""/>
+  <alias field="identifier" index="45" name=""/>
+  <alias field="inside_coating" index="6" name=""/>
+  <alias field="inspection_interval" index="31" name=""/>
+  <alias field="jetting_interval" index="22" name=""/>
+  <alias field="last_modification" index="47" name=""/>
+  <alias field="length_effective" index="7" name=""/>
+  <alias field="location_name" index="32" name=""/>
+  <alias field="material" index="9" name=""/>
+  <alias field="obj_id" index="0" name=""/>
+  <alias field="pipe_length" index="23" name=""/>
+  <alias field="progression_3d_geometry" index="10" name=""/>
+  <alias field="provider" index="49" name=""/>
+  <alias field="records" index="33" name=""/>
+  <alias field="reliner_material" index="11" name=""/>
+  <alias field="reliner_nominal_size" index="12" name=""/>
+  <alias field="relining_construction" index="13" name=""/>
+  <alias field="relining_kind" index="14" name=""/>
+  <alias field="remark" index="46" name=""/>
+  <alias field="renovation_necessity" index="34" name=""/>
+  <alias field="replacement_value" index="35" name=""/>
+  <alias field="ring_stiffness" index="15" name=""/>
+  <alias field="rp_from_dataowner" index="59" name=""/>
+  <alias field="rp_from_elevation_accuracy" index="52" name=""/>
+  <alias field="rp_from_fk_wastewater_networkelement" index="61" name=""/>
+  <alias field="rp_from_identifier" index="53" name=""/>
+  <alias field="rp_from_last_modification" index="58" name=""/>
+  <alias field="rp_from_level" index="54" name=""/>
+  <alias field="rp_from_obj_id" index="51" name=""/>
+  <alias field="rp_from_outlet_shape" index="55" name=""/>
+  <alias field="rp_from_position_of_connection" index="56" name=""/>
+  <alias field="rp_from_provider" index="60" name=""/>
+  <alias field="rp_from_remark" index="57" name=""/>
+  <alias field="rp_to_dataowner" index="70" name=""/>
+  <alias field="rp_to_elevation_accuracy" index="63" name=""/>
+  <alias field="rp_to_fk_wastewater_networkelement" index="72" name=""/>
+  <alias field="rp_to_identifier" index="64" name=""/>
+  <alias field="rp_to_last_modification" index="69" name=""/>
+  <alias field="rp_to_level" index="65" name=""/>
+  <alias field="rp_to_obj_id" index="62" name=""/>
+  <alias field="rp_to_outlet_shape" index="66" name=""/>
+  <alias field="rp_to_position_of_connection" index="67" name=""/>
+  <alias field="rp_to_provider" index="71" name=""/>
+  <alias field="rp_to_remark" index="68" name=""/>
+  <alias field="rv_base_year" index="36" name=""/>
+  <alias field="rv_construction_type" index="37" name=""/>
+  <alias field="slope_building_plan" index="16" name=""/>
+  <alias field="slope_per_mill" index="8" name=""/>
+  <alias field="status" index="38" name=""/>
+  <alias field="structure_condition" index="39" name=""/>
+  <alias field="subsidies" index="40" name=""/>
+  <alias field="usage_current" index="24" name=""/>
+  <alias field="usage_planned" index="25" name=""/>
+  <alias field="wall_roughness" index="17" name=""/>
+  <alias field="width" index="2" name=""/>
+  <alias field="ws_obj_id" index="26" name=""/>
+  <alias field="year_of_construction" index="41" name=""/>
+  <alias field="year_of_replacement" index="42" name=""/>
  </aliases>
  <excludeAttributesWMS/>
  <excludeAttributesWFS/>

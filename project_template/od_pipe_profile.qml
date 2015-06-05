@@ -35,14 +35,15 @@
  <annotationform>.</annotationform>
  <editorlayout>generatedlayout</editorlayout>
  <aliases>
-  <alias field="dataowner" index="6" name="dataowner"/>
-  <alias field="height_width_ratio" index="1" name="height_width_ratio"/>
-  <alias field="identifier" index="2" name="identifier"/>
-  <alias field="last_modification" index="5" name="last_modification"/>
-  <alias field="old_obj_id" index="8" name="%#od_pipe_profile#old_obj_id#name#%"/>
-  <alias field="profile_type" index="3" name="profile_type"/>
-  <alias field="provider" index="7" name="provider"/>
-  <alias field="remark" index="4" name="remark"/>
+  <alias field="dataowner" index="6" name=""/>
+  <alias field="height_width_ratio" index="1" name=""/>
+  <alias field="identifier" index="2" name=""/>
+  <alias field="last_modification" index="5" name=""/>
+  <alias field="obj_id" index="0" name=""/>
+  <alias field="old_obj_id" index="8" name=""/>
+  <alias field="profile_type" index="3" name=""/>
+  <alias field="provider" index="7" name=""/>
+  <alias field="remark" index="4" name=""/>
  </aliases>
  <excludeAttributesWMS/>
  <excludeAttributesWFS/>

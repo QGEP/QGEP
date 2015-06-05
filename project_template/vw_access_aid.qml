@@ -4,8 +4,8 @@
   <edittype widgetv2type="TextEdit" name="obj_id">
    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
   </edittype>
-  <edittype widgetv2type="TextEdit" name="kind">
-   <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+  <edittype widgetv2type="ValueRelation" name="kind">
+   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_access_aid_kind" Value="value_en" labelOnTop="0" AllowMulti="0"/>
   </edittype>
   <edittype widgetv2type="TextEdit" name="identifier">
    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -35,15 +35,15 @@
  <annotationform>.</annotationform>
  <editorlayout>generatedlayout</editorlayout>
  <aliases>
-  <alias field="dataowner" index="6" name="dataowner"/>
-  <alias field="fk_wastewater_structure" index="8" name="fk_wastewater_structure"/>
-  <alias field="identifier" index="2" name="identifier"/>
-  <alias field="kind" index="1" name="kind"/>
-  <alias field="last_modification" index="5" name="last_modification"/>
-  <alias field="obj_id" index="0" name="obj_id"/>
-  <alias field="provider" index="7" name="provider"/>
-  <alias field="remark" index="3" name="remark"/>
-  <alias field="renovation_demand" index="4" name="renovation_demand"/>
+  <alias field="dataowner" index="6" name=""/>
+  <alias field="fk_wastewater_structure" index="8" name=""/>
+  <alias field="identifier" index="2" name=""/>
+  <alias field="kind" index="1" name=""/>
+  <alias field="last_modification" index="5" name=""/>
+  <alias field="obj_id" index="0" name=""/>
+  <alias field="provider" index="7" name=""/>
+  <alias field="remark" index="3" name=""/>
+  <alias field="renovation_demand" index="4" name=""/>
  </aliases>
  <excludeAttributesWMS/>
  <excludeAttributesWFS/>

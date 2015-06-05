@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis version="2.9.0-Master" minimumScale="-4.65661e-10" maximumScale="5000" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" simplifyMaxScale="1" hasScaleBasedVisibilityFlag="1" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
+<qgis version="2.9.0-Master" minimumScale="0" maximumScale="5000" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" simplifyMaxScale="1" hasScaleBasedVisibilityFlag="1" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
  <edittypes>
   <edittype widgetv2type="TextEdit" name="obj_id">
    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -8,13 +8,13 @@
    <widgetv2config fieldEditable="1" labelOnTop="0" Editable="1"/>
   </edittype>
   <edittype widgetv2type="ValueRelation" name="cover_shape">
-   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_cover_cover_shape" Value="value_en" labelOnTop="0" AllowMulti="0"/>
+   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_cover_cover_shape" Value="value_de" labelOnTop="0" AllowMulti="0"/>
   </edittype>
   <edittype widgetv2type="Range" name="diameter">
    <widgetv2config AllowNull="1" fieldEditable="1" Step="10" Style="SpinBox" labelOnTop="0" Min="0" Max="99999" Suffix=" mm"/>
   </edittype>
   <edittype widgetv2type="ValueRelation" name="fastening">
-   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_cover_fastening" Value="value_en" labelOnTop="0" AllowMulti="0"/>
+   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_cover_fastening" Value="value_de" labelOnTop="0" AllowMulti="0"/>
   </edittype>
   <edittype widgetv2type="Range" name="level">
    <widgetv2config AllowNull="1" fieldEditable="1" Step="10" Style="SpinBox" labelOnTop="0" Min="0" Max="4000" Suffix=" m.a.s.l."/>
@@ -26,10 +26,10 @@
    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
   </edittype>
   <edittype widgetv2type="ValueRelation" name="sludge_bucket">
-   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_cover_sludge_bucket" Value="value_en" labelOnTop="0" AllowMulti="0"/>
+   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_cover_sludge_bucket" Value="value_de" labelOnTop="0" AllowMulti="0"/>
   </edittype>
   <edittype widgetv2type="ValueRelation" name="venting">
-   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_cover_venting" Value="value_en" labelOnTop="0" AllowMulti="0"/>
+   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_cover_venting" Value="value_de" labelOnTop="0" AllowMulti="0"/>
   </edittype>
   <edittype widgetv2type="TextEdit" name="identifier">
    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -38,7 +38,7 @@
    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
   </edittype>
   <edittype widgetv2type="ValueRelation" name="renovation_demand">
-   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_structure_part_renovation_demand" Value="value_en" labelOnTop="0" AllowMulti="0"/>
+   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_structure_part_renovation_demand" Value="value_de" labelOnTop="0" AllowMulti="0"/>
   </edittype>
   <edittype widgetv2type="DateTime" name="last_modification">
    <widgetv2config fieldEditable="1" calendar_popup="0" allow_null="0" display_format="yyyy-MM-dd" field_format="yyyy-MM-dd" labelOnTop="0"/>
@@ -127,10 +127,10 @@
    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
   </edittype>
   <edittype widgetv2type="ValueRelation" name="manhole_function">
-   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_manhole_function" Value="value_en" labelOnTop="0" AllowMulti="0"/>
+   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_manhole_function" Value="value_de" labelOnTop="0" AllowMulti="0"/>
   </edittype>
   <edittype widgetv2type="ValueRelation" name="material">
-   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_cover_material" Value="value_en" labelOnTop="0" AllowMulti="0"/>
+   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_cover_material" Value="value_de" labelOnTop="0" AllowMulti="0"/>
   </edittype>
   <edittype widgetv2type="Range" name="surface_inflow">
    <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="5"/>
@@ -1547,7 +1547,7 @@
   <selectedonly on=""/>
  </labelattributes>
  <SingleCategoryDiagramRenderer diagramType="Pie">
-  <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="5000" font="Cantarell,11,-1,5,50,0,0,0,0,0" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="1" enabled="0" height="15" sizeType="MM" minScaleDenominator="-4.65661e-10">
+  <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="5000" font="Cantarell,11,-1,5,50,0,0,0,0,0" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="1" enabled="0" height="15" sizeType="MM" minScaleDenominator="0">
    <attribute field="" color="#000000" label=""/>
   </DiagramCategory>
  </SingleCategoryDiagramRenderer>
@@ -1558,77 +1558,77 @@
  <annotationform>.</annotationform>
  <editorlayout>tablayout</editorlayout>
  <aliases>
-  <alias field="absorption_capacity" index="53" name="absorption_capacity"/>
-  <alias field="accessibility" index="18" name="accessibility"/>
+  <alias field="absorption_capacity" index="53" name=""/>
+  <alias field="accessibility" index="18" name=""/>
   <alias field="backflow_level" index="64" name=""/>
   <alias field="bottom_level" index="65" name=""/>
-  <alias field="brand" index="1" name="brand"/>
-  <alias field="bypass" index="46" name="bypass"/>
-  <alias field="channel_function_hierarchic" index="44" name="channel_function_hierarchic"/>
-  <alias field="channel_usage_current" index="43" name="channel_usage_current"/>
-  <alias field="contract_section" index="19" name="contract_section"/>
-  <alias field="cover_material" index="6" name="material"/>
-  <alias field="cover_shape" index="2" name="cover_shape"/>
-  <alias field="dataowner" index="14" name="dataowner"/>
-  <alias field="defects" index="54" name="defects"/>
-  <alias field="depth" index="36" name="depth"/>
-  <alias field="diameter" index="3" name="diameter"/>
-  <alias field="dimension1" index="37" name="dimension1"/>
-  <alias field="dimension2" index="38" name="dimension2"/>
-  <alias field="distance_to_aquifer" index="55" name="distance_to_aquifer"/>
-  <alias field="effective_area" index="56" name="effective_area"/>
-  <alias field="emergency_spillway" index="57" name="emergency_spillway"/>
-  <alias field="fastening" index="4" name="fastening"/>
-  <alias field="financing" index="20" name="financing"/>
-  <alias field="fk_operator" index="35" name="fk_operator"/>
-  <alias field="fk_owner" index="34" name="fk_owner"/>
-  <alias field="gross_costs" index="21" name="gross_costs"/>
-  <alias field="highwater_level" index="49" name="highwater_level"/>
-  <alias field="identifier" index="10" name="identifier"/>
-  <alias field="inspection_interval" index="22" name="inspection_interval"/>
-  <alias field="kind" index="58" name="kind"/>
-  <alias field="labeling" index="59" name="labeling"/>
-  <alias field="last_modification" index="13" name="last_modification"/>
-  <alias field="level" index="5" name="level"/>
-  <alias field="location_name" index="23" name="location_name"/>
-  <alias field="manhole_function" index="40" name="function"/>
-  <alias field="manhole_orientation" index="45" name="manhole_orientation"/>
-  <alias field="material" index="41" name="material"/>
-  <alias field="obj_id" index="0" name="obj_id"/>
-  <alias field="positional_accuracy" index="7" name="positional_accuracy"/>
-  <alias field="provider" index="15" name="provider"/>
-  <alias field="records" index="24" name="records"/>
-  <alias field="relevance" index="50" name="relevance"/>
-  <alias field="remark" index="11" name="remark"/>
-  <alias field="renovation_demand" index="12" name="renovation_demand"/>
-  <alias field="renovation_necessity" index="25" name="renovation_necessity"/>
-  <alias field="replacement_value" index="26" name="replacement_value"/>
-  <alias field="rv_base_year" index="27" name="rv_base_year"/>
-  <alias field="rv_construction_type" index="28" name="rv_construction_type"/>
-  <alias field="seepage_utilization" index="60" name="seepage_utilization"/>
-  <alias field="sludge_bucket" index="8" name="sludge_bucket"/>
-  <alias field="special_structure_function" index="47" name="function"/>
-  <alias field="status" index="29" name="status"/>
-  <alias field="stormwater_tank_arrangement" index="48" name="stormwater_tank_arrangement"/>
-  <alias field="structure_condition" index="30" name="structure_condition"/>
-  <alias field="subsidies" index="31" name="subsidies"/>
-  <alias field="surface_inflow" index="42" name="surface_inflow"/>
-  <alias field="terrain_level" index="51" name="terrain_level"/>
-  <alias field="upper_elevation" index="39" name="upper_elevation"/>
-  <alias field="vehicle_access" index="61" name="vehicle_access"/>
-  <alias field="venting" index="9" name="venting"/>
-  <alias field="waterlevel_hydraulic" index="52" name="waterlevel_hydraulic"/>
-  <alias field="watertightness" index="62" name="watertightness"/>
+  <alias field="brand" index="1" name=""/>
+  <alias field="bypass" index="46" name=""/>
+  <alias field="channel_function_hierarchic" index="44" name=""/>
+  <alias field="channel_usage_current" index="43" name=""/>
+  <alias field="contract_section" index="19" name=""/>
+  <alias field="cover_material" index="6" name=""/>
+  <alias field="cover_shape" index="2" name=""/>
+  <alias field="dataowner" index="14" name=""/>
+  <alias field="defects" index="54" name=""/>
+  <alias field="depth" index="36" name=""/>
+  <alias field="diameter" index="3" name=""/>
+  <alias field="dimension1" index="37" name=""/>
+  <alias field="dimension2" index="38" name=""/>
+  <alias field="distance_to_aquifer" index="55" name=""/>
+  <alias field="effective_area" index="56" name=""/>
+  <alias field="emergency_spillway" index="57" name=""/>
+  <alias field="fastening" index="4" name=""/>
+  <alias field="financing" index="20" name=""/>
+  <alias field="fk_operator" index="35" name=""/>
+  <alias field="fk_owner" index="34" name=""/>
+  <alias field="gross_costs" index="21" name=""/>
+  <alias field="highwater_level" index="49" name=""/>
+  <alias field="identifier" index="10" name=""/>
+  <alias field="inspection_interval" index="22" name=""/>
+  <alias field="kind" index="58" name=""/>
+  <alias field="labeling" index="59" name=""/>
+  <alias field="last_modification" index="13" name=""/>
+  <alias field="level" index="5" name=""/>
+  <alias field="location_name" index="23" name=""/>
+  <alias field="manhole_function" index="40" name=""/>
+  <alias field="manhole_orientation" index="45" name=""/>
+  <alias field="material" index="41" name=""/>
+  <alias field="obj_id" index="0" name=""/>
+  <alias field="positional_accuracy" index="7" name=""/>
+  <alias field="provider" index="15" name=""/>
+  <alias field="records" index="24" name=""/>
+  <alias field="relevance" index="50" name=""/>
+  <alias field="remark" index="11" name=""/>
+  <alias field="renovation_demand" index="12" name=""/>
+  <alias field="renovation_necessity" index="25" name=""/>
+  <alias field="replacement_value" index="26" name=""/>
+  <alias field="rv_base_year" index="27" name=""/>
+  <alias field="rv_construction_type" index="28" name=""/>
+  <alias field="seepage_utilization" index="60" name=""/>
+  <alias field="sludge_bucket" index="8" name=""/>
+  <alias field="special_structure_function" index="47" name=""/>
+  <alias field="status" index="29" name=""/>
+  <alias field="stormwater_tank_arrangement" index="48" name=""/>
+  <alias field="structure_condition" index="30" name=""/>
+  <alias field="subsidies" index="31" name=""/>
+  <alias field="surface_inflow" index="42" name=""/>
+  <alias field="terrain_level" index="51" name=""/>
+  <alias field="upper_elevation" index="39" name=""/>
+  <alias field="vehicle_access" index="61" name=""/>
+  <alias field="venting" index="9" name=""/>
+  <alias field="waterlevel_hydraulic" index="52" name=""/>
+  <alias field="watertightness" index="62" name=""/>
   <alias field="wn_dataowner" index="69" name=""/>
   <alias field="wn_identifier" index="66" name=""/>
   <alias field="wn_last_modification" index="68" name=""/>
   <alias field="wn_obj_id" index="63" name=""/>
   <alias field="wn_provider" index="70" name=""/>
   <alias field="wn_remark" index="67" name=""/>
-  <alias field="ws_obj_id" index="17" name="ws_obj_id"/>
-  <alias field="ws_type" index="16" name="ws_type"/>
-  <alias field="year_of_construction" index="32" name="year_of_construction"/>
-  <alias field="year_of_replacement" index="33" name="year_of_replacement"/>
+  <alias field="ws_obj_id" index="17" name=""/>
+  <alias field="ws_type" index="16" name=""/>
+  <alias field="year_of_construction" index="32" name=""/>
+  <alias field="year_of_replacement" index="33" name=""/>
  </aliases>
  <excludeAttributesWMS/>
  <excludeAttributesWFS/>
@@ -1735,26 +1735,16 @@
   <attributeEditorContainer name="Covers">
    <attributeEditorRelation relation="vw_cover20150507162234308_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id" name="vw_cover20150507162234308_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id"/>
   </attributeEditorContainer>
-  <attributeEditorContainer name="Access Aid">
+  <attributeEditorContainer name="Structure Parts">
    <attributeEditorRelation relation="vw_access_aid20150507162234295_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id" name="vw_access_aid20150507162234295_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id"/>
-  </attributeEditorContainer>
-  <attributeEditorContainer name="Backflow Prevention">
    <attributeEditorRelation relation="vw_backflow_prevention20150531093552085_fk_wastewater_structure_vw_qgep_cover_ws_obj_id" name="vw_backflow_prevention20150531093552085_fk_wastewater_structure_vw_qgep_cover_ws_obj_id"/>
-  </attributeEditorContainer>
-  <attributeEditorContainer name="Dryweather Flume">
    <attributeEditorRelation relation="vw_dryweather_flume20150507162234250_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id" name="vw_dryweather_flume20150507162234250_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id"/>
-  </attributeEditorContainer>
-  <attributeEditorContainer name="Benching">
    <attributeEditorRelation relation="vw_benching20150507162234281_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id" name="vw_benching20150507162234281_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id"/>
-  </attributeEditorContainer>
-  <attributeEditorContainer name="Dryweather Downspout">
    <attributeEditorRelation relation="vw_dryweather_downspout20150507162234268_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id" name="vw_dryweather_downspout20150507162234268_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id"/>
   </attributeEditorContainer>
   <attributeEditorContainer name="Maintenance">
    <attributeEditorRelation relation="od_maintenance_event20150530130856307_fk_wastewater_structure_vw_qgep_cover_obj_id" name="od_maintenance_event20150530130856307_fk_wastewater_structure_vw_qgep_cover_obj_id"/>
   </attributeEditorContainer>
  </attributeEditorForm>
- <attributeactions>
-  <actionsetting action="feature = QgsMapLayerRegistry.instance().mapLayer('od_wastewater_structure').getFeatures( QgsFeatureRequest().setFilterExpression( 'obj_id = \'{}\''.format( '[% &quot;ws_obj_id&quot; %]' ) ) ).next()&#xa;qgepplugin.ui.forms.digitizeDrainageChannel(feature.id(), 'od_wastewater_structure')" icon="" capture="0" type="1" name="Digitize"/>
- </attributeactions>
+ <attributeactions/>
 </qgis>

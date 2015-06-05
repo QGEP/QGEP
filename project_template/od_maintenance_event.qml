@@ -58,6 +58,25 @@
  <featformsuppress>0</featformsuppress>
  <annotationform>.</annotationform>
  <editorlayout>generatedlayout</editorlayout>
+ <aliases>
+  <alias field="base_data" index="1" name=""/>
+  <alias field="cost" index="2" name=""/>
+  <alias field="data_details" index="3" name=""/>
+  <alias field="dataowner" index="14" name=""/>
+  <alias field="duration" index="4" name=""/>
+  <alias field="fk_wastewater_structure" index="16" name=""/>
+  <alias field="identifier" index="5" name=""/>
+  <alias field="kind" index="6" name=""/>
+  <alias field="last_modification" index="13" name=""/>
+  <alias field="obj_id" index="0" name=""/>
+  <alias field="operator" index="7" name=""/>
+  <alias field="provider" index="15" name=""/>
+  <alias field="reason" index="8" name=""/>
+  <alias field="remark" index="9" name=""/>
+  <alias field="result" index="10" name=""/>
+  <alias field="status" index="11" name=""/>
+  <alias field="time_point" index="12" name=""/>
+ </aliases>
  <excludeAttributesWMS/>
  <excludeAttributesWFS/>
  <attributeactions/>

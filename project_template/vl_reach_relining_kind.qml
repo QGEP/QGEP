@@ -31,6 +31,16 @@
  <featformsuppress>0</featformsuppress>
  <annotationform>.</annotationform>
  <editorlayout>generatedlayout</editorlayout>
+ <aliases>
+  <alias field="abbr_de" index="5" name=""/>
+  <alias field="abbr_en" index="4" name=""/>
+  <alias field="abbr_fr" index="6" name=""/>
+  <alias field="active" index="7" name=""/>
+  <alias field="code" index="0" name=""/>
+  <alias field="value_de" index="2" name=""/>
+  <alias field="value_en" index="1" name=""/>
+  <alias field="value_fr" index="3" name=""/>
+ </aliases>
  <excludeAttributesWMS/>
  <excludeAttributesWFS/>
  <attributeactions/>
