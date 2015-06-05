@@ -1,6 +1,6 @@
 <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
  <id>vl_maintenance_event_kind</id>
- <datasource>service='pg_qgep' user='qgep' sslmode=disable key='code' estimatedmetadata=true table="qgep"."vl_maintenance_event_kind" sql=</datasource>
+ <datasource>service='pg_qgep' sslmode=disable key='code' estimatedmetadata=true table="qgep"."vl_maintenance_event_kind" sql=</datasource>
  <title></title>
  <abstract></abstract>
  <keywordList>

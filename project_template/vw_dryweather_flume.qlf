@@ -1,6 +1,6 @@
 <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
  <id>vw_dryweather_flume</id>
- <datasource>service='pg_qgep' user='qgep' sslmode=disable key='obj_id' estimatedmetadata=true table="qgep"."vw_dryweather_flume" sql=</datasource>
+ <datasource>service='pg_qgep'  sslmode=disable key='obj_id' estimatedmetadata=true table="qgep"."vw_dryweather_flume" sql=</datasource>
  <title></title>
  <abstract></abstract>
  <keywordList>
