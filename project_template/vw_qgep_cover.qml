@@ -8,13 +8,13 @@
    <widgetv2config fieldEditable="1" labelOnTop="0" Editable="1"/>
   </edittype>
   <edittype widgetv2type="ValueRelation" name="cover_shape">
-   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_cover_cover_shape" Value="value_de" labelOnTop="0" AllowMulti="0"/>
+   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_cover_cover_shape" Value="value_en" labelOnTop="0" AllowMulti="0"/>
   </edittype>
   <edittype widgetv2type="Range" name="diameter">
    <widgetv2config AllowNull="1" fieldEditable="1" Step="10" Style="SpinBox" labelOnTop="0" Min="0" Max="99999" Suffix=" mm"/>
   </edittype>
   <edittype widgetv2type="ValueRelation" name="fastening">
-   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_cover_fastening" Value="value_de" labelOnTop="0" AllowMulti="0"/>
+   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_cover_fastening" Value="value_en" labelOnTop="0" AllowMulti="0"/>
   </edittype>
   <edittype widgetv2type="Range" name="level">
    <widgetv2config AllowNull="1" fieldEditable="1" Step="10" Style="SpinBox" labelOnTop="0" Min="0" Max="4000" Suffix=" m.a.s.l."/>
@@ -26,10 +26,10 @@
    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
   </edittype>
   <edittype widgetv2type="ValueRelation" name="sludge_bucket">
-   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_cover_sludge_bucket" Value="value_de" labelOnTop="0" AllowMulti="0"/>
+   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_cover_sludge_bucket" Value="value_en" labelOnTop="0" AllowMulti="0"/>
   </edittype>
   <edittype widgetv2type="ValueRelation" name="venting">
-   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_cover_venting" Value="value_de" labelOnTop="0" AllowMulti="0"/>
+   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_cover_venting" Value="value_en" labelOnTop="0" AllowMulti="0"/>
   </edittype>
   <edittype widgetv2type="TextEdit" name="identifier">
    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -38,7 +38,7 @@
    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
   </edittype>
   <edittype widgetv2type="ValueRelation" name="renovation_demand">
-   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_structure_part_renovation_demand" Value="value_de" labelOnTop="0" AllowMulti="0"/>
+   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_structure_part_renovation_demand" Value="value_en" labelOnTop="0" AllowMulti="0"/>
   </edittype>
   <edittype widgetv2type="DateTime" name="last_modification">
    <widgetv2config fieldEditable="1" calendar_popup="0" allow_null="0" display_format="yyyy-MM-dd" field_format="yyyy-MM-dd" labelOnTop="0"/>
@@ -127,10 +127,10 @@
    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
   </edittype>
   <edittype widgetv2type="ValueRelation" name="manhole_function">
-   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_manhole_function" Value="value_de" labelOnTop="0" AllowMulti="0"/>
+   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_manhole_function" Value="value_en" labelOnTop="0" AllowMulti="0"/>
   </edittype>
   <edittype widgetv2type="ValueRelation" name="material">
-   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_cover_material" Value="value_de" labelOnTop="0" AllowMulti="0"/>
+   <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_cover_material" Value="value_en" labelOnTop="0" AllowMulti="0"/>
   </edittype>
   <edittype widgetv2type="Range" name="surface_inflow">
    <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="5"/>
@@ -1746,5 +1746,10 @@
    <attributeEditorRelation relation="od_maintenance_event20150530130856307_fk_wastewater_structure_vw_qgep_cover_obj_id" name="od_maintenance_event20150530130856307_fk_wastewater_structure_vw_qgep_cover_obj_id"/>
   </attributeEditorContainer>
  </attributeEditorForm>
- <attributeactions/>
+ <attributeactions>
+  <actionsetting action="feature =
+  QgsMapLayerRegistry.instance().mapLayer('od_wastewater_structure').getFeatures( QgsFeatureRequest().setFilterExpression( 'obj_id = \'{}\''.format( '[% &quot;ws_obj_id&quot; %]
+ ) ) ).next()&#xa;qgepplugin.ui.forms.digitizeDrainageChannel(feature.id(), 'od_wastewater_structure')" icon="" capture="0" type="1" name="Digitize"/>
+ </attributeactions>
+
 </qgis>
