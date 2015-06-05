@@ -714,7 +714,7 @@
   <property key="labeling/bufferColorB" value="255"/>
   <property key="labeling/bufferColorG" value="255"/>
   <property key="labeling/bufferColorR" value="255"/>
-  <property key="labeling/bufferDraw" value="false"/>
+  <property key="labeling/bufferDraw" value="true"/>
   <property key="labeling/bufferJoinStyle" value="64"/>
   <property key="labeling/bufferNoFill" value="false"/>
   <property key="labeling/bufferSize" value="1"/>
