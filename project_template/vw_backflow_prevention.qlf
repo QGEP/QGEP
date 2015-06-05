@@ -1,4 +1,4 @@
-<maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
+<maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
  <id>vw_backflow_prevention</id>
  <datasource>service='pg_qgep' user='qgep' sslmode=disable key='obj_id' estimatedmetadata=true table="qgep"."vw_backflow_prevention" sql=</datasource>
  <title></title>
@@ -21,7 +21,7 @@
  </srs>
  <customproperties/>
  <provider encoding="System">postgres</provider>
- <previewExpression></previewExpression>
+ <previewExpression>COALESCE("obj_id", '&lt;NULL>')</previewExpression>
  <vectorjoins/>
  <expressionfields/>
  <map-layer-style-manager current="">
@@ -37,5 +37,6 @@
  </layer-tree-group>
  <dependencies>
   <dependency>vw_qgep_cover</dependency>
+  <dependency>vl_backflow_prevention_kind</dependency>
  </dependencies>
 </maplayer>
