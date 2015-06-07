@@ -13,7 +13,7 @@ DELETE FROM qgep.od_catchment_area;
 
 -- 3. einsetzen der daten von siedlungsentwaesserung in qgep.
 INSERT INTO qgep.od_catchment_area
-(obj_id,
+(
 -- direct_discharge_current,
 -- direct_discharge_planned,
 discharge_coefficient_rw_current,
@@ -44,22 +44,19 @@ surface_area,
 -- waste_water_production_planned,
 -- last_modification,
 -- dataowner
-fk_wastewater_networkelement_rw_current
+fk_wastewater_networkelement_rw_current,
+old_obj_id
 )
 SELECT
-a_ezg.obj_id,
 abflussbeiwert,
 --- art,
 bezeichnung,
 ST_MakePolygon( ST_GeometryN( the_geom, 1 ) ),
 bemerkung,
 ST_Area(ST_GeometryN( the_geom, 1 ))/1000, -- m^2 zu ha
-q_wastewater_networkelement.obj_id
+q_wastewater_networkelement.obj_id,
+a_ezg.obj_id
 FROM abwasser.siedlungsentwaesserung__einzugsgebiet a_ezg
 LEFT JOIN qgep.od_wastewater_networkelement q_wastewater_networkelement
 on a_ezg.abwassernetzelement = q_wastewater_networkelement.old_obj_id;
 
-
-
--- 4. update der oid spalten
-UPDATE qgep.od_catchment_area SET old_obj_id=obj_id;

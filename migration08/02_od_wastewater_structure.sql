@@ -14,7 +14,7 @@ DELETE FROM qgep.od_wastewater_structure;
 
 -- 3. einsetzen der daten von siedlungsentwaesserung in qgep.
 INSERT INTO qgep.od_wastewater_structure
-(obj_id, accessibility, contract_section, detail_geometry_geometry, 
+(accessibility, contract_section, detail_geometry_geometry, 
 -- detail_geometry_3d_geometry, 
 -- financing,
 gross_costs, identifier, inspection_interval, location_name, 
@@ -23,8 +23,8 @@ remark, renovation_necessity,
 -- replacement_value, 
 -- rv_base_year, 
 -- rv_construction_type, 
-status, structure_condition, subsidies, year_of_construction, year_of_replacement, last_modification, dataowner, fk_owner) 
-SELECT a_abwasserbauwerk.obj_id,
+status, structure_condition, subsidies, year_of_construction, year_of_replacement, last_modification, dataowner, fk_owner, old_obj_id) 
+SELECT 
 CASE WHEN zugaenglichkeit = 0 THEN 3444 --- covered
 WHEN zugaenglichkeit = 1 THEN 3447 --- unknown
 WHEN zugaenglichkeit = 2 THEN 3446 --- inaccessible
@@ -83,12 +83,10 @@ baujahr,
 ersatzjahr,
 to_timestamp (LETZTE_AENDERUNG, 'DD MMM YYYY'),
 MD_DATENHERR,
-q_organisation.obj_id
+q_organisation.obj_id,
+a_abwasserbauwerk.obj_id
 FROM abwasser.siedlungsentwaesserung__Abwasserbauwerk a_abwasserbauwerk
 LEFT JOIN
 qgep.od_organisation q_organisation ON (q_organisation.old_obj_id = a_abwasserbauwerk.obj_id)
 ;
 
-
--- 4. update der oid spalten
-UPDATE qgep.od_wastewater_structure SET old_obj_id=obj_id;

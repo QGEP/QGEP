@@ -5,6 +5,7 @@
 -- 1. ergaenzen tabelle mit oid spalten
 ALTER TABLE qgep.od_wastewater_networkelement DROP COLUMN IF EXISTS old_obj_id;
 ALTER TABLE qgep.od_wastewater_networkelement ADD COLUMN old_obj_id text;
+CREATE UNIQUE INDEX ON qgep.od_wastewater_networkelement(old_obj_id);
 
 -------
 -- 2. loeschen vorhandener daten
