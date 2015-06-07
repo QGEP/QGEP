@@ -39,12 +39,7 @@
       </property>
       <item>
        <property name="text">
-        <string>Manhole</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Special Structure</string>
+        <string>Wastewater Structure</string>
        </property>
       </item>
       <item>

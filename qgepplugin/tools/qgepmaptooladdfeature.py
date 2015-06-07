@@ -114,7 +114,7 @@ class QgepMapToolAddReach( QgepMapToolAddFeature ):
         QgepMapToolAddFeature.__init__(self,iface,layer)
         self.nodeLayer = QgepLayerManager.layer('vw_wastewater_node')
         assert self.nodeLayer
-        self.reachLayer = QgepLayerManager.layer('vw_reach')
+        self.reachLayer = QgepLayerManager.layer('vw_qgep_reach')
         assert self.reachLayer
 
     def mouseMoved(self, event):

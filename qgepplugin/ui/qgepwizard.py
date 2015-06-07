@@ -40,30 +40,23 @@ class QgepWizard( QDockWidget, Ui_QgepDockWidget ):
         self.stateButton.clicked.connect(self.stateChanged)
         self.iface = iface
 
-        self.mapToolAddReach = QgepMapToolAddReach(self.iface, QgepLayerManager.layer('vw_wizard_reach_channel'))
+        self.mapToolAddReach = QgepMapToolAddReach(self.iface, QgepLayerManager.layer('vw_qgep_reach'))
 
     @pyqtSlot(int)
     def layerChanged(self,index):
-        for lyr in [QgepLayerManager.layer('vw_wizard_cover_manhole'), QgepLayerManager.layer('vw_wizard_reach_channel')]:
+        for lyr in [QgepLayerManager.layer('vw_qgep_cover'), QgepLayerManager.layer('vw_qgep_reach')]:
             lyr.commitChanges()
 
-        if self.layerComboBox.currentText() == 'Manhole':
-            self.logger.debug( 'manhole' )
-            lyr = QgepLayerManager.layer('vw_wizard_cover_manhole')
+        if self.layerComboBox.currentText() == 'Wastewater Structure':
+            lyr = QgepLayerManager.layer('vw_qgep_cover')
             lyr.startEditing()
             self.iface.setActiveLayer(lyr)
             self.iface.actionAddFeature().trigger()
 
         elif self.layerComboBox.currentText() == 'Reach':
-            lyr = QgepLayerManager.layer('vw_wizard_reach_channel')
+            lyr = QgepLayerManager.layer('vw_qgep_reach')
             lyr.startEditing()
             self.iface.mapCanvas().setMapTool( self.mapToolAddReach )
-
-        elif self.layerComboBox.currentText() == 'Special Structure':
-            lyr = QgepLayerManager.layer('vw_wizard_cover_special_structure')
-            lyr.startEditing()
-            self.iface.setActiveLayer(lyr)
-            self.iface.actionAddFeature().trigger()
 
     @pyqtSlot()
     def stateChanged(self):
@@ -72,9 +65,8 @@ class QgepWizard( QDockWidget, Ui_QgepDockWidget ):
             self.layerChanged(0)
             self.stateButton.setText( 'Stop Data Entry' )
         else:
-            for lyr in [ QgepLayerManager.layer('vw_wizard_cover_manhole')
-                       , QgepLayerManager.layer('vw_wizard_reach_channel')
-                       , QgepLayerManager.layer('vw_wizard_cover_special_structure') ]:
+            for lyr in [ QgepLayerManager.layer('vw_qgep_reach')
+                       , QgepLayerManager.layer('vw_qgep_cover') ]:
                 lyr.commitChanges()
                 self.layerComboBox.setEnabled(False)
                 self.stateButton.setText( 'Start Data Entry' )
