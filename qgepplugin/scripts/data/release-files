@@ -28,6 +28,7 @@ qgepplugin/ui/qgepsettingsdialog.py
 qgepplugin/ui/qgepsettingsdialog.ui
 qgepplugin/ui/qgepwizard.py
 qgepplugin/ui/qgepwizard.ui
+qgepplugin/ui/forms.py
 qgepplugin/ui/ui_dlgabout.py
 qgepplugin/ui/ui_qgepdockwidget.py
 qgepplugin/ui/ui_qgepsettingsdialog.py

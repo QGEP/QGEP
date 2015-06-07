@@ -18,7 +18,7 @@ PLUGINNAME = qgepplugin
 PY_FILES =  __init__.py  qgepplugin.py
 EXTRAS = metadata.txt resources.qrc
 RESOURCE_FILES = resources.py
-TOOL_DIR = tools ui
+TOOL_DIR = tools ui utils
 ICONS_DIR = icons
 
 UI_SOURCES=$(wildcard ui/*.ui)
@@ -56,6 +56,7 @@ compile: $(UI_FILES) $(RESOURCE_FILES)
 deploy:
 	mkdir -p $(HOME)/.qgis2/python/plugins/$(PLUGINNAME)
 	mkdir -p $(HOME)/.qgis2/python/plugins/$(PLUGINNAME)/tools
+	mkdir -p $(HOME)/.qgis2/python/plugins/$(PLUGINNAME)/utils
 	mkdir -p $(HOME)/.qgis2/python/plugins/$(PLUGINNAME)/icons
 	cp -vf $(PY_FILES) $(HOME)/.qgis2/python/plugins/$(PLUGINNAME)
 	cp -vf $(UI_FILES) $(HOME)/.qgis2/python/plugins/$(PLUGINNAME)/tools
