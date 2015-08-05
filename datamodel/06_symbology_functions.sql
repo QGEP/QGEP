@@ -100,46 +100,6 @@ END;$BODY$
   LANGUAGE plpgsql VOLATILE
   COST 100;
 
--- Function to create the labels for wastewater_structures with elevation values from incoming reaches
-CREATE OR REPLACE FUNCTION qgep.wastewater_structure_label_detailed(structure_obj_id character varying, network_element_obj_id character varying)
-  RETURNS text AS
-$BODY$DECLARE
-myrec_struct_identifier record;
-myrec_incoming record;
-myrec_cover record;
-myrec_outgoing record;
-label text;
-BEGIN
-BEGIN
-  SELECT identifier, obj_id into myrec_struct_identifier FROM qgep.od_wastewater_structure WHERE obj_id = structure_obj_id;
-  EXCEPTION
-    WHEN NO_DATA_FOUND THEN
-      RAISE EXCEPTION 'no record found in table qgep.od_wastewater_structure for obj_id %', structure_obj_id;
-        WHEN TOO_MANY_ROWS THEN
-	   RAISE EXCEPTION 'more than one record found in table qgep.od_wastewater_structure for obj_id %', structure_obj_id;
-END;
-IF myrec_struct_identifier.identifier IS NOT NULL THEN
-  label = myrec_struct_identifier.identifier;
-ELSE
-  label = myrec_struct_identifier.obj_id;
-END IF;
-FOR myrec_cover IN SELECT 'D='||round(cov.level,2) AS text_cover FROM qgep.od_cover cov WHERE cov.obj_id = structure_obj_id ORDER BY cov.level DESC LIMIT 1 LOOP
-  label = label || '
-' || myrec_cover.text_cover;
-END LOOP;
-FOR myrec_incoming IN SELECT 'E'||row_number() over(ORDER BY ST_Azimuth(rp.situation_geometry,ST_Line_Interpolate_Point(ST_GeometryN(re_to.progression,1),0.99))/pi()*180 ASC)||'='||round(rp.level,2) AS text_incoming FROM qgep.od_reach_point rp LEFT JOIN qgep.od_reach re_to ON rp.obj_id = re_to.fs_reach_point_to WHERE rp.fs_wastewater_networkelement = network_element_obj_id AND rp.level IS NOT NULL AND round(rp.level) != 0 AND re_to.obj_id IS NOT NULL ORDER BY ST_Azimuth(rp.situation_geometry,ST_Line_Interpolate_Point(ST_GeometryN(re_to.progression,1),0.99))/pi()*180 ASC LOOP
-  label = label || '
-' || myrec_incoming.text_incoming;
-END LOOP;
-FOR myrec_outgoing IN SELECT 'A='||round(rp.level,2) AS text_outgoing FROM qgep.od_reach_point rp LEFT JOIN qgep.od_reach re_from ON rp.obj_id = re_from.fs_reach_point_from WHERE rp.fs_wastewater_networkelement = network_element_obj_id AND rp.level IS NOT NULL AND round(rp.level) != 0 AND re_from.obj_id IS NOT NULL ORDER BY rp.level DESC LOOP
-  label = label || '
-' || myrec_outgoing.text_outgoing;
-END LOOP;
-RETURN label;
-END;$BODY$
-  LANGUAGE plpgsql VOLATILE
-  COST 100;
-
 
   -------------------- SYMBOLOGY UPDATE ON CHANNEL TABLE CHANGES ----------------------
 
