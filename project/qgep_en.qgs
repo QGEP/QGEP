@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis projectname="" version="2.10.1-Pisa">
+<qgis projectname="" version="2.11.0-Master">
   <title></title>
   <layer-tree-group expanded="1" checked="Qt::PartiallyChecked" name="">
     <customproperties/>
@@ -250,9 +250,9 @@
     <units>meters</units>
     <extent>
       <xmin>745106.29224999994039536</xmin>
-      <ymin>258165.63292499998351559</ymin>
+      <ymin>258164.61167499999282882</ymin>
       <xmax>753476.79774999991059303</xmax>
-      <ymax>266926.71007500000996515</ymax>
+      <ymax>266968.58132499997736886</ymax>
     </extent>
     <rotation>0</rotation>
     <projections>1</projections>
@@ -301,8 +301,8 @@
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_channel20141024144506339"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="od_catchment_area20140827102410654"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="od_wastewater_structure20140822215511905"/>
-      <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="land_cover__lcsurface_postext20150211112947362"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="od_wastewater_structure"/>
+      <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="land_cover__lcsurface_postext20150211112947362"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="od_cover20140728163138882"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_network_node20140827212404914"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="od_reach20140822194040121"/>
@@ -1055,7 +1055,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <renderer-v2 symbollevels="0" type="singleSymbol">
+      <renderer-v2 forceraster="0" symbollevels="0" type="singleSymbol">
         <symbols>
           <symbol alpha="1" clip_to_extent="1" type="fill" name="0">
             <layer pass="0" class="SimpleFill" locked="0">
@@ -5807,7 +5807,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <renderer-v2 symbollevels="0" type="singleSymbol">
+      <renderer-v2 forceraster="0" symbollevels="0" type="singleSymbol">
         <symbols>
           <symbol alpha="1" clip_to_extent="1" type="marker" name="0">
             <layer pass="0" class="SimpleMarker" locked="0">
@@ -6384,7 +6384,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <renderer-v2 symbollevels="0" type="singleSymbol">
+      <renderer-v2 forceraster="0" symbollevels="0" type="singleSymbol">
         <symbols>
           <symbol alpha="1" clip_to_extent="1" type="marker" name="0">
             <layer pass="0" class="SimpleMarker" locked="0">
@@ -6572,7 +6572,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <renderer-v2 symbollevels="0" type="singleSymbol">
+      <renderer-v2 forceraster="0" symbollevels="0" type="singleSymbol">
         <symbols>
           <symbol alpha="1" clip_to_extent="1" type="line" name="0">
             <layer pass="0" class="SimpleLine" locked="0">
@@ -6876,6 +6876,9 @@
         <edittype widgetv2type="Hidden" name="manhole_orientation">
           <widgetv2config fieldEditable="1" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="manhole_label">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="ValueRelation" name="bypass">
           <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_special_structure_bypass" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
@@ -6952,7 +6955,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <renderer-v2 symbollevels="0" type="RuleRenderer">
+      <renderer-v2 forceraster="0" symbollevels="0" type="RuleRenderer">
         <rules key="{6736e613-3750-466f-8a9f-3310fefc92b3}">
           <rule scalemaxdenom="5001" filter="manhole_function IN (204,5345,4532,4533,4537,4798,5346) AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{a19553f0-3a86-466a-846c-34647de3eacb}" symbol="0" label="manhole, unknown, drop_structure, venting, jetting_manhole, separating_structure, stormwater_overflow  - main drainage system"/>
           <rule scalemaxdenom="2001" filter="manhole_function IN (204,5345,4532,4533,4537,4798,5346) AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{18c180f3-844d-49e4-a8ee-e678c834fc08}" symbol="1" label="manhole, unknown, drop_structure, venting, jetting_manhole, separating_structure, stormwater_overflow - minor drainage system"/>
@@ -8130,23 +8133,27 @@
         <property key="labeling/bufferTransp" value="0"/>
         <property key="labeling/centroidInside" value="false"/>
         <property key="labeling/centroidWhole" value="false"/>
+        <property key="labeling/dataDefined/Color" value="1~~1~~CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END~~"/>
+        <property key="labeling/dataDefined/Show" value="1~~1~~CASE WHEN  channel_function_hierarchic IN (5068,5069,5070,5071) THEN True END~~"/>
         <property key="labeling/decimals" value="3"/>
         <property key="labeling/displayAll" value="false"/>
-        <property key="labeling/dist" value="0"/>
+        <property key="labeling/dist" value="2"/>
         <property key="labeling/distInMapUnits" value="false"/>
         <property key="labeling/distMapUnitMaxScale" value="0"/>
         <property key="labeling/distMapUnitMinScale" value="0"/>
-        <property key="labeling/enabled" value="false"/>
-        <property key="labeling/fieldName" value=""/>
+        <property key="labeling/drawLabels" value="true"/>
+        <property key="labeling/enabled" value="true"/>
+        <property key="labeling/fieldName" value="CASE WHEN $scale &lt;= 500 THEN  manhole_label ELSE  ws_identifier END"/>
+        <property key="labeling/fitInPolygonOnly" value="false"/>
         <property key="labeling/fontBold" value="false"/>
         <property key="labeling/fontCapitals" value="0"/>
-        <property key="labeling/fontFamily" value="Cantarell"/>
+        <property key="labeling/fontFamily" value="Cadastra Regular Condensed"/>
         <property key="labeling/fontItalic" value="false"/>
         <property key="labeling/fontLetterSpacing" value="0"/>
         <property key="labeling/fontLimitPixelSize" value="false"/>
         <property key="labeling/fontMaxPixelSize" value="10000"/>
         <property key="labeling/fontMinPixelSize" value="3"/>
-        <property key="labeling/fontSize" value="11"/>
+        <property key="labeling/fontSize" value="7"/>
         <property key="labeling/fontSizeInMapUnits" value="false"/>
         <property key="labeling/fontSizeMapUnitMaxScale" value="0"/>
         <property key="labeling/fontSizeMapUnitMinScale" value="0"/>
@@ -8169,8 +8176,10 @@
         <property key="labeling/minFeatureSize" value="0"/>
         <property key="labeling/multilineAlign" value="0"/>
         <property key="labeling/multilineHeight" value="1"/>
-        <property key="labeling/namedStyle" value="Regular"/>
+        <property key="labeling/namedStyle" value="Regular Condensed"/>
         <property key="labeling/obstacle" value="true"/>
+        <property key="labeling/obstacleFactor" value="1"/>
+        <property key="labeling/obstacleType" value="0"/>
         <property key="labeling/placeDirectionSymbol" value="0"/>
         <property key="labeling/placement" value="0"/>
         <property key="labeling/placementFlags" value="0"/>
@@ -8185,9 +8194,9 @@
         <property key="labeling/repeatDistanceUnit" value="1"/>
         <property key="labeling/reverseDirectionSymbol" value="false"/>
         <property key="labeling/rightDirectionSymbol" value=">"/>
-        <property key="labeling/scaleMax" value="10000000"/>
+        <property key="labeling/scaleMax" value="1501"/>
         <property key="labeling/scaleMin" value="1"/>
-        <property key="labeling/scaleVisibility" value="false"/>
+        <property key="labeling/scaleVisibility" value="true"/>
         <property key="labeling/shadowBlendMode" value="6"/>
         <property key="labeling/shadowColorB" value="0"/>
         <property key="labeling/shadowColorG" value="0"/>
@@ -8291,36 +8300,36 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>tablayout</editorlayout>
       <aliases>
-        <alias field="absorption_capacity" index="55" name=""/>
+        <alias field="absorption_capacity" index="56" name=""/>
         <alias field="accessibility" index="19" name=""/>
-        <alias field="backflow_level" index="66" name=""/>
-        <alias field="bottom_level" index="67" name=""/>
+        <alias field="backflow_level" index="67" name=""/>
+        <alias field="bottom_level" index="68" name=""/>
         <alias field="brand" index="1" name=""/>
-        <alias field="bypass" index="48" name=""/>
+        <alias field="bypass" index="49" name=""/>
         <alias field="channel_function_hierarchic" index="46" name=""/>
         <alias field="channel_usage_current" index="45" name=""/>
         <alias field="contract_section" index="20" name=""/>
         <alias field="cover_material" index="6" name=""/>
         <alias field="cover_shape" index="2" name=""/>
         <alias field="dataowner" index="14" name=""/>
-        <alias field="defects" index="56" name=""/>
+        <alias field="defects" index="57" name=""/>
         <alias field="depth" index="38" name=""/>
         <alias field="diameter" index="3" name=""/>
         <alias field="dimension1" index="39" name=""/>
         <alias field="dimension2" index="40" name=""/>
-        <alias field="distance_to_aquifer" index="57" name=""/>
-        <alias field="effective_area" index="58" name=""/>
-        <alias field="emergency_spillway" index="59" name=""/>
+        <alias field="distance_to_aquifer" index="58" name=""/>
+        <alias field="effective_area" index="59" name=""/>
+        <alias field="emergency_spillway" index="60" name=""/>
         <alias field="fastening" index="4" name=""/>
         <alias field="financing" index="21" name=""/>
         <alias field="fk_operator" index="37" name=""/>
         <alias field="fk_owner" index="36" name=""/>
         <alias field="gross_costs" index="22" name=""/>
-        <alias field="highwater_level" index="51" name=""/>
+        <alias field="highwater_level" index="52" name=""/>
         <alias field="identifier" index="10" name=""/>
         <alias field="inspection_interval" index="23" name=""/>
-        <alias field="kind" index="60" name=""/>
-        <alias field="labeling" index="61" name=""/>
+        <alias field="kind" index="61" name=""/>
+        <alias field="labeling" index="62" name=""/>
         <alias field="last_modification" index="13" name=""/>
         <alias field="level" index="5" name=""/>
         <alias field="location_name" index="24" name=""/>
@@ -8331,33 +8340,33 @@
         <alias field="positional_accuracy" index="7" name=""/>
         <alias field="provider" index="15" name=""/>
         <alias field="records" index="25" name=""/>
-        <alias field="relevance" index="52" name=""/>
+        <alias field="relevance" index="53" name=""/>
         <alias field="remark" index="11" name=""/>
         <alias field="renovation_demand" index="12" name=""/>
         <alias field="renovation_necessity" index="27" name=""/>
         <alias field="replacement_value" index="28" name=""/>
         <alias field="rv_base_year" index="29" name=""/>
         <alias field="rv_construction_type" index="30" name=""/>
-        <alias field="seepage_utilization" index="62" name=""/>
+        <alias field="seepage_utilization" index="63" name=""/>
         <alias field="sludge_bucket" index="8" name=""/>
-        <alias field="special_structure_function" index="49" name=""/>
+        <alias field="special_structure_function" index="50" name=""/>
         <alias field="status" index="31" name=""/>
-        <alias field="stormwater_tank_arrangement" index="50" name=""/>
+        <alias field="stormwater_tank_arrangement" index="51" name=""/>
         <alias field="structure_condition" index="32" name=""/>
         <alias field="subsidies" index="33" name=""/>
         <alias field="surface_inflow" index="44" name=""/>
-        <alias field="terrain_level" index="53" name=""/>
+        <alias field="terrain_level" index="54" name=""/>
         <alias field="upper_elevation" index="41" name=""/>
-        <alias field="vehicle_access" index="63" name=""/>
+        <alias field="vehicle_access" index="64" name=""/>
         <alias field="venting" index="9" name=""/>
-        <alias field="waterlevel_hydraulic" index="54" name=""/>
-        <alias field="watertightness" index="64" name=""/>
-        <alias field="wn_dataowner" index="71" name=""/>
-        <alias field="wn_identifier" index="68" name=""/>
-        <alias field="wn_last_modification" index="70" name=""/>
-        <alias field="wn_obj_id" index="65" name=""/>
-        <alias field="wn_provider" index="72" name=""/>
-        <alias field="wn_remark" index="69" name=""/>
+        <alias field="waterlevel_hydraulic" index="55" name=""/>
+        <alias field="watertightness" index="65" name=""/>
+        <alias field="wn_dataowner" index="72" name=""/>
+        <alias field="wn_identifier" index="69" name=""/>
+        <alias field="wn_last_modification" index="71" name=""/>
+        <alias field="wn_obj_id" index="66" name=""/>
+        <alias field="wn_provider" index="73" name=""/>
+        <alias field="wn_remark" index="70" name=""/>
         <alias field="ws_identifier" index="18" name=""/>
         <alias field="ws_obj_id" index="17" name=""/>
         <alias field="ws_remark" index="26" name=""/>
@@ -8374,7 +8383,7 @@
           <attributeEditorField index="24" name="location_name"/>
           <attributeEditorField index="34" name="year_of_construction"/>
           <attributeEditorField index="42" name="manhole_function"/>
-          <attributeEditorField index="49" name="special_structure_function"/>
+          <attributeEditorField index="50" name="special_structure_function"/>
           <attributeEditorField index="27" name="renovation_necessity"/>
           <attributeEditorField index="5" name="level"/>
           <attributeEditorField index="7" name="positional_accuracy"/>
@@ -8427,45 +8436,45 @@
           <attributeEditorField index="44" name="surface_inflow"/>
         </attributeEditorContainer>
         <attributeEditorContainer name="Special Structure">
-          <attributeEditorField index="48" name="bypass"/>
-          <attributeEditorField index="49" name="special_structure_function"/>
-          <attributeEditorField index="50" name="stormwater_tank_arrangement"/>
+          <attributeEditorField index="49" name="bypass"/>
+          <attributeEditorField index="50" name="special_structure_function"/>
+          <attributeEditorField index="51" name="stormwater_tank_arrangement"/>
           <attributeEditorField index="41" name="upper_elevation"/>
           <attributeEditorField index="38" name="depth"/>
-          <attributeEditorField index="59" name="emergency_spillway"/>
+          <attributeEditorField index="60" name="emergency_spillway"/>
         </attributeEditorContainer>
         <attributeEditorContainer name="Discharge Point">
           <attributeEditorField index="38" name="depth"/>
-          <attributeEditorField index="59" name="emergency_spillway"/>
-          <attributeEditorField index="51" name="highwater_level"/>
-          <attributeEditorField index="52" name="relevance"/>
-          <attributeEditorField index="53" name="terrain_level"/>
+          <attributeEditorField index="60" name="emergency_spillway"/>
+          <attributeEditorField index="52" name="highwater_level"/>
+          <attributeEditorField index="53" name="relevance"/>
+          <attributeEditorField index="54" name="terrain_level"/>
           <attributeEditorField index="41" name="upper_elevation"/>
-          <attributeEditorField index="54" name="waterlevel_hydraulic"/>
+          <attributeEditorField index="55" name="waterlevel_hydraulic"/>
         </attributeEditorContainer>
         <attributeEditorContainer name="Infiltration Installation">
-          <attributeEditorField index="56" name="defects"/>
-          <attributeEditorField index="57" name="distance_to_aquifer"/>
-          <attributeEditorField index="58" name="effective_area"/>
-          <attributeEditorField index="59" name="emergency_spillway"/>
-          <attributeEditorField index="60" name="kind"/>
-          <attributeEditorField index="61" name="labeling"/>
-          <attributeEditorField index="62" name="seepage_utilization"/>
-          <attributeEditorField index="63" name="vehicle_access"/>
-          <attributeEditorField index="64" name="watertightness"/>
+          <attributeEditorField index="57" name="defects"/>
+          <attributeEditorField index="58" name="distance_to_aquifer"/>
+          <attributeEditorField index="59" name="effective_area"/>
+          <attributeEditorField index="60" name="emergency_spillway"/>
+          <attributeEditorField index="61" name="kind"/>
+          <attributeEditorField index="62" name="labeling"/>
+          <attributeEditorField index="63" name="seepage_utilization"/>
+          <attributeEditorField index="64" name="vehicle_access"/>
+          <attributeEditorField index="65" name="watertightness"/>
           <attributeEditorField index="39" name="dimension1"/>
           <attributeEditorField index="40" name="dimension2"/>
           <attributeEditorField index="41" name="upper_elevation"/>
         </attributeEditorContainer>
         <attributeEditorContainer name="Wastewater Node">
-          <attributeEditorField index="65" name="wn_obj_id"/>
-          <attributeEditorField index="66" name="backflow_level"/>
-          <attributeEditorField index="67" name="bottom_level"/>
-          <attributeEditorField index="68" name="wn_identifier"/>
-          <attributeEditorField index="69" name="wn_remark"/>
-          <attributeEditorField index="70" name="wn_last_modification"/>
-          <attributeEditorField index="71" name="wn_dataowner"/>
-          <attributeEditorField index="72" name="wn_provider"/>
+          <attributeEditorField index="66" name="wn_obj_id"/>
+          <attributeEditorField index="67" name="backflow_level"/>
+          <attributeEditorField index="68" name="bottom_level"/>
+          <attributeEditorField index="69" name="wn_identifier"/>
+          <attributeEditorField index="70" name="wn_remark"/>
+          <attributeEditorField index="71" name="wn_last_modification"/>
+          <attributeEditorField index="72" name="wn_dataowner"/>
+          <attributeEditorField index="73" name="wn_provider"/>
         </attributeEditorContainer>
         <attributeEditorContainer name="Covers">
           <attributeEditorRelation relation="vw_cover20150507162234308_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id" name="vw_cover20150507162234308_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id"/>
@@ -8635,6 +8644,9 @@
         <edittype widgetv2type="Hidden" name="manhole_orientation">
           <widgetv2config fieldEditable="1" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="manhole_label">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="ValueRelation" name="bypass">
           <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_special_structure_bypass" Value="value_en" labelOnTop="0" AllowMulti="0"/>
         </edittype>
@@ -8712,7 +8724,7 @@
         </edittype>
       </edittypes>
     </maplayer>
-    <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Line" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
+    <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Line" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>vw_qgep_reach</id>
       <datasource>service='pg_qgep' key='obj_id' srid=21781 type=LineString table="qgep"."vw_qgep_reach" (progression_geometry) sql=</datasource>
       <title></title>
@@ -8964,7 +8976,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <renderer-v2 symbollevels="0" type="RuleRenderer">
+      <renderer-v2 forceraster="0" symbollevels="0" type="RuleRenderer">
         <rules key="{b3f3f0a1-c8d2-4416-8d68-3de95a17bc02}">
           <rule scalemaxdenom="2001" filter="width >= 300 and horizontal_positioning = 5378" key="{9e580459-8bfa-4f04-be8f-68986341bd8e}" symbol="0" label="Wide reaches, accurate positioning, scale &lt;=2000"/>
           <rule scalemaxdenom="2001" filter="width >= 300 and horizontal_positioning &lt;> 5378" key="{a424a253-3ec2-46b0-9b46-a4a4cb732fb7}" symbol="1" label="Wide reaches, inaccurate positioning, scale &lt;=2000"/>
@@ -9671,11 +9683,13 @@
         <property key="labeling/distInMapUnits" value="true"/>
         <property key="labeling/distMapUnitMaxScale" value="0"/>
         <property key="labeling/distMapUnitMinScale" value="0"/>
+        <property key="labeling/drawLabels" value="true"/>
         <property key="labeling/enabled" value="true"/>
         <property key="labeling/fieldName" value="attribute(getFeature('vl_reach_material','code',material),'abbr_' || substr(locale(), 0, 3) ) || COALESCE(' ' || width || ' ','') || COALESCE('-' || length_effective || '-') || COALESCE(' ' || slope_per_mill || '‰','')"/>
+        <property key="labeling/fitInPolygonOnly" value="false"/>
         <property key="labeling/fontBold" value="false"/>
         <property key="labeling/fontCapitals" value="0"/>
-        <property key="labeling/fontFamily" value="Cantarell"/>
+        <property key="labeling/fontFamily" value="Cadastra Regular Condensed"/>
         <property key="labeling/fontItalic" value="false"/>
         <property key="labeling/fontLetterSpacing" value="0"/>
         <property key="labeling/fontLimitPixelSize" value="false"/>
@@ -9704,8 +9718,10 @@
         <property key="labeling/minFeatureSize" value="12"/>
         <property key="labeling/multilineAlign" value="0"/>
         <property key="labeling/multilineHeight" value="1"/>
-        <property key="labeling/namedStyle" value="Regular"/>
+        <property key="labeling/namedStyle" value="Regular Condensed"/>
         <property key="labeling/obstacle" value="true"/>
+        <property key="labeling/obstacleFactor" value="1"/>
+        <property key="labeling/obstacleType" value="0"/>
         <property key="labeling/placeDirectionSymbol" value="0"/>
         <property key="labeling/placement" value="2"/>
         <property key="labeling/placementFlags" value="10"/>
@@ -9814,7 +9830,7 @@
         <selectedonly on=""/>
       </labelattributes>
       <SingleCategoryDiagramRenderer diagramType="Pie">
-        <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" sizeType="MM" minScaleDenominator="0">
+        <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" sizeType="MM" minScaleDenominator="-4.65661e-10">
           <fontProperties description="Cantarell,11,-1,5,50,0,0,0,0,0" style=""/>
           <attribute field="" color="#000000" label=""/>
         </DiagramCategory>
@@ -10294,7 +10310,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <renderer-v2 symbollevels="0" type="singleSymbol">
+      <renderer-v2 forceraster="0" symbollevels="0" type="singleSymbol">
         <symbols>
           <symbol alpha="1" clip_to_extent="1" type="marker" name="0">
             <layer pass="0" class="SimpleMarker" locked="0">
