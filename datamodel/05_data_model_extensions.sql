@@ -1,10 +1,11 @@
-﻿-- table od_wastewater_structure is extended to hold additional attributes necessary for symbology reasons
+﻿-- tables od_wastewater_structure and ood_manhole are extended to hold additional attributes necessary for symbology and labeling reasons
 -- extended attributes are started with an underscore
 -- _usage_current is necessary for coloring the wastewater_structure/cover symbols
 -- _function_hierarchic is necessary for scale-based filtering (display minor wastewater_structures only at larger scales)
 -- _orientation is necessary for certain symbols (e.g. oil separator)
+-- _label holds the manhole label
 
--- TABLE od_wastewater_structure
+-- TABLES od_wastewater_structure and od_manhole
 
 ALTER TABLE qgep.od_wastewater_structure ADD COLUMN _usage_current integer;
 COMMENT ON COLUMN qgep.od_wastewater_structure._usage_current IS 'not part of the VSA-DSS data model
@@ -17,6 +18,12 @@ has to be updated by triggers';
 ALTER TABLE qgep.od_manhole ADD COLUMN _orientation numeric;
 COMMENT ON COLUMN qgep.od_manhole._orientation IS 'not part of the VSA-DSS data model
 added solely for QGEP';
+-- this column is used to store the manhole label. We store it for performance reasons, rather than generating it on the fly
+-- we need additional triggers to keep this label in sync with the updates (connected reaches)
+-- see also migration/90_update_symbology_attribs.sql on how to update this manually for the whole data set
+ALTER TABLE qgep.od_manhole ADD COLUMN _label text;
+COMMENT ON COLUMN qgep.od_manhole._label IS 'This column is used to store the manhole label. We store it for performance reasons, rather than generating it on the fly. We need additional triggers to keep this label in sync with the updates (connected reaches).';
+
 
 -- this column is an extension to the VSA data model and puts the _function_hierarchic in order
 ALTER TABLE qgep.vl_channel_function_hierarchic ADD COLUMN order_fct_hierarchic smallint;
@@ -46,5 +53,4 @@ UPDATE qgep.vl_channel_usage_current SET order_usage_current=4 WHERE code = 4524
 UPDATE qgep.vl_channel_usage_current SET order_usage_current=1 WHERE code = 4526;
 UPDATE qgep.vl_channel_usage_current SET order_usage_current=8 WHERE code = 4571;
 UPDATE qgep.vl_channel_usage_current SET order_usage_current=9 WHERE code = 5322;
-
 

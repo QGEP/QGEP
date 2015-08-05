@@ -63,6 +63,7 @@ CREATE OR REPLACE VIEW qgep.vw_qgep_cover AS
     ws._usage_current AS channel_usage_current,
     ws._function_hierarchic AS channel_function_hierarchic,
     mh._orientation AS manhole_orientation,
+    mh._label AS manhole_label,
 
     ss.bypass,
     ss.function as special_structure_function,
