@@ -1,9 +1,12 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis projectname="" version="2.9.0-Master">
+<qgis projectname="" version="2.11.0-Master">
   <title></title>
   <layer-tree-group expanded="1" checked="Qt::Checked" name="">
     <customproperties/>
     <layer-tree-layer expanded="1" checked="Qt::Checked" id="territorial_boundaries__municipal_boundary" name="territorial_boundaries__municipal_boundary">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer expanded="0" checked="Qt::Checked" id="ownership__boundary_point" name="ownership__boundary_point">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer expanded="0" checked="Qt::Checked" id="single_objects__surface_element" name="single_objects__surface_element">
@@ -16,9 +19,6 @@
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer expanded="1" checked="Qt::Checked" id="ownership__realestate" name="ownership__realestate">
-      <customproperties/>
-    </layer-tree-layer>
-    <layer-tree-layer expanded="0" checked="Qt::Checked" id="ownership__boundary_point" name="ownership__boundary_point">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer expanded="1" checked="Qt::Checked" id="land_cover__lcsurface_postext" name="land_cover__lcsurface_postext">
@@ -118,6 +118,11 @@
         <legendlayerfile isInOverview="0" layerid="territorial_boundaries__municipal_boundary" visible="1"/>
       </filegroup>
     </legendlayer>
+    <legendlayer drawingOrder="-1" open="false" checked="Qt::Checked" name="ownership__boundary_point" showFeatureCount="0">
+      <filegroup open="false" hidden="false">
+        <legendlayerfile isInOverview="0" layerid="ownership__boundary_point" visible="1"/>
+      </filegroup>
+    </legendlayer>
     <legendlayer drawingOrder="-1" open="false" checked="Qt::Checked" name="single_objects__surface_element" showFeatureCount="0">
       <filegroup open="false" hidden="false">
         <legendlayerfile isInOverview="0" layerid="single_objects__surface_element" visible="1"/>
@@ -136,11 +141,6 @@
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="ownership__realestate" showFeatureCount="0">
       <filegroup open="true" hidden="false">
         <legendlayerfile isInOverview="0" layerid="ownership__realestate" visible="1"/>
-      </filegroup>
-    </legendlayer>
-    <legendlayer drawingOrder="-1" open="false" checked="Qt::Checked" name="ownership__boundary_point" showFeatureCount="0">
-      <filegroup open="false" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="ownership__boundary_point" visible="1"/>
       </filegroup>
     </legendlayer>
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="land_cover__lcsurface_postext" showFeatureCount="0">
@@ -237,7 +237,7 @@
           <widgetv2config fieldEditable="1" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <renderer-v2 symbollevels="0" type="singleSymbol">
+      <renderer-v2 forceraster="0" symbollevels="0" type="singleSymbol">
         <symbols>
           <symbol alpha="1" clip_to_extent="1" type="marker" name="0">
             <layer pass="0" class="SimpleMarker" locked="0">
@@ -592,7 +592,7 @@
           <widgetv2config fieldEditable="1" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <renderer-v2 symbollevels="0" type="singleSymbol">
+      <renderer-v2 forceraster="0" symbollevels="0" type="singleSymbol">
         <symbols>
           <symbol alpha="1" clip_to_extent="1" type="marker" name="0">
             <layer pass="0" class="SimpleMarker" locked="0">
@@ -925,7 +925,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <renderer-v2 attr="type" symbollevels="0" type="categorizedSymbol">
+      <renderer-v2 attr="type" forceraster="0" symbollevels="0" type="categorizedSymbol">
         <categories>
           <category render="true" symbol="0" value="24" label="Abbau_Deponie"/>
           <category render="true" symbol="1" value="8" label="Acker_Wiese_Weide"/>
@@ -1786,7 +1786,7 @@
           <widgetv2config fieldEditable="1" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <renderer-v2 symbollevels="0" type="singleSymbol">
+      <renderer-v2 forceraster="0" symbollevels="0" type="singleSymbol">
         <symbols>
           <symbol alpha="1" clip_to_extent="1" type="marker" name="0">
             <layer pass="0" class="SimpleMarker" locked="0">
@@ -2072,7 +2072,7 @@
         </edittype>
       </edittypes>
     </maplayer>
-    <maplayer minimumScale="0" maximumScale="2000" simplifyDrawingHints="0" minLabelScale="1" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="1" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
+    <maplayer minimumScale="-4.65661e-10" maximumScale="2000" simplifyDrawingHints="0" minLabelScale="1" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="1" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <id>ownership__boundary_point</id>
       <datasource>service='pg_qgep_av03' sslmode=disable key='ogc_fid' srid=21781 type=Point table="av03_4401"."ownership__boundary_point" (wkb_geometry) sql=</datasource>
       <title></title>
@@ -2132,7 +2132,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <renderer-v2 attr="mark" symbollevels="1" type="categorizedSymbol">
+      <renderer-v2 attr="mark" forceraster="0" symbollevels="1" type="categorizedSymbol">
         <categories>
           <category render="true" symbol="0" value="2" label="Bolzen"/>
           <category render="true" symbol="1" value="5" label="Kreuz"/>
@@ -2147,7 +2147,7 @@
               <prop k="angle" v="0"/>
               <prop k="color" v="#000000"/>
               <prop k="horizontal_anchor_point" v="1"/>
-              <prop k="name" v=""/>
+              <prop k="name" v="av/symbol_F_grenzpunkt_bolzen.svg"/>
               <prop k="offset" v="-0.1,-0.1"/>
               <prop k="offset_map_unit_scale" v="0,0"/>
               <prop k="offset_unit" v="MM"/>
@@ -2175,7 +2175,7 @@
               <prop k="angle" v="0"/>
               <prop k="color" v="#000000"/>
               <prop k="horizontal_anchor_point" v="1"/>
-              <prop k="name" v=""/>
+              <prop k="name" v="av/symbol_H_grenzpunkt_kreuz.svg"/>
               <prop k="offset" v="-0.1,-0.1"/>
               <prop k="offset_map_unit_scale" v="0,0"/>
               <prop k="offset_unit" v="MM"/>
@@ -2203,7 +2203,7 @@
               <prop k="angle" v="0"/>
               <prop k="color" v="#000000"/>
               <prop k="horizontal_anchor_point" v="1"/>
-              <prop k="name" v=""/>
+              <prop k="name" v="av/symbol_E_grenzpunkt_markstein_kunststoffzeichen.svg"/>
               <prop k="offset" v="-0.1,-0.1"/>
               <prop k="offset_map_unit_scale" v="0,0"/>
               <prop k="offset_unit" v="MM"/>
@@ -2231,7 +2231,7 @@
               <prop k="angle" v="0"/>
               <prop k="color" v="#000000"/>
               <prop k="horizontal_anchor_point" v="1"/>
-              <prop k="name" v=""/>
+              <prop k="name" v="av/symbol_G_grenzpunkt_rohr_pfahl.svg"/>
               <prop k="offset" v="-0.1,-0.1"/>
               <prop k="offset_map_unit_scale" v="0,0"/>
               <prop k="offset_unit" v="MM"/>
@@ -2259,7 +2259,7 @@
               <prop k="angle" v="0"/>
               <prop k="color" v="#000000"/>
               <prop k="horizontal_anchor_point" v="1"/>
-              <prop k="name" v=""/>
+              <prop k="name" v="av/symbol_E_grenzpunkt_markstein_kunststoffzeichen.svg"/>
               <prop k="offset" v="-0.1,-0.1"/>
               <prop k="offset_map_unit_scale" v="0,0"/>
               <prop k="offset_unit" v="MM"/>
@@ -2287,7 +2287,7 @@
               <prop k="angle" v="0"/>
               <prop k="color" v="#000000"/>
               <prop k="horizontal_anchor_point" v="1"/>
-              <prop k="name" v=""/>
+              <prop k="name" v="av/symbol_I_unversichterter_grenzpunkt.svg"/>
               <prop k="offset" v="-0.1,-0.1"/>
               <prop k="offset_map_unit_scale" v="0,0"/>
               <prop k="offset_unit" v="MM"/>
@@ -2385,11 +2385,13 @@
         <property key="labeling/distInMapUnits" value="false"/>
         <property key="labeling/distMapUnitMaxScale" value="0"/>
         <property key="labeling/distMapUnitMinScale" value="0"/>
+        <property key="labeling/drawLabels" value="false"/>
         <property key="labeling/enabled" value="false"/>
         <property key="labeling/fieldName" value=""/>
+        <property key="labeling/fitInPolygonOnly" value="false"/>
         <property key="labeling/fontBold" value="false"/>
         <property key="labeling/fontCapitals" value="0"/>
-        <property key="labeling/fontFamily" value="Ubuntu"/>
+        <property key="labeling/fontFamily" value="DejaVu Sans"/>
         <property key="labeling/fontItalic" value="false"/>
         <property key="labeling/fontLetterSpacing" value="0"/>
         <property key="labeling/fontLimitPixelSize" value="false"/>
@@ -2418,8 +2420,10 @@
         <property key="labeling/minFeatureSize" value="0"/>
         <property key="labeling/multilineAlign" value="0"/>
         <property key="labeling/multilineHeight" value="1"/>
-        <property key="labeling/namedStyle" value="Medium"/>
+        <property key="labeling/namedStyle" value="Bold"/>
         <property key="labeling/obstacle" value="true"/>
+        <property key="labeling/obstacleFactor" value="1"/>
+        <property key="labeling/obstacleType" value="0"/>
         <property key="labeling/placeDirectionSymbol" value="0"/>
         <property key="labeling/placement" value="0"/>
         <property key="labeling/placementFlags" value="0"/>
@@ -2527,6 +2531,12 @@
         <multilineenabled fieldname="" on=""/>
         <selectedonly on=""/>
       </labelattributes>
+      <SingleCategoryDiagramRenderer diagramType="Pie">
+        <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="2000" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="1" enabled="0" height="15" sizeType="MM" minScaleDenominator="-4.65661e-10">
+          <fontProperties description="DejaVu Sans,9,-1,0,50,0,0,0,0,0" style=""/>
+        </DiagramCategory>
+      </SingleCategoryDiagramRenderer>
+      <DiagramLayerSettings yPosColumn="-1" linePlacementFlags="10" placement="0" dist="0" xPosColumn="-1" priority="0" obstacle="0" showAll="1"/>
       <editform>../../../cpp/qgis/build/output/bin</editform>
       <editforminit/>
       <featformsuppress>0</featformsuppress>
@@ -2637,7 +2647,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <renderer-v2 symbollevels="0" type="singleSymbol">
+      <renderer-v2 forceraster="0" symbollevels="0" type="singleSymbol">
         <symbols>
           <symbol alpha="1" clip_to_extent="1" type="fill" name="0">
             <layer pass="0" class="SimpleLine" locked="0">
@@ -2967,7 +2977,7 @@
           <widgetv2config fieldEditable="1" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <renderer-v2 symbollevels="0" type="singleSymbol">
+      <renderer-v2 forceraster="0" symbollevels="0" type="singleSymbol">
         <symbols>
           <symbol alpha="1" clip_to_extent="1" type="marker" name="0">
             <layer pass="0" class="SimpleMarker" locked="0">
@@ -3304,7 +3314,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <renderer-v2 attr="type" symbollevels="0" type="categorizedSymbol">
+      <renderer-v2 attr="type" forceraster="0" symbollevels="0" type="categorizedSymbol">
         <categories>
           <category render="true" symbol="0" value="29" label="Bahngeleise"/>
           <category render="true" symbol="1" value="6" label="Bruecke_Passerelle"/>
@@ -4375,7 +4385,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <renderer-v2 attr="type" symbollevels="0" type="categorizedSymbol">
+      <renderer-v2 attr="type" forceraster="0" symbollevels="0" type="categorizedSymbol">
         <categories>
           <category render="true" symbol="0" value="7" label="Bahnsteig"/>
           <category render="true" symbol="1" value="6" label="Bruecke_Passerelle"/>
@@ -5182,7 +5192,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <renderer-v2 symbollevels="0" type="singleSymbol">
+      <renderer-v2 forceraster="0" symbollevels="0" type="singleSymbol">
         <symbols>
           <symbol alpha="1" clip_to_extent="1" type="fill" name="0">
             <layer pass="0" class="SimpleLine" locked="0">
@@ -5447,16 +5457,16 @@
     <Digitizing>
       <DefaultSnapToleranceUnit type="int">2</DefaultSnapToleranceUnit>
       <LayerSnappingList type="QStringList">
-        <value>territorial_boundaries__municipal_boundary</value>
-        <value>single_objects__surface_element</value>
-        <value>single_objects__linear_element</value>
-        <value>ownership__realestate_posnumber</value>
-        <value>ownership__realestate</value>
-        <value>ownership__boundary_point</value>
-        <value>land_cover__lcsurface_postext</value>
-        <value>land_cover__lcsurface</value>
-        <value>building_addresses__street_name_pos</value>
         <value>building_addresses__building_entrance_pos</value>
+        <value>building_addresses__street_name_pos</value>
+        <value>land_cover__lcsurface</value>
+        <value>land_cover__lcsurface_postext</value>
+        <value>ownership__boundary_point</value>
+        <value>ownership__realestate</value>
+        <value>ownership__realestate_posnumber</value>
+        <value>single_objects__linear_element</value>
+        <value>single_objects__surface_element</value>
+        <value>territorial_boundaries__municipal_boundary</value>
       </LayerSnappingList>
       <LayerSnappingEnabledList type="QStringList">
         <value>disabled</value>
