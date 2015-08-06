@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis version="2.9.0-Master" minimumScale="0" maximumScale="5000" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" simplifyMaxScale="1" hasScaleBasedVisibilityFlag="1" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
+<qgis version="2.11.0-Master" minimumScale="-4.65661e-10" maximumScale="5000" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" simplifyMaxScale="1" hasScaleBasedVisibilityFlag="1" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
  <edittypes>
   <edittype widgetv2type="TextEdit" name="obj_id">
    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -144,6 +144,9 @@
   <edittype widgetv2type="Hidden" name="manhole_orientation">
    <widgetv2config fieldEditable="1" labelOnTop="0"/>
   </edittype>
+  <edittype widgetv2type="TextEdit" name="manhole_label">
+   <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+  </edittype>
   <edittype widgetv2type="ValueRelation" name="bypass">
    <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_special_structure_bypass" Value="value_en" labelOnTop="0" AllowMulti="0"/>
   </edittype>
@@ -220,29 +223,29 @@
    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
   </edittype>
  </edittypes>
- <renderer-v2 symbollevels="0" type="RuleRenderer">
+ <renderer-v2 forceraster="0" symbollevels="0" type="RuleRenderer">
   <rules key="{6736e613-3750-466f-8a9f-3310fefc92b3}">
-   <rule scalemaxdenom="5001" filter="manhole_function IN (204,5345,4532,4533,4537,4798,5346) AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{a19553f0-3a86-466a-846c-34647de3eacb}" symbol="0" scalemindenom="1" label="manhole, unknown, drop_structure, venting, jetting_manhole, separating_structure, stormwater_overflow  - main drainage system"/>
-   <rule scalemaxdenom="2001" filter="manhole_function IN (204,5345,4532,4533,4537,4798,5346) AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{18c180f3-844d-49e4-a8ee-e678c834fc08}" symbol="1" scalemindenom="1" label="manhole, unknown, drop_structure, venting, jetting_manhole, separating_structure, stormwater_overflow - minor drainage system"/>
-   <rule scalemaxdenom="5001" filter=" manhole_function = 228 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{2287443e-21d4-4c14-8732-f925e912927a}" symbol="2" scalemindenom="1" label="rail_track_gully - main drainage system"/>
-   <rule scalemaxdenom="2001" filter=" manhole_function = 228 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{d23221ad-187f-4682-9458-42a19bd0acd2}" symbol="3" scalemindenom="1" label="rail_track_gully - minor drainage system"/>
-   <rule scalemaxdenom="5001" filter=" manhole_function = 4536 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{830e1f8e-7bae-4271-8e7e-3b2705cf37c2}" symbol="4" scalemindenom="1" label="pump_station - main drainage system"/>
-   <rule scalemaxdenom="2001" filter=" manhole_function = 4536 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{01d58544-e7cb-482f-aa09-2d9bcc914bd0}" symbol="5" scalemindenom="1" label="pump_station - minor drainage system"/>
-   <rule scalemaxdenom="5001" filter=" manhole_function = 1008 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{28f9989c-7e87-4782-8af8-e82e97e48f07}" symbol="6" scalemindenom="1" label="oil_separator - main drainage system"/>
-   <rule scalemaxdenom="2001" filter=" manhole_function = 1008 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{fd59f306-4bb0-45d4-9b8f-6c472fd6f453}" symbol="7" scalemindenom="1" label="oil_separator - minor drainage system"/>
-   <rule scalemaxdenom="5001" filter=" manhole_function = 1008 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{23388bb8-4225-45a4-bff9-9e90282b2e84}" symbol="8" scalemindenom="1" label="floating_material_separator - main drainage system"/>
-   <rule scalemaxdenom="2001" filter=" manhole_function = 1008 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{98bce6a8-b6eb-425a-87e8-1b3bcd4f3458}" symbol="9" scalemindenom="1" label="floating_material_separator - minor drainage system"/>
-   <rule scalemaxdenom="5001" filter=" manhole_function = 3267 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{fbd3e663-5247-4140-8ccb-1bb1eb3377e6}" symbol="10" scalemindenom="1" label="rain_water_manhole - main drainage system"/>
-   <rule scalemaxdenom="2001" filter=" manhole_function = 3267 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{5beea4bb-ddf3-4784-93a9-19961a171224}" symbol="11" scalemindenom="1" label="rain_water_manhole - minor drainage system"/>
-   <rule scalemaxdenom="5001" filter=" manhole_function = 2742 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{9ee5d899-1f95-4c7f-8655-caa89c70a7df}" symbol="12" scalemindenom="1" label="slurry_collector - main drainage system"/>
-   <rule scalemaxdenom="2001" filter=" manhole_function = 2742 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{2abc1c58-4d39-41df-b8b2-1ff6ef069d55}" symbol="13" scalemindenom="1" label="slurry_collector - minor drainage system"/>
-   <rule scalemaxdenom="5001" filter=" manhole_function = 3266 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{17940497-d239-43a6-afee-e6e1b2fe31a5}" symbol="14" scalemindenom="1" label="gully - main drainage system"/>
-   <rule scalemaxdenom="2001" filter=" manhole_function = 3266 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{045b859e-9d9a-4642-9630-3594f7bd745c}" symbol="15" scalemindenom="1" label="gully - minor drainage system"/>
-   <rule scalemaxdenom="5001" filter=" manhole_function = 3472 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{7d42bd8b-f62f-443b-b2ad-56460df5fc6b}" symbol="16" scalemindenom="1" label="drainage_channel - main drainage system"/>
-   <rule scalemaxdenom="2001" filter=" manhole_function = 3472 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{ba077ab0-6fb6-47d8-a5a5-15ade7d1b6a4}" symbol="17" scalemindenom="1" label="drainage_channel - minor drainage system"/>
-   <rule scalemaxdenom="5001" filter=" manhole_function = 5344 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{21b6aa82-108b-486c-b974-3b2151ac7d48}" symbol="18" scalemindenom="1" label="other - main drainage system"/>
-   <rule scalemaxdenom="2001" filter=" manhole_function = 5344 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{131efc32-074a-4bfc-8773-4efb43246fea}" symbol="19" scalemindenom="1" label="other - minor drainage system"/>
-   <rule scalemaxdenom="2001" filter="ELSE" key="{c431ef56-07b8-43fd-87bf-e0c20098ec5f}" symbol="20" scalemindenom="1"/>
+   <rule scalemaxdenom="5001" filter="manhole_function IN (204,5345,4532,4533,4537,4798,5346) AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{a19553f0-3a86-466a-846c-34647de3eacb}" symbol="0" label="manhole, unknown, drop_structure, venting, jetting_manhole, separating_structure, stormwater_overflow  - main drainage system"/>
+   <rule scalemaxdenom="2001" filter="manhole_function IN (204,5345,4532,4533,4537,4798,5346) AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{18c180f3-844d-49e4-a8ee-e678c834fc08}" symbol="1" label="manhole, unknown, drop_structure, venting, jetting_manhole, separating_structure, stormwater_overflow - minor drainage system"/>
+   <rule scalemaxdenom="5001" filter=" manhole_function = 228 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{2287443e-21d4-4c14-8732-f925e912927a}" symbol="2" label="rail_track_gully - main drainage system"/>
+   <rule scalemaxdenom="2001" filter=" manhole_function = 228 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{d23221ad-187f-4682-9458-42a19bd0acd2}" symbol="3" label="rail_track_gully - minor drainage system"/>
+   <rule scalemaxdenom="5001" filter=" manhole_function = 4536 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{830e1f8e-7bae-4271-8e7e-3b2705cf37c2}" symbol="4" label="pump_station - main drainage system"/>
+   <rule scalemaxdenom="2001" filter=" manhole_function = 4536 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{01d58544-e7cb-482f-aa09-2d9bcc914bd0}" symbol="5" label="pump_station - minor drainage system"/>
+   <rule scalemaxdenom="5001" filter=" manhole_function = 1008 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{28f9989c-7e87-4782-8af8-e82e97e48f07}" symbol="6" label="oil_separator - main drainage system"/>
+   <rule scalemaxdenom="2001" filter=" manhole_function = 1008 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{fd59f306-4bb0-45d4-9b8f-6c472fd6f453}" symbol="7" label="oil_separator - minor drainage system"/>
+   <rule scalemaxdenom="5001" filter=" manhole_function = 1008 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{23388bb8-4225-45a4-bff9-9e90282b2e84}" symbol="8" label="floating_material_separator - main drainage system"/>
+   <rule scalemaxdenom="2001" filter=" manhole_function = 1008 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{98bce6a8-b6eb-425a-87e8-1b3bcd4f3458}" symbol="9" label="floating_material_separator - minor drainage system"/>
+   <rule scalemaxdenom="5001" filter=" manhole_function = 3267 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{fbd3e663-5247-4140-8ccb-1bb1eb3377e6}" symbol="10" label="rain_water_manhole - main drainage system"/>
+   <rule scalemaxdenom="2001" filter=" manhole_function = 3267 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{5beea4bb-ddf3-4784-93a9-19961a171224}" symbol="11" label="rain_water_manhole - minor drainage system"/>
+   <rule scalemaxdenom="5001" filter=" manhole_function = 2742 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{9ee5d899-1f95-4c7f-8655-caa89c70a7df}" symbol="12" label="slurry_collector - main drainage system"/>
+   <rule scalemaxdenom="2001" filter=" manhole_function = 2742 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{2abc1c58-4d39-41df-b8b2-1ff6ef069d55}" symbol="13" label="slurry_collector - minor drainage system"/>
+   <rule scalemaxdenom="5001" filter=" manhole_function = 3266 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{17940497-d239-43a6-afee-e6e1b2fe31a5}" symbol="14" label="gully - main drainage system"/>
+   <rule scalemaxdenom="2001" filter=" manhole_function = 3266 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{045b859e-9d9a-4642-9630-3594f7bd745c}" symbol="15" label="gully - minor drainage system"/>
+   <rule scalemaxdenom="5001" filter=" manhole_function = 3472 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{7d42bd8b-f62f-443b-b2ad-56460df5fc6b}" symbol="16" label="drainage_channel - main drainage system"/>
+   <rule scalemaxdenom="2001" filter=" manhole_function = 3472 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{ba077ab0-6fb6-47d8-a5a5-15ade7d1b6a4}" symbol="17" label="drainage_channel - minor drainage system"/>
+   <rule scalemaxdenom="5001" filter=" manhole_function = 5344 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{21b6aa82-108b-486c-b974-3b2151ac7d48}" symbol="18" label="other - main drainage system"/>
+   <rule scalemaxdenom="2001" filter=" manhole_function = 5344 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{131efc32-074a-4bfc-8773-4efb43246fea}" symbol="19" label="other - minor drainage system"/>
+   <rule scalemaxdenom="2001" filter="ELSE" key="{c431ef56-07b8-43fd-87bf-e0c20098ec5f}" symbol="20"/>
   </rules>
   <symbols>
    <symbol alpha="1" clip_to_extent="1" type="marker" name="0">
@@ -1398,23 +1401,27 @@
   <property key="labeling/bufferTransp" value="0"/>
   <property key="labeling/centroidInside" value="false"/>
   <property key="labeling/centroidWhole" value="false"/>
+  <property key="labeling/dataDefined/Color" value="1~~1~~CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END~~"/>
+  <property key="labeling/dataDefined/Show" value="1~~1~~CASE WHEN  channel_function_hierarchic IN (5068,5069,5070,5071) THEN True END~~"/>
   <property key="labeling/decimals" value="3"/>
   <property key="labeling/displayAll" value="false"/>
-  <property key="labeling/dist" value="0"/>
+  <property key="labeling/dist" value="2"/>
   <property key="labeling/distInMapUnits" value="false"/>
   <property key="labeling/distMapUnitMaxScale" value="0"/>
   <property key="labeling/distMapUnitMinScale" value="0"/>
-  <property key="labeling/enabled" value="false"/>
-  <property key="labeling/fieldName" value=""/>
+  <property key="labeling/drawLabels" value="true"/>
+  <property key="labeling/enabled" value="true"/>
+  <property key="labeling/fieldName" value="CASE WHEN $scale &lt;= 500 THEN  manhole_label ELSE  ws_identifier END"/>
+  <property key="labeling/fitInPolygonOnly" value="false"/>
   <property key="labeling/fontBold" value="false"/>
   <property key="labeling/fontCapitals" value="0"/>
-  <property key="labeling/fontFamily" value="Cantarell"/>
+  <property key="labeling/fontFamily" value="Cadastra Regular Condensed"/>
   <property key="labeling/fontItalic" value="false"/>
   <property key="labeling/fontLetterSpacing" value="0"/>
   <property key="labeling/fontLimitPixelSize" value="false"/>
   <property key="labeling/fontMaxPixelSize" value="10000"/>
   <property key="labeling/fontMinPixelSize" value="3"/>
-  <property key="labeling/fontSize" value="11"/>
+  <property key="labeling/fontSize" value="7"/>
   <property key="labeling/fontSizeInMapUnits" value="false"/>
   <property key="labeling/fontSizeMapUnitMaxScale" value="0"/>
   <property key="labeling/fontSizeMapUnitMinScale" value="0"/>
@@ -1437,8 +1444,10 @@
   <property key="labeling/minFeatureSize" value="0"/>
   <property key="labeling/multilineAlign" value="0"/>
   <property key="labeling/multilineHeight" value="1"/>
-  <property key="labeling/namedStyle" value="Regular"/>
+  <property key="labeling/namedStyle" value="Regular Condensed"/>
   <property key="labeling/obstacle" value="true"/>
+  <property key="labeling/obstacleFactor" value="1"/>
+  <property key="labeling/obstacleType" value="0"/>
   <property key="labeling/placeDirectionSymbol" value="0"/>
   <property key="labeling/placement" value="0"/>
   <property key="labeling/placementFlags" value="0"/>
@@ -1453,9 +1462,9 @@
   <property key="labeling/repeatDistanceUnit" value="1"/>
   <property key="labeling/reverseDirectionSymbol" value="false"/>
   <property key="labeling/rightDirectionSymbol" value=">"/>
-  <property key="labeling/scaleMax" value="10000000"/>
+  <property key="labeling/scaleMax" value="1501"/>
   <property key="labeling/scaleMin" value="1"/>
-  <property key="labeling/scaleVisibility" value="false"/>
+  <property key="labeling/scaleVisibility" value="true"/>
   <property key="labeling/shadowBlendMode" value="6"/>
   <property key="labeling/shadowColorB" value="0"/>
   <property key="labeling/shadowColorG" value="0"/>
@@ -1547,7 +1556,8 @@
   <selectedonly on=""/>
  </labelattributes>
  <SingleCategoryDiagramRenderer diagramType="Pie">
-  <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="5000" font="Cantarell,11,-1,5,50,0,0,0,0,0" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="1" enabled="0" height="15" sizeType="MM" minScaleDenominator="0">
+  <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="5000" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="1" enabled="0" height="15" sizeType="MM" minScaleDenominator="-4.65661e-10">
+   <fontProperties description="Cantarell,11,-1,5,50,0,0,0,0,0" style=""/>
    <attribute field="" color="#000000" label=""/>
   </DiagramCategory>
  </SingleCategoryDiagramRenderer>
@@ -1558,36 +1568,36 @@
  <annotationform>.</annotationform>
  <editorlayout>tablayout</editorlayout>
  <aliases>
-  <alias field="absorption_capacity" index="53" name=""/>
+  <alias field="absorption_capacity" index="54" name=""/>
   <alias field="accessibility" index="18" name=""/>
-  <alias field="backflow_level" index="64" name=""/>
-  <alias field="bottom_level" index="65" name=""/>
+  <alias field="backflow_level" index="65" name=""/>
+  <alias field="bottom_level" index="66" name=""/>
   <alias field="brand" index="1" name=""/>
-  <alias field="bypass" index="46" name=""/>
+  <alias field="bypass" index="47" name=""/>
   <alias field="channel_function_hierarchic" index="44" name=""/>
   <alias field="channel_usage_current" index="43" name=""/>
   <alias field="contract_section" index="19" name=""/>
   <alias field="cover_material" index="6" name=""/>
   <alias field="cover_shape" index="2" name=""/>
   <alias field="dataowner" index="14" name=""/>
-  <alias field="defects" index="54" name=""/>
+  <alias field="defects" index="55" name=""/>
   <alias field="depth" index="36" name=""/>
   <alias field="diameter" index="3" name=""/>
   <alias field="dimension1" index="37" name=""/>
   <alias field="dimension2" index="38" name=""/>
-  <alias field="distance_to_aquifer" index="55" name=""/>
-  <alias field="effective_area" index="56" name=""/>
-  <alias field="emergency_spillway" index="57" name=""/>
+  <alias field="distance_to_aquifer" index="56" name=""/>
+  <alias field="effective_area" index="57" name=""/>
+  <alias field="emergency_spillway" index="58" name=""/>
   <alias field="fastening" index="4" name=""/>
   <alias field="financing" index="20" name=""/>
   <alias field="fk_operator" index="35" name=""/>
   <alias field="fk_owner" index="34" name=""/>
   <alias field="gross_costs" index="21" name=""/>
-  <alias field="highwater_level" index="49" name=""/>
+  <alias field="highwater_level" index="50" name=""/>
   <alias field="identifier" index="10" name=""/>
   <alias field="inspection_interval" index="22" name=""/>
-  <alias field="kind" index="58" name=""/>
-  <alias field="labeling" index="59" name=""/>
+  <alias field="kind" index="59" name=""/>
+  <alias field="labeling" index="60" name=""/>
   <alias field="last_modification" index="13" name=""/>
   <alias field="level" index="5" name=""/>
   <alias field="location_name" index="23" name=""/>
@@ -1598,33 +1608,33 @@
   <alias field="positional_accuracy" index="7" name=""/>
   <alias field="provider" index="15" name=""/>
   <alias field="records" index="24" name=""/>
-  <alias field="relevance" index="50" name=""/>
+  <alias field="relevance" index="51" name=""/>
   <alias field="remark" index="11" name=""/>
   <alias field="renovation_demand" index="12" name=""/>
   <alias field="renovation_necessity" index="25" name=""/>
   <alias field="replacement_value" index="26" name=""/>
   <alias field="rv_base_year" index="27" name=""/>
   <alias field="rv_construction_type" index="28" name=""/>
-  <alias field="seepage_utilization" index="60" name=""/>
+  <alias field="seepage_utilization" index="61" name=""/>
   <alias field="sludge_bucket" index="8" name=""/>
-  <alias field="special_structure_function" index="47" name=""/>
+  <alias field="special_structure_function" index="48" name=""/>
   <alias field="status" index="29" name=""/>
-  <alias field="stormwater_tank_arrangement" index="48" name=""/>
+  <alias field="stormwater_tank_arrangement" index="49" name=""/>
   <alias field="structure_condition" index="30" name=""/>
   <alias field="subsidies" index="31" name=""/>
   <alias field="surface_inflow" index="42" name=""/>
-  <alias field="terrain_level" index="51" name=""/>
+  <alias field="terrain_level" index="52" name=""/>
   <alias field="upper_elevation" index="39" name=""/>
-  <alias field="vehicle_access" index="61" name=""/>
+  <alias field="vehicle_access" index="62" name=""/>
   <alias field="venting" index="9" name=""/>
-  <alias field="waterlevel_hydraulic" index="52" name=""/>
-  <alias field="watertightness" index="62" name=""/>
-  <alias field="wn_dataowner" index="69" name=""/>
-  <alias field="wn_identifier" index="66" name=""/>
-  <alias field="wn_last_modification" index="68" name=""/>
-  <alias field="wn_obj_id" index="63" name=""/>
-  <alias field="wn_provider" index="70" name=""/>
-  <alias field="wn_remark" index="67" name=""/>
+  <alias field="waterlevel_hydraulic" index="53" name=""/>
+  <alias field="watertightness" index="63" name=""/>
+  <alias field="wn_dataowner" index="70" name=""/>
+  <alias field="wn_identifier" index="67" name=""/>
+  <alias field="wn_last_modification" index="69" name=""/>
+  <alias field="wn_obj_id" index="64" name=""/>
+  <alias field="wn_provider" index="71" name=""/>
+  <alias field="wn_remark" index="68" name=""/>
   <alias field="ws_obj_id" index="17" name=""/>
   <alias field="ws_type" index="16" name=""/>
   <alias field="year_of_construction" index="32" name=""/>
@@ -1639,7 +1649,7 @@
    <attributeEditorField index="23" name="location_name"/>
    <attributeEditorField index="32" name="year_of_construction"/>
    <attributeEditorField index="40" name="manhole_function"/>
-   <attributeEditorField index="47" name="special_structure_function"/>
+   <attributeEditorField index="48" name="special_structure_function"/>
    <attributeEditorField index="25" name="renovation_necessity"/>
    <attributeEditorField index="5" name="level"/>
    <attributeEditorField index="7" name="positional_accuracy"/>
@@ -1692,45 +1702,45 @@
    <attributeEditorField index="42" name="surface_inflow"/>
   </attributeEditorContainer>
   <attributeEditorContainer name="Special Structure">
-   <attributeEditorField index="46" name="bypass"/>
-   <attributeEditorField index="47" name="special_structure_function"/>
-   <attributeEditorField index="48" name="stormwater_tank_arrangement"/>
+   <attributeEditorField index="47" name="bypass"/>
+   <attributeEditorField index="48" name="special_structure_function"/>
+   <attributeEditorField index="49" name="stormwater_tank_arrangement"/>
    <attributeEditorField index="39" name="upper_elevation"/>
    <attributeEditorField index="36" name="depth"/>
-   <attributeEditorField index="57" name="emergency_spillway"/>
+   <attributeEditorField index="58" name="emergency_spillway"/>
   </attributeEditorContainer>
   <attributeEditorContainer name="Discharge Point">
    <attributeEditorField index="36" name="depth"/>
-   <attributeEditorField index="57" name="emergency_spillway"/>
-   <attributeEditorField index="49" name="highwater_level"/>
-   <attributeEditorField index="50" name="relevance"/>
-   <attributeEditorField index="51" name="terrain_level"/>
+   <attributeEditorField index="58" name="emergency_spillway"/>
+   <attributeEditorField index="50" name="highwater_level"/>
+   <attributeEditorField index="51" name="relevance"/>
+   <attributeEditorField index="52" name="terrain_level"/>
    <attributeEditorField index="39" name="upper_elevation"/>
-   <attributeEditorField index="52" name="waterlevel_hydraulic"/>
+   <attributeEditorField index="53" name="waterlevel_hydraulic"/>
   </attributeEditorContainer>
   <attributeEditorContainer name="Infiltration Installation">
-   <attributeEditorField index="54" name="defects"/>
-   <attributeEditorField index="55" name="distance_to_aquifer"/>
-   <attributeEditorField index="56" name="effective_area"/>
-   <attributeEditorField index="57" name="emergency_spillway"/>
-   <attributeEditorField index="58" name="kind"/>
-   <attributeEditorField index="59" name="labeling"/>
-   <attributeEditorField index="60" name="seepage_utilization"/>
-   <attributeEditorField index="61" name="vehicle_access"/>
-   <attributeEditorField index="62" name="watertightness"/>
+   <attributeEditorField index="55" name="defects"/>
+   <attributeEditorField index="56" name="distance_to_aquifer"/>
+   <attributeEditorField index="57" name="effective_area"/>
+   <attributeEditorField index="58" name="emergency_spillway"/>
+   <attributeEditorField index="59" name="kind"/>
+   <attributeEditorField index="60" name="labeling"/>
+   <attributeEditorField index="61" name="seepage_utilization"/>
+   <attributeEditorField index="62" name="vehicle_access"/>
+   <attributeEditorField index="63" name="watertightness"/>
    <attributeEditorField index="37" name="dimension1"/>
    <attributeEditorField index="38" name="dimension2"/>
    <attributeEditorField index="39" name="upper_elevation"/>
   </attributeEditorContainer>
   <attributeEditorContainer name="Wastewater Node">
-   <attributeEditorField index="63" name="wn_obj_id"/>
-   <attributeEditorField index="64" name="backflow_level"/>
-   <attributeEditorField index="65" name="bottom_level"/>
-   <attributeEditorField index="66" name="wn_identifier"/>
-   <attributeEditorField index="67" name="wn_remark"/>
-   <attributeEditorField index="68" name="wn_last_modification"/>
-   <attributeEditorField index="69" name="wn_dataowner"/>
-   <attributeEditorField index="70" name="wn_provider"/>
+   <attributeEditorField index="64" name="wn_obj_id"/>
+   <attributeEditorField index="65" name="backflow_level"/>
+   <attributeEditorField index="66" name="bottom_level"/>
+   <attributeEditorField index="67" name="wn_identifier"/>
+   <attributeEditorField index="68" name="wn_remark"/>
+   <attributeEditorField index="69" name="wn_last_modification"/>
+   <attributeEditorField index="70" name="wn_dataowner"/>
+   <attributeEditorField index="71" name="wn_provider"/>
   </attributeEditorContainer>
   <attributeEditorContainer name="Covers">
    <attributeEditorRelation relation="vw_cover20150507162234308_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id" name="vw_cover20150507162234308_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id"/>
@@ -1747,9 +1757,7 @@
   </attributeEditorContainer>
  </attributeEditorForm>
  <attributeactions>
-  <actionsetting action="feature =
-  QgsMapLayerRegistry.instance().mapLayer('od_wastewater_structure').getFeatures( QgsFeatureRequest().setFilterExpression( 'obj_id = \'{}\''.format( '[% &quot;ws_obj_id&quot; %]
- ) ) ).next()&#xa;qgepplugin.ui.forms.digitizeDrainageChannel(feature.id(), 'od_wastewater_structure')" icon="" capture="0" type="1" name="Digitize"/>
+  <actionsetting action="feature = QgsMapLayerRegistry.instance().mapLayer('od_wastewater_structure').getFeatures( QgsFeatureRequest().setFilterExpression( 'obj_id = \'{}\''.format( '[% &quot;ws_obj_id&quot; %]' ) ) ).next()&#xa;qgepplugin.ui.forms.digitizeDrainageChannel(feature.id(), 'od_wastewater_structure')" icon="" capture="0" type="1" name="Digitize Drainage Channel"/>
+  <actionsetting action="ws_lyr = QgsMapLayerRegistry.instance().mapLayer('od_wastewater_structure')&#xa;feature = ws_lyr.getFeatures( QgsFeatureRequest().setFilterExpression( 'obj_id = \'{}\''.format( '[% &quot;ws_obj_id&quot; %]' ) ) ).next()&#xa;ws_lyr.startEditing()&#xa;ws_lyr.setSelectedFeatures([feature.id()])&#xa;qgis.utils.iface.setActiveLayer(ws_lyr)&#xa;qgis.utils.iface.actionAddPart().trigger()" icon="" capture="0" type="1" name="Digitize"/>
  </attributeactions>
-
 </qgis>

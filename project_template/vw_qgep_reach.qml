@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis version="2.9.0-Master" minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" simplifyMaxScale="1" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
+<qgis version="2.11.0-Master" minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" simplifyMaxScale="1" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
  <edittypes>
   <edittype widgetv2type="TextEdit" name="obj_id">
    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -221,14 +221,14 @@
    <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
   </edittype>
  </edittypes>
- <renderer-v2 symbollevels="0" type="RuleRenderer">
+ <renderer-v2 forceraster="0" symbollevels="0" type="RuleRenderer">
   <rules key="{b3f3f0a1-c8d2-4416-8d68-3de95a17bc02}">
-   <rule scalemaxdenom="2001" filter="width >= 300 and horizontal_positioning = 5378" key="{9e580459-8bfa-4f04-be8f-68986341bd8e}" symbol="0" scalemindenom="1" label="Wide reaches, accurate positioning, scale &lt;=2000"/>
-   <rule scalemaxdenom="2001" filter="width >= 300 and horizontal_positioning &lt;> 5378" key="{a424a253-3ec2-46b0-9b46-a4a4cb732fb7}" symbol="1" scalemindenom="1" label="Wide reaches, inaccurate positioning, scale &lt;=2000"/>
-   <rule scalemaxdenom="2001" filter="(width &lt; 300 OR width IS NULL) AND function_hierarchic IN (5068,5069,5070,5071) AND horizontal_positioning = 5378" key="{dd8104d5-d8fe-4f14-93dc-feb27d310ac3}" symbol="2" scalemindenom="1" label="Narrow main reaches, accurate positioning, scale &lt;=2000"/>
-   <rule scalemaxdenom="2001" filter="(width &lt; 300 OR width IS NULL) AND function_hierarchic IN (5068,5069,5070,5071) AND horizontal_positioning &lt;> 5378" key="{1a35f8ac-80d4-4195-95e4-076f6dbe1ecc}" symbol="3" scalemindenom="1" label="Narrow main reaches, inaccurate positioning, scale &lt;=2000"/>
-   <rule scalemaxdenom="2001" filter="(width &lt; 300 OR width IS NULL) AND function_hierarchic NOT IN (5068,5069,5070,5071) AND horizontal_positioning = 5378" key="{05072394-efd2-4299-abf8-f34a029a23a6}" symbol="4" scalemindenom="1" label="Narrow minor reaches, accurate positioning, scale &lt;=2000"/>
-   <rule scalemaxdenom="2001" filter="(width &lt; 300 OR width IS NULL) AND function_hierarchic NOT IN (5068,5069,5070,5071) AND horizontal_positioning &lt;> 5378" key="{e1b5e5a1-8ad6-447d-9483-c38ab0e189e6}" symbol="5" scalemindenom="1" label="Narrow minor reaches, inaccurate positioning, scale &lt;=2000"/>
+   <rule scalemaxdenom="2001" filter="width >= 300 and horizontal_positioning = 5378" key="{9e580459-8bfa-4f04-be8f-68986341bd8e}" symbol="0" label="Wide reaches, accurate positioning, scale &lt;=2000"/>
+   <rule scalemaxdenom="2001" filter="width >= 300 and horizontal_positioning &lt;> 5378" key="{a424a253-3ec2-46b0-9b46-a4a4cb732fb7}" symbol="1" label="Wide reaches, inaccurate positioning, scale &lt;=2000"/>
+   <rule scalemaxdenom="2001" filter="(width &lt; 300 OR width IS NULL) AND function_hierarchic IN (5068,5069,5070,5071) AND horizontal_positioning = 5378" key="{dd8104d5-d8fe-4f14-93dc-feb27d310ac3}" symbol="2" label="Narrow main reaches, accurate positioning, scale &lt;=2000"/>
+   <rule scalemaxdenom="2001" filter="(width &lt; 300 OR width IS NULL) AND function_hierarchic IN (5068,5069,5070,5071) AND horizontal_positioning &lt;> 5378" key="{1a35f8ac-80d4-4195-95e4-076f6dbe1ecc}" symbol="3" label="Narrow main reaches, inaccurate positioning, scale &lt;=2000"/>
+   <rule scalemaxdenom="2001" filter="(width &lt; 300 OR width IS NULL) AND function_hierarchic NOT IN (5068,5069,5070,5071) AND horizontal_positioning = 5378" key="{05072394-efd2-4299-abf8-f34a029a23a6}" symbol="4" label="Narrow minor reaches, accurate positioning, scale &lt;=2000"/>
+   <rule scalemaxdenom="2001" filter="(width &lt; 300 OR width IS NULL) AND function_hierarchic NOT IN (5068,5069,5070,5071) AND horizontal_positioning &lt;> 5378" key="{e1b5e5a1-8ad6-447d-9483-c38ab0e189e6}" symbol="5" label="Narrow minor reaches, inaccurate positioning, scale &lt;=2000"/>
    <rule scalemaxdenom="5001" filter="width >= 600 and horizontal_positioning = 5378" key="{37d45500-ee03-4438-8431-1f6c18bc8ac9}" symbol="6" scalemindenom="2001" label="Wide reaches, accurate positioning, scale 2000-5000"/>
    <rule scalemaxdenom="5001" filter="width >= 600 and horizontal_positioning &lt;> 5378" key="{5085b144-096c-4a99-b901-c48d8ccab0de}" symbol="7" scalemindenom="2001" label="Wide reaches, inaccurate positioning, scale 2000-5000"/>
    <rule scalemaxdenom="5001" filter="(width &lt; 600 OR width IS NULL) AND function_hierarchic IN (5068,5069,5070,5071) AND horizontal_positioning = 5378" key="{4d7a3723-99a5-420a-b1e6-ff0a12b8ede4}" symbol="8" scalemindenom="2001" label="Narrow main reaches, accurate positioning, scale 1000-3000"/>
@@ -928,11 +928,13 @@
   <property key="labeling/distInMapUnits" value="true"/>
   <property key="labeling/distMapUnitMaxScale" value="0"/>
   <property key="labeling/distMapUnitMinScale" value="0"/>
+  <property key="labeling/drawLabels" value="true"/>
   <property key="labeling/enabled" value="true"/>
   <property key="labeling/fieldName" value="attribute(getFeature('vl_reach_material','code',material),'abbr_' || substr(locale(), 0, 3) ) || COALESCE(' ' || width || ' ','') || COALESCE('-' || length_effective || '-') || COALESCE(' ' || slope_per_mill || '‰','')"/>
+  <property key="labeling/fitInPolygonOnly" value="false"/>
   <property key="labeling/fontBold" value="false"/>
   <property key="labeling/fontCapitals" value="0"/>
-  <property key="labeling/fontFamily" value="Cantarell"/>
+  <property key="labeling/fontFamily" value="Cadastra Regular Condensed"/>
   <property key="labeling/fontItalic" value="false"/>
   <property key="labeling/fontLetterSpacing" value="0"/>
   <property key="labeling/fontLimitPixelSize" value="false"/>
@@ -961,8 +963,10 @@
   <property key="labeling/minFeatureSize" value="12"/>
   <property key="labeling/multilineAlign" value="0"/>
   <property key="labeling/multilineHeight" value="1"/>
-  <property key="labeling/namedStyle" value="Regular"/>
+  <property key="labeling/namedStyle" value="Regular Condensed"/>
   <property key="labeling/obstacle" value="true"/>
+  <property key="labeling/obstacleFactor" value="1"/>
+  <property key="labeling/obstacleType" value="0"/>
   <property key="labeling/placeDirectionSymbol" value="0"/>
   <property key="labeling/placement" value="2"/>
   <property key="labeling/placementFlags" value="10"/>
@@ -1071,7 +1075,8 @@
   <selectedonly on=""/>
  </labelattributes>
  <SingleCategoryDiagramRenderer diagramType="Pie">
-  <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" font="Cantarell,11,-1,5,50,0,0,0,0,0" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" sizeType="MM" minScaleDenominator="0">
+  <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" sizeType="MM" minScaleDenominator="-4.65661e-10">
+   <fontProperties description="Cantarell,11,-1,5,50,0,0,0,0,0" style=""/>
    <attribute field="" color="#000000" label=""/>
   </DiagramCategory>
  </SingleCategoryDiagramRenderer>

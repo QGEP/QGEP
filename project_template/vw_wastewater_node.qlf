@@ -1,0 +1,101 @@
+<maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
+ <id>vw_wastewater_node</id>
+ <datasource>service='pg_qgep' sslmode=disable key='obj_id' estimatedmetadata=true srid=21781 type=Point table="qgep"."vw_wastewater_node" (situation_geometry) sql=</datasource>
+ <title></title>
+ <abstract></abstract>
+ <keywordList>
+  <value></value>
+ </keywordList>
+ <layername>vw_wastewater_node</layername>
+ <srs>
+  <spatialrefsys>
+   <proj4>+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=600000 +y_0=200000 +ellps=bessel +towgs84=674.4,15.1,405.3,0,0,0,0 +units=m +no_defs</proj4>
+   <srsid>1919</srsid>
+   <srid>21781</srid>
+   <authid>EPSG:21781</authid>
+   <description>CH1903 / LV03</description>
+   <projectionacronym>somerc</projectionacronym>
+   <ellipsoidacronym>bessel</ellipsoidacronym>
+   <geographicflag>false</geographicflag>
+  </spatialrefsys>
+ </srs>
+ <provider encoding="UTF-16">postgres</provider>
+ <previewExpression></previewExpression>
+ <vectorjoins/>
+ <expressionfields/>
+ <map-layer-style-manager current="">
+  <map-layer-style name=""/>
+ </map-layer-style-manager>
+ <renderer-v2 forceraster="0" symbollevels="0" type="singleSymbol">
+  <symbols>
+   <symbol alpha="1" clip_to_extent="1" type="marker" name="0">
+    <layer pass="0" class="SimpleMarker" locked="0">
+     <prop k="angle" v="0"/>
+     <prop k="color" v="135,149,100,255"/>
+     <prop k="horizontal_anchor_point" v="1"/>
+     <prop k="name" v="circle"/>
+     <prop k="offset" v="0,0"/>
+     <prop k="offset_map_unit_scale" v="0,0"/>
+     <prop k="offset_unit" v="MM"/>
+     <prop k="outline_color" v="0,0,0,255"/>
+     <prop k="outline_style" v="solid"/>
+     <prop k="outline_width" v="0"/>
+     <prop k="outline_width_map_unit_scale" v="0,0"/>
+     <prop k="outline_width_unit" v="MM"/>
+     <prop k="scale_method" v="diameter"/>
+     <prop k="size" v="2"/>
+     <prop k="size_map_unit_scale" v="0,0"/>
+     <prop k="size_unit" v="MM"/>
+     <prop k="vertical_anchor_point" v="1"/>
+     <effect enabled="0" type="effectStack">
+      <effect type="drawSource">
+       <prop k="blend_mode" v="0"/>
+       <prop k="draw_mode" v="2"/>
+       <prop k="enabled" v="1"/>
+       <prop k="transparency" v="0"/>
+      </effect>
+     </effect>
+    </layer>
+   </symbol>
+  </symbols>
+  <rotation/>
+  <sizescale scalemethod="diameter"/>
+  <effect enabled="0" type="effectStack">
+   <effect type="drawSource">
+    <prop k="blend_mode" v="0"/>
+    <prop k="draw_mode" v="2"/>
+    <prop k="enabled" v="1"/>
+    <prop k="transparency" v="0"/>
+   </effect>
+  </effect>
+ </renderer-v2>
+ <customproperties/>
+ <blendMode>0</blendMode>
+ <featureBlendMode>0</featureBlendMode>
+ <layerTransparency>0</layerTransparency>
+ <displayfield>obj_id</displayfield>
+ <label>0</label>
+ <labelattributes>
+  <label fieldname="" text="Beschriftung"/>
+  <family fieldname="" name="Cantarell"/>
+  <size fieldname="" units="pt" value="12"/>
+  <bold fieldname="" on="0"/>
+  <italic fieldname="" on="0"/>
+  <underline fieldname="" on="0"/>
+  <strikeout fieldname="" on="0"/>
+  <color fieldname="" red="0" blue="0" green="0"/>
+  <x fieldname=""/>
+  <y fieldname=""/>
+  <offset x="0" y="0" units="pt" yfieldname="" xfieldname=""/>
+  <angle fieldname="" value="0" auto="0"/>
+  <alignment fieldname="" value="center"/>
+  <buffercolor fieldname="" red="255" blue="255" green="255"/>
+  <buffersize fieldname="" units="pt" value="1"/>
+  <bufferenabled fieldname="" on=""/>
+  <multilineenabled fieldname="" on=""/>
+  <selectedonly on=""/>
+ </labelattributes>
+ <relations/>
+ <layer-tree-group name="Hydraulic"/>
+ <dependencies/>
+</maplayer>
