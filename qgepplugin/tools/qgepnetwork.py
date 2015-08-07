@@ -140,7 +140,6 @@ class QgepGraphManager():
     # Creates a network graph
     def createGraph(self):
         self._profile( "create graph" )
-        
         #try:
         self.vertexIds = {}
         self.nodesOnStructure = defaultdict( list )

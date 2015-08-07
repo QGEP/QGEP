@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 #-----------------------------------------------------------
 #
@@ -39,6 +40,9 @@ from utils.qgeplogging import QgepQgsLogHandler
 from utils.translation import setupI18n
 from utils.qgeplayermanager import QgepLayerNotifier
 
+from qgis.gui import QgsMessageBar
+from qgis.core import *
+from PyQt4.QtSql import *
 
 LOGFORMAT     = '%(asctime)s:%(levelname)s:%(module)s:%(message)s'
 
@@ -122,29 +126,36 @@ class QgepPlugin:
         self.toolbarButtons = []
         
         # Create toolbar button
-        self.profileAction = QAction( QIcon( ":/plugins/qgepplugin/icons/wastewater-profile.svg" ), self.tr("Profile"), self.iface.mainWindow() )
-        self.profileAction.setWhatsThis( self.tr( "Reach trace" ) )
+        self.profileAction = QAction( QIcon(":/plugins/qgepplugin/icons/wastewater-profile.svg"), self.tr("Profile"), self.iface.mainWindow())
+        self.profileAction.setWhatsThis(self.tr("Reach trace"))
         self.profileAction.setEnabled( False )
         self.profileAction.setCheckable( True )
-        self.profileAction.triggered.connect( self.profileToolClicked )
+        self.profileAction.triggered.connect(self.profileToolClicked )
 
-        self.downstreamAction = QAction( QIcon( ":/plugins/qgepplugin/icons/wastewater-downstream.svg" ), self.tr("Downstream"), self.iface.mainWindow() )
+        self.downstreamAction = QAction( QIcon( ":/plugins/qgepplugin/icons/wastewater-downstream.svg"), self.tr("Downstream"), self.iface.mainWindow())
         self.downstreamAction.setWhatsThis( self.tr( "Downstream reaches" ) )
         self.downstreamAction.setEnabled( False )
         self.downstreamAction.setCheckable( True )
         self.downstreamAction.triggered.connect( self.downstreamToolClicked )
 
-        self.upstreamAction = QAction( QIcon( ":/plugins/qgepplugin/icons/wastewater-upstream.svg" ), self.tr("Upstream"), self.iface.mainWindow() )
+        self.upstreamAction = QAction( QIcon( ":/plugins/qgepplugin/icons/wastewater-upstream.svg"), self.tr("Upstream"), self.iface.mainWindow())
         self.upstreamAction.setWhatsThis( self.tr( "Upstream reaches" ) )
         self.upstreamAction.setEnabled( False )
         self.upstreamAction.setCheckable( True )
         self.upstreamAction.triggered.connect( self.upstreamToolClicked )
 
-        self.wizardAction = QAction( QIcon( ":/plugins/qgepplugin/icons/wizard.svg" ), "Wizard", self.iface.mainWindow() )
+        self.wizardAction = QAction( QIcon( ":/plugins/qgepplugin/icons/wizard.svg" ), "Wizard", self.iface.mainWindow())
         self.wizardAction.setWhatsThis( self.tr( "Create new manholes and reaches" ) )
         self.wizardAction.setEnabled( False )
         self.wizardAction.setCheckable( True )
         self.wizardAction.triggered.connect( self.wizard )
+
+        self.refreshNetworkTopologyAction = QAction( QIcon( ":/plugins/qgepplugin/icons/refresh-network.svg" ), "Refresh netwok topology", self.iface.mainWindow())
+        self.refreshNetworkTopologyAction.setWhatsThis( self.tr("Refresh network topology"))
+        self.refreshNetworkTopologyAction.setEnabled( False )
+        self.refreshNetworkTopologyAction.setCheckable( False )
+        self.refreshNetworkTopologyAction.triggered.connect( self.refreshNetworkTopologyActionClicked )
+
         
         self.aboutAction = QAction( self.tr( 'About' ), self.iface.mainWindow() )
         self.aboutAction.triggered.connect( self.about )
@@ -157,6 +168,7 @@ class QgepPlugin:
         self.iface.addToolBarIcon( self.upstreamAction )
         self.iface.addToolBarIcon( self.downstreamAction )
         self.iface.addToolBarIcon( self.wizardAction )
+        self.iface.addToolBarIcon( self.refreshNetworkTopologyAction )
 
         self.iface.addPluginToMenu( "&QGEP", self.profileAction )
         self.iface.addPluginToMenu( "&QGEP", self.settingsAction )
@@ -167,6 +179,7 @@ class QgepPlugin:
         self.toolbarButtons.append( self.upstreamAction )
         self.toolbarButtons.append( self.downstreamAction )
         self.toolbarButtons.append( self.wizardAction )
+        self.toolbarButtons.append( self.refreshNetworkTopologyAction )
 
         self.network_layer_notifier.layersAvailable.connect(self.onLayersAvailable)
         self.network_layer_notifier.layersUnavailable.connect(self.onLayersUnavailable)
@@ -182,6 +195,8 @@ class QgepPlugin:
         self.downstreamTreeTool = QgepTreeMapTool( self.iface, self.downstreamAction, self.networkAnalyzer )
         self.downstreamTreeTool.setDirection( "downstream" )
 
+
+
     def unload( self ):
         '''
         Called when unloading
@@ -190,6 +205,8 @@ class QgepPlugin:
         self.iface.removeToolBarIcon( self.upstreamAction )
         self.iface.removeToolBarIcon( self.downstreamAction )
         self.iface.removeToolBarIcon( self.wizardAction )
+        self.iface.removeToolBarIcon( self.refreshNetworkTopologyAction )
+
         self.iface.removePluginMenu( "&QGEP", self.profileAction )
         self.iface.removePluginMenu( "&QGEP", self.aboutAction )
 
@@ -224,6 +241,41 @@ class QgepPlugin:
         Is executed when the user clicks the downstream search tool
         '''
         self.downstreamTreeTool.setActive()
+
+    def refreshNetworkTopologyActionClicked( self ):
+        '''
+        Is executed when the user clicks the refreshNetworkTopologyAction tool
+        '''
+        uri = QgsDataSourceURI(self.networkAnalyzer.getNodeLayer().dataProvider().dataSourceUri())
+
+        db = QSqlDatabase.addDatabase("QPSQL") #Name of the driver -- doesn't change
+
+        str_connect_option = "requiressl=0;service=" + uri.service()
+        db.setConnectOptions(str_connect_option)
+
+        if not db.open():
+            self.iface.messageBar().pushMessage(self.tr("Warning"), db.lastError().text(), level=QgsMessageBar.CRITICAL)#  INFO = 0, WARNING = 1, CRITICAL = 2, SUCCESS = 3
+
+        query_template = ("""REFRESH MATERIALIZED VIEW qgep.vw_network_segment;""")
+        query = QSqlQuery(db)
+        if not query.exec_(query_template):
+            str_result = query.lastError().text()
+            self.iface.messageBar().pushMessage(self.tr("Warning"), str_result, level=QgsMessageBar.CRITICAL)
+        else:
+            self.iface.messageBar().pushMessage(self.tr("Success"), "vw_network_segment successfully updated", level=QgsMessageBar.SUCCESS,duration = 2)
+
+
+        query_template = ("""REFRESH MATERIALIZED VIEW qgep.vw_network_node;""")
+        query = QSqlQuery(db)
+        if not query.exec_(query_template):
+            str_result = query.lastError().text()
+            self.iface.messageBar().pushMessage(self.tr("Warning"), str_result, level=QgsMessageBar.CRITICAL)
+        else:
+            self.iface.messageBar().pushMessage(self.tr("Success"), "vw_network_node successfully updated", level=QgsMessageBar.SUCCESS, duration = 2)
+        # recreate networkx graph
+        self.networkAnalyzer.graph.clear()
+        self.networkAnalyzer.createGraph()
+
 
     def wizard(self):
         '''

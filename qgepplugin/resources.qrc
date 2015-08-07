@@ -6,6 +6,7 @@
         <file>icons/wastewater-profile.svg</file>
         <file>icons/wastewater-upstream.svg</file>
         <file>icons/wizard.svg</file>
+        <file>icons/refresh-network.svg</file>
         <file>svgprofile/profile.js</file>
         <file>svgprofile/profile.css</file>
         <file>svgprofile/index.html</file>
