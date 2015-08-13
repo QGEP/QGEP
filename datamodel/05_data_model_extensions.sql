@@ -21,8 +21,8 @@ added solely for QGEP';
 -- this column is used to store the manhole label. We store it for performance reasons, rather than generating it on the fly
 -- we need additional triggers to keep this label in sync with the updates (connected reaches)
 -- see also migration/90_update_symbology_attribs.sql on how to update this manually for the whole data set
-ALTER TABLE qgep.od_manhole ADD COLUMN _label text;
-COMMENT ON COLUMN qgep.od_manhole._label IS 'This column is used to store the manhole label. We store it for performance reasons, rather than generating it on the fly. We need additional triggers to keep this label in sync with the updates (connected reaches).';
+ALTER TABLE qgep.od_wastewater_structure ADD COLUMN _label text;
+COMMENT ON COLUMN qgep.od_wastewater_structure._label IS 'This column is used to store the manhole/special_structure label. We store it for performance reasons, rather than generating it on the fly. We need additional triggers to keep this label in sync with the updates (connected reaches).';
 
 
 -- this column is an extension to the VSA data model and puts the _function_hierarchic in order

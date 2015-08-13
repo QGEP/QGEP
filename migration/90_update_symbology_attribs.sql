@@ -15,8 +15,8 @@ UPDATE qgep.od_pipe_profile SET height_width_ratio=1 WHERE height_width_ratio IS
 -- update label text for manholes
 -- note the language specific update, needs to be discussed
 -- only major manholes get labels
-UPDATE qgep.od_manhole mh
-   SET _label=qgep.wastewater_structure_label_detailed(mh.obj_id,'en')
+UPDATE qgep.od_wastewater_structure
+   SET _label=qgep.wastewater_structure_label_detailed(ws.obj_id)
    FROM qgep.od_wastewater_structure ws
- WHERE mh.obj_id = ws.obj_id AND ws._function_hierarchic IN (5068,5069,5070,5071);
+ WHERE ws.obj_id = ws.obj_id AND (ws.obj_id LIKE '%MA%' OR ws.obj_id LIKE '%SS%') AND ws._function_hierarchic IN (5068,5069,5070,5071);
 

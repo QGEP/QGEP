@@ -213,6 +213,69 @@
         <customproperties/>
       </layer-tree-layer>
     </layer-tree-group>
+    <layer-tree-group expanded="0" checked="Qt::Checked" name="Cadastral Data">
+      <customproperties/>
+      <layer-tree-layer expanded="0" checked="Qt::Checked" id="ownership__boundary_point" name="ownership__boundary_point">
+        <customproperties>
+          <property key="embedded" value="1"/>
+          <property key="embedded_project" value="./av03.qgs"/>
+        </customproperties>
+      </layer-tree-layer>
+      <layer-tree-layer expanded="1" checked="Qt::Checked" id="building_addresses__building_entrance_pos" name="building_addresses__building_entrance_pos">
+        <customproperties>
+          <property key="embedded" value="1"/>
+          <property key="embedded_project" value="./av03.qgs"/>
+        </customproperties>
+      </layer-tree-layer>
+      <layer-tree-layer expanded="1" checked="Qt::Checked" id="building_addresses__street_name_pos" name="building_addresses__street_name_pos">
+        <customproperties>
+          <property key="embedded" value="1"/>
+          <property key="embedded_project" value="./av03.qgs"/>
+        </customproperties>
+      </layer-tree-layer>
+      <layer-tree-layer expanded="0" checked="Qt::Checked" id="land_cover__lcsurface" name="land_cover__lcsurface">
+        <customproperties>
+          <property key="embedded" value="1"/>
+          <property key="embedded_project" value="./av03.qgs"/>
+        </customproperties>
+      </layer-tree-layer>
+      <layer-tree-layer expanded="1" checked="Qt::Checked" id="land_cover__lcsurface_postext" name="land_cover__lcsurface_postext">
+        <customproperties>
+          <property key="embedded" value="1"/>
+          <property key="embedded_project" value="./av03.qgs"/>
+        </customproperties>
+      </layer-tree-layer>
+      <layer-tree-layer expanded="1" checked="Qt::Checked" id="ownership__realestate" name="ownership__realestate">
+        <customproperties>
+          <property key="embedded" value="1"/>
+          <property key="embedded_project" value="./av03.qgs"/>
+        </customproperties>
+      </layer-tree-layer>
+      <layer-tree-layer expanded="1" checked="Qt::Checked" id="ownership__realestate_posnumber" name="ownership__realestate_posnumber">
+        <customproperties>
+          <property key="embedded" value="1"/>
+          <property key="embedded_project" value="./av03.qgs"/>
+        </customproperties>
+      </layer-tree-layer>
+      <layer-tree-layer expanded="0" checked="Qt::Checked" id="single_objects__linear_element" name="single_objects__linear_element">
+        <customproperties>
+          <property key="embedded" value="1"/>
+          <property key="embedded_project" value="./av03.qgs"/>
+        </customproperties>
+      </layer-tree-layer>
+      <layer-tree-layer expanded="0" checked="Qt::Checked" id="single_objects__surface_element" name="single_objects__surface_element">
+        <customproperties>
+          <property key="embedded" value="1"/>
+          <property key="embedded_project" value="./av03.qgs"/>
+        </customproperties>
+      </layer-tree-layer>
+      <layer-tree-layer expanded="1" checked="Qt::Checked" id="territorial_boundaries__municipal_boundary" name="territorial_boundaries__municipal_boundary">
+        <customproperties>
+          <property key="embedded" value="1"/>
+          <property key="embedded_project" value="./av03.qgs"/>
+        </customproperties>
+      </layer-tree-layer>
+    </layer-tree-group>
   </layer-tree-group>
   <relations>
     <relation referencingLayer="od_maintenance_event" referencedLayer="vw_qgep_cover" id="od_maintenance_event20150530130856307_fk_wastewater_structure_vw_qgep_cover_obj_id" name="Maintenances">
@@ -274,20 +337,27 @@
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="ownership__realestate20150211112947342"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_qgep_reach"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_qgep_cover"/>
+      <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="ownership__realestate_posnumber"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_cover___"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_wastewater_node20141111091100662"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="od_cover20140822215511882"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_wizard_cover_manhole20141025170618565"/>
+      <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="single_objects__linear_element"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="single_objects__linear_element20150211112947351"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="od_wastewater_structure20140728163138856"/>
+      <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="ownership__boundary_point"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_special_structure20141013203257795"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="od_reach_point20140728163138843"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="building_addresses__building_entrance_pos20150211112947254"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="od_cover20140414160716920"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_network_node20140827212753645"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="Landeskarte_1_25_000_1_1_Mio__farbe20150401143000299"/>
+      <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="single_objects__surface_element"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="od_reach20140822215411222"/>
+      <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="building_addresses__street_name_pos"/>
+      <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="land_cover__lcsurface"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="od_reach20150415105009524"/>
+      <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="ownership__realestate"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="single_objects__surface_element20150211113252990"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_wizard_reach_channel20141025180143924"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_reach20141025180235004"/>
@@ -310,8 +380,11 @@
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_network_segment20140827212755598"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_cover20141013203237315"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="land_cover__lcsurface20150211102116489"/>
+      <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="land_cover__lcsurface_postext"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="building_addresses__street_name_pos20150211112947319"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="od_reach20140728162912956"/>
+      <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="building_addresses__building_entrance_pos"/>
+      <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="territorial_boundaries__municipal_boundary"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_wizard_cover_special_structure20150129140416706"/>
     </layer_coordinate_transform_info>
   </mapcanvas>
@@ -370,6 +443,16 @@
       <item>vw_network_segment20150607120529381</item>
       <item>vw_network_node20150607120529398</item>
       <item>vw_wastewater_node20150607121012062</item>
+      <item>territorial_boundaries__municipal_boundary</item>
+      <item>ownership__boundary_point</item>
+      <item>single_objects__surface_element</item>
+      <item>single_objects__linear_element</item>
+      <item>ownership__realestate_posnumber</item>
+      <item>ownership__realestate</item>
+      <item>land_cover__lcsurface_postext</item>
+      <item>land_cover__lcsurface</item>
+      <item>building_addresses__street_name_pos</item>
+      <item>building_addresses__building_entrance_pos</item>
     </custom-order>
   </layer-tree-canvas>
   <legend updateDrawingOrder="true">
@@ -669,8 +752,64 @@
         </filegroup>
       </legendlayer>
     </legendgroup>
+    <legendgroup open="false" checked="Qt::Checked" name="Cadastral Data">
+      <legendlayer drawingOrder="-1" open="false" checked="Qt::Checked" name="ownership__boundary_point" showFeatureCount="0">
+        <filegroup open="false" hidden="false">
+          <legendlayerfile isInOverview="0" layerid="ownership__boundary_point" visible="1"/>
+        </filegroup>
+      </legendlayer>
+      <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="building_addresses__building_entrance_pos" showFeatureCount="0">
+        <filegroup open="true" hidden="false">
+          <legendlayerfile isInOverview="0" layerid="building_addresses__building_entrance_pos" visible="1"/>
+        </filegroup>
+      </legendlayer>
+      <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="building_addresses__street_name_pos" showFeatureCount="0">
+        <filegroup open="true" hidden="false">
+          <legendlayerfile isInOverview="0" layerid="building_addresses__street_name_pos" visible="1"/>
+        </filegroup>
+      </legendlayer>
+      <legendlayer drawingOrder="-1" open="false" checked="Qt::Checked" name="land_cover__lcsurface" showFeatureCount="0">
+        <filegroup open="false" hidden="false">
+          <legendlayerfile isInOverview="0" layerid="land_cover__lcsurface" visible="1"/>
+        </filegroup>
+      </legendlayer>
+      <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="land_cover__lcsurface_postext" showFeatureCount="0">
+        <filegroup open="true" hidden="false">
+          <legendlayerfile isInOverview="0" layerid="land_cover__lcsurface_postext" visible="1"/>
+        </filegroup>
+      </legendlayer>
+      <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="ownership__realestate" showFeatureCount="0">
+        <filegroup open="true" hidden="false">
+          <legendlayerfile isInOverview="0" layerid="ownership__realestate" visible="1"/>
+        </filegroup>
+      </legendlayer>
+      <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="ownership__realestate_posnumber" showFeatureCount="0">
+        <filegroup open="true" hidden="false">
+          <legendlayerfile isInOverview="0" layerid="ownership__realestate_posnumber" visible="1"/>
+        </filegroup>
+      </legendlayer>
+      <legendlayer drawingOrder="-1" open="false" checked="Qt::Checked" name="single_objects__linear_element" showFeatureCount="0">
+        <filegroup open="false" hidden="false">
+          <legendlayerfile isInOverview="0" layerid="single_objects__linear_element" visible="1"/>
+        </filegroup>
+      </legendlayer>
+      <legendlayer drawingOrder="-1" open="false" checked="Qt::Checked" name="single_objects__surface_element" showFeatureCount="0">
+        <filegroup open="false" hidden="false">
+          <legendlayerfile isInOverview="0" layerid="single_objects__surface_element" visible="1"/>
+        </filegroup>
+      </legendlayer>
+      <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="territorial_boundaries__municipal_boundary" showFeatureCount="0">
+        <filegroup open="true" hidden="false">
+          <legendlayerfile isInOverview="0" layerid="territorial_boundaries__municipal_boundary" visible="1"/>
+        </filegroup>
+      </legendlayer>
+    </legendgroup>
   </legend>
-  <projectlayers layercount="52">
+  <projectlayers layercount="62">
+    <maplayer embedded="1" id="building_addresses__building_entrance_pos" project="./av03.qgs"/>
+    <maplayer embedded="1" id="building_addresses__street_name_pos" project="./av03.qgs"/>
+    <maplayer embedded="1" id="land_cover__lcsurface" project="./av03.qgs"/>
+    <maplayer embedded="1" id="land_cover__lcsurface_postext" project="./av03.qgs"/>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>od_maintenance_event</id>
       <datasource>service='pg_qgep' sslmode=disable key='obj_id' estimatedmetadata=true table="qgep"."od_maintenance_event" sql=</datasource>
@@ -1392,6 +1531,12 @@
         </edittype>
       </edittypes>
     </maplayer>
+    <maplayer embedded="1" id="ownership__boundary_point" project="./av03.qgs"/>
+    <maplayer embedded="1" id="ownership__realestate" project="./av03.qgs"/>
+    <maplayer embedded="1" id="ownership__realestate_posnumber" project="./av03.qgs"/>
+    <maplayer embedded="1" id="single_objects__linear_element" project="./av03.qgs"/>
+    <maplayer embedded="1" id="single_objects__surface_element" project="./av03.qgs"/>
+    <maplayer embedded="1" id="territorial_boundaries__municipal_boundary" project="./av03.qgs"/>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_access_aid_kind</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_access_aid_kind" sql=</datasource>
@@ -8143,7 +8288,7 @@
         <property key="labeling/distMapUnitMinScale" value="0"/>
         <property key="labeling/drawLabels" value="true"/>
         <property key="labeling/enabled" value="true"/>
-        <property key="labeling/fieldName" value="CASE WHEN $scale &lt;= 500 THEN  manhole_label ELSE  ws_identifier END"/>
+        <property key="labeling/fieldName" value="CASE WHEN $scale &lt;= 500 THEN mh_ss_label ELSE  ws_identifier END"/>
         <property key="labeling/fitInPolygonOnly" value="false"/>
         <property key="labeling/fontBold" value="false"/>
         <property key="labeling/fontCapitals" value="0"/>
@@ -10447,8 +10592,28 @@
         <value>vw_qgep_cover</value>
         <value>vw_qgep_reach</value>
         <value>vw_wastewater_node20150607121012062</value>
+        <value>territorial_boundaries__municipal_boundary</value>
+        <value>ownership__boundary_point</value>
+        <value>single_objects__surface_element</value>
+        <value>single_objects__linear_element</value>
+        <value>ownership__realestate_posnumber</value>
+        <value>ownership__realestate</value>
+        <value>land_cover__lcsurface_postext</value>
+        <value>land_cover__lcsurface</value>
+        <value>building_addresses__street_name_pos</value>
+        <value>building_addresses__building_entrance_pos</value>
       </LayerSnappingList>
       <LayerSnappingEnabledList type="QStringList">
+        <value>disabled</value>
+        <value>disabled</value>
+        <value>disabled</value>
+        <value>disabled</value>
+        <value>disabled</value>
+        <value>disabled</value>
+        <value>disabled</value>
+        <value>disabled</value>
+        <value>disabled</value>
+        <value>disabled</value>
         <value>disabled</value>
         <value>disabled</value>
         <value>disabled</value>
@@ -10467,8 +10632,28 @@
         <value>2</value>
         <value>2</value>
         <value>2</value>
+        <value>2</value>
+        <value>2</value>
+        <value>2</value>
+        <value>2</value>
+        <value>2</value>
+        <value>2</value>
+        <value>2</value>
+        <value>2</value>
+        <value>2</value>
+        <value>2</value>
       </LayerSnappingToleranceUnitList>
       <LayerSnapToList type="QStringList">
+        <value>to_vertex_and_segment</value>
+        <value>to_vertex_and_segment</value>
+        <value>to_vertex_and_segment</value>
+        <value>to_vertex_and_segment</value>
+        <value>to_vertex_and_segment</value>
+        <value>to_vertex_and_segment</value>
+        <value>to_vertex_and_segment</value>
+        <value>to_vertex_and_segment</value>
+        <value>to_vertex_and_segment</value>
+        <value>to_vertex_and_segment</value>
         <value>to_vertex_and_segment</value>
         <value>to_vertex_and_segment</value>
         <value>to_vertex_and_segment</value>
@@ -10480,6 +10665,16 @@
       <DefaultSnapType type="QString">off</DefaultSnapType>
       <DefaultSnapTolerance type="double">0</DefaultSnapTolerance>
       <LayerSnappingToleranceList type="QStringList">
+        <value>0.000000</value>
+        <value>0.000000</value>
+        <value>0.000000</value>
+        <value>0.000000</value>
+        <value>0.000000</value>
+        <value>0.000000</value>
+        <value>0.000000</value>
+        <value>0.000000</value>
+        <value>0.000000</value>
+        <value>0.000000</value>
         <value>0.000000</value>
         <value>0.000000</value>
         <value>0.000000</value>

@@ -265,14 +265,14 @@ CREATE TRIGGER ws_symbology_update_by_reach
 -- DROP FUNCTION qgep.wastewater_structure_label_detailed(text, text);
 
 CREATE OR REPLACE FUNCTION qgep.wastewater_structure_label_detailed(
-    structure_obj_id text,
-    lang text)
+    structure_obj_id text)
   RETURNS text AS
 $BODY$DECLARE
 myrec_struct_identifier record;
 myrec_incoming record;
 myrec_cover record;
 myrec_outgoing record;
+myrec_bottom_level record;
 label text;
 BEGIN
 BEGIN
@@ -291,20 +291,33 @@ ELSE
   label = myrec_struct_identifier.obj_id;
 END IF;
 --add cover information
-FOR myrec_cover IN SELECT CASE WHEN lang IN ('en','fr') THEN 'C' WHEN lang='de' THEN 'D' ELSE 'C' END ||row_number() over(ORDER BY cov.level DESC) ||'='||round(cov.level,2) AS text_cover FROM qgep.od_cover cov, qgep.od_structure_part sp WHERE sp.fk_wastewater_structure = structure_obj_id AND cov.obj_id = sp.obj_id ORDER BY cov.level DESC LOOP
+FOR myrec_cover IN SELECT 'C='||round(cov.level,2) AS text_cover FROM qgep.od_cover cov, qgep.od_structure_part sp WHERE sp.fk_wastewater_structure = structure_obj_id AND cov.obj_id = sp.obj_id ORDER BY cov.level DESC LOOP
   label = label || '
 ' || myrec_cover.text_cover;
 END LOOP;
 --add incoming reaches
-FOR myrec_incoming IN SELECT CASE WHEN lang = 'en' THEN 'I' WHEN lang IN ('de','fr') THEN 'E' ELSE 'I' END ||row_number() over(ORDER BY ST_Azimuth(rp.situation_geometry,ST_Line_Interpolate_Point(ST_GeometryN(re_to.progression_geometry,1),0.99))/pi()*180 ASC)||'='||round(rp.level,2) AS text_incoming FROM qgep.od_reach_point rp LEFT JOIN qgep.od_reach re_to ON rp.obj_id = re_to.fk_reach_point_to WHERE rp.fk_wastewater_networkelement = myrec_struct_identifier.network_element_obj_id AND rp.level IS NOT NULL AND round(rp.level) != 0 AND re_to.obj_id IS NOT NULL ORDER BY ST_Azimuth(rp.situation_geometry,ST_Line_Interpolate_Point(ST_GeometryN(re_to.progression_geometry,1),0.99))/pi()*180 ASC LOOP
+FOR myrec_incoming IN SELECT 'I' ||row_number() over(ORDER BY ST_Azimuth(rp.situation_geometry,ST_Line_Interpolate_Point(ST_GeometryN(re_to.progression_geometry,1),0.99))/pi()*180 ASC)||'='||round(rp.level,2) AS text_incoming FROM qgep.od_reach_point rp LEFT JOIN qgep.od_reach re_to ON rp.obj_id = re_to.fk_reach_point_to WHERE rp.fk_wastewater_networkelement = myrec_struct_identifier.network_element_obj_id AND rp.level IS NOT NULL AND round(rp.level) != 0 AND re_to.obj_id IS NOT NULL ORDER BY ST_Azimuth(rp.situation_geometry,ST_Line_Interpolate_Point(ST_GeometryN(re_to.progression_geometry,1),0.99))/pi()*180 ASC LOOP
   label = label || '
 ' || myrec_incoming.text_incoming;
 END LOOP;
 --add outgoing reaches
-FOR myrec_outgoing IN SELECT CASE WHEN lang = 'en' THEN 'O' WHEN lang = 'de' THEN 'A' WHEN lang = 'fr' THEN 'P' ELSE 'O' END ||row_number() over(ORDER BY rp.level DESC) || '='||round(rp.level,2) AS text_outgoing FROM qgep.od_reach_point rp LEFT JOIN qgep.od_reach re_from ON rp.obj_id = re_from.fk_reach_point_from WHERE rp.fk_wastewater_networkelement = myrec_struct_identifier.network_element_obj_id AND rp.level IS NOT NULL AND round(rp.level) != 0 AND re_from.obj_id IS NOT NULL ORDER BY rp.level DESC LOOP
+FOR myrec_outgoing IN SELECT 'O' ||row_number() over(ORDER BY rp.level DESC) || '='||round(rp.level,2) AS text_outgoing FROM qgep.od_reach_point rp LEFT JOIN qgep.od_reach re_from ON rp.obj_id = re_from.fk_reach_point_from WHERE rp.fk_wastewater_networkelement = myrec_struct_identifier.network_element_obj_id AND rp.level IS NOT NULL AND round(rp.level) != 0 AND re_from.obj_id IS NOT NULL ORDER BY rp.level DESC LOOP
   label = label || '
 ' || myrec_outgoing.text_outgoing;
 END LOOP;
+--add bottom level - if any
+BEGIN
+SELECT no.bottom_level into myrec_bottom_level FROM qgep.od_wastewater_networkelement ne, qgep.od_wastewater_node no WHERE no.obj_id = ne.obj_id AND ne.fk_wastewater_structure = structure_obj_id;
+  EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+      RAISE EXCEPTION 'no record found in table qgep.od_wastewater_node for obj_id %', structure_obj_id;
+    WHEN TOO_MANY_ROWS THEN
+      RAISE EXCEPTION 'more than one record found in table qgep.od_wastewater_node for obj_id %', structure_obj_id;
+END;
+IF myrec_bottom_level.bottom_level IS NOT NULL THEN
+label = label || '
+B=' || myrec_bottom_level.bottom_level;
+END IF;
 RETURN label;
 END;$BODY$
   LANGUAGE plpgsql VOLATILE
