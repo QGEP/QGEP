@@ -21,4 +21,8 @@ before_script:
   - pg_restore -O -d qgep test/testdata.dump
   - $TRAVIS_BUILD_DIR/datamodel/scripts/db_setup.sh &>/dev/null
 
-script: $TRAVIS_BUILD_DIR/scripts/migrate.sh
+script:
+  - $TRAVIS_BUILD_DIR/scripts/migrate.sh
+
+after_success:
+  - $TRAVIS_BUILD_DIR/datamodel/scripts/deploy_demodata.sh
