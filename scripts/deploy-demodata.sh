@@ -8,16 +8,16 @@ DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/../..
 if test "$TRAVIS_SECURE_ENV_VARS" = "true" -a "$TRAVIS_BRANCH" = "master";
 then
   echo "updating demodata";
-fi
 
-pushd ${DIR}
-mkdir demodata
-cd demodata
-git clone git@github.com:QGEP/QGEP.git --branch demodata
-cd demodata
-git rm . -r
-pg_dump -n "qgep" -Fc qgep > qgep_demodata.dump
-git add -A
-git commit -m "Automatic update from https://github.com/qgep/QGEP/commit/${TRAVIS_COMMIT}"
-git push
-popd
+  pushd ${DIR}
+  mkdir demodata
+  cd demodata
+  git clone git@github.com:QGEP/QGEP.git --branch demodata
+  cd demodata
+  git rm . -r
+  pg_dump -n "qgep" -Fc qgep > qgep_demodata.dump
+  git add -A
+  git commit -m "Automatic update from https://github.com/qgep/QGEP/commit/${TRAVIS_COMMIT}"
+  git push
+  popd
+fi
