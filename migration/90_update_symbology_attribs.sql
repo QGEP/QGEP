@@ -1,22 +1,31 @@
-﻿-- this post-processing script updates non-standard attributes necessary for
--- symbology - e.g. for wastewaster_structures, in particular manholes
--- update _usage_current and _function_hierarchic for wastewater_structure
--- caution: this script can run for several minutes!
-UPDATE qgep.od_wastewater_structure
-   SET _usage_current=(SELECT usage_current FROM qgep.wastewater_structure_symbology_attribs(obj_id)),
-       _function_hierarchic=(SELECT function_hierarchic FROM qgep.wastewater_structure_symbology_attribs(obj_id))
-;
--- set manhole orientation to zero where it isn't already set
-UPDATE qgep.od_manhole SET _orientation = 0 WHERE _orientation IS NULL;
+﻿WITH reach_hierarchy_usage AS (
+SELECT function_hierarchic, order_fct_hierarchic, usage_current, order_usage_current, fk_reach_point_from, fk_reach_point_to
+  FROM qgep.od_reach re
+  LEFT JOIN qgep.od_wastewater_networkelement ne ON ne.obj_id = re.obj_id
+  LEFT JOIN qgep.od_channel CH ON CH.obj_id = ne.fk_wastewater_structure
+  LEFT JOIN qgep.vl_channel_function_hierarchic vl_fct_hier ON CH.function_hierarchic = vl_fct_hier.code
+  LEFT JOIN qgep.vl_channel_usage_current vl_usg_curr ON CH.usage_current = vl_usg_curr.code
+  WHERE CH.function_hierarchic IS NOT NULL
+)
 
--- set width/height ratio of pipe_profile to 1.0 if set to NULL
-UPDATE qgep.od_pipe_profile SET height_width_ratio=1 WHERE height_width_ratio IS NULL;
+UPDATE qgep.od_wastewater_structure AS ws
+SET
+  _function_hierarchic = COALESCE(function_hierarchic_from, function_hierarchic_to),
+  _usage_current = COALESCE(usage_current_from, usage_current_to)
+ FROM(
+  SELECT ws.obj_id,
+    rh_from.function_hierarchic AS function_hierarchic_from,
+    rh_to.function_hierarchic AS function_hierarchic_to,
+    rh_from.usage_current AS usage_current_from,
+    rh_to.usage_current AS usage_current_to,
+    rank() OVER( PARTITION BY ws.obj_id ORDER BY rh_from.order_fct_hierarchic ASC NULLS LAST, rh_to.order_fct_hierarchic ASC NULLS LAST, rh_from.order_usage_current ASC NULLS LAST, rh_to.order_usage_current ASC NULLS LAST) AS hierarchy_rank
+  FROM
+    qgep.od_wastewater_structure ws
+    LEFT JOIN qgep.od_wastewater_networkelement ne ON ne.fk_wastewater_structure = ws.obj_id
+ 
+    LEFT JOIN qgep.od_reach_point rp ON ne.obj_id = rp.fk_wastewater_networkelement
 
--- update label text for manholes
--- note the language specific update, needs to be discussed
--- only major manholes get labels
-UPDATE qgep.od_manhole mh
-   SET _label=qgep.wastewater_structure_label_detailed(mh.obj_id,'en')
-   FROM qgep.od_wastewater_structure ws
- WHERE mh.obj_id = ws.obj_id AND ws._function_hierarchic IN (5068,5069,5070,5071);
-
+    LEFT JOIN reach_hierarchy_usage  rh_from ON rh_from.fk_reach_point_from = rp.obj_id
+    LEFT JOIN reach_hierarchy_usage  rh_to ON rh_to.fk_reach_point_to = rp.obj_id
+) a
+where a.obj_id = ws.obj_id
