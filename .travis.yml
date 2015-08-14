@@ -19,6 +19,6 @@ before_script:
   - psql -c 'CREATE EXTENSION postgis;' -U postgres -d qgep
   - psql -c 'CREATE EXTENSION hstore;' -U postgres -d qgep
   - pg_restore -O -d qgep test/testdata.dump
-  - $TRAVIS_BUILD_DIR/datamodel/scripts/db_setup.sh
+  - $TRAVIS_BUILD_DIR/datamodel/scripts/db_setup.sh &>/dev/null
 
 script: $TRAVIS_BUILD_DIR/scripts/migrate.sh
