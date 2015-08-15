@@ -12,7 +12,7 @@ then
   pushd ${DIR}
   cd data
   git checkout demodata
-  pg_dump -n "qgep" -Fc qgep > qgep_demodata.dump
+  pg_dump -n "qgep" -Fc qgep > qgep_demodata.backup
   git add -A
   git commit -m "Automatic update from https://github.com/qgep/QGEP/commit/${TRAVIS_COMMIT}"
   git push
