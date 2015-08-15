@@ -25,4 +25,4 @@ script:
   - $TRAVIS_BUILD_DIR/scripts/migrate.sh
 
 after_success:
-  - $TRAVIS_BUILD_DIR/scripts/deploy-demodata.sh
+  - $TRAVIS_BUILD_DIR/scripts/ci/deploy-demodata.sh
