@@ -10,10 +10,8 @@ then
   echo "updating demodata";
 
   pushd ${DIR}
-  mkdir demodata
-  cd demodata
-  git clone git@github.com:QGEP/QGEP.git --branch demodata
-  cd QGEP
+  cd data
+  git checkout demodata
   pg_dump -n "qgep" -Fc qgep > qgep_demodata.dump
   git add -A
   git commit -m "Automatic update from https://github.com/qgep/QGEP/commit/${TRAVIS_COMMIT}"
