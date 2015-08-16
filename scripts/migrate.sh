@@ -1,7 +1,12 @@
 #!/bin/bash
+OIDPREFIX="ch13p7mz"
+
 set -e
 
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/..
+
+psql "service=pg_qgep user=postgres" -v ON_ERROR_STOP=1 -c "UPDATE qgep.is_oid_prefixes SET active=TRUE WHERE prefix='${OIDPREFIX}'"
+psql "service=pg_qgep user=postgres" -v ON_ERROR_STOP=1 -c "UPDATE qgep.is_oid_prefixes SET active=FALSE WHERE prefix<>'${OIDPREFIX}'"
 
 # psql "service=pg_qgep user=postgres" -v ON_ERROR_STOP=1 -f ${DIR}/migration/00_1_copy_data
 # psql "service=pg_qgep user=postgres" -v ON_ERROR_STOP=1 -f ${DIR}/migration/00_2_fix_geometries.sql
@@ -38,9 +43,8 @@ echo "*** Migrate 27_od_catchment_area (08) ***"
 psql "service=pg_qgep user=postgres" -v ON_ERROR_STOP=1 -f ${DIR}/migration08/27_od_catchment_area.sql
 echo "*** Migrate 50_foreign_keys ***"
 psql "service=pg_qgep user=postgres" -v ON_ERROR_STOP=1 -f ${DIR}/migration/50_foreign_keys.sql
-echo "*** Migrate 90_update_symbology_attribs ***"
-psql "service=pg_qgep user=postgres" -v ON_ERROR_STOP=1 -f ${DIR}/migration/90_update_symbology_attribs.sql
 
 psql "service=pg_qgep user=postgres" -v ON_ERROR_STOP=1 -c "VACUUM ANALYZE;"
 psql "service=pg_qgep user=postgres" -v ON_ERROR_STOP=1 -c "SELECT qgep.update_wastewater_structure_label(NULL);"
+psql "service=pg_qgep user=postgres" -v ON_ERROR_STOP=1 -c "SELECT qgep.update_wastewater_structure_symbology(NULL);"
 psql "service=pg_qgep user=postgres" -v ON_ERROR_STOP=1 -c "SELECT qgep.create_symbology_triggers();"

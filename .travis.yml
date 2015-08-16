@@ -3,8 +3,6 @@ language: python
 addons:
   postgresql: "9.4"
 
-sudo: required
-
 # Handle git submodules ourselves
 git:
   submodules: false
