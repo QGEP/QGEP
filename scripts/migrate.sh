@@ -5,6 +5,7 @@ DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/..
 
 # psql "service=pg_qgep user=postgres" -v ON_ERROR_STOP=1 -f ${DIR}/migration/00_1_copy_data
 # psql "service=pg_qgep user=postgres" -v ON_ERROR_STOP=1 -f ${DIR}/migration/00_2_fix_geometries.sql
+psql "service=pg_qgep user=postgres" -v ON_ERROR_STOP=1 -c "SELECT qgep.drop_symbology_triggers();"
 echo "*** Migrate 01_od_organisation ***"
 psql "service=pg_qgep user=postgres" -v ON_ERROR_STOP=1 -f ${DIR}/migration/01_od_organisation.sql
 echo "*** Migrate 02_od_wastewater_structure (08) ***"
@@ -40,3 +41,6 @@ psql "service=pg_qgep user=postgres" -v ON_ERROR_STOP=1 -f ${DIR}/migration/50_f
 echo "*** Migrate 90_update_symbology_attribs ***"
 psql "service=pg_qgep user=postgres" -v ON_ERROR_STOP=1 -f ${DIR}/migration/90_update_symbology_attribs.sql
 
+psql "service=pg_qgep user=postgres" -v ON_ERROR_STOP=1 -c "VACUUM ANALYZE;"
+psql "service=pg_qgep user=postgres" -v ON_ERROR_STOP=1 -c "SELECT qgep.update_wastewater_structure_label(NULL);"
+psql "service=pg_qgep user=postgres" -v ON_ERROR_STOP=1 -c "SELECT qgep.create_symbology_triggers();"
