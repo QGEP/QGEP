@@ -14,7 +14,7 @@ then
   git checkout demodata
   pg_dump -n "qgep" -Fc qgep > qgep_demodata.backup
 
-  mkdir project
+  mkdir -p project
 
   cp -r ${DIR}/project/fonts \
         ${DIR}/project/forms \
