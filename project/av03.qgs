@@ -1,7 +1,7 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
 <qgis projectname="" version="2.11.0-Master">
   <title></title>
-  <layer-tree-group expanded="1" checked="Qt::Checked" name="">
+  <layer-tree-group expanded="1" checked="Qt::PartiallyChecked" name="">
     <customproperties/>
     <layer-tree-layer expanded="1" checked="Qt::Checked" id="territorial_boundaries__municipal_boundary" name="territorial_boundaries__municipal_boundary">
       <customproperties/>
@@ -24,7 +24,7 @@
     <layer-tree-layer expanded="1" checked="Qt::Checked" id="land_cover__lcsurface_postext" name="land_cover__lcsurface_postext">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="0" checked="Qt::Checked" id="land_cover__lcsurface" name="land_cover__lcsurface">
+    <layer-tree-layer expanded="0" checked="Qt::Unchecked" id="land_cover__lcsurface" name="land_cover__lcsurface">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer expanded="1" checked="Qt::Checked" id="building_addresses__street_name_pos" name="building_addresses__street_name_pos">
@@ -38,10 +38,10 @@
   <mapcanvas>
     <units>meters</units>
     <extent>
-      <xmin>747646.39570000011008233</xmin>
-      <ymin>262381.4609749999945052</ymin>
-      <xmax>750860.71030000003520399</xmax>
-      <ymax>266909.86002500000176951</ymax>
+      <xmin>749025.08986469532828778</xmin>
+      <ymin>264138.43900847452459857</ymin>
+      <xmax>749426.8791896941838786</xmax>
+      <ymax>264704.48888972419081256</ymax>
     </extent>
     <rotation>0</rotation>
     <projections>0</projections>
@@ -148,9 +148,9 @@
         <legendlayerfile isInOverview="0" layerid="land_cover__lcsurface_postext" visible="1"/>
       </filegroup>
     </legendlayer>
-    <legendlayer drawingOrder="-1" open="false" checked="Qt::Checked" name="land_cover__lcsurface" showFeatureCount="0">
+    <legendlayer drawingOrder="-1" open="false" checked="Qt::Unchecked" name="land_cover__lcsurface" showFeatureCount="0">
       <filegroup open="false" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="land_cover__lcsurface" visible="1"/>
+        <legendlayerfile isInOverview="0" layerid="land_cover__lcsurface" visible="0"/>
       </filegroup>
     </legendlayer>
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="building_addresses__street_name_pos" showFeatureCount="0">
@@ -951,7 +951,7 @@
           <category render="true" symbol="21" value="5" label="Flugplatz"/>
         </categories>
         <symbols>
-          <symbol alpha="1" clip_to_extent="1" type="fill" name="0">
+          <symbol alpha="0.3" clip_to_extent="1" type="fill" name="0">
             <layer pass="0" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0"/>
               <prop k="color" v="255,255,255,255"/>
@@ -974,7 +974,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="fill" name="1">
+          <symbol alpha="0.3" clip_to_extent="1" type="fill" name="1">
             <layer pass="0" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0"/>
               <prop k="color" v="255,255,255,255"/>
@@ -997,7 +997,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="fill" name="10">
+          <symbol alpha="0.3" clip_to_extent="1" type="fill" name="10">
             <layer pass="0" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0"/>
               <prop k="color" v="255,255,255,255"/>
@@ -1020,7 +1020,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="fill" name="11">
+          <symbol alpha="0.3" clip_to_extent="1" type="fill" name="11">
             <layer pass="0" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0"/>
               <prop k="color" v="195,255,255,255"/>
@@ -1043,7 +1043,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="fill" name="12">
+          <symbol alpha="0.3" clip_to_extent="1" type="fill" name="12">
             <layer pass="0" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0"/>
               <prop k="color" v="255,255,255,255"/>
@@ -1066,7 +1066,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="fill" name="13">
+          <symbol alpha="0.3" clip_to_extent="1" type="fill" name="13">
             <layer pass="0" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0"/>
               <prop k="color" v="255,255,255,255"/>
@@ -1089,7 +1089,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="fill" name="14">
+          <symbol alpha="0.3" clip_to_extent="1" type="fill" name="14">
             <layer pass="0" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0"/>
               <prop k="color" v="255,255,255,255"/>
@@ -1112,7 +1112,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="fill" name="15">
+          <symbol alpha="0.3" clip_to_extent="1" type="fill" name="15">
             <layer pass="0" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0"/>
               <prop k="color" v="255,255,255,255"/>
@@ -1135,7 +1135,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="fill" name="16">
+          <symbol alpha="0.3" clip_to_extent="1" type="fill" name="16">
             <layer pass="0" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0"/>
               <prop k="color" v="255,255,255,255"/>
@@ -1158,7 +1158,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="fill" name="17">
+          <symbol alpha="0.3" clip_to_extent="1" type="fill" name="17">
             <layer pass="0" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0"/>
               <prop k="color" v="255,255,255,255"/>
@@ -1181,7 +1181,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="fill" name="18">
+          <symbol alpha="0.3" clip_to_extent="1" type="fill" name="18">
             <layer pass="0" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0"/>
               <prop k="color" v="255,255,255,255"/>
@@ -1204,7 +1204,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="fill" name="19">
+          <symbol alpha="0.3" clip_to_extent="1" type="fill" name="19">
             <layer pass="0" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0"/>
               <prop k="color" v="255,255,255,255"/>
@@ -1227,7 +1227,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="fill" name="2">
+          <symbol alpha="0.3" clip_to_extent="1" type="fill" name="2">
             <layer pass="0" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0"/>
               <prop k="color" v="255,255,255,255"/>
@@ -1250,7 +1250,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="fill" name="20">
+          <symbol alpha="0.3" clip_to_extent="1" type="fill" name="20">
             <layer pass="0" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0"/>
               <prop k="color" v="195,255,255,255"/>
@@ -1273,7 +1273,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="fill" name="21">
+          <symbol alpha="0.3" clip_to_extent="1" type="fill" name="21">
             <layer pass="0" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0"/>
               <prop k="color" v="255,255,255,255"/>
@@ -1296,7 +1296,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="fill" name="3">
+          <symbol alpha="0.3" clip_to_extent="1" type="fill" name="3">
             <layer pass="0" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0"/>
               <prop k="color" v="255,255,255,255"/>
@@ -1319,7 +1319,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="fill" name="4">
+          <symbol alpha="0.3" clip_to_extent="1" type="fill" name="4">
             <layer pass="0" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0"/>
               <prop k="color" v="195,255,255,255"/>
@@ -1342,7 +1342,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="fill" name="5">
+          <symbol alpha="0.3" clip_to_extent="1" type="fill" name="5">
             <layer pass="0" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0"/>
               <prop k="color" v="255,255,255,255"/>
@@ -1365,7 +1365,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="fill" name="6">
+          <symbol alpha="0.3" clip_to_extent="1" type="fill" name="6">
             <layer pass="0" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0"/>
               <prop k="color" v="191,191,191,255"/>
@@ -1388,7 +1388,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="fill" name="7">
+          <symbol alpha="0.3" clip_to_extent="1" type="fill" name="7">
             <layer pass="0" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0"/>
               <prop k="color" v="255,255,255,255"/>
@@ -1411,7 +1411,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="fill" name="8">
+          <symbol alpha="0.3" clip_to_extent="1" type="fill" name="8">
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="square"/>
               <prop k="customdash" v="3;2"/>
@@ -1438,7 +1438,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="fill" name="9">
+          <symbol alpha="0.3" clip_to_extent="1" type="fill" name="9">
             <layer pass="0" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0"/>
               <prop k="color" v="255,255,255,255"/>
@@ -1531,11 +1531,13 @@
         <property key="labeling/distInMapUnits" value="false"/>
         <property key="labeling/distMapUnitMaxScale" value="0"/>
         <property key="labeling/distMapUnitMinScale" value="0"/>
+        <property key="labeling/drawLabels" value="false"/>
         <property key="labeling/enabled" value="false"/>
         <property key="labeling/fieldName" value=""/>
+        <property key="labeling/fitInPolygonOnly" value="false"/>
         <property key="labeling/fontBold" value="false"/>
         <property key="labeling/fontCapitals" value="0"/>
-        <property key="labeling/fontFamily" value="MS Shell Dlg 2"/>
+        <property key="labeling/fontFamily" value="Cantarell"/>
         <property key="labeling/fontItalic" value="false"/>
         <property key="labeling/fontLetterSpacing" value="0"/>
         <property key="labeling/fontLimitPixelSize" value="false"/>
@@ -1564,8 +1566,10 @@
         <property key="labeling/minFeatureSize" value="0"/>
         <property key="labeling/multilineAlign" value="0"/>
         <property key="labeling/multilineHeight" value="1"/>
-        <property key="labeling/namedStyle" value="Normal"/>
+        <property key="labeling/namedStyle" value="Regular"/>
         <property key="labeling/obstacle" value="true"/>
+        <property key="labeling/obstacleFactor" value="1"/>
+        <property key="labeling/obstacleType" value="0"/>
         <property key="labeling/placeDirectionSymbol" value="0"/>
         <property key="labeling/placement" value="0"/>
         <property key="labeling/placementFlags" value="0"/>
@@ -1673,6 +1677,12 @@
         <multilineenabled fieldname="" on=""/>
         <selectedonly on=""/>
       </labelattributes>
+      <SingleCategoryDiagramRenderer diagramType="Pie">
+        <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" sizeType="MM" minScaleDenominator="0">
+          <fontProperties description="Cantarell,11,-1,5,50,0,0,0,0,0" style=""/>
+        </DiagramCategory>
+      </SingleCategoryDiagramRenderer>
+      <DiagramLayerSettings yPosColumn="-1" linePlacementFlags="10" placement="0" dist="0" xPosColumn="-1" priority="0" obstacle="0" showAll="1"/>
       <editform>C:/Users/oliver.schweizer/Desktop/Allgemein/4401_Arbon/Kataster_Arbon</editform>
       <editforminit/>
       <featformsuppress>0</featformsuppress>
@@ -2147,7 +2157,7 @@
               <prop k="angle" v="0"/>
               <prop k="color" v="#000000"/>
               <prop k="horizontal_anchor_point" v="1"/>
-              <prop k="name" v="av/symbol_F_grenzpunkt_bolzen.svg"/>
+              <prop k="name" v=""/>
               <prop k="offset" v="-0.1,-0.1"/>
               <prop k="offset_map_unit_scale" v="0,0"/>
               <prop k="offset_unit" v="MM"/>
@@ -2175,7 +2185,7 @@
               <prop k="angle" v="0"/>
               <prop k="color" v="#000000"/>
               <prop k="horizontal_anchor_point" v="1"/>
-              <prop k="name" v="av/symbol_H_grenzpunkt_kreuz.svg"/>
+              <prop k="name" v=""/>
               <prop k="offset" v="-0.1,-0.1"/>
               <prop k="offset_map_unit_scale" v="0,0"/>
               <prop k="offset_unit" v="MM"/>
@@ -2203,7 +2213,7 @@
               <prop k="angle" v="0"/>
               <prop k="color" v="#000000"/>
               <prop k="horizontal_anchor_point" v="1"/>
-              <prop k="name" v="av/symbol_E_grenzpunkt_markstein_kunststoffzeichen.svg"/>
+              <prop k="name" v=""/>
               <prop k="offset" v="-0.1,-0.1"/>
               <prop k="offset_map_unit_scale" v="0,0"/>
               <prop k="offset_unit" v="MM"/>
@@ -2231,7 +2241,7 @@
               <prop k="angle" v="0"/>
               <prop k="color" v="#000000"/>
               <prop k="horizontal_anchor_point" v="1"/>
-              <prop k="name" v="av/symbol_G_grenzpunkt_rohr_pfahl.svg"/>
+              <prop k="name" v=""/>
               <prop k="offset" v="-0.1,-0.1"/>
               <prop k="offset_map_unit_scale" v="0,0"/>
               <prop k="offset_unit" v="MM"/>
@@ -2259,7 +2269,7 @@
               <prop k="angle" v="0"/>
               <prop k="color" v="#000000"/>
               <prop k="horizontal_anchor_point" v="1"/>
-              <prop k="name" v="av/symbol_E_grenzpunkt_markstein_kunststoffzeichen.svg"/>
+              <prop k="name" v=""/>
               <prop k="offset" v="-0.1,-0.1"/>
               <prop k="offset_map_unit_scale" v="0,0"/>
               <prop k="offset_unit" v="MM"/>
@@ -2287,7 +2297,7 @@
               <prop k="angle" v="0"/>
               <prop k="color" v="#000000"/>
               <prop k="horizontal_anchor_point" v="1"/>
-              <prop k="name" v="av/symbol_I_unversichterter_grenzpunkt.svg"/>
+              <prop k="name" v=""/>
               <prop k="offset" v="-0.1,-0.1"/>
               <prop k="offset_map_unit_scale" v="0,0"/>
               <prop k="offset_unit" v="MM"/>
@@ -2534,6 +2544,7 @@
       <SingleCategoryDiagramRenderer diagramType="Pie">
         <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="2000" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="1" enabled="0" height="15" sizeType="MM" minScaleDenominator="-4.65661e-10">
           <fontProperties description="DejaVu Sans,9,-1,0,50,0,0,0,0,0" style=""/>
+          <attribute field="" color="#000000" label=""/>
         </DiagramCategory>
       </SingleCategoryDiagramRenderer>
       <DiagramLayerSettings yPosColumn="-1" linePlacementFlags="10" placement="0" dist="0" xPosColumn="-1" priority="0" obstacle="0" showAll="1"/>
@@ -2657,7 +2668,7 @@
               <prop k="customdash_unit" v="MM"/>
               <prop k="draw_inside_polygon" v="0"/>
               <prop k="joinstyle" v="bevel"/>
-              <prop k="line_color" v="0,0,0,255"/>
+              <prop k="line_color" v="0,0,0,77"/>
               <prop k="line_style" v="solid"/>
               <prop k="line_width" v="0.45"/>
               <prop k="line_width_unit" v="MM"/>
@@ -2714,11 +2725,13 @@
         <property key="labeling/distInMapUnits" value="false"/>
         <property key="labeling/distMapUnitMaxScale" value="0"/>
         <property key="labeling/distMapUnitMinScale" value="0"/>
+        <property key="labeling/drawLabels" value="false"/>
         <property key="labeling/enabled" value="false"/>
         <property key="labeling/fieldName" value="number"/>
+        <property key="labeling/fitInPolygonOnly" value="false"/>
         <property key="labeling/fontBold" value="false"/>
         <property key="labeling/fontCapitals" value="0"/>
-        <property key="labeling/fontFamily" value="MS Shell Dlg 2"/>
+        <property key="labeling/fontFamily" value="Cantarell"/>
         <property key="labeling/fontItalic" value="false"/>
         <property key="labeling/fontLetterSpacing" value="0"/>
         <property key="labeling/fontLimitPixelSize" value="false"/>
@@ -2747,8 +2760,10 @@
         <property key="labeling/minFeatureSize" value="0"/>
         <property key="labeling/multilineAlign" value="0"/>
         <property key="labeling/multilineHeight" value="1"/>
-        <property key="labeling/namedStyle" value="Normal"/>
+        <property key="labeling/namedStyle" value="Regular"/>
         <property key="labeling/obstacle" value="true"/>
+        <property key="labeling/obstacleFactor" value="1"/>
+        <property key="labeling/obstacleType" value="0"/>
         <property key="labeling/placeDirectionSymbol" value="0"/>
         <property key="labeling/placement" value="0"/>
         <property key="labeling/placementFlags" value="0"/>
@@ -2856,6 +2871,12 @@
         <multilineenabled fieldname="" on=""/>
         <selectedonly on=""/>
       </labelattributes>
+      <SingleCategoryDiagramRenderer diagramType="Pie">
+        <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="5000" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="1" enabled="0" height="15" sizeType="MM" minScaleDenominator="-4.65661e-10">
+          <fontProperties description="Cantarell,11,-1,5,50,0,0,0,0,0" style=""/>
+        </DiagramCategory>
+      </SingleCategoryDiagramRenderer>
+      <DiagramLayerSettings yPosColumn="-1" linePlacementFlags="10" placement="0" dist="0" xPosColumn="-1" priority="0" obstacle="0" showAll="1"/>
       <editform>../../../cpp/qgis/build/output/bin</editform>
       <editforminit/>
       <featformsuppress>0</featformsuppress>
@@ -3263,7 +3284,7 @@
         </edittype>
       </edittypes>
     </maplayer>
-    <maplayer minimumScale="-4.65661e-10" maximumScale="1000" simplifyDrawingHints="1" minLabelScale="1" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Line" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
+    <maplayer minimumScale="0" maximumScale="1000" simplifyDrawingHints="1" minLabelScale="1" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Line" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <id>single_objects__linear_element</id>
       <datasource>service='pg_qgep_av03' sslmode=disable key='ogc_fid' srid=21781 type=MultiLineString table="av03_4401"."single_objects__linear_element" (wkb_geometry) sql=</datasource>
       <title></title>
@@ -3345,7 +3366,7 @@
           <category render="true" symbol="26" value="9" label="Reservoir"/>
         </categories>
         <symbols>
-          <symbol alpha="1" clip_to_extent="1" type="line" name="0">
+          <symbol alpha="0.3" clip_to_extent="1" type="line" name="0">
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="customdash" v="5;2"/>
@@ -3372,7 +3393,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="line" name="1">
+          <symbol alpha="0.3" clip_to_extent="1" type="line" name="1">
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="customdash" v="5;2"/>
@@ -3399,7 +3420,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="line" name="10">
+          <symbol alpha="0.3" clip_to_extent="1" type="line" name="10">
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="customdash" v="5;2"/>
@@ -3426,7 +3447,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="line" name="11">
+          <symbol alpha="0.3" clip_to_extent="1" type="line" name="11">
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="customdash" v="5;2"/>
@@ -3453,7 +3474,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="line" name="12">
+          <symbol alpha="0.3" clip_to_extent="1" type="line" name="12">
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="customdash" v="5;2"/>
@@ -3480,7 +3501,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="line" name="13">
+          <symbol alpha="0.3" clip_to_extent="1" type="line" name="13">
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="customdash" v="5;2"/>
@@ -3507,7 +3528,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="line" name="14">
+          <symbol alpha="0.3" clip_to_extent="1" type="line" name="14">
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="customdash" v="5;3"/>
@@ -3534,7 +3555,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="line" name="15">
+          <symbol alpha="0.3" clip_to_extent="1" type="line" name="15">
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="customdash" v="5;2"/>
@@ -3561,7 +3582,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="line" name="16">
+          <symbol alpha="0.3" clip_to_extent="1" type="line" name="16">
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="customdash" v="5;2"/>
@@ -3588,7 +3609,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="line" name="17">
+          <symbol alpha="0.3" clip_to_extent="1" type="line" name="17">
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="customdash" v="5;2"/>
@@ -3615,7 +3636,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="line" name="18">
+          <symbol alpha="0.3" clip_to_extent="1" type="line" name="18">
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="customdash" v="5;3"/>
@@ -3642,7 +3663,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="line" name="19">
+          <symbol alpha="0.3" clip_to_extent="1" type="line" name="19">
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="customdash" v="5;2"/>
@@ -3669,7 +3690,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="line" name="2">
+          <symbol alpha="0.3" clip_to_extent="1" type="line" name="2">
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="customdash" v="5;2"/>
@@ -3696,7 +3717,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="line" name="20">
+          <symbol alpha="0.3" clip_to_extent="1" type="line" name="20">
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="customdash" v="5;2"/>
@@ -3723,7 +3744,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="line" name="21">
+          <symbol alpha="0.3" clip_to_extent="1" type="line" name="21">
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="customdash" v="5;2"/>
@@ -3750,7 +3771,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="line" name="22">
+          <symbol alpha="0.3" clip_to_extent="1" type="line" name="22">
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="customdash" v="5;2"/>
@@ -3777,7 +3798,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="line" name="23">
+          <symbol alpha="0.3" clip_to_extent="1" type="line" name="23">
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="customdash" v="5;2"/>
@@ -3804,7 +3825,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="line" name="24">
+          <symbol alpha="0.3" clip_to_extent="1" type="line" name="24">
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="customdash" v="5;2"/>
@@ -3831,7 +3852,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="line" name="25">
+          <symbol alpha="0.3" clip_to_extent="1" type="line" name="25">
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="customdash" v="5;2"/>
@@ -3858,7 +3879,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="line" name="26">
+          <symbol alpha="0.3" clip_to_extent="1" type="line" name="26">
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="square"/>
               <prop k="customdash" v="5;2"/>
@@ -3885,7 +3906,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="line" name="3">
+          <symbol alpha="0.3" clip_to_extent="1" type="line" name="3">
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="round"/>
               <prop k="customdash" v="10;3;3;3;3;3"/>
@@ -3912,7 +3933,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="line" name="4">
+          <symbol alpha="0.3" clip_to_extent="1" type="line" name="4">
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="customdash" v="5;2"/>
@@ -3939,7 +3960,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="line" name="5">
+          <symbol alpha="0.3" clip_to_extent="1" type="line" name="5">
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="round"/>
               <prop k="customdash" v="10;3;3;3;3;3"/>
@@ -3966,7 +3987,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="line" name="6">
+          <symbol alpha="0.3" clip_to_extent="1" type="line" name="6">
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="customdash" v="5;2"/>
@@ -3993,7 +4014,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="line" name="7">
+          <symbol alpha="0.3" clip_to_extent="1" type="line" name="7">
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="customdash" v="5;2"/>
@@ -4020,7 +4041,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="line" name="8">
+          <symbol alpha="0.3" clip_to_extent="1" type="line" name="8">
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="customdash" v="5;2"/>
@@ -4047,7 +4068,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="line" name="9">
+          <symbol alpha="0.3" clip_to_extent="1" type="line" name="9">
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="customdash" v="5;2"/>
@@ -4148,11 +4169,13 @@
         <property key="labeling/distInMapUnits" value="false"/>
         <property key="labeling/distMapUnitMaxScale" value="0"/>
         <property key="labeling/distMapUnitMinScale" value="0"/>
+        <property key="labeling/drawLabels" value="false"/>
         <property key="labeling/enabled" value="false"/>
         <property key="labeling/fieldName" value=""/>
+        <property key="labeling/fitInPolygonOnly" value="false"/>
         <property key="labeling/fontBold" value="false"/>
         <property key="labeling/fontCapitals" value="0"/>
-        <property key="labeling/fontFamily" value="MS Shell Dlg 2"/>
+        <property key="labeling/fontFamily" value="Cantarell"/>
         <property key="labeling/fontItalic" value="false"/>
         <property key="labeling/fontLetterSpacing" value="0"/>
         <property key="labeling/fontLimitPixelSize" value="false"/>
@@ -4181,8 +4204,10 @@
         <property key="labeling/minFeatureSize" value="0"/>
         <property key="labeling/multilineAlign" value="0"/>
         <property key="labeling/multilineHeight" value="1"/>
-        <property key="labeling/namedStyle" value="Normal"/>
+        <property key="labeling/namedStyle" value="Regular"/>
         <property key="labeling/obstacle" value="true"/>
+        <property key="labeling/obstacleFactor" value="1"/>
+        <property key="labeling/obstacleType" value="0"/>
         <property key="labeling/placeDirectionSymbol" value="0"/>
         <property key="labeling/placement" value="2"/>
         <property key="labeling/placementFlags" value="10"/>
@@ -4290,6 +4315,12 @@
         <multilineenabled fieldname="" on=""/>
         <selectedonly on=""/>
       </labelattributes>
+      <SingleCategoryDiagramRenderer diagramType="Pie">
+        <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1000" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" sizeType="MM" minScaleDenominator="0">
+          <fontProperties description="Cantarell,11,-1,5,50,0,0,0,0,0" style=""/>
+        </DiagramCategory>
+      </SingleCategoryDiagramRenderer>
+      <DiagramLayerSettings yPosColumn="-1" linePlacementFlags="10" placement="2" dist="0" xPosColumn="-1" priority="0" obstacle="0" showAll="1"/>
       <editform>../../../cpp/qgis/build/output/bin</editform>
       <editforminit/>
       <featformsuppress>0</featformsuppress>
@@ -5147,7 +5178,7 @@
         </edittype>
       </edittypes>
     </maplayer>
-    <maplayer minimumScale="-4.65661e-10" maximumScale="300000" simplifyDrawingHints="1" minLabelScale="1" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="1" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
+    <maplayer minimumScale="0" maximumScale="300000" simplifyDrawingHints="1" minLabelScale="1" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="1" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <id>territorial_boundaries__municipal_boundary</id>
       <datasource>service='pg_qgep_av03' sslmode=disable key='ogc_fid' srid=21781 type=Polygon table="av03_4401"."territorial_boundaries__municipal_boundary" (wkb_geometry) sql=</datasource>
       <title></title>
@@ -5194,7 +5225,7 @@
       </edittypes>
       <renderer-v2 forceraster="0" symbollevels="0" type="singleSymbol">
         <symbols>
-          <symbol alpha="1" clip_to_extent="1" type="fill" name="0">
+          <symbol alpha="0.298039" clip_to_extent="1" type="fill" name="0">
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="square"/>
               <prop k="customdash" v="5;2"/>
@@ -5259,11 +5290,13 @@
         <property key="labeling/distInMapUnits" value="false"/>
         <property key="labeling/distMapUnitMaxScale" value="0"/>
         <property key="labeling/distMapUnitMinScale" value="0"/>
+        <property key="labeling/drawLabels" value="false"/>
         <property key="labeling/enabled" value="false"/>
         <property key="labeling/fieldName" value=""/>
+        <property key="labeling/fitInPolygonOnly" value="false"/>
         <property key="labeling/fontBold" value="false"/>
         <property key="labeling/fontCapitals" value="0"/>
-        <property key="labeling/fontFamily" value="MS Shell Dlg 2"/>
+        <property key="labeling/fontFamily" value="Cantarell"/>
         <property key="labeling/fontItalic" value="false"/>
         <property key="labeling/fontLetterSpacing" value="0"/>
         <property key="labeling/fontLimitPixelSize" value="false"/>
@@ -5292,8 +5325,10 @@
         <property key="labeling/minFeatureSize" value="0"/>
         <property key="labeling/multilineAlign" value="0"/>
         <property key="labeling/multilineHeight" value="1"/>
-        <property key="labeling/namedStyle" value="Normal"/>
+        <property key="labeling/namedStyle" value="Regular"/>
         <property key="labeling/obstacle" value="true"/>
+        <property key="labeling/obstacleFactor" value="1"/>
+        <property key="labeling/obstacleType" value="0"/>
         <property key="labeling/placeDirectionSymbol" value="0"/>
         <property key="labeling/placement" value="0"/>
         <property key="labeling/placementFlags" value="0"/>
@@ -5401,6 +5436,12 @@
         <multilineenabled fieldname="" on=""/>
         <selectedonly on=""/>
       </labelattributes>
+      <SingleCategoryDiagramRenderer diagramType="Pie">
+        <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="300000" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="1" enabled="0" height="15" sizeType="MM" minScaleDenominator="0">
+          <fontProperties description="Cantarell,11,-1,5,50,0,0,0,0,0" style=""/>
+        </DiagramCategory>
+      </SingleCategoryDiagramRenderer>
+      <DiagramLayerSettings yPosColumn="-1" linePlacementFlags="10" placement="0" dist="0" xPosColumn="-1" priority="0" obstacle="0" showAll="1"/>
       <editform>../../../cpp/qgis/build/output/bin</editform>
       <editforminit/>
       <featformsuppress>0</featformsuppress>
