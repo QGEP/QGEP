@@ -45,6 +45,6 @@ echo "*** Migrate 50_foreign_keys ***"
 psql "service=pg_qgep user=postgres" -v ON_ERROR_STOP=1 -f ${DIR}/migration/50_foreign_keys.sql
 
 psql "service=pg_qgep user=postgres" -v ON_ERROR_STOP=1 -c "VACUUM ANALYZE;"
-psql "service=pg_qgep user=postgres" -v ON_ERROR_STOP=1 -c "SELECT qgep.update_wastewater_structure_label(NULL);"
-psql "service=pg_qgep user=postgres" -v ON_ERROR_STOP=1 -c "SELECT qgep.update_wastewater_structure_symbology(NULL);"
+psql "service=pg_qgep user=postgres" -v ON_ERROR_STOP=1 -c "SELECT qgep.update_wastewater_structure_label(NULL, true);"
+psql "service=pg_qgep user=postgres" -v ON_ERROR_STOP=1 -c "SELECT qgep.update_wastewater_structure_symbology(NULL, true);"
 psql "service=pg_qgep user=postgres" -v ON_ERROR_STOP=1 -c "SELECT qgep.create_symbology_triggers();"
