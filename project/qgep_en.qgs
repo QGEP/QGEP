@@ -215,66 +215,6 @@
     </layer-tree-group>
     <layer-tree-group expanded="0" checked="Qt::Checked" name="Cadastral Data">
       <customproperties/>
-      <layer-tree-layer expanded="0" checked="Qt::Checked" id="ownership__boundary_point" name="ownership__boundary_point">
-        <customproperties>
-          <property key="embedded" value="1"/>
-          <property key="embedded_project" value="./av03.qgs"/>
-        </customproperties>
-      </layer-tree-layer>
-      <layer-tree-layer expanded="1" checked="Qt::Checked" id="building_addresses__building_entrance_pos" name="building_addresses__building_entrance_pos">
-        <customproperties>
-          <property key="embedded" value="1"/>
-          <property key="embedded_project" value="./av03.qgs"/>
-        </customproperties>
-      </layer-tree-layer>
-      <layer-tree-layer expanded="1" checked="Qt::Checked" id="building_addresses__street_name_pos" name="building_addresses__street_name_pos">
-        <customproperties>
-          <property key="embedded" value="1"/>
-          <property key="embedded_project" value="./av03.qgs"/>
-        </customproperties>
-      </layer-tree-layer>
-      <layer-tree-layer expanded="0" checked="Qt::Checked" id="land_cover__lcsurface" name="land_cover__lcsurface">
-        <customproperties>
-          <property key="embedded" value="1"/>
-          <property key="embedded_project" value="./av03.qgs"/>
-        </customproperties>
-      </layer-tree-layer>
-      <layer-tree-layer expanded="1" checked="Qt::Checked" id="land_cover__lcsurface_postext" name="land_cover__lcsurface_postext">
-        <customproperties>
-          <property key="embedded" value="1"/>
-          <property key="embedded_project" value="./av03.qgs"/>
-        </customproperties>
-      </layer-tree-layer>
-      <layer-tree-layer expanded="1" checked="Qt::Checked" id="ownership__realestate" name="ownership__realestate">
-        <customproperties>
-          <property key="embedded" value="1"/>
-          <property key="embedded_project" value="./av03.qgs"/>
-        </customproperties>
-      </layer-tree-layer>
-      <layer-tree-layer expanded="1" checked="Qt::Checked" id="ownership__realestate_posnumber" name="ownership__realestate_posnumber">
-        <customproperties>
-          <property key="embedded" value="1"/>
-          <property key="embedded_project" value="./av03.qgs"/>
-        </customproperties>
-      </layer-tree-layer>
-      <layer-tree-layer expanded="0" checked="Qt::Checked" id="single_objects__linear_element" name="single_objects__linear_element">
-        <customproperties>
-          <property key="embedded" value="1"/>
-          <property key="embedded_project" value="./av03.qgs"/>
-        </customproperties>
-      </layer-tree-layer>
-      <layer-tree-layer expanded="0" checked="Qt::Checked" id="single_objects__surface_element" name="single_objects__surface_element">
-        <customproperties>
-          <property key="embedded" value="1"/>
-          <property key="embedded_project" value="./av03.qgs"/>
-        </customproperties>
-      </layer-tree-layer>
-      <layer-tree-layer expanded="1" checked="Qt::Checked" id="territorial_boundaries__municipal_boundary" name="territorial_boundaries__municipal_boundary">
-        <customproperties>
-          <property key="embedded" value="1"/>
-          <property key="embedded_project" value="./av03.qgs"/>
-        </customproperties>
-      </layer-tree-layer>
     </layer-tree-group>
   </layer-tree-group>
   <relations>
@@ -336,16 +276,16 @@
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_reach20150415105100407"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="ownership__realestate20150211112947342"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_qgep_reach"/>
-      <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_qgep_cover"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="ownership__realestate_posnumber"/>
+      <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_qgep_cover"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_cover___"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_wastewater_node20141111091100662"/>
+      <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="single_objects__linear_element"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="od_cover20140822215511882"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_wizard_cover_manhole20141025170618565"/>
-      <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="single_objects__linear_element"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="single_objects__linear_element20150211112947351"/>
-      <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="od_wastewater_structure20140728163138856"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="ownership__boundary_point"/>
+      <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="od_wastewater_structure20140728163138856"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_special_structure20141013203257795"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="od_reach_point20140728163138843"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="building_addresses__building_entrance_pos20150211112947254"/>
@@ -353,8 +293,8 @@
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_network_node20140827212753645"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="Landeskarte_1_25_000_1_1_Mio__farbe20150401143000299"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="single_objects__surface_element"/>
-      <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="od_reach20140822215411222"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="building_addresses__street_name_pos"/>
+      <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="od_reach20140822215411222"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="land_cover__lcsurface"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="od_reach20150415105009524"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="ownership__realestate"/>
@@ -443,16 +383,6 @@
       <item>vw_network_segment20150607120529381</item>
       <item>vw_network_node20150607120529398</item>
       <item>vw_wastewater_node20150607121012062</item>
-      <item>territorial_boundaries__municipal_boundary</item>
-      <item>ownership__boundary_point</item>
-      <item>single_objects__surface_element</item>
-      <item>single_objects__linear_element</item>
-      <item>ownership__realestate_posnumber</item>
-      <item>ownership__realestate</item>
-      <item>land_cover__lcsurface_postext</item>
-      <item>land_cover__lcsurface</item>
-      <item>building_addresses__street_name_pos</item>
-      <item>building_addresses__building_entrance_pos</item>
     </custom-order>
   </layer-tree-canvas>
   <legend updateDrawingOrder="true">
@@ -752,64 +682,9 @@
         </filegroup>
       </legendlayer>
     </legendgroup>
-    <legendgroup open="false" checked="Qt::Checked" name="Cadastral Data">
-      <legendlayer drawingOrder="-1" open="false" checked="Qt::Checked" name="ownership__boundary_point" showFeatureCount="0">
-        <filegroup open="false" hidden="false">
-          <legendlayerfile isInOverview="0" layerid="ownership__boundary_point" visible="1"/>
-        </filegroup>
-      </legendlayer>
-      <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="building_addresses__building_entrance_pos" showFeatureCount="0">
-        <filegroup open="true" hidden="false">
-          <legendlayerfile isInOverview="0" layerid="building_addresses__building_entrance_pos" visible="1"/>
-        </filegroup>
-      </legendlayer>
-      <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="building_addresses__street_name_pos" showFeatureCount="0">
-        <filegroup open="true" hidden="false">
-          <legendlayerfile isInOverview="0" layerid="building_addresses__street_name_pos" visible="1"/>
-        </filegroup>
-      </legendlayer>
-      <legendlayer drawingOrder="-1" open="false" checked="Qt::Checked" name="land_cover__lcsurface" showFeatureCount="0">
-        <filegroup open="false" hidden="false">
-          <legendlayerfile isInOverview="0" layerid="land_cover__lcsurface" visible="1"/>
-        </filegroup>
-      </legendlayer>
-      <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="land_cover__lcsurface_postext" showFeatureCount="0">
-        <filegroup open="true" hidden="false">
-          <legendlayerfile isInOverview="0" layerid="land_cover__lcsurface_postext" visible="1"/>
-        </filegroup>
-      </legendlayer>
-      <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="ownership__realestate" showFeatureCount="0">
-        <filegroup open="true" hidden="false">
-          <legendlayerfile isInOverview="0" layerid="ownership__realestate" visible="1"/>
-        </filegroup>
-      </legendlayer>
-      <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="ownership__realestate_posnumber" showFeatureCount="0">
-        <filegroup open="true" hidden="false">
-          <legendlayerfile isInOverview="0" layerid="ownership__realestate_posnumber" visible="1"/>
-        </filegroup>
-      </legendlayer>
-      <legendlayer drawingOrder="-1" open="false" checked="Qt::Checked" name="single_objects__linear_element" showFeatureCount="0">
-        <filegroup open="false" hidden="false">
-          <legendlayerfile isInOverview="0" layerid="single_objects__linear_element" visible="1"/>
-        </filegroup>
-      </legendlayer>
-      <legendlayer drawingOrder="-1" open="false" checked="Qt::Checked" name="single_objects__surface_element" showFeatureCount="0">
-        <filegroup open="false" hidden="false">
-          <legendlayerfile isInOverview="0" layerid="single_objects__surface_element" visible="1"/>
-        </filegroup>
-      </legendlayer>
-      <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="territorial_boundaries__municipal_boundary" showFeatureCount="0">
-        <filegroup open="true" hidden="false">
-          <legendlayerfile isInOverview="0" layerid="territorial_boundaries__municipal_boundary" visible="1"/>
-        </filegroup>
-      </legendlayer>
-    </legendgroup>
+    <legendgroup open="false" checked="Qt::Checked" name="Cadastral Data"/>
   </legend>
-  <projectlayers layercount="62">
-    <maplayer embedded="1" id="building_addresses__building_entrance_pos" project="./av03.qgs"/>
-    <maplayer embedded="1" id="building_addresses__street_name_pos" project="./av03.qgs"/>
-    <maplayer embedded="1" id="land_cover__lcsurface" project="./av03.qgs"/>
-    <maplayer embedded="1" id="land_cover__lcsurface_postext" project="./av03.qgs"/>
+  <projectlayers layercount="52">
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>od_maintenance_event</id>
       <datasource>service='pg_qgep' sslmode=disable key='obj_id' estimatedmetadata=true table="qgep"."od_maintenance_event" sql=</datasource>
@@ -888,7 +763,16 @@
         <edittype widgetv2type="TextEdit" name="provider">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="fk_dataowner">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="fk_provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="fk_wastewater_structure">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="fk_operator_company">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
@@ -903,7 +787,7 @@
         <alias field="data_details" index="3" name=""/>
         <alias field="dataowner" index="14" name=""/>
         <alias field="duration" index="4" name=""/>
-        <alias field="fk_wastewater_structure" index="16" name=""/>
+        <alias field="fk_wastewater_structure" index="18" name=""/>
         <alias field="identifier" index="5" name=""/>
         <alias field="kind" index="6" name=""/>
         <alias field="last_modification" index="13" name=""/>
@@ -968,7 +852,16 @@
         <edittype widgetv2type="TextEdit" name="provider">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="fk_dataowner">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="fk_provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="fk_wastewater_structure">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="fk_operator_company">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
@@ -1027,6 +920,12 @@
         <edittype widgetv2type="TextEdit" name="provider">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="fk_dataowner">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="fk_provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="old_obj_id">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -1042,7 +941,7 @@
         <alias field="identifier" index="2" name=""/>
         <alias field="last_modification" index="5" name=""/>
         <alias field="obj_id" index="0" name=""/>
-        <alias field="old_obj_id" index="8" name=""/>
+        <alias field="old_obj_id" index="10" name=""/>
         <alias field="profile_type" index="3" name=""/>
         <alias field="provider" index="7" name=""/>
         <alias field="remark" index="4" name=""/>
@@ -1073,6 +972,12 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="fk_dataowner">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="fk_provider">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="old_obj_id">
@@ -1178,6 +1083,12 @@
         <edittype widgetv2type="TextEdit" name="provider">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="fk_dataowner">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="fk_provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="fk_owner">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -1188,6 +1099,9 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="_function_hierarchic">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="_label">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="old_obj_id">
@@ -1412,22 +1326,22 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="_function_hierarchic" index="26" name=""/>
-        <alias field="_usage_current" index="25" name=""/>
+        <alias field="_function_hierarchic" index="28" name=""/>
+        <alias field="_usage_current" index="27" name=""/>
         <alias field="accessibility" index="1" name=""/>
         <alias field="contract_section" index="2" name=""/>
         <alias field="dataowner" index="21" name=""/>
         <alias field="detail_geometry_3d_geometry" index="3" name=""/>
         <alias field="financing" index="4" name=""/>
-        <alias field="fk_operator" index="24" name=""/>
-        <alias field="fk_owner" index="23" name=""/>
+        <alias field="fk_operator" index="26" name=""/>
+        <alias field="fk_owner" index="25" name=""/>
         <alias field="gross_costs" index="5" name=""/>
         <alias field="identifier" index="6" name=""/>
         <alias field="inspection_interval" index="7" name=""/>
         <alias field="last_modification" index="20" name=""/>
         <alias field="location_name" index="8" name=""/>
         <alias field="obj_id" index="0" name=""/>
-        <alias field="old_obj_id" index="27" name=""/>
+        <alias field="old_obj_id" index="30" name=""/>
         <alias field="provider" index="22" name=""/>
         <alias field="records" index="9" name=""/>
         <alias field="remark" index="10" name=""/>
@@ -1514,6 +1428,12 @@
         <edittype widgetv2type="TextEdit" name="provider">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="fk_dataowner">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="fk_provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="fk_owner">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -1526,17 +1446,14 @@
         <edittype widgetv2type="TextEdit" name="_function_hierarchic">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="_label">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="old_obj_id">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
     </maplayer>
-    <maplayer embedded="1" id="ownership__boundary_point" project="./av03.qgs"/>
-    <maplayer embedded="1" id="ownership__realestate" project="./av03.qgs"/>
-    <maplayer embedded="1" id="ownership__realestate_posnumber" project="./av03.qgs"/>
-    <maplayer embedded="1" id="single_objects__linear_element" project="./av03.qgs"/>
-    <maplayer embedded="1" id="single_objects__surface_element" project="./av03.qgs"/>
-    <maplayer embedded="1" id="territorial_boundaries__municipal_boundary" project="./av03.qgs"/>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_access_aid_kind</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_access_aid_kind" sql=</datasource>
@@ -1570,6 +1487,9 @@
         <edittype widgetv2type="TextEdit" name="code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -1598,20 +1518,23 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="abbr_de" index="5" name=""/>
-        <alias field="abbr_en" index="4" name=""/>
-        <alias field="abbr_fr" index="6" name=""/>
-        <alias field="active" index="7" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
         <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="2" name=""/>
-        <alias field="value_en" index="1" name=""/>
-        <alias field="value_fr" index="3" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_fr" index="4" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
@@ -1670,6 +1593,9 @@
         <edittype widgetv2type="TextEdit" name="code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -1698,20 +1624,23 @@
       <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="abbr_de" index="5" name=""/>
-        <alias field="abbr_en" index="4" name=""/>
-        <alias field="abbr_fr" index="6" name=""/>
-        <alias field="active" index="7" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
         <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="2" name=""/>
-        <alias field="value_en" index="1" name=""/>
-        <alias field="value_fr" index="3" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_fr" index="4" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
@@ -1770,6 +1699,9 @@
         <edittype widgetv2type="TextEdit" name="code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -1798,20 +1730,23 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="abbr_de" index="5" name=""/>
-        <alias field="abbr_en" index="4" name=""/>
-        <alias field="abbr_fr" index="6" name=""/>
-        <alias field="active" index="7" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
         <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="2" name=""/>
-        <alias field="value_en" index="1" name=""/>
-        <alias field="value_fr" index="3" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_fr" index="4" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
@@ -1870,6 +1805,9 @@
         <edittype widgetv2type="TextEdit" name="code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -1898,20 +1836,23 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="abbr_de" index="5" name=""/>
-        <alias field="abbr_en" index="4" name=""/>
-        <alias field="abbr_fr" index="6" name=""/>
-        <alias field="active" index="7" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
         <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="2" name=""/>
-        <alias field="value_en" index="1" name=""/>
-        <alias field="value_fr" index="3" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_fr" index="4" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
@@ -1970,6 +1911,9 @@
         <edittype widgetv2type="TextEdit" name="code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -2001,21 +1945,24 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="abbr_de" index="5" name=""/>
-        <alias field="abbr_en" index="4" name=""/>
-        <alias field="abbr_fr" index="6" name=""/>
-        <alias field="active" index="7" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
         <alias field="code" index="0" name=""/>
-        <alias field="order_fct_hierarchic" index="8" name=""/>
-        <alias field="value_de" index="2" name=""/>
-        <alias field="value_en" index="1" name=""/>
-        <alias field="value_fr" index="3" name=""/>
+        <alias field="order_fct_hierarchic" index="9" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_fr" index="4" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
@@ -2077,6 +2024,9 @@
         <edittype widgetv2type="TextEdit" name="code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -2105,20 +2055,23 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="abbr_de" index="5" name=""/>
-        <alias field="abbr_en" index="4" name=""/>
-        <alias field="abbr_fr" index="6" name=""/>
-        <alias field="active" index="7" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
         <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="2" name=""/>
-        <alias field="value_en" index="1" name=""/>
-        <alias field="value_fr" index="3" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_fr" index="4" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
@@ -2177,6 +2130,9 @@
         <edittype widgetv2type="TextEdit" name="code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -2208,21 +2164,24 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="abbr_de" index="5" name=""/>
-        <alias field="abbr_en" index="4" name=""/>
-        <alias field="abbr_fr" index="6" name=""/>
-        <alias field="active" index="7" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
         <alias field="code" index="0" name=""/>
-        <alias field="order_usage_current" index="8" name=""/>
-        <alias field="value_de" index="2" name=""/>
-        <alias field="value_en" index="1" name=""/>
-        <alias field="value_fr" index="3" name=""/>
+        <alias field="order_usage_current" index="9" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_fr" index="4" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
@@ -2284,6 +2243,9 @@
         <edittype widgetv2type="TextEdit" name="code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -2312,20 +2274,23 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="abbr_de" index="5" name=""/>
-        <alias field="abbr_en" index="4" name=""/>
-        <alias field="abbr_fr" index="6" name=""/>
-        <alias field="active" index="7" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
         <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="2" name=""/>
-        <alias field="value_en" index="1" name=""/>
-        <alias field="value_fr" index="3" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_fr" index="4" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
@@ -2384,6 +2349,9 @@
         <edittype widgetv2type="TextEdit" name="code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -2412,20 +2380,23 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="abbr_de" index="5" name=""/>
-        <alias field="abbr_en" index="4" name=""/>
-        <alias field="abbr_fr" index="6" name=""/>
-        <alias field="active" index="7" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
         <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="2" name=""/>
-        <alias field="value_en" index="1" name=""/>
-        <alias field="value_fr" index="3" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_fr" index="4" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
@@ -2484,6 +2455,9 @@
         <edittype widgetv2type="TextEdit" name="code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -2512,20 +2486,23 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="abbr_de" index="5" name=""/>
-        <alias field="abbr_en" index="4" name=""/>
-        <alias field="abbr_fr" index="6" name=""/>
-        <alias field="active" index="7" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
         <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="2" name=""/>
-        <alias field="value_en" index="1" name=""/>
-        <alias field="value_fr" index="3" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_fr" index="4" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
@@ -2584,6 +2561,9 @@
         <edittype widgetv2type="TextEdit" name="code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -2612,20 +2592,23 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="abbr_de" index="5" name=""/>
-        <alias field="abbr_en" index="4" name=""/>
-        <alias field="abbr_fr" index="6" name=""/>
-        <alias field="active" index="7" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
         <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="2" name=""/>
-        <alias field="value_en" index="1" name=""/>
-        <alias field="value_fr" index="3" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_fr" index="4" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
@@ -2684,6 +2667,9 @@
         <edittype widgetv2type="TextEdit" name="code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -2712,20 +2698,23 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="abbr_de" index="5" name=""/>
-        <alias field="abbr_en" index="4" name=""/>
-        <alias field="abbr_fr" index="6" name=""/>
-        <alias field="active" index="7" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
         <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="2" name=""/>
-        <alias field="value_en" index="1" name=""/>
-        <alias field="value_fr" index="3" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_fr" index="4" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
@@ -2784,6 +2773,9 @@
         <edittype widgetv2type="TextEdit" name="code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -2812,20 +2804,23 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="abbr_de" index="5" name=""/>
-        <alias field="abbr_en" index="4" name=""/>
-        <alias field="abbr_fr" index="6" name=""/>
-        <alias field="active" index="7" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
         <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="2" name=""/>
-        <alias field="value_en" index="1" name=""/>
-        <alias field="value_fr" index="3" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_fr" index="4" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
@@ -2884,6 +2879,9 @@
         <edittype widgetv2type="TextEdit" name="code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -2912,20 +2910,23 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="abbr_de" index="5" name=""/>
-        <alias field="abbr_en" index="4" name=""/>
-        <alias field="abbr_fr" index="6" name=""/>
-        <alias field="active" index="7" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
         <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="2" name=""/>
-        <alias field="value_en" index="1" name=""/>
-        <alias field="value_fr" index="3" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_fr" index="4" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
@@ -2984,6 +2985,9 @@
         <edittype widgetv2type="TextEdit" name="code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -3012,20 +3016,23 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="abbr_de" index="5" name=""/>
-        <alias field="abbr_en" index="4" name=""/>
-        <alias field="abbr_fr" index="6" name=""/>
-        <alias field="active" index="7" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
         <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="2" name=""/>
-        <alias field="value_en" index="1" name=""/>
-        <alias field="value_fr" index="3" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_fr" index="4" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
@@ -3084,6 +3091,9 @@
         <edittype widgetv2type="TextEdit" name="code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -3112,20 +3122,23 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="abbr_de" index="5" name=""/>
-        <alias field="abbr_en" index="4" name=""/>
-        <alias field="abbr_fr" index="6" name=""/>
-        <alias field="active" index="7" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
         <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="2" name=""/>
-        <alias field="value_en" index="1" name=""/>
-        <alias field="value_fr" index="3" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_fr" index="4" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
@@ -3184,6 +3197,9 @@
         <edittype widgetv2type="TextEdit" name="code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -3212,20 +3228,23 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="abbr_de" index="5" name=""/>
-        <alias field="abbr_en" index="4" name=""/>
-        <alias field="abbr_fr" index="6" name=""/>
-        <alias field="active" index="7" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
         <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="2" name=""/>
-        <alias field="value_en" index="1" name=""/>
-        <alias field="value_fr" index="3" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_fr" index="4" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
@@ -3284,6 +3303,9 @@
         <edittype widgetv2type="TextEdit" name="code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -3312,20 +3334,23 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="abbr_de" index="5" name=""/>
-        <alias field="abbr_en" index="4" name=""/>
-        <alias field="abbr_fr" index="6" name=""/>
-        <alias field="active" index="7" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
         <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="2" name=""/>
-        <alias field="value_en" index="1" name=""/>
-        <alias field="value_fr" index="3" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_fr" index="4" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
@@ -3384,6 +3409,9 @@
         <edittype widgetv2type="TextEdit" name="code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -3412,20 +3440,23 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="abbr_de" index="5" name=""/>
-        <alias field="abbr_en" index="4" name=""/>
-        <alias field="abbr_fr" index="6" name=""/>
-        <alias field="active" index="7" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
         <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="2" name=""/>
-        <alias field="value_en" index="1" name=""/>
-        <alias field="value_fr" index="3" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_fr" index="4" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
@@ -3484,6 +3515,9 @@
         <edittype widgetv2type="TextEdit" name="code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -3512,20 +3546,23 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="abbr_de" index="5" name=""/>
-        <alias field="abbr_en" index="4" name=""/>
-        <alias field="abbr_fr" index="6" name=""/>
-        <alias field="active" index="7" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
         <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="2" name=""/>
-        <alias field="value_en" index="1" name=""/>
-        <alias field="value_fr" index="3" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_fr" index="4" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
@@ -3584,6 +3621,9 @@
         <edittype widgetv2type="TextEdit" name="code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -3612,20 +3652,23 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="abbr_de" index="5" name=""/>
-        <alias field="abbr_en" index="4" name=""/>
-        <alias field="abbr_fr" index="6" name=""/>
-        <alias field="active" index="7" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
         <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="2" name=""/>
-        <alias field="value_en" index="1" name=""/>
-        <alias field="value_fr" index="3" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_fr" index="4" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
@@ -3684,6 +3727,9 @@
         <edittype widgetv2type="TextEdit" name="code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -3712,20 +3758,23 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="abbr_de" index="5" name=""/>
-        <alias field="abbr_en" index="4" name=""/>
-        <alias field="abbr_fr" index="6" name=""/>
-        <alias field="active" index="7" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
         <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="2" name=""/>
-        <alias field="value_en" index="1" name=""/>
-        <alias field="value_fr" index="3" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_fr" index="4" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
@@ -3784,6 +3833,9 @@
         <edittype widgetv2type="TextEdit" name="code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -3812,20 +3864,23 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="abbr_de" index="5" name=""/>
-        <alias field="abbr_en" index="4" name=""/>
-        <alias field="abbr_fr" index="6" name=""/>
-        <alias field="active" index="7" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
         <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="2" name=""/>
-        <alias field="value_en" index="1" name=""/>
-        <alias field="value_fr" index="3" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_fr" index="4" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
@@ -3884,6 +3939,9 @@
         <edittype widgetv2type="TextEdit" name="code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -3912,20 +3970,23 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="abbr_de" index="5" name=""/>
-        <alias field="abbr_en" index="4" name=""/>
-        <alias field="abbr_fr" index="6" name=""/>
-        <alias field="active" index="7" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
         <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="2" name=""/>
-        <alias field="value_en" index="1" name=""/>
-        <alias field="value_fr" index="3" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_fr" index="4" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
@@ -3984,6 +4045,9 @@
         <edittype widgetv2type="TextEdit" name="code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -4012,20 +4076,23 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="abbr_de" index="5" name=""/>
-        <alias field="abbr_en" index="4" name=""/>
-        <alias field="abbr_fr" index="6" name=""/>
-        <alias field="active" index="7" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
         <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="2" name=""/>
-        <alias field="value_en" index="1" name=""/>
-        <alias field="value_fr" index="3" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_fr" index="4" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
@@ -4084,6 +4151,9 @@
         <edittype widgetv2type="TextEdit" name="code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -4112,20 +4182,23 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="abbr_de" index="5" name=""/>
-        <alias field="abbr_en" index="4" name=""/>
-        <alias field="abbr_fr" index="6" name=""/>
-        <alias field="active" index="7" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
         <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="2" name=""/>
-        <alias field="value_en" index="1" name=""/>
-        <alias field="value_fr" index="3" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_fr" index="4" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
@@ -4184,6 +4257,9 @@
         <edittype widgetv2type="TextEdit" name="code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -4212,20 +4288,23 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="abbr_de" index="5" name=""/>
-        <alias field="abbr_en" index="4" name=""/>
-        <alias field="abbr_fr" index="6" name=""/>
-        <alias field="active" index="7" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
         <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="2" name=""/>
-        <alias field="value_en" index="1" name=""/>
-        <alias field="value_fr" index="3" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_fr" index="4" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
@@ -4284,6 +4363,9 @@
         <edittype widgetv2type="TextEdit" name="code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -4312,20 +4394,23 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="abbr_de" index="5" name=""/>
-        <alias field="abbr_en" index="4" name=""/>
-        <alias field="abbr_fr" index="6" name=""/>
-        <alias field="active" index="7" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
         <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="2" name=""/>
-        <alias field="value_en" index="1" name=""/>
-        <alias field="value_fr" index="3" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_fr" index="4" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
@@ -4384,6 +4469,9 @@
         <edittype widgetv2type="TextEdit" name="code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -4412,20 +4500,23 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="abbr_de" index="5" name=""/>
-        <alias field="abbr_en" index="4" name=""/>
-        <alias field="abbr_fr" index="6" name=""/>
-        <alias field="active" index="7" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
         <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="2" name=""/>
-        <alias field="value_en" index="1" name=""/>
-        <alias field="value_fr" index="3" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_fr" index="4" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
@@ -4484,6 +4575,9 @@
         <edittype widgetv2type="TextEdit" name="code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -4512,20 +4606,23 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="abbr_de" index="5" name=""/>
-        <alias field="abbr_en" index="4" name=""/>
-        <alias field="abbr_fr" index="6" name=""/>
-        <alias field="active" index="7" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
         <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="2" name=""/>
-        <alias field="value_en" index="1" name=""/>
-        <alias field="value_fr" index="3" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_fr" index="4" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
@@ -4584,6 +4681,9 @@
         <edittype widgetv2type="TextEdit" name="code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -4612,20 +4712,23 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="abbr_de" index="5" name=""/>
-        <alias field="abbr_en" index="4" name=""/>
-        <alias field="abbr_fr" index="6" name=""/>
-        <alias field="active" index="7" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
         <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="2" name=""/>
-        <alias field="value_en" index="1" name=""/>
-        <alias field="value_fr" index="3" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_fr" index="4" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
@@ -4684,6 +4787,9 @@
         <edittype widgetv2type="TextEdit" name="code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -4712,20 +4818,23 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="abbr_de" index="5" name=""/>
-        <alias field="abbr_en" index="4" name=""/>
-        <alias field="abbr_fr" index="6" name=""/>
-        <alias field="active" index="7" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
         <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="2" name=""/>
-        <alias field="value_en" index="1" name=""/>
-        <alias field="value_fr" index="3" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_fr" index="4" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
@@ -4784,6 +4893,9 @@
         <edittype widgetv2type="TextEdit" name="code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -4812,20 +4924,23 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="abbr_de" index="5" name=""/>
-        <alias field="abbr_en" index="4" name=""/>
-        <alias field="abbr_fr" index="6" name=""/>
-        <alias field="active" index="7" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
         <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="2" name=""/>
-        <alias field="value_en" index="1" name=""/>
-        <alias field="value_fr" index="3" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_fr" index="4" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
@@ -4884,6 +4999,9 @@
         <edittype widgetv2type="TextEdit" name="code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -4912,20 +5030,23 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="abbr_de" index="5" name=""/>
-        <alias field="abbr_en" index="4" name=""/>
-        <alias field="abbr_fr" index="6" name=""/>
-        <alias field="active" index="7" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
         <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="2" name=""/>
-        <alias field="value_en" index="1" name=""/>
-        <alias field="value_fr" index="3" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_fr" index="4" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
@@ -4984,6 +5105,9 @@
         <edittype widgetv2type="TextEdit" name="code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -5012,20 +5136,23 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="abbr_de" index="5" name=""/>
-        <alias field="abbr_en" index="4" name=""/>
-        <alias field="abbr_fr" index="6" name=""/>
-        <alias field="active" index="7" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
         <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="2" name=""/>
-        <alias field="value_en" index="1" name=""/>
-        <alias field="value_fr" index="3" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_fr" index="4" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
@@ -5084,6 +5211,9 @@
         <edittype widgetv2type="TextEdit" name="code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -5112,20 +5242,23 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="abbr_de" index="5" name=""/>
-        <alias field="abbr_en" index="4" name=""/>
-        <alias field="abbr_fr" index="6" name=""/>
-        <alias field="active" index="7" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
         <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="2" name=""/>
-        <alias field="value_en" index="1" name=""/>
-        <alias field="value_fr" index="3" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_fr" index="4" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
@@ -5184,6 +5317,9 @@
         <edittype widgetv2type="TextEdit" name="code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -5212,20 +5348,23 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="abbr_de" index="5" name=""/>
-        <alias field="abbr_en" index="4" name=""/>
-        <alias field="abbr_fr" index="6" name=""/>
-        <alias field="active" index="7" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
         <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="2" name=""/>
-        <alias field="value_en" index="1" name=""/>
-        <alias field="value_fr" index="3" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_fr" index="4" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value_en">
@@ -5296,13 +5435,13 @@
         <edittype widgetv2type="TextEdit" name="renovation_demand">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="last_modification">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
         <edittype widgetv2type="TextEdit" name="dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="last_modification">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="fk_wastewater_structure">
@@ -5315,13 +5454,13 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="dataowner" index="6" name=""/>
+        <alias field="dataowner" index="5" name=""/>
         <alias field="fk_wastewater_structure" index="8" name=""/>
         <alias field="identifier" index="2" name=""/>
         <alias field="kind" index="1" name=""/>
-        <alias field="last_modification" index="5" name=""/>
+        <alias field="last_modification" index="7" name=""/>
         <alias field="obj_id" index="0" name=""/>
-        <alias field="provider" index="7" name=""/>
+        <alias field="provider" index="6" name=""/>
         <alias field="remark" index="3" name=""/>
         <alias field="renovation_demand" index="4" name=""/>
       </aliases>
@@ -5344,13 +5483,13 @@
         <edittype widgetv2type="TextEdit" name="renovation_demand">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="last_modification">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
         <edittype widgetv2type="TextEdit" name="dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="last_modification">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="fk_wastewater_structure">
@@ -5409,13 +5548,13 @@
         <edittype widgetv2type="TextEdit" name="renovation_demand">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="last_modification">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
         <edittype widgetv2type="TextEdit" name="dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="last_modification">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="fk_wastewater_structure">
@@ -5428,14 +5567,14 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="dataowner" index="8" name=""/>
+        <alias field="dataowner" index="7" name=""/>
         <alias field="fk_wastewater_structure" index="10" name=""/>
         <alias field="gross_costs" index="1" name=""/>
         <alias field="identifier" index="4" name=""/>
         <alias field="kind" index="2" name=""/>
-        <alias field="last_modification" index="7" name=""/>
+        <alias field="last_modification" index="9" name=""/>
         <alias field="obj_id" index="0" name=""/>
-        <alias field="provider" index="9" name=""/>
+        <alias field="provider" index="8" name=""/>
         <alias field="remark" index="5" name=""/>
         <alias field="renovation_demand" index="6" name=""/>
         <alias field="year_of_replacement" index="3" name=""/>
@@ -5465,13 +5604,13 @@
         <edittype widgetv2type="TextEdit" name="renovation_demand">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="last_modification">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
         <edittype widgetv2type="TextEdit" name="dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="last_modification">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="fk_wastewater_structure">
@@ -5524,13 +5663,13 @@
         <edittype widgetv2type="TextEdit" name="renovation_demand">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="last_modification">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
         <edittype widgetv2type="TextEdit" name="dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="last_modification">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="fk_wastewater_structure">
@@ -5543,13 +5682,13 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="dataowner" index="6" name=""/>
+        <alias field="dataowner" index="5" name=""/>
         <alias field="fk_wastewater_structure" index="8" name=""/>
         <alias field="identifier" index="2" name=""/>
         <alias field="kind" index="1" name=""/>
-        <alias field="last_modification" index="5" name=""/>
+        <alias field="last_modification" index="7" name=""/>
         <alias field="obj_id" index="0" name=""/>
-        <alias field="provider" index="7" name=""/>
+        <alias field="provider" index="6" name=""/>
         <alias field="remark" index="3" name=""/>
         <alias field="renovation_demand" index="4" name=""/>
       </aliases>
@@ -5572,13 +5711,13 @@
         <edittype widgetv2type="TextEdit" name="renovation_demand">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="last_modification">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
         <edittype widgetv2type="TextEdit" name="dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="last_modification">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="fk_wastewater_structure">
@@ -5703,14 +5842,14 @@
         <edittype widgetv2type="Range" name="year_of_replacement">
           <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="1900" Max="2100"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="last_modification">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
         <edittype widgetv2type="UniqueValues" name="dataowner">
           <widgetv2config fieldEditable="1" labelOnTop="0" Editable="1"/>
         </edittype>
         <edittype widgetv2type="UniqueValues" name="provider">
           <widgetv2config fieldEditable="1" labelOnTop="0" Editable="1"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="last_modification">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="fk_owner">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -5729,7 +5868,7 @@
         <alias field="bedding_encasement" index="1" name=""/>
         <alias field="connection_type" index="2" name=""/>
         <alias field="contract_section" index="10" name=""/>
-        <alias field="dataowner" index="30" name=""/>
+        <alias field="dataowner" index="29" name=""/>
         <alias field="detail_geometry_3d_geometry" index="12" name=""/>
         <alias field="detail_geometry_geometry" index="11" name=""/>
         <alias field="financing" index="13" name=""/>
@@ -5741,11 +5880,11 @@
         <alias field="identifier" index="15" name=""/>
         <alias field="inspection_interval" index="16" name=""/>
         <alias field="jetting_interval" index="5" name=""/>
-        <alias field="last_modification" index="29" name=""/>
+        <alias field="last_modification" index="31" name=""/>
         <alias field="location_name" index="17" name=""/>
         <alias field="obj_id" index="0" name=""/>
         <alias field="pipe_length" index="6" name=""/>
-        <alias field="provider" index="31" name=""/>
+        <alias field="provider" index="30" name=""/>
         <alias field="records" index="18" name=""/>
         <alias field="remark" index="19" name=""/>
         <alias field="renovation_necessity" index="20" name=""/>
@@ -5851,14 +5990,14 @@
         <edittype widgetv2type="Range" name="year_of_replacement">
           <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="1900" Max="2100"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="last_modification">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
         <edittype widgetv2type="UniqueValues" name="dataowner">
           <widgetv2config fieldEditable="1" labelOnTop="0" Editable="1"/>
         </edittype>
         <edittype widgetv2type="UniqueValues" name="provider">
           <widgetv2config fieldEditable="1" labelOnTop="0" Editable="1"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="last_modification">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="fk_owner">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -5939,13 +6078,13 @@
         <edittype widgetv2type="TextEdit" name="renovation_demand">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="last_modification">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
         <edittype widgetv2type="TextEdit" name="dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="last_modification">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="fk_wastewater_structure">
@@ -6178,18 +6317,18 @@
       <aliases>
         <alias field="brand" index="1" name=""/>
         <alias field="cover_shape" index="2" name=""/>
-        <alias field="dataowner" index="15" name=""/>
+        <alias field="dataowner" index="14" name=""/>
         <alias field="depth" index="3" name=""/>
         <alias field="diameter" index="4" name=""/>
         <alias field="fastening" index="5" name=""/>
         <alias field="fk_wastewater_structure" index="17" name=""/>
         <alias field="identifier" index="11" name=""/>
-        <alias field="last_modification" index="14" name=""/>
+        <alias field="last_modification" index="16" name=""/>
         <alias field="level" index="6" name=""/>
         <alias field="material" index="7" name=""/>
         <alias field="obj_id" index="0" name=""/>
         <alias field="positional_accuracy" index="8" name=""/>
-        <alias field="provider" index="16" name=""/>
+        <alias field="provider" index="15" name=""/>
         <alias field="remark" index="12" name=""/>
         <alias field="renovation_demand" index="13" name=""/>
         <alias field="sludge_bucket" index="9" name=""/>
@@ -6241,13 +6380,13 @@
         <edittype widgetv2type="TextEdit" name="renovation_demand">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="last_modification">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
         <edittype widgetv2type="TextEdit" name="dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="last_modification">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="fk_wastewater_structure">
@@ -6300,13 +6439,13 @@
         <edittype widgetv2type="TextEdit" name="renovation_demand">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="last_modification">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
         <edittype widgetv2type="TextEdit" name="dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="last_modification">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="fk_wastewater_structure">
@@ -6319,13 +6458,13 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="dataowner" index="6" name=""/>
+        <alias field="dataowner" index="5" name=""/>
         <alias field="diameter" index="1" name=""/>
         <alias field="fk_wastewater_structure" index="8" name=""/>
         <alias field="identifier" index="2" name=""/>
-        <alias field="last_modification" index="5" name=""/>
+        <alias field="last_modification" index="7" name=""/>
         <alias field="obj_id" index="0" name=""/>
-        <alias field="provider" index="7" name=""/>
+        <alias field="provider" index="6" name=""/>
         <alias field="remark" index="3" name=""/>
         <alias field="renovation_demand" index="4" name=""/>
       </aliases>
@@ -6348,13 +6487,13 @@
         <edittype widgetv2type="TextEdit" name="renovation_demand">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="last_modification">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
         <edittype widgetv2type="TextEdit" name="dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="last_modification">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="fk_wastewater_structure">
@@ -6407,13 +6546,13 @@
         <edittype widgetv2type="TextEdit" name="renovation_demand">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="last_modification">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
         <edittype widgetv2type="TextEdit" name="dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="last_modification">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="fk_wastewater_structure">
@@ -6426,13 +6565,13 @@
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <aliases>
-        <alias field="dataowner" index="6" name=""/>
+        <alias field="dataowner" index="5" name=""/>
         <alias field="fk_wastewater_structure" index="8" name=""/>
         <alias field="identifier" index="2" name=""/>
-        <alias field="last_modification" index="5" name=""/>
+        <alias field="last_modification" index="7" name=""/>
         <alias field="material" index="1" name=""/>
         <alias field="obj_id" index="0" name=""/>
-        <alias field="provider" index="7" name=""/>
+        <alias field="provider" index="6" name=""/>
         <alias field="remark" index="3" name=""/>
         <alias field="renovation_demand" index="4" name=""/>
       </aliases>
@@ -6455,13 +6594,13 @@
         <edittype widgetv2type="TextEdit" name="renovation_demand">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="last_modification">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
         <edittype widgetv2type="TextEdit" name="dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="last_modification">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="fk_wastewater_structure">
@@ -6991,6 +7130,9 @@
         <edittype widgetv2type="TextEdit" name="fk_operator">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="_label">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="Range" name="depth">
           <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="5"/>
         </edittype>
@@ -7020,9 +7162,6 @@
         </edittype>
         <edittype widgetv2type="Hidden" name="manhole_orientation">
           <widgetv2config fieldEditable="1" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="manhole_label">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="ValueRelation" name="bypass">
           <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_special_structure_bypass" Value="value_en" labelOnTop="0" AllowMulti="0"/>
@@ -8451,17 +8590,17 @@
         <alias field="bottom_level" index="68" name=""/>
         <alias field="brand" index="1" name=""/>
         <alias field="bypass" index="49" name=""/>
-        <alias field="channel_function_hierarchic" index="46" name=""/>
-        <alias field="channel_usage_current" index="45" name=""/>
+        <alias field="channel_function_hierarchic" index="47" name=""/>
+        <alias field="channel_usage_current" index="46" name=""/>
         <alias field="contract_section" index="20" name=""/>
         <alias field="cover_material" index="6" name=""/>
         <alias field="cover_shape" index="2" name=""/>
         <alias field="dataowner" index="14" name=""/>
         <alias field="defects" index="57" name=""/>
-        <alias field="depth" index="38" name=""/>
+        <alias field="depth" index="39" name=""/>
         <alias field="diameter" index="3" name=""/>
-        <alias field="dimension1" index="39" name=""/>
-        <alias field="dimension2" index="40" name=""/>
+        <alias field="dimension1" index="40" name=""/>
+        <alias field="dimension2" index="41" name=""/>
         <alias field="distance_to_aquifer" index="58" name=""/>
         <alias field="effective_area" index="59" name=""/>
         <alias field="emergency_spillway" index="60" name=""/>
@@ -8478,9 +8617,9 @@
         <alias field="last_modification" index="13" name=""/>
         <alias field="level" index="5" name=""/>
         <alias field="location_name" index="24" name=""/>
-        <alias field="manhole_function" index="42" name=""/>
-        <alias field="manhole_orientation" index="47" name=""/>
-        <alias field="material" index="43" name=""/>
+        <alias field="manhole_function" index="43" name=""/>
+        <alias field="manhole_orientation" index="48" name=""/>
+        <alias field="material" index="44" name=""/>
         <alias field="obj_id" index="0" name=""/>
         <alias field="positional_accuracy" index="7" name=""/>
         <alias field="provider" index="15" name=""/>
@@ -8499,9 +8638,9 @@
         <alias field="stormwater_tank_arrangement" index="51" name=""/>
         <alias field="structure_condition" index="32" name=""/>
         <alias field="subsidies" index="33" name=""/>
-        <alias field="surface_inflow" index="44" name=""/>
+        <alias field="surface_inflow" index="45" name=""/>
         <alias field="terrain_level" index="54" name=""/>
-        <alias field="upper_elevation" index="41" name=""/>
+        <alias field="upper_elevation" index="42" name=""/>
         <alias field="vehicle_access" index="64" name=""/>
         <alias field="venting" index="9" name=""/>
         <alias field="waterlevel_hydraulic" index="55" name=""/>
@@ -8527,7 +8666,7 @@
           <attributeEditorField index="10" name="identifier"/>
           <attributeEditorField index="24" name="location_name"/>
           <attributeEditorField index="34" name="year_of_construction"/>
-          <attributeEditorField index="42" name="manhole_function"/>
+          <attributeEditorField index="43" name="manhole_function"/>
           <attributeEditorField index="50" name="special_structure_function"/>
           <attributeEditorField index="27" name="renovation_necessity"/>
           <attributeEditorField index="5" name="level"/>
@@ -8536,8 +8675,8 @@
           <attributeEditorField index="31" name="status"/>
           <attributeEditorField index="9" name="venting"/>
           <attributeEditorField index="4" name="fastening"/>
-          <attributeEditorField index="39" name="dimension1"/>
-          <attributeEditorField index="40" name="dimension2"/>
+          <attributeEditorField index="40" name="dimension1"/>
+          <attributeEditorField index="41" name="dimension2"/>
         </attributeEditorContainer>
         <attributeEditorContainer name="Cover">
           <attributeEditorField index="1" name="brand"/>
@@ -8572,29 +8711,29 @@
           <attributeEditorField index="37" name="fk_operator"/>
         </attributeEditorContainer>
         <attributeEditorContainer name="Manhole">
-          <attributeEditorField index="38" name="depth"/>
-          <attributeEditorField index="39" name="dimension1"/>
-          <attributeEditorField index="40" name="dimension2"/>
-          <attributeEditorField index="41" name="upper_elevation"/>
-          <attributeEditorField index="42" name="manhole_function"/>
-          <attributeEditorField index="43" name="material"/>
-          <attributeEditorField index="44" name="surface_inflow"/>
+          <attributeEditorField index="39" name="depth"/>
+          <attributeEditorField index="40" name="dimension1"/>
+          <attributeEditorField index="41" name="dimension2"/>
+          <attributeEditorField index="42" name="upper_elevation"/>
+          <attributeEditorField index="43" name="manhole_function"/>
+          <attributeEditorField index="44" name="material"/>
+          <attributeEditorField index="45" name="surface_inflow"/>
         </attributeEditorContainer>
         <attributeEditorContainer name="Special Structure">
           <attributeEditorField index="49" name="bypass"/>
           <attributeEditorField index="50" name="special_structure_function"/>
           <attributeEditorField index="51" name="stormwater_tank_arrangement"/>
-          <attributeEditorField index="41" name="upper_elevation"/>
-          <attributeEditorField index="38" name="depth"/>
+          <attributeEditorField index="42" name="upper_elevation"/>
+          <attributeEditorField index="39" name="depth"/>
           <attributeEditorField index="60" name="emergency_spillway"/>
         </attributeEditorContainer>
         <attributeEditorContainer name="Discharge Point">
-          <attributeEditorField index="38" name="depth"/>
+          <attributeEditorField index="39" name="depth"/>
           <attributeEditorField index="60" name="emergency_spillway"/>
           <attributeEditorField index="52" name="highwater_level"/>
           <attributeEditorField index="53" name="relevance"/>
           <attributeEditorField index="54" name="terrain_level"/>
-          <attributeEditorField index="41" name="upper_elevation"/>
+          <attributeEditorField index="42" name="upper_elevation"/>
           <attributeEditorField index="55" name="waterlevel_hydraulic"/>
         </attributeEditorContainer>
         <attributeEditorContainer name="Infiltration Installation">
@@ -8607,9 +8746,9 @@
           <attributeEditorField index="63" name="seepage_utilization"/>
           <attributeEditorField index="64" name="vehicle_access"/>
           <attributeEditorField index="65" name="watertightness"/>
-          <attributeEditorField index="39" name="dimension1"/>
-          <attributeEditorField index="40" name="dimension2"/>
-          <attributeEditorField index="41" name="upper_elevation"/>
+          <attributeEditorField index="40" name="dimension1"/>
+          <attributeEditorField index="41" name="dimension2"/>
+          <attributeEditorField index="42" name="upper_elevation"/>
         </attributeEditorContainer>
         <attributeEditorContainer name="Wastewater Node">
           <attributeEditorField index="66" name="wn_obj_id"/>
@@ -8759,6 +8898,9 @@
         <edittype widgetv2type="TextEdit" name="fk_operator">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="_label">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="Range" name="depth">
           <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="0" Max="5"/>
         </edittype>
@@ -8788,9 +8930,6 @@
         </edittype>
         <edittype widgetv2type="Hidden" name="manhole_orientation">
           <widgetv2config fieldEditable="1" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="manhole_label">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="ValueRelation" name="bypass">
           <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_special_structure_bypass" Value="value_en" labelOnTop="0" AllowMulti="0"/>
@@ -10442,13 +10581,13 @@
         <edittype widgetv2type="TextEdit" name="remark">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="last_modification">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
         <edittype widgetv2type="TextEdit" name="dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="last_modification">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="fk_wastewater_structure">
@@ -10548,13 +10687,13 @@
         <edittype widgetv2type="TextEdit" name="remark">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="last_modification">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
         <edittype widgetv2type="TextEdit" name="dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="last_modification">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="fk_wastewater_structure">
@@ -10564,15 +10703,42 @@
     </maplayer>
   </projectlayers>
   <properties>
-    <SpatialRefSys>
-      <ProjectCRSProj4String type="QString">+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=600000 +y_0=200000 +ellps=bessel +towgs84=674.4,15.1,405.3,0,0,0,0 +units=m +no_defs</ProjectCRSProj4String>
-      <ProjectCrs type="QString">EPSG:21781</ProjectCrs>
-      <ProjectCRSID type="int">1919</ProjectCRSID>
-      <ProjectionsEnabled type="int">1</ProjectionsEnabled>
-    </SpatialRefSys>
+    <WMSContactPerson type="QString"></WMSContactPerson>
+    <WMSOnlineResource type="QString"></WMSOnlineResource>
+    <WMSUseLayerIDs type="bool">false</WMSUseLayerIDs>
+    <WMSContactOrganization type="QString"></WMSContactOrganization>
+    <WMSKeywordList type="QStringList">
+      <value></value>
+    </WMSKeywordList>
+    <WFSUrl type="QString"></WFSUrl>
     <Paths>
       <Absolute type="bool">false</Absolute>
     </Paths>
+    <WMSServiceTitle type="QString"></WMSServiceTitle>
+    <WFSLayers type="QStringList"/>
+    <WMSContactMail type="QString"></WMSContactMail>
+    <PositionPrecision>
+      <DecimalPlaces type="int">2</DecimalPlaces>
+      <Automatic type="bool">true</Automatic>
+      <DegreeFormat type="QString">D</DegreeFormat>
+    </PositionPrecision>
+    <WCSUrl type="QString"></WCSUrl>
+    <WMSContactPhone type="QString"></WMSContactPhone>
+    <WMSServiceCapabilities type="bool">false</WMSServiceCapabilities>
+    <WMSServiceAbstract type="QString"></WMSServiceAbstract>
+    <WMSAddWktGeometry type="bool">false</WMSAddWktGeometry>
+    <Measure>
+      <Ellipsoid type="QString">NONE</Ellipsoid>
+    </Measure>
+    <WMSPrecision type="QString">8</WMSPrecision>
+    <WMSCrsList type="QStringList">
+      <value>EPSG:21781</value>
+    </WMSCrsList>
+    <WFSTLayers>
+      <Insert type="QStringList"/>
+      <Update type="QStringList"/>
+      <Delete type="QStringList"/>
+    </WFSTLayers>
     <Gui>
       <SelectionColorBluePart type="int">0</SelectionColorBluePart>
       <CanvasColorGreenPart type="int">255</CanvasColorGreenPart>
@@ -10592,28 +10758,8 @@
         <value>vw_qgep_cover</value>
         <value>vw_qgep_reach</value>
         <value>vw_wastewater_node20150607121012062</value>
-        <value>territorial_boundaries__municipal_boundary</value>
-        <value>ownership__boundary_point</value>
-        <value>single_objects__surface_element</value>
-        <value>single_objects__linear_element</value>
-        <value>ownership__realestate_posnumber</value>
-        <value>ownership__realestate</value>
-        <value>land_cover__lcsurface_postext</value>
-        <value>land_cover__lcsurface</value>
-        <value>building_addresses__street_name_pos</value>
-        <value>building_addresses__building_entrance_pos</value>
       </LayerSnappingList>
       <LayerSnappingEnabledList type="QStringList">
-        <value>disabled</value>
-        <value>disabled</value>
-        <value>disabled</value>
-        <value>disabled</value>
-        <value>disabled</value>
-        <value>disabled</value>
-        <value>disabled</value>
-        <value>disabled</value>
-        <value>disabled</value>
-        <value>disabled</value>
         <value>disabled</value>
         <value>disabled</value>
         <value>disabled</value>
@@ -10632,28 +10778,8 @@
         <value>2</value>
         <value>2</value>
         <value>2</value>
-        <value>2</value>
-        <value>2</value>
-        <value>2</value>
-        <value>2</value>
-        <value>2</value>
-        <value>2</value>
-        <value>2</value>
-        <value>2</value>
-        <value>2</value>
-        <value>2</value>
       </LayerSnappingToleranceUnitList>
       <LayerSnapToList type="QStringList">
-        <value>to_vertex_and_segment</value>
-        <value>to_vertex_and_segment</value>
-        <value>to_vertex_and_segment</value>
-        <value>to_vertex_and_segment</value>
-        <value>to_vertex_and_segment</value>
-        <value>to_vertex_and_segment</value>
-        <value>to_vertex_and_segment</value>
-        <value>to_vertex_and_segment</value>
-        <value>to_vertex_and_segment</value>
-        <value>to_vertex_and_segment</value>
         <value>to_vertex_and_segment</value>
         <value>to_vertex_and_segment</value>
         <value>to_vertex_and_segment</value>
@@ -10672,24 +10798,35 @@
         <value>0.000000</value>
         <value>0.000000</value>
         <value>0.000000</value>
-        <value>0.000000</value>
-        <value>0.000000</value>
-        <value>0.000000</value>
-        <value>0.000000</value>
-        <value>0.000000</value>
-        <value>0.000000</value>
-        <value>0.000000</value>
-        <value>0.000000</value>
-        <value>0.000000</value>
-        <value>0.000000</value>
       </LayerSnappingToleranceList>
     </Digitizing>
-    <PositionPrecision>
-      <DecimalPlaces type="int">2</DecimalPlaces>
-      <Automatic type="bool">true</Automatic>
-    </PositionPrecision>
+    <Identify>
+      <disabledLayers type="QStringList"/>
+    </Identify>
+    <Macros>
+      <pythonCode type="QString"></pythonCode>
+    </Macros>
+    <WMSAccessConstraints type="QString"></WMSAccessConstraints>
+    <WCSLayers type="QStringList"/>
     <Legend>
       <filterByMap type="bool">false</filterByMap>
     </Legend>
+    <SpatialRefSys>
+      <ProjectCRSProj4String type="QString">+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=600000 +y_0=200000 +ellps=bessel +towgs84=674.4,15.1,405.3,0,0,0,0 +units=m +no_defs</ProjectCRSProj4String>
+      <ProjectCrs type="QString">EPSG:21781</ProjectCrs>
+      <ProjectCRSID type="int">1919</ProjectCRSID>
+      <ProjectionsEnabled type="int">1</ProjectionsEnabled>
+    </SpatialRefSys>
+    <DefaultStyles>
+      <Fill type="QString"></Fill>
+      <Line type="QString"></Line>
+      <Marker type="QString"></Marker>
+      <RandomColors type="bool">true</RandomColors>
+      <AlphaInt type="int">255</AlphaInt>
+      <ColorRamp type="QString"></ColorRamp>
+    </DefaultStyles>
+    <WMSFees type="QString"></WMSFees>
+    <WMSImageQuality type="int">90</WMSImageQuality>
+    <WMSUrl type="QString"></WMSUrl>
   </properties>
 </qgis>
