@@ -248,6 +248,9 @@
     <relation referencingLayer="vw_dryweather_flume" referencedLayer="vw_qgep_cover" id="vw_dryweather_flume20150507162234250_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id" name="Dryweather Flumes">
       <fieldRef referencedField="ws_obj_id" referencingField="fk_wastewater_structure"/>
     </relation>
+    <relation referencingLayer="vw_wastewater_node20150607121012062" referencedLayer="vw_qgep_cover" id="wastewater_node-fk_wastewater-structure" name="Wastewater Nodes">
+      <fieldRef referencedField="ws_obj_id" referencingField="fk_wastewater_structure"/>
+    </relation>
   </relations>
   <mapcanvas>
     <units>meters</units>
@@ -8967,6 +8970,9 @@
         </attributeEditorContainer>
         <attributeEditorContainer name="Maintenance">
           <attributeEditorRelation relation="od_maintenance_event20150530130856307_fk_wastewater_structure_vw_qgep_cover_obj_id" name="od_maintenance_event20150530130856307_fk_wastewater_structure_vw_qgep_cover_obj_id"/>
+        </attributeEditorContainer>
+        <attributeEditorContainer name="Wastewater Nodes">
+          <attributeEditorRelation relation="wastewater_node-fk_wastewater-structure" name="wastewater_node-fk_wastewater-structure"/>
         </attributeEditorContainer>
       </attributeEditorForm>
       <attributeactions>
