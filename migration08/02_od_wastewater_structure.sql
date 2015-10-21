@@ -64,7 +64,9 @@ WHEN status = 1 THEN 6524 --- abanndoned.suspended_unknown
 WHEN status = 2 THEN 3633 --- inoperative
 WHEN status = 3 THEN 6526 --- other.calculation_alternative
 WHEN status = 4 THEN 6527 --- other.planned
-WHEN status = 5 THEN 6528 --- operational.operational
+-- changed sjib 21.10.2015 
+-- WHEN status = 5 THEN 6528 --- operational.operational
+WHEN status = 5 THEN 8493 --- operational
 WHEN status = 6 THEN 6529 --- other.project
 WHEN status = 7 THEN 6530 --- operational.tentative
 WHEN status = 8 THEN 3027 --- unknown
