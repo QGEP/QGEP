@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis projectname="" version="2.12.0-Lyon">
+<qgis projectname="" version="2.13.0-Master">
   <title></title>
   <layer-tree-group expanded="1" checked="Qt::PartiallyChecked" name="">
     <customproperties/>
@@ -11,6 +11,9 @@
     </layer-tree-layer>
     <layer-tree-group expanded="0" checked="Qt::Checked" name="Wastewater Structures">
       <customproperties/>
+      <layer-tree-layer expanded="1" checked="Qt::Checked" id="re_maintenance_event_wastewater_structure20151127154104165" name="re_maintenance_event_wastewater_structure">
+        <customproperties/>
+      </layer-tree-layer>
       <layer-tree-layer expanded="1" checked="Qt::Checked" id="od_wastewater_structure" name="od_wastewater_structure">
         <customproperties/>
       </layer-tree-layer>
@@ -227,6 +230,12 @@
     </layer-tree-group>
   </layer-tree-group>
   <relations>
+    <relation referencingLayer="re_maintenance_event_wastewater_structure20151127154104165" referencedLayer="od_wastewater_structure" id="re_maintenance_event_wastewater_structure20151127154104165_fk_wastewater_structure_od_wastewater_structure_obj_id" name="Maintenances">
+      <fieldRef referencedField="obj_id" referencingField="fk_wastewater_structure"/>
+    </relation>
+    <relation referencingLayer="re_maintenance_event_wastewater_structure20151127154104165" referencedLayer="vw_qgep_cover" id="re_maintenance_event_wastewater_structure20151127154104165_fk_wastewater_structure_vw_qgep_cover_obj_id" name="Wastewater Structures">
+      <fieldRef referencedField="obj_id" referencingField="fk_wastewater_structure"/>
+    </relation>
     <relation referencingLayer="vw_qgep_reach" referencedLayer="od_pipe_profile" id="reach-fk_pipe_profile" name="Reaches">
       <fieldRef referencedField="obj_id" referencingField="fk_pipe_profile"/>
     </relation>
@@ -391,6 +400,7 @@
       <item>vl_cover_positional_accuracy20151117153235900</item>
       <item>vl_manhole_material20151117174216343</item>
       <item>vl_manhole_surface_inflow20151117174216393</item>
+      <item>re_maintenance_event_wastewater_structure20151127154104165</item>
     </custom-order>
   </layer-tree-canvas>
   <legend updateDrawingOrder="true">
@@ -405,6 +415,11 @@
       </filegroup>
     </legendlayer>
     <legendgroup open="false" checked="Qt::Checked" name="Wastewater Structures">
+      <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="re_maintenance_event_wastewater_structure" showFeatureCount="0">
+        <filegroup open="true" hidden="false">
+          <legendlayerfile isInOverview="0" layerid="re_maintenance_event_wastewater_structure20151127154104165" visible="1"/>
+        </filegroup>
+      </legendlayer>
       <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="od_wastewater_structure" showFeatureCount="0">
         <filegroup open="true" hidden="false">
           <legendlayerfile isInOverview="0" layerid="od_wastewater_structure" visible="1"/>
@@ -707,10 +722,10 @@
     </legendgroup>
     <legendgroup open="false" checked="Qt::Checked" name="Cadastral Data"/>
   </legend>
-  <projectlayers layercount="55">
+  <projectlayers layercount="56">
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>od_maintenance_event</id>
-      <datasource>service='pg_qgep' key='obj_id' estimatedmetadata=true table="qgep"."od_maintenance_event" sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true table="qgep"."od_maintenance_event" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -796,11 +811,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="base_data" index="1" name=""/>
         <alias field="cost" index="2" name=""/>
@@ -822,6 +833,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -888,7 +906,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>od_pipe_profile</id>
-      <datasource>service='pg_qgep' key='obj_id' table="qgep"."od_pipe_profile" sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' table="qgep"."od_pipe_profile" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -950,11 +968,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="dataowner" index="6" name=""/>
         <alias field="height_width_ratio" index="1" name=""/>
@@ -968,6 +982,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -1010,7 +1031,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="5001" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="1" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>od_wastewater_structure</id>
-      <datasource>service='pg_qgep' key='obj_id' estimatedmetadata=true srid=21781 type=Polygon table="qgep"."od_wastewater_structure" (detail_geometry_geometry) sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true srid=21781 type=Polygon table="qgep"."od_wastewater_structure" (detail_geometry_geometry) sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -1344,11 +1365,7 @@
         </DiagramCategory>
       </SingleCategoryDiagramRenderer>
       <DiagramLayerSettings yPosColumn="-1" linePlacementFlags="10" placement="0" dist="0" xPosColumn="-1" priority="0" obstacle="0" showAll="1"/>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="_function_hierarchic" index="28" name=""/>
         <alias field="_usage_current" index="27" name=""/>
@@ -1381,6 +1398,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -1482,6 +1506,73 @@
       </edittypes>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
+      <id>re_maintenance_event_wastewater_structure20151127154104165</id>
+      <datasource>service='pg_qgep' key='"obj_id"' table="qgep"."re_maintenance_event_wastewater_structure" sql=</datasource>
+      <title></title>
+      <abstract></abstract>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>re_maintenance_event_wastewater_structure</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+          <srsid>3452</srsid>
+          <srid>4326</srid>
+          <authid>EPSG:4326</authid>
+          <description>WGS 84</description>
+          <projectionacronym>longlat</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>true</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <customproperties/>
+      <provider encoding="System">postgres</provider>
+      <previewExpression></previewExpression>
+      <vectorjoins/>
+      <expressionfields/>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <edittypes>
+        <edittype widgetv2type="TextEdit" name="obj_id">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="fk_wastewater_structure">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="fk_maintenance_event">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+      </edittypes>
+      <annotationform></annotationform>
+      <excludeAttributesWMS/>
+      <excludeAttributesWFS/>
+      <attributeactions/>
+      <editform></editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
+      <conditionalstyles>
+        <rowstyles/>
+        <fieldstyles/>
+      </conditionalstyles>
+      <edittypes>
+        <edittype widgetv2type="TextEdit" name="obj_id">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="fk_wastewater_structure">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="fk_maintenance_event">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+      </edittypes>
+    </maplayer>
+    <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_access_aid_kind</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_access_aid_kind" sql=</datasource>
       <title></title>
@@ -1539,11 +1630,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -1557,6 +1644,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -1649,11 +1743,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>.</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -1667,6 +1757,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>.</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -1759,11 +1856,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -1777,6 +1870,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -1869,11 +1969,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -1887,6 +1983,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -1982,11 +2085,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -2001,6 +2100,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -2096,11 +2202,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -2114,6 +2216,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -2209,11 +2318,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -2228,6 +2333,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -2323,11 +2435,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -2341,6 +2449,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -2433,11 +2548,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -2451,6 +2562,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -2543,11 +2661,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -2561,6 +2675,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -2653,11 +2774,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -2671,6 +2788,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -2763,14 +2887,17 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform></editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform></annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>.</annotationform>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>.</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -2863,11 +2990,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -2881,6 +3004,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -2973,11 +3103,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -2991,6 +3117,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -3083,11 +3216,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -3101,6 +3230,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -3193,11 +3329,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -3211,6 +3343,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -3303,11 +3442,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -3321,6 +3456,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -3413,11 +3555,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -3431,6 +3569,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -3523,14 +3668,17 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform></editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform></annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>.</annotationform>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>.</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -3623,14 +3771,17 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform></editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform></annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>.</annotationform>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>.</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -3723,11 +3874,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -3741,6 +3888,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -3833,11 +3987,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -3851,6 +4001,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -3943,11 +4100,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -3961,6 +4114,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -4053,11 +4213,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -4071,6 +4227,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -4163,11 +4326,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -4181,6 +4340,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -4273,11 +4439,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -4291,6 +4453,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -4383,11 +4552,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -4401,6 +4566,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -4493,11 +4665,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -4511,6 +4679,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -4603,11 +4778,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -4621,6 +4792,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -4713,11 +4891,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -4731,6 +4905,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -4823,11 +5004,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -4841,6 +5018,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -4933,11 +5117,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -4951,6 +5131,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -5043,11 +5230,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -5061,6 +5244,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -5153,11 +5343,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -5171,6 +5357,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -5263,11 +5456,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -5281,6 +5470,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -5373,11 +5569,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -5391,6 +5583,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -5483,11 +5682,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -5501,6 +5696,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -5593,11 +5795,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -5611,6 +5809,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -5703,11 +5908,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -5721,6 +5922,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -5813,11 +6021,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -5831,6 +6035,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -5867,7 +6078,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vw_access_aid</id>
-      <datasource>service='pg_qgep' key='obj_id' estimatedmetadata=true table="qgep"."vw_access_aid" sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true table="qgep"."vw_access_aid" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -5923,11 +6134,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="dataowner" index="5" name=""/>
         <alias field="fk_wastewater_structure" index="8" name=""/>
@@ -5942,6 +6149,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -5978,7 +6192,7 @@
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vw_backflow_prevention</id>
-      <datasource>service='pg_qgep' key='obj_id' estimatedmetadata=true table="qgep"."vw_backflow_prevention" sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true table="qgep"."vw_backflow_prevention" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -6040,11 +6254,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="dataowner" index="7" name=""/>
         <alias field="fk_wastewater_structure" index="10" name=""/>
@@ -6061,6 +6271,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -6103,7 +6320,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vw_benching</id>
-      <datasource>service='pg_qgep' key='obj_id' estimatedmetadata=true table="qgep"."vw_benching" sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true table="qgep"."vw_benching" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -6159,11 +6376,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="dataowner" index="5" name=""/>
         <alias field="fk_wastewater_structure" index="8" name=""/>
@@ -6178,6 +6391,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -6214,7 +6434,7 @@
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vw_channel_</id>
-      <datasource>service='pg_qgep' key='obj_id' table="qgep"."vw_channel" sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' table="qgep"."vw_channel" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -6345,11 +6565,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>./forms/channel.ui</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>uifilelayout</editorlayout>
       <aliases>
         <alias field="accessibility" index="9" name=""/>
         <alias field="bedding_encasement" index="1" name=""/>
@@ -6389,6 +6605,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>./forms/channel.ui</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>uifilelayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -6500,7 +6723,7 @@
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1000" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="1" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>vw_cover___</id>
-      <datasource>service='pg_qgep' key='obj_id' estimatedmetadata=true srid=21781 type=Point table="qgep"."vw_cover" (situation_geometry) sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true srid=21781 type=Point table="qgep"."vw_cover" (situation_geometry) sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -6801,11 +7024,7 @@
         </DiagramCategory>
       </SingleCategoryDiagramRenderer>
       <DiagramLayerSettings yPosColumn="-1" linePlacementFlags="10" placement="0" dist="0" xPosColumn="-1" priority="0" obstacle="0" showAll="1"/>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="brand" index="1" name=""/>
         <alias field="cover_shape" index="2" name=""/>
@@ -6829,6 +7048,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -6892,7 +7118,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vw_dryweather_downspout</id>
-      <datasource>service='pg_qgep' key='obj_id' estimatedmetadata=true table="qgep"."vw_dryweather_downspout" sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true table="qgep"."vw_dryweather_downspout" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -6948,11 +7174,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="dataowner" index="5" name=""/>
         <alias field="diameter" index="1" name=""/>
@@ -6967,6 +7189,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -7003,7 +7232,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vw_dryweather_flume</id>
-      <datasource>service='pg_qgep' key='obj_id' estimatedmetadata=true table="qgep"."vw_dryweather_flume" sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true table="qgep"."vw_dryweather_flume" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -7059,11 +7288,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="dataowner" index="5" name=""/>
         <alias field="fk_wastewater_structure" index="8" name=""/>
@@ -7078,6 +7303,13 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -7242,14 +7474,17 @@
         <multilineenabled fieldname="" on=""/>
         <selectedonly on=""/>
       </labelattributes>
-      <editform>.</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>.</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -7433,14 +7668,17 @@
         <multilineenabled fieldname="" on=""/>
         <selectedonly on=""/>
       </labelattributes>
-      <editform>.</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>.</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -7498,7 +7736,7 @@
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="5000" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="1" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>vw_qgep_cover</id>
-      <datasource>service='pg_qgep' key='obj_id' estimatedmetadata=true srid=21781 type=Point table="qgep"."vw_qgep_cover" (situation_geometry) sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true srid=21781 type=Point table="qgep"."vw_qgep_cover" (situation_geometry) sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -9095,11 +9333,7 @@
         </DiagramCategory>
       </SingleCategoryDiagramRenderer>
       <DiagramLayerSettings yPosColumn="-1" linePlacementFlags="10" placement="0" dist="0" xPosColumn="-1" priority="0" obstacle="0" showAll="1"/>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit>qgepplugin.ui.forms.vw_cover_open</editforminit>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>tablayout</editorlayout>
       <aliases>
         <alias field="absorption_capacity" index="56" name=""/>
         <alias field="accessibility" index="19" name=""/>
@@ -9177,6 +9411,16 @@
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
+      <attributeactions>
+        <actionsetting action="feature = QgsMapLayerRegistry.instance().mapLayer('od_wastewater_structure').getFeatures( QgsFeatureRequest().setFilterExpression( 'obj_id = \'{}\''.format( '[% &quot;ws_obj_id&quot; %]' ) ) ).next()&#xa;qgepplugin.ui.forms.digitizeDrainageChannel(feature.id(), 'od_wastewater_structure')" icon="" capture="0" type="1" name="Digitize Drainage Channel"/>
+        <actionsetting action="ws_lyr = QgsMapLayerRegistry.instance().mapLayer('od_wastewater_structure')&#xa;feature = ws_lyr.getFeatures( QgsFeatureRequest().setFilterExpression( 'obj_id = \'{}\''.format( '[% &quot;ws_obj_id&quot; %]' ) ) ).next()&#xa;ws_lyr.startEditing()&#xa;ws_lyr.setSelectedFeatures([feature.id()])&#xa;qgis.utils.iface.setActiveLayer(ws_lyr)&#xa;qgis.utils.iface.actionAddPart().trigger()" icon="" capture="0" type="1" name="Digitize"/>
+      </attributeactions>
+      <editform>../../../cpp/qgis/build/output/bin</editform>
+      <editforminit>qgepplugin.ui.forms.vw_cover_open</editforminit>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>tablayout</editorlayout>
       <attributeEditorForm>
         <attributeEditorContainer name="General">
           <attributeEditorField index="16" name="ws_type"/>
@@ -9294,10 +9538,7 @@
           <attributeEditorRelation relation="wastewater_node-fk_wastewater-structure" name="wastewater_node-fk_wastewater-structure"/>
         </attributeEditorContainer>
       </attributeEditorForm>
-      <attributeactions>
-        <actionsetting action="feature = QgsMapLayerRegistry.instance().mapLayer('od_wastewater_structure').getFeatures( QgsFeatureRequest().setFilterExpression( 'obj_id = \'{}\''.format( '[% &quot;ws_obj_id&quot; %]' ) ) ).next()&#xa;qgepplugin.ui.forms.digitizeDrainageChannel(feature.id(), 'od_wastewater_structure')" icon="" capture="0" type="1" name="Digitize Drainage Channel"/>
-        <actionsetting action="ws_lyr = QgsMapLayerRegistry.instance().mapLayer('od_wastewater_structure')&#xa;feature = ws_lyr.getFeatures( QgsFeatureRequest().setFilterExpression( 'obj_id = \'{}\''.format( '[% &quot;ws_obj_id&quot; %]' ) ) ).next()&#xa;ws_lyr.startEditing()&#xa;ws_lyr.setSelectedFeatures([feature.id()])&#xa;qgis.utils.iface.setActiveLayer(ws_lyr)&#xa;qgis.utils.iface.actionAddPart().trigger()" icon="" capture="0" type="1" name="Digitize"/>
-      </attributeactions>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -9534,7 +9775,7 @@
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Line" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>vw_qgep_reach</id>
-      <datasource>service='pg_qgep' key='obj_id' srid=21781 type=LineString table="qgep"."vw_qgep_reach" (progression_geometry) sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' srid=21781 type=LineString table="qgep"."vw_qgep_reach" (progression_geometry) sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -10684,11 +10925,7 @@
         </DiagramCategory>
       </SingleCategoryDiagramRenderer>
       <DiagramLayerSettings yPosColumn="-1" linePlacementFlags="10" placement="2" dist="0" xPosColumn="-1" priority="0" obstacle="0" showAll="1"/>
-      <editform>./forms/reach.ui</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>tablayout</editorlayout>
       <aliases>
         <alias field="accessibility" index="28" name=""/>
         <alias field="bedding_encasement" index="19" name=""/>
@@ -10767,6 +11004,13 @@
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
+      <attributeactions/>
+      <editform>./forms/reach.ui</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>tablayout</editorlayout>
       <attributeEditorForm>
         <attributeEditorContainer name="General">
           <attributeEditorField index="1" name="clear_height"/>
@@ -10875,7 +11119,7 @@
           <attributeEditorRelation relation="" name="od_maintenance_event20150530130856307_fk_wastewater_structure_vw_reach20141013202956655_ws_obj_id"/>
         </attributeEditorContainer>
       </attributeEditorForm>
-      <attributeactions/>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -11116,7 +11360,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>vw_wastewater_node20150607121012062</id>
-      <datasource>service='pg_qgep' key='obj_id' estimatedmetadata=true srid=21781 type=Point table="qgep"."vw_wastewater_node" (situation_geometry) sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true srid=21781 type=Point table="qgep"."vw_wastewater_node" (situation_geometry) sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -11241,14 +11485,17 @@
         <multilineenabled fieldname="" on=""/>
         <selectedonly on=""/>
       </labelattributes>
-      <editform>.</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>.</editform>
+      <editforminit/>
+      <editforminitusecode>0</editforminitusecode>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -11286,6 +11533,10 @@
   </projectlayers>
   <properties>
     <WMSContactPerson type="QString"></WMSContactPerson>
+    <Variables>
+      <variableNames type="QStringList"/>
+      <variableValues type="QStringList"/>
+    </Variables>
     <WMSOnlineResource type="QString"></WMSOnlineResource>
     <WMSUseLayerIDs type="bool">false</WMSUseLayerIDs>
     <WMSContactOrganization type="QString"></WMSContactOrganization>
@@ -11299,14 +11550,16 @@
     <WMSServiceTitle type="QString"></WMSServiceTitle>
     <WFSLayers type="QStringList"/>
     <WMSContactMail type="QString"></WMSContactMail>
+    <WMSRestrictedComposers type="QStringList"/>
+    <WMSRestrictedLayers type="QStringList"/>
     <PositionPrecision>
       <DecimalPlaces type="int">2</DecimalPlaces>
       <Automatic type="bool">true</Automatic>
       <DegreeFormat type="QString">D</DegreeFormat>
     </PositionPrecision>
     <WCSUrl type="QString"></WCSUrl>
-    <WMSContactPhone type="QString"></WMSContactPhone>
     <WMSServiceCapabilities type="bool">false</WMSServiceCapabilities>
+    <WMSContactPhone type="QString"></WMSContactPhone>
     <WMSServiceAbstract type="QString"></WMSServiceAbstract>
     <WMSAddWktGeometry type="bool">false</WMSAddWktGeometry>
     <Measure>
