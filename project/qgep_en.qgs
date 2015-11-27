@@ -2707,7 +2707,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_cover_positional_accuracy20151117153235900</id>
-      <datasource>dbname='qgep' host=localhost port=5432 user='postgres' password='post$gres' sslmode=disable key='code' table="qgep"."vl_cover_positional_accuracy" sql=</datasource>
+      <datasource>service='pg_qgep' sslmode=disable key='code' table="qgep"."vl_cover_positional_accuracy" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -3467,7 +3467,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_manhole_material20151117174216343</id>
-      <datasource>dbname='qgep' host=localhost port=5432 user='postgres' password='post$gres' sslmode=disable key='code' table="qgep"."vl_manhole_material" sql=</datasource>
+      <datasource>service='pg_qgep' sslmode=disable key='code' table="qgep"."vl_manhole_material" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -3567,7 +3567,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_manhole_surface_inflow20151117174216393</id>
-      <datasource>dbname='qgep' host=localhost port=5432 user='postgres' password='post$gres' sslmode=disable key='code' table="qgep"."vl_manhole_surface_inflow" sql=</datasource>
+      <datasource>service='pg_qgep' sslmode=disable key='code' table="qgep"."vl_manhole_surface_inflow" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
