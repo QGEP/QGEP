@@ -230,11 +230,11 @@
     </layer-tree-group>
   </layer-tree-group>
   <relations>
-    <relation referencingLayer="re_maintenance_event_wastewater_structure20151127154104165" referencedLayer="od_wastewater_structure" id="re_maintenance_event_wastewater_structure20151127154104165_fk_wastewater_structure_od_wastewater_structure_obj_id" name="Maintenances">
-      <fieldRef referencedField="obj_id" referencingField="fk_wastewater_structure"/>
+    <relation referencingLayer="re_maintenance_event_wastewater_structure20151127154104165" referencedLayer="od_maintenance_event" id="re_maintenance_event_wastewater_structure20151127154104165_fk_maintenance_event_od_maintenance_event_obj_id" name="Wastewater Structures">
+      <fieldRef referencedField="obj_id" referencingField="fk_maintenance_event"/>
     </relation>
-    <relation referencingLayer="re_maintenance_event_wastewater_structure20151127154104165" referencedLayer="vw_qgep_cover" id="re_maintenance_event_wastewater_structure20151127154104165_fk_wastewater_structure_vw_qgep_cover_obj_id" name="Wastewater Structures">
-      <fieldRef referencedField="obj_id" referencingField="fk_wastewater_structure"/>
+    <relation referencingLayer="re_maintenance_event_wastewater_structure20151127154104165" referencedLayer="vw_qgep_cover" id="re_maintenance_event_wastewater_structure20151127154104165_fk_wastewater_structure_vw_qgep_cover_ws_obj_id" name="Maintenances">
+      <fieldRef referencedField="ws_obj_id" referencingField="fk_wastewater_structure"/>
     </relation>
     <relation referencingLayer="vw_qgep_reach" referencedLayer="od_pipe_profile" id="reach-fk_pipe_profile" name="Reaches">
       <fieldRef referencedField="obj_id" referencingField="fk_pipe_profile"/>
@@ -268,9 +268,9 @@
     <units>meters</units>
     <extent>
       <xmin>745106.29224999994039536</xmin>
-      <ymin>258164.61167499999282882</ymin>
+      <ymin>258165.63292499998351559</ymin>
       <xmax>753476.79774999991059303</xmax>
-      <ymax>266968.58132499997736886</ymax>
+      <ymax>266926.71007500000996515</ymax>
     </extent>
     <rotation>0</rotation>
     <projections>1</projections>
@@ -1545,11 +1545,11 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <annotationform></annotationform>
+      <annotationform>.</annotationform>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
-      <editform></editform>
+      <editform>.</editform>
       <editforminit/>
       <editforminitusecode>0</editforminitusecode>
       <editforminitcode><![CDATA[]]></editforminitcode>
@@ -7734,7 +7734,7 @@
         </edittype>
       </edittypes>
     </maplayer>
-    <maplayer minimumScale="-4.65661e-10" maximumScale="5000" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="1" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
+    <maplayer minimumScale="0" maximumScale="5000" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="1" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>vw_qgep_cover</id>
       <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true srid=21781 type=Point table="qgep"."vw_qgep_cover" (situation_geometry) sql=</datasource>
       <title></title>
@@ -9184,7 +9184,7 @@
         <property key="labeling/fitInPolygonOnly" value="false"/>
         <property key="labeling/fontBold" value="false"/>
         <property key="labeling/fontCapitals" value="0"/>
-        <property key="labeling/fontFamily" value="MS Shell Dlg 2"/>
+        <property key="labeling/fontFamily" value="Sans Serif"/>
         <property key="labeling/fontItalic" value="false"/>
         <property key="labeling/fontLetterSpacing" value="0"/>
         <property key="labeling/fontLimitPixelSize" value="false"/>
@@ -9327,7 +9327,7 @@
         <selectedonly on=""/>
       </labelattributes>
       <SingleCategoryDiagramRenderer diagramType="Pie">
-        <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="5000" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="1" enabled="0" height="15" sizeType="MM" minScaleDenominator="-4.65661e-10">
+        <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="5000" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="1" enabled="0" height="15" sizeType="MM" minScaleDenominator="0">
           <fontProperties description="Cantarell,11,-1,5,50,0,0,0,0,0" style=""/>
           <attribute field="" color="#000000" label=""/>
         </DiagramCategory>
@@ -9418,7 +9418,23 @@
       <editform>../../../cpp/qgis/build/output/bin</editform>
       <editforminit>qgepplugin.ui.forms.vw_cover_open</editforminit>
       <editforminitusecode>0</editforminitusecode>
-      <editforminitcode><![CDATA[]]></editforminitcode>
+      <editforminitcode><![CDATA[# -*- coding: utf-8 -*-
+"""
+QGIS forms can have a Python function that is called when the form is
+opened.
+
+Use this function to add extra logic to your forms.
+
+Enter the name of the function in the "Python Init function"
+field.
+An example follows:
+"""
+from PyQt4.QtGui import QWidget
+
+def my_form_open(dialog, layer, feature):
+	geom = feature.geometry()
+	control = dialog.findChild(QWidget, "MyLineEdit")
+]]></editforminitcode>
       <featformsuppress>0</featformsuppress>
       <editorlayout>tablayout</editorlayout>
       <attributeEditorForm>
@@ -9532,13 +9548,41 @@
           <attributeEditorRelation relation="vw_dryweather_downspout20150507162234268_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id" name="vw_dryweather_downspout20150507162234268_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id"/>
         </attributeEditorContainer>
         <attributeEditorContainer name="Maintenance">
-          <attributeEditorRelation relation="" name="od_maintenance_event20150530130856307_fk_wastewater_structure_vw_qgep_cover_obj_id"/>
+          <attributeEditorRelation relation="re_maintenance_event_wastewater_structure20151127154104165_fk_wastewater_structure_vw_qgep_cover_ws_obj_id" name="re_maintenance_event_wastewater_structure20151127154104165_fk_wastewater_structure_vw_qgep_cover_ws_obj_id"/>
         </attributeEditorContainer>
         <attributeEditorContainer name="Wastewater Nodes">
           <attributeEditorRelation relation="wastewater_node-fk_wastewater-structure" name="wastewater_node-fk_wastewater-structure"/>
         </attributeEditorContainer>
       </attributeEditorForm>
-      <widgets/>
+      <widgets>
+        <widget name="re_maintenance_event_wastewater_structure20151127154104165_fk_wastewater_structure_vw_qgep_cover_obj_id">
+          <config nm-rel="re_maintenance_event_wastewater_structure20151127154104165_fk_maintenance_event_od_maintenance_event_obj_id"/>
+        </widget>
+        <widget name="re_maintenance_event_wastewater_structure20151127154104165_fk_wastewater_structure_vw_qgep_cover_ws_obj_id">
+          <config nm-rel="re_maintenance_event_wastewater_structure20151127154104165_fk_maintenance_event_od_maintenance_event_obj_id"/>
+        </widget>
+        <widget name="vw_access_aid20150507162234295_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id">
+          <config/>
+        </widget>
+        <widget name="vw_backflow_prevention20150531093552085_fk_wastewater_structure_vw_qgep_cover_ws_obj_id">
+          <config/>
+        </widget>
+        <widget name="vw_benching20150507162234281_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id">
+          <config/>
+        </widget>
+        <widget name="vw_cover20150507162234308_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id">
+          <config/>
+        </widget>
+        <widget name="vw_dryweather_downspout20150507162234268_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id">
+          <config/>
+        </widget>
+        <widget name="vw_dryweather_flume20150507162234250_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id">
+          <config/>
+        </widget>
+        <widget name="wastewater_node-fk_wastewater-structure">
+          <config/>
+        </widget>
+      </widgets>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -11532,11 +11576,11 @@
     </maplayer>
   </projectlayers>
   <properties>
-    <WMSContactPerson type="QString"></WMSContactPerson>
     <Variables>
       <variableNames type="QStringList"/>
       <variableValues type="QStringList"/>
     </Variables>
+    <WMSContactPerson type="QString"></WMSContactPerson>
     <WMSOnlineResource type="QString"></WMSOnlineResource>
     <WMSUseLayerIDs type="bool">false</WMSUseLayerIDs>
     <WMSContactOrganization type="QString"></WMSContactOrganization>
