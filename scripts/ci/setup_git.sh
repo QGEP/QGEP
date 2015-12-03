@@ -7,4 +7,6 @@ then
   git config --global user.email "qgep@opengis.ch";
   git config --global user.name "QGEP";
   git config --global push.default simple;
+else
+  sed -i 's_git@github.com:_https://github.com/_g' .gitmodules
 fi
