@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis projectname="" version="2.12.0-Lyon">
+<qgis projectname="" version="2.13.0-Master">
   <title></title>
   <layer-tree-group expanded="1" checked="Qt::PartiallyChecked" name="">
     <customproperties/>
@@ -710,7 +710,8 @@
   <projectlayers layercount="55">
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>od_maintenance_event</id>
-      <datasource>service='pg_qgep' key='obj_id' estimatedmetadata=true table="qgep"."od_maintenance_event" sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true table="qgep"."od_maintenance_event" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -733,6 +734,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression>COALESCE("obj_id", '&lt;NULL>')</previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -796,11 +798,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="base_data" index="1" name=""/>
         <alias field="cost" index="2" name=""/>
@@ -822,6 +820,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -888,7 +894,8 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>od_pipe_profile</id>
-      <datasource>service='pg_qgep' key='obj_id' table="qgep"."od_pipe_profile" sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' table="qgep"."od_pipe_profile" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -911,6 +918,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression>identifier</previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -950,11 +958,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="dataowner" index="6" name=""/>
         <alias field="height_width_ratio" index="1" name=""/>
@@ -968,6 +972,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -1010,7 +1022,8 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="5001" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="1" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>od_wastewater_structure</id>
-      <datasource>service='pg_qgep' key='obj_id' estimatedmetadata=true srid=21781 type=Polygon table="qgep"."od_wastewater_structure" (detail_geometry_geometry) sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true srid=21781 type=Polygon table="qgep"."od_wastewater_structure" (detail_geometry_geometry) sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -1032,6 +1045,7 @@
       <provider encoding="UTF-16">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -1343,12 +1357,8 @@
           <attribute field="" color="#000000" label=""/>
         </DiagramCategory>
       </SingleCategoryDiagramRenderer>
-      <DiagramLayerSettings yPosColumn="-1" linePlacementFlags="10" placement="0" dist="0" xPosColumn="-1" priority="0" obstacle="0" showAll="1"/>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <DiagramLayerSettings yPosColumn="-1" linePlacementFlags="10" placement="0" dist="0" xPosColumn="-1" priority="0" obstacle="0" zIndex="0" showAll="1"/>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="_function_hierarchic" index="28" name=""/>
         <alias field="_usage_current" index="27" name=""/>
@@ -1381,6 +1391,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -1484,6 +1502,7 @@
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_access_aid_kind</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_access_aid_kind" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -1506,6 +1525,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -1539,11 +1559,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -1557,6 +1573,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -1594,6 +1618,7 @@
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_backflow_prevention_kind</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_backflow_prevention_kind" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -1616,6 +1641,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -1649,11 +1675,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>.</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -1667,6 +1689,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>.</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -1704,6 +1734,7 @@
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_channel_bedding_encasement</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_channel_bedding_encasement" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -1726,6 +1757,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -1759,11 +1791,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -1777,6 +1805,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -1814,6 +1850,7 @@
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_channel_connection_type</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_channel_connection_type" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -1836,6 +1873,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -1869,11 +1907,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -1887,6 +1921,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -1924,6 +1966,7 @@
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_channel_function_hierarchic</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_channel_function_hierarchic" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -1946,6 +1989,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -1982,11 +2026,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -2001,6 +2041,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -2041,6 +2089,7 @@
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_channel_function_hydraulic</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_channel_function_hydraulic" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -2063,6 +2112,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -2096,11 +2146,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -2114,6 +2160,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -2151,6 +2205,7 @@
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_channel_usage_current</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_channel_usage_current" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -2173,6 +2228,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -2209,11 +2265,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -2228,6 +2280,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -2268,6 +2328,7 @@
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_channel_usage_planned</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_channel_usage_planned" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -2290,6 +2351,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -2323,11 +2385,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -2341,6 +2399,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -2378,6 +2444,7 @@
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_cover_cover_shape</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_cover_cover_shape" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -2400,6 +2467,7 @@
       <provider encoding="UTF-8">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -2433,11 +2501,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -2451,6 +2515,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -2488,6 +2560,7 @@
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_cover_fastening</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_cover_fastening" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -2510,6 +2583,7 @@
       <provider encoding="UTF-8">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -2543,11 +2617,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -2561,6 +2631,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -2598,6 +2676,7 @@
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_cover_material</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_cover_material" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -2620,6 +2699,7 @@
       <provider encoding="UTF-8">postgres</provider>
       <previewExpression>COALESCE("code", '&lt;NULL>')</previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -2653,11 +2733,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -2671,6 +2747,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -2708,6 +2792,7 @@
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_cover_positional_accuracy20151117153235900</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_cover_positional_accuracy" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -2730,6 +2815,7 @@
       <provider encoding="UTF-8">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -2763,14 +2849,18 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform></editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform></annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>.</annotationform>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>.</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -2808,6 +2898,7 @@
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_cover_sludge_bucket</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_cover_sludge_bucket" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -2830,6 +2921,7 @@
       <provider encoding="UTF-8">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -2863,11 +2955,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -2881,6 +2969,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -2918,6 +3014,7 @@
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_cover_venting</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_cover_venting" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -2940,6 +3037,7 @@
       <provider encoding="UTF-8">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -2973,11 +3071,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -2991,6 +3085,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -3028,6 +3130,7 @@
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_discharge_point_relevance</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_discharge_point_relevance" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -3050,6 +3153,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -3083,11 +3187,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -3101,6 +3201,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -3138,6 +3246,7 @@
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_maintenance_event_kind</id>
       <datasource>service='pg_qgep' key='code' estimatedmetadata=true table="qgep"."vl_maintenance_event_kind" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -3160,6 +3269,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -3193,11 +3303,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -3211,6 +3317,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -3248,6 +3362,7 @@
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_maintenance_event_status</id>
       <datasource>service='pg_qgep' key='code' estimatedmetadata=true table="qgep"."vl_maintenance_event_status" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -3270,6 +3385,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -3303,11 +3419,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -3321,6 +3433,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -3358,6 +3478,7 @@
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_manhole_function</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_manhole_function" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -3380,6 +3501,7 @@
       <provider encoding="UTF-8">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -3413,11 +3535,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -3431,6 +3549,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -3468,6 +3594,7 @@
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_manhole_material20151117174216343</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_manhole_material" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -3490,6 +3617,7 @@
       <provider encoding="UTF-8">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -3523,14 +3651,18 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform></editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform></annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>.</annotationform>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>.</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -3568,6 +3700,7 @@
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_manhole_surface_inflow20151117174216393</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_manhole_surface_inflow" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -3590,6 +3723,7 @@
       <provider encoding="UTF-8">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -3623,14 +3757,18 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform></editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform></annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>.</annotationform>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>.</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -3668,6 +3806,7 @@
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_pipe_profile_profile_type</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_pipe_profile_profile_type" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -3690,6 +3829,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -3723,11 +3863,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -3741,6 +3877,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -3778,6 +3922,7 @@
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_reach_elevation_determination</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_reach_elevation_determination" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -3800,6 +3945,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -3833,11 +3979,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -3851,6 +3993,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -3888,6 +4038,7 @@
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_reach_horizontal_positioning</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_reach_horizontal_positioning" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -3910,6 +4061,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -3943,11 +4095,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -3961,6 +4109,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -3998,6 +4154,7 @@
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_reach_inside_coating</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_reach_inside_coating" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -4020,6 +4177,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -4053,11 +4211,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -4071,6 +4225,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -4108,6 +4270,7 @@
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_reach_material</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_reach_material" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -4130,6 +4293,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -4163,11 +4327,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -4181,6 +4341,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -4218,6 +4386,7 @@
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_reach_point_elevation_accuracy</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_reach_point_elevation_accuracy" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -4240,6 +4409,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -4273,11 +4443,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -4291,6 +4457,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -4328,6 +4502,7 @@
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_reach_point_outlet_shape</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_reach_point_outlet_shape" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -4350,6 +4525,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -4383,11 +4559,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -4401,6 +4573,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -4438,6 +4618,7 @@
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_reach_reliner_material</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_reach_reliner_material" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -4460,6 +4641,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression>COALESCE("code", '&lt;NULL>')</previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -4493,11 +4675,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -4511,6 +4689,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -4548,6 +4734,7 @@
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_reach_relining_construction</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_reach_relining_construction" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -4570,6 +4757,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -4603,11 +4791,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -4621,6 +4805,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -4658,6 +4850,7 @@
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_reach_relining_kind</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_reach_relining_kind" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -4680,6 +4873,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -4713,11 +4907,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -4731,6 +4921,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -4768,6 +4966,7 @@
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_special_structure_bypass</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_special_structure_bypass" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -4790,6 +4989,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -4823,11 +5023,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -4841,6 +5037,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -4878,6 +5082,7 @@
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_special_structure_function</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_special_structure_function" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -4900,6 +5105,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -4933,11 +5139,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -4951,6 +5153,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -4988,6 +5198,7 @@
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_special_structure_stormwater_tank_arrangement</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_special_structure_stormwater_tank_arrangement" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -5010,6 +5221,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -5043,11 +5255,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -5061,6 +5269,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -5098,6 +5314,7 @@
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_structure_part_renovation_demand</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_structure_part_renovation_demand" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -5120,6 +5337,7 @@
       <provider encoding="UTF-8">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -5153,11 +5371,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -5171,6 +5385,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -5208,6 +5430,7 @@
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_wastewater_structure_accessibility</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_wastewater_structure_accessibility" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -5230,6 +5453,7 @@
       <provider encoding="UTF-8">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -5263,11 +5487,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -5281,6 +5501,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -5318,6 +5546,7 @@
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_wastewater_structure_financing</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_wastewater_structure_financing" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -5340,6 +5569,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -5373,11 +5603,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -5391,6 +5617,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -5428,6 +5662,7 @@
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_wastewater_structure_renovation_necessity</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_wastewater_structure_renovation_necessity" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -5450,6 +5685,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -5483,11 +5719,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -5501,6 +5733,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -5538,6 +5778,7 @@
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_wastewater_structure_rv_construction_type</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_wastewater_structure_rv_construction_type" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -5560,6 +5801,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -5593,11 +5835,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -5611,6 +5849,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -5648,6 +5894,7 @@
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_wastewater_structure_status</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_wastewater_structure_status" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -5670,6 +5917,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -5703,11 +5951,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -5721,6 +5965,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -5758,6 +6010,7 @@
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_wastewater_structure_structure_condition</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_wastewater_structure_structure_condition" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -5780,6 +6033,7 @@
       <provider encoding="UTF-8">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -5813,11 +6067,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_en" index="5" name=""/>
@@ -5831,6 +6081,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -5867,7 +6125,8 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vw_access_aid</id>
-      <datasource>service='pg_qgep' key='obj_id' estimatedmetadata=true table="qgep"."vw_access_aid" sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true table="qgep"."vw_access_aid" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -5890,6 +6149,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression>COALESCE("obj_id", '&lt;NULL>')</previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -5923,11 +6183,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="dataowner" index="5" name=""/>
         <alias field="fk_wastewater_structure" index="8" name=""/>
@@ -5942,6 +6198,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -5978,7 +6242,8 @@
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vw_backflow_prevention</id>
-      <datasource>service='pg_qgep' key='obj_id' estimatedmetadata=true table="qgep"."vw_backflow_prevention" sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true table="qgep"."vw_backflow_prevention" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -6001,6 +6266,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression>COALESCE("obj_id", '&lt;NULL>')</previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -6040,11 +6306,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="dataowner" index="7" name=""/>
         <alias field="fk_wastewater_structure" index="10" name=""/>
@@ -6061,6 +6323,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -6103,7 +6373,8 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vw_benching</id>
-      <datasource>service='pg_qgep' key='obj_id' estimatedmetadata=true table="qgep"."vw_benching" sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true table="qgep"."vw_benching" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -6126,6 +6397,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression>COALESCE("obj_id", '&lt;NULL>')</previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -6159,11 +6431,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="dataowner" index="5" name=""/>
         <alias field="fk_wastewater_structure" index="8" name=""/>
@@ -6178,6 +6446,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -6214,7 +6490,8 @@
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vw_channel_</id>
-      <datasource>service='pg_qgep' key='obj_id' table="qgep"."vw_channel" sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' table="qgep"."vw_channel" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -6237,6 +6514,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression>COALESCE( "identifier", "obj_id")</previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -6345,11 +6623,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>./forms/channel.ui</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>uifilelayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="accessibility" index="9" name=""/>
         <alias field="bedding_encasement" index="1" name=""/>
@@ -6389,6 +6663,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>./forms/channel.ui</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>uifilelayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -6500,7 +6782,8 @@
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1000" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="1" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>vw_cover___</id>
-      <datasource>service='pg_qgep' key='obj_id' estimatedmetadata=true srid=21781 type=Point table="qgep"."vw_cover" (situation_geometry) sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true srid=21781 type=Point table="qgep"."vw_cover" (situation_geometry) sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -6522,6 +6805,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression>COALESCE( "obj_id", '&lt;NULL>' )</previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -6800,12 +7084,8 @@
           <attribute field="" color="#000000" label=""/>
         </DiagramCategory>
       </SingleCategoryDiagramRenderer>
-      <DiagramLayerSettings yPosColumn="-1" linePlacementFlags="10" placement="0" dist="0" xPosColumn="-1" priority="0" obstacle="0" showAll="1"/>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <DiagramLayerSettings yPosColumn="-1" linePlacementFlags="10" placement="0" dist="0" xPosColumn="-1" priority="0" obstacle="0" zIndex="0" showAll="1"/>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="brand" index="1" name=""/>
         <alias field="cover_shape" index="2" name=""/>
@@ -6829,6 +7109,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -6892,7 +7180,8 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vw_dryweather_downspout</id>
-      <datasource>service='pg_qgep' key='obj_id' estimatedmetadata=true table="qgep"."vw_dryweather_downspout" sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true table="qgep"."vw_dryweather_downspout" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -6915,6 +7204,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression>COALESCE("obj_id", '&lt;NULL>')</previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -6948,11 +7238,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="dataowner" index="5" name=""/>
         <alias field="diameter" index="1" name=""/>
@@ -6967,6 +7253,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -7003,7 +7297,8 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vw_dryweather_flume</id>
-      <datasource>service='pg_qgep' key='obj_id' estimatedmetadata=true table="qgep"."vw_dryweather_flume" sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true table="qgep"."vw_dryweather_flume" sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -7026,6 +7321,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression>COALESCE("obj_id", '&lt;NULL>')</previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -7059,11 +7355,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="dataowner" index="5" name=""/>
         <alias field="fk_wastewater_structure" index="8" name=""/>
@@ -7078,6 +7370,14 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>$HOME</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -7115,6 +7415,7 @@
     <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>vw_network_node20150607120529398</id>
       <datasource>service='pg_qgep' key='gid' estimatedmetadata=true srid=21781 type=Point table="qgep"."vw_network_node" (situation_geometry) sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -7136,6 +7437,7 @@
       <provider encoding="UTF-16">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -7242,14 +7544,18 @@
         <multilineenabled fieldname="" on=""/>
         <selectedonly on=""/>
       </labelattributes>
-      <editform>.</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>.</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -7290,6 +7596,7 @@
     <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Line" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>vw_network_segment20150607120529381</id>
       <datasource>service='pg_qgep' key='gid' estimatedmetadata=true srid=21781 type=LineString table="qgep"."vw_network_segment" (progression_geometry) sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -7311,6 +7618,7 @@
       <provider encoding="UTF-16">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -7433,14 +7741,18 @@
         <multilineenabled fieldname="" on=""/>
         <selectedonly on=""/>
       </labelattributes>
-      <editform>.</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>.</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -7498,7 +7810,8 @@
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="5000" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="1" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>vw_qgep_cover</id>
-      <datasource>service='pg_qgep' key='obj_id' estimatedmetadata=true srid=21781 type=Point table="qgep"."vw_qgep_cover" (situation_geometry) sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true srid=21781 type=Point table="qgep"."vw_qgep_cover" (situation_geometry) sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -7520,6 +7833,7 @@
       <provider encoding="System">postgres</provider>
       <previewExpression>COALESCE( "obj_id", '&lt;NULL>' )</previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -9094,12 +9408,8 @@
           <attribute field="" color="#000000" label=""/>
         </DiagramCategory>
       </SingleCategoryDiagramRenderer>
-      <DiagramLayerSettings yPosColumn="-1" linePlacementFlags="10" placement="0" dist="0" xPosColumn="-1" priority="0" obstacle="0" showAll="1"/>
-      <editform>../../../cpp/qgis/build/output/bin</editform>
-      <editforminit>qgepplugin.ui.forms.vw_cover_open</editforminit>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>tablayout</editorlayout>
+      <DiagramLayerSettings yPosColumn="-1" linePlacementFlags="10" placement="0" dist="0" xPosColumn="-1" priority="0" obstacle="0" zIndex="0" showAll="1"/>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="absorption_capacity" index="56" name=""/>
         <alias field="accessibility" index="19" name=""/>
@@ -9177,6 +9487,18 @@
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
+      <attributeactions>
+        <actionsetting action="feature = QgsMapLayerRegistry.instance().mapLayer('od_wastewater_structure').getFeatures( QgsFeatureRequest().setFilterExpression( 'obj_id = \'{}\''.format( '[% &quot;ws_obj_id&quot; %]' ) ) ).next()&#xa;qgepplugin.ui.forms.digitizeDrainageChannel(feature.id(), 'od_wastewater_structure')" icon="" capture="0" type="1" name="Digitize Drainage Channel"/>
+        <actionsetting action="ws_lyr = QgsMapLayerRegistry.instance().mapLayer('od_wastewater_structure')&#xa;feature = ws_lyr.getFeatures( QgsFeatureRequest().setFilterExpression( 'obj_id = \'{}\''.format( '[% &quot;ws_obj_id&quot; %]' ) ) ).next()&#xa;ws_lyr.startEditing()&#xa;ws_lyr.setSelectedFeatures([feature.id()])&#xa;qgis.utils.iface.setActiveLayer(ws_lyr)&#xa;qgis.utils.iface.actionAddPart().trigger()" icon="" capture="0" type="1" name="Digitize"/>
+      </attributeactions>
+      <editform>$HOME</editform>
+      <editforminit>vw_cover_open</editforminit>
+      <editforminitcodesource>2</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[from qgepplugin.ui.forms import vw_cover_open
+]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>tablayout</editorlayout>
       <attributeEditorForm>
         <attributeEditorContainer name="General">
           <attributeEditorField index="16" name="ws_type"/>
@@ -9294,10 +9616,7 @@
           <attributeEditorRelation relation="wastewater_node-fk_wastewater-structure" name="wastewater_node-fk_wastewater-structure"/>
         </attributeEditorContainer>
       </attributeEditorForm>
-      <attributeactions>
-        <actionsetting action="feature = QgsMapLayerRegistry.instance().mapLayer('od_wastewater_structure').getFeatures( QgsFeatureRequest().setFilterExpression( 'obj_id = \'{}\''.format( '[% &quot;ws_obj_id&quot; %]' ) ) ).next()&#xa;qgepplugin.ui.forms.digitizeDrainageChannel(feature.id(), 'od_wastewater_structure')" icon="" capture="0" type="1" name="Digitize Drainage Channel"/>
-        <actionsetting action="ws_lyr = QgsMapLayerRegistry.instance().mapLayer('od_wastewater_structure')&#xa;feature = ws_lyr.getFeatures( QgsFeatureRequest().setFilterExpression( 'obj_id = \'{}\''.format( '[% &quot;ws_obj_id&quot; %]' ) ) ).next()&#xa;ws_lyr.startEditing()&#xa;ws_lyr.setSelectedFeatures([feature.id()])&#xa;qgis.utils.iface.setActiveLayer(ws_lyr)&#xa;qgis.utils.iface.actionAddPart().trigger()" icon="" capture="0" type="1" name="Digitize"/>
-      </attributeactions>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -9534,7 +9853,8 @@
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Line" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>vw_qgep_reach</id>
-      <datasource>service='pg_qgep' key='obj_id' srid=21781 type=LineString table="qgep"."vw_qgep_reach" (progression_geometry) sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' srid=21781 type=LineString table="qgep"."vw_qgep_reach" (progression_geometry) sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -9564,6 +9884,7 @@
           </joinFieldsSubset>
         </join>
       </vectorjoins>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -10683,12 +11004,8 @@
           <attribute field="" color="#000000" label=""/>
         </DiagramCategory>
       </SingleCategoryDiagramRenderer>
-      <DiagramLayerSettings yPosColumn="-1" linePlacementFlags="10" placement="2" dist="0" xPosColumn="-1" priority="0" obstacle="0" showAll="1"/>
-      <editform>./forms/reach.ui</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>../../../cpp/qgis/build/output/bin</annotationform>
-      <editorlayout>tablayout</editorlayout>
+      <DiagramLayerSettings yPosColumn="-1" linePlacementFlags="10" placement="2" dist="0" xPosColumn="-1" priority="0" obstacle="0" zIndex="0" showAll="1"/>
+      <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="accessibility" index="28" name=""/>
         <alias field="bedding_encasement" index="19" name=""/>
@@ -10767,6 +11084,14 @@
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
+      <attributeactions/>
+      <editform>./forms/reach.ui</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>tablayout</editorlayout>
       <attributeEditorForm>
         <attributeEditorContainer name="General">
           <attributeEditorField index="1" name="clear_height"/>
@@ -10875,7 +11200,7 @@
           <attributeEditorRelation relation="" name="od_maintenance_event20150530130856307_fk_wastewater_structure_vw_reach20141013202956655_ws_obj_id"/>
         </attributeEditorContainer>
       </attributeEditorForm>
-      <attributeactions/>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -11116,7 +11441,8 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>vw_wastewater_node20150607121012062</id>
-      <datasource>service='pg_qgep' key='obj_id' estimatedmetadata=true srid=21781 type=Point table="qgep"."vw_wastewater_node" (situation_geometry) sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true srid=21781 type=Point table="qgep"."vw_wastewater_node" (situation_geometry) sql=</datasource>
+      <shortname></shortname>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -11138,6 +11464,7 @@
       <provider encoding="UTF-16">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
+      <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -11241,14 +11568,18 @@
         <multilineenabled fieldname="" on=""/>
         <selectedonly on=""/>
       </labelattributes>
-      <editform>.</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
       <annotationform>.</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
+      <editform>.</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
