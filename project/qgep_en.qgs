@@ -44,6 +44,9 @@
       <layer-tree-layer expanded="1" checked="Qt::Checked" id="re_maintenance_event_wastewater_structure20160111110603931" name="re_maintenance_event_wastewater_structure">
         <customproperties/>
       </layer-tree-layer>
+      <layer-tree-layer expanded="1" checked="Qt::Checked" id="od_organisation20160212172933583" name="od_organisation">
+        <customproperties/>
+      </layer-tree-layer>
     </layer-tree-group>
     <layer-tree-group expanded="0" checked="Qt::Checked" name="Value Lists">
       <customproperties/>
@@ -260,6 +263,18 @@
     <relation referencingLayer="vw_dryweather_flume" referencedLayer="vw_qgep_cover" id="vw_dryweather_flume20150507162234250_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id" name="Dryweather Flumes">
       <fieldRef referencedField="ws_obj_id" referencingField="fk_wastewater_structure"/>
     </relation>
+    <relation referencingLayer="vw_qgep_cover" referencedLayer="od_organisation20160212172933583" id="vw_qgep_cover_fk_operator_od_organisation20160212172933583_obj_id" name="Operator Cover">
+      <fieldRef referencedField="obj_id" referencingField="fk_operator"/>
+    </relation>
+    <relation referencingLayer="vw_qgep_cover" referencedLayer="od_organisation20160212172933583" id="vw_qgep_cover_fk_owner_od_organisation20160212172933583_obj_id" name="Owner Cover">
+      <fieldRef referencedField="obj_id" referencingField="fk_owner"/>
+    </relation>
+    <relation referencingLayer="vw_qgep_reach" referencedLayer="od_organisation20160212172933583" id="vw_qgep_reach_fk_operator_od_organisation20160212172933583_obj_id" name="Operator Reach">
+      <fieldRef referencedField="obj_id" referencingField="fk_operator"/>
+    </relation>
+    <relation referencingLayer="vw_qgep_reach" referencedLayer="od_organisation20160212172933583" id="vw_qgep_reach_fk_owner_od_organisation20160212172933583_obj_id" name="Owner Reach">
+      <fieldRef referencedField="obj_id" referencingField="fk_owner"/>
+    </relation>
     <relation referencingLayer="vw_wastewater_node20150607121012062" referencedLayer="vw_qgep_cover" id="wastewater_node-fk_wastewater-structure" name="Wastewater Nodes">
       <fieldRef referencedField="ws_obj_id" referencingField="fk_wastewater_structure"/>
     </relation>
@@ -286,6 +301,7 @@
         <geographicflag>false</geographicflag>
       </spatialrefsys>
     </destinationsrs>
+    <rendermaptile>0</rendermaptile>
     <layer_coordinate_transform_info>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_network_segment20140827212359527"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_reach20150415105100407"/>
@@ -401,6 +417,7 @@
       <item>vl_manhole_material20151117174216343</item>
       <item>vl_manhole_surface_inflow20151117174216393</item>
       <item>re_maintenance_event_wastewater_structure20160111110603931</item>
+      <item>od_organisation20160212172933583</item>
     </custom-order>
   </layer-tree-canvas>
   <legend updateDrawingOrder="true">
@@ -465,6 +482,11 @@
       <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="re_maintenance_event_wastewater_structure" showFeatureCount="0">
         <filegroup open="true" hidden="false">
           <legendlayerfile isInOverview="0" layerid="re_maintenance_event_wastewater_structure20160111110603931" visible="1"/>
+        </filegroup>
+      </legendlayer>
+      <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="od_organisation" showFeatureCount="0">
+        <filegroup open="true" hidden="false">
+          <legendlayerfile isInOverview="0" layerid="od_organisation20160212172933583" visible="1"/>
         </filegroup>
       </legendlayer>
     </legendgroup>
@@ -722,7 +744,7 @@
     </legendgroup>
     <legendgroup open="false" checked="Qt::Checked" name="Cadastral Data"/>
   </legend>
-  <projectlayers layercount="56">
+  <projectlayers>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>od_maintenance_event</id>
       <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true table="qgep"."od_maintenance_event" sql=</datasource>
@@ -903,6 +925,118 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="fk_operator_company">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+      </edittypes>
+    </maplayer>
+    <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
+      <id>od_organisation20160212172933583</id>
+      <datasource>service='pg_qgep' key='"obj_id"' table="qgep"."od_organisation" sql=</datasource>
+      <shortname>od_organisation</shortname>
+      <title></title>
+      <abstract></abstract>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>od_organisation</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+          <srsid>3452</srsid>
+          <srid>4326</srid>
+          <authid>EPSG:4326</authid>
+          <description>WGS 84</description>
+          <projectionacronym>longlat</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>true</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <customproperties/>
+      <provider encoding="System">postgres</provider>
+      <previewExpression></previewExpression>
+      <vectorjoins/>
+      <layerDependencies/>
+      <expressionfields/>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <edittypes>
+        <edittype widgetv2type="TextEdit" name="obj_id">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="identifier">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="remark">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="uid">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="last_modification">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="dataowner">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="fk_dataowner">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="fk_provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="old_obj_id">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+      </edittypes>
+      <annotationform></annotationform>
+      <excludeAttributesWMS/>
+      <excludeAttributesWFS/>
+      <attributeactions/>
+      <editform></editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath></editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
+      <conditionalstyles>
+        <rowstyles/>
+        <fieldstyles/>
+      </conditionalstyles>
+      <edittypes>
+        <edittype widgetv2type="TextEdit" name="obj_id">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="identifier">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="remark">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="uid">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="last_modification">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="dataowner">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="fk_dataowner">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="fk_provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="old_obj_id">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
@@ -1516,7 +1650,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>re_maintenance_event_wastewater_structure20160111110603931</id>
-      <datasource>service='pg_qgep' sslmode=disable key='"obj_id"' table="qgep"."re_maintenance_event_wastewater_structure" sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' table="qgep"."re_maintenance_event_wastewater_structure" sql=</datasource>
       <shortname>re_maintenance_event_wastewater_structure</shortname>
       <title></title>
       <abstract></abstract>
@@ -6255,10 +6389,10 @@
         <edittype widgetv2type="TextEdit" name="renovation_demand">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="dataowner">
+        <edittype widgetv2type="TextEdit" name="fk_dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="provider">
+        <edittype widgetv2type="TextEdit" name="fk_provider">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="last_modification">
@@ -6270,13 +6404,11 @@
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="dataowner" index="5" name=""/>
         <alias field="fk_wastewater_structure" index="8" name=""/>
         <alias field="identifier" index="2" name=""/>
         <alias field="kind" index="1" name=""/>
         <alias field="last_modification" index="7" name=""/>
         <alias field="obj_id" index="0" name=""/>
-        <alias field="provider" index="6" name=""/>
         <alias field="remark" index="3" name=""/>
         <alias field="renovation_demand" index="4" name=""/>
       </aliases>
@@ -6311,10 +6443,10 @@
         <edittype widgetv2type="TextEdit" name="renovation_demand">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="dataowner">
+        <edittype widgetv2type="TextEdit" name="fk_dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="provider">
+        <edittype widgetv2type="TextEdit" name="fk_provider">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="last_modification">
@@ -6378,10 +6510,10 @@
         <edittype widgetv2type="TextEdit" name="renovation_demand">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="dataowner">
+        <edittype widgetv2type="TextEdit" name="fk_dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="provider">
+        <edittype widgetv2type="TextEdit" name="fk_provider">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="last_modification">
@@ -6393,14 +6525,12 @@
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="dataowner" index="7" name=""/>
         <alias field="fk_wastewater_structure" index="10" name=""/>
         <alias field="gross_costs" index="1" name=""/>
         <alias field="identifier" index="4" name=""/>
         <alias field="kind" index="2" name=""/>
         <alias field="last_modification" index="9" name=""/>
         <alias field="obj_id" index="0" name=""/>
-        <alias field="provider" index="8" name=""/>
         <alias field="remark" index="5" name=""/>
         <alias field="renovation_demand" index="6" name=""/>
         <alias field="year_of_replacement" index="3" name=""/>
@@ -6442,10 +6572,10 @@
         <edittype widgetv2type="TextEdit" name="renovation_demand">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="dataowner">
+        <edittype widgetv2type="TextEdit" name="fk_dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="provider">
+        <edittype widgetv2type="TextEdit" name="fk_provider">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="last_modification">
@@ -6503,10 +6633,10 @@
         <edittype widgetv2type="TextEdit" name="renovation_demand">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="dataowner">
+        <edittype widgetv2type="TextEdit" name="fk_dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="provider">
+        <edittype widgetv2type="TextEdit" name="fk_provider">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="last_modification">
@@ -6518,13 +6648,11 @@
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="dataowner" index="5" name=""/>
         <alias field="fk_wastewater_structure" index="8" name=""/>
         <alias field="identifier" index="2" name=""/>
         <alias field="kind" index="1" name=""/>
         <alias field="last_modification" index="7" name=""/>
         <alias field="obj_id" index="0" name=""/>
-        <alias field="provider" index="6" name=""/>
         <alias field="remark" index="3" name=""/>
         <alias field="renovation_demand" index="4" name=""/>
       </aliases>
@@ -6559,10 +6687,10 @@
         <edittype widgetv2type="TextEdit" name="renovation_demand">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="dataowner">
+        <edittype widgetv2type="TextEdit" name="fk_dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="provider">
+        <edittype widgetv2type="TextEdit" name="fk_provider">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="last_modification">
@@ -6692,11 +6820,11 @@
         <edittype widgetv2type="Range" name="year_of_replacement">
           <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="1900" Max="2100"/>
         </edittype>
-        <edittype widgetv2type="UniqueValues" name="dataowner">
-          <widgetv2config fieldEditable="1" labelOnTop="0" Editable="1"/>
+        <edittype widgetv2type="TextEdit" name="fk_dataowner">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="UniqueValues" name="provider">
-          <widgetv2config fieldEditable="1" labelOnTop="0" Editable="1"/>
+        <edittype widgetv2type="TextEdit" name="fk_provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="last_modification">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -6714,7 +6842,6 @@
         <alias field="bedding_encasement" index="1" name=""/>
         <alias field="connection_type" index="2" name=""/>
         <alias field="contract_section" index="10" name=""/>
-        <alias field="dataowner" index="29" name=""/>
         <alias field="detail_geometry_3d_geometry" index="12" name=""/>
         <alias field="detail_geometry_geometry" index="11" name=""/>
         <alias field="financing" index="13" name=""/>
@@ -6730,7 +6857,6 @@
         <alias field="location_name" index="17" name=""/>
         <alias field="obj_id" index="0" name=""/>
         <alias field="pipe_length" index="6" name=""/>
-        <alias field="provider" index="30" name=""/>
         <alias field="records" index="18" name=""/>
         <alias field="remark" index="19" name=""/>
         <alias field="renovation_necessity" index="20" name=""/>
@@ -6848,11 +6974,11 @@
         <edittype widgetv2type="Range" name="year_of_replacement">
           <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="1900" Max="2100"/>
         </edittype>
-        <edittype widgetv2type="UniqueValues" name="dataowner">
-          <widgetv2config fieldEditable="1" labelOnTop="0" Editable="1"/>
+        <edittype widgetv2type="TextEdit" name="fk_dataowner">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="UniqueValues" name="provider">
-          <widgetv2config fieldEditable="1" labelOnTop="0" Editable="1"/>
+        <edittype widgetv2type="TextEdit" name="fk_provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="last_modification">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -6938,10 +7064,10 @@
         <edittype widgetv2type="TextEdit" name="renovation_demand">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="dataowner">
+        <edittype widgetv2type="TextEdit" name="fk_dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="provider">
+        <edittype widgetv2type="TextEdit" name="fk_provider">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="last_modification">
@@ -7174,7 +7300,6 @@
       <aliases>
         <alias field="brand" index="1" name=""/>
         <alias field="cover_shape" index="2" name=""/>
-        <alias field="dataowner" index="14" name=""/>
         <alias field="depth" index="3" name=""/>
         <alias field="diameter" index="4" name=""/>
         <alias field="fastening" index="5" name=""/>
@@ -7185,7 +7310,6 @@
         <alias field="material" index="7" name=""/>
         <alias field="obj_id" index="0" name=""/>
         <alias field="positional_accuracy" index="8" name=""/>
-        <alias field="provider" index="15" name=""/>
         <alias field="remark" index="12" name=""/>
         <alias field="renovation_demand" index="13" name=""/>
         <alias field="sludge_bucket" index="9" name=""/>
@@ -7249,10 +7373,10 @@
         <edittype widgetv2type="TextEdit" name="renovation_demand">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="dataowner">
+        <edittype widgetv2type="TextEdit" name="fk_dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="provider">
+        <edittype widgetv2type="TextEdit" name="fk_provider">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="last_modification">
@@ -7310,10 +7434,10 @@
         <edittype widgetv2type="TextEdit" name="renovation_demand">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="dataowner">
+        <edittype widgetv2type="TextEdit" name="fk_dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="provider">
+        <edittype widgetv2type="TextEdit" name="fk_provider">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="last_modification">
@@ -7325,13 +7449,11 @@
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="dataowner" index="5" name=""/>
         <alias field="diameter" index="1" name=""/>
         <alias field="fk_wastewater_structure" index="8" name=""/>
         <alias field="identifier" index="2" name=""/>
         <alias field="last_modification" index="7" name=""/>
         <alias field="obj_id" index="0" name=""/>
-        <alias field="provider" index="6" name=""/>
         <alias field="remark" index="3" name=""/>
         <alias field="renovation_demand" index="4" name=""/>
       </aliases>
@@ -7366,10 +7488,10 @@
         <edittype widgetv2type="TextEdit" name="renovation_demand">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="dataowner">
+        <edittype widgetv2type="TextEdit" name="fk_dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="provider">
+        <edittype widgetv2type="TextEdit" name="fk_provider">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="last_modification">
@@ -7427,10 +7549,10 @@
         <edittype widgetv2type="TextEdit" name="renovation_demand">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="dataowner">
+        <edittype widgetv2type="TextEdit" name="fk_dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="provider">
+        <edittype widgetv2type="TextEdit" name="fk_provider">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="last_modification">
@@ -7442,13 +7564,11 @@
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="dataowner" index="5" name=""/>
         <alias field="fk_wastewater_structure" index="8" name=""/>
         <alias field="identifier" index="2" name=""/>
         <alias field="last_modification" index="7" name=""/>
         <alias field="material" index="1" name=""/>
         <alias field="obj_id" index="0" name=""/>
-        <alias field="provider" index="6" name=""/>
         <alias field="remark" index="3" name=""/>
         <alias field="renovation_demand" index="4" name=""/>
       </aliases>
@@ -7483,10 +7603,10 @@
         <edittype widgetv2type="TextEdit" name="renovation_demand">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="dataowner">
+        <edittype widgetv2type="TextEdit" name="fk_dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="provider">
+        <edittype widgetv2type="TextEdit" name="fk_provider">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="last_modification">
@@ -7966,11 +8086,11 @@
         <edittype widgetv2type="DateTime" name="last_modification">
           <widgetv2config fieldEditable="1" calendar_popup="0" allow_null="0" display_format="yyyy-MM-dd" field_format="yyyy-MM-dd" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="UniqueValues" name="dataowner">
-          <widgetv2config fieldEditable="1" labelOnTop="0" Editable="1"/>
+        <edittype widgetv2type="TextEdit" name="fk_dataowner">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="UniqueValues" name="provider">
-          <widgetv2config fieldEditable="1" labelOnTop="0" Editable="1"/>
+        <edittype widgetv2type="TextEdit" name="fk_provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="ValueMap" name="ws_type">
           <widgetv2config fieldEditable="1" labelOnTop="0">
@@ -8037,11 +8157,11 @@
         <edittype widgetv2type="Range" name="year_of_replacement">
           <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="1900" Max="2200"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="fk_owner">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="RelationReference" name="fk_owner">
+          <widgetv2config OrderByValue="0" fieldEditable="1" ShowForm="0" Relation="vw_qgep_cover_fk_owner_od_organisation20160212172933583_obj_id" ReadOnly="0" MapIdentification="0" labelOnTop="0" AllowNULL="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="fk_operator">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="RelationReference" name="fk_operator">
+          <widgetv2config OrderByValue="0" fieldEditable="1" ShowForm="0" Relation="vw_qgep_cover_fk_operator_od_organisation20160212172933583_obj_id" ReadOnly="0" MapIdentification="0" labelOnTop="0" AllowNULL="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="_label">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -8145,10 +8265,10 @@
         <edittype widgetv2type="TextEdit" name="wn_last_modification">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="wn_dataowner">
+        <edittype widgetv2type="TextEdit" name="wn_fk_dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="wn_provider">
+        <edittype widgetv2type="TextEdit" name="wn_fk_provider">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
@@ -8156,25 +8276,27 @@
         <rules key="{6736e613-3750-466f-8a9f-3310fefc92b3}">
           <rule scalemaxdenom="5001" filter="manhole_function IN (204,5345,4532,4533,4537,4798,5346) AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{a19553f0-3a86-466a-846c-34647de3eacb}" symbol="0" label="manhole, unknown, drop_structure, venting, jetting_manhole, separating_structure, stormwater_overflow  - main drainage system"/>
           <rule scalemaxdenom="2001" filter="manhole_function IN (204,5345,4532,4533,4537,4798,5346) AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{18c180f3-844d-49e4-a8ee-e678c834fc08}" symbol="1" label="manhole, unknown, drop_structure, venting, jetting_manhole, separating_structure, stormwater_overflow - minor drainage system"/>
-          <rule scalemaxdenom="5001" filter=" manhole_function = 228 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{2287443e-21d4-4c14-8732-f925e912927a}" symbol="2" label="rail_track_gully - main drainage system"/>
-          <rule scalemaxdenom="2001" filter=" manhole_function = 228 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{d23221ad-187f-4682-9458-42a19bd0acd2}" symbol="3" label="rail_track_gully - minor drainage system"/>
-          <rule scalemaxdenom="5001" filter=" manhole_function = 4536 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{830e1f8e-7bae-4271-8e7e-3b2705cf37c2}" symbol="4" label="pump_station - main drainage system"/>
-          <rule scalemaxdenom="2001" filter=" manhole_function = 4536 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{01d58544-e7cb-482f-aa09-2d9bcc914bd0}" symbol="5" label="pump_station - minor drainage system"/>
-          <rule scalemaxdenom="5001" filter=" manhole_function = 1008 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{28f9989c-7e87-4782-8af8-e82e97e48f07}" symbol="6" label="oil_separator - main drainage system"/>
-          <rule scalemaxdenom="2001" filter=" manhole_function = 1008 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{fd59f306-4bb0-45d4-9b8f-6c472fd6f453}" symbol="7" label="oil_separator - minor drainage system"/>
-          <rule scalemaxdenom="5001" filter=" manhole_function = 1008 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{23388bb8-4225-45a4-bff9-9e90282b2e84}" symbol="8" label="floating_material_separator - main drainage system"/>
-          <rule scalemaxdenom="2001" filter=" manhole_function = 1008 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{98bce6a8-b6eb-425a-87e8-1b3bcd4f3458}" symbol="9" label="floating_material_separator - minor drainage system"/>
-          <rule scalemaxdenom="5001" filter=" manhole_function = 3267 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{fbd3e663-5247-4140-8ccb-1bb1eb3377e6}" symbol="10" label="rain_water_manhole - main drainage system"/>
-          <rule scalemaxdenom="2001" filter=" manhole_function = 3267 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{5beea4bb-ddf3-4784-93a9-19961a171224}" symbol="11" label="rain_water_manhole - minor drainage system"/>
-          <rule scalemaxdenom="5001" filter=" manhole_function = 2742 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{9ee5d899-1f95-4c7f-8655-caa89c70a7df}" symbol="12" label="slurry_collector - main drainage system"/>
-          <rule scalemaxdenom="2001" filter=" manhole_function = 2742 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{2abc1c58-4d39-41df-b8b2-1ff6ef069d55}" symbol="13" label="slurry_collector - minor drainage system"/>
-          <rule scalemaxdenom="5001" filter=" manhole_function = 3266 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{17940497-d239-43a6-afee-e6e1b2fe31a5}" symbol="14" label="gully - main drainage system"/>
-          <rule scalemaxdenom="2001" filter=" manhole_function = 3266 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{045b859e-9d9a-4642-9630-3594f7bd745c}" symbol="15" label="gully - minor drainage system"/>
-          <rule scalemaxdenom="5001" filter=" manhole_function = 3472 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{7d42bd8b-f62f-443b-b2ad-56460df5fc6b}" symbol="16" label="drainage_channel - main drainage system"/>
-          <rule scalemaxdenom="2001" filter=" manhole_function = 3472 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{ba077ab0-6fb6-47d8-a5a5-15ade7d1b6a4}" symbol="17" label="drainage_channel - minor drainage system"/>
-          <rule scalemaxdenom="5001" filter=" manhole_function = 5344 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{21b6aa82-108b-486c-b974-3b2151ac7d48}" symbol="18" label="other - main drainage system"/>
-          <rule scalemaxdenom="2001" filter=" manhole_function = 5344 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{131efc32-074a-4bfc-8773-4efb43246fea}" symbol="19" label="other - minor drainage system"/>
-          <rule scalemaxdenom="2001" filter="ELSE" key="{c431ef56-07b8-43fd-87bf-e0c20098ec5f}" symbol="20"/>
+          <rule scalemaxdenom="5001" filter="ws_type = 'special_structure' AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{24f1a5af-a545-410a-ba4b-d5de029ad835}" symbol="2" label="special structure, unknown, drop_structure, venting, jetting_manhole, separating_structure, stormwater_overflow  - main drainage system"/>
+          <rule scalemaxdenom="2001" filter="ws_type = 'special_structure' AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{bf70dbfc-6c71-4e62-89ae-2d648e0a9fc3}" symbol="3" label="special structure, unknown, drop_structure, venting, jetting_manhole, separating_structure, stormwater_overflow - minor drainage system"/>
+          <rule scalemaxdenom="5001" filter=" manhole_function = 228 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{2287443e-21d4-4c14-8732-f925e912927a}" symbol="4" label="rail_track_gully - main drainage system"/>
+          <rule scalemaxdenom="2001" filter=" manhole_function = 228 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{d23221ad-187f-4682-9458-42a19bd0acd2}" symbol="5" label="rail_track_gully - minor drainage system"/>
+          <rule scalemaxdenom="5001" filter=" manhole_function = 4536 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{830e1f8e-7bae-4271-8e7e-3b2705cf37c2}" symbol="6" label="pump_station - main drainage system"/>
+          <rule scalemaxdenom="2001" filter=" manhole_function = 4536 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{01d58544-e7cb-482f-aa09-2d9bcc914bd0}" symbol="7" label="pump_station - minor drainage system"/>
+          <rule scalemaxdenom="5001" filter=" manhole_function = 1008 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{28f9989c-7e87-4782-8af8-e82e97e48f07}" symbol="8" label="oil_separator - main drainage system"/>
+          <rule scalemaxdenom="2001" filter=" manhole_function = 1008 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{fd59f306-4bb0-45d4-9b8f-6c472fd6f453}" symbol="9" label="oil_separator - minor drainage system"/>
+          <rule scalemaxdenom="5001" filter=" manhole_function = 1008 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{23388bb8-4225-45a4-bff9-9e90282b2e84}" symbol="10" label="floating_material_separator - main drainage system"/>
+          <rule scalemaxdenom="2001" filter=" manhole_function = 1008 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{98bce6a8-b6eb-425a-87e8-1b3bcd4f3458}" symbol="11" label="floating_material_separator - minor drainage system"/>
+          <rule scalemaxdenom="5001" filter=" manhole_function = 3267 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{fbd3e663-5247-4140-8ccb-1bb1eb3377e6}" symbol="12" label="rain_water_manhole - main drainage system"/>
+          <rule scalemaxdenom="2001" filter=" manhole_function = 3267 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{5beea4bb-ddf3-4784-93a9-19961a171224}" symbol="13" label="rain_water_manhole - minor drainage system"/>
+          <rule scalemaxdenom="5001" filter=" manhole_function = 2742 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{9ee5d899-1f95-4c7f-8655-caa89c70a7df}" symbol="14" label="slurry_collector - main drainage system"/>
+          <rule scalemaxdenom="2001" filter=" manhole_function = 2742 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{2abc1c58-4d39-41df-b8b2-1ff6ef069d55}" symbol="15" label="slurry_collector - minor drainage system"/>
+          <rule scalemaxdenom="5001" filter=" manhole_function = 3266 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{17940497-d239-43a6-afee-e6e1b2fe31a5}" symbol="16" label="gully - main drainage system"/>
+          <rule scalemaxdenom="2001" filter=" manhole_function = 3266 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{045b859e-9d9a-4642-9630-3594f7bd745c}" symbol="17" label="gully - minor drainage system"/>
+          <rule scalemaxdenom="5001" filter=" manhole_function = 3472 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{7d42bd8b-f62f-443b-b2ad-56460df5fc6b}" symbol="18" label="drainage_channel - main drainage system"/>
+          <rule scalemaxdenom="2001" filter=" manhole_function = 3472 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{ba077ab0-6fb6-47d8-a5a5-15ade7d1b6a4}" symbol="19" label="drainage_channel - minor drainage system"/>
+          <rule scalemaxdenom="5001" filter=" manhole_function = 5344 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{21b6aa82-108b-486c-b974-3b2151ac7d48}" symbol="20" label="other - main drainage system"/>
+          <rule scalemaxdenom="2001" filter=" manhole_function = 5344 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{131efc32-074a-4bfc-8773-4efb43246fea}" symbol="21" label="other - minor drainage system"/>
+          <rule scalemaxdenom="2001" filter="ELSE" key="{c431ef56-07b8-43fd-87bf-e0c20098ec5f}" symbol="22"/>
         </rules>
         <symbols>
           <symbol alpha="1" clip_to_extent="1" type="marker" name="0">
@@ -8275,6 +8397,68 @@
                 </effect>
               </effect>
             </layer>
+            <layer pass="0" class="SimpleMarker" locked="0">
+              <prop k="angle" v="0"/>
+              <prop k="color" v="255,0,0,255"/>
+              <prop k="color_border_dd_active" v="1"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_field" v=""/>
+              <prop k="color_border_dd_useexpr" v="1"/>
+              <prop k="horizontal_anchor_point" v="1"/>
+              <prop k="name" v="line"/>
+              <prop k="offset" v="0.25,0"/>
+              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="0,0,0,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.3"/>
+              <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="scale_method" v="area"/>
+              <prop k="size" v="1"/>
+              <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="size_unit" v="MM"/>
+              <prop k="vertical_anchor_point" v="1"/>
+              <effect enabled="0" type="effectStack">
+                <effect type="drawSource">
+                  <prop k="blend_mode" v="0"/>
+                  <prop k="draw_mode" v="2"/>
+                  <prop k="enabled" v="1"/>
+                  <prop k="transparency" v="0"/>
+                </effect>
+              </effect>
+            </layer>
+            <layer pass="0" class="SimpleMarker" locked="0">
+              <prop k="angle" v="0"/>
+              <prop k="color" v="255,0,0,255"/>
+              <prop k="color_border_dd_active" v="1"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_field" v=""/>
+              <prop k="color_border_dd_useexpr" v="1"/>
+              <prop k="horizontal_anchor_point" v="1"/>
+              <prop k="name" v="line"/>
+              <prop k="offset" v="-0.25,0"/>
+              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="0,0,0,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.3"/>
+              <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="scale_method" v="area"/>
+              <prop k="size" v="1"/>
+              <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="size_unit" v="MM"/>
+              <prop k="vertical_anchor_point" v="1"/>
+              <effect enabled="0" type="effectStack">
+                <effect type="drawSource">
+                  <prop k="blend_mode" v="0"/>
+                  <prop k="draw_mode" v="2"/>
+                  <prop k="enabled" v="1"/>
+                  <prop k="transparency" v="0"/>
+                </effect>
+              </effect>
+            </layer>
           </symbol>
           <symbol alpha="1" clip_to_extent="1" type="marker" name="11">
             <layer pass="0" class="SimpleMarker" locked="0">
@@ -8308,11 +8492,73 @@
                 </effect>
               </effect>
             </layer>
+            <layer pass="0" class="SimpleMarker" locked="0">
+              <prop k="angle" v="0"/>
+              <prop k="color" v="255,0,0,255"/>
+              <prop k="color_border_dd_active" v="1"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_field" v=""/>
+              <prop k="color_border_dd_useexpr" v="1"/>
+              <prop k="horizontal_anchor_point" v="1"/>
+              <prop k="name" v="line"/>
+              <prop k="offset" v="0.25,0"/>
+              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="0,0,0,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.3"/>
+              <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="scale_method" v="area"/>
+              <prop k="size" v="1"/>
+              <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="size_unit" v="MM"/>
+              <prop k="vertical_anchor_point" v="1"/>
+              <effect enabled="0" type="effectStack">
+                <effect type="drawSource">
+                  <prop k="blend_mode" v="0"/>
+                  <prop k="draw_mode" v="2"/>
+                  <prop k="enabled" v="1"/>
+                  <prop k="transparency" v="0"/>
+                </effect>
+              </effect>
+            </layer>
+            <layer pass="0" class="SimpleMarker" locked="0">
+              <prop k="angle" v="0"/>
+              <prop k="color" v="255,0,0,255"/>
+              <prop k="color_border_dd_active" v="1"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_field" v=""/>
+              <prop k="color_border_dd_useexpr" v="1"/>
+              <prop k="horizontal_anchor_point" v="1"/>
+              <prop k="name" v="line"/>
+              <prop k="offset" v="-0.25,0"/>
+              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="0,0,0,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.3"/>
+              <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="scale_method" v="area"/>
+              <prop k="size" v="1"/>
+              <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="size_unit" v="MM"/>
+              <prop k="vertical_anchor_point" v="1"/>
+              <effect enabled="0" type="effectStack">
+                <effect type="drawSource">
+                  <prop k="blend_mode" v="0"/>
+                  <prop k="draw_mode" v="2"/>
+                  <prop k="enabled" v="1"/>
+                  <prop k="transparency" v="0"/>
+                </effect>
+              </effect>
+            </layer>
           </symbol>
           <symbol alpha="1" clip_to_extent="1" type="marker" name="12">
             <layer pass="0" class="SimpleMarker" locked="0">
               <prop k="angle" v="0"/>
-              <prop k="color" v="215,215,215,255"/>
+              <prop k="color" v="255,255,255,255"/>
               <prop k="color_border_dd_active" v="1"/>
               <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_border_dd_field" v=""/>
@@ -8328,7 +8574,7 @@
               <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="outline_width_unit" v="MM"/>
               <prop k="scale_method" v="area"/>
-              <prop k="size" v="2"/>
+              <prop k="size" v="1.5"/>
               <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="size_unit" v="MM"/>
               <prop k="vertical_anchor_point" v="1"/>
@@ -8345,7 +8591,7 @@
           <symbol alpha="1" clip_to_extent="1" type="marker" name="13">
             <layer pass="0" class="SimpleMarker" locked="0">
               <prop k="angle" v="0"/>
-              <prop k="color" v="215,215,215,255"/>
+              <prop k="color" v="255,255,255,255"/>
               <prop k="color_border_dd_active" v="1"/>
               <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_border_dd_field" v=""/>
@@ -8361,7 +8607,7 @@
               <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="outline_width_unit" v="MM"/>
               <prop k="scale_method" v="area"/>
-              <prop k="size" v="2"/>
+              <prop k="size" v="1.5"/>
               <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="size_unit" v="MM"/>
               <prop k="vertical_anchor_point" v="1"/>
@@ -8394,7 +8640,7 @@
               <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="outline_width_unit" v="MM"/>
               <prop k="scale_method" v="area"/>
-              <prop k="size" v="1.5"/>
+              <prop k="size" v="2"/>
               <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="size_unit" v="MM"/>
               <prop k="vertical_anchor_point" v="1"/>
@@ -8427,7 +8673,7 @@
               <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="outline_width_unit" v="MM"/>
               <prop k="scale_method" v="area"/>
-              <prop k="size" v="1.5"/>
+              <prop k="size" v="2"/>
               <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="size_unit" v="MM"/>
               <prop k="vertical_anchor_point" v="1"/>
@@ -8444,23 +8690,23 @@
           <symbol alpha="1" clip_to_extent="1" type="marker" name="16">
             <layer pass="0" class="SimpleMarker" locked="0">
               <prop k="angle" v="0"/>
-              <prop k="color" v="255,255,255,255"/>
-              <prop k="color_dd_active" v="1"/>
-              <prop k="color_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
-              <prop k="color_dd_field" v=""/>
-              <prop k="color_dd_useexpr" v="1"/>
+              <prop k="color" v="215,215,215,255"/>
+              <prop k="color_border_dd_active" v="1"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_field" v=""/>
+              <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
               <prop k="name" v="circle"/>
               <prop k="offset" v="0,0"/>
               <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="offset_unit" v="MM"/>
               <prop k="outline_color" v="0,0,0,255"/>
-              <prop k="outline_style" v="no"/>
+              <prop k="outline_style" v="solid"/>
               <prop k="outline_width" v="0.3"/>
               <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="outline_width_unit" v="MM"/>
               <prop k="scale_method" v="area"/>
-              <prop k="size" v="0.8"/>
+              <prop k="size" v="1.5"/>
               <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="size_unit" v="MM"/>
               <prop k="vertical_anchor_point" v="1"/>
@@ -8477,23 +8723,23 @@
           <symbol alpha="1" clip_to_extent="1" type="marker" name="17">
             <layer pass="0" class="SimpleMarker" locked="0">
               <prop k="angle" v="0"/>
-              <prop k="color" v="255,255,255,255"/>
-              <prop k="color_dd_active" v="1"/>
-              <prop k="color_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
-              <prop k="color_dd_field" v=""/>
-              <prop k="color_dd_useexpr" v="1"/>
+              <prop k="color" v="215,215,215,255"/>
+              <prop k="color_border_dd_active" v="1"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_field" v=""/>
+              <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
               <prop k="name" v="circle"/>
               <prop k="offset" v="0,0"/>
               <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="offset_unit" v="MM"/>
               <prop k="outline_color" v="0,0,0,255"/>
-              <prop k="outline_style" v="no"/>
+              <prop k="outline_style" v="solid"/>
               <prop k="outline_width" v="0.3"/>
               <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="outline_width_unit" v="MM"/>
               <prop k="scale_method" v="area"/>
-              <prop k="size" v="0.8"/>
+              <prop k="size" v="1.5"/>
               <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="size_unit" v="MM"/>
               <prop k="vertical_anchor_point" v="1"/>
@@ -8511,22 +8757,22 @@
             <layer pass="0" class="SimpleMarker" locked="0">
               <prop k="angle" v="0"/>
               <prop k="color" v="255,255,255,255"/>
-              <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
-              <prop k="color_border_dd_field" v=""/>
-              <prop k="color_border_dd_useexpr" v="1"/>
+              <prop k="color_dd_active" v="1"/>
+              <prop k="color_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_dd_field" v=""/>
+              <prop k="color_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
               <prop k="name" v="circle"/>
               <prop k="offset" v="0,0"/>
               <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="offset_unit" v="MM"/>
               <prop k="outline_color" v="0,0,0,255"/>
-              <prop k="outline_style" v="solid"/>
+              <prop k="outline_style" v="no"/>
               <prop k="outline_width" v="0.3"/>
               <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="outline_width_unit" v="MM"/>
               <prop k="scale_method" v="area"/>
-              <prop k="size" v="1.5"/>
+              <prop k="size" v="0.8"/>
               <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="size_unit" v="MM"/>
               <prop k="vertical_anchor_point" v="1"/>
@@ -8541,6 +8787,64 @@
             </layer>
           </symbol>
           <symbol alpha="1" clip_to_extent="1" type="marker" name="19">
+            <layer pass="0" class="SimpleMarker" locked="0">
+              <prop k="angle" v="0"/>
+              <prop k="color" v="255,255,255,255"/>
+              <prop k="color_dd_active" v="1"/>
+              <prop k="color_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_dd_field" v=""/>
+              <prop k="color_dd_useexpr" v="1"/>
+              <prop k="horizontal_anchor_point" v="1"/>
+              <prop k="name" v="circle"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="0,0,0,255"/>
+              <prop k="outline_style" v="no"/>
+              <prop k="outline_width" v="0.3"/>
+              <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="scale_method" v="area"/>
+              <prop k="size" v="0.8"/>
+              <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="size_unit" v="MM"/>
+              <prop k="vertical_anchor_point" v="1"/>
+              <effect enabled="0" type="effectStack">
+                <effect type="drawSource">
+                  <prop k="blend_mode" v="0"/>
+                  <prop k="draw_mode" v="2"/>
+                  <prop k="enabled" v="1"/>
+                  <prop k="transparency" v="0"/>
+                </effect>
+              </effect>
+            </layer>
+          </symbol>
+          <symbol alpha="1" clip_to_extent="1" type="marker" name="2">
+            <layer pass="0" class="SimpleMarker" locked="0">
+              <prop k="angle" v="0"/>
+              <prop k="color" v="255,255,255,255"/>
+              <prop k="color_border_dd_active" v="1"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_field" v=""/>
+              <prop k="color_border_dd_useexpr" v="1"/>
+              <prop k="horizontal_anchor_point" v="1"/>
+              <prop k="name" v="circle"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="0,0,0,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.35"/>
+              <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="scale_method" v="diameter"/>
+              <prop k="size" v="3"/>
+              <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="size_unit" v="MM"/>
+              <prop k="vertical_anchor_point" v="1"/>
+            </layer>
+          </symbol>
+          <symbol alpha="1" clip_to_extent="1" type="marker" name="20">
             <layer pass="0" class="SimpleMarker" locked="0">
               <prop k="angle" v="0"/>
               <prop k="color" v="255,255,255,255"/>
@@ -8573,78 +8877,16 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="marker" name="2">
-            <layer pass="0" class="SimpleMarker" locked="0">
-              <prop k="angle" v="90"/>
-              <prop k="color" v="255,0,0,255"/>
-              <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
-              <prop k="color_border_dd_field" v=""/>
-              <prop k="color_border_dd_useexpr" v="1"/>
-              <prop k="horizontal_anchor_point" v="1"/>
-              <prop k="name" v="line"/>
-              <prop k="offset" v="1.2,0"/>
-              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="offset_unit" v="MM"/>
-              <prop k="outline_color" v="0,0,0,255"/>
-              <prop k="outline_style" v="solid"/>
-              <prop k="outline_width" v="0.3"/>
-              <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="outline_width_unit" v="MM"/>
-              <prop k="scale_method" v="area"/>
-              <prop k="size" v="2"/>
-              <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="size_unit" v="MM"/>
-              <prop k="vertical_anchor_point" v="1"/>
-              <effect enabled="0" type="effectStack">
-                <effect type="drawSource">
-                  <prop k="blend_mode" v="0"/>
-                  <prop k="draw_mode" v="2"/>
-                  <prop k="enabled" v="1"/>
-                  <prop k="transparency" v="0"/>
-                </effect>
-              </effect>
-            </layer>
-            <layer pass="0" class="SimpleMarker" locked="0">
-              <prop k="angle" v="90"/>
-              <prop k="color" v="255,0,0,255"/>
-              <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
-              <prop k="color_border_dd_field" v=""/>
-              <prop k="color_border_dd_useexpr" v="1"/>
-              <prop k="horizontal_anchor_point" v="1"/>
-              <prop k="name" v="line"/>
-              <prop k="offset" v="-1.2,0"/>
-              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="offset_unit" v="MM"/>
-              <prop k="outline_color" v="0,0,0,255"/>
-              <prop k="outline_style" v="solid"/>
-              <prop k="outline_width" v="0.35"/>
-              <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="outline_width_unit" v="MM"/>
-              <prop k="scale_method" v="area"/>
-              <prop k="size" v="2"/>
-              <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="size_unit" v="MM"/>
-              <prop k="vertical_anchor_point" v="1"/>
-              <effect enabled="0" type="effectStack">
-                <effect type="drawSource">
-                  <prop k="blend_mode" v="0"/>
-                  <prop k="draw_mode" v="2"/>
-                  <prop k="enabled" v="1"/>
-                  <prop k="transparency" v="0"/>
-                </effect>
-              </effect>
-            </layer>
+          <symbol alpha="1" clip_to_extent="1" type="marker" name="21">
             <layer pass="0" class="SimpleMarker" locked="0">
               <prop k="angle" v="0"/>
-              <prop k="color" v="255,0,0,255"/>
+              <prop k="color" v="255,255,255,255"/>
               <prop k="color_border_dd_active" v="1"/>
               <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_border_dd_field" v=""/>
               <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
-              <prop k="name" v="line"/>
+              <prop k="name" v="circle"/>
               <prop k="offset" v="0,0"/>
               <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="offset_unit" v="MM"/>
@@ -8654,7 +8896,7 @@
               <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="outline_width_unit" v="MM"/>
               <prop k="scale_method" v="area"/>
-              <prop k="size" v="4"/>
+              <prop k="size" v="1.5"/>
               <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="size_unit" v="MM"/>
               <prop k="vertical_anchor_point" v="1"/>
@@ -8668,7 +8910,7 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="marker" name="20">
+          <symbol alpha="1" clip_to_extent="1" type="marker" name="22">
             <layer pass="0" class="SimpleMarker" locked="0">
               <prop k="angle" v="0"/>
               <prop k="color" v="255,33,252,255"/>
@@ -8699,6 +8941,31 @@
           </symbol>
           <symbol alpha="1" clip_to_extent="1" type="marker" name="3">
             <layer pass="0" class="SimpleMarker" locked="0">
+              <prop k="angle" v="0"/>
+              <prop k="color" v="255,255,255,255"/>
+              <prop k="color_border_dd_active" v="1"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_field" v=""/>
+              <prop k="color_border_dd_useexpr" v="1"/>
+              <prop k="horizontal_anchor_point" v="1"/>
+              <prop k="name" v="circle"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="0,0,0,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.35"/>
+              <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="scale_method" v="diameter"/>
+              <prop k="size" v="3"/>
+              <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="size_unit" v="MM"/>
+              <prop k="vertical_anchor_point" v="1"/>
+            </layer>
+          </symbol>
+          <symbol alpha="1" clip_to_extent="1" type="marker" name="4">
+            <layer pass="0" class="SimpleMarker" locked="0">
               <prop k="angle" v="90"/>
               <prop k="color" v="255,0,0,255"/>
               <prop k="color_border_dd_active" v="1"/>
@@ -8792,81 +9059,48 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="marker" name="4">
-            <layer pass="0" class="SimpleMarker" locked="0">
-              <prop k="angle" v="0"/>
-              <prop k="color" v="255,255,255,255"/>
-              <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
-              <prop k="color_border_dd_field" v=""/>
-              <prop k="color_border_dd_useexpr" v="1"/>
-              <prop k="horizontal_anchor_point" v="1"/>
-              <prop k="name" v="circle"/>
-              <prop k="offset" v="0,0"/>
-              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="offset_unit" v="MM"/>
-              <prop k="outline_color" v="0,0,0,255"/>
-              <prop k="outline_style" v="solid"/>
-              <prop k="outline_width" v="0.35"/>
-              <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="outline_width_unit" v="MM"/>
-              <prop k="scale_method" v="area"/>
-              <prop k="size" v="4"/>
-              <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="size_unit" v="MM"/>
-              <prop k="vertical_anchor_point" v="1"/>
-              <effect enabled="0" type="effectStack">
-                <effect type="drawSource">
-                  <prop k="blend_mode" v="0"/>
-                  <prop k="draw_mode" v="2"/>
-                  <prop k="enabled" v="1"/>
-                  <prop k="transparency" v="0"/>
-                </effect>
-              </effect>
-            </layer>
-            <layer pass="0" class="SimpleMarker" locked="0">
-              <prop k="angle" v="0"/>
-              <prop k="color" v="255,0,0,255"/>
-              <prop k="color_dd_active" v="1"/>
-              <prop k="color_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
-              <prop k="color_dd_field" v=""/>
-              <prop k="color_dd_useexpr" v="1"/>
-              <prop k="horizontal_anchor_point" v="1"/>
-              <prop k="name" v="equilateral_triangle"/>
-              <prop k="offset" v="0,0"/>
-              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="offset_unit" v="MM"/>
-              <prop k="outline_color" v="0,0,0,255"/>
-              <prop k="outline_style" v="no"/>
-              <prop k="outline_width" v="0"/>
-              <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="outline_width_unit" v="MM"/>
-              <prop k="scale_method" v="area"/>
-              <prop k="size" v="3.7"/>
-              <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="size_unit" v="MM"/>
-              <prop k="vertical_anchor_point" v="1"/>
-              <effect enabled="0" type="effectStack">
-                <effect type="drawSource">
-                  <prop k="blend_mode" v="0"/>
-                  <prop k="draw_mode" v="2"/>
-                  <prop k="enabled" v="1"/>
-                  <prop k="transparency" v="0"/>
-                </effect>
-              </effect>
-            </layer>
-          </symbol>
           <symbol alpha="1" clip_to_extent="1" type="marker" name="5">
             <layer pass="0" class="SimpleMarker" locked="0">
-              <prop k="angle" v="0"/>
-              <prop k="color" v="255,255,255,255"/>
+              <prop k="angle" v="90"/>
+              <prop k="color" v="255,0,0,255"/>
               <prop k="color_border_dd_active" v="1"/>
               <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_border_dd_field" v=""/>
               <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
-              <prop k="name" v="circle"/>
-              <prop k="offset" v="0,0"/>
+              <prop k="name" v="line"/>
+              <prop k="offset" v="1.2,0"/>
+              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="0,0,0,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.3"/>
+              <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="scale_method" v="area"/>
+              <prop k="size" v="2"/>
+              <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="size_unit" v="MM"/>
+              <prop k="vertical_anchor_point" v="1"/>
+              <effect enabled="0" type="effectStack">
+                <effect type="drawSource">
+                  <prop k="blend_mode" v="0"/>
+                  <prop k="draw_mode" v="2"/>
+                  <prop k="enabled" v="1"/>
+                  <prop k="transparency" v="0"/>
+                </effect>
+              </effect>
+            </layer>
+            <layer pass="0" class="SimpleMarker" locked="0">
+              <prop k="angle" v="90"/>
+              <prop k="color" v="255,0,0,255"/>
+              <prop k="color_border_dd_active" v="1"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_field" v=""/>
+              <prop k="color_border_dd_useexpr" v="1"/>
+              <prop k="horizontal_anchor_point" v="1"/>
+              <prop k="name" v="line"/>
+              <prop k="offset" v="-1.2,0"/>
               <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="offset_unit" v="MM"/>
               <prop k="outline_color" v="0,0,0,255"/>
@@ -8875,7 +9109,7 @@
               <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="outline_width_unit" v="MM"/>
               <prop k="scale_method" v="area"/>
-              <prop k="size" v="4"/>
+              <prop k="size" v="2"/>
               <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="size_unit" v="MM"/>
               <prop k="vertical_anchor_point" v="1"/>
@@ -8891,22 +9125,22 @@
             <layer pass="0" class="SimpleMarker" locked="0">
               <prop k="angle" v="0"/>
               <prop k="color" v="255,0,0,255"/>
-              <prop k="color_dd_active" v="1"/>
-              <prop k="color_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
-              <prop k="color_dd_field" v=""/>
-              <prop k="color_dd_useexpr" v="1"/>
+              <prop k="color_border_dd_active" v="1"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_field" v=""/>
+              <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
-              <prop k="name" v="equilateral_triangle"/>
+              <prop k="name" v="line"/>
               <prop k="offset" v="0,0"/>
               <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="offset_unit" v="MM"/>
               <prop k="outline_color" v="0,0,0,255"/>
-              <prop k="outline_style" v="no"/>
-              <prop k="outline_width" v="0"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.3"/>
               <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="outline_width_unit" v="MM"/>
               <prop k="scale_method" v="area"/>
-              <prop k="size" v="3.7"/>
+              <prop k="size" v="4"/>
               <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="size_unit" v="MM"/>
               <prop k="vertical_anchor_point" v="1"/>
@@ -8939,7 +9173,7 @@
               <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="outline_width_unit" v="MM"/>
               <prop k="scale_method" v="area"/>
-              <prop k="size" v="3"/>
+              <prop k="size" v="4"/>
               <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="size_unit" v="MM"/>
               <prop k="vertical_anchor_point" v="1"/>
@@ -8955,53 +9189,22 @@
             <layer pass="0" class="SimpleMarker" locked="0">
               <prop k="angle" v="0"/>
               <prop k="color" v="255,0,0,255"/>
-              <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
-              <prop k="color_border_dd_field" v=""/>
-              <prop k="color_border_dd_useexpr" v="1"/>
+              <prop k="color_dd_active" v="1"/>
+              <prop k="color_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_dd_field" v=""/>
+              <prop k="color_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
-              <prop k="name" v="line"/>
-              <prop k="offset" v="0.5,0"/>
+              <prop k="name" v="equilateral_triangle"/>
+              <prop k="offset" v="0,0"/>
               <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="offset_unit" v="MM"/>
               <prop k="outline_color" v="0,0,0,255"/>
-              <prop k="outline_style" v="solid"/>
-              <prop k="outline_width" v="0.35"/>
+              <prop k="outline_style" v="no"/>
+              <prop k="outline_width" v="0"/>
               <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="outline_width_unit" v="MM"/>
               <prop k="scale_method" v="area"/>
-              <prop k="size" v="2"/>
-              <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="size_unit" v="MM"/>
-              <prop k="vertical_anchor_point" v="1"/>
-              <effect enabled="0" type="effectStack">
-                <effect type="drawSource">
-                  <prop k="blend_mode" v="0"/>
-                  <prop k="draw_mode" v="2"/>
-                  <prop k="enabled" v="1"/>
-                  <prop k="transparency" v="0"/>
-                </effect>
-              </effect>
-            </layer>
-            <layer pass="0" class="SimpleMarker" locked="0">
-              <prop k="angle" v="0"/>
-              <prop k="color" v="255,0,0,255"/>
-              <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
-              <prop k="color_border_dd_field" v=""/>
-              <prop k="color_border_dd_useexpr" v="1"/>
-              <prop k="horizontal_anchor_point" v="1"/>
-              <prop k="name" v="line"/>
-              <prop k="offset" v="-0.5,0"/>
-              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="offset_unit" v="MM"/>
-              <prop k="outline_color" v="0,0,0,255"/>
-              <prop k="outline_style" v="solid"/>
-              <prop k="outline_width" v="0.35"/>
-              <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="outline_width_unit" v="MM"/>
-              <prop k="scale_method" v="area"/>
-              <prop k="size" v="2"/>
+              <prop k="size" v="3.7"/>
               <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="size_unit" v="MM"/>
               <prop k="vertical_anchor_point" v="1"/>
@@ -9034,6 +9237,70 @@
               <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="outline_width_unit" v="MM"/>
               <prop k="scale_method" v="area"/>
+              <prop k="size" v="4"/>
+              <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="size_unit" v="MM"/>
+              <prop k="vertical_anchor_point" v="1"/>
+              <effect enabled="0" type="effectStack">
+                <effect type="drawSource">
+                  <prop k="blend_mode" v="0"/>
+                  <prop k="draw_mode" v="2"/>
+                  <prop k="enabled" v="1"/>
+                  <prop k="transparency" v="0"/>
+                </effect>
+              </effect>
+            </layer>
+            <layer pass="0" class="SimpleMarker" locked="0">
+              <prop k="angle" v="0"/>
+              <prop k="color" v="255,0,0,255"/>
+              <prop k="color_dd_active" v="1"/>
+              <prop k="color_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_dd_field" v=""/>
+              <prop k="color_dd_useexpr" v="1"/>
+              <prop k="horizontal_anchor_point" v="1"/>
+              <prop k="name" v="equilateral_triangle"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="0,0,0,255"/>
+              <prop k="outline_style" v="no"/>
+              <prop k="outline_width" v="0"/>
+              <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="scale_method" v="area"/>
+              <prop k="size" v="3.7"/>
+              <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="size_unit" v="MM"/>
+              <prop k="vertical_anchor_point" v="1"/>
+              <effect enabled="0" type="effectStack">
+                <effect type="drawSource">
+                  <prop k="blend_mode" v="0"/>
+                  <prop k="draw_mode" v="2"/>
+                  <prop k="enabled" v="1"/>
+                  <prop k="transparency" v="0"/>
+                </effect>
+              </effect>
+            </layer>
+          </symbol>
+          <symbol alpha="1" clip_to_extent="1" type="marker" name="8">
+            <layer pass="0" class="SimpleMarker" locked="0">
+              <prop k="angle" v="0"/>
+              <prop k="color" v="255,255,255,255"/>
+              <prop k="color_border_dd_active" v="1"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_field" v=""/>
+              <prop k="color_border_dd_useexpr" v="1"/>
+              <prop k="horizontal_anchor_point" v="1"/>
+              <prop k="name" v="circle"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="0,0,0,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.35"/>
+              <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="scale_method" v="area"/>
               <prop k="size" v="3"/>
               <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="size_unit" v="MM"/>
@@ -9110,101 +9377,6 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="marker" name="8">
-            <layer pass="0" class="SimpleMarker" locked="0">
-              <prop k="angle" v="0"/>
-              <prop k="color" v="255,255,255,255"/>
-              <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
-              <prop k="color_border_dd_field" v=""/>
-              <prop k="color_border_dd_useexpr" v="1"/>
-              <prop k="horizontal_anchor_point" v="1"/>
-              <prop k="name" v="circle"/>
-              <prop k="offset" v="0,0"/>
-              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="offset_unit" v="MM"/>
-              <prop k="outline_color" v="0,0,0,255"/>
-              <prop k="outline_style" v="solid"/>
-              <prop k="outline_width" v="0.3"/>
-              <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="outline_width_unit" v="MM"/>
-              <prop k="scale_method" v="area"/>
-              <prop k="size" v="1.5"/>
-              <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="size_unit" v="MM"/>
-              <prop k="vertical_anchor_point" v="1"/>
-              <effect enabled="0" type="effectStack">
-                <effect type="drawSource">
-                  <prop k="blend_mode" v="0"/>
-                  <prop k="draw_mode" v="2"/>
-                  <prop k="enabled" v="1"/>
-                  <prop k="transparency" v="0"/>
-                </effect>
-              </effect>
-            </layer>
-            <layer pass="0" class="SimpleMarker" locked="0">
-              <prop k="angle" v="0"/>
-              <prop k="color" v="255,0,0,255"/>
-              <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
-              <prop k="color_border_dd_field" v=""/>
-              <prop k="color_border_dd_useexpr" v="1"/>
-              <prop k="horizontal_anchor_point" v="1"/>
-              <prop k="name" v="line"/>
-              <prop k="offset" v="0.25,0"/>
-              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="offset_unit" v="MM"/>
-              <prop k="outline_color" v="0,0,0,255"/>
-              <prop k="outline_style" v="solid"/>
-              <prop k="outline_width" v="0.3"/>
-              <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="outline_width_unit" v="MM"/>
-              <prop k="scale_method" v="area"/>
-              <prop k="size" v="1"/>
-              <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="size_unit" v="MM"/>
-              <prop k="vertical_anchor_point" v="1"/>
-              <effect enabled="0" type="effectStack">
-                <effect type="drawSource">
-                  <prop k="blend_mode" v="0"/>
-                  <prop k="draw_mode" v="2"/>
-                  <prop k="enabled" v="1"/>
-                  <prop k="transparency" v="0"/>
-                </effect>
-              </effect>
-            </layer>
-            <layer pass="0" class="SimpleMarker" locked="0">
-              <prop k="angle" v="0"/>
-              <prop k="color" v="255,0,0,255"/>
-              <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
-              <prop k="color_border_dd_field" v=""/>
-              <prop k="color_border_dd_useexpr" v="1"/>
-              <prop k="horizontal_anchor_point" v="1"/>
-              <prop k="name" v="line"/>
-              <prop k="offset" v="-0.25,0"/>
-              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="offset_unit" v="MM"/>
-              <prop k="outline_color" v="0,0,0,255"/>
-              <prop k="outline_style" v="solid"/>
-              <prop k="outline_width" v="0.3"/>
-              <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="outline_width_unit" v="MM"/>
-              <prop k="scale_method" v="area"/>
-              <prop k="size" v="1"/>
-              <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="size_unit" v="MM"/>
-              <prop k="vertical_anchor_point" v="1"/>
-              <effect enabled="0" type="effectStack">
-                <effect type="drawSource">
-                  <prop k="blend_mode" v="0"/>
-                  <prop k="draw_mode" v="2"/>
-                  <prop k="enabled" v="1"/>
-                  <prop k="transparency" v="0"/>
-                </effect>
-              </effect>
-            </layer>
-          </symbol>
           <symbol alpha="1" clip_to_extent="1" type="marker" name="9">
             <layer pass="0" class="SimpleMarker" locked="0">
               <prop k="angle" v="0"/>
@@ -9220,11 +9392,11 @@
               <prop k="offset_unit" v="MM"/>
               <prop k="outline_color" v="0,0,0,255"/>
               <prop k="outline_style" v="solid"/>
-              <prop k="outline_width" v="0.3"/>
+              <prop k="outline_width" v="0.35"/>
               <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="outline_width_unit" v="MM"/>
               <prop k="scale_method" v="area"/>
-              <prop k="size" v="1.5"/>
+              <prop k="size" v="3"/>
               <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="size_unit" v="MM"/>
               <prop k="vertical_anchor_point" v="1"/>
@@ -9246,16 +9418,16 @@
               <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
               <prop k="name" v="line"/>
-              <prop k="offset" v="0.25,0"/>
+              <prop k="offset" v="0.5,0"/>
               <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="offset_unit" v="MM"/>
               <prop k="outline_color" v="0,0,0,255"/>
               <prop k="outline_style" v="solid"/>
-              <prop k="outline_width" v="0.3"/>
+              <prop k="outline_width" v="0.35"/>
               <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="outline_width_unit" v="MM"/>
               <prop k="scale_method" v="area"/>
-              <prop k="size" v="1"/>
+              <prop k="size" v="2"/>
               <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="size_unit" v="MM"/>
               <prop k="vertical_anchor_point" v="1"/>
@@ -9277,16 +9449,16 @@
               <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
               <prop k="name" v="line"/>
-              <prop k="offset" v="-0.25,0"/>
+              <prop k="offset" v="-0.5,0"/>
               <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="offset_unit" v="MM"/>
               <prop k="outline_color" v="0,0,0,255"/>
               <prop k="outline_style" v="solid"/>
-              <prop k="outline_width" v="0.3"/>
+              <prop k="outline_width" v="0.35"/>
               <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="outline_width_unit" v="MM"/>
               <prop k="scale_method" v="area"/>
-              <prop k="size" v="1"/>
+              <prop k="size" v="2"/>
               <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="size_unit" v="MM"/>
               <prop k="vertical_anchor_point" v="1"/>
@@ -9345,7 +9517,7 @@
         <property key="labeling/fitInPolygonOnly" value="false"/>
         <property key="labeling/fontBold" value="false"/>
         <property key="labeling/fontCapitals" value="0"/>
-        <property key="labeling/fontFamily" value="Cantarell"/>
+        <property key="labeling/fontFamily" value="MS Shell Dlg 2"/>
         <property key="labeling/fontItalic" value="false"/>
         <property key="labeling/fontLetterSpacing" value="0"/>
         <property key="labeling/fontLimitPixelSize" value="false"/>
@@ -9374,14 +9546,16 @@
         <property key="labeling/minFeatureSize" value="0"/>
         <property key="labeling/multilineAlign" value="0"/>
         <property key="labeling/multilineHeight" value="1"/>
-        <property key="labeling/namedStyle" value="Regular"/>
+        <property key="labeling/namedStyle" value="Normal"/>
         <property key="labeling/obstacle" value="true"/>
         <property key="labeling/obstacleFactor" value="1"/>
         <property key="labeling/obstacleType" value="0"/>
+        <property key="labeling/offsetType" value="0"/>
         <property key="labeling/placeDirectionSymbol" value="0"/>
         <property key="labeling/placement" value="0"/>
         <property key="labeling/placementFlags" value="0"/>
         <property key="labeling/plussign" value="false"/>
+        <property key="labeling/predefinedPositionOrder" value="TR,TL,BR,BL,R,L,TSR,BSR"/>
         <property key="labeling/preserveRotation" value="true"/>
         <property key="labeling/previewBkgrdColor" value="#ffffff"/>
         <property key="labeling/priority" value="5"/>
@@ -9489,7 +9663,7 @@
         <selectedonly on=""/>
       </labelattributes>
       <SingleCategoryDiagramRenderer diagramType="Pie">
-        <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="5000" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="1" enabled="0" height="15" sizeType="MM" minScaleDenominator="-4.65661e-10">
+        <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="5000" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="1" enabled="0" height="15" sizeType="MM" minScaleDenominator="0">
           <fontProperties description="Cantarell,11,-1,5,50,0,0,0,0,0" style=""/>
           <attribute field="" color="#000000" label=""/>
         </DiagramCategory>
@@ -9508,7 +9682,6 @@
         <alias field="contract_section" index="20" name=""/>
         <alias field="cover_material" index="6" name=""/>
         <alias field="cover_shape" index="2" name=""/>
-        <alias field="dataowner" index="14" name=""/>
         <alias field="defects" index="57" name=""/>
         <alias field="depth" index="39" name=""/>
         <alias field="diameter" index="3" name=""/>
@@ -9535,7 +9708,6 @@
         <alias field="material" index="44" name=""/>
         <alias field="obj_id" index="0" name=""/>
         <alias field="positional_accuracy" index="7" name=""/>
-        <alias field="provider" index="15" name=""/>
         <alias field="records" index="25" name=""/>
         <alias field="relevance" index="53" name=""/>
         <alias field="remark" index="11" name=""/>
@@ -9558,11 +9730,9 @@
         <alias field="venting" index="9" name=""/>
         <alias field="waterlevel_hydraulic" index="55" name=""/>
         <alias field="watertightness" index="65" name=""/>
-        <alias field="wn_dataowner" index="72" name=""/>
         <alias field="wn_identifier" index="69" name=""/>
         <alias field="wn_last_modification" index="71" name=""/>
         <alias field="wn_obj_id" index="66" name=""/>
-        <alias field="wn_provider" index="73" name=""/>
         <alias field="wn_remark" index="70" name=""/>
         <alias field="ws_identifier" index="18" name=""/>
         <alias field="ws_obj_id" index="17" name=""/>
@@ -9596,7 +9766,7 @@
           <attributeEditorField index="27" name="renovation_necessity"/>
           <attributeEditorField index="5" name="level"/>
           <attributeEditorField index="7" name="positional_accuracy"/>
-          <attributeEditorField index="14" name="dataowner"/>
+          <attributeEditorField index="-1" name="dataowner"/>
           <attributeEditorField index="31" name="status"/>
           <attributeEditorField index="9" name="venting"/>
           <attributeEditorField index="4" name="fastening"/>
@@ -9611,8 +9781,8 @@
           <attributeEditorField index="8" name="sludge_bucket"/>
           <attributeEditorField index="11" name="remark"/>
           <attributeEditorField index="12" name="renovation_demand"/>
-          <attributeEditorField index="14" name="dataowner"/>
-          <attributeEditorField index="15" name="provider"/>
+          <attributeEditorField index="-1" name="dataowner"/>
+          <attributeEditorField index="-1" name="provider"/>
         </attributeEditorContainer>
         <attributeEditorContainer name="Wastewater Structure">
           <attributeEditorField index="17" name="ws_obj_id"/>
@@ -9682,8 +9852,8 @@
           <attributeEditorField index="69" name="wn_identifier"/>
           <attributeEditorField index="70" name="wn_remark"/>
           <attributeEditorField index="71" name="wn_last_modification"/>
-          <attributeEditorField index="72" name="wn_dataowner"/>
-          <attributeEditorField index="73" name="wn_provider"/>
+          <attributeEditorField index="-1" name="wn_dataowner"/>
+          <attributeEditorField index="-1" name="wn_provider"/>
         </attributeEditorContainer>
         <attributeEditorContainer name="Covers">
           <attributeEditorRelation relation="vw_cover20150507162234308_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id" name="vw_cover20150507162234308_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id"/>
@@ -9775,11 +9945,11 @@
         <edittype widgetv2type="DateTime" name="last_modification">
           <widgetv2config fieldEditable="1" calendar_popup="0" allow_null="0" display_format="yyyy-MM-dd" field_format="yyyy-MM-dd" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="UniqueValues" name="dataowner">
-          <widgetv2config fieldEditable="1" labelOnTop="0" Editable="1"/>
+        <edittype widgetv2type="TextEdit" name="fk_dataowner">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="UniqueValues" name="provider">
-          <widgetv2config fieldEditable="1" labelOnTop="0" Editable="1"/>
+        <edittype widgetv2type="TextEdit" name="fk_provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="ValueMap" name="ws_type">
           <widgetv2config fieldEditable="1" labelOnTop="0">
@@ -9846,11 +10016,11 @@
         <edittype widgetv2type="Range" name="year_of_replacement">
           <widgetv2config AllowNull="1" fieldEditable="1" Step="1" Style="SpinBox" labelOnTop="0" Min="1900" Max="2200"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="fk_owner">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="RelationReference" name="fk_owner">
+          <widgetv2config OrderByValue="0" fieldEditable="1" ShowForm="0" Relation="vw_qgep_cover_fk_owner_od_organisation20160212172933583_obj_id" ReadOnly="0" MapIdentification="0" labelOnTop="0" AllowNULL="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="fk_operator">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="RelationReference" name="fk_operator">
+          <widgetv2config OrderByValue="0" fieldEditable="1" ShowForm="0" Relation="vw_qgep_cover_fk_operator_od_organisation20160212172933583_obj_id" ReadOnly="0" MapIdentification="0" labelOnTop="0" AllowNULL="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="_label">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -9954,15 +10124,15 @@
         <edittype widgetv2type="TextEdit" name="wn_last_modification">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="wn_dataowner">
+        <edittype widgetv2type="TextEdit" name="wn_fk_dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="wn_provider">
+        <edittype widgetv2type="TextEdit" name="wn_fk_provider">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
     </maplayer>
-    <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Line" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
+    <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Line" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>vw_qgep_reach</id>
       <datasource>service='pg_qgep' key='"obj_id"' srid=21781 type=LineString table="qgep"."vw_qgep_reach" (progression_geometry) sql=</datasource>
       <shortname></shortname>
@@ -10133,11 +10303,11 @@
         <edittype widgetv2type="TextEdit" name="year_of_replacement">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="fk_owner">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="RelationReference" name="fk_owner">
+          <widgetv2config OrderByValue="0" fieldEditable="1" ShowForm="0" Relation="vw_qgep_reach_fk_owner_od_organisation20160212172933583_obj_id" ReadOnly="0" MapIdentification="0" labelOnTop="0" AllowNULL="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="fk_operator">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="RelationReference" name="fk_operator">
+          <widgetv2config OrderByValue="0" fieldEditable="1" ShowForm="0" Relation="vw_qgep_reach_fk_operator_od_organisation20160212172933583_obj_id" ReadOnly="0" MapIdentification="0" labelOnTop="0" AllowNULL="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="identifier">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -10148,11 +10318,11 @@
         <edittype widgetv2type="DateTime" name="last_modification">
           <widgetv2config fieldEditable="1" calendar_popup="0" allow_null="0" display_format="yyyy-MM-dd" field_format="yyyy-MM-dd" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="UniqueValues" name="dataowner">
-          <widgetv2config fieldEditable="1" labelOnTop="0" Editable="1"/>
+        <edittype widgetv2type="TextEdit" name="fk_dataowner">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="UniqueValues" name="provider">
-          <widgetv2config fieldEditable="1" labelOnTop="0" Editable="1"/>
+        <edittype widgetv2type="TextEdit" name="fk_provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="RelationReference" name="fk_wastewater_structure">
           <widgetv2config OrderByValue="0" fieldEditable="1" ShowForm="1" Relation="reach-fk_wastewater_structure-channel" ReadOnly="0" MapIdentification="0" labelOnTop="0" AllowNULL="0"/>
@@ -10181,11 +10351,11 @@
         <edittype widgetv2type="DateTime" name="rp_from_last_modification">
           <widgetv2config fieldEditable="1" calendar_popup="0" allow_null="1" display_format="yyyy-MM-dd" field_format="yyyy-MM-dd" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="UniqueValues" name="rp_from_dataowner">
-          <widgetv2config fieldEditable="1" labelOnTop="0" Editable="1"/>
+        <edittype widgetv2type="TextEdit" name="rp_from_fk_dataowner">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="UniqueValues" name="rp_from_provider">
-          <widgetv2config fieldEditable="1" labelOnTop="0" Editable="1"/>
+        <edittype widgetv2type="TextEdit" name="rp_from_fk_provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="rp_from_fk_wastewater_networkelement">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -10214,11 +10384,11 @@
         <edittype widgetv2type="DateTime" name="rp_to_last_modification">
           <widgetv2config fieldEditable="1" calendar_popup="0" allow_null="1" display_format="yyyy-MM-dd" field_format="yyyy-MM-dd" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="UniqueValues" name="rp_to_dataowner">
-          <widgetv2config fieldEditable="1" labelOnTop="0" Editable="1"/>
+        <edittype widgetv2type="TextEdit" name="rp_to_fk_dataowner">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="UniqueValues" name="rp_to_provider">
-          <widgetv2config fieldEditable="1" labelOnTop="0" Editable="1"/>
+        <edittype widgetv2type="TextEdit" name="rp_to_fk_provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="rp_to_fk_wastewater_networkelement">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -10967,7 +11137,7 @@
         <property key="labeling/fitInPolygonOnly" value="false"/>
         <property key="labeling/fontBold" value="false"/>
         <property key="labeling/fontCapitals" value="0"/>
-        <property key="labeling/fontFamily" value="Cantarell"/>
+        <property key="labeling/fontFamily" value="MS Shell Dlg 2"/>
         <property key="labeling/fontItalic" value="false"/>
         <property key="labeling/fontLetterSpacing" value="0"/>
         <property key="labeling/fontLimitPixelSize" value="false"/>
@@ -10996,14 +11166,16 @@
         <property key="labeling/minFeatureSize" value="12"/>
         <property key="labeling/multilineAlign" value="0"/>
         <property key="labeling/multilineHeight" value="1"/>
-        <property key="labeling/namedStyle" value="Regular"/>
+        <property key="labeling/namedStyle" value="Normal"/>
         <property key="labeling/obstacle" value="true"/>
         <property key="labeling/obstacleFactor" value="1"/>
         <property key="labeling/obstacleType" value="0"/>
+        <property key="labeling/offsetType" value="0"/>
         <property key="labeling/placeDirectionSymbol" value="0"/>
         <property key="labeling/placement" value="2"/>
         <property key="labeling/placementFlags" value="10"/>
         <property key="labeling/plussign" value="false"/>
+        <property key="labeling/predefinedPositionOrder" value="TR,TL,BR,BL,R,L,TSR,BSR"/>
         <property key="labeling/preserveRotation" value="true"/>
         <property key="labeling/previewBkgrdColor" value="#ffffff"/>
         <property key="labeling/priority" value="5"/>
@@ -11081,6 +11253,7 @@
         <property key="labeling/wrapChar" value=""/>
         <property key="labeling/xOffset" value="0"/>
         <property key="labeling/yOffset" value="0"/>
+        <property key="labeling/zIndex" value="0"/>
         <property key="variableNames" value="_fields_"/>
         <property key="variableValues" value=""/>
       </customproperties>
@@ -11110,7 +11283,7 @@
         <selectedonly on=""/>
       </labelattributes>
       <SingleCategoryDiagramRenderer diagramType="Pie">
-        <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" sizeType="MM" minScaleDenominator="-4.65661e-10">
+        <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" sizeType="MM" minScaleDenominator="0">
           <fontProperties description="Cantarell,11,-1,5,50,0,0,0,0,0" style=""/>
           <attribute field="" color="#000000" label=""/>
         </DiagramCategory>
@@ -11124,7 +11297,6 @@
         <alias field="coefficient_of_friction" index="3" name=""/>
         <alias field="connection_type" index="21" name=""/>
         <alias field="contract_section" index="29" name=""/>
-        <alias field="dataowner" index="49" name=""/>
         <alias field="elevation_determination" index="4" name=""/>
         <alias field="financing" index="30" name=""/>
         <alias field="fk_operator" index="45" name=""/>
@@ -11146,7 +11318,6 @@
         <alias field="obj_id" index="0" name=""/>
         <alias field="pipe_length" index="24" name=""/>
         <alias field="progression_3d_geometry" index="10" name=""/>
-        <alias field="provider" index="50" name=""/>
         <alias field="records" index="34" name=""/>
         <alias field="reliner_material" index="11" name=""/>
         <alias field="reliner_nominal_size" index="12" name=""/>
@@ -11156,7 +11327,6 @@
         <alias field="renovation_necessity" index="35" name=""/>
         <alias field="replacement_value" index="36" name=""/>
         <alias field="ring_stiffness" index="15" name=""/>
-        <alias field="rp_from_dataowner" index="60" name=""/>
         <alias field="rp_from_elevation_accuracy" index="53" name=""/>
         <alias field="rp_from_fk_wastewater_networkelement" index="62" name=""/>
         <alias field="rp_from_identifier" index="54" name=""/>
@@ -11165,9 +11335,7 @@
         <alias field="rp_from_obj_id" index="52" name=""/>
         <alias field="rp_from_outlet_shape" index="56" name=""/>
         <alias field="rp_from_position_of_connection" index="57" name=""/>
-        <alias field="rp_from_provider" index="61" name=""/>
         <alias field="rp_from_remark" index="58" name=""/>
-        <alias field="rp_to_dataowner" index="71" name=""/>
         <alias field="rp_to_elevation_accuracy" index="64" name=""/>
         <alias field="rp_to_fk_wastewater_networkelement" index="73" name=""/>
         <alias field="rp_to_identifier" index="65" name=""/>
@@ -11176,7 +11344,6 @@
         <alias field="rp_to_obj_id" index="63" name=""/>
         <alias field="rp_to_outlet_shape" index="67" name=""/>
         <alias field="rp_to_position_of_connection" index="68" name=""/>
-        <alias field="rp_to_provider" index="72" name=""/>
         <alias field="rp_to_remark" index="69" name=""/>
         <alias field="rv_base_year" index="37" name=""/>
         <alias field="rv_construction_type" index="38" name=""/>
@@ -11200,7 +11367,23 @@
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
       <editforminitfilepath>.</editforminitfilepath>
-      <editforminitcode><![CDATA[]]></editforminitcode>
+      <editforminitcode><![CDATA[# -*- coding: utf-8 -*-
+"""
+QGIS forms can have a Python function that is called when the form is
+opened.
+
+Use this function to add extra logic to your forms.
+
+Enter the name of the function in the "Python Init function"
+field.
+An example follows:
+"""
+from PyQt4.QtGui import QWidget
+
+def my_form_open(dialog, layer, feature):
+	geom = feature.geometry()
+	control = dialog.findChild(QWidget, "MyLineEdit")
+]]></editforminitcode>
       <featformsuppress>0</featformsuppress>
       <editorlayout>tablayout</editorlayout>
       <attributeEditorForm>
@@ -11210,7 +11393,7 @@
           <attributeEditorField index="9" name="material"/>
           <attributeEditorField index="6" name="inside_coating"/>
           <attributeEditorField index="18" name="fk_pipe_profile"/>
-          <attributeEditorField index="49" name="dataowner"/>
+          <attributeEditorField index="-1" name="dataowner"/>
           <attributeEditorField index="55" name="rp_from_level"/>
           <attributeEditorField index="66" name="rp_to_level"/>
           <attributeEditorField index="5" name="horizontal_positioning"/>
@@ -11246,8 +11429,8 @@
           <attributeEditorField index="46" name="identifier"/>
           <attributeEditorField index="47" name="remark"/>
           <attributeEditorField index="48" name="last_modification"/>
-          <attributeEditorField index="49" name="dataowner"/>
-          <attributeEditorField index="50" name="provider"/>
+          <attributeEditorField index="-1" name="dataowner"/>
+          <attributeEditorField index="-1" name="provider"/>
         </attributeEditorContainer>
         <attributeEditorContainer name="Channel">
           <attributeEditorField index="20" name="function_hierarchic"/>
@@ -11289,8 +11472,8 @@
             <attributeEditorField index="57" name="rp_from_position_of_connection"/>
             <attributeEditorField index="58" name="rp_from_remark"/>
             <attributeEditorField index="59" name="rp_from_last_modification"/>
-            <attributeEditorField index="60" name="rp_from_dataowner"/>
-            <attributeEditorField index="61" name="rp_from_provider"/>
+            <attributeEditorField index="-1" name="rp_from_dataowner"/>
+            <attributeEditorField index="-1" name="rp_from_provider"/>
             <attributeEditorField index="62" name="rp_from_fk_wastewater_networkelement"/>
           </attributeEditorContainer>
           <attributeEditorContainer name="To">
@@ -11302,8 +11485,8 @@
             <attributeEditorField index="68" name="rp_to_position_of_connection"/>
             <attributeEditorField index="69" name="rp_to_remark"/>
             <attributeEditorField index="70" name="rp_to_last_modification"/>
-            <attributeEditorField index="71" name="rp_to_dataowner"/>
-            <attributeEditorField index="72" name="rp_to_provider"/>
+            <attributeEditorField index="-1" name="rp_to_dataowner"/>
+            <attributeEditorField index="-1" name="rp_to_provider"/>
             <attributeEditorField index="73" name="rp_to_fk_wastewater_networkelement"/>
           </attributeEditorContainer>
         </attributeEditorContainer>
@@ -11449,11 +11632,11 @@
         <edittype widgetv2type="TextEdit" name="year_of_replacement">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="fk_owner">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="RelationReference" name="fk_owner">
+          <widgetv2config OrderByValue="0" fieldEditable="1" ShowForm="0" Relation="vw_qgep_reach_fk_owner_od_organisation20160212172933583_obj_id" ReadOnly="0" MapIdentification="0" labelOnTop="0" AllowNULL="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="fk_operator">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="RelationReference" name="fk_operator">
+          <widgetv2config OrderByValue="0" fieldEditable="1" ShowForm="0" Relation="vw_qgep_reach_fk_operator_od_organisation20160212172933583_obj_id" ReadOnly="0" MapIdentification="0" labelOnTop="0" AllowNULL="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="identifier">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -11464,11 +11647,11 @@
         <edittype widgetv2type="DateTime" name="last_modification">
           <widgetv2config fieldEditable="1" calendar_popup="0" allow_null="0" display_format="yyyy-MM-dd" field_format="yyyy-MM-dd" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="UniqueValues" name="dataowner">
-          <widgetv2config fieldEditable="1" labelOnTop="0" Editable="1"/>
+        <edittype widgetv2type="TextEdit" name="fk_dataowner">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="UniqueValues" name="provider">
-          <widgetv2config fieldEditable="1" labelOnTop="0" Editable="1"/>
+        <edittype widgetv2type="TextEdit" name="fk_provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="RelationReference" name="fk_wastewater_structure">
           <widgetv2config OrderByValue="0" fieldEditable="1" ShowForm="1" Relation="reach-fk_wastewater_structure-channel" ReadOnly="0" MapIdentification="0" labelOnTop="0" AllowNULL="0"/>
@@ -11497,11 +11680,11 @@
         <edittype widgetv2type="DateTime" name="rp_from_last_modification">
           <widgetv2config fieldEditable="1" calendar_popup="0" allow_null="1" display_format="yyyy-MM-dd" field_format="yyyy-MM-dd" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="UniqueValues" name="rp_from_dataowner">
-          <widgetv2config fieldEditable="1" labelOnTop="0" Editable="1"/>
+        <edittype widgetv2type="TextEdit" name="rp_from_fk_dataowner">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="UniqueValues" name="rp_from_provider">
-          <widgetv2config fieldEditable="1" labelOnTop="0" Editable="1"/>
+        <edittype widgetv2type="TextEdit" name="rp_from_fk_provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="rp_from_fk_wastewater_networkelement">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -11530,11 +11713,11 @@
         <edittype widgetv2type="DateTime" name="rp_to_last_modification">
           <widgetv2config fieldEditable="1" calendar_popup="0" allow_null="1" display_format="yyyy-MM-dd" field_format="yyyy-MM-dd" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="UniqueValues" name="rp_to_dataowner">
-          <widgetv2config fieldEditable="1" labelOnTop="0" Editable="1"/>
+        <edittype widgetv2type="TextEdit" name="rp_to_fk_dataowner">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="UniqueValues" name="rp_to_provider">
-          <widgetv2config fieldEditable="1" labelOnTop="0" Editable="1"/>
+        <edittype widgetv2type="TextEdit" name="rp_to_fk_provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="rp_to_fk_wastewater_networkelement">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -11596,10 +11779,10 @@
         <edittype widgetv2type="TextEdit" name="remark">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="dataowner">
+        <edittype widgetv2type="TextEdit" name="fk_dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="provider">
+        <edittype widgetv2type="TextEdit" name="fk_provider">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="last_modification">
@@ -11711,10 +11894,10 @@
         <edittype widgetv2type="TextEdit" name="remark">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="dataowner">
+        <edittype widgetv2type="TextEdit" name="fk_dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="provider">
+        <edittype widgetv2type="TextEdit" name="fk_provider">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="last_modification">
