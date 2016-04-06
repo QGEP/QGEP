@@ -1,6 +1,7 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis projectname="" version="2.13.0-Master">
+<qgis projectname="" version="2.15.0-Master">
   <title></title>
+  <autotransaction active="1"/>
   <layer-tree-group expanded="1" checked="Qt::PartiallyChecked" name="">
     <customproperties/>
     <layer-tree-layer expanded="0" checked="Qt::Checked" id="vw_qgep_cover" name="vw_qgep_cover">
