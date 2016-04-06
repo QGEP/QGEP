@@ -9745,7 +9745,7 @@
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions>
-        <actionsetting action="feature = QgsMapLayerRegistry.instance().mapLayer('od_wastewater_structure').getFeatures( QgsFeatureRequest().setFilterExpression( 'obj_id = \'{}\''.format( '[% &quot;ws_obj_id&quot; %]' ) ) ).next()&#xa;qgepplugin.ui.forms.digitizeDrainageChannel(feature.id(), 'od_wastewater_structure')" icon="" capture="0" type="1" name="Digitize Drainage Channel"/>
++        <actionsetting action="import qgepplugin&#xa;&#xa;feature = QgsMapLayerRegistry.instance().mapLayer('od_wastewater_structure').getFeatures( QgsFeatureRequest().setFilterExpression( 'obj_id = \'{}\''.format( '[% &quot;ws_obj_id&quot; %]' ) ) ).next()&#xa;qgepplugin.ui.forms.digitizeDrainageChannel(feature.id(), 'od_wastewater_structure')" icon="" capture="0" type="1" name="Digitize Drainage Channel"/>
         <actionsetting action="ws_lyr = QgsMapLayerRegistry.instance().mapLayer('od_wastewater_structure')&#xa;feature = ws_lyr.getFeatures( QgsFeatureRequest().setFilterExpression( 'obj_id = \'{}\''.format( '[% &quot;ws_obj_id&quot; %]' ) ) ).next()&#xa;ws_lyr.startEditing()&#xa;ws_lyr.setSelectedFeatures([feature.id()])&#xa;qgis.utils.iface.setActiveLayer(ws_lyr)&#xa;qgis.utils.iface.actionAddPart().trigger()" icon="" capture="0" type="1" name="Digitize"/>
       </attributeactions>
       <editform>$HOME</editform>
