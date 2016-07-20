@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis projectname="" version="2.99.0-Master">
+<qgis projectname="" version="2.16.0-Nødebo">
   <title></title>
   <autotransaction active="1"/>
   <evaluateDefaultValues active="1"/>
@@ -11,12 +11,12 @@
     <layer-tree-layer expanded="0" checked="Qt::Checked" id="vw_qgep_reach" name="vw_qgep_reach">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-group expanded="0" checked="Qt::Checked" name="Wastewater Structures">
+    <layer-tree-group expanded="1" checked="Qt::Checked" name="WastewaterStructures">
       <customproperties/>
       <layer-tree-layer expanded="1" checked="Qt::Checked" id="od_wastewater_structure" name="od_wastewater_structure">
         <customproperties/>
       </layer-tree-layer>
-      <layer-tree-group expanded="0" checked="Qt::Checked" name="Structure Parts">
+      <layer-tree-group expanded="0" checked="Qt::Checked" name="StructureParts">
         <customproperties/>
         <layer-tree-layer expanded="1" checked="Qt::Checked" id="vw_access_aid" name="vw_access_aid">
           <customproperties/>
@@ -50,15 +50,15 @@
         <customproperties/>
       </layer-tree-layer>
     </layer-tree-group>
-    <layer-tree-group expanded="0" checked="Qt::Checked" name="Value Lists">
+    <layer-tree-group expanded="1" checked="Qt::Checked" name="ValueLists">
       <customproperties/>
-      <layer-tree-group expanded="0" checked="Qt::Checked" name="Discharge Point">
+      <layer-tree-group expanded="1" checked="Qt::Checked" name="DischargePoint">
         <customproperties/>
         <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_discharge_point_relevance" name="Relevance">
           <customproperties/>
         </layer-tree-layer>
       </layer-tree-group>
-      <layer-tree-group expanded="0" checked="Qt::Checked" name="special structure">
+      <layer-tree-group expanded="1" checked="Qt::Checked" name="SpecialStructure">
         <customproperties/>
         <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_special_structure_bypass" name="Bypass">
           <customproperties/>
@@ -66,31 +66,31 @@
         <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_special_structure_function" name="Function">
           <customproperties/>
         </layer-tree-layer>
-        <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_special_structure_stormwater_tank_arrangement" name="Stormwater Tank Arrangement">
+        <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_special_structure_stormwater_tank_arrangement" name="StormwaterTankArrangement">
           <customproperties/>
         </layer-tree-layer>
       </layer-tree-group>
-      <layer-tree-group expanded="0" checked="Qt::Checked" name="VL Manhole">
+      <layer-tree-group expanded="1" checked="Qt::Checked" name="VLManhole">
         <customproperties/>
-        <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_manhole_material20151117174216343" name="MH Material">
+        <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_manhole_material20151117174216343" name="MHMaterial">
           <customproperties/>
         </layer-tree-layer>
-        <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_manhole_surface_inflow20151117174216393" name="MH Surface Inflow">
+        <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_manhole_surface_inflow20151117174216393" name="MHSurfaceInflow">
           <customproperties/>
         </layer-tree-layer>
-        <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_manhole_function" name="MH Function">
+        <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_manhole_function" name="MHFunction">
           <customproperties/>
         </layer-tree-layer>
       </layer-tree-group>
-      <layer-tree-group expanded="0" checked="Qt::Checked" name="VL Structure Part">
+      <layer-tree-group expanded="1" checked="Qt::Checked" name="VLStructurePart">
         <customproperties/>
-        <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_structure_part_renovation_demand" name="Renovation Demand">
+        <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_structure_part_renovation_demand" name="RenovationDemand">
           <customproperties/>
         </layer-tree-layer>
       </layer-tree-group>
-      <layer-tree-group expanded="0" checked="Qt::Checked" name="VL Cover">
+      <layer-tree-group expanded="1" checked="Qt::Checked" name="VLCover">
         <customproperties/>
-        <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_cover_positional_accuracy20151117153235900" name="C Positional Accuracy">
+        <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_cover_positional_accuracy20151117153235900" name="CPositionalAccuracy">
           <customproperties/>
         </layer-tree-layer>
         <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_cover_cover_shape" name="Shape">
@@ -99,29 +99,29 @@
         <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_cover_fastening" name="Fastening">
           <customproperties/>
         </layer-tree-layer>
-        <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_cover_sludge_bucket" name="Sludge Bucket">
+        <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_cover_sludge_bucket" name="SludgeBucket">
           <customproperties/>
         </layer-tree-layer>
         <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_cover_venting" name="Venting">
           <customproperties/>
         </layer-tree-layer>
-        <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_cover_material" name="C Material">
+        <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_cover_material" name="CMaterial">
           <customproperties/>
         </layer-tree-layer>
       </layer-tree-group>
-      <layer-tree-group expanded="0" checked="Qt::Checked" name="VL Backflow Prevention">
+      <layer-tree-group expanded="1" checked="Qt::Checked" name="VLBackflowPrevention">
         <customproperties/>
         <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_backflow_prevention_kind" name="vl_backflow_prevention_kind">
           <customproperties/>
         </layer-tree-layer>
       </layer-tree-group>
-      <layer-tree-group expanded="0" checked="Qt::Checked" name="VL Access Aid">
+      <layer-tree-group expanded="1" checked="Qt::Checked" name="VLAccessAid">
         <customproperties/>
         <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_access_aid_kind" name="vl_access_aid_kind">
           <customproperties/>
         </layer-tree-layer>
       </layer-tree-group>
-      <layer-tree-group expanded="0" checked="Qt::Checked" name="VL Maintenance Event">
+      <layer-tree-group expanded="1" checked="Qt::Checked" name="VLMaintenanceEvent">
         <customproperties/>
         <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_maintenance_event_kind" name="vl_maintenance_event_kind">
           <customproperties/>
@@ -130,7 +130,7 @@
           <customproperties/>
         </layer-tree-layer>
       </layer-tree-group>
-      <layer-tree-group expanded="0" checked="Qt::Checked" name="VL Reach Point">
+      <layer-tree-group expanded="1" checked="Qt::Checked" name="VLReachPoint">
         <customproperties/>
         <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_reach_point_elevation_accuracy" name="vl_reach_point_elevation_accuracy">
           <customproperties/>
@@ -139,7 +139,7 @@
           <customproperties/>
         </layer-tree-layer>
       </layer-tree-group>
-      <layer-tree-group expanded="0" checked="Qt::Checked" name="VL Reach">
+      <layer-tree-group expanded="1" checked="Qt::Checked" name="VLReach">
         <customproperties/>
         <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_reach_elevation_determination" name="vl_reach_elevation_determination">
           <customproperties/>
@@ -163,7 +163,7 @@
           <customproperties/>
         </layer-tree-layer>
       </layer-tree-group>
-      <layer-tree-group expanded="0" checked="Qt::Checked" name="VL Wastewater Structure">
+      <layer-tree-group expanded="1" checked="Qt::Checked" name="VLWastewaterStructure">
         <customproperties/>
         <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_wastewater_structure_accessibility" name="vl_wastewater_structure_accessibility">
           <customproperties/>
@@ -184,7 +184,7 @@
           <customproperties/>
         </layer-tree-layer>
       </layer-tree-group>
-      <layer-tree-group expanded="0" checked="Qt::Checked" name="VL Channel">
+      <layer-tree-group expanded="1" checked="Qt::Checked" name="VLChannel">
         <customproperties/>
         <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_channel_bedding_encasement" name="vl_channel_bedding_encasement">
           <customproperties/>
@@ -205,7 +205,7 @@
           <customproperties/>
         </layer-tree-layer>
       </layer-tree-group>
-      <layer-tree-group expanded="0" checked="Qt::Checked" name="Pipe Profile">
+      <layer-tree-group expanded="1" checked="Qt::Checked" name="PipeProfile">
         <customproperties/>
         <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_pipe_profile_profile_type" name="vl_pipe_profile_profile_type">
           <customproperties/>
@@ -230,7 +230,7 @@
         <customproperties/>
       </layer-tree-layer>
     </layer-tree-group>
-    <layer-tree-group expanded="0" checked="Qt::Checked" name="Cadastral Data">
+    <layer-tree-group expanded="0" checked="Qt::Checked" name="CadastralData">
       <customproperties/>
     </layer-tree-group>
   </layer-tree-group>
@@ -409,13 +409,13 @@
         <legendlayerfile isInOverview="0" layerid="vw_qgep_reach" visible="1"/>
       </filegroup>
     </legendlayer>
-    <legendgroup open="false" checked="Qt::Checked" name="Wastewater Structures">
+    <legendgroup open="true" checked="Qt::Checked" name="WastewaterStructures">
       <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="od_wastewater_structure" showFeatureCount="0">
         <filegroup open="true" hidden="false">
           <legendlayerfile isInOverview="0" layerid="od_wastewater_structure" visible="1"/>
         </filegroup>
       </legendlayer>
-      <legendgroup open="false" checked="Qt::Checked" name="Structure Parts">
+      <legendgroup open="false" checked="Qt::Checked" name="StructureParts">
         <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="vw_access_aid" showFeatureCount="0">
           <filegroup open="true" hidden="false">
             <legendlayerfile isInOverview="0" layerid="vw_access_aid" visible="1"/>
@@ -468,15 +468,15 @@
         </filegroup>
       </legendlayer>
     </legendgroup>
-    <legendgroup open="false" checked="Qt::Checked" name="Value Lists">
-      <legendgroup open="false" checked="Qt::Checked" name="Discharge Point">
+    <legendgroup open="true" checked="Qt::Checked" name="ValueLists">
+      <legendgroup open="true" checked="Qt::Checked" name="DischargePoint">
         <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Relevance" showFeatureCount="0">
           <filegroup open="true" hidden="false">
             <legendlayerfile isInOverview="0" layerid="vl_discharge_point_relevance" visible="1"/>
           </filegroup>
         </legendlayer>
       </legendgroup>
-      <legendgroup open="false" checked="Qt::Checked" name="special structure">
+      <legendgroup open="true" checked="Qt::Checked" name="SpecialStructure">
         <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Bypass" showFeatureCount="0">
           <filegroup open="true" hidden="false">
             <legendlayerfile isInOverview="0" layerid="vl_special_structure_bypass" visible="1"/>
@@ -487,38 +487,38 @@
             <legendlayerfile isInOverview="0" layerid="vl_special_structure_function" visible="1"/>
           </filegroup>
         </legendlayer>
-        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Stormwater Tank Arrangement" showFeatureCount="0">
+        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="StormwaterTankArrangement" showFeatureCount="0">
           <filegroup open="true" hidden="false">
             <legendlayerfile isInOverview="0" layerid="vl_special_structure_stormwater_tank_arrangement" visible="1"/>
           </filegroup>
         </legendlayer>
       </legendgroup>
-      <legendgroup open="false" checked="Qt::Checked" name="VL Manhole">
-        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="MH Material" showFeatureCount="0">
+      <legendgroup open="true" checked="Qt::Checked" name="VLManhole">
+        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="MHMaterial" showFeatureCount="0">
           <filegroup open="true" hidden="false">
             <legendlayerfile isInOverview="0" layerid="vl_manhole_material20151117174216343" visible="1"/>
           </filegroup>
         </legendlayer>
-        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="MH Surface Inflow" showFeatureCount="0">
+        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="MHSurfaceInflow" showFeatureCount="0">
           <filegroup open="true" hidden="false">
             <legendlayerfile isInOverview="0" layerid="vl_manhole_surface_inflow20151117174216393" visible="1"/>
           </filegroup>
         </legendlayer>
-        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="MH Function" showFeatureCount="0">
+        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="MHFunction" showFeatureCount="0">
           <filegroup open="true" hidden="false">
             <legendlayerfile isInOverview="0" layerid="vl_manhole_function" visible="1"/>
           </filegroup>
         </legendlayer>
       </legendgroup>
-      <legendgroup open="false" checked="Qt::Checked" name="VL Structure Part">
-        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Renovation Demand" showFeatureCount="0">
+      <legendgroup open="true" checked="Qt::Checked" name="VLStructurePart">
+        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="RenovationDemand" showFeatureCount="0">
           <filegroup open="true" hidden="false">
             <legendlayerfile isInOverview="0" layerid="vl_structure_part_renovation_demand" visible="1"/>
           </filegroup>
         </legendlayer>
       </legendgroup>
-      <legendgroup open="false" checked="Qt::Checked" name="VL Cover">
-        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="C Positional Accuracy" showFeatureCount="0">
+      <legendgroup open="true" checked="Qt::Checked" name="VLCover">
+        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="CPositionalAccuracy" showFeatureCount="0">
           <filegroup open="true" hidden="false">
             <legendlayerfile isInOverview="0" layerid="vl_cover_positional_accuracy20151117153235900" visible="1"/>
           </filegroup>
@@ -533,7 +533,7 @@
             <legendlayerfile isInOverview="0" layerid="vl_cover_fastening" visible="1"/>
           </filegroup>
         </legendlayer>
-        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Sludge Bucket" showFeatureCount="0">
+        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="SludgeBucket" showFeatureCount="0">
           <filegroup open="true" hidden="false">
             <legendlayerfile isInOverview="0" layerid="vl_cover_sludge_bucket" visible="1"/>
           </filegroup>
@@ -543,27 +543,27 @@
             <legendlayerfile isInOverview="0" layerid="vl_cover_venting" visible="1"/>
           </filegroup>
         </legendlayer>
-        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="C Material" showFeatureCount="0">
+        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="CMaterial" showFeatureCount="0">
           <filegroup open="true" hidden="false">
             <legendlayerfile isInOverview="0" layerid="vl_cover_material" visible="1"/>
           </filegroup>
         </legendlayer>
       </legendgroup>
-      <legendgroup open="false" checked="Qt::Checked" name="VL Backflow Prevention">
+      <legendgroup open="true" checked="Qt::Checked" name="VLBackflowPrevention">
         <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="vl_backflow_prevention_kind" showFeatureCount="0">
           <filegroup open="true" hidden="false">
             <legendlayerfile isInOverview="0" layerid="vl_backflow_prevention_kind" visible="1"/>
           </filegroup>
         </legendlayer>
       </legendgroup>
-      <legendgroup open="false" checked="Qt::Checked" name="VL Access Aid">
+      <legendgroup open="true" checked="Qt::Checked" name="VLAccessAid">
         <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="vl_access_aid_kind" showFeatureCount="0">
           <filegroup open="true" hidden="false">
             <legendlayerfile isInOverview="0" layerid="vl_access_aid_kind" visible="1"/>
           </filegroup>
         </legendlayer>
       </legendgroup>
-      <legendgroup open="false" checked="Qt::Checked" name="VL Maintenance Event">
+      <legendgroup open="true" checked="Qt::Checked" name="VLMaintenanceEvent">
         <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="vl_maintenance_event_kind" showFeatureCount="0">
           <filegroup open="true" hidden="false">
             <legendlayerfile isInOverview="0" layerid="vl_maintenance_event_kind" visible="1"/>
@@ -575,7 +575,7 @@
           </filegroup>
         </legendlayer>
       </legendgroup>
-      <legendgroup open="false" checked="Qt::Checked" name="VL Reach Point">
+      <legendgroup open="true" checked="Qt::Checked" name="VLReachPoint">
         <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="vl_reach_point_elevation_accuracy" showFeatureCount="0">
           <filegroup open="true" hidden="false">
             <legendlayerfile isInOverview="0" layerid="vl_reach_point_elevation_accuracy" visible="1"/>
@@ -587,7 +587,7 @@
           </filegroup>
         </legendlayer>
       </legendgroup>
-      <legendgroup open="false" checked="Qt::Checked" name="VL Reach">
+      <legendgroup open="true" checked="Qt::Checked" name="VLReach">
         <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="vl_reach_elevation_determination" showFeatureCount="0">
           <filegroup open="true" hidden="false">
             <legendlayerfile isInOverview="0" layerid="vl_reach_elevation_determination" visible="1"/>
@@ -624,7 +624,7 @@
           </filegroup>
         </legendlayer>
       </legendgroup>
-      <legendgroup open="false" checked="Qt::Checked" name="VL Wastewater Structure">
+      <legendgroup open="true" checked="Qt::Checked" name="VLWastewaterStructure">
         <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="vl_wastewater_structure_accessibility" showFeatureCount="0">
           <filegroup open="true" hidden="false">
             <legendlayerfile isInOverview="0" layerid="vl_wastewater_structure_accessibility" visible="1"/>
@@ -656,7 +656,7 @@
           </filegroup>
         </legendlayer>
       </legendgroup>
-      <legendgroup open="false" checked="Qt::Checked" name="VL Channel">
+      <legendgroup open="true" checked="Qt::Checked" name="VLChannel">
         <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="vl_channel_bedding_encasement" showFeatureCount="0">
           <filegroup open="true" hidden="false">
             <legendlayerfile isInOverview="0" layerid="vl_channel_bedding_encasement" visible="1"/>
@@ -688,7 +688,7 @@
           </filegroup>
         </legendlayer>
       </legendgroup>
-      <legendgroup open="false" checked="Qt::Checked" name="Pipe Profile">
+      <legendgroup open="true" checked="Qt::Checked" name="PipeProfile">
         <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="vl_pipe_profile_profile_type" showFeatureCount="0">
           <filegroup open="true" hidden="false">
             <legendlayerfile isInOverview="0" layerid="vl_pipe_profile_profile_type" visible="1"/>
@@ -720,7 +720,7 @@
         </filegroup>
       </legendlayer>
     </legendgroup>
-    <legendgroup open="false" checked="Qt::Checked" name="Cadastral Data"/>
+    <legendgroup open="false" checked="Qt::Checked" name="CadastralData"/>
   </legend>
   <projectlayers>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
@@ -834,7 +834,7 @@
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
-      <attributeactions default="0"/>
+      <attributeactions default="-1"/>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns/>
       </attributetableconfig>
@@ -915,7 +915,7 @@
       <annotationform>.</annotationform>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
-      <attributeactions default="0"/>
+      <attributeactions default="-1"/>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns/>
       </attributetableconfig>
@@ -1008,7 +1008,7 @@
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
-      <attributeactions default="0"/>
+      <attributeactions default="-1"/>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns/>
       </attributetableconfig>
@@ -1413,7 +1413,7 @@
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
-      <attributeactions default="0"/>
+      <attributeactions default="-1"/>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns/>
       </attributetableconfig>
@@ -1473,7 +1473,7 @@
       <annotationform>.</annotationform>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
-      <attributeactions default="0"/>
+      <attributeactions default="-1"/>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns/>
       </attributetableconfig>
@@ -1647,7 +1647,7 @@
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
-      <attributeactions default="0"/>
+      <attributeactions default="-1"/>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns/>
       </attributetableconfig>
@@ -2264,7 +2264,7 @@
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
-      <attributeactions default="0"/>
+      <attributeactions default="-1"/>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns/>
       </attributetableconfig>
@@ -2351,7 +2351,7 @@
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
-      <attributeactions default="0"/>
+      <attributeactions default="-1"/>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns/>
       </attributetableconfig>
@@ -2374,7 +2374,7 @@
       <keywordList>
         <value></value>
       </keywordList>
-      <layername>C Material</layername>
+      <layername>CMaterial</layername>
       <srs>
         <spatialrefsys>
           <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
@@ -2438,7 +2438,7 @@
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
-      <attributeactions default="0"/>
+      <attributeactions default="-1"/>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns/>
       </attributetableconfig>
@@ -2461,7 +2461,7 @@
       <keywordList>
         <value></value>
       </keywordList>
-      <layername>C Positional Accuracy</layername>
+      <layername>CPositionalAccuracy</layername>
       <srs>
         <spatialrefsys>
           <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
@@ -2515,7 +2515,7 @@
       <annotationform>.</annotationform>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
-      <attributeactions default="0"/>
+      <attributeactions default="-1"/>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns/>
       </attributetableconfig>
@@ -2538,7 +2538,7 @@
       <keywordList>
         <value></value>
       </keywordList>
-      <layername>Sludge Bucket</layername>
+      <layername>SludgeBucket</layername>
       <srs>
         <spatialrefsys>
           <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
@@ -2602,7 +2602,7 @@
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
-      <attributeactions default="0"/>
+      <attributeactions default="-1"/>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns/>
       </attributetableconfig>
@@ -2689,7 +2689,7 @@
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
-      <attributeactions default="0"/>
+      <attributeactions default="-1"/>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns/>
       </attributetableconfig>
@@ -2973,7 +2973,7 @@
       <keywordList>
         <value></value>
       </keywordList>
-      <layername>MH Function</layername>
+      <layername>MHFunction</layername>
       <srs>
         <spatialrefsys>
           <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
@@ -3037,7 +3037,7 @@
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
-      <attributeactions default="0"/>
+      <attributeactions default="-1"/>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns/>
       </attributetableconfig>
@@ -3060,7 +3060,7 @@
       <keywordList>
         <value></value>
       </keywordList>
-      <layername>MH Material</layername>
+      <layername>MHMaterial</layername>
       <srs>
         <spatialrefsys>
           <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
@@ -3114,7 +3114,7 @@
       <annotationform>.</annotationform>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
-      <attributeactions default="0"/>
+      <attributeactions default="-1"/>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns/>
       </attributetableconfig>
@@ -3137,7 +3137,7 @@
       <keywordList>
         <value></value>
       </keywordList>
-      <layername>MH Surface Inflow</layername>
+      <layername>MHSurfaceInflow</layername>
       <srs>
         <spatialrefsys>
           <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
@@ -3191,7 +3191,7 @@
       <annotationform>.</annotationform>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
-      <attributeactions default="0"/>
+      <attributeactions default="-1"/>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns/>
       </attributetableconfig>
@@ -4148,7 +4148,7 @@
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
-      <attributeactions default="0"/>
+      <attributeactions default="-1"/>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns/>
       </attributetableconfig>
@@ -4235,7 +4235,7 @@
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
-      <attributeactions default="0"/>
+      <attributeactions default="-1"/>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns/>
       </attributetableconfig>
@@ -4258,7 +4258,7 @@
       <keywordList>
         <value></value>
       </keywordList>
-      <layername>Stormwater Tank Arrangement</layername>
+      <layername>StormwaterTankArrangement</layername>
       <srs>
         <spatialrefsys>
           <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
@@ -4322,7 +4322,7 @@
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
-      <attributeactions default="0"/>
+      <attributeactions default="-1"/>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns/>
       </attributetableconfig>
@@ -4345,7 +4345,7 @@
       <keywordList>
         <value></value>
       </keywordList>
-      <layername>Renovation Demand</layername>
+      <layername>RenovationDemand</layername>
       <srs>
         <spatialrefsys>
           <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
@@ -4409,7 +4409,7 @@
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
-      <attributeactions default="0"/>
+      <attributeactions default="-1"/>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns/>
       </attributetableconfig>
@@ -5382,7 +5382,7 @@
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
-      <attributeactions default="0"/>
+      <attributeactions default="-1"/>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns>
           <column width="-1" hidden="1" type="field" name="obj_id"/>
@@ -8207,7 +8207,7 @@
         <fieldstyles/>
       </conditionalstyles>
     </maplayer>
-    <maplayer simplifyAlgorithm="0" minimumScale="100000" maximumScale="1e+08" simplifyDrawingHints="1" readOnly="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Line" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
+    <maplayer simplifyAlgorithm="0" minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" readOnly="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Line" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>vw_qgep_reach</id>
       <datasource>service='pg_qgep' key='"obj_id"' srid=21781 type=LineString table="qgep"."vw_qgep_reach" (progression_geometry) sql=</datasource>
       <keywordList>
@@ -10527,7 +10527,6 @@ def my_form_open(dialog, layer, feature):
       </renderer-v2>
       <labeling type="simple"/>
       <customproperties>
-        <property key="embeddedWidgets/count" value="0"/>
         <property key="labeling" value="pal"/>
         <property key="labeling/addDirectionSymbol" value="true"/>
         <property key="labeling/angleOffset" value="0"/>
@@ -10544,7 +10543,6 @@ def my_form_open(dialog, layer, feature):
         <property key="labeling/bufferSizeInMapUnits" value="false"/>
         <property key="labeling/bufferSizeMapUnitMaxScale" value="0"/>
         <property key="labeling/bufferSizeMapUnitMinScale" value="0"/>
-        <property key="labeling/bufferSizeMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="labeling/bufferTransp" value="0"/>
         <property key="labeling/centroidInside" value="false"/>
         <property key="labeling/centroidWhole" value="false"/>
@@ -10557,14 +10555,13 @@ def my_form_open(dialog, layer, feature):
         <property key="labeling/distInMapUnits" value="true"/>
         <property key="labeling/distMapUnitMaxScale" value="0"/>
         <property key="labeling/distMapUnitMinScale" value="0"/>
-        <property key="labeling/distMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="labeling/drawLabels" value="true"/>
         <property key="labeling/enabled" value="true"/>
         <property key="labeling/fieldName" value="CONCAT(&#xa;COALESCE(&quot;material_abbr_en&quot;|| ' ',''),&#xa;COALESCE(&quot;width&quot;||' ', ''),&#xa;COALESCE(&quot;length_effective&quot;|| 'm ', ''),&#xa;COALESCE(&quot;slope_per_mill&quot;||'‰','' )&#xa;)"/>
         <property key="labeling/fitInPolygonOnly" value="false"/>
         <property key="labeling/fontBold" value="false"/>
         <property key="labeling/fontCapitals" value="0"/>
-        <property key="labeling/fontFamily" value="Cantarell"/>
+        <property key="labeling/fontFamily" value="MS Shell Dlg 2"/>
         <property key="labeling/fontItalic" value="false"/>
         <property key="labeling/fontLetterSpacing" value="0"/>
         <property key="labeling/fontLimitPixelSize" value="false"/>
@@ -10574,7 +10571,6 @@ def my_form_open(dialog, layer, feature):
         <property key="labeling/fontSizeInMapUnits" value="false"/>
         <property key="labeling/fontSizeMapUnitMaxScale" value="0"/>
         <property key="labeling/fontSizeMapUnitMinScale" value="0"/>
-        <property key="labeling/fontSizeMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="labeling/fontStrikeout" value="false"/>
         <property key="labeling/fontUnderline" value="false"/>
         <property key="labeling/fontWeight" value="50"/>
@@ -10584,7 +10580,6 @@ def my_form_open(dialog, layer, feature):
         <property key="labeling/labelOffsetInMapUnits" value="true"/>
         <property key="labeling/labelOffsetMapUnitMaxScale" value="0"/>
         <property key="labeling/labelOffsetMapUnitMinScale" value="0"/>
-        <property key="labeling/labelOffsetMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="labeling/labelPerPart" value="false"/>
         <property key="labeling/leftDirectionSymbol" value="&lt;"/>
         <property key="labeling/limitNumLabels" value="false"/>
@@ -10595,7 +10590,7 @@ def my_form_open(dialog, layer, feature):
         <property key="labeling/minFeatureSize" value="12"/>
         <property key="labeling/multilineAlign" value="0"/>
         <property key="labeling/multilineHeight" value="1"/>
-        <property key="labeling/namedStyle" value="Regular"/>
+        <property key="labeling/namedStyle" value="Normal"/>
         <property key="labeling/obstacle" value="true"/>
         <property key="labeling/obstacleFactor" value="1"/>
         <property key="labeling/obstacleType" value="0"/>
@@ -10612,7 +10607,6 @@ def my_form_open(dialog, layer, feature):
         <property key="labeling/repeatDistance" value="0"/>
         <property key="labeling/repeatDistanceMapUnitMaxScale" value="0"/>
         <property key="labeling/repeatDistanceMapUnitMinScale" value="0"/>
-        <property key="labeling/repeatDistanceMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="labeling/repeatDistanceUnit" value="1"/>
         <property key="labeling/reverseDirectionSymbol" value="false"/>
         <property key="labeling/rightDirectionSymbol" value=">"/>
@@ -10629,13 +10623,11 @@ def my_form_open(dialog, layer, feature):
         <property key="labeling/shadowOffsetGlobal" value="true"/>
         <property key="labeling/shadowOffsetMapUnitMaxScale" value="0"/>
         <property key="labeling/shadowOffsetMapUnitMinScale" value="0"/>
-        <property key="labeling/shadowOffsetMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="labeling/shadowOffsetUnits" value="1"/>
         <property key="labeling/shadowRadius" value="1.5"/>
         <property key="labeling/shadowRadiusAlphaOnly" value="false"/>
         <property key="labeling/shadowRadiusMapUnitMaxScale" value="0"/>
         <property key="labeling/shadowRadiusMapUnitMinScale" value="0"/>
-        <property key="labeling/shadowRadiusMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="labeling/shadowRadiusUnits" value="1"/>
         <property key="labeling/shadowScale" value="100"/>
         <property key="labeling/shadowTransparency" value="30"/>
@@ -10648,7 +10640,6 @@ def my_form_open(dialog, layer, feature):
         <property key="labeling/shapeBorderWidth" value="0"/>
         <property key="labeling/shapeBorderWidthMapUnitMaxScale" value="0"/>
         <property key="labeling/shapeBorderWidthMapUnitMinScale" value="0"/>
-        <property key="labeling/shapeBorderWidthMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="labeling/shapeBorderWidthUnits" value="1"/>
         <property key="labeling/shapeDraw" value="false"/>
         <property key="labeling/shapeFillColorA" value="255"/>
@@ -10658,13 +10649,11 @@ def my_form_open(dialog, layer, feature):
         <property key="labeling/shapeJoinStyle" value="64"/>
         <property key="labeling/shapeOffsetMapUnitMaxScale" value="0"/>
         <property key="labeling/shapeOffsetMapUnitMinScale" value="0"/>
-        <property key="labeling/shapeOffsetMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="labeling/shapeOffsetUnits" value="1"/>
         <property key="labeling/shapeOffsetX" value="0"/>
         <property key="labeling/shapeOffsetY" value="0"/>
         <property key="labeling/shapeRadiiMapUnitMaxScale" value="0"/>
         <property key="labeling/shapeRadiiMapUnitMinScale" value="0"/>
-        <property key="labeling/shapeRadiiMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="labeling/shapeRadiiUnits" value="1"/>
         <property key="labeling/shapeRadiiX" value="0"/>
         <property key="labeling/shapeRadiiY" value="0"/>
@@ -10673,7 +10662,6 @@ def my_form_open(dialog, layer, feature):
         <property key="labeling/shapeSVGFile" value=""/>
         <property key="labeling/shapeSizeMapUnitMaxScale" value="0"/>
         <property key="labeling/shapeSizeMapUnitMinScale" value="0"/>
-        <property key="labeling/shapeSizeMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="labeling/shapeSizeType" value="0"/>
         <property key="labeling/shapeSizeUnits" value="1"/>
         <property key="labeling/shapeSizeX" value="0"/>
@@ -10719,7 +10707,7 @@ def my_form_open(dialog, layer, feature):
         <selectedonly on=""/>
       </labelattributes>
       <SingleCategoryDiagramRenderer diagramType="Pie" sizeLegend="0" attributeLegend="1">
-        <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" sizeScale="0,0,0,0,0,0" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" lineSizeScale="0,0,0,0,0,0" sizeType="MM" lineSizeType="MM" minScaleDenominator="100000">
+        <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" sizeScale="0,0,0,0,0,0" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" lineSizeScale="0,0,0,0,0,0" sizeType="MM" lineSizeType="MM" minScaleDenominator="0">
           <fontProperties description="Cantarell,11,-1,5,50,0,0,0,0,0" style=""/>
           <attribute field="" color="#000000" label=""/>
         </DiagramCategory>
@@ -10822,87 +10810,9 @@ def my_form_open(dialog, layer, feature):
       <attributeactions default="-1"/>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns>
+          <column width="-1" hidden="1" type="field" name="progression_3d_geometry"/>
           <column width="-1" hidden="1" type="field" name="rp_from_obj_id"/>
           <column width="-1" hidden="1" type="field" name="rp_to_obj_id"/>
-          <column width="-1" hidden="0" type="field" name="obj_id"/>
-          <column width="-1" hidden="0" type="field" name="clear_height"/>
-          <column width="-1" hidden="0" type="field" name="width"/>
-          <column width="-1" hidden="0" type="field" name="coefficient_of_friction"/>
-          <column width="-1" hidden="0" type="field" name="elevation_determination"/>
-          <column width="-1" hidden="0" type="field" name="horizontal_positioning"/>
-          <column width="-1" hidden="0" type="field" name="inside_coating"/>
-          <column width="-1" hidden="0" type="field" name="length_effective"/>
-          <column width="-1" hidden="0" type="field" name="slope_per_mill"/>
-          <column width="-1" hidden="0" type="field" name="material"/>
-          <column width="-1" hidden="0" type="field" name="progression3d_geometry"/>
-          <column width="-1" hidden="0" type="field" name="reliner_material"/>
-          <column width="-1" hidden="0" type="field" name="reliner_nominal_size"/>
-          <column width="-1" hidden="0" type="field" name="relining_construction"/>
-          <column width="-1" hidden="0" type="field" name="relining_kind"/>
-          <column width="-1" hidden="0" type="field" name="ring_stiffness"/>
-          <column width="-1" hidden="0" type="field" name="slope_building_plan"/>
-          <column width="-1" hidden="0" type="field" name="wall_roughness"/>
-          <column width="-1" hidden="0" type="field" name="fk_pipe_profile"/>
-          <column width="-1" hidden="0" type="field" name="bedding_encasement"/>
-          <column width="-1" hidden="0" type="field" name="function_hierarchic"/>
-          <column width="-1" hidden="0" type="field" name="connection_type"/>
-          <column width="-1" hidden="0" type="field" name="function_hydraulic"/>
-          <column width="-1" hidden="0" type="field" name="jetting_interval"/>
-          <column width="-1" hidden="0" type="field" name="pipe_length"/>
-          <column width="-1" hidden="0" type="field" name="usage_current"/>
-          <column width="-1" hidden="0" type="field" name="usage_planned"/>
-          <column width="-1" hidden="0" type="field" name="ws_obj_id"/>
-          <column width="-1" hidden="0" type="field" name="accessibility"/>
-          <column width="-1" hidden="0" type="field" name="contract_section"/>
-          <column width="-1" hidden="0" type="field" name="financing"/>
-          <column width="-1" hidden="0" type="field" name="gross_costs"/>
-          <column width="-1" hidden="0" type="field" name="inspection_interval"/>
-          <column width="-1" hidden="0" type="field" name="location_name"/>
-          <column width="-1" hidden="0" type="field" name="records"/>
-          <column width="-1" hidden="0" type="field" name="renovation_necessity"/>
-          <column width="-1" hidden="0" type="field" name="replacement_value"/>
-          <column width="-1" hidden="0" type="field" name="rv_base_year"/>
-          <column width="-1" hidden="0" type="field" name="rv_construction_type"/>
-          <column width="-1" hidden="0" type="field" name="status"/>
-          <column width="-1" hidden="0" type="field" name="structure_condition"/>
-          <column width="-1" hidden="0" type="field" name="subsidies"/>
-          <column width="-1" hidden="0" type="field" name="year_of_construction"/>
-          <column width="-1" hidden="0" type="field" name="year_of_replacement"/>
-          <column width="-1" hidden="0" type="field" name="fk_owner"/>
-          <column width="-1" hidden="0" type="field" name="fk_operator"/>
-          <column width="-1" hidden="0" type="field" name="identifier"/>
-          <column width="-1" hidden="0" type="field" name="remark"/>
-          <column width="-1" hidden="0" type="field" name="last_modification"/>
-          <column width="-1" hidden="0" type="field" name="fk_dataowner"/>
-          <column width="-1" hidden="0" type="field" name="fk_provider"/>
-          <column width="-1" hidden="0" type="field" name="fk_wastewater_structure"/>
-          <column width="-1" hidden="0" type="field" name="rp_from_elevation_accuracy"/>
-          <column width="-1" hidden="0" type="field" name="rp_from_identifier"/>
-          <column width="-1" hidden="0" type="field" name="rp_from_level"/>
-          <column width="-1" hidden="0" type="field" name="rp_from_outlet_shape"/>
-          <column width="-1" hidden="0" type="field" name="rp_from_position_of_connection"/>
-          <column width="-1" hidden="0" type="field" name="rp_from_remark"/>
-          <column width="-1" hidden="0" type="field" name="rp_from_last_modification"/>
-          <column width="-1" hidden="0" type="field" name="rp_from_fk_dataowner"/>
-          <column width="-1" hidden="0" type="field" name="rp_from_fk_provider"/>
-          <column width="-1" hidden="0" type="field" name="rp_from_fk_wastewater_networkelement"/>
-          <column width="-1" hidden="0" type="field" name="rp_to_elevation_accuracy"/>
-          <column width="-1" hidden="0" type="field" name="rp_to_identifier"/>
-          <column width="-1" hidden="0" type="field" name="rp_to_level"/>
-          <column width="-1" hidden="0" type="field" name="rp_to_outlet_shape"/>
-          <column width="-1" hidden="0" type="field" name="rp_to_position_of_connection"/>
-          <column width="-1" hidden="0" type="field" name="rp_to_remark"/>
-          <column width="-1" hidden="0" type="field" name="rp_to_last_modification"/>
-          <column width="-1" hidden="0" type="field" name="rp_to_fk_dataowner"/>
-          <column width="-1" hidden="0" type="field" name="rp_to_fk_provider"/>
-          <column width="-1" hidden="0" type="field" name="rp_to_fk_wastewater_networkelement"/>
-          <column width="-1" hidden="0" type="field" name="me_obj_id"/>
-          <column width="-1" hidden="0" type="field" name="me_active_zone"/>
-          <column width="-1" hidden="0" type="field" name="me_identifier"/>
-          <column width="-1" hidden="0" type="field" name="material_abbr_en"/>
-          <column width="-1" hidden="0" type="field" name="material_abbr_de"/>
-          <column width="-1" hidden="0" type="field" name="material_abbr_fr"/>
-          <column width="-1" hidden="1" type="actions"/>
         </columns>
       </attributetableconfig>
       <editform>./forms/reach.ui</editform>
@@ -11205,6 +11115,12 @@ def my_form_open(dialog, layer, feature):
     <Legend>
       <filterByMap type="bool">false</filterByMap>
     </Legend>
+    <WMSExtent type="QStringList">
+      <value>738196.252181</value>
+      <value>258164.620391</value>
+      <value>760386.837819</value>
+      <value>266968.572609</value>
+    </WMSExtent>
     <DefaultStyles>
       <Fill type="QString"></Fill>
       <Line type="QString"></Line>
@@ -11215,10 +11131,10 @@ def my_form_open(dialog, layer, feature):
     </DefaultStyles>
     <WMSAccessConstraints type="QString">None</WMSAccessConstraints>
     <WMSContactMail type="QString"></WMSContactMail>
-    <WMSImageQuality type="int">90</WMSImageQuality>
+    <WMSImageQuality type="int">100</WMSImageQuality>
     <WMSRestrictedComposers type="QStringList"/>
     <WMSRootName type="QString"></WMSRootName>
-    <WMSServiceTitle type="QString"></WMSServiceTitle>
+    <WMSServiceTitle type="QString">Genereller Entwässerungsplan der Stadt Arbon</WMSServiceTitle>
     <WMSContactPhone type="QString"></WMSContactPhone>
     <WFSTLayers>
       <Insert type="QStringList"/>
@@ -11294,7 +11210,7 @@ def my_form_open(dialog, layer, feature):
       <disabledLayers type="QStringList"/>
     </Identify>
     <WMSContactPerson type="QString"></WMSContactPerson>
-    <WMSContactOrganization type="QString"></WMSContactOrganization>
+    <WMSContactOrganization type="QString">OPENGIS.ch</WMSContactOrganization>
     <WMSKeywordList type="QStringList">
       <value></value>
     </WMSKeywordList>
@@ -11320,13 +11236,13 @@ def my_form_open(dialog, layer, feature):
       <SelectionColorGreenPart type="int">255</SelectionColorGreenPart>
       <CanvasColorBluePart type="int">255</CanvasColorBluePart>
     </Gui>
-    <WFSLayers type="QStringList"/>
-    <WMSServiceAbstract type="QString"></WMSServiceAbstract>
     <Measure>
       <Ellipsoid type="QString">NONE</Ellipsoid>
     </Measure>
+    <WMSServiceAbstract type="QString"></WMSServiceAbstract>
+    <WFSLayers type="QStringList"/>
     <WFSUrl type="QString"></WFSUrl>
-    <WMSServiceCapabilities type="bool">false</WMSServiceCapabilities>
+    <WMSServiceCapabilities type="bool">true</WMSServiceCapabilities>
     <WMSUseLayerIDs type="bool">false</WMSUseLayerIDs>
   </properties>
   <visibility-presets/>
