@@ -3,11 +3,15 @@ language: python
 addons:
   postgresql: "9.4"
 
+sudo: required
+dist: trusty
+
 # Handle git submodules ourselves
 git:
   submodules: false
 # Use sed to replace the SSH URL with the public URL, then initialize submodules
 before_install:
+  - sudo -E apt-get -yq --no-install-suggests --no-install-recommends --force-yes install postgresql-9.4-postgis-2.2
   - ./scripts/ci/setup_git.sh
 
 before_script:
