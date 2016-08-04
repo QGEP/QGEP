@@ -1,0 +1,116 @@
+<Composer title="Anlagekataster" visible="1">
+ <Composition resizeToContentsMarginLeft="0" snapping="0" showPages="1" guidesVisible="1" resizeToContentsMarginTop="0" alignmentSnap="1" printResolution="300" paperWidth="297" gridVisible="0" snapGridOffsetX="0" smartGuides="1" snapGridOffsetY="0" resizeToContentsMarginRight="0" snapTolerancePixels="5" printAsRaster="0" generateWorldFile="0" paperHeight="210" numPages="1" snapGridResolution="10" resizeToContentsMarginBottom="0">
+  <symbol alpha="1" clip_to_extent="1" type="fill" name="">
+   <layer pass="0" class="SimpleFill" locked="0">
+    <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
+    <prop k="color" v="255,255,255,255"/>
+    <prop k="joinstyle" v="miter"/>
+    <prop k="offset" v="0,0"/>
+    <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+    <prop k="offset_unit" v="MM"/>
+    <prop k="outline_color" v="0,0,0,255"/>
+    <prop k="outline_style" v="no"/>
+    <prop k="outline_width" v="0.26"/>
+    <prop k="outline_width_unit" v="MM"/>
+    <prop k="style" v="solid"/>
+   </layer>
+  </symbol>
+  <ComposerScaleBar lineCapStyle="square" style="Single Box" numMapUnitsPerScaleBarUnit="5" segmentSizeMode="0" alignment="0" numSegments="4" segmentMillimeters="5" lineJoinStyle="miter" minBarWidth="50" numUnitsPerSegment="25" units="1" labelBarSpace="3" outlineWidth="0.3" numSegmentsLeft="2" maxBarWidth="150" height="3" boxContentSpace="1" mapId="0" unitLabel="m">
+   <scaleBarFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
+   <fillColor alpha="255" red="0" blue="0" green="0"/>
+   <fillColor2 alpha="255" red="255" blue="255" green="255"/>
+   <strokeColor alpha="255" red="0" blue="0" green="0"/>
+   <textColor alpha="255" red="0" blue="0" green="0"/>
+   <ComposerItem pagey="49.2895" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="145.496" y="49.2895" visibility="1" zValue="6" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="35.85" outlineWidth="0.3" excludeFromExports="0" uuid="{f42ab078-1908-43eb-9f76-7ef0c1209e5a}" height="20" itemRotation="0" frame="false" pagex="145.496">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerScaleBar>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Anlagekataster" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,16,-1,5,75,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="15.2227" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="21.7842" y="15.2227" visibility="1" zValue="5" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="91.8611" outlineWidth="0.3" excludeFromExports="0" uuid="{bf821744-7685-4da5-8492-e555dd905d85}" height="9.44857" itemRotation="0" frame="false" pagex="21.7842">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerMap mapRotation="0" keepLayerSet="false" id="0" previewMode="Cache" drawCanvasItems="true">
+   <Extent ymin="264739.91135579982073978" xmin="749900.07282479596324265" ymax="265009.9113560751429759" xmax="750300.07282520388253033"/>
+   <LayerSet/>
+   <Grid/>
+   <AtlasMap scalingMode="2" atlasDriven="0" margin="0.10000000000000001"/>
+   <ComposerItem pagey="15.2895" page="1" id="" lastValidViewScaleFactor="3.0119" positionMode="0" positionLock="false" x="186.846" y="15.2895" visibility="1" zValue="3" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="80" outlineWidth="0.3" excludeFromExports="0" uuid="{ae6790d1-7e35-43c2-baf4-5fc1bf06f91b}" height="54" itemRotation="0" frame="false" pagex="186.846">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerMap>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Channels" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,14,-1,5,75,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="60.8908" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="24.1463" y="60.8908" visibility="1" zValue="2" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="67.9772" outlineWidth="0.3" excludeFromExports="0" uuid="{fb5c058f-aaaa-42e9-9dab-a3659acecd8c}" height="8.39873" itemRotation="0" frame="false" pagex="24.1463">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerAttributeTableV2 source="0" showGrid="1" maxFeatures="30" resizeMode="0" filterFeatures="false" featureFilter="" emptyTableMode="0" wrapString="" wrapBehaviour="1" headerMode="0" backgroundColor="255,255,255,255" showEmptyRows="0" emptyTableMessage="" showOnlyVisibleFeatures="1" vectorLayer="vw_qgep_reach" composerMap="0" headerHAlignment="0" contentFontColor="0,0,0,255" headerFontColor="0,0,0,255" cellMargin="1" filterToAtlasIntersection="0" relationId="" gridStrokeWidth="0.5" gridColor="0,0,0,255" showUniqueRowsOnly="0">
+   <headerFontProperties description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" style=""/>
+   <contentFontProperties description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" style=""/>
+   <displayColumns>
+    <column width="0" vAlignment="128" attribute="rp_from_identifier" sortByRank="0" hAlignment="1" heading="rp_from_identifier" sortOrder="0">
+     <backgroundColor alpha="0" red="0" blue="0" green="0"/>
+    </column>
+    <column width="0" vAlignment="128" attribute="rp_to_identifier" sortByRank="0" hAlignment="1" heading="rp_to_identifier" sortOrder="0">
+     <backgroundColor alpha="0" red="0" blue="0" green="0"/>
+    </column>
+    <column width="0" vAlignment="128" attribute="usage_current" sortByRank="0" hAlignment="1" heading="usage_current" sortOrder="0">
+     <backgroundColor alpha="0" red="0" blue="0" green="0"/>
+    </column>
+    <column width="0" vAlignment="128" attribute="length_effective" sortByRank="0" hAlignment="1" heading="length_effective" sortOrder="0">
+     <backgroundColor alpha="0" red="0" blue="0" green="0"/>
+    </column>
+    <column width="0" vAlignment="128" attribute="clear_height" sortByRank="0" hAlignment="1" heading="clear_height" sortOrder="0">
+     <backgroundColor alpha="0" red="0" blue="0" green="0"/>
+    </column>
+    <column width="0" vAlignment="128" attribute="year_of_construction" sortByRank="0" hAlignment="1" heading="year_of_construction" sortOrder="0">
+     <backgroundColor alpha="0" red="0" blue="0" green="0"/>
+    </column>
+    <column width="0" vAlignment="128" attribute="renovation_necessity" sortByRank="0" hAlignment="1" heading="renovation_necessity" sortOrder="0">
+     <backgroundColor alpha="0" red="0" blue="0" green="0"/>
+    </column>
+    <column width="0" vAlignment="128" attribute="replacement_value" sortByRank="0" hAlignment="1" heading="replacement_value" sortOrder="0">
+     <backgroundColor alpha="0" red="0" blue="0" green="0"/>
+    </column>
+    <column width="0" vAlignment="128" attribute="rv_base_year" sortByRank="0" hAlignment="1" heading="rv_base_year" sortOrder="0">
+     <backgroundColor alpha="0" red="0" blue="0" green="0"/>
+    </column>
+    <column width="0" vAlignment="128" attribute="year_of_replacement" sortByRank="0" hAlignment="1" heading="year_of_replacement" sortOrder="0">
+     <backgroundColor alpha="0" red="0" blue="0" green="0"/>
+    </column>
+   </displayColumns>
+   <cellStyles>
+    <oddColumns enabled="0" cellBackgroundColor="255,255,255,255"/>
+    <evenColumns enabled="0" cellBackgroundColor="255,255,255,255"/>
+    <oddRows enabled="0" cellBackgroundColor="255,255,255,255"/>
+    <evenRows enabled="1" cellBackgroundColor="211,211,211,255"/>
+    <firstColumn enabled="0" cellBackgroundColor="253,202,17,255"/>
+    <lastColumn enabled="0" cellBackgroundColor="255,255,255,255"/>
+    <headerRow enabled="1" cellBackgroundColor="253,202,17,255"/>
+    <firstRow enabled="0" cellBackgroundColor="255,255,255,255"/>
+    <lastRow enabled="0" cellBackgroundColor="255,255,255,255"/>
+   </cellStyles>
+   <ComposerFrame sectionWidth="242.7" sectionHeight="129.655" hideBackgroundIfEmpty="0" hidePageIfEmpty="0" sectionX="0" sectionY="0">
+    <ComposerItem pagey="73.2264" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="24.1463" y="73.2264" visibility="1" zValue="1" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="242.7" outlineWidth="0.3" excludeFromExports="0" uuid="{e3b030de-741b-4963-8f5a-2f28ce81e7e1}" height="129.655" itemRotation="0" frame="false" pagex="24.1463">
+     <FrameColor alpha="255" red="0" blue="0" green="0"/>
+     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+     <customproperties/>
+    </ComposerItem>
+   </ComposerFrame>
+   <customproperties/>
+  </ComposerAttributeTableV2>
+  <customproperties/>
+ </Composition>
+</Composer>
