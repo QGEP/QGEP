@@ -253,6 +253,24 @@
     <relation referencingLayer="vw_qgep_reach" referencedLayer="vw_channel_" id="reach-fk_wastewater_structure-channel" name="Reaches">
       <fieldRef referencedField="obj_id" referencingField="fk_wastewater_structure"/>
     </relation>
+    <relation referencingLayer="vw_access_aid" referencedLayer="vw_qgep_cover" id="vw_access_aid_fk_wastewater_structure_vw_qgep_cover_obj_id" name="Access Aids">
+      <fieldRef referencedField="obj_id" referencingField="fk_wastewater_structure"/>
+    </relation>
+    <relation referencingLayer="vw_backflow_prevention" referencedLayer="vw_qgep_cover" id="vw_backflow_prevention_fk_wastewater_structure_vw_qgep_cover_obj_id" name="Backflow Prevention">
+      <fieldRef referencedField="obj_id" referencingField="fk_wastewater_structure"/>
+    </relation>
+    <relation referencingLayer="vw_benching" referencedLayer="vw_qgep_cover" id="vw_benching_fk_wastewater_structure_vw_qgep_cover_obj_id" name="Benchings">
+      <fieldRef referencedField="obj_id" referencingField="fk_wastewater_structure"/>
+    </relation>
+    <relation referencingLayer="vw_cover___" referencedLayer="vw_qgep_cover" id="vw_cover____fk_wastewater_structure_vw_qgep_cover_obj_id" name="Covers">
+      <fieldRef referencedField="obj_id" referencingField="fk_wastewater_structure"/>
+    </relation>
+    <relation referencingLayer="vw_dryweather_downspout" referencedLayer="vw_qgep_cover" id="vw_dryweather_downspout_fk_wastewater_structure_vw_qgep_cover_obj_id" name="Dryweather Downspouts">
+      <fieldRef referencedField="obj_id" referencingField="fk_wastewater_structure"/>
+    </relation>
+    <relation referencingLayer="vw_dryweather_flume" referencedLayer="vw_qgep_cover" id="vw_dryweather_flume_fk_wastewater_structure_vw_qgep_cover_obj_id" name="Dryweather Flume">
+      <fieldRef referencedField="obj_id" referencingField="fk_wastewater_structure"/>
+    </relation>
     <relation referencingLayer="vw_qgep_cover" referencedLayer="od_organisation20160212172933583" id="vw_qgep_cover_fk_operator_od_organisation20160212172933583_obj_id" name="Operator Cover">
       <fieldRef referencedField="obj_id" referencingField="fk_operator"/>
     </relation>
@@ -269,10 +287,10 @@
   <mapcanvas>
     <units>meters</units>
     <extent>
-      <xmin>747387.66337720188312232</xmin>
-      <ymin>264089.75431444140849635</ymin>
-      <xmax>747649.24167407932691276</xmax>
-      <ymax>264363.53797537850914523</ymax>
+      <xmin>745106.29224999994039536</xmin>
+      <ymin>258165.63292499998351559</ymin>
+      <xmax>753476.79774999991059303</xmax>
+      <ymax>266926.71007500000996515</ymax>
     </extent>
     <rotation>0</rotation>
     <projections>1</projections>
@@ -810,7 +828,7 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
       </edittypes>
-      <annotationform></annotationform>
+      <annotationform>.</annotationform>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions default="-1"/>
@@ -831,10 +849,10 @@
           <column width="-1" hidden="1" type="actions"/>
         </columns>
       </attributetableconfig>
-      <editform></editform>
+      <editform>.</editform>
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
-      <editforminitfilepath></editforminitfilepath>
+      <editforminitfilepath>.</editforminitfilepath>
       <editforminitcode><![CDATA[# -*- coding: utf-8 -*-
 """
 QGIS forms can have a Python function that is called when the form is
@@ -8630,14 +8648,14 @@ def my_form_open(dialog, layer, feature):
           <attributeEditorField index="-1" name="wn_provider"/>
         </attributeEditorContainer>
         <attributeEditorContainer name="Covers" groupBox="0" columnCount="0">
-          <attributeEditorRelation relation="" name="vw_cover20150507162234308_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id"/>
+          <attributeEditorRelation relation="vw_cover____fk_wastewater_structure_vw_qgep_cover_obj_id" name="vw_cover____fk_wastewater_structure_vw_qgep_cover_obj_id"/>
         </attributeEditorContainer>
         <attributeEditorContainer name="Structure Parts" groupBox="0" columnCount="0">
-          <attributeEditorRelation relation="" name="vw_access_aid20150507162234295_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id"/>
-          <attributeEditorRelation relation="" name="vw_backflow_prevention20150531093552085_fk_wastewater_structure_vw_qgep_cover_ws_obj_id"/>
-          <attributeEditorRelation relation="" name="vw_dryweather_flume20150507162234250_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id"/>
-          <attributeEditorRelation relation="" name="vw_benching20150507162234281_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id"/>
-          <attributeEditorRelation relation="" name="vw_dryweather_downspout20150507162234268_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id"/>
+          <attributeEditorRelation relation="vw_access_aid_fk_wastewater_structure_vw_qgep_cover_obj_id" name="vw_access_aid_fk_wastewater_structure_vw_qgep_cover_obj_id"/>
+          <attributeEditorRelation relation="vw_backflow_prevention_fk_wastewater_structure_vw_qgep_cover_obj_id" name="vw_backflow_prevention_fk_wastewater_structure_vw_qgep_cover_obj_id"/>
+          <attributeEditorRelation relation="vw_dryweather_downspout_fk_wastewater_structure_vw_qgep_cover_obj_id" name="vw_dryweather_downspout_fk_wastewater_structure_vw_qgep_cover_obj_id"/>
+          <attributeEditorRelation relation="vw_dryweather_flume_fk_wastewater_structure_vw_qgep_cover_obj_id" name="vw_dryweather_flume_fk_wastewater_structure_vw_qgep_cover_obj_id"/>
+          <attributeEditorRelation relation="vw_benching_fk_wastewater_structure_vw_qgep_cover_obj_id" name="vw_benching_fk_wastewater_structure_vw_qgep_cover_obj_id"/>
         </attributeEditorContainer>
         <attributeEditorContainer name="Maintenance" groupBox="0" columnCount="0">
           <attributeEditorRelation relation="" name="re_maintenance_event_wastewater_structure20160111110603931_fk_wastewater_structure_vw_qgep_cover_ws_obj_id"/>
@@ -8661,19 +8679,37 @@ def my_form_open(dialog, layer, feature):
         <widget name="vw_access_aid20150507162234295_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id">
           <config/>
         </widget>
+        <widget name="vw_access_aid_fk_wastewater_structure_vw_qgep_cover_obj_id">
+          <config/>
+        </widget>
         <widget name="vw_backflow_prevention20150531093552085_fk_wastewater_structure_vw_qgep_cover_ws_obj_id">
+          <config/>
+        </widget>
+        <widget name="vw_backflow_prevention_fk_wastewater_structure_vw_qgep_cover_obj_id">
           <config/>
         </widget>
         <widget name="vw_benching20150507162234281_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id">
           <config/>
         </widget>
+        <widget name="vw_benching_fk_wastewater_structure_vw_qgep_cover_obj_id">
+          <config/>
+        </widget>
         <widget name="vw_cover20150507162234308_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id">
+          <config/>
+        </widget>
+        <widget name="vw_cover____fk_wastewater_structure_vw_qgep_cover_obj_id">
           <config/>
         </widget>
         <widget name="vw_dryweather_downspout20150507162234268_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id">
           <config/>
         </widget>
+        <widget name="vw_dryweather_downspout_fk_wastewater_structure_vw_qgep_cover_obj_id">
+          <config/>
+        </widget>
         <widget name="vw_dryweather_flume20150507162234250_fk_wastewater_structure_vw_qgep_cover20150506155849784_obj_id">
+          <config/>
+        </widget>
+        <widget name="vw_dryweather_flume_fk_wastewater_structure_vw_qgep_cover_obj_id">
           <config/>
         </widget>
         <widget name="wastewater_node-fk_wastewater-structure">
