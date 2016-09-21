@@ -2,6 +2,8 @@
 ------ For questions etc. please contact Stefan Burckhardt stefan.burckhardt@sjib.ch
 ------ version 07.06.2014 22:00:52
 
+------ changes for 08; order of function, klärgrube --> other; 15.05.15 OS
+
 -- 1. ergaenzen tabelle mit oid spalten
 ALTER TABLE qgep.od_manhole DROP COLUMN IF EXISTS old_obj_id;
 ALTER TABLE qgep.od_manhole ADD COLUMN old_obj_id text;
@@ -34,15 +36,16 @@ WHEN funktion = 3 THEN 3267 --- rain_water_manhole
 WHEN funktion = 4 THEN 3266 --- gully
 WHEN funktion = 5 THEN 3472 --- drainage_channel
 WHEN funktion = 6 THEN 228 --- rail_track_gully
-WHEN funktion = 7 THEN 204 --- manhole
-WHEN funktion = 8 THEN 1008 --- oil_separator
-WHEN funktion = 9 THEN 4536 --- pump_station
-WHEN funktion = 10 THEN 5346 --- stormwater_overflow
-WHEN funktion = 11 THEN 2742 --- slurry_collector
-WHEN funktion = 12 THEN 5347 --- floating_material_separator
-WHEN funktion = 13 THEN 4537 --- jetting_manhole
-WHEN funktion = 14 THEN 4798 --- separating_structure
-WHEN funktion = 15 THEN 5345 --- unknown
+WHEN funktion = 7 THEN 5346 --- stormwater_overflow
+WHEN funktion = 8 THEN 5344 -- klärgrube --> other
+WHEN funktion = 9 THEN 204 --- manhole
+WHEN funktion = 10 THEN 1008 --- oil_separator
+WHEN funktion = 11 THEN 4536 --- pump_station
+WHEN funktion = 12 THEN 2742 --- slurry_collector
+WHEN funktion = 13 THEN 5347 --- floating_material_separator
+WHEN funktion = 14 THEN 4537 --- jetting_manhole
+WHEN funktion = 15 THEN 4798 --- separating_structure
+WHEN funktion = 16 THEN 5345 --- unknown
 END AS function,
 CASE 
 WHEN material = 0 THEN 4540 --- other

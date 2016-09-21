@@ -30,4 +30,3 @@ UPDATE qgep.od_organisation SET old_obj_id=obj_id;
 SELECT setval('qgep.seq_od_organisation_oid', 1, true);
 UPDATE qgep.od_organisation SET obj_id=qgep.generate_oid('od_organisation');
 
-

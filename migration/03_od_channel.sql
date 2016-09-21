@@ -1,6 +1,12 @@
-﻿------ This file is sql code to import DABASE (Modul SIA405Abwasser) in German to QGEP in Englisch on QQIS
+------ This file is sql code to import DABASE (Modul SIA405Abwasser) in German to QGEP in Englisch on QQIS
 ------ For questions etc. please contact Stefan Burckhardt stefan.burckhardt@sjib.ch
 ------ version 07.06.2014 22:00:52
+
+------ changes for 08; bedding_encasement.bed_plank doesn't exist; 15.05.15 OS
+
+-- *****************************************
+-- function_hierarchic only mapped on pwwf!
+-- *****************************************
 
 -- 1. ergaenzen tabelle mit oid spalte
 ALTER TABLE qgep.od_channel DROP COLUMN IF EXISTS old_obj_id;
@@ -34,7 +40,6 @@ WHEN bettung_umhuellung = 8 THEN 5333 --- sia_type_1
 WHEN bettung_umhuellung = 9 THEN 5330 --- sia_type_2
 WHEN bettung_umhuellung = 10 THEN 5334 --- sia_type_3
 WHEN bettung_umhuellung = 11 THEN 5340 --- sia_type_4
-WHEN bettung_umhuellung = 12 THEN 5327 --- bed_plank
 ELSE 5329 --- unknown
 END,
 CASE WHEN verbindungsart = 0 THEN 5341 --- other
@@ -52,19 +57,15 @@ WHEN verbindungsart = 12 THEN 3666 --- jacking_pipe_coupling
 ELSE 3036 --- unknown
 END,
 CASE WHEN funktionhierarchisch = 0 THEN 5066 --- pwwf.other
-WHEN funktionhierarchisch = 1 THEN 5068 --- pwwf.water_bodies
-WHEN funktionhierarchisch = 2 THEN 5069 --- pwwf.main_drain
-WHEN funktionhierarchisch = 3 THEN 5070 --- pwwf.main_drain_regional
-WHEN funktionhierarchisch = 4 THEN 5064 --- pwwf.residential_drainage
-WHEN funktionhierarchisch = 5 THEN 5071 --- pwwf.collector_sewer
-WHEN funktionhierarchisch = 6 THEN 5062 --- pwwf.renovation_conduction
-WHEN funktionhierarchisch = 7 THEN 5072 --- pwwf.road_drainage
-WHEN funktionhierarchisch = 8 THEN 5074 --- pwwf.unknown
-WHEN funktionhierarchisch = 9 THEN 5067 --- swwf.other
-WHEN funktionhierarchisch = 10 THEN 5065 --- swwf.residential_drainage
-WHEN funktionhierarchisch = 11 THEN 5063 --- swwf.renovation_conduction
-WHEN funktionhierarchisch = 12 THEN 5073 --- swwf.road_drainage
-WHEN funktionhierarchisch = 13 THEN 5075 --- swwf.unknown
+WHEN funktionhierarchisch = 1 THEN 5066 --- pwwf.other Arealentwaesserung
+WHEN funktionhierarchisch = 2 THEN 5068 --- pwwf.water_bodies
+WHEN funktionhierarchisch = 3 THEN 5069 --- pwwf.main_drain
+WHEN funktionhierarchisch = 4 THEN 5070 --- pwwf.main_drain_regional
+WHEN funktionhierarchisch = 5 THEN 5064 --- pwwf.residential_drainage
+WHEN funktionhierarchisch = 6 THEN 5071 --- pwwf.collector_sewer
+WHEN funktionhierarchisch = 7 THEN 5062 --- pwwf.renovation_conduction
+WHEN funktionhierarchisch = 8 THEN 5072 --- pwwf.road_drainage
+WHEN funktionhierarchisch = 9 THEN 5074 --- pwwf.unknown
 END,
 CASE WHEN funktionhydraulisch = 0 THEN 5320 --- other
 WHEN funktionhydraulisch = 1 THEN 2546 --- drainage_transportation_pipe
@@ -103,3 +104,5 @@ END
 FROM abwasser.siedlungsentwaesserung__Kanal a_kanal
 LEFT JOIN qgep.od_wastewater_structure q_wastewater_structure
 ON a_kanal.obj_id = q_wastewater_structure.old_obj_id;
+
+

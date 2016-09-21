@@ -2,6 +2,8 @@
 ------ For questions etc. please contact Stefan Burckhardt stefan.burckhardt@sjib.ch
 ------ version 07.06.2014 22:00:52
 
+------ changes for 08;value relations for status; 15.05.15 OS
+
 -- 1. ergaenzen tabelle mit oid spalte
 ALTER TABLE qgep.od_wastewater_structure DROP COLUMN IF EXISTS old_obj_id;
 ALTER TABLE qgep.od_wastewater_structure ADD COLUMN old_obj_id text;
@@ -29,7 +31,7 @@ WHEN zugaenglichkeit = 2 THEN 3446 --- inaccessible
 WHEN zugaenglichkeit = 3 THEN 3445 --- accessible
 END,
 baulos,
-the_geom,
+ST_ForceCurve(the_geom),
 -- the_geom3D, 
 -- CASE WHEN finanzierung = 0 THEN 5510 --- public
 -- WHEN finanzierung = 1 THEN 5511 --- private
@@ -57,17 +59,19 @@ END,
 -- END,
 -- wbw_basisjahr, 
 -- wbw_bauart, 
-CASE WHEN status = 0 THEN 3633 --- inoperative
-WHEN status = 1 THEN 6528 --- operational.operational
-WHEN status = 2 THEN 6530 --- operational.tentative
-WHEN status = 3 THEN 6533 --- operational.will_be_suspended
-WHEN status = 4 THEN 6523 --- abanndoned.suspended_not_filled
-WHEN status = 5 THEN 6524 --- abanndoned.suspended_unknown
-WHEN status = 6 THEN 6532 --- abanndoned.filled
-WHEN status = 7 THEN 3027 --- unknown
-WHEN status = 8 THEN 6526 --- other.calculation_alternative
-WHEN status = 9 THEN 6527 --- other.planned
-WHEN status = 10 THEN 6529 --- other.project
+CASE WHEN status = 0 THEN 6523 --- abanndoned.suspended_not_filled
+WHEN status = 1 THEN 6524 --- abanndoned.suspended_unknown
+WHEN status = 2 THEN 3633 --- inoperative
+WHEN status = 3 THEN 6526 --- other.calculation_alternative
+WHEN status = 4 THEN 6527 --- other.planned
+-- changed sjib 21.10.2015 
+-- WHEN status = 5 THEN 6528 --- operational.operational
+WHEN status = 5 THEN 8493 --- operational
+WHEN status = 6 THEN 6529 --- other.project
+WHEN status = 7 THEN 6530 --- operational.tentative
+WHEN status = 8 THEN 3027 --- unknown
+WHEN status = 9 THEN 6532 --- abanndoned.filled
+WHEN status = 10 THEN 6533 --- operational.will_be_suspended
 END,
 CASE WHEN baulicherzustand = 0 THEN 3037 --- unknown
 WHEN baulicherzustand  = 1 THEN 3363 --- Z0
