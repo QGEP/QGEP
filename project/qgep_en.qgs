@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis projectname="" version="2.99.0-Master">
+<qgis projectname="" version="2.16.2">
   <title></title>
   <autotransaction active="1"/>
   <evaluateDefaultValues active="1"/>
@@ -16,7 +16,7 @@
       <layer-tree-layer expanded="1" checked="Qt::Checked" id="od_wastewater_structure" name="od_wastewater_structure">
         <customproperties/>
       </layer-tree-layer>
-      <layer-tree-group expanded="0" checked="Qt::Checked" name="Structure Parts">
+      <layer-tree-group expanded="1" checked="Qt::Checked" name="Structure Parts">
         <customproperties/>
         <layer-tree-layer expanded="1" checked="Qt::Checked" id="vw_access_aid" name="vw_access_aid">
           <customproperties/>
@@ -82,9 +82,9 @@
           <customproperties/>
         </layer-tree-layer>
       </layer-tree-group>
-      <layer-tree-group expanded="0" checked="Qt::Checked" name="VL Structure Part">
+      <layer-tree-group expanded="1" checked="Qt::Checked" name="VL Structure Part">
         <customproperties/>
-        <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_structure_part_renovation_demand" name="Renovation Demand">
+        <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_structure_part_renovation_demand" name="vl_structure_part_renovation_demand">
           <customproperties/>
         </layer-tree-layer>
       </layer-tree-group>
@@ -260,10 +260,10 @@
   <mapcanvas>
     <units>meters</units>
     <extent>
-      <xmin>745106.30053719354327768</xmin>
-      <ymin>258164.62039134331280366</ymin>
-      <xmax>753476.78946280630771071</xmax>
-      <ymax>266968.57260865665739402</ymax>
+      <xmin>745106.29224999994039536</xmin>
+      <ymin>258165.63292499998351559</ymin>
+      <xmax>753476.79774999991059303</xmax>
+      <ymax>266926.71007500000996515</ymax>
     </extent>
     <rotation>0</rotation>
     <projections>1</projections>
@@ -415,7 +415,7 @@
           <legendlayerfile isInOverview="0" layerid="od_wastewater_structure" visible="1"/>
         </filegroup>
       </legendlayer>
-      <legendgroup open="false" checked="Qt::Checked" name="Structure Parts">
+      <legendgroup open="true" checked="Qt::Checked" name="Structure Parts">
         <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="vw_access_aid" showFeatureCount="0">
           <filegroup open="true" hidden="false">
             <legendlayerfile isInOverview="0" layerid="vw_access_aid" visible="1"/>
@@ -510,8 +510,8 @@
           </filegroup>
         </legendlayer>
       </legendgroup>
-      <legendgroup open="false" checked="Qt::Checked" name="VL Structure Part">
-        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Renovation Demand" showFeatureCount="0">
+      <legendgroup open="true" checked="Qt::Checked" name="VL Structure Part">
+        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="vl_structure_part_renovation_demand" showFeatureCount="0">
           <filegroup open="true" hidden="false">
             <legendlayerfile isInOverview="0" layerid="vl_structure_part_renovation_demand" visible="1"/>
           </filegroup>
@@ -4339,13 +4339,13 @@
         <fieldstyles/>
       </conditionalstyles>
     </maplayer>
-    <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
+    <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_structure_part_renovation_demand</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_structure_part_renovation_demand" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
-      <layername>Renovation Demand</layername>
+      <layername>vl_structure_part_renovation_demand</layername>
       <srs>
         <spatialrefsys>
           <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
@@ -4358,7 +4358,11 @@
           <geographicflag>true</geographicflag>
         </spatialrefsys>
       </srs>
-      <customproperties/>
+      <customproperties>
+        <property key="embeddedWidgets/count" value="0"/>
+        <property key="variableNames" value="_fields_"/>
+        <property key="variableValues" value=""/>
+      </customproperties>
       <provider encoding="UTF-8">postgres</provider>
       <previewExpression></previewExpression>
       <vectorjoins/>
@@ -4409,15 +4413,42 @@
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
-      <attributeactions default="0"/>
+      <attributeactions default="-1"/>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
-        <columns/>
+        <columns>
+          <column width="-1" hidden="0" type="field" name="code"/>
+          <column width="-1" hidden="0" type="field" name="vsacode"/>
+          <column width="-1" hidden="0" type="field" name="value_en"/>
+          <column width="-1" hidden="0" type="field" name="value_de"/>
+          <column width="-1" hidden="0" type="field" name="value_fr"/>
+          <column width="-1" hidden="0" type="field" name="abbr_en"/>
+          <column width="-1" hidden="0" type="field" name="abbr_de"/>
+          <column width="-1" hidden="0" type="field" name="abbr_fr"/>
+          <column width="-1" hidden="0" type="field" name="active"/>
+          <column width="-1" hidden="1" type="actions"/>
+        </columns>
       </attributetableconfig>
       <editform>$HOME</editform>
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
       <editforminitfilepath>.</editforminitfilepath>
-      <editforminitcode><![CDATA[]]></editforminitcode>
+      <editforminitcode><![CDATA[# -*- coding: utf-8 -*-
+"""
+QGIS forms can have a Python function that is called when the form is
+opened.
+
+Use this function to add extra logic to your forms.
+
+Enter the name of the function in the "Python Init function"
+field.
+An example follows:
+"""
+from qgis.PyQt.QtWidgets import QWidget
+
+def my_form_open(dialog, layer, feature):
+	geom = feature.geometry()
+	control = dialog.findChild(QWidget, "MyLineEdit")
+]]></editforminitcode>
       <featformsuppress>0</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
       <widgets/>
@@ -4948,7 +4979,7 @@
         <fieldstyles/>
       </conditionalstyles>
     </maplayer>
-    <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
+    <maplayer minimumScale="100000" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vw_access_aid</id>
       <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true table="qgep"."vw_access_aid" sql=</datasource>
       <keywordList>
@@ -4967,7 +4998,11 @@
           <geographicflag>true</geographicflag>
         </spatialrefsys>
       </srs>
-      <customproperties/>
+      <customproperties>
+        <property key="embeddedWidgets/count" value="0"/>
+        <property key="variableNames" value="_fields_"/>
+        <property key="variableValues" value=""/>
+      </customproperties>
       <provider encoding="UTF-8">postgres</provider>
       <previewExpression>COALESCE("obj_id", '&lt;NULL>')</previewExpression>
       <vectorjoins/>
@@ -4989,8 +5024,8 @@
         <edittype widgetv2type="TextEdit" name="remark">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="renovation_demand">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        <edittype widgetv2type="ValueRelation" name="renovation_demand">
+          <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_structure_part_renovation_demand" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="fk_dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
@@ -5017,15 +5052,42 @@
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
-      <attributeactions default="0"/>
+      <attributeactions default="-1"/>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
-        <columns/>
+        <columns>
+          <column width="-1" hidden="0" type="field" name="obj_id"/>
+          <column width="-1" hidden="0" type="field" name="kind"/>
+          <column width="-1" hidden="0" type="field" name="identifier"/>
+          <column width="-1" hidden="0" type="field" name="remark"/>
+          <column width="-1" hidden="0" type="field" name="renovation_demand"/>
+          <column width="-1" hidden="0" type="field" name="fk_dataowner"/>
+          <column width="-1" hidden="0" type="field" name="fk_provider"/>
+          <column width="-1" hidden="0" type="field" name="last_modification"/>
+          <column width="-1" hidden="0" type="field" name="fk_wastewater_structure"/>
+          <column width="-1" hidden="1" type="actions"/>
+        </columns>
       </attributetableconfig>
       <editform>$HOME</editform>
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
       <editforminitfilepath>.</editforminitfilepath>
-      <editforminitcode><![CDATA[]]></editforminitcode>
+      <editforminitcode><![CDATA[# -*- coding: utf-8 -*-
+"""
+QGIS forms can have a Python function that is called when the form is
+opened.
+
+Use this function to add extra logic to your forms.
+
+Enter the name of the function in the "Python Init function"
+field.
+An example follows:
+"""
+from qgis.PyQt.QtWidgets import QWidget
+
+def my_form_open(dialog, layer, feature):
+	geom = feature.geometry()
+	control = dialog.findChild(QWidget, "MyLineEdit")
+]]></editforminitcode>
       <featformsuppress>0</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
       <widgets/>
@@ -5034,7 +5096,7 @@
         <fieldstyles/>
       </conditionalstyles>
     </maplayer>
-    <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
+    <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vw_backflow_prevention</id>
       <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true table="qgep"."vw_backflow_prevention" sql=</datasource>
       <keywordList>
@@ -5053,7 +5115,11 @@
           <geographicflag>true</geographicflag>
         </spatialrefsys>
       </srs>
-      <customproperties/>
+      <customproperties>
+        <property key="embeddedWidgets/count" value="0"/>
+        <property key="variableNames" value="_fields_"/>
+        <property key="variableValues" value=""/>
+      </customproperties>
       <provider encoding="UTF-8">postgres</provider>
       <previewExpression>COALESCE("obj_id", '&lt;NULL>')</previewExpression>
       <vectorjoins/>
@@ -5081,8 +5147,8 @@
         <edittype widgetv2type="TextEdit" name="remark">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="renovation_demand">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        <edittype widgetv2type="ValueRelation" name="renovation_demand">
+          <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_structure_part_renovation_demand" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="fk_dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
@@ -5111,15 +5177,44 @@
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
-      <attributeactions default="0"/>
+      <attributeactions default="-1"/>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
-        <columns/>
+        <columns>
+          <column width="-1" hidden="0" type="field" name="obj_id"/>
+          <column width="-1" hidden="0" type="field" name="gross_costs"/>
+          <column width="-1" hidden="0" type="field" name="kind"/>
+          <column width="-1" hidden="0" type="field" name="year_of_replacement"/>
+          <column width="-1" hidden="0" type="field" name="identifier"/>
+          <column width="-1" hidden="0" type="field" name="remark"/>
+          <column width="-1" hidden="0" type="field" name="renovation_demand"/>
+          <column width="-1" hidden="0" type="field" name="fk_dataowner"/>
+          <column width="-1" hidden="0" type="field" name="fk_provider"/>
+          <column width="-1" hidden="0" type="field" name="last_modification"/>
+          <column width="-1" hidden="0" type="field" name="fk_wastewater_structure"/>
+          <column width="-1" hidden="1" type="actions"/>
+        </columns>
       </attributetableconfig>
       <editform>$HOME</editform>
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
       <editforminitfilepath>.</editforminitfilepath>
-      <editforminitcode><![CDATA[]]></editforminitcode>
+      <editforminitcode><![CDATA[# -*- coding: utf-8 -*-
+"""
+QGIS forms can have a Python function that is called when the form is
+opened.
+
+Use this function to add extra logic to your forms.
+
+Enter the name of the function in the "Python Init function"
+field.
+An example follows:
+"""
+from qgis.PyQt.QtWidgets import QWidget
+
+def my_form_open(dialog, layer, feature):
+	geom = feature.geometry()
+	control = dialog.findChild(QWidget, "MyLineEdit")
+]]></editforminitcode>
       <featformsuppress>0</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
       <widgets/>
@@ -5128,7 +5223,7 @@
         <fieldstyles/>
       </conditionalstyles>
     </maplayer>
-    <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
+    <maplayer minimumScale="100000" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vw_benching</id>
       <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true table="qgep"."vw_benching" sql=</datasource>
       <keywordList>
@@ -5147,7 +5242,11 @@
           <geographicflag>true</geographicflag>
         </spatialrefsys>
       </srs>
-      <customproperties/>
+      <customproperties>
+        <property key="embeddedWidgets/count" value="0"/>
+        <property key="variableNames" value="_fields_"/>
+        <property key="variableValues" value=""/>
+      </customproperties>
       <provider encoding="UTF-8">postgres</provider>
       <previewExpression>COALESCE("obj_id", '&lt;NULL>')</previewExpression>
       <vectorjoins/>
@@ -5169,8 +5268,8 @@
         <edittype widgetv2type="TextEdit" name="remark">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="renovation_demand">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        <edittype widgetv2type="ValueRelation" name="renovation_demand">
+          <widgetv2config OrderByValue="0" AllowNull="0" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_structure_part_renovation_demand" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="fk_dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
@@ -5197,15 +5296,42 @@
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
-      <attributeactions default="0"/>
+      <attributeactions default="-1"/>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
-        <columns/>
+        <columns>
+          <column width="-1" hidden="0" type="field" name="obj_id"/>
+          <column width="-1" hidden="0" type="field" name="kind"/>
+          <column width="-1" hidden="0" type="field" name="identifier"/>
+          <column width="-1" hidden="0" type="field" name="remark"/>
+          <column width="-1" hidden="0" type="field" name="renovation_demand"/>
+          <column width="-1" hidden="0" type="field" name="fk_dataowner"/>
+          <column width="-1" hidden="0" type="field" name="fk_provider"/>
+          <column width="-1" hidden="0" type="field" name="last_modification"/>
+          <column width="-1" hidden="0" type="field" name="fk_wastewater_structure"/>
+          <column width="-1" hidden="1" type="actions"/>
+        </columns>
       </attributetableconfig>
       <editform>$HOME</editform>
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
       <editforminitfilepath>.</editforminitfilepath>
-      <editforminitcode><![CDATA[]]></editforminitcode>
+      <editforminitcode><![CDATA[# -*- coding: utf-8 -*-
+"""
+QGIS forms can have a Python function that is called when the form is
+opened.
+
+Use this function to add extra logic to your forms.
+
+Enter the name of the function in the "Python Init function"
+field.
+An example follows:
+"""
+from qgis.PyQt.QtWidgets import QWidget
+
+def my_form_open(dialog, layer, feature):
+	geom = feature.geometry()
+	control = dialog.findChild(QWidget, "MyLineEdit")
+]]></editforminitcode>
       <featformsuppress>0</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
       <widgets/>
@@ -5403,7 +5529,7 @@
         <fieldstyles/>
       </conditionalstyles>
     </maplayer>
-    <maplayer simplifyAlgorithm="0" minimumScale="-4.65661e-10" maximumScale="1000" simplifyDrawingHints="0" readOnly="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="1" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
+    <maplayer simplifyAlgorithm="0" minimumScale="0" maximumScale="1000" simplifyDrawingHints="0" readOnly="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="1" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>vw_cover___</id>
       <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true srid=21781 type=Point table="qgep"."vw_cover" (situation_geometry) sql=</datasource>
       <keywordList>
@@ -5470,8 +5596,8 @@
         <edittype widgetv2type="TextEdit" name="remark">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="renovation_demand">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        <edittype widgetv2type="ValueRelation" name="renovation_demand">
+          <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_structure_part_renovation_demand" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="fk_dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
@@ -5532,6 +5658,7 @@
       </renderer-v2>
       <labeling type="simple"/>
       <customproperties>
+        <property key="embeddedWidgets/count" value="0"/>
         <property key="labeling" value="pal"/>
         <property key="labeling/addDirectionSymbol" value="false"/>
         <property key="labeling/angleOffset" value="0"/>
@@ -5548,6 +5675,7 @@
         <property key="labeling/bufferSizeInMapUnits" value="false"/>
         <property key="labeling/bufferSizeMapUnitMaxScale" value="0"/>
         <property key="labeling/bufferSizeMapUnitMinScale" value="0"/>
+        <property key="labeling/bufferSizeMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="labeling/bufferTransp" value="0"/>
         <property key="labeling/centroidInside" value="false"/>
         <property key="labeling/centroidWhole" value="false"/>
@@ -5557,8 +5685,11 @@
         <property key="labeling/distInMapUnits" value="false"/>
         <property key="labeling/distMapUnitMaxScale" value="0"/>
         <property key="labeling/distMapUnitMinScale" value="0"/>
+        <property key="labeling/distMapUnitScale" value="0,0,0,0,0,0"/>
+        <property key="labeling/drawLabels" value="false"/>
         <property key="labeling/enabled" value="false"/>
         <property key="labeling/fieldName" value=""/>
+        <property key="labeling/fitInPolygonOnly" value="false"/>
         <property key="labeling/fontBold" value="false"/>
         <property key="labeling/fontCapitals" value="0"/>
         <property key="labeling/fontFamily" value="Cantarell"/>
@@ -5571,6 +5702,7 @@
         <property key="labeling/fontSizeInMapUnits" value="false"/>
         <property key="labeling/fontSizeMapUnitMaxScale" value="0"/>
         <property key="labeling/fontSizeMapUnitMinScale" value="0"/>
+        <property key="labeling/fontSizeMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="labeling/fontStrikeout" value="false"/>
         <property key="labeling/fontUnderline" value="false"/>
         <property key="labeling/fontWeight" value="50"/>
@@ -5580,6 +5712,7 @@
         <property key="labeling/labelOffsetInMapUnits" value="true"/>
         <property key="labeling/labelOffsetMapUnitMaxScale" value="0"/>
         <property key="labeling/labelOffsetMapUnitMinScale" value="0"/>
+        <property key="labeling/labelOffsetMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="labeling/labelPerPart" value="false"/>
         <property key="labeling/leftDirectionSymbol" value="&lt;"/>
         <property key="labeling/limitNumLabels" value="false"/>
@@ -5592,10 +5725,14 @@
         <property key="labeling/multilineHeight" value="1"/>
         <property key="labeling/namedStyle" value="Regular"/>
         <property key="labeling/obstacle" value="true"/>
+        <property key="labeling/obstacleFactor" value="1"/>
+        <property key="labeling/obstacleType" value="0"/>
+        <property key="labeling/offsetType" value="0"/>
         <property key="labeling/placeDirectionSymbol" value="0"/>
         <property key="labeling/placement" value="0"/>
         <property key="labeling/placementFlags" value="0"/>
         <property key="labeling/plussign" value="false"/>
+        <property key="labeling/predefinedPositionOrder" value="TR,TL,BR,BL,R,L,TSR,BSR"/>
         <property key="labeling/preserveRotation" value="true"/>
         <property key="labeling/previewBkgrdColor" value="#ffffff"/>
         <property key="labeling/priority" value="5"/>
@@ -5603,6 +5740,7 @@
         <property key="labeling/repeatDistance" value="0"/>
         <property key="labeling/repeatDistanceMapUnitMaxScale" value="0"/>
         <property key="labeling/repeatDistanceMapUnitMinScale" value="0"/>
+        <property key="labeling/repeatDistanceMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="labeling/repeatDistanceUnit" value="1"/>
         <property key="labeling/reverseDirectionSymbol" value="false"/>
         <property key="labeling/rightDirectionSymbol" value=">"/>
@@ -5619,11 +5757,13 @@
         <property key="labeling/shadowOffsetGlobal" value="true"/>
         <property key="labeling/shadowOffsetMapUnitMaxScale" value="0"/>
         <property key="labeling/shadowOffsetMapUnitMinScale" value="0"/>
+        <property key="labeling/shadowOffsetMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="labeling/shadowOffsetUnits" value="1"/>
         <property key="labeling/shadowRadius" value="1.5"/>
         <property key="labeling/shadowRadiusAlphaOnly" value="false"/>
         <property key="labeling/shadowRadiusMapUnitMaxScale" value="0"/>
         <property key="labeling/shadowRadiusMapUnitMinScale" value="0"/>
+        <property key="labeling/shadowRadiusMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="labeling/shadowRadiusUnits" value="1"/>
         <property key="labeling/shadowScale" value="100"/>
         <property key="labeling/shadowTransparency" value="30"/>
@@ -5636,6 +5776,7 @@
         <property key="labeling/shapeBorderWidth" value="0"/>
         <property key="labeling/shapeBorderWidthMapUnitMaxScale" value="0"/>
         <property key="labeling/shapeBorderWidthMapUnitMinScale" value="0"/>
+        <property key="labeling/shapeBorderWidthMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="labeling/shapeBorderWidthUnits" value="1"/>
         <property key="labeling/shapeDraw" value="false"/>
         <property key="labeling/shapeFillColorA" value="255"/>
@@ -5645,11 +5786,13 @@
         <property key="labeling/shapeJoinStyle" value="64"/>
         <property key="labeling/shapeOffsetMapUnitMaxScale" value="0"/>
         <property key="labeling/shapeOffsetMapUnitMinScale" value="0"/>
+        <property key="labeling/shapeOffsetMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="labeling/shapeOffsetUnits" value="1"/>
         <property key="labeling/shapeOffsetX" value="0"/>
         <property key="labeling/shapeOffsetY" value="0"/>
         <property key="labeling/shapeRadiiMapUnitMaxScale" value="0"/>
         <property key="labeling/shapeRadiiMapUnitMinScale" value="0"/>
+        <property key="labeling/shapeRadiiMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="labeling/shapeRadiiUnits" value="1"/>
         <property key="labeling/shapeRadiiX" value="0"/>
         <property key="labeling/shapeRadiiY" value="0"/>
@@ -5658,6 +5801,7 @@
         <property key="labeling/shapeSVGFile" value=""/>
         <property key="labeling/shapeSizeMapUnitMaxScale" value="0"/>
         <property key="labeling/shapeSizeMapUnitMinScale" value="0"/>
+        <property key="labeling/shapeSizeMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="labeling/shapeSizeType" value="0"/>
         <property key="labeling/shapeSizeUnits" value="1"/>
         <property key="labeling/shapeSizeX" value="0"/>
@@ -5673,6 +5817,9 @@
         <property key="labeling/wrapChar" value=""/>
         <property key="labeling/xOffset" value="0"/>
         <property key="labeling/yOffset" value="0"/>
+        <property key="labeling/zIndex" value="0"/>
+        <property key="variableNames" value="_fields_"/>
+        <property key="variableValues" value=""/>
       </customproperties>
       <blendMode>0</blendMode>
       <featureBlendMode>0</featureBlendMode>
@@ -5700,7 +5847,7 @@
         <selectedonly on=""/>
       </labelattributes>
       <SingleCategoryDiagramRenderer diagramType="Pie" sizeLegend="0" attributeLegend="1">
-        <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" sizeScale="0,0,0,0,0,0" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" lineSizeScale="0,0,0,0,0,0" sizeType="MM" lineSizeType="MM" minScaleDenominator="-4.65661e-10">
+        <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" sizeScale="0,0,0,0,0,0" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" lineSizeScale="0,0,0,0,0,0" sizeType="MM" lineSizeType="MM" minScaleDenominator="0">
           <fontProperties description="Cantarell,11,-1,5,50,0,0,0,0,0" style=""/>
           <attribute field="" color="#000000" label=""/>
         </DiagramCategory>
@@ -5749,15 +5896,51 @@
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
-      <attributeactions default="0"/>
+      <attributeactions default="-1"/>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
-        <columns/>
+        <columns>
+          <column width="-1" hidden="0" type="field" name="obj_id"/>
+          <column width="-1" hidden="0" type="field" name="brand"/>
+          <column width="-1" hidden="0" type="field" name="cover_shape"/>
+          <column width="-1" hidden="0" type="field" name="depth"/>
+          <column width="-1" hidden="0" type="field" name="diameter"/>
+          <column width="-1" hidden="0" type="field" name="fastening"/>
+          <column width="-1" hidden="0" type="field" name="level"/>
+          <column width="-1" hidden="0" type="field" name="material"/>
+          <column width="-1" hidden="0" type="field" name="positional_accuracy"/>
+          <column width="-1" hidden="0" type="field" name="sludge_bucket"/>
+          <column width="-1" hidden="0" type="field" name="venting"/>
+          <column width="-1" hidden="0" type="field" name="identifier"/>
+          <column width="-1" hidden="0" type="field" name="remark"/>
+          <column width="-1" hidden="0" type="field" name="renovation_demand"/>
+          <column width="-1" hidden="0" type="field" name="fk_dataowner"/>
+          <column width="-1" hidden="0" type="field" name="fk_provider"/>
+          <column width="-1" hidden="0" type="field" name="last_modification"/>
+          <column width="-1" hidden="0" type="field" name="fk_wastewater_structure"/>
+          <column width="-1" hidden="1" type="actions"/>
+        </columns>
       </attributetableconfig>
       <editform>$HOME</editform>
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
       <editforminitfilepath>.</editforminitfilepath>
-      <editforminitcode><![CDATA[]]></editforminitcode>
+      <editforminitcode><![CDATA[# -*- coding: utf-8 -*-
+"""
+QGIS forms can have a Python function that is called when the form is
+opened.
+
+Use this function to add extra logic to your forms.
+
+Enter the name of the function in the "Python Init function"
+field.
+An example follows:
+"""
+from qgis.PyQt.QtWidgets import QWidget
+
+def my_form_open(dialog, layer, feature):
+	geom = feature.geometry()
+	control = dialog.findChild(QWidget, "MyLineEdit")
+]]></editforminitcode>
       <featformsuppress>0</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
       <widgets/>
@@ -5766,7 +5949,7 @@
         <fieldstyles/>
       </conditionalstyles>
     </maplayer>
-    <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
+    <maplayer minimumScale="100000" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vw_dryweather_downspout</id>
       <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true table="qgep"."vw_dryweather_downspout" sql=</datasource>
       <keywordList>
@@ -5785,7 +5968,11 @@
           <geographicflag>true</geographicflag>
         </spatialrefsys>
       </srs>
-      <customproperties/>
+      <customproperties>
+        <property key="embeddedWidgets/count" value="0"/>
+        <property key="variableNames" value="_fields_"/>
+        <property key="variableValues" value=""/>
+      </customproperties>
       <provider encoding="UTF-8">postgres</provider>
       <previewExpression>COALESCE("obj_id", '&lt;NULL>')</previewExpression>
       <vectorjoins/>
@@ -5807,8 +5994,8 @@
         <edittype widgetv2type="TextEdit" name="remark">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="renovation_demand">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        <edittype widgetv2type="ValueRelation" name="renovation_demand">
+          <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_structure_part_renovation_demand" Value="abbr_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="fk_dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
@@ -5835,15 +6022,42 @@
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
-      <attributeactions default="0"/>
+      <attributeactions default="-1"/>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
-        <columns/>
+        <columns>
+          <column width="-1" hidden="0" type="field" name="obj_id"/>
+          <column width="-1" hidden="0" type="field" name="diameter"/>
+          <column width="-1" hidden="0" type="field" name="identifier"/>
+          <column width="-1" hidden="0" type="field" name="remark"/>
+          <column width="-1" hidden="0" type="field" name="renovation_demand"/>
+          <column width="-1" hidden="0" type="field" name="fk_dataowner"/>
+          <column width="-1" hidden="0" type="field" name="fk_provider"/>
+          <column width="-1" hidden="0" type="field" name="last_modification"/>
+          <column width="-1" hidden="0" type="field" name="fk_wastewater_structure"/>
+          <column width="-1" hidden="1" type="actions"/>
+        </columns>
       </attributetableconfig>
       <editform>$HOME</editform>
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
       <editforminitfilepath>.</editforminitfilepath>
-      <editforminitcode><![CDATA[]]></editforminitcode>
+      <editforminitcode><![CDATA[# -*- coding: utf-8 -*-
+"""
+QGIS forms can have a Python function that is called when the form is
+opened.
+
+Use this function to add extra logic to your forms.
+
+Enter the name of the function in the "Python Init function"
+field.
+An example follows:
+"""
+from qgis.PyQt.QtWidgets import QWidget
+
+def my_form_open(dialog, layer, feature):
+	geom = feature.geometry()
+	control = dialog.findChild(QWidget, "MyLineEdit")
+]]></editforminitcode>
       <featformsuppress>0</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
       <widgets/>
@@ -5852,7 +6066,7 @@
         <fieldstyles/>
       </conditionalstyles>
     </maplayer>
-    <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
+    <maplayer minimumScale="100000" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vw_dryweather_flume</id>
       <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true table="qgep"."vw_dryweather_flume" sql=</datasource>
       <keywordList>
@@ -5871,7 +6085,11 @@
           <geographicflag>true</geographicflag>
         </spatialrefsys>
       </srs>
-      <customproperties/>
+      <customproperties>
+        <property key="embeddedWidgets/count" value="0"/>
+        <property key="variableNames" value="_fields_"/>
+        <property key="variableValues" value=""/>
+      </customproperties>
       <provider encoding="UTF-8">postgres</provider>
       <previewExpression>COALESCE("obj_id", '&lt;NULL>')</previewExpression>
       <vectorjoins/>
@@ -5893,8 +6111,8 @@
         <edittype widgetv2type="TextEdit" name="remark">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="renovation_demand">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        <edittype widgetv2type="ValueRelation" name="renovation_demand">
+          <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_structure_part_renovation_demand" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="fk_dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
@@ -5921,15 +6139,42 @@
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
-      <attributeactions default="0"/>
+      <attributeactions default="-1"/>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
-        <columns/>
+        <columns>
+          <column width="-1" hidden="0" type="field" name="obj_id"/>
+          <column width="-1" hidden="0" type="field" name="material"/>
+          <column width="-1" hidden="0" type="field" name="identifier"/>
+          <column width="-1" hidden="0" type="field" name="remark"/>
+          <column width="-1" hidden="0" type="field" name="renovation_demand"/>
+          <column width="-1" hidden="0" type="field" name="fk_dataowner"/>
+          <column width="-1" hidden="0" type="field" name="fk_provider"/>
+          <column width="-1" hidden="0" type="field" name="last_modification"/>
+          <column width="-1" hidden="0" type="field" name="fk_wastewater_structure"/>
+          <column width="-1" hidden="1" type="actions"/>
+        </columns>
       </attributetableconfig>
       <editform>$HOME</editform>
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
       <editforminitfilepath>.</editforminitfilepath>
-      <editforminitcode><![CDATA[]]></editforminitcode>
+      <editforminitcode><![CDATA[# -*- coding: utf-8 -*-
+"""
+QGIS forms can have a Python function that is called when the form is
+opened.
+
+Use this function to add extra logic to your forms.
+
+Enter the name of the function in the "Python Init function"
+field.
+An example follows:
+"""
+from qgis.PyQt.QtWidgets import QWidget
+
+def my_form_open(dialog, layer, feature):
+	geom = feature.geometry()
+	control = dialog.findChild(QWidget, "MyLineEdit")
+]]></editforminitcode>
       <featformsuppress>0</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
       <widgets/>
@@ -6253,7 +6498,13 @@
         <fieldstyles/>
       </conditionalstyles>
     </maplayer>
-    <maplayer simplifyAlgorithm="0" minimumScale="-4.65661e-10" maximumScale="5000" simplifyDrawingHints="0" readOnly="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="1" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
+    <maplayer simplifyAlgorithm="0" minimumScale="1" maximumScale="5000" simplifyDrawingHints="0" readOnly="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="1" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
+      <extent>
+        <xmin>745305.58999999996740371</xmin>
+        <ymin>258374.23000000001047738</ymin>
+        <xmax>753277.5</xmax>
+        <ymax>266718.11300000001210719</ymax>
+      </extent>
       <id>vw_qgep_cover</id>
       <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true srid=21781 type=Point table="qgep"."vw_qgep_cover" (situation_geometry) sql=</datasource>
       <keywordList>
@@ -7758,6 +8009,7 @@
       </renderer-v2>
       <labeling type="simple"/>
       <customproperties>
+        <property key="embeddedWidgets/count" value="0"/>
         <property key="labeling" value="pal"/>
         <property key="labeling/addDirectionSymbol" value="false"/>
         <property key="labeling/angleOffset" value="0"/>
@@ -7774,6 +8026,7 @@
         <property key="labeling/bufferSizeInMapUnits" value="false"/>
         <property key="labeling/bufferSizeMapUnitMaxScale" value="0"/>
         <property key="labeling/bufferSizeMapUnitMinScale" value="0"/>
+        <property key="labeling/bufferSizeMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="labeling/bufferTransp" value="0"/>
         <property key="labeling/centroidInside" value="false"/>
         <property key="labeling/centroidWhole" value="false"/>
@@ -7785,13 +8038,14 @@
         <property key="labeling/distInMapUnits" value="false"/>
         <property key="labeling/distMapUnitMaxScale" value="0"/>
         <property key="labeling/distMapUnitMinScale" value="0"/>
+        <property key="labeling/distMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="labeling/drawLabels" value="true"/>
         <property key="labeling/enabled" value="true"/>
         <property key="labeling/fieldName" value="CASE WHEN $scale &lt;= 500 THEN _label ELSE  ws_identifier END"/>
         <property key="labeling/fitInPolygonOnly" value="false"/>
         <property key="labeling/fontBold" value="false"/>
         <property key="labeling/fontCapitals" value="0"/>
-        <property key="labeling/fontFamily" value="MS Shell Dlg 2"/>
+        <property key="labeling/fontFamily" value="Cantarell"/>
         <property key="labeling/fontItalic" value="false"/>
         <property key="labeling/fontLetterSpacing" value="0"/>
         <property key="labeling/fontLimitPixelSize" value="false"/>
@@ -7801,6 +8055,7 @@
         <property key="labeling/fontSizeInMapUnits" value="false"/>
         <property key="labeling/fontSizeMapUnitMaxScale" value="0"/>
         <property key="labeling/fontSizeMapUnitMinScale" value="0"/>
+        <property key="labeling/fontSizeMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="labeling/fontStrikeout" value="false"/>
         <property key="labeling/fontUnderline" value="false"/>
         <property key="labeling/fontWeight" value="50"/>
@@ -7810,6 +8065,7 @@
         <property key="labeling/labelOffsetInMapUnits" value="true"/>
         <property key="labeling/labelOffsetMapUnitMaxScale" value="0"/>
         <property key="labeling/labelOffsetMapUnitMinScale" value="0"/>
+        <property key="labeling/labelOffsetMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="labeling/labelPerPart" value="false"/>
         <property key="labeling/leftDirectionSymbol" value="&lt;"/>
         <property key="labeling/limitNumLabels" value="false"/>
@@ -7820,7 +8076,7 @@
         <property key="labeling/minFeatureSize" value="0"/>
         <property key="labeling/multilineAlign" value="0"/>
         <property key="labeling/multilineHeight" value="1"/>
-        <property key="labeling/namedStyle" value="Normal"/>
+        <property key="labeling/namedStyle" value="Regular"/>
         <property key="labeling/obstacle" value="true"/>
         <property key="labeling/obstacleFactor" value="1"/>
         <property key="labeling/obstacleType" value="0"/>
@@ -7837,6 +8093,7 @@
         <property key="labeling/repeatDistance" value="0"/>
         <property key="labeling/repeatDistanceMapUnitMaxScale" value="0"/>
         <property key="labeling/repeatDistanceMapUnitMinScale" value="0"/>
+        <property key="labeling/repeatDistanceMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="labeling/repeatDistanceUnit" value="1"/>
         <property key="labeling/reverseDirectionSymbol" value="false"/>
         <property key="labeling/rightDirectionSymbol" value=">"/>
@@ -7853,11 +8110,13 @@
         <property key="labeling/shadowOffsetGlobal" value="true"/>
         <property key="labeling/shadowOffsetMapUnitMaxScale" value="0"/>
         <property key="labeling/shadowOffsetMapUnitMinScale" value="0"/>
+        <property key="labeling/shadowOffsetMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="labeling/shadowOffsetUnits" value="1"/>
         <property key="labeling/shadowRadius" value="1.5"/>
         <property key="labeling/shadowRadiusAlphaOnly" value="false"/>
         <property key="labeling/shadowRadiusMapUnitMaxScale" value="0"/>
         <property key="labeling/shadowRadiusMapUnitMinScale" value="0"/>
+        <property key="labeling/shadowRadiusMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="labeling/shadowRadiusUnits" value="1"/>
         <property key="labeling/shadowScale" value="100"/>
         <property key="labeling/shadowTransparency" value="30"/>
@@ -7870,6 +8129,7 @@
         <property key="labeling/shapeBorderWidth" value="0"/>
         <property key="labeling/shapeBorderWidthMapUnitMaxScale" value="0"/>
         <property key="labeling/shapeBorderWidthMapUnitMinScale" value="0"/>
+        <property key="labeling/shapeBorderWidthMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="labeling/shapeBorderWidthUnits" value="1"/>
         <property key="labeling/shapeDraw" value="false"/>
         <property key="labeling/shapeFillColorA" value="255"/>
@@ -7879,11 +8139,13 @@
         <property key="labeling/shapeJoinStyle" value="64"/>
         <property key="labeling/shapeOffsetMapUnitMaxScale" value="0"/>
         <property key="labeling/shapeOffsetMapUnitMinScale" value="0"/>
+        <property key="labeling/shapeOffsetMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="labeling/shapeOffsetUnits" value="1"/>
         <property key="labeling/shapeOffsetX" value="0"/>
         <property key="labeling/shapeOffsetY" value="0"/>
         <property key="labeling/shapeRadiiMapUnitMaxScale" value="0"/>
         <property key="labeling/shapeRadiiMapUnitMinScale" value="0"/>
+        <property key="labeling/shapeRadiiMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="labeling/shapeRadiiUnits" value="1"/>
         <property key="labeling/shapeRadiiX" value="0"/>
         <property key="labeling/shapeRadiiY" value="0"/>
@@ -7892,6 +8154,7 @@
         <property key="labeling/shapeSVGFile" value=""/>
         <property key="labeling/shapeSizeMapUnitMaxScale" value="0"/>
         <property key="labeling/shapeSizeMapUnitMinScale" value="0"/>
+        <property key="labeling/shapeSizeMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="labeling/shapeSizeType" value="0"/>
         <property key="labeling/shapeSizeUnits" value="1"/>
         <property key="labeling/shapeSizeX" value="0"/>
@@ -7937,7 +8200,7 @@
         <selectedonly on=""/>
       </labelattributes>
       <SingleCategoryDiagramRenderer diagramType="Pie" sizeLegend="0" attributeLegend="1">
-        <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" sizeScale="0,0,0,0,0,0" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="5000" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="1" enabled="0" height="15" lineSizeScale="0,0,0,0,0,0" sizeType="MM" lineSizeType="MM" minScaleDenominator="0">
+        <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" sizeScale="0,0,0,0,0,0" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="5000" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="1" enabled="0" height="15" lineSizeScale="0,0,0,0,0,0" sizeType="MM" lineSizeType="MM" minScaleDenominator="5000">
           <fontProperties description="Cantarell,11,-1,5,50,0,0,0,0,0" style=""/>
           <attribute field="" color="#000000" label=""/>
         </DiagramCategory>
@@ -8047,6 +8310,78 @@
           <column width="-1" hidden="1" type="field" name="channel_usage_current"/>
           <column width="-1" hidden="1" type="field" name="channel_function_hierarchic"/>
           <column width="-1" hidden="1" type="field" name="manhole_orientation"/>
+          <column width="-1" hidden="0" type="field" name="obj_id"/>
+          <column width="-1" hidden="0" type="field" name="brand"/>
+          <column width="-1" hidden="0" type="field" name="cover_shape"/>
+          <column width="-1" hidden="0" type="field" name="diameter"/>
+          <column width="-1" hidden="0" type="field" name="fastening"/>
+          <column width="-1" hidden="0" type="field" name="level"/>
+          <column width="-1" hidden="0" type="field" name="cover_material"/>
+          <column width="-1" hidden="0" type="field" name="positional_accuracy"/>
+          <column width="-1" hidden="0" type="field" name="sludge_bucket"/>
+          <column width="-1" hidden="0" type="field" name="venting"/>
+          <column width="-1" hidden="0" type="field" name="co_identifier"/>
+          <column width="-1" hidden="0" type="field" name="remark"/>
+          <column width="-1" hidden="0" type="field" name="renovation_demand"/>
+          <column width="-1" hidden="0" type="field" name="last_modification"/>
+          <column width="-1" hidden="0" type="field" name="fk_dataowner"/>
+          <column width="-1" hidden="0" type="field" name="fk_provider"/>
+          <column width="-1" hidden="0" type="field" name="ws_type"/>
+          <column width="-1" hidden="0" type="field" name="co_obj_id"/>
+          <column width="-1" hidden="0" type="field" name="identifier"/>
+          <column width="-1" hidden="0" type="field" name="accessibility"/>
+          <column width="-1" hidden="0" type="field" name="contract_section"/>
+          <column width="-1" hidden="0" type="field" name="financing"/>
+          <column width="-1" hidden="0" type="field" name="gross_costs"/>
+          <column width="-1" hidden="0" type="field" name="inspection_interval"/>
+          <column width="-1" hidden="0" type="field" name="location_name"/>
+          <column width="-1" hidden="0" type="field" name="records"/>
+          <column width="-1" hidden="0" type="field" name="ws_remark"/>
+          <column width="-1" hidden="0" type="field" name="renovation_necessity"/>
+          <column width="-1" hidden="0" type="field" name="replacement_value"/>
+          <column width="-1" hidden="0" type="field" name="rv_base_year"/>
+          <column width="-1" hidden="0" type="field" name="rv_construction_type"/>
+          <column width="-1" hidden="0" type="field" name="status"/>
+          <column width="-1" hidden="0" type="field" name="structure_condition"/>
+          <column width="-1" hidden="0" type="field" name="subsidies"/>
+          <column width="-1" hidden="0" type="field" name="year_of_construction"/>
+          <column width="-1" hidden="0" type="field" name="year_of_replacement"/>
+          <column width="-1" hidden="0" type="field" name="fk_owner"/>
+          <column width="-1" hidden="0" type="field" name="fk_operator"/>
+          <column width="-1" hidden="0" type="field" name="_label"/>
+          <column width="-1" hidden="0" type="field" name="depth"/>
+          <column width="-1" hidden="0" type="field" name="dimension1"/>
+          <column width="-1" hidden="0" type="field" name="dimension2"/>
+          <column width="-1" hidden="0" type="field" name="upper_elevation"/>
+          <column width="-1" hidden="0" type="field" name="manhole_function"/>
+          <column width="-1" hidden="0" type="field" name="material"/>
+          <column width="-1" hidden="0" type="field" name="surface_inflow"/>
+          <column width="-1" hidden="0" type="field" name="bypass"/>
+          <column width="-1" hidden="0" type="field" name="special_structure_function"/>
+          <column width="-1" hidden="0" type="field" name="stormwater_tank_arrangement"/>
+          <column width="-1" hidden="0" type="field" name="highwater_level"/>
+          <column width="-1" hidden="0" type="field" name="relevance"/>
+          <column width="-1" hidden="0" type="field" name="terrain_level"/>
+          <column width="-1" hidden="0" type="field" name="waterlevel_hydraulic"/>
+          <column width="-1" hidden="0" type="field" name="absorption_capacity"/>
+          <column width="-1" hidden="0" type="field" name="defects"/>
+          <column width="-1" hidden="0" type="field" name="distance_to_aquifer"/>
+          <column width="-1" hidden="0" type="field" name="effective_area"/>
+          <column width="-1" hidden="0" type="field" name="emergency_spillway"/>
+          <column width="-1" hidden="0" type="field" name="kind"/>
+          <column width="-1" hidden="0" type="field" name="labeling"/>
+          <column width="-1" hidden="0" type="field" name="seepage_utilization"/>
+          <column width="-1" hidden="0" type="field" name="vehicle_access"/>
+          <column width="-1" hidden="0" type="field" name="watertightness"/>
+          <column width="-1" hidden="0" type="field" name="wn_obj_id"/>
+          <column width="-1" hidden="0" type="field" name="backflow_level"/>
+          <column width="-1" hidden="0" type="field" name="bottom_level"/>
+          <column width="-1" hidden="0" type="field" name="wn_identifier"/>
+          <column width="-1" hidden="0" type="field" name="wn_remark"/>
+          <column width="-1" hidden="0" type="field" name="wn_last_modification"/>
+          <column width="-1" hidden="0" type="field" name="wn_fk_dataowner"/>
+          <column width="-1" hidden="0" type="field" name="wn_fk_provider"/>
+          <column width="-1" hidden="1" type="actions"/>
         </columns>
       </attributetableconfig>
       <editform>$HOME</editform>
@@ -8058,9 +8393,9 @@
       <featformsuppress>0</featformsuppress>
       <editorlayout>tablayout</editorlayout>
       <attributeEditorForm>
-        <attributeEditorContainer name="General" groupBox="0" columnCount="0">
-          <attributeEditorField index="16" name="ws_type"/>
+        <attributeEditorContainer name="General" groupBox="0" columnCount="2">
           <attributeEditorField index="18" name="identifier"/>
+          <attributeEditorField index="16" name="ws_type"/>
           <attributeEditorField index="24" name="location_name"/>
           <attributeEditorField index="34" name="year_of_construction"/>
           <attributeEditorField index="43" name="manhole_function"/>
