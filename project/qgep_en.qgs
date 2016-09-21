@@ -233,8 +233,17 @@
     <layer-tree-group expanded="0" checked="Qt::Checked" name="Cadastral Data">
       <customproperties/>
     </layer-tree-group>
+    <layer-tree-group expanded="1" checked="Qt::Checked" name="Others">
+      <customproperties/>
+      <layer-tree-layer expanded="1" checked="Qt::Checked" id="od_file20160921105557083" name="od_file">
+        <customproperties/>
+      </layer-tree-layer>
+    </layer-tree-group>
   </layer-tree-group>
   <relations>
+    <relation referencingLayer="od_file20160921105557083" referencedLayer="vw_qgep_cover" id="od_file20160921105557083_object_vw_qgep_cover_obj_id" name="Pictures">
+      <fieldRef referencedField="obj_id" referencingField="object"/>
+    </relation>
     <relation referencingLayer="re_maintenance_event_wastewater_structure20160111110603931" referencedLayer="od_maintenance_event" id="re_maintenance_event_wastewater_structure20160111110603931_fk_maintenance_event_od_maintenance_event_obj_id" name="Wastewater Structures">
       <fieldRef referencedField="obj_id" referencingField="fk_maintenance_event"/>
     </relation>
@@ -260,10 +269,10 @@
   <mapcanvas>
     <units>meters</units>
     <extent>
-      <xmin>745106.29224999994039536</xmin>
-      <ymin>258165.63292499998351559</ymin>
-      <xmax>753476.79774999991059303</xmax>
-      <ymax>266926.71007500000996515</ymax>
+      <xmin>747387.66337720188312232</xmin>
+      <ymin>264089.75431444140849635</ymin>
+      <xmax>747649.24167407932691276</xmax>
+      <ymax>264363.53797537850914523</ymax>
     </extent>
     <rotation>0</rotation>
     <projections>1</projections>
@@ -396,6 +405,7 @@
       <item>vl_manhole_surface_inflow20151117174216393</item>
       <item>re_maintenance_event_wastewater_structure20160111110603931</item>
       <item>od_organisation20160212172933583</item>
+      <item>od_file20160921105557083</item>
     </custom-order>
   </layer-tree-canvas>
   <legend updateDrawingOrder="true">
@@ -721,8 +731,135 @@
       </legendlayer>
     </legendgroup>
     <legendgroup open="false" checked="Qt::Checked" name="Cadastral Data"/>
+    <legendgroup open="true" checked="Qt::Checked" name="Others">
+      <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="od_file" showFeatureCount="0">
+        <filegroup open="true" hidden="false">
+          <legendlayerfile isInOverview="0" layerid="od_file20160921105557083" visible="1"/>
+        </filegroup>
+      </legendlayer>
+    </legendgroup>
   </legend>
   <projectlayers>
+    <maplayer minimumScale="100000" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
+      <id>od_file20160921105557083</id>
+      <datasource>service='pg_qgep' sslmode=allow key='"obj_id"' table="qgep"."od_file" sql=</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>od_file</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+          <srsid>3452</srsid>
+          <srid>4326</srid>
+          <authid>EPSG:4326</authid>
+          <description>WGS 84</description>
+          <projectionacronym>longlat</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>true</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <customproperties>
+        <property key="embeddedWidgets/count" value="0"/>
+        <property key="variableNames" value="_fields_"/>
+        <property key="variableValues" value=""/>
+      </customproperties>
+      <provider encoding="System">postgres</provider>
+      <previewExpression>COALESCE("obj_id", '&lt;NULL>')</previewExpression>
+      <vectorjoins/>
+      <layerDependencies/>
+      <expressionfields/>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <edittypes>
+        <edittype widgetv2type="Hidden" name="obj_id">
+          <widgetv2config fieldEditable="1" constraint="" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="Hidden" name="class">
+          <widgetv2config fieldEditable="1" constraint="" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="ExternalResource" name="identifier">
+          <widgetv2config RelativeStorage="1" fieldEditable="1" DocumentViewer="1" FileWidgetButton="1" DocumentViewerWidth="0" constraint="" FileWidget="1" DocumentViewerHeight="0" StorageMode="0" labelOnTop="0" constraintDescription="" notNull="0" FileWidgetFilter=""/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="kind">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="RelationReference" name="object">
+          <widgetv2config OrderByValue="0" fieldEditable="1" AllowAddFeatures="0" ShowForm="0" Relation="od_file20160921105557083_object_vw_qgep_cover_obj_id" ReadOnly="0" constraint="" MapIdentification="0" labelOnTop="0" constraintDescription="" notNull="0" AllowNULL="0"/>
+        </edittype>
+        <edittype widgetv2type="Hidden" name="path_relative">
+          <widgetv2config fieldEditable="1" constraint="" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="remark">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="last_modification">
+          <widgetv2config IsMultiline="0" fieldEditable="0" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="Hidden" name="dataowner">
+          <widgetv2config fieldEditable="1" constraint="" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="Hidden" name="provider">
+          <widgetv2config fieldEditable="1" constraint="" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="fk_dataowner">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="fk_provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+      </edittypes>
+      <annotationform></annotationform>
+      <excludeAttributesWMS/>
+      <excludeAttributesWFS/>
+      <attributeactions default="-1"/>
+      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
+        <columns>
+          <column width="-1" hidden="0" type="field" name="obj_id"/>
+          <column width="-1" hidden="0" type="field" name="class"/>
+          <column width="-1" hidden="0" type="field" name="identifier"/>
+          <column width="-1" hidden="0" type="field" name="kind"/>
+          <column width="-1" hidden="0" type="field" name="object"/>
+          <column width="-1" hidden="0" type="field" name="path_relative"/>
+          <column width="-1" hidden="0" type="field" name="remark"/>
+          <column width="-1" hidden="0" type="field" name="last_modification"/>
+          <column width="-1" hidden="0" type="field" name="dataowner"/>
+          <column width="-1" hidden="0" type="field" name="provider"/>
+          <column width="-1" hidden="0" type="field" name="fk_dataowner"/>
+          <column width="-1" hidden="0" type="field" name="fk_provider"/>
+          <column width="-1" hidden="1" type="actions"/>
+        </columns>
+      </attributetableconfig>
+      <editform></editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath></editforminitfilepath>
+      <editforminitcode><![CDATA[# -*- coding: utf-8 -*-
+"""
+QGIS forms can have a Python function that is called when the form is
+opened.
+
+Use this function to add extra logic to your forms.
+
+Enter the name of the function in the "Python Init function"
+field.
+An example follows:
+"""
+from qgis.PyQt.QtWidgets import QWidget
+
+def my_form_open(dialog, layer, feature):
+	geom = feature.geometry()
+	control = dialog.findChild(QWidget, "MyLineEdit")
+]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
+      <conditionalstyles>
+        <rowstyles/>
+        <fieldstyles/>
+      </conditionalstyles>
+    </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>od_maintenance_event</id>
       <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true table="qgep"."od_maintenance_event" sql=</datasource>
@@ -6524,7 +6661,7 @@ def my_form_open(dialog, layer, feature):
         </spatialrefsys>
       </srs>
       <provider encoding="UTF-8">postgres</provider>
-      <previewExpression>COALESCE( "obj_id", '&lt;NULL>' )</previewExpression>
+      <previewExpression>COALESCE( "identifier", '&lt;NULL>' )</previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -8508,8 +8645,14 @@ def my_form_open(dialog, layer, feature):
         <attributeEditorContainer name="Wastewater Nodes" groupBox="0" columnCount="0">
           <attributeEditorRelation relation="" name="wastewater_node-fk_wastewater-structure"/>
         </attributeEditorContainer>
+        <attributeEditorContainer name="Files" groupBox="0" columnCount="1">
+          <attributeEditorRelation relation="od_file20160921105557083_object_vw_qgep_cover_obj_id" name="od_file20160921105557083_object_vw_qgep_cover_obj_id"/>
+        </attributeEditorContainer>
       </attributeEditorForm>
       <widgets>
+        <widget name="od_file20160921105557083_object_vw_qgep_cover_obj_id">
+          <config/>
+        </widget>
         <widget name="re_maintenance_event_wastewater_structure20160111110603931_fk_wastewater_structure_vw_qgep_cover_ws_obj_id">
           <config>
             <option key="nm-rel" value="re_maintenance_event_wastewater_structure20160111110603931_fk_maintenance_event_od_maintenance_event_obj_id"/>
@@ -11655,11 +11798,11 @@ def my_form_open(dialog, layer, feature):
       <SelectionColorGreenPart type="int">255</SelectionColorGreenPart>
       <CanvasColorBluePart type="int">255</CanvasColorBluePart>
     </Gui>
-    <WFSLayers type="QStringList"/>
-    <WMSServiceAbstract type="QString"></WMSServiceAbstract>
     <Measure>
       <Ellipsoid type="QString">NONE</Ellipsoid>
     </Measure>
+    <WMSServiceAbstract type="QString"></WMSServiceAbstract>
+    <WFSLayers type="QStringList"/>
     <WFSUrl type="QString"></WFSUrl>
     <WMSServiceCapabilities type="bool">false</WMSServiceCapabilities>
     <WMSUseLayerIDs type="bool">false</WMSUseLayerIDs>
