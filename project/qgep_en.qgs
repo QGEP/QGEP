@@ -271,26 +271,50 @@
     <relation referencingLayer="vw_dryweather_flume" referencedLayer="vw_qgep_wastewater_structure" id="vw_dryweather_flume_fk_wastewater_structure_vw_qgep_wastewater_structure_obj_id" name="Dryweather Flume">
       <fieldRef referencedField="obj_id" referencingField="fk_wastewater_structure"/>
     </relation>
+    <relation referencingLayer="vw_qgep_reach" referencedLayer="od_organisation20160212172933583" id="vw_qgep_reach_fk_dataowner_od_organisation20160212172933583_obj_id" name="">
+      <fieldRef referencedField="obj_id" referencingField="fk_dataowner"/>
+    </relation>
     <relation referencingLayer="vw_qgep_reach" referencedLayer="od_organisation20160212172933583" id="vw_qgep_reach_fk_operator_od_organisation20160212172933583_obj_id" name="Operator Reach">
+      <fieldRef referencedField="obj_id" referencingField="fk_operator"/>
+    </relation>
+    <relation referencingLayer="vw_qgep_reach" referencedLayer="od_organisation20160212172933583" id="vw_qgep_reach_fk_operator_od_organisation20160212172933583_obj_id_1" name="">
       <fieldRef referencedField="obj_id" referencingField="fk_operator"/>
     </relation>
     <relation referencingLayer="vw_qgep_reach" referencedLayer="od_organisation20160212172933583" id="vw_qgep_reach_fk_owner_od_organisation20160212172933583_obj_id" name="Owner Reach">
       <fieldRef referencedField="obj_id" referencingField="fk_owner"/>
     </relation>
+    <relation referencingLayer="vw_qgep_reach" referencedLayer="od_organisation20160212172933583" id="vw_qgep_reach_fk_owner_od_organisation20160212172933583_obj_id_1" name="">
+      <fieldRef referencedField="obj_id" referencingField="fk_owner"/>
+    </relation>
+    <relation referencingLayer="vw_qgep_reach" referencedLayer="od_organisation20160212172933583" id="vw_qgep_reach_fk_provider_od_organisation20160212172933583_obj_id" name="">
+      <fieldRef referencedField="obj_id" referencingField="fk_provider"/>
+    </relation>
+    <relation referencingLayer="vw_qgep_wastewater_structure" referencedLayer="od_organisation20160212172933583" id="vw_qgep_wastewater_structure_fk_dataowner_od_organisation20160212172933583_obj_id" name="">
+      <fieldRef referencedField="obj_id" referencingField="fk_dataowner"/>
+    </relation>
     <relation referencingLayer="vw_qgep_wastewater_structure" referencedLayer="od_organisation20160212172933583" id="vw_qgep_wastewater_structure_fk_operator_od_organisation20160212172933583_obj_id" name="Operator Cover">
+      <fieldRef referencedField="obj_id" referencingField="fk_operator"/>
+    </relation>
+    <relation referencingLayer="vw_qgep_wastewater_structure" referencedLayer="od_organisation20160212172933583" id="vw_qgep_wastewater_structure_fk_operator_od_organisation20160212172933583_obj_id_1" name="">
       <fieldRef referencedField="obj_id" referencingField="fk_operator"/>
     </relation>
     <relation referencingLayer="vw_qgep_wastewater_structure" referencedLayer="od_organisation20160212172933583" id="vw_qgep_wastewater_structure_fk_owner_od_organisation20160212172933583_obj_id" name="Owner Cover">
       <fieldRef referencedField="obj_id" referencingField="fk_owner"/>
     </relation>
+    <relation referencingLayer="vw_qgep_wastewater_structure" referencedLayer="od_organisation20160212172933583" id="vw_qgep_wastewater_structure_fk_owner_od_organisation20160212172933583_obj_id_1" name="">
+      <fieldRef referencedField="obj_id" referencingField="fk_owner"/>
+    </relation>
+    <relation referencingLayer="vw_qgep_wastewater_structure" referencedLayer="od_organisation20160212172933583" id="vw_qgep_wastewater_structure_fk_provider_od_organisation20160212172933583_obj_id" name="">
+      <fieldRef referencedField="obj_id" referencingField="fk_provider"/>
+    </relation>
   </relations>
   <mapcanvas>
     <units>meters</units>
     <extent>
-      <xmin>745106.29224999994039536</xmin>
-      <ymin>258165.63292499998351559</ymin>
-      <xmax>753476.79774999991059303</xmax>
-      <ymax>266926.71007500000996515</ymax>
+      <xmin>746907.67572284233756363</xmin>
+      <ymin>261328.9785058629931882</ymin>
+      <xmax>749000.30209784233011305</xmax>
+      <ymax>263519.24779336305800825</ymax>
     </extent>
     <rotation>0</rotation>
     <projections>1</projections>
@@ -796,8 +820,6 @@
         <default field="path_relative" expression=""/>
         <default field="remark" expression=""/>
         <default field="last_modification" expression=""/>
-        <default field="dataowner" expression=""/>
-        <default field="provider" expression=""/>
         <default field="fk_dataowner" expression=""/>
         <default field="fk_provider" expression=""/>
       </defaults>
@@ -829,12 +851,6 @@
         <edittype widgetv2type="TextEdit" name="last_modification">
           <widgetv2config IsMultiline="0" fieldEditable="0" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="Hidden" name="dataowner">
-          <widgetv2config fieldEditable="1" constraint="" labelOnTop="0" constraintDescription="" notNull="0"/>
-        </edittype>
-        <edittype widgetv2type="Hidden" name="provider">
-          <widgetv2config fieldEditable="1" constraint="" labelOnTop="0" constraintDescription="" notNull="0"/>
-        </edittype>
         <edittype widgetv2type="TextEdit" name="fk_dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
@@ -852,10 +868,8 @@
         <alias field="path_relative" index="5" name=""/>
         <alias field="remark" index="6" name=""/>
         <alias field="last_modification" index="7" name=""/>
-        <alias field="dataowner" index="8" name=""/>
-        <alias field="provider" index="9" name=""/>
-        <alias field="fk_dataowner" index="10" name=""/>
-        <alias field="fk_provider" index="11" name=""/>
+        <alias field="fk_dataowner" index="8" name=""/>
+        <alias field="fk_provider" index="9" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -946,8 +960,6 @@ def my_form_open(dialog, layer, feature):
         <default field="status" expression=""/>
         <default field="time_point" expression=""/>
         <default field="last_modification" expression=""/>
-        <default field="dataowner" expression=""/>
-        <default field="provider" expression=""/>
         <default field="fk_dataowner" expression=""/>
         <default field="fk_provider" expression=""/>
         <default field="fk_operating_company" expression=""/>
@@ -999,12 +1011,6 @@ def my_form_open(dialog, layer, feature):
         <edittype widgetv2type="TextEdit" name="last_modification">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="dataowner">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="provider">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-        </edittype>
         <edittype widgetv2type="TextEdit" name="fk_dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
@@ -1034,12 +1040,10 @@ def my_form_open(dialog, layer, feature):
         <alias field="status" index="11" name=""/>
         <alias field="time_point" index="12" name=""/>
         <alias field="last_modification" index="13" name=""/>
-        <alias field="dataowner" index="14" name=""/>
-        <alias field="provider" index="15" name=""/>
-        <alias field="fk_dataowner" index="16" name=""/>
-        <alias field="fk_provider" index="17" name=""/>
-        <alias field="fk_operating_company" index="18" name=""/>
-        <alias field="active_zone" index="19" name=""/>
+        <alias field="fk_dataowner" index="14" name=""/>
+        <alias field="fk_provider" index="15" name=""/>
+        <alias field="fk_operating_company" index="16" name=""/>
+        <alias field="active_zone" index="17" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -1082,7 +1086,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
-      <previewExpression></previewExpression>
+      <previewExpression>COALESCE( "identifier", '&lt;NULL>' )</previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -1092,8 +1096,6 @@ def my_form_open(dialog, layer, feature):
         <default field="remark" expression=""/>
         <default field="uid" expression=""/>
         <default field="last_modification" expression=""/>
-        <default field="dataowner" expression=""/>
-        <default field="provider" expression=""/>
         <default field="fk_dataowner" expression=""/>
         <default field="fk_provider" expression=""/>
         <default field="old_obj_id" expression=""/>
@@ -1117,12 +1119,6 @@ def my_form_open(dialog, layer, feature):
         <edittype widgetv2type="TextEdit" name="last_modification">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="dataowner">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="provider">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-        </edittype>
         <edittype widgetv2type="TextEdit" name="fk_dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
@@ -1140,17 +1136,25 @@ def my_form_open(dialog, layer, feature):
         <alias field="remark" index="2" name=""/>
         <alias field="uid" index="3" name=""/>
         <alias field="last_modification" index="4" name=""/>
-        <alias field="dataowner" index="5" name=""/>
-        <alias field="provider" index="6" name=""/>
-        <alias field="fk_dataowner" index="7" name=""/>
-        <alias field="fk_provider" index="8" name=""/>
-        <alias field="old_obj_id" index="9" name=""/>
+        <alias field="fk_dataowner" index="5" name=""/>
+        <alias field="fk_provider" index="6" name=""/>
+        <alias field="old_obj_id" index="7" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
-      <attributeactions default="0"/>
+      <attributeactions default="-1"/>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
-        <columns/>
+        <columns>
+          <column width="-1" hidden="0" type="field" name="obj_id"/>
+          <column width="-1" hidden="0" type="field" name="identifier"/>
+          <column width="-1" hidden="0" type="field" name="remark"/>
+          <column width="-1" hidden="0" type="field" name="uid"/>
+          <column width="-1" hidden="0" type="field" name="last_modification"/>
+          <column width="-1" hidden="0" type="field" name="fk_dataowner"/>
+          <column width="-1" hidden="0" type="field" name="fk_provider"/>
+          <column width="-1" hidden="0" type="field" name="old_obj_id"/>
+          <column width="-1" hidden="1" type="actions"/>
+        </columns>
       </attributetableconfig>
       <editform>.</editform>
       <editforminit/>
@@ -1197,8 +1201,6 @@ def my_form_open(dialog, layer, feature):
         <default field="profile_type" expression=""/>
         <default field="remark" expression=""/>
         <default field="last_modification" expression=""/>
-        <default field="dataowner" expression=""/>
-        <default field="provider" expression=""/>
         <default field="fk_dataowner" expression=""/>
         <default field="fk_provider" expression=""/>
         <default field="old_obj_id" expression=""/>
@@ -1225,12 +1227,6 @@ def my_form_open(dialog, layer, feature):
         <edittype widgetv2type="TextEdit" name="last_modification">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="dataowner">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="provider">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-        </edittype>
         <edittype widgetv2type="TextEdit" name="fk_dataowner">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
@@ -1249,11 +1245,9 @@ def my_form_open(dialog, layer, feature):
         <alias field="profile_type" index="3" name=""/>
         <alias field="remark" index="4" name=""/>
         <alias field="last_modification" index="5" name=""/>
-        <alias field="dataowner" index="6" name=""/>
-        <alias field="provider" index="7" name=""/>
-        <alias field="fk_dataowner" index="8" name=""/>
-        <alias field="fk_provider" index="9" name=""/>
-        <alias field="old_obj_id" index="10" name=""/>
+        <alias field="fk_dataowner" index="6" name=""/>
+        <alias field="fk_provider" index="7" name=""/>
+        <alias field="old_obj_id" index="8" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -1320,8 +1314,6 @@ def my_form_open(dialog, layer, feature):
         <default field="year_of_construction" expression=""/>
         <default field="year_of_replacement" expression=""/>
         <default field="last_modification" expression=""/>
-        <default field="dataowner" expression=""/>
-        <default field="provider" expression=""/>
         <default field="fk_dataowner" expression=""/>
         <default field="fk_provider" expression=""/>
         <default field="fk_owner" expression=""/>
@@ -1397,12 +1389,6 @@ def my_form_open(dialog, layer, feature):
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="last_modification">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="dataowner">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="provider">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="fk_dataowner">
@@ -1691,17 +1677,15 @@ def my_form_open(dialog, layer, feature):
         <alias field="year_of_construction" index="18" name=""/>
         <alias field="year_of_replacement" index="19" name=""/>
         <alias field="last_modification" index="20" name=""/>
-        <alias field="dataowner" index="21" name=""/>
-        <alias field="provider" index="22" name=""/>
-        <alias field="fk_dataowner" index="23" name=""/>
-        <alias field="fk_provider" index="24" name=""/>
-        <alias field="fk_owner" index="25" name=""/>
-        <alias field="fk_operator" index="26" name=""/>
-        <alias field="_usage_current" index="27" name=""/>
-        <alias field="_function_hierarchic" index="28" name=""/>
-        <alias field="_label" index="29" name=""/>
-        <alias field="fk_main_cover" index="30" name=""/>
-        <alias field="old_obj_id" index="31" name=""/>
+        <alias field="fk_dataowner" index="21" name=""/>
+        <alias field="fk_provider" index="22" name=""/>
+        <alias field="fk_owner" index="23" name=""/>
+        <alias field="fk_operator" index="24" name=""/>
+        <alias field="_usage_current" index="25" name=""/>
+        <alias field="_function_hierarchic" index="26" name=""/>
+        <alias field="_label" index="27" name=""/>
+        <alias field="fk_main_cover" index="28" name=""/>
+        <alias field="old_obj_id" index="29" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -10956,7 +10940,7 @@ def my_form_open(dialog, layer, feature):
           <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_cover_fastening" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
         <edittype widgetv2type="Range" name="level">
-          <widgetv2config AllowNull="1" fieldEditable="1" Step="10" constraint="" Style="SpinBox" labelOnTop="0" constraintDescription="" Min="0" notNull="0" Max="4000" Suffix=" m.a.s.l."/>
+          <widgetv2config AllowNull="1" fieldEditable="1" Step="10" constraint="&quot;level&quot; IS NOT NULL" Style="SpinBox" labelOnTop="0" constraintDescription="Level must not be NULL" Min="0" notNull="0" Max="4000" Suffix=" m.a.s.l."/>
         </edittype>
         <edittype widgetv2type="ValueRelation" name="cover_material">
           <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_cover_material" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
@@ -10989,7 +10973,7 @@ def my_form_open(dialog, layer, feature):
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="ValueMap" name="ws_type">
-          <widgetv2config fieldEditable="1" constraint="" labelOnTop="0" constraintDescription="" notNull="0">
+          <widgetv2config fieldEditable="1" constraint="&quot;ws_type&quot; IS NOT NULL" labelOnTop="0" constraintDescription="Please choose a wastewater structure type" notNull="0">
             <value key="Discharge Point" value="discharge_point"/>
             <value key="Infiltration Installation" value="infiltration_installation"/>
             <value key="Manhole" value="manhole"/>
@@ -13178,6 +13162,7 @@ def my_form_open(dialog, layer, feature):
       <ColorRamp type="QString"></ColorRamp>
     </DefaultStyles>
     <WMSAccessConstraints type="QString">None</WMSAccessConstraints>
+    <WMSSegmentizeFeatureInfoGeometry type="bool">false</WMSSegmentizeFeatureInfoGeometry>
     <WMSContactMail type="QString"></WMSContactMail>
     <WMSImageQuality type="int">90</WMSImageQuality>
     <WMSRestrictedComposers type="QStringList"/>
@@ -13284,11 +13269,11 @@ def my_form_open(dialog, layer, feature):
       <SelectionColorGreenPart type="int">255</SelectionColorGreenPart>
       <CanvasColorBluePart type="int">255</CanvasColorBluePart>
     </Gui>
-    <WFSLayers type="QStringList"/>
-    <WMSServiceAbstract type="QString"></WMSServiceAbstract>
     <Measure>
       <Ellipsoid type="QString">NONE</Ellipsoid>
     </Measure>
+    <WMSServiceAbstract type="QString"></WMSServiceAbstract>
+    <WFSLayers type="QStringList"/>
     <WFSUrl type="QString"></WFSUrl>
     <WMSServiceCapabilities type="bool">false</WMSServiceCapabilities>
     <WMSUseLayerIDs type="bool">false</WMSUseLayerIDs>
