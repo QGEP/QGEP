@@ -12569,12 +12569,14 @@ def my_form_open(dialog, layer, feature):
         <property key="labeling/shapeSizeY" value="0"/>
         <property key="labeling/shapeTransparency" value="0"/>
         <property key="labeling/shapeType" value="0"/>
+        <property key="labeling/substitutions" value="&lt;substitutions/>"/>
         <property key="labeling/textColorA" value="255"/>
         <property key="labeling/textColorB" value="0"/>
         <property key="labeling/textColorG" value="0"/>
         <property key="labeling/textColorR" value="0"/>
         <property key="labeling/textTransp" value="0"/>
         <property key="labeling/upsidedownLabels" value="0"/>
+        <property key="labeling/useSubstitutions" value="false"/>
         <property key="labeling/wrapChar" value=""/>
         <property key="labeling/xOffset" value="0"/>
         <property key="labeling/yOffset" value="0"/>
@@ -12801,7 +12803,7 @@ def my_form_open(dialog, layer, feature):
       </attributetableconfig>
       <editform>$HOME</editform>
       <editforminit>vw_cover_open</editforminit>
-      <editforminitcodesource>2</editforminitcodesource>
+      <editforminitcodesource>0</editforminitcodesource>
       <editforminitfilepath>.</editforminitfilepath>
       <editforminitcode><![CDATA[from qgepplugin.ui.forms import vw_cover_open
 ]]></editforminitcode>
@@ -12858,7 +12860,7 @@ def my_form_open(dialog, layer, feature):
           <attributeEditorField showLabel="1" index="37" name="fk_operator"/>
           <attributeEditorField showLabel="1" index="0" name="obj_id"/>
         </attributeEditorContainer>
-        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Manhole" groupBox="0" columnCount="0">
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="1" visibilityExpression="&quot;ws_type&quot; = 'manhole'" name="Manhole" groupBox="0" columnCount="1">
           <attributeEditorField showLabel="1" index="39" name="depth"/>
           <attributeEditorField showLabel="1" index="40" name="dimension1"/>
           <attributeEditorField showLabel="1" index="41" name="dimension2"/>
@@ -12867,7 +12869,7 @@ def my_form_open(dialog, layer, feature):
           <attributeEditorField showLabel="1" index="44" name="material"/>
           <attributeEditorField showLabel="1" index="45" name="surface_inflow"/>
         </attributeEditorContainer>
-        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Special Structure" groupBox="0" columnCount="0">
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="1" visibilityExpression="&quot;ws_type&quot; = 'special_structure'" name="Special Structure" groupBox="0" columnCount="1">
           <attributeEditorField showLabel="1" index="49" name="bypass"/>
           <attributeEditorField showLabel="1" index="50" name="special_structure_function"/>
           <attributeEditorField showLabel="1" index="51" name="stormwater_tank_arrangement"/>
@@ -12875,7 +12877,7 @@ def my_form_open(dialog, layer, feature):
           <attributeEditorField showLabel="1" index="39" name="depth"/>
           <attributeEditorField showLabel="1" index="60" name="emergency_spillway"/>
         </attributeEditorContainer>
-        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Discharge Point" groupBox="0" columnCount="0">
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="1" visibilityExpression="&quot;ws_type&quot; = 'discharge_point'" name="Discharge Point" groupBox="0" columnCount="1">
           <attributeEditorField showLabel="1" index="39" name="depth"/>
           <attributeEditorField showLabel="1" index="60" name="emergency_spillway"/>
           <attributeEditorField showLabel="1" index="52" name="highwater_level"/>
@@ -12884,7 +12886,7 @@ def my_form_open(dialog, layer, feature):
           <attributeEditorField showLabel="1" index="42" name="upper_elevation"/>
           <attributeEditorField showLabel="1" index="55" name="waterlevel_hydraulic"/>
         </attributeEditorContainer>
-        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Infiltration Installation" groupBox="0" columnCount="0">
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="1" visibilityExpression="&quot;ws_type&quot; = 'infiltration_installation'" name="Infiltration Installation" groupBox="0" columnCount="1">
           <attributeEditorField showLabel="1" index="57" name="defects"/>
           <attributeEditorField showLabel="1" index="58" name="distance_to_aquifer"/>
           <attributeEditorField showLabel="1" index="59" name="effective_area"/>
