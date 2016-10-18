@@ -13,10 +13,12 @@ DELETE FROM qgep.od_organisation;
 -- 3. einsetzen der daten von siedlungsentwaesserung in qgep.
 -- ACHTUNG auf uid, nach remark entfernt
 INSERT INTO qgep.od_organisation
-(obj_id, identifier, remark, last_modification, dataowner) 
-SELECT obj_id, bezeichnung, bemerkung,
-to_timestamp (LETZTE_AENDERUNG, 'DD MMM YYYY'),
-MD_DATENHERR 
+(obj_id, identifier, remark, last_modification)
+SELECT
+  obj_id,
+  bezeichnung,
+  bemerkung,
+  to_timestamp (LETZTE_AENDERUNG, 'DD MMM YYYY')
 FROM abwasser.siedlungsentwaesserung__organisation;
 
 

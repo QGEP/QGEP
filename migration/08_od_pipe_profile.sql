@@ -12,21 +12,22 @@ DELETE FROM qgep.od_pipe_profile;
 
 -- 3. einsetzen der daten von siedlungsentwaesserung in qgep.
 INSERT INTO qgep.od_pipe_profile
-(obj_id, height_width_ratio, identifier, profile_type, remark, last_modification, Dataowner) 
-SELECT obj_id, hoehenbreitenverhaeltnis, bezeichnung,  
+(obj_id, height_width_ratio, identifier, profile_type, remark, last_modification, fk_dataowner)
+SELECT a_rohrprofil.obj_id, hoehenbreitenverhaeltnis, bezeichnung,
 CASE WHEN profiltyp = 0 THEN 5377 --- other
-WHEN profiltyp = 1 THEN 3351 --- egg
-WHEN profiltyp = 2 THEN 3350 --- circle
-WHEN profiltyp = 3 THEN 3352 --- mouth
-WHEN profiltyp = 4 THEN 3354 --- open
-WHEN profiltyp = 5 THEN 3353 --- rectangular
-WHEN profiltyp = 6 THEN 3355 --- special
-WHEN profiltyp = 7 THEN 3357 --- unknown
+  WHEN profiltyp = 1 THEN 3351 --- egg
+  WHEN profiltyp = 2 THEN 3350 --- circle
+  WHEN profiltyp = 3 THEN 3352 --- mouth
+  WHEN profiltyp = 4 THEN 3354 --- open
+  WHEN profiltyp = 5 THEN 3353 --- rectangular
+  WHEN profiltyp = 6 THEN 3355 --- special
+  WHEN profiltyp = 7 THEN 3357 --- unknown
 END,
-bemerkung, 
+bemerkung,
 to_timestamp (LETZTE_AENDERUNG, 'DD MMM YYYY'),
-MD_DATENHERR
-FROM abwasser.siedlungsentwaesserung__Rohrprofil;
+org_dataowner.obj_id
+FROM abwasser.siedlungsentwaesserung__Rohrprofil a_rohrprofil
+LEFT JOIN qgep.od_organisation org_dataowner ON org_dataowner.identifier = MD_DATENHERR;
 
 
 

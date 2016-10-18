@@ -17,14 +17,15 @@ DELETE FROM qgep.od_reach_point;
 
 -- 3. einsetzen der daten von siedlungsentwaesserung in qgep.
 INSERT INTO qgep.od_wastewater_networkelement
-(obj_id, identifier, remark, last_modification, Dataowner, fk_wastewater_structure) 
+(obj_id, identifier, remark, last_modification, fk_dataowner, fk_wastewater_structure)
 SELECT a_abwassernetzelement.obj_id,
-bezeichnung, bemerkung, 
+bezeichnung, bemerkung,
 to_timestamp (LETZTE_AENDERUNG, 'DD MMM YYYY'),
-MD_DATENHERR,
+org_dataowner.obj_id,
 q_wastewater_structure.obj_id
 FROM abwasser.siedlungsentwaesserung__abwassernetzelement a_abwassernetzelement
-LEFT JOIN qgep.od_wastewater_structure q_wastewater_structure ON (q_wastewater_structure.old_obj_id = a_abwassernetzelement.abwasserbauwerk);
+LEFT JOIN qgep.od_wastewater_structure q_wastewater_structure ON q_wastewater_structure.old_obj_id = a_abwassernetzelement.abwasserbauwerk
+LEFT JOIN qgep.od_organisation org_dataowner ON org_dataowner.identifier = MD_DATENHERR;
 
 -- update der oid spalten
 UPDATE qgep.od_wastewater_networkelement SET old_obj_id=qgep.od_wastewater_networkelement.obj_id;
