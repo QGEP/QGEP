@@ -1,6 +1,8 @@
-﻿------ This file is sql code to import DABASE (Modul SIA405Abwasser) in German to QGEP in Englisch on QQIS
+------ This file is sql code to import DABASE (Modul SIA405Abwasser) in German to QGEP in Englisch on QQIS
 ------ For questions etc. please contact Stefan Burckhardt stefan.burckhardt@sjib.ch
 ------ version 07.06.2014 22:00:52
+
+------ change for 08; attributes of function; 15.05.15 OS
 
 -- 1. ergaenzen tabelle mit oid spalten
 ALTER TABLE qgep.od_special_structure DROP COLUMN IF EXISTS old_obj_id;
@@ -34,36 +36,29 @@ END AS bypass,
 -- WHEN notueberlauf = 4 THEN 5878 --- none
 -- WHEN notueberlauf = 5 THEN 5867 --- unknown
 -- END,
-CASE WHEN funktion = 0 THEN 6397 --- pit_without_drain
-WHEN funktion = 1 THEN 245 --- drop_structure
-WHEN funktion = 2 THEN 6398 --- hydrolizing_tank
-WHEN funktion = 3 THEN 5371 --- other
-WHEN funktion = 4 THEN 386 --- venting
-WHEN funktion = 5 THEN 3234 --- inverse_syphon_chamber
-WHEN funktion = 6 THEN 5091 --- syphon_head
-WHEN funktion = 7 THEN 6399 --- septic_tank_two_chambers
-WHEN funktion = 8 THEN 3348 --- terrain_depression
-WHEN funktion = 9 THEN 336 --- bolders_bedload_catchement_dam
-WHEN funktion = 10 THEN 5494 --- cesspit
-WHEN funktion = 11 THEN 6478 --- septic_tank
-WHEN funktion = 12 THEN 2998 --- manhole
-WHEN funktion = 13 THEN 2768 --- oil_separator
-WHEN funktion = 14 THEN 246 --- pump_station
-WHEN funktion = 15 THEN 3673 --- stormwater_tank_with_overflow
-WHEN funktion = 16 THEN 3674 --- stormwater_tank_retaining_first_flush
-WHEN funktion = 17 THEN 5574 --- stormwater_retaining_channel
-WHEN funktion = 18 THEN 3675 --- stormwater_sedimentation_tank
-WHEN funktion = 19 THEN 3676 --- stormwater_retention_tank
-WHEN funktion = 20 THEN 5575 --- stormwater_retention_channel
-WHEN funktion = 21 THEN 5576 --- stormwater_storage_channel
-WHEN funktion = 22 THEN 3677 --- stormwater_composite_tank
-WHEN funktion = 23 THEN 5372 --- stormwater_overflow
-WHEN funktion = 24 THEN 5373 --- floating_material_separator
-WHEN funktion = 25 THEN 383 --- side_access
-WHEN funktion = 26 THEN 227 --- jetting_manhole
-WHEN funktion = 27 THEN 4799 --- separating_structure
-WHEN funktion = 28 THEN 3008 --- unknown
-WHEN funktion = 29 THEN 2745 --- vortex_manhole
+CASE WHEN funktion = 0 THEN 245 --- drop_structure
+WHEN funktion = 1 THEN 5371 --- other
+WHEN funktion = 2 THEN 386 --- venting
+WHEN funktion = 3 THEN 5091 --- syphon_head
+WHEN funktion = 4 THEN 3348 --- terrain_depression
+WHEN funktion = 5 THEN 336 --- bolders_bedload_catchement_dam
+WHEN funktion = 6 THEN 5372 --- stormwater_overflow
+WHEN funktion = 7 THEN 5494 --- cesspit
+WHEN funktion = 8 THEN 6478 --- septic_tank
+WHEN funktion = 9 THEN 2998 --- manhole
+WHEN funktion = 10 THEN 2768 --- oil_separator
+WHEN funktion = 11 THEN 246 --- pump_station
+WHEN funktion = 12 THEN 3673 --- stormwater_tank_with_overflow
+WHEN funktion = 13 THEN 3674 --- stormwater_tank_retaining_first_flush
+WHEN funktion = 14 THEN 3675 --- stormwater_sedimentation_tank
+WHEN funktion = 15 THEN 3676 --- stormwater_retention_tank
+WHEN funktion = 16 THEN 3677 --- stormwater_composite_tank
+WHEN funktion = 17 THEN 5373 --- floating_material_separator
+WHEN funktion = 18 THEN 383 --- side_access
+WHEN funktion = 19 THEN 227 --- jetting_manhole
+WHEN funktion = 20 THEN 4799 --- separating_structure
+WHEN funktion = 21 THEN 3008 --- unknown
+WHEN funktion = 22 THEN 2745 --- vortex_manhole
 END
 -- stormwater_tank_arrangement CASE WHEN regenbecken_anordnung = 0 THEN 4608 --- main_connection
 -- WHEN regenbecken_anordnung = 1 THEN 4609 --- side_connection

@@ -2,6 +2,8 @@
 ------ For questions etc. please contact Stefan Burckhardt stefan.burckhardt@sjib.ch
 ------ version 07.06.2014 22:00:52
 
+------ change for 08; class name changed from 'Vorflutereinlauf' to 'Einleitstelle'; 15.05.15 OS
+
 -- 1. ergaenzen tabelle mit oid spalten
 ALTER TABLE qgep.od_discharge_point DROP COLUMN IF EXISTS old_obj_id;
 ALTER TABLE qgep.od_discharge_point ADD COLUMN old_obj_id text;
@@ -15,7 +17,6 @@ DELETE FROM qgep.od_discharge_point;
 SELECT setval('qgep.seq_od_discharge_point_oid', 1, true);
 UPDATE qgep.od_wastewater_structure SET obj_id=qgep.generate_oid('od_discharge_point')
 WHERE qgep.od_wastewater_structure.old_obj_id IN (SELECT obj_id FROM abwasser.siedlungsentwaesserung__vorflutereinlauf);
-
 
 
 -- 3. einsetzen der daten von siedlungsentwaesserung in qgep.
@@ -44,8 +45,3 @@ hochwasserkote
 FROM abwasser.siedlungsentwaesserung__Vorflutereinlauf a_vorflutereinlauf
 LEFT JOIN qgep.od_wastewater_structure q_wastewater_structure
 ON a_vorflutereinlauf.obj_id = q_wastewater_structure.old_obj_id;
-
-
-
-
-
