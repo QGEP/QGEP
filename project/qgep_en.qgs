@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis projectname="" version="2.16.2">
+<qgis projectname="" version="2.17.0">
   <title></title>
   <autotransaction active="1"/>
   <evaluateDefaultValues active="1"/>
@@ -233,7 +233,7 @@
     <layer-tree-group expanded="0" checked="Qt::Checked" name="Cadastral Data">
       <customproperties/>
     </layer-tree-group>
-    <layer-tree-group expanded="1" checked="Qt::Checked" name="Others">
+    <layer-tree-group expanded="0" checked="Qt::Checked" name="Others">
       <customproperties/>
       <layer-tree-layer expanded="1" checked="Qt::Checked" id="od_file20160921105557083" name="od_file">
         <customproperties/>
@@ -287,10 +287,10 @@
   <mapcanvas>
     <units>meters</units>
     <extent>
-      <xmin>747173.79657430271618068</xmin>
-      <ymin>262807.14224926056340337</ymin>
-      <xmax>747507.11825288715772331</xmax>
-      <ymax>263156.0168712108861655</ymax>
+      <xmin>745106.29224999994039536</xmin>
+      <ymin>258165.63292499998351559</ymin>
+      <xmax>753476.79774999991059303</xmax>
+      <ymax>266926.71007500000996515</ymax>
     </extent>
     <rotation>0</rotation>
     <projections>1</projections>
@@ -749,7 +749,7 @@
       </legendlayer>
     </legendgroup>
     <legendgroup open="false" checked="Qt::Checked" name="Cadastral Data"/>
-    <legendgroup open="true" checked="Qt::Checked" name="Others">
+    <legendgroup open="false" checked="Qt::Checked" name="Others">
       <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="od_file" showFeatureCount="0">
         <filegroup open="true" hidden="false">
           <legendlayerfile isInOverview="0" layerid="od_file20160921105557083" visible="1"/>
@@ -760,7 +760,7 @@
   <projectlayers>
     <maplayer minimumScale="100000" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>od_file20160921105557083</id>
-      <datasource>service='pg_qgep' sslmode=allow key='"obj_id"' table="qgep"."od_file" sql=</datasource>
+      <datasource>service='pg_qgep' sslmode=allow key='obj_id' table="qgep"."od_file" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -787,6 +787,20 @@
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="obj_id" expression=""/>
+        <default field="class" expression=""/>
+        <default field="identifier" expression=""/>
+        <default field="kind" expression=""/>
+        <default field="object" expression=""/>
+        <default field="path_relative" expression=""/>
+        <default field="remark" expression=""/>
+        <default field="last_modification" expression=""/>
+        <default field="dataowner" expression=""/>
+        <default field="provider" expression=""/>
+        <default field="fk_dataowner" expression=""/>
+        <default field="fk_provider" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -829,6 +843,20 @@
         </edittype>
       </edittypes>
       <annotationform>.</annotationform>
+      <aliases>
+        <alias field="obj_id" index="0" name=""/>
+        <alias field="class" index="1" name=""/>
+        <alias field="identifier" index="2" name=""/>
+        <alias field="kind" index="3" name=""/>
+        <alias field="object" index="4" name=""/>
+        <alias field="path_relative" index="5" name=""/>
+        <alias field="remark" index="6" name=""/>
+        <alias field="last_modification" index="7" name=""/>
+        <alias field="dataowner" index="8" name=""/>
+        <alias field="provider" index="9" name=""/>
+        <alias field="fk_dataowner" index="10" name=""/>
+        <alias field="fk_provider" index="11" name=""/>
+      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions default="-1"/>
@@ -880,7 +908,7 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>od_maintenance_event</id>
-      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true table="qgep"."od_maintenance_event" sql=</datasource>
+      <datasource>service='pg_qgep' key='obj_id' estimatedmetadata=true table="qgep"."od_maintenance_event" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -903,6 +931,28 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="obj_id" expression=""/>
+        <default field="base_data" expression=""/>
+        <default field="cost" expression=""/>
+        <default field="data_details" expression=""/>
+        <default field="duration" expression=""/>
+        <default field="identifier" expression=""/>
+        <default field="kind" expression=""/>
+        <default field="operator" expression=""/>
+        <default field="reason" expression=""/>
+        <default field="remark" expression=""/>
+        <default field="result" expression=""/>
+        <default field="status" expression=""/>
+        <default field="time_point" expression=""/>
+        <default field="last_modification" expression=""/>
+        <default field="dataowner" expression=""/>
+        <default field="provider" expression=""/>
+        <default field="fk_dataowner" expression=""/>
+        <default field="fk_provider" expression=""/>
+        <default field="fk_operating_company" expression=""/>
+        <default field="active_zone" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -970,22 +1020,26 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
+        <alias field="obj_id" index="0" name=""/>
         <alias field="base_data" index="1" name=""/>
         <alias field="cost" index="2" name=""/>
         <alias field="data_details" index="3" name=""/>
-        <alias field="dataowner" index="14" name=""/>
         <alias field="duration" index="4" name=""/>
         <alias field="identifier" index="5" name=""/>
         <alias field="kind" index="6" name=""/>
-        <alias field="last_modification" index="13" name=""/>
-        <alias field="obj_id" index="0" name=""/>
         <alias field="operator" index="7" name=""/>
-        <alias field="provider" index="15" name=""/>
         <alias field="reason" index="8" name=""/>
         <alias field="remark" index="9" name=""/>
         <alias field="result" index="10" name=""/>
         <alias field="status" index="11" name=""/>
         <alias field="time_point" index="12" name=""/>
+        <alias field="last_modification" index="13" name=""/>
+        <alias field="dataowner" index="14" name=""/>
+        <alias field="provider" index="15" name=""/>
+        <alias field="fk_dataowner" index="16" name=""/>
+        <alias field="fk_provider" index="17" name=""/>
+        <alias field="fk_operating_company" index="18" name=""/>
+        <alias field="active_zone" index="19" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -1008,7 +1062,7 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>od_organisation20160212172933583</id>
-      <datasource>service='pg_qgep' key='"obj_id"' table="qgep"."od_organisation" sql=</datasource>
+      <datasource>service='pg_qgep' key='obj_id' table="qgep"."od_organisation" sql=</datasource>
       <shortname>od_organisation</shortname>
       <keywordList>
         <value></value>
@@ -1032,6 +1086,18 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="obj_id" expression=""/>
+        <default field="identifier" expression=""/>
+        <default field="remark" expression=""/>
+        <default field="uid" expression=""/>
+        <default field="last_modification" expression=""/>
+        <default field="dataowner" expression=""/>
+        <default field="provider" expression=""/>
+        <default field="fk_dataowner" expression=""/>
+        <default field="fk_provider" expression=""/>
+        <default field="old_obj_id" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -1068,6 +1134,18 @@ def my_form_open(dialog, layer, feature):
         </edittype>
       </edittypes>
       <annotationform>.</annotationform>
+      <aliases>
+        <alias field="obj_id" index="0" name=""/>
+        <alias field="identifier" index="1" name=""/>
+        <alias field="remark" index="2" name=""/>
+        <alias field="uid" index="3" name=""/>
+        <alias field="last_modification" index="4" name=""/>
+        <alias field="dataowner" index="5" name=""/>
+        <alias field="provider" index="6" name=""/>
+        <alias field="fk_dataowner" index="7" name=""/>
+        <alias field="fk_provider" index="8" name=""/>
+        <alias field="old_obj_id" index="9" name=""/>
+      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions default="0"/>
@@ -1089,7 +1167,7 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>od_pipe_profile</id>
-      <datasource>service='pg_qgep' key='"obj_id"' table="qgep"."od_pipe_profile" sql=</datasource>
+      <datasource>service='pg_qgep' key='obj_id' table="qgep"."od_pipe_profile" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -1112,6 +1190,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="obj_id" expression=""/>
+        <default field="height_width_ratio" expression=""/>
+        <default field="identifier" expression=""/>
+        <default field="profile_type" expression=""/>
+        <default field="remark" expression=""/>
+        <default field="last_modification" expression=""/>
+        <default field="dataowner" expression=""/>
+        <default field="provider" expression=""/>
+        <default field="fk_dataowner" expression=""/>
+        <default field="fk_provider" expression=""/>
+        <default field="old_obj_id" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -1152,14 +1243,17 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="dataowner" index="6" name=""/>
+        <alias field="obj_id" index="0" name=""/>
         <alias field="height_width_ratio" index="1" name=""/>
         <alias field="identifier" index="2" name=""/>
-        <alias field="last_modification" index="5" name=""/>
-        <alias field="obj_id" index="0" name=""/>
         <alias field="profile_type" index="3" name=""/>
-        <alias field="provider" index="7" name=""/>
         <alias field="remark" index="4" name=""/>
+        <alias field="last_modification" index="5" name=""/>
+        <alias field="dataowner" index="6" name=""/>
+        <alias field="provider" index="7" name=""/>
+        <alias field="fk_dataowner" index="8" name=""/>
+        <alias field="fk_provider" index="9" name=""/>
+        <alias field="old_obj_id" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -1182,7 +1276,7 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer simplifyAlgorithm="0" minimumScale="0" maximumScale="5001" simplifyDrawingHints="1" readOnly="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="1" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>od_wastewater_structure</id>
-      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true srid=21781 type=CurvePolygon table="qgep"."od_wastewater_structure" (detail_geometry_geometry) sql=</datasource>
+      <datasource>service='pg_qgep' key='obj_id' estimatedmetadata=true srid=21781 type=CurvePolygon table="qgep"."od_wastewater_structure" (detail_geometry_geometry) sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -1204,6 +1298,40 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="obj_id" expression=""/>
+        <default field="accessibility" expression=""/>
+        <default field="contract_section" expression=""/>
+        <default field="detail_geometry3d_geometry" expression=""/>
+        <default field="financing" expression=""/>
+        <default field="gross_costs" expression=""/>
+        <default field="identifier" expression=""/>
+        <default field="inspection_interval" expression=""/>
+        <default field="location_name" expression=""/>
+        <default field="records" expression=""/>
+        <default field="remark" expression=""/>
+        <default field="renovation_necessity" expression=""/>
+        <default field="replacement_value" expression=""/>
+        <default field="rv_base_year" expression=""/>
+        <default field="rv_construction_type" expression=""/>
+        <default field="status" expression=""/>
+        <default field="structure_condition" expression=""/>
+        <default field="subsidies" expression=""/>
+        <default field="year_of_construction" expression=""/>
+        <default field="year_of_replacement" expression=""/>
+        <default field="last_modification" expression=""/>
+        <default field="dataowner" expression=""/>
+        <default field="provider" expression=""/>
+        <default field="fk_dataowner" expression=""/>
+        <default field="fk_provider" expression=""/>
+        <default field="fk_owner" expression=""/>
+        <default field="fk_operator" expression=""/>
+        <default field="_usage_current" expression=""/>
+        <default field="_function_hierarchic" expression=""/>
+        <default field="_label" expression=""/>
+        <default field="fk_main_cover" expression=""/>
+        <default field="old_obj_id" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -1542,21 +1670,15 @@ def my_form_open(dialog, layer, feature):
       <DiagramLayerSettings yPosColumn="-1" showColumn="0" linePlacementFlags="10" placement="0" dist="0" xPosColumn="-1" priority="0" obstacle="0" zIndex="0" showAll="1"/>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="_function_hierarchic" index="28" name=""/>
-        <alias field="_usage_current" index="27" name=""/>
+        <alias field="obj_id" index="0" name=""/>
         <alias field="accessibility" index="1" name=""/>
         <alias field="contract_section" index="2" name=""/>
-        <alias field="dataowner" index="21" name=""/>
+        <alias field="detail_geometry3d_geometry" index="3" name=""/>
         <alias field="financing" index="4" name=""/>
-        <alias field="fk_operator" index="26" name=""/>
-        <alias field="fk_owner" index="25" name=""/>
         <alias field="gross_costs" index="5" name=""/>
         <alias field="identifier" index="6" name=""/>
         <alias field="inspection_interval" index="7" name=""/>
-        <alias field="last_modification" index="20" name=""/>
         <alias field="location_name" index="8" name=""/>
-        <alias field="obj_id" index="0" name=""/>
-        <alias field="provider" index="22" name=""/>
         <alias field="records" index="9" name=""/>
         <alias field="remark" index="10" name=""/>
         <alias field="renovation_necessity" index="11" name=""/>
@@ -1568,6 +1690,18 @@ def my_form_open(dialog, layer, feature):
         <alias field="subsidies" index="17" name=""/>
         <alias field="year_of_construction" index="18" name=""/>
         <alias field="year_of_replacement" index="19" name=""/>
+        <alias field="last_modification" index="20" name=""/>
+        <alias field="dataowner" index="21" name=""/>
+        <alias field="provider" index="22" name=""/>
+        <alias field="fk_dataowner" index="23" name=""/>
+        <alias field="fk_provider" index="24" name=""/>
+        <alias field="fk_owner" index="25" name=""/>
+        <alias field="fk_operator" index="26" name=""/>
+        <alias field="_usage_current" index="27" name=""/>
+        <alias field="_function_hierarchic" index="28" name=""/>
+        <alias field="_label" index="29" name=""/>
+        <alias field="fk_main_cover" index="30" name=""/>
+        <alias field="old_obj_id" index="31" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -1590,7 +1724,7 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>re_maintenance_event_wastewater_structure20160111110603931</id>
-      <datasource>service='pg_qgep' key='"obj_id"' table="qgep"."re_maintenance_event_wastewater_structure" sql=</datasource>
+      <datasource>service='pg_qgep' key='obj_id' table="qgep"."re_maintenance_event_wastewater_structure" sql=</datasource>
       <shortname>re_maintenance_event_wastewater_structure</shortname>
       <keywordList>
         <value></value>
@@ -1614,6 +1748,11 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="obj_id" expression=""/>
+        <default field="fk_wastewater_structure" expression=""/>
+        <default field="fk_maintenance_event" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -1629,6 +1768,11 @@ def my_form_open(dialog, layer, feature):
         </edittype>
       </edittypes>
       <annotationform>.</annotationform>
+      <aliases>
+        <alias field="obj_id" index="0" name=""/>
+        <alias field="fk_wastewater_structure" index="1" name=""/>
+        <alias field="fk_maintenance_event" index="2" name=""/>
+      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions default="0"/>
@@ -1673,6 +1817,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -1713,14 +1870,17 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="abbr_de" index="6" name=""/>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
         <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_fr" index="7" name=""/>
         <alias field="active" index="8" name=""/>
-        <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="3" name=""/>
-        <alias field="value_en" index="2" name=""/>
-        <alias field="value_fr" index="4" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -1766,6 +1926,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -1806,14 +1979,17 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>.</annotationform>
       <aliases>
-        <alias field="abbr_de" index="6" name=""/>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
         <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_fr" index="7" name=""/>
         <alias field="active" index="8" name=""/>
-        <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="3" name=""/>
-        <alias field="value_en" index="2" name=""/>
-        <alias field="value_fr" index="4" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -1859,6 +2035,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -1899,14 +2088,17 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="abbr_de" index="6" name=""/>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
         <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_fr" index="7" name=""/>
         <alias field="active" index="8" name=""/>
-        <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="3" name=""/>
-        <alias field="value_en" index="2" name=""/>
-        <alias field="value_fr" index="4" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -1952,6 +2144,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -1992,14 +2197,17 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="abbr_de" index="6" name=""/>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
         <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_fr" index="7" name=""/>
         <alias field="active" index="8" name=""/>
-        <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="3" name=""/>
-        <alias field="value_en" index="2" name=""/>
-        <alias field="value_fr" index="4" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -2045,6 +2253,20 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="order_fct_hierarchic" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -2088,15 +2310,18 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="abbr_de" index="6" name=""/>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
         <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_fr" index="7" name=""/>
         <alias field="active" index="8" name=""/>
-        <alias field="code" index="0" name=""/>
         <alias field="order_fct_hierarchic" index="9" name=""/>
-        <alias field="value_de" index="3" name=""/>
-        <alias field="value_en" index="2" name=""/>
-        <alias field="value_fr" index="4" name=""/>
+        <alias field="value_ro" index="10" name=""/>
+        <alias field="abbr_ro" index="11" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -2142,6 +2367,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -2182,14 +2420,17 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="abbr_de" index="6" name=""/>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
         <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_fr" index="7" name=""/>
         <alias field="active" index="8" name=""/>
-        <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="3" name=""/>
-        <alias field="value_en" index="2" name=""/>
-        <alias field="value_fr" index="4" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -2235,6 +2476,20 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="order_usage_current" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -2278,15 +2533,18 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="abbr_de" index="6" name=""/>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
         <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_fr" index="7" name=""/>
         <alias field="active" index="8" name=""/>
-        <alias field="code" index="0" name=""/>
         <alias field="order_usage_current" index="9" name=""/>
-        <alias field="value_de" index="3" name=""/>
-        <alias field="value_en" index="2" name=""/>
-        <alias field="value_fr" index="4" name=""/>
+        <alias field="value_ro" index="10" name=""/>
+        <alias field="abbr_ro" index="11" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -2332,6 +2590,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -2372,14 +2643,17 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="abbr_de" index="6" name=""/>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
         <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_fr" index="7" name=""/>
         <alias field="active" index="8" name=""/>
-        <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="3" name=""/>
-        <alias field="value_en" index="2" name=""/>
-        <alias field="value_fr" index="4" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -2425,6 +2699,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -2465,14 +2752,17 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="abbr_de" index="6" name=""/>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
         <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_fr" index="7" name=""/>
         <alias field="active" index="8" name=""/>
-        <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="3" name=""/>
-        <alias field="value_en" index="2" name=""/>
-        <alias field="value_fr" index="4" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -2518,6 +2808,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -2558,14 +2861,17 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="abbr_de" index="6" name=""/>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
         <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_fr" index="7" name=""/>
         <alias field="active" index="8" name=""/>
-        <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="3" name=""/>
-        <alias field="value_en" index="2" name=""/>
-        <alias field="value_fr" index="4" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -2611,6 +2917,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -2651,14 +2970,17 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="abbr_de" index="6" name=""/>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
         <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_fr" index="7" name=""/>
         <alias field="active" index="8" name=""/>
-        <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="3" name=""/>
-        <alias field="value_en" index="2" name=""/>
-        <alias field="value_fr" index="4" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -2704,6 +3026,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -2743,6 +3078,19 @@ def my_form_open(dialog, layer, feature):
         </edittype>
       </edittypes>
       <annotationform>.</annotationform>
+      <aliases>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
+      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions default="0"/>
@@ -2787,6 +3135,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -2827,14 +3188,17 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="abbr_de" index="6" name=""/>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
         <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_fr" index="7" name=""/>
         <alias field="active" index="8" name=""/>
-        <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="3" name=""/>
-        <alias field="value_en" index="2" name=""/>
-        <alias field="value_fr" index="4" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -2880,6 +3244,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -2920,14 +3297,17 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="abbr_de" index="6" name=""/>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
         <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_fr" index="7" name=""/>
         <alias field="active" index="8" name=""/>
-        <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="3" name=""/>
-        <alias field="value_en" index="2" name=""/>
-        <alias field="value_fr" index="4" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -2973,6 +3353,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -3013,14 +3406,17 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="abbr_de" index="6" name=""/>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
         <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_fr" index="7" name=""/>
         <alias field="active" index="8" name=""/>
-        <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="3" name=""/>
-        <alias field="value_en" index="2" name=""/>
-        <alias field="value_fr" index="4" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -3066,6 +3462,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -3106,14 +3515,17 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="abbr_de" index="6" name=""/>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
         <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_fr" index="7" name=""/>
         <alias field="active" index="8" name=""/>
-        <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="3" name=""/>
-        <alias field="value_en" index="2" name=""/>
-        <alias field="value_fr" index="4" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -3159,6 +3571,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -3199,14 +3624,17 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="abbr_de" index="6" name=""/>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
         <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_fr" index="7" name=""/>
         <alias field="active" index="8" name=""/>
-        <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="3" name=""/>
-        <alias field="value_en" index="2" name=""/>
-        <alias field="value_fr" index="4" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -3252,6 +3680,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -3292,14 +3733,17 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="abbr_de" index="6" name=""/>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
         <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_fr" index="7" name=""/>
         <alias field="active" index="8" name=""/>
-        <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="3" name=""/>
-        <alias field="value_en" index="2" name=""/>
-        <alias field="value_fr" index="4" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -3345,6 +3789,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -3384,6 +3841,19 @@ def my_form_open(dialog, layer, feature):
         </edittype>
       </edittypes>
       <annotationform>.</annotationform>
+      <aliases>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
+      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions default="0"/>
@@ -3428,6 +3898,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -3467,6 +3950,19 @@ def my_form_open(dialog, layer, feature):
         </edittype>
       </edittypes>
       <annotationform>.</annotationform>
+      <aliases>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
+      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions default="0"/>
@@ -3511,6 +4007,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -3551,14 +4060,17 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="abbr_de" index="6" name=""/>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
         <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_fr" index="7" name=""/>
         <alias field="active" index="8" name=""/>
-        <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="3" name=""/>
-        <alias field="value_en" index="2" name=""/>
-        <alias field="value_fr" index="4" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -3604,6 +4116,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -3644,14 +4169,17 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="abbr_de" index="6" name=""/>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
         <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_fr" index="7" name=""/>
         <alias field="active" index="8" name=""/>
-        <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="3" name=""/>
-        <alias field="value_en" index="2" name=""/>
-        <alias field="value_fr" index="4" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -3697,6 +4225,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -3737,14 +4278,17 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="abbr_de" index="6" name=""/>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
         <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_fr" index="7" name=""/>
         <alias field="active" index="8" name=""/>
-        <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="3" name=""/>
-        <alias field="value_en" index="2" name=""/>
-        <alias field="value_fr" index="4" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -3790,6 +4334,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -3830,14 +4387,17 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="abbr_de" index="6" name=""/>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
         <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_fr" index="7" name=""/>
         <alias field="active" index="8" name=""/>
-        <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="3" name=""/>
-        <alias field="value_en" index="2" name=""/>
-        <alias field="value_fr" index="4" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -3883,6 +4443,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -3923,14 +4496,17 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="abbr_de" index="6" name=""/>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
         <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_fr" index="7" name=""/>
         <alias field="active" index="8" name=""/>
-        <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="3" name=""/>
-        <alias field="value_en" index="2" name=""/>
-        <alias field="value_fr" index="4" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -3976,6 +4552,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -4016,14 +4605,17 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="abbr_de" index="6" name=""/>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
         <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_fr" index="7" name=""/>
         <alias field="active" index="8" name=""/>
-        <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="3" name=""/>
-        <alias field="value_en" index="2" name=""/>
-        <alias field="value_fr" index="4" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -4069,6 +4661,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -4109,14 +4714,17 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="abbr_de" index="6" name=""/>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
         <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_fr" index="7" name=""/>
         <alias field="active" index="8" name=""/>
-        <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="3" name=""/>
-        <alias field="value_en" index="2" name=""/>
-        <alias field="value_fr" index="4" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -4162,6 +4770,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -4202,14 +4823,17 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="abbr_de" index="6" name=""/>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
         <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_fr" index="7" name=""/>
         <alias field="active" index="8" name=""/>
-        <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="3" name=""/>
-        <alias field="value_en" index="2" name=""/>
-        <alias field="value_fr" index="4" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -4255,6 +4879,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -4295,14 +4932,17 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="abbr_de" index="6" name=""/>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
         <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_fr" index="7" name=""/>
         <alias field="active" index="8" name=""/>
-        <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="3" name=""/>
-        <alias field="value_en" index="2" name=""/>
-        <alias field="value_fr" index="4" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -4348,6 +4988,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -4388,14 +5041,17 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="abbr_de" index="6" name=""/>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
         <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_fr" index="7" name=""/>
         <alias field="active" index="8" name=""/>
-        <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="3" name=""/>
-        <alias field="value_en" index="2" name=""/>
-        <alias field="value_fr" index="4" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -4441,6 +5097,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -4481,14 +5150,17 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="abbr_de" index="6" name=""/>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
         <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_fr" index="7" name=""/>
         <alias field="active" index="8" name=""/>
-        <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="3" name=""/>
-        <alias field="value_en" index="2" name=""/>
-        <alias field="value_fr" index="4" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -4534,6 +5206,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -4574,14 +5259,17 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="abbr_de" index="6" name=""/>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
         <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_fr" index="7" name=""/>
         <alias field="active" index="8" name=""/>
-        <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="3" name=""/>
-        <alias field="value_en" index="2" name=""/>
-        <alias field="value_fr" index="4" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -4627,6 +5315,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -4667,14 +5368,17 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="abbr_de" index="6" name=""/>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
         <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_fr" index="7" name=""/>
         <alias field="active" index="8" name=""/>
-        <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="3" name=""/>
-        <alias field="value_en" index="2" name=""/>
-        <alias field="value_fr" index="4" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -4724,6 +5428,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -4764,14 +5481,17 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="abbr_de" index="6" name=""/>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
         <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_fr" index="7" name=""/>
         <alias field="active" index="8" name=""/>
-        <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="3" name=""/>
-        <alias field="value_en" index="2" name=""/>
-        <alias field="value_fr" index="4" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -4844,6 +5564,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -4884,14 +5617,17 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="abbr_de" index="6" name=""/>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
         <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_fr" index="7" name=""/>
         <alias field="active" index="8" name=""/>
-        <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="3" name=""/>
-        <alias field="value_en" index="2" name=""/>
-        <alias field="value_fr" index="4" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -4937,6 +5673,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -4977,14 +5726,17 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="abbr_de" index="6" name=""/>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
         <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_fr" index="7" name=""/>
         <alias field="active" index="8" name=""/>
-        <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="3" name=""/>
-        <alias field="value_en" index="2" name=""/>
-        <alias field="value_fr" index="4" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -5030,6 +5782,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -5070,14 +5835,17 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="abbr_de" index="6" name=""/>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
         <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_fr" index="7" name=""/>
         <alias field="active" index="8" name=""/>
-        <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="3" name=""/>
-        <alias field="value_en" index="2" name=""/>
-        <alias field="value_fr" index="4" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -5123,6 +5891,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -5163,14 +5944,17 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="abbr_de" index="6" name=""/>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
         <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_fr" index="7" name=""/>
         <alias field="active" index="8" name=""/>
-        <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="3" name=""/>
-        <alias field="value_en" index="2" name=""/>
-        <alias field="value_fr" index="4" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -5216,6 +6000,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -5256,14 +6053,17 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="abbr_de" index="6" name=""/>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
         <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_fr" index="7" name=""/>
         <alias field="active" index="8" name=""/>
-        <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="3" name=""/>
-        <alias field="value_en" index="2" name=""/>
-        <alias field="value_fr" index="4" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -5309,6 +6109,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -5349,14 +6162,17 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="abbr_de" index="6" name=""/>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
         <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
         <alias field="abbr_fr" index="7" name=""/>
         <alias field="active" index="8" name=""/>
-        <alias field="code" index="0" name=""/>
-        <alias field="value_de" index="3" name=""/>
-        <alias field="value_en" index="2" name=""/>
-        <alias field="value_fr" index="4" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -5379,7 +6195,7 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer minimumScale="100000" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vw_access_aid</id>
-      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true table="qgep"."vw_access_aid" sql=</datasource>
+      <datasource>service='pg_qgep' key='obj_id' estimatedmetadata=true table="qgep"."vw_access_aid" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -5406,6 +6222,17 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="obj_id" expression=""/>
+        <default field="kind" expression=""/>
+        <default field="identifier" expression=""/>
+        <default field="remark" expression=""/>
+        <default field="renovation_demand" expression=""/>
+        <default field="fk_dataowner" expression=""/>
+        <default field="fk_provider" expression=""/>
+        <default field="last_modification" expression=""/>
+        <default field="fk_wastewater_structure" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -5440,13 +6267,15 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="fk_wastewater_structure" index="8" name=""/>
-        <alias field="identifier" index="2" name=""/>
-        <alias field="kind" index="1" name=""/>
-        <alias field="last_modification" index="7" name=""/>
         <alias field="obj_id" index="0" name=""/>
+        <alias field="kind" index="1" name=""/>
+        <alias field="identifier" index="2" name=""/>
         <alias field="remark" index="3" name=""/>
         <alias field="renovation_demand" index="4" name=""/>
+        <alias field="fk_dataowner" index="5" name=""/>
+        <alias field="fk_provider" index="6" name=""/>
+        <alias field="last_modification" index="7" name=""/>
+        <alias field="fk_wastewater_structure" index="8" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -5496,7 +6325,7 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vw_backflow_prevention</id>
-      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true table="qgep"."vw_backflow_prevention" sql=</datasource>
+      <datasource>service='pg_qgep' key='obj_id' estimatedmetadata=true table="qgep"."vw_backflow_prevention" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -5523,6 +6352,19 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="obj_id" expression=""/>
+        <default field="gross_costs" expression=""/>
+        <default field="kind" expression=""/>
+        <default field="year_of_replacement" expression=""/>
+        <default field="identifier" expression=""/>
+        <default field="remark" expression=""/>
+        <default field="renovation_demand" expression=""/>
+        <default field="fk_dataowner" expression=""/>
+        <default field="fk_provider" expression=""/>
+        <default field="last_modification" expression=""/>
+        <default field="fk_wastewater_structure" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -5563,15 +6405,17 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="fk_wastewater_structure" index="10" name=""/>
-        <alias field="gross_costs" index="1" name=""/>
-        <alias field="identifier" index="4" name=""/>
-        <alias field="kind" index="2" name=""/>
-        <alias field="last_modification" index="9" name=""/>
         <alias field="obj_id" index="0" name=""/>
+        <alias field="gross_costs" index="1" name=""/>
+        <alias field="kind" index="2" name=""/>
+        <alias field="year_of_replacement" index="3" name=""/>
+        <alias field="identifier" index="4" name=""/>
         <alias field="remark" index="5" name=""/>
         <alias field="renovation_demand" index="6" name=""/>
-        <alias field="year_of_replacement" index="3" name=""/>
+        <alias field="fk_dataowner" index="7" name=""/>
+        <alias field="fk_provider" index="8" name=""/>
+        <alias field="last_modification" index="9" name=""/>
+        <alias field="fk_wastewater_structure" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -5623,7 +6467,7 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer minimumScale="100000" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vw_benching</id>
-      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true table="qgep"."vw_benching" sql=</datasource>
+      <datasource>service='pg_qgep' key='obj_id' estimatedmetadata=true table="qgep"."vw_benching" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -5650,6 +6494,17 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="obj_id" expression=""/>
+        <default field="kind" expression=""/>
+        <default field="identifier" expression=""/>
+        <default field="remark" expression=""/>
+        <default field="renovation_demand" expression=""/>
+        <default field="fk_dataowner" expression=""/>
+        <default field="fk_provider" expression=""/>
+        <default field="last_modification" expression=""/>
+        <default field="fk_wastewater_structure" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -5684,13 +6539,15 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="fk_wastewater_structure" index="8" name=""/>
-        <alias field="identifier" index="2" name=""/>
-        <alias field="kind" index="1" name=""/>
-        <alias field="last_modification" index="7" name=""/>
         <alias field="obj_id" index="0" name=""/>
+        <alias field="kind" index="1" name=""/>
+        <alias field="identifier" index="2" name=""/>
         <alias field="remark" index="3" name=""/>
         <alias field="renovation_demand" index="4" name=""/>
+        <alias field="fk_dataowner" index="5" name=""/>
+        <alias field="fk_provider" index="6" name=""/>
+        <alias field="last_modification" index="7" name=""/>
+        <alias field="fk_wastewater_structure" index="8" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -5740,7 +6597,7 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vw_channel_</id>
-      <datasource>service='pg_qgep' key='"obj_id"' table="qgep"."vw_channel" sql=</datasource>
+      <datasource>service='pg_qgep' key='obj_id' table="qgep"."vw_channel" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -5763,6 +6620,42 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="obj_id" expression=""/>
+        <default field="bedding_encasement" expression=""/>
+        <default field="connection_type" expression=""/>
+        <default field="function_hierarchic" expression=""/>
+        <default field="function_hydraulic" expression=""/>
+        <default field="jetting_interval" expression=""/>
+        <default field="pipe_length" expression=""/>
+        <default field="usage_current" expression=""/>
+        <default field="usage_planned" expression=""/>
+        <default field="accessibility" expression=""/>
+        <default field="contract_section" expression=""/>
+        <default field="detail_geometry_geometry" expression=""/>
+        <default field="detail_geometry3d_geometry" expression=""/>
+        <default field="financing" expression=""/>
+        <default field="gross_costs" expression=""/>
+        <default field="identifier" expression=""/>
+        <default field="inspection_interval" expression=""/>
+        <default field="location_name" expression=""/>
+        <default field="records" expression=""/>
+        <default field="remark" expression=""/>
+        <default field="renovation_necessity" expression=""/>
+        <default field="replacement_value" expression=""/>
+        <default field="rv_base_year" expression=""/>
+        <default field="rv_construction_type" expression=""/>
+        <default field="status" expression=""/>
+        <default field="structure_condition" expression=""/>
+        <default field="subsidies" expression=""/>
+        <default field="year_of_construction" expression=""/>
+        <default field="year_of_replacement" expression=""/>
+        <default field="fk_dataowner" expression=""/>
+        <default field="fk_provider" expression=""/>
+        <default field="last_modification" expression=""/>
+        <default field="fk_owner" expression=""/>
+        <default field="fk_operator" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -5872,24 +6765,24 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="accessibility" index="9" name=""/>
+        <alias field="obj_id" index="0" name=""/>
         <alias field="bedding_encasement" index="1" name=""/>
         <alias field="connection_type" index="2" name=""/>
-        <alias field="contract_section" index="10" name=""/>
-        <alias field="detail_geometry_geometry" index="11" name=""/>
-        <alias field="financing" index="13" name=""/>
-        <alias field="fk_operator" index="33" name=""/>
-        <alias field="fk_owner" index="32" name=""/>
         <alias field="function_hierarchic" index="3" name=""/>
         <alias field="function_hydraulic" index="4" name=""/>
+        <alias field="jetting_interval" index="5" name=""/>
+        <alias field="pipe_length" index="6" name=""/>
+        <alias field="usage_current" index="7" name=""/>
+        <alias field="usage_planned" index="8" name=""/>
+        <alias field="accessibility" index="9" name=""/>
+        <alias field="contract_section" index="10" name=""/>
+        <alias field="detail_geometry_geometry" index="11" name=""/>
+        <alias field="detail_geometry3d_geometry" index="12" name=""/>
+        <alias field="financing" index="13" name=""/>
         <alias field="gross_costs" index="14" name=""/>
         <alias field="identifier" index="15" name=""/>
         <alias field="inspection_interval" index="16" name=""/>
-        <alias field="jetting_interval" index="5" name=""/>
-        <alias field="last_modification" index="31" name=""/>
         <alias field="location_name" index="17" name=""/>
-        <alias field="obj_id" index="0" name=""/>
-        <alias field="pipe_length" index="6" name=""/>
         <alias field="records" index="18" name=""/>
         <alias field="remark" index="19" name=""/>
         <alias field="renovation_necessity" index="20" name=""/>
@@ -5899,10 +6792,13 @@ def my_form_open(dialog, layer, feature):
         <alias field="status" index="24" name=""/>
         <alias field="structure_condition" index="25" name=""/>
         <alias field="subsidies" index="26" name=""/>
-        <alias field="usage_current" index="7" name=""/>
-        <alias field="usage_planned" index="8" name=""/>
         <alias field="year_of_construction" index="27" name=""/>
         <alias field="year_of_replacement" index="28" name=""/>
+        <alias field="fk_dataowner" index="29" name=""/>
+        <alias field="fk_provider" index="30" name=""/>
+        <alias field="last_modification" index="31" name=""/>
+        <alias field="fk_owner" index="32" name=""/>
+        <alias field="fk_operator" index="33" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -5929,7 +6825,7 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer simplifyAlgorithm="0" minimumScale="0" maximumScale="1000" simplifyDrawingHints="0" readOnly="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="1" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>vw_cover___</id>
-      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true srid=21781 type=Point table="qgep"."vw_cover" (situation_geometry) sql=</datasource>
+      <datasource>service='pg_qgep' key='obj_id' estimatedmetadata=true srid=21781 type=Point table="qgep"."vw_cover" (situation_geometry) sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -5951,6 +6847,26 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="obj_id" expression=""/>
+        <default field="brand" expression=""/>
+        <default field="cover_shape" expression=""/>
+        <default field="depth" expression=""/>
+        <default field="diameter" expression=""/>
+        <default field="fastening" expression=""/>
+        <default field="level" expression=""/>
+        <default field="material" expression=""/>
+        <default field="positional_accuracy" expression=""/>
+        <default field="sludge_bucket" expression=""/>
+        <default field="venting" expression=""/>
+        <default field="identifier" expression=""/>
+        <default field="remark" expression=""/>
+        <default field="renovation_demand" expression=""/>
+        <default field="fk_dataowner" expression=""/>
+        <default field="fk_provider" expression=""/>
+        <default field="last_modification" expression=""/>
+        <default field="fk_wastewater_structure" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -6275,22 +7191,24 @@ def my_form_open(dialog, layer, feature):
       <DiagramLayerSettings yPosColumn="-1" showColumn="0" linePlacementFlags="10" placement="0" dist="0" xPosColumn="-1" priority="0" obstacle="0" zIndex="0" showAll="1"/>
       <annotationform>$HOME</annotationform>
       <aliases>
+        <alias field="obj_id" index="0" name=""/>
         <alias field="brand" index="1" name=""/>
         <alias field="cover_shape" index="2" name=""/>
         <alias field="depth" index="3" name=""/>
         <alias field="diameter" index="4" name=""/>
         <alias field="fastening" index="5" name=""/>
-        <alias field="fk_wastewater_structure" index="17" name=""/>
-        <alias field="identifier" index="11" name=""/>
-        <alias field="last_modification" index="16" name=""/>
         <alias field="level" index="6" name=""/>
         <alias field="material" index="7" name=""/>
-        <alias field="obj_id" index="0" name=""/>
         <alias field="positional_accuracy" index="8" name=""/>
-        <alias field="remark" index="12" name=""/>
-        <alias field="renovation_demand" index="13" name=""/>
         <alias field="sludge_bucket" index="9" name=""/>
         <alias field="venting" index="10" name=""/>
+        <alias field="identifier" index="11" name=""/>
+        <alias field="remark" index="12" name=""/>
+        <alias field="renovation_demand" index="13" name=""/>
+        <alias field="fk_dataowner" index="14" name=""/>
+        <alias field="fk_provider" index="15" name=""/>
+        <alias field="last_modification" index="16" name=""/>
+        <alias field="fk_wastewater_structure" index="17" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -6349,7 +7267,7 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer minimumScale="100000" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vw_dryweather_downspout</id>
-      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true table="qgep"."vw_dryweather_downspout" sql=</datasource>
+      <datasource>service='pg_qgep' key='obj_id' estimatedmetadata=true table="qgep"."vw_dryweather_downspout" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -6376,6 +7294,17 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="obj_id" expression=""/>
+        <default field="diameter" expression=""/>
+        <default field="identifier" expression=""/>
+        <default field="remark" expression=""/>
+        <default field="renovation_demand" expression=""/>
+        <default field="fk_dataowner" expression=""/>
+        <default field="fk_provider" expression=""/>
+        <default field="last_modification" expression=""/>
+        <default field="fk_wastewater_structure" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -6410,13 +7339,15 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="diameter" index="1" name=""/>
-        <alias field="fk_wastewater_structure" index="8" name=""/>
-        <alias field="identifier" index="2" name=""/>
-        <alias field="last_modification" index="7" name=""/>
         <alias field="obj_id" index="0" name=""/>
+        <alias field="diameter" index="1" name=""/>
+        <alias field="identifier" index="2" name=""/>
         <alias field="remark" index="3" name=""/>
         <alias field="renovation_demand" index="4" name=""/>
+        <alias field="fk_dataowner" index="5" name=""/>
+        <alias field="fk_provider" index="6" name=""/>
+        <alias field="last_modification" index="7" name=""/>
+        <alias field="fk_wastewater_structure" index="8" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -6466,7 +7397,7 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer minimumScale="100000" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vw_dryweather_flume</id>
-      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true table="qgep"."vw_dryweather_flume" sql=</datasource>
+      <datasource>service='pg_qgep' key='obj_id' estimatedmetadata=true table="qgep"."vw_dryweather_flume" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -6493,6 +7424,17 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="obj_id" expression=""/>
+        <default field="material" expression=""/>
+        <default field="identifier" expression=""/>
+        <default field="remark" expression=""/>
+        <default field="renovation_demand" expression=""/>
+        <default field="fk_dataowner" expression=""/>
+        <default field="fk_provider" expression=""/>
+        <default field="last_modification" expression=""/>
+        <default field="fk_wastewater_structure" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -6527,13 +7469,15 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="fk_wastewater_structure" index="8" name=""/>
-        <alias field="identifier" index="2" name=""/>
-        <alias field="last_modification" index="7" name=""/>
-        <alias field="material" index="1" name=""/>
         <alias field="obj_id" index="0" name=""/>
+        <alias field="material" index="1" name=""/>
+        <alias field="identifier" index="2" name=""/>
         <alias field="remark" index="3" name=""/>
         <alias field="renovation_demand" index="4" name=""/>
+        <alias field="fk_dataowner" index="5" name=""/>
+        <alias field="fk_provider" index="6" name=""/>
+        <alias field="last_modification" index="7" name=""/>
+        <alias field="fk_wastewater_structure" index="8" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -6583,7 +7527,7 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer simplifyAlgorithm="0" minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" readOnly="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>vw_network_node20150607120529398</id>
-      <datasource>service='pg_qgep' key='"gid"' estimatedmetadata=true srid=21781 type=Point table="qgep"."vw_network_node" (situation_geometry) sql=</datasource>
+      <datasource>service='pg_qgep' key='gid' estimatedmetadata=true srid=21781 type=Point table="qgep"."vw_network_node" (situation_geometry) sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -6605,6 +7549,18 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="gid" expression=""/>
+        <default field="obj_id" expression=""/>
+        <default field="type" expression=""/>
+        <default field="node_type" expression=""/>
+        <default field="level" expression=""/>
+        <default field="usage_current" expression=""/>
+        <default field="cover_level" expression=""/>
+        <default field="backflow_level" expression=""/>
+        <default field="description" expression=""/>
+        <default field="detail_geometry" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -6712,6 +7668,18 @@ def my_form_open(dialog, layer, feature):
         <selectedonly on=""/>
       </labelattributes>
       <annotationform>.</annotationform>
+      <aliases>
+        <alias field="gid" index="0" name=""/>
+        <alias field="obj_id" index="1" name=""/>
+        <alias field="type" index="2" name=""/>
+        <alias field="node_type" index="3" name=""/>
+        <alias field="level" index="4" name=""/>
+        <alias field="usage_current" index="5" name=""/>
+        <alias field="cover_level" index="6" name=""/>
+        <alias field="backflow_level" index="7" name=""/>
+        <alias field="description" index="8" name=""/>
+        <alias field="detail_geometry" index="9" name=""/>
+      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions default="0"/>
@@ -6733,7 +7701,7 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer simplifyAlgorithm="0" minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" readOnly="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Line" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>vw_network_segment20150607120529381</id>
-      <datasource>service='pg_qgep' key='"gid"' estimatedmetadata=true srid=21781 type=CompoundCurve table="qgep"."vw_network_segment" (progression_geometry) sql=</datasource>
+      <datasource>service='pg_qgep' key='gid' estimatedmetadata=true srid=21781 type=CompoundCurve table="qgep"."vw_network_segment" (progression_geometry) sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -6755,6 +7723,24 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="gid" expression=""/>
+        <default field="obj_id" expression=""/>
+        <default field="type" expression=""/>
+        <default field="clear_height" expression=""/>
+        <default field="length_calc" expression=""/>
+        <default field="length_full" expression=""/>
+        <default field="from_obj_id" expression=""/>
+        <default field="to_obj_id" expression=""/>
+        <default field="from_obj_id_interpolate" expression=""/>
+        <default field="to_obj_id_interpolate" expression=""/>
+        <default field="from_pos" expression=""/>
+        <default field="to_pos" expression=""/>
+        <default field="bottom_level" expression=""/>
+        <default field="usage_current" expression=""/>
+        <default field="material" expression=""/>
+        <default field="detail_geometry" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -6877,6 +7863,24 @@ def my_form_open(dialog, layer, feature):
         <selectedonly on=""/>
       </labelattributes>
       <annotationform>.</annotationform>
+      <aliases>
+        <alias field="gid" index="0" name=""/>
+        <alias field="obj_id" index="1" name=""/>
+        <alias field="type" index="2" name=""/>
+        <alias field="clear_height" index="3" name=""/>
+        <alias field="length_calc" index="4" name=""/>
+        <alias field="length_full" index="5" name=""/>
+        <alias field="from_obj_id" index="6" name=""/>
+        <alias field="to_obj_id" index="7" name=""/>
+        <alias field="from_obj_id_interpolate" index="8" name=""/>
+        <alias field="to_obj_id_interpolate" index="9" name=""/>
+        <alias field="from_pos" index="10" name=""/>
+        <alias field="to_pos" index="11" name=""/>
+        <alias field="bottom_level" index="12" name=""/>
+        <alias field="usage_current" index="13" name=""/>
+        <alias field="material" index="14" name=""/>
+        <alias field="detail_geometry" index="15" name=""/>
+      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions default="0"/>
@@ -6898,7 +7902,7 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer simplifyAlgorithm="0" minimumScale="100000" maximumScale="1e+08" simplifyDrawingHints="1" readOnly="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Line" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <id>vw_qgep_reach</id>
-      <datasource>service='pg_qgep' key='"obj_id"' srid=21781 type=CompoundCurve table="qgep"."vw_qgep_reach" (progression_geometry) sql=</datasource>
+      <datasource>service='pg_qgep' key='obj_id' srid=21781 type=CompoundCurve table="qgep"."vw_qgep_reach" (progression_geometry) sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -6928,6 +7932,88 @@ def my_form_open(dialog, layer, feature):
       </vectorjoins>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="obj_id" expression=""/>
+        <default field="clear_height" expression=""/>
+        <default field="width" expression=""/>
+        <default field="coefficient_of_friction" expression=""/>
+        <default field="elevation_determination" expression=""/>
+        <default field="horizontal_positioning" expression=""/>
+        <default field="inside_coating" expression=""/>
+        <default field="length_effective" expression=""/>
+        <default field="slope_per_mill" expression=""/>
+        <default field="material" expression=""/>
+        <default field="progression3d_geometry" expression=""/>
+        <default field="reliner_material" expression=""/>
+        <default field="reliner_nominal_size" expression=""/>
+        <default field="relining_construction" expression=""/>
+        <default field="relining_kind" expression=""/>
+        <default field="ring_stiffness" expression=""/>
+        <default field="slope_building_plan" expression=""/>
+        <default field="wall_roughness" expression=""/>
+        <default field="fk_pipe_profile" expression=""/>
+        <default field="bedding_encasement" expression=""/>
+        <default field="function_hierarchic" expression=""/>
+        <default field="connection_type" expression=""/>
+        <default field="function_hydraulic" expression=""/>
+        <default field="jetting_interval" expression=""/>
+        <default field="pipe_length" expression=""/>
+        <default field="usage_current" expression=""/>
+        <default field="usage_planned" expression=""/>
+        <default field="ws_obj_id" expression=""/>
+        <default field="accessibility" expression=""/>
+        <default field="contract_section" expression=""/>
+        <default field="financing" expression=""/>
+        <default field="gross_costs" expression=""/>
+        <default field="inspection_interval" expression=""/>
+        <default field="location_name" expression=""/>
+        <default field="records" expression=""/>
+        <default field="renovation_necessity" expression=""/>
+        <default field="replacement_value" expression=""/>
+        <default field="rv_base_year" expression=""/>
+        <default field="rv_construction_type" expression=""/>
+        <default field="status" expression=""/>
+        <default field="structure_condition" expression=""/>
+        <default field="subsidies" expression=""/>
+        <default field="year_of_construction" expression=""/>
+        <default field="year_of_replacement" expression=""/>
+        <default field="fk_owner" expression=""/>
+        <default field="fk_operator" expression=""/>
+        <default field="identifier" expression=""/>
+        <default field="remark" expression=""/>
+        <default field="last_modification" expression=""/>
+        <default field="fk_dataowner" expression=""/>
+        <default field="fk_provider" expression=""/>
+        <default field="fk_wastewater_structure" expression=""/>
+        <default field="rp_from_obj_id" expression=""/>
+        <default field="rp_from_elevation_accuracy" expression=""/>
+        <default field="rp_from_identifier" expression=""/>
+        <default field="rp_from_level" expression=""/>
+        <default field="rp_from_outlet_shape" expression=""/>
+        <default field="rp_from_position_of_connection" expression=""/>
+        <default field="rp_from_remark" expression=""/>
+        <default field="rp_from_last_modification" expression=""/>
+        <default field="rp_from_fk_dataowner" expression=""/>
+        <default field="rp_from_fk_provider" expression=""/>
+        <default field="rp_from_fk_wastewater_networkelement" expression=""/>
+        <default field="rp_to_obj_id" expression=""/>
+        <default field="rp_to_elevation_accuracy" expression=""/>
+        <default field="rp_to_identifier" expression=""/>
+        <default field="rp_to_level" expression=""/>
+        <default field="rp_to_outlet_shape" expression=""/>
+        <default field="rp_to_position_of_connection" expression=""/>
+        <default field="rp_to_remark" expression=""/>
+        <default field="rp_to_last_modification" expression=""/>
+        <default field="rp_to_fk_dataowner" expression=""/>
+        <default field="rp_to_fk_provider" expression=""/>
+        <default field="rp_to_fk_wastewater_networkelement" expression=""/>
+        <default field="me_obj_id" expression=""/>
+        <default field="me_active_zone" expression=""/>
+        <default field="me_identifier" expression=""/>
+        <default field="material_abbr_en" expression=""/>
+        <default field="material_abbr_de" expression=""/>
+        <default field="material_abbr_fr" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
         <map-layer-style name="Maintenance Event Zones">
@@ -9438,73 +10524,86 @@ def my_form_open(dialog, layer, feature):
       <DiagramLayerSettings yPosColumn="-1" showColumn="0" linePlacementFlags="10" placement="2" dist="0" xPosColumn="-1" priority="0" obstacle="0" zIndex="0" showAll="1"/>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="accessibility" index="28" name=""/>
-        <alias field="bedding_encasement" index="19" name=""/>
-        <alias field="clear_height" index="1" name=""/>
-        <alias field="coefficient_of_friction" index="3" name=""/>
-        <alias field="connection_type" index="21" name=""/>
-        <alias field="contract_section" index="29" name=""/>
-        <alias field="elevation_determination" index="4" name=""/>
-        <alias field="financing" index="30" name=""/>
-        <alias field="fk_operator" index="45" name=""/>
-        <alias field="fk_owner" index="44" name=""/>
-        <alias field="fk_pipe_profile" index="18" name=""/>
-        <alias field="fk_wastewater_structure" index="51" name=""/>
-        <alias field="function_hierarchic" index="20" name=""/>
-        <alias field="function_hydraulic" index="22" name=""/>
-        <alias field="gross_costs" index="31" name=""/>
-        <alias field="horizontal_positioning" index="5" name=""/>
-        <alias field="identifier" index="46" name=""/>
-        <alias field="inside_coating" index="6" name=""/>
-        <alias field="inspection_interval" index="32" name=""/>
-        <alias field="jetting_interval" index="23" name=""/>
-        <alias field="last_modification" index="48" name=""/>
-        <alias field="length_effective" index="7" name=""/>
-        <alias field="location_name" index="33" name=""/>
-        <alias field="material" index="9" name=""/>
         <alias field="obj_id" index="0" name=""/>
-        <alias field="pipe_length" index="24" name=""/>
-        <alias field="records" index="34" name=""/>
+        <alias field="clear_height" index="1" name=""/>
+        <alias field="width" index="2" name=""/>
+        <alias field="coefficient_of_friction" index="3" name=""/>
+        <alias field="elevation_determination" index="4" name=""/>
+        <alias field="horizontal_positioning" index="5" name=""/>
+        <alias field="inside_coating" index="6" name=""/>
+        <alias field="length_effective" index="7" name=""/>
+        <alias field="slope_per_mill" index="8" name=""/>
+        <alias field="material" index="9" name=""/>
+        <alias field="progression3d_geometry" index="10" name=""/>
         <alias field="reliner_material" index="11" name=""/>
         <alias field="reliner_nominal_size" index="12" name=""/>
         <alias field="relining_construction" index="13" name=""/>
         <alias field="relining_kind" index="14" name=""/>
-        <alias field="remark" index="47" name=""/>
+        <alias field="ring_stiffness" index="15" name=""/>
+        <alias field="slope_building_plan" index="16" name=""/>
+        <alias field="wall_roughness" index="17" name=""/>
+        <alias field="fk_pipe_profile" index="18" name=""/>
+        <alias field="bedding_encasement" index="19" name=""/>
+        <alias field="function_hierarchic" index="20" name=""/>
+        <alias field="connection_type" index="21" name=""/>
+        <alias field="function_hydraulic" index="22" name=""/>
+        <alias field="jetting_interval" index="23" name=""/>
+        <alias field="pipe_length" index="24" name=""/>
+        <alias field="usage_current" index="25" name=""/>
+        <alias field="usage_planned" index="26" name=""/>
+        <alias field="ws_obj_id" index="27" name=""/>
+        <alias field="accessibility" index="28" name=""/>
+        <alias field="contract_section" index="29" name=""/>
+        <alias field="financing" index="30" name=""/>
+        <alias field="gross_costs" index="31" name=""/>
+        <alias field="inspection_interval" index="32" name=""/>
+        <alias field="location_name" index="33" name=""/>
+        <alias field="records" index="34" name=""/>
         <alias field="renovation_necessity" index="35" name=""/>
         <alias field="replacement_value" index="36" name=""/>
-        <alias field="ring_stiffness" index="15" name=""/>
-        <alias field="rp_from_elevation_accuracy" index="53" name=""/>
-        <alias field="rp_from_fk_wastewater_networkelement" index="62" name=""/>
-        <alias field="rp_from_identifier" index="54" name=""/>
-        <alias field="rp_from_last_modification" index="59" name=""/>
-        <alias field="rp_from_level" index="55" name=""/>
-        <alias field="rp_from_obj_id" index="52" name=""/>
-        <alias field="rp_from_outlet_shape" index="56" name=""/>
-        <alias field="rp_from_position_of_connection" index="57" name=""/>
-        <alias field="rp_from_remark" index="58" name=""/>
-        <alias field="rp_to_elevation_accuracy" index="64" name=""/>
-        <alias field="rp_to_fk_wastewater_networkelement" index="73" name=""/>
-        <alias field="rp_to_identifier" index="65" name=""/>
-        <alias field="rp_to_last_modification" index="70" name=""/>
-        <alias field="rp_to_level" index="66" name=""/>
-        <alias field="rp_to_obj_id" index="63" name=""/>
-        <alias field="rp_to_outlet_shape" index="67" name=""/>
-        <alias field="rp_to_position_of_connection" index="68" name=""/>
-        <alias field="rp_to_remark" index="69" name=""/>
         <alias field="rv_base_year" index="37" name=""/>
         <alias field="rv_construction_type" index="38" name=""/>
-        <alias field="slope_building_plan" index="16" name=""/>
-        <alias field="slope_per_mill" index="8" name=""/>
         <alias field="status" index="39" name=""/>
         <alias field="structure_condition" index="40" name=""/>
         <alias field="subsidies" index="41" name=""/>
-        <alias field="usage_current" index="25" name=""/>
-        <alias field="usage_planned" index="26" name=""/>
-        <alias field="wall_roughness" index="17" name=""/>
-        <alias field="width" index="2" name=""/>
-        <alias field="ws_obj_id" index="27" name=""/>
         <alias field="year_of_construction" index="42" name=""/>
         <alias field="year_of_replacement" index="43" name=""/>
+        <alias field="fk_owner" index="44" name=""/>
+        <alias field="fk_operator" index="45" name=""/>
+        <alias field="identifier" index="46" name=""/>
+        <alias field="remark" index="47" name=""/>
+        <alias field="last_modification" index="48" name=""/>
+        <alias field="fk_dataowner" index="49" name=""/>
+        <alias field="fk_provider" index="50" name=""/>
+        <alias field="fk_wastewater_structure" index="51" name=""/>
+        <alias field="rp_from_obj_id" index="52" name=""/>
+        <alias field="rp_from_elevation_accuracy" index="53" name=""/>
+        <alias field="rp_from_identifier" index="54" name=""/>
+        <alias field="rp_from_level" index="55" name=""/>
+        <alias field="rp_from_outlet_shape" index="56" name=""/>
+        <alias field="rp_from_position_of_connection" index="57" name=""/>
+        <alias field="rp_from_remark" index="58" name=""/>
+        <alias field="rp_from_last_modification" index="59" name=""/>
+        <alias field="rp_from_fk_dataowner" index="60" name=""/>
+        <alias field="rp_from_fk_provider" index="61" name=""/>
+        <alias field="rp_from_fk_wastewater_networkelement" index="62" name=""/>
+        <alias field="rp_to_obj_id" index="63" name=""/>
+        <alias field="rp_to_elevation_accuracy" index="64" name=""/>
+        <alias field="rp_to_identifier" index="65" name=""/>
+        <alias field="rp_to_level" index="66" name=""/>
+        <alias field="rp_to_outlet_shape" index="67" name=""/>
+        <alias field="rp_to_position_of_connection" index="68" name=""/>
+        <alias field="rp_to_remark" index="69" name=""/>
+        <alias field="rp_to_last_modification" index="70" name=""/>
+        <alias field="rp_to_fk_dataowner" index="71" name=""/>
+        <alias field="rp_to_fk_provider" index="72" name=""/>
+        <alias field="rp_to_fk_wastewater_networkelement" index="73" name=""/>
+        <alias field="me_obj_id" index="74" name=""/>
+        <alias field="me_active_zone" index="75" name=""/>
+        <alias field="me_identifier" index="76" name=""/>
+        <alias field="material_abbr_en" index="77" name=""/>
+        <alias field="material_abbr_de" index="78" name=""/>
+        <alias field="material_abbr_fr" index="79" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -9618,111 +10717,111 @@ def my_form_open(dialog, layer, feature):
       <featformsuppress>0</featformsuppress>
       <editorlayout>tablayout</editorlayout>
       <attributeEditorForm>
-        <attributeEditorContainer name="General" groupBox="0" columnCount="0">
-          <attributeEditorField index="1" name="clear_height"/>
-          <attributeEditorField index="7" name="length_effective"/>
-          <attributeEditorField index="9" name="material"/>
-          <attributeEditorField index="6" name="inside_coating"/>
-          <attributeEditorField index="18" name="fk_pipe_profile"/>
-          <attributeEditorField index="-1" name="dataowner"/>
-          <attributeEditorField index="55" name="rp_from_level"/>
-          <attributeEditorField index="66" name="rp_to_level"/>
-          <attributeEditorField index="5" name="horizontal_positioning"/>
-          <attributeEditorField index="20" name="function_hierarchic"/>
-          <attributeEditorField index="22" name="function_hydraulic"/>
-          <attributeEditorField index="25" name="usage_current"/>
-          <attributeEditorField index="39" name="status"/>
-          <attributeEditorField index="42" name="year_of_construction"/>
-          <attributeEditorField index="47" name="remark"/>
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="General" groupBox="0" columnCount="0">
+          <attributeEditorField showLabel="1" index="1" name="clear_height"/>
+          <attributeEditorField showLabel="1" index="7" name="length_effective"/>
+          <attributeEditorField showLabel="1" index="9" name="material"/>
+          <attributeEditorField showLabel="1" index="6" name="inside_coating"/>
+          <attributeEditorField showLabel="1" index="18" name="fk_pipe_profile"/>
+          <attributeEditorField showLabel="1" index="-1" name="dataowner"/>
+          <attributeEditorField showLabel="1" index="55" name="rp_from_level"/>
+          <attributeEditorField showLabel="1" index="66" name="rp_to_level"/>
+          <attributeEditorField showLabel="1" index="5" name="horizontal_positioning"/>
+          <attributeEditorField showLabel="1" index="20" name="function_hierarchic"/>
+          <attributeEditorField showLabel="1" index="22" name="function_hydraulic"/>
+          <attributeEditorField showLabel="1" index="25" name="usage_current"/>
+          <attributeEditorField showLabel="1" index="39" name="status"/>
+          <attributeEditorField showLabel="1" index="42" name="year_of_construction"/>
+          <attributeEditorField showLabel="1" index="47" name="remark"/>
         </attributeEditorContainer>
-        <attributeEditorContainer name="Reach" groupBox="0" columnCount="0">
-          <attributeEditorField index="0" name="obj_id"/>
-          <attributeEditorField index="1" name="clear_height"/>
-          <attributeEditorField index="2" name="width"/>
-          <attributeEditorField index="3" name="coefficient_of_friction"/>
-          <attributeEditorField index="4" name="elevation_determination"/>
-          <attributeEditorField index="5" name="horizontal_positioning"/>
-          <attributeEditorField index="6" name="inside_coating"/>
-          <attributeEditorField index="7" name="length_effective"/>
-          <attributeEditorField index="8" name="slope_per_mill"/>
-          <attributeEditorField index="9" name="material"/>
-          <attributeEditorField index="-1" name="progression_3d_geometry"/>
-          <attributeEditorField index="11" name="reliner_material"/>
-          <attributeEditorField index="12" name="reliner_nominal_size"/>
-          <attributeEditorField index="13" name="relining_construction"/>
-          <attributeEditorField index="14" name="relining_kind"/>
-          <attributeEditorField index="15" name="ring_stiffness"/>
-          <attributeEditorField index="16" name="slope_building_plan"/>
-          <attributeEditorField index="17" name="wall_roughness"/>
-          <attributeEditorField index="18" name="fk_pipe_profile"/>
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Reach" groupBox="0" columnCount="0">
+          <attributeEditorField showLabel="1" index="0" name="obj_id"/>
+          <attributeEditorField showLabel="1" index="1" name="clear_height"/>
+          <attributeEditorField showLabel="1" index="2" name="width"/>
+          <attributeEditorField showLabel="1" index="3" name="coefficient_of_friction"/>
+          <attributeEditorField showLabel="1" index="4" name="elevation_determination"/>
+          <attributeEditorField showLabel="1" index="5" name="horizontal_positioning"/>
+          <attributeEditorField showLabel="1" index="6" name="inside_coating"/>
+          <attributeEditorField showLabel="1" index="7" name="length_effective"/>
+          <attributeEditorField showLabel="1" index="8" name="slope_per_mill"/>
+          <attributeEditorField showLabel="1" index="9" name="material"/>
+          <attributeEditorField showLabel="1" index="-1" name="progression_3d_geometry"/>
+          <attributeEditorField showLabel="1" index="11" name="reliner_material"/>
+          <attributeEditorField showLabel="1" index="12" name="reliner_nominal_size"/>
+          <attributeEditorField showLabel="1" index="13" name="relining_construction"/>
+          <attributeEditorField showLabel="1" index="14" name="relining_kind"/>
+          <attributeEditorField showLabel="1" index="15" name="ring_stiffness"/>
+          <attributeEditorField showLabel="1" index="16" name="slope_building_plan"/>
+          <attributeEditorField showLabel="1" index="17" name="wall_roughness"/>
+          <attributeEditorField showLabel="1" index="18" name="fk_pipe_profile"/>
         </attributeEditorContainer>
-        <attributeEditorContainer name="Wastewater Networkelement" groupBox="0" columnCount="0">
-          <attributeEditorField index="46" name="identifier"/>
-          <attributeEditorField index="47" name="remark"/>
-          <attributeEditorField index="48" name="last_modification"/>
-          <attributeEditorField index="-1" name="dataowner"/>
-          <attributeEditorField index="-1" name="provider"/>
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Wastewater Networkelement" groupBox="0" columnCount="0">
+          <attributeEditorField showLabel="1" index="46" name="identifier"/>
+          <attributeEditorField showLabel="1" index="47" name="remark"/>
+          <attributeEditorField showLabel="1" index="48" name="last_modification"/>
+          <attributeEditorField showLabel="1" index="-1" name="dataowner"/>
+          <attributeEditorField showLabel="1" index="-1" name="provider"/>
         </attributeEditorContainer>
-        <attributeEditorContainer name="Channel" groupBox="0" columnCount="0">
-          <attributeEditorField index="20" name="function_hierarchic"/>
-          <attributeEditorField index="21" name="connection_type"/>
-          <attributeEditorField index="22" name="function_hydraulic"/>
-          <attributeEditorField index="23" name="jetting_interval"/>
-          <attributeEditorField index="24" name="pipe_length"/>
-          <attributeEditorField index="25" name="usage_current"/>
-          <attributeEditorField index="26" name="usage_planned"/>
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Channel" groupBox="0" columnCount="0">
+          <attributeEditorField showLabel="1" index="20" name="function_hierarchic"/>
+          <attributeEditorField showLabel="1" index="21" name="connection_type"/>
+          <attributeEditorField showLabel="1" index="22" name="function_hydraulic"/>
+          <attributeEditorField showLabel="1" index="23" name="jetting_interval"/>
+          <attributeEditorField showLabel="1" index="24" name="pipe_length"/>
+          <attributeEditorField showLabel="1" index="25" name="usage_current"/>
+          <attributeEditorField showLabel="1" index="26" name="usage_planned"/>
         </attributeEditorContainer>
-        <attributeEditorContainer name="Wastewater Structure" groupBox="0" columnCount="0">
-          <attributeEditorField index="27" name="ws_obj_id"/>
-          <attributeEditorField index="28" name="accessibility"/>
-          <attributeEditorField index="29" name="contract_section"/>
-          <attributeEditorField index="30" name="financing"/>
-          <attributeEditorField index="31" name="gross_costs"/>
-          <attributeEditorField index="32" name="inspection_interval"/>
-          <attributeEditorField index="33" name="location_name"/>
-          <attributeEditorField index="34" name="records"/>
-          <attributeEditorField index="35" name="renovation_necessity"/>
-          <attributeEditorField index="36" name="replacement_value"/>
-          <attributeEditorField index="37" name="rv_base_year"/>
-          <attributeEditorField index="38" name="rv_construction_type"/>
-          <attributeEditorField index="39" name="status"/>
-          <attributeEditorField index="40" name="structure_condition"/>
-          <attributeEditorField index="41" name="subsidies"/>
-          <attributeEditorField index="42" name="year_of_construction"/>
-          <attributeEditorField index="43" name="year_of_replacement"/>
-          <attributeEditorField index="44" name="fk_owner"/>
-          <attributeEditorField index="45" name="fk_operator"/>
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Wastewater Structure" groupBox="0" columnCount="0">
+          <attributeEditorField showLabel="1" index="27" name="ws_obj_id"/>
+          <attributeEditorField showLabel="1" index="28" name="accessibility"/>
+          <attributeEditorField showLabel="1" index="29" name="contract_section"/>
+          <attributeEditorField showLabel="1" index="30" name="financing"/>
+          <attributeEditorField showLabel="1" index="31" name="gross_costs"/>
+          <attributeEditorField showLabel="1" index="32" name="inspection_interval"/>
+          <attributeEditorField showLabel="1" index="33" name="location_name"/>
+          <attributeEditorField showLabel="1" index="34" name="records"/>
+          <attributeEditorField showLabel="1" index="35" name="renovation_necessity"/>
+          <attributeEditorField showLabel="1" index="36" name="replacement_value"/>
+          <attributeEditorField showLabel="1" index="37" name="rv_base_year"/>
+          <attributeEditorField showLabel="1" index="38" name="rv_construction_type"/>
+          <attributeEditorField showLabel="1" index="39" name="status"/>
+          <attributeEditorField showLabel="1" index="40" name="structure_condition"/>
+          <attributeEditorField showLabel="1" index="41" name="subsidies"/>
+          <attributeEditorField showLabel="1" index="42" name="year_of_construction"/>
+          <attributeEditorField showLabel="1" index="43" name="year_of_replacement"/>
+          <attributeEditorField showLabel="1" index="44" name="fk_owner"/>
+          <attributeEditorField showLabel="1" index="45" name="fk_operator"/>
         </attributeEditorContainer>
-        <attributeEditorContainer name="Reach Points" groupBox="0" columnCount="0">
-          <attributeEditorContainer name="From" groupBox="1" columnCount="0">
-            <attributeEditorField index="52" name="rp_from_obj_id"/>
-            <attributeEditorField index="53" name="rp_from_elevation_accuracy"/>
-            <attributeEditorField index="54" name="rp_from_identifier"/>
-            <attributeEditorField index="55" name="rp_from_level"/>
-            <attributeEditorField index="56" name="rp_from_outlet_shape"/>
-            <attributeEditorField index="57" name="rp_from_position_of_connection"/>
-            <attributeEditorField index="58" name="rp_from_remark"/>
-            <attributeEditorField index="59" name="rp_from_last_modification"/>
-            <attributeEditorField index="-1" name="rp_from_dataowner"/>
-            <attributeEditorField index="-1" name="rp_from_provider"/>
-            <attributeEditorField index="62" name="rp_from_fk_wastewater_networkelement"/>
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Reach Points" groupBox="0" columnCount="0">
+          <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="From" groupBox="1" columnCount="0">
+            <attributeEditorField showLabel="1" index="52" name="rp_from_obj_id"/>
+            <attributeEditorField showLabel="1" index="53" name="rp_from_elevation_accuracy"/>
+            <attributeEditorField showLabel="1" index="54" name="rp_from_identifier"/>
+            <attributeEditorField showLabel="1" index="55" name="rp_from_level"/>
+            <attributeEditorField showLabel="1" index="56" name="rp_from_outlet_shape"/>
+            <attributeEditorField showLabel="1" index="57" name="rp_from_position_of_connection"/>
+            <attributeEditorField showLabel="1" index="58" name="rp_from_remark"/>
+            <attributeEditorField showLabel="1" index="59" name="rp_from_last_modification"/>
+            <attributeEditorField showLabel="1" index="-1" name="rp_from_dataowner"/>
+            <attributeEditorField showLabel="1" index="-1" name="rp_from_provider"/>
+            <attributeEditorField showLabel="1" index="62" name="rp_from_fk_wastewater_networkelement"/>
           </attributeEditorContainer>
-          <attributeEditorContainer name="To" groupBox="1" columnCount="0">
-            <attributeEditorField index="63" name="rp_to_obj_id"/>
-            <attributeEditorField index="64" name="rp_to_elevation_accuracy"/>
-            <attributeEditorField index="65" name="rp_to_identifier"/>
-            <attributeEditorField index="66" name="rp_to_level"/>
-            <attributeEditorField index="67" name="rp_to_outlet_shape"/>
-            <attributeEditorField index="68" name="rp_to_position_of_connection"/>
-            <attributeEditorField index="69" name="rp_to_remark"/>
-            <attributeEditorField index="70" name="rp_to_last_modification"/>
-            <attributeEditorField index="-1" name="rp_to_dataowner"/>
-            <attributeEditorField index="-1" name="rp_to_provider"/>
-            <attributeEditorField index="73" name="rp_to_fk_wastewater_networkelement"/>
+          <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="To" groupBox="1" columnCount="0">
+            <attributeEditorField showLabel="1" index="63" name="rp_to_obj_id"/>
+            <attributeEditorField showLabel="1" index="64" name="rp_to_elevation_accuracy"/>
+            <attributeEditorField showLabel="1" index="65" name="rp_to_identifier"/>
+            <attributeEditorField showLabel="1" index="66" name="rp_to_level"/>
+            <attributeEditorField showLabel="1" index="67" name="rp_to_outlet_shape"/>
+            <attributeEditorField showLabel="1" index="68" name="rp_to_position_of_connection"/>
+            <attributeEditorField showLabel="1" index="69" name="rp_to_remark"/>
+            <attributeEditorField showLabel="1" index="70" name="rp_to_last_modification"/>
+            <attributeEditorField showLabel="1" index="-1" name="rp_to_dataowner"/>
+            <attributeEditorField showLabel="1" index="-1" name="rp_to_provider"/>
+            <attributeEditorField showLabel="1" index="73" name="rp_to_fk_wastewater_networkelement"/>
           </attributeEditorContainer>
         </attributeEditorContainer>
-        <attributeEditorContainer name="Maintenance" groupBox="0" columnCount="0">
-          <attributeEditorRelation relation="" name="od_maintenance_event20150530130856307_fk_wastewater_structure_vw_reach20141013202956655_ws_obj_id"/>
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Maintenance" groupBox="0" columnCount="0">
+          <attributeEditorRelation showLinkButton="1" relation="" showLabel="1" showUnlinkButton="1" name="od_maintenance_event20150530130856307_fk_wastewater_structure_vw_reach20141013202956655_ws_obj_id"/>
         </attributeEditorContainer>
       </attributeEditorForm>
       <widgets/>
@@ -9739,7 +10838,7 @@ def my_form_open(dialog, layer, feature):
         <ymax>266718.11300000001210719</ymax>
       </extent>
       <id>vw_qgep_wastewater_structure</id>
-      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true srid=21781 type=Point table="qgep"."vw_qgep_wastewater_structure" (situation_geometry) sql=</datasource>
+      <datasource>service='pg_qgep' key='obj_id' estimatedmetadata=true srid=21781 type=MultiPoint table="qgep"."vw_qgep_wastewater_structure" (situation_geometry) sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -9761,6 +10860,82 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="obj_id" expression=""/>
+        <default field="brand" expression=""/>
+        <default field="cover_shape" expression=""/>
+        <default field="diameter" expression=""/>
+        <default field="fastening" expression=""/>
+        <default field="level" expression=""/>
+        <default field="cover_material" expression=""/>
+        <default field="positional_accuracy" expression=""/>
+        <default field="sludge_bucket" expression=""/>
+        <default field="venting" expression=""/>
+        <default field="co_identifier" expression=""/>
+        <default field="remark" expression=""/>
+        <default field="renovation_demand" expression=""/>
+        <default field="last_modification" expression=""/>
+        <default field="fk_dataowner" expression=""/>
+        <default field="fk_provider" expression=""/>
+        <default field="ws_type" expression=""/>
+        <default field="co_obj_id" expression=""/>
+        <default field="identifier" expression=""/>
+        <default field="accessibility" expression=""/>
+        <default field="contract_section" expression=""/>
+        <default field="financing" expression=""/>
+        <default field="gross_costs" expression=""/>
+        <default field="inspection_interval" expression=""/>
+        <default field="location_name" expression=""/>
+        <default field="records" expression=""/>
+        <default field="ws_remark" expression=""/>
+        <default field="renovation_necessity" expression=""/>
+        <default field="replacement_value" expression=""/>
+        <default field="rv_base_year" expression=""/>
+        <default field="rv_construction_type" expression=""/>
+        <default field="status" expression=""/>
+        <default field="structure_condition" expression=""/>
+        <default field="subsidies" expression=""/>
+        <default field="year_of_construction" expression=""/>
+        <default field="year_of_replacement" expression=""/>
+        <default field="fk_owner" expression=""/>
+        <default field="fk_operator" expression=""/>
+        <default field="_label" expression=""/>
+        <default field="depth" expression=""/>
+        <default field="dimension1" expression=""/>
+        <default field="dimension2" expression=""/>
+        <default field="upper_elevation" expression=""/>
+        <default field="manhole_function" expression=""/>
+        <default field="material" expression=""/>
+        <default field="surface_inflow" expression=""/>
+        <default field="channel_usage_current" expression=""/>
+        <default field="channel_function_hierarchic" expression=""/>
+        <default field="manhole_orientation" expression=""/>
+        <default field="bypass" expression=""/>
+        <default field="special_structure_function" expression=""/>
+        <default field="stormwater_tank_arrangement" expression=""/>
+        <default field="highwater_level" expression=""/>
+        <default field="relevance" expression=""/>
+        <default field="terrain_level" expression=""/>
+        <default field="waterlevel_hydraulic" expression=""/>
+        <default field="absorption_capacity" expression=""/>
+        <default field="defects" expression=""/>
+        <default field="distance_to_aquifer" expression=""/>
+        <default field="effective_area" expression=""/>
+        <default field="emergency_spillway" expression=""/>
+        <default field="kind" expression=""/>
+        <default field="labeling" expression=""/>
+        <default field="seepage_utilization" expression=""/>
+        <default field="vehicle_access" expression=""/>
+        <default field="watertightness" expression=""/>
+        <default field="wn_obj_id" expression=""/>
+        <default field="backflow_level" expression=""/>
+        <default field="bottom_level" expression=""/>
+        <default field="wn_identifier" expression=""/>
+        <default field="wn_remark" expression=""/>
+        <default field="wn_last_modification" expression=""/>
+        <default field="wn_fk_dataowner" expression=""/>
+        <default field="wn_fk_provider" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -11463,73 +12638,80 @@ def my_form_open(dialog, layer, feature):
       <DiagramLayerSettings yPosColumn="-1" showColumn="0" linePlacementFlags="10" placement="0" dist="0" xPosColumn="-1" priority="0" obstacle="0" zIndex="0" showAll="1"/>
       <annotationform>$HOME</annotationform>
       <aliases>
-        <alias field="absorption_capacity" index="56" name=""/>
-        <alias field="accessibility" index="19" name=""/>
-        <alias field="backflow_level" index="67" name=""/>
-        <alias field="bottom_level" index="68" name=""/>
-        <alias field="brand" index="1" name=""/>
-        <alias field="bypass" index="49" name=""/>
-        <alias field="channel_function_hierarchic" index="47" name=""/>
-        <alias field="channel_usage_current" index="46" name=""/>
-        <alias field="contract_section" index="20" name=""/>
-        <alias field="cover_material" index="6" name=""/>
-        <alias field="cover_shape" index="2" name=""/>
-        <alias field="defects" index="57" name=""/>
-        <alias field="depth" index="39" name=""/>
-        <alias field="diameter" index="3" name=""/>
-        <alias field="dimension1" index="40" name=""/>
-        <alias field="dimension2" index="41" name=""/>
-        <alias field="distance_to_aquifer" index="58" name=""/>
-        <alias field="effective_area" index="59" name=""/>
-        <alias field="emergency_spillway" index="60" name=""/>
-        <alias field="fastening" index="4" name=""/>
-        <alias field="financing" index="21" name=""/>
-        <alias field="fk_operator" index="37" name=""/>
-        <alias field="fk_owner" index="36" name=""/>
-        <alias field="gross_costs" index="22" name=""/>
-        <alias field="highwater_level" index="52" name=""/>
-        <alias field="identifier" index="18" name=""/>
-        <alias field="inspection_interval" index="23" name=""/>
-        <alias field="kind" index="61" name=""/>
-        <alias field="labeling" index="62" name=""/>
-        <alias field="last_modification" index="13" name=""/>
-        <alias field="level" index="5" name=""/>
-        <alias field="location_name" index="24" name=""/>
-        <alias field="manhole_function" index="43" name=""/>
-        <alias field="manhole_orientation" index="48" name=""/>
-        <alias field="material" index="44" name=""/>
         <alias field="obj_id" index="0" name=""/>
+        <alias field="brand" index="1" name=""/>
+        <alias field="cover_shape" index="2" name=""/>
+        <alias field="diameter" index="3" name=""/>
+        <alias field="fastening" index="4" name=""/>
+        <alias field="level" index="5" name=""/>
+        <alias field="cover_material" index="6" name=""/>
         <alias field="positional_accuracy" index="7" name=""/>
-        <alias field="records" index="25" name=""/>
-        <alias field="relevance" index="53" name=""/>
+        <alias field="sludge_bucket" index="8" name=""/>
+        <alias field="venting" index="9" name=""/>
+        <alias field="co_identifier" index="10" name=""/>
         <alias field="remark" index="11" name=""/>
         <alias field="renovation_demand" index="12" name=""/>
+        <alias field="last_modification" index="13" name=""/>
+        <alias field="fk_dataowner" index="14" name=""/>
+        <alias field="fk_provider" index="15" name=""/>
+        <alias field="ws_type" index="16" name=""/>
+        <alias field="co_obj_id" index="17" name=""/>
+        <alias field="identifier" index="18" name=""/>
+        <alias field="accessibility" index="19" name=""/>
+        <alias field="contract_section" index="20" name=""/>
+        <alias field="financing" index="21" name=""/>
+        <alias field="gross_costs" index="22" name=""/>
+        <alias field="inspection_interval" index="23" name=""/>
+        <alias field="location_name" index="24" name=""/>
+        <alias field="records" index="25" name=""/>
+        <alias field="ws_remark" index="26" name=""/>
         <alias field="renovation_necessity" index="27" name=""/>
         <alias field="replacement_value" index="28" name=""/>
         <alias field="rv_base_year" index="29" name=""/>
         <alias field="rv_construction_type" index="30" name=""/>
-        <alias field="seepage_utilization" index="63" name=""/>
-        <alias field="sludge_bucket" index="8" name=""/>
-        <alias field="special_structure_function" index="50" name=""/>
         <alias field="status" index="31" name=""/>
-        <alias field="stormwater_tank_arrangement" index="51" name=""/>
         <alias field="structure_condition" index="32" name=""/>
         <alias field="subsidies" index="33" name=""/>
-        <alias field="surface_inflow" index="45" name=""/>
-        <alias field="terrain_level" index="54" name=""/>
-        <alias field="upper_elevation" index="42" name=""/>
-        <alias field="vehicle_access" index="64" name=""/>
-        <alias field="venting" index="9" name=""/>
-        <alias field="waterlevel_hydraulic" index="55" name=""/>
-        <alias field="watertightness" index="65" name=""/>
-        <alias field="wn_identifier" index="69" name=""/>
-        <alias field="wn_last_modification" index="71" name=""/>
-        <alias field="wn_obj_id" index="66" name=""/>
-        <alias field="wn_remark" index="70" name=""/>
-        <alias field="ws_remark" index="26" name=""/>
-        <alias field="ws_type" index="16" name=""/>
         <alias field="year_of_construction" index="34" name=""/>
         <alias field="year_of_replacement" index="35" name=""/>
+        <alias field="fk_owner" index="36" name=""/>
+        <alias field="fk_operator" index="37" name=""/>
+        <alias field="_label" index="38" name=""/>
+        <alias field="depth" index="39" name=""/>
+        <alias field="dimension1" index="40" name=""/>
+        <alias field="dimension2" index="41" name=""/>
+        <alias field="upper_elevation" index="42" name=""/>
+        <alias field="manhole_function" index="43" name=""/>
+        <alias field="material" index="44" name=""/>
+        <alias field="surface_inflow" index="45" name=""/>
+        <alias field="channel_usage_current" index="46" name=""/>
+        <alias field="channel_function_hierarchic" index="47" name=""/>
+        <alias field="manhole_orientation" index="48" name=""/>
+        <alias field="bypass" index="49" name=""/>
+        <alias field="special_structure_function" index="50" name=""/>
+        <alias field="stormwater_tank_arrangement" index="51" name=""/>
+        <alias field="highwater_level" index="52" name=""/>
+        <alias field="relevance" index="53" name=""/>
+        <alias field="terrain_level" index="54" name=""/>
+        <alias field="waterlevel_hydraulic" index="55" name=""/>
+        <alias field="absorption_capacity" index="56" name=""/>
+        <alias field="defects" index="57" name=""/>
+        <alias field="distance_to_aquifer" index="58" name=""/>
+        <alias field="effective_area" index="59" name=""/>
+        <alias field="emergency_spillway" index="60" name=""/>
+        <alias field="kind" index="61" name=""/>
+        <alias field="labeling" index="62" name=""/>
+        <alias field="seepage_utilization" index="63" name=""/>
+        <alias field="vehicle_access" index="64" name=""/>
+        <alias field="watertightness" index="65" name=""/>
+        <alias field="wn_obj_id" index="66" name=""/>
+        <alias field="backflow_level" index="67" name=""/>
+        <alias field="bottom_level" index="68" name=""/>
+        <alias field="wn_identifier" index="69" name=""/>
+        <alias field="wn_remark" index="70" name=""/>
+        <alias field="wn_last_modification" index="71" name=""/>
+        <alias field="wn_fk_dataowner" index="72" name=""/>
+        <alias field="wn_fk_provider" index="73" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -11626,124 +12808,124 @@ def my_form_open(dialog, layer, feature):
       <featformsuppress>0</featformsuppress>
       <editorlayout>tablayout</editorlayout>
       <attributeEditorForm>
-        <attributeEditorContainer name="General" groupBox="0" columnCount="2">
-          <attributeEditorField index="18" name="identifier"/>
-          <attributeEditorField index="16" name="ws_type"/>
-          <attributeEditorField index="24" name="location_name"/>
-          <attributeEditorField index="34" name="year_of_construction"/>
-          <attributeEditorField index="43" name="manhole_function"/>
-          <attributeEditorField index="50" name="special_structure_function"/>
-          <attributeEditorField index="27" name="renovation_necessity"/>
-          <attributeEditorField index="5" name="level"/>
-          <attributeEditorField index="7" name="positional_accuracy"/>
-          <attributeEditorField index="-1" name="dataowner"/>
-          <attributeEditorField index="31" name="status"/>
-          <attributeEditorField index="9" name="venting"/>
-          <attributeEditorField index="4" name="fastening"/>
-          <attributeEditorField index="40" name="dimension1"/>
-          <attributeEditorField index="41" name="dimension2"/>
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="General" groupBox="0" columnCount="2">
+          <attributeEditorField showLabel="1" index="18" name="identifier"/>
+          <attributeEditorField showLabel="1" index="16" name="ws_type"/>
+          <attributeEditorField showLabel="1" index="24" name="location_name"/>
+          <attributeEditorField showLabel="1" index="34" name="year_of_construction"/>
+          <attributeEditorField showLabel="1" index="43" name="manhole_function"/>
+          <attributeEditorField showLabel="1" index="50" name="special_structure_function"/>
+          <attributeEditorField showLabel="1" index="27" name="renovation_necessity"/>
+          <attributeEditorField showLabel="1" index="5" name="level"/>
+          <attributeEditorField showLabel="1" index="7" name="positional_accuracy"/>
+          <attributeEditorField showLabel="1" index="-1" name="dataowner"/>
+          <attributeEditorField showLabel="1" index="31" name="status"/>
+          <attributeEditorField showLabel="1" index="9" name="venting"/>
+          <attributeEditorField showLabel="1" index="4" name="fastening"/>
+          <attributeEditorField showLabel="1" index="40" name="dimension1"/>
+          <attributeEditorField showLabel="1" index="41" name="dimension2"/>
         </attributeEditorContainer>
-        <attributeEditorContainer name="Cover" groupBox="0" columnCount="0">
-          <attributeEditorField index="1" name="brand"/>
-          <attributeEditorField index="2" name="cover_shape"/>
-          <attributeEditorField index="3" name="diameter"/>
-          <attributeEditorField index="6" name="cover_material"/>
-          <attributeEditorField index="8" name="sludge_bucket"/>
-          <attributeEditorField index="11" name="remark"/>
-          <attributeEditorField index="12" name="renovation_demand"/>
-          <attributeEditorField index="-1" name="dataowner"/>
-          <attributeEditorField index="-1" name="provider"/>
-          <attributeEditorField index="17" name="co_obj_id"/>
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Cover" groupBox="0" columnCount="0">
+          <attributeEditorField showLabel="1" index="1" name="brand"/>
+          <attributeEditorField showLabel="1" index="2" name="cover_shape"/>
+          <attributeEditorField showLabel="1" index="3" name="diameter"/>
+          <attributeEditorField showLabel="1" index="6" name="cover_material"/>
+          <attributeEditorField showLabel="1" index="8" name="sludge_bucket"/>
+          <attributeEditorField showLabel="1" index="11" name="remark"/>
+          <attributeEditorField showLabel="1" index="12" name="renovation_demand"/>
+          <attributeEditorField showLabel="1" index="-1" name="dataowner"/>
+          <attributeEditorField showLabel="1" index="-1" name="provider"/>
+          <attributeEditorField showLabel="1" index="17" name="co_obj_id"/>
         </attributeEditorContainer>
-        <attributeEditorContainer name="Wastewater Structure" groupBox="0" columnCount="0">
-          <attributeEditorField index="19" name="accessibility"/>
-          <attributeEditorField index="20" name="contract_section"/>
-          <attributeEditorField index="21" name="financing"/>
-          <attributeEditorField index="22" name="gross_costs"/>
-          <attributeEditorField index="23" name="inspection_interval"/>
-          <attributeEditorField index="24" name="location_name"/>
-          <attributeEditorField index="25" name="records"/>
-          <attributeEditorField index="27" name="renovation_necessity"/>
-          <attributeEditorField index="28" name="replacement_value"/>
-          <attributeEditorField index="29" name="rv_base_year"/>
-          <attributeEditorField index="30" name="rv_construction_type"/>
-          <attributeEditorField index="31" name="status"/>
-          <attributeEditorField index="32" name="structure_condition"/>
-          <attributeEditorField index="33" name="subsidies"/>
-          <attributeEditorField index="34" name="year_of_construction"/>
-          <attributeEditorField index="35" name="year_of_replacement"/>
-          <attributeEditorField index="36" name="fk_owner"/>
-          <attributeEditorField index="37" name="fk_operator"/>
-          <attributeEditorField index="0" name="obj_id"/>
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Wastewater Structure" groupBox="0" columnCount="0">
+          <attributeEditorField showLabel="1" index="19" name="accessibility"/>
+          <attributeEditorField showLabel="1" index="20" name="contract_section"/>
+          <attributeEditorField showLabel="1" index="21" name="financing"/>
+          <attributeEditorField showLabel="1" index="22" name="gross_costs"/>
+          <attributeEditorField showLabel="1" index="23" name="inspection_interval"/>
+          <attributeEditorField showLabel="1" index="24" name="location_name"/>
+          <attributeEditorField showLabel="1" index="25" name="records"/>
+          <attributeEditorField showLabel="1" index="27" name="renovation_necessity"/>
+          <attributeEditorField showLabel="1" index="28" name="replacement_value"/>
+          <attributeEditorField showLabel="1" index="29" name="rv_base_year"/>
+          <attributeEditorField showLabel="1" index="30" name="rv_construction_type"/>
+          <attributeEditorField showLabel="1" index="31" name="status"/>
+          <attributeEditorField showLabel="1" index="32" name="structure_condition"/>
+          <attributeEditorField showLabel="1" index="33" name="subsidies"/>
+          <attributeEditorField showLabel="1" index="34" name="year_of_construction"/>
+          <attributeEditorField showLabel="1" index="35" name="year_of_replacement"/>
+          <attributeEditorField showLabel="1" index="36" name="fk_owner"/>
+          <attributeEditorField showLabel="1" index="37" name="fk_operator"/>
+          <attributeEditorField showLabel="1" index="0" name="obj_id"/>
         </attributeEditorContainer>
-        <attributeEditorContainer name="Manhole" groupBox="0" columnCount="0">
-          <attributeEditorField index="39" name="depth"/>
-          <attributeEditorField index="40" name="dimension1"/>
-          <attributeEditorField index="41" name="dimension2"/>
-          <attributeEditorField index="42" name="upper_elevation"/>
-          <attributeEditorField index="43" name="manhole_function"/>
-          <attributeEditorField index="44" name="material"/>
-          <attributeEditorField index="45" name="surface_inflow"/>
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Manhole" groupBox="0" columnCount="0">
+          <attributeEditorField showLabel="1" index="39" name="depth"/>
+          <attributeEditorField showLabel="1" index="40" name="dimension1"/>
+          <attributeEditorField showLabel="1" index="41" name="dimension2"/>
+          <attributeEditorField showLabel="1" index="42" name="upper_elevation"/>
+          <attributeEditorField showLabel="1" index="43" name="manhole_function"/>
+          <attributeEditorField showLabel="1" index="44" name="material"/>
+          <attributeEditorField showLabel="1" index="45" name="surface_inflow"/>
         </attributeEditorContainer>
-        <attributeEditorContainer name="Special Structure" groupBox="0" columnCount="0">
-          <attributeEditorField index="49" name="bypass"/>
-          <attributeEditorField index="50" name="special_structure_function"/>
-          <attributeEditorField index="51" name="stormwater_tank_arrangement"/>
-          <attributeEditorField index="42" name="upper_elevation"/>
-          <attributeEditorField index="39" name="depth"/>
-          <attributeEditorField index="60" name="emergency_spillway"/>
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Special Structure" groupBox="0" columnCount="0">
+          <attributeEditorField showLabel="1" index="49" name="bypass"/>
+          <attributeEditorField showLabel="1" index="50" name="special_structure_function"/>
+          <attributeEditorField showLabel="1" index="51" name="stormwater_tank_arrangement"/>
+          <attributeEditorField showLabel="1" index="42" name="upper_elevation"/>
+          <attributeEditorField showLabel="1" index="39" name="depth"/>
+          <attributeEditorField showLabel="1" index="60" name="emergency_spillway"/>
         </attributeEditorContainer>
-        <attributeEditorContainer name="Discharge Point" groupBox="0" columnCount="0">
-          <attributeEditorField index="39" name="depth"/>
-          <attributeEditorField index="60" name="emergency_spillway"/>
-          <attributeEditorField index="52" name="highwater_level"/>
-          <attributeEditorField index="53" name="relevance"/>
-          <attributeEditorField index="54" name="terrain_level"/>
-          <attributeEditorField index="42" name="upper_elevation"/>
-          <attributeEditorField index="55" name="waterlevel_hydraulic"/>
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Discharge Point" groupBox="0" columnCount="0">
+          <attributeEditorField showLabel="1" index="39" name="depth"/>
+          <attributeEditorField showLabel="1" index="60" name="emergency_spillway"/>
+          <attributeEditorField showLabel="1" index="52" name="highwater_level"/>
+          <attributeEditorField showLabel="1" index="53" name="relevance"/>
+          <attributeEditorField showLabel="1" index="54" name="terrain_level"/>
+          <attributeEditorField showLabel="1" index="42" name="upper_elevation"/>
+          <attributeEditorField showLabel="1" index="55" name="waterlevel_hydraulic"/>
         </attributeEditorContainer>
-        <attributeEditorContainer name="Infiltration Installation" groupBox="0" columnCount="0">
-          <attributeEditorField index="57" name="defects"/>
-          <attributeEditorField index="58" name="distance_to_aquifer"/>
-          <attributeEditorField index="59" name="effective_area"/>
-          <attributeEditorField index="60" name="emergency_spillway"/>
-          <attributeEditorField index="61" name="kind"/>
-          <attributeEditorField index="62" name="labeling"/>
-          <attributeEditorField index="63" name="seepage_utilization"/>
-          <attributeEditorField index="64" name="vehicle_access"/>
-          <attributeEditorField index="65" name="watertightness"/>
-          <attributeEditorField index="40" name="dimension1"/>
-          <attributeEditorField index="41" name="dimension2"/>
-          <attributeEditorField index="42" name="upper_elevation"/>
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Infiltration Installation" groupBox="0" columnCount="0">
+          <attributeEditorField showLabel="1" index="57" name="defects"/>
+          <attributeEditorField showLabel="1" index="58" name="distance_to_aquifer"/>
+          <attributeEditorField showLabel="1" index="59" name="effective_area"/>
+          <attributeEditorField showLabel="1" index="60" name="emergency_spillway"/>
+          <attributeEditorField showLabel="1" index="61" name="kind"/>
+          <attributeEditorField showLabel="1" index="62" name="labeling"/>
+          <attributeEditorField showLabel="1" index="63" name="seepage_utilization"/>
+          <attributeEditorField showLabel="1" index="64" name="vehicle_access"/>
+          <attributeEditorField showLabel="1" index="65" name="watertightness"/>
+          <attributeEditorField showLabel="1" index="40" name="dimension1"/>
+          <attributeEditorField showLabel="1" index="41" name="dimension2"/>
+          <attributeEditorField showLabel="1" index="42" name="upper_elevation"/>
         </attributeEditorContainer>
-        <attributeEditorContainer name="Wastewater Node" groupBox="0" columnCount="0">
-          <attributeEditorField index="66" name="wn_obj_id"/>
-          <attributeEditorField index="67" name="backflow_level"/>
-          <attributeEditorField index="68" name="bottom_level"/>
-          <attributeEditorField index="69" name="wn_identifier"/>
-          <attributeEditorField index="70" name="wn_remark"/>
-          <attributeEditorField index="71" name="wn_last_modification"/>
-          <attributeEditorField index="-1" name="wn_dataowner"/>
-          <attributeEditorField index="-1" name="wn_provider"/>
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Wastewater Node" groupBox="0" columnCount="0">
+          <attributeEditorField showLabel="1" index="66" name="wn_obj_id"/>
+          <attributeEditorField showLabel="1" index="67" name="backflow_level"/>
+          <attributeEditorField showLabel="1" index="68" name="bottom_level"/>
+          <attributeEditorField showLabel="1" index="69" name="wn_identifier"/>
+          <attributeEditorField showLabel="1" index="70" name="wn_remark"/>
+          <attributeEditorField showLabel="1" index="71" name="wn_last_modification"/>
+          <attributeEditorField showLabel="1" index="-1" name="wn_dataowner"/>
+          <attributeEditorField showLabel="1" index="-1" name="wn_provider"/>
         </attributeEditorContainer>
-        <attributeEditorContainer name="Covers" groupBox="0" columnCount="0">
-          <attributeEditorRelation relation="vw_cover____fk_wastewater_structure_vw_qgep_wastewater_structure_obj_id" name="vw_cover____fk_wastewater_structure_vw_qgep_wastewater_structure_obj_id"/>
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Covers" groupBox="0" columnCount="0">
+          <attributeEditorRelation showLinkButton="1" relation="vw_cover____fk_wastewater_structure_vw_qgep_wastewater_structure_obj_id" showLabel="1" showUnlinkButton="1" name="vw_cover____fk_wastewater_structure_vw_qgep_wastewater_structure_obj_id"/>
         </attributeEditorContainer>
-        <attributeEditorContainer name="Structure Parts" groupBox="0" columnCount="0">
-          <attributeEditorRelation relation="vw_access_aid_fk_wastewater_structure_vw_qgep_wastewater_structure_obj_id" name="vw_access_aid_fk_wastewater_structure_vw_qgep_wastewater_structure_obj_id"/>
-          <attributeEditorRelation relation="vw_backflow_prevention_fk_wastewater_structure_vw_qgep_wastewater_structure_obj_id" name="vw_backflow_prevention_fk_wastewater_structure_vw_qgep_wastewater_structure_obj_id"/>
-          <attributeEditorRelation relation="vw_dryweather_downspout_fk_wastewater_structure_vw_qgep_wastewater_structure_obj_id" name="vw_dryweather_downspout_fk_wastewater_structure_vw_qgep_wastewater_structure_obj_id"/>
-          <attributeEditorRelation relation="vw_dryweather_flume_fk_wastewater_structure_vw_qgep_wastewater_structure_obj_id" name="vw_dryweather_flume_fk_wastewater_structure_vw_qgep_wastewater_structure_obj_id"/>
-          <attributeEditorRelation relation="vw_benching_fk_wastewater_structure_vw_qgep_wastewater_structure_obj_id" name="vw_benching_fk_wastewater_structure_vw_qgep_wastewater_structure_obj_id"/>
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Structure Parts" groupBox="0" columnCount="0">
+          <attributeEditorRelation showLinkButton="1" relation="vw_access_aid_fk_wastewater_structure_vw_qgep_wastewater_structure_obj_id" showLabel="1" showUnlinkButton="1" name="vw_access_aid_fk_wastewater_structure_vw_qgep_wastewater_structure_obj_id"/>
+          <attributeEditorRelation showLinkButton="1" relation="vw_backflow_prevention_fk_wastewater_structure_vw_qgep_wastewater_structure_obj_id" showLabel="1" showUnlinkButton="1" name="vw_backflow_prevention_fk_wastewater_structure_vw_qgep_wastewater_structure_obj_id"/>
+          <attributeEditorRelation showLinkButton="1" relation="vw_dryweather_downspout_fk_wastewater_structure_vw_qgep_wastewater_structure_obj_id" showLabel="1" showUnlinkButton="1" name="vw_dryweather_downspout_fk_wastewater_structure_vw_qgep_wastewater_structure_obj_id"/>
+          <attributeEditorRelation showLinkButton="1" relation="vw_dryweather_flume_fk_wastewater_structure_vw_qgep_wastewater_structure_obj_id" showLabel="1" showUnlinkButton="1" name="vw_dryweather_flume_fk_wastewater_structure_vw_qgep_wastewater_structure_obj_id"/>
+          <attributeEditorRelation showLinkButton="1" relation="vw_benching_fk_wastewater_structure_vw_qgep_wastewater_structure_obj_id" showLabel="1" showUnlinkButton="1" name="vw_benching_fk_wastewater_structure_vw_qgep_wastewater_structure_obj_id"/>
         </attributeEditorContainer>
-        <attributeEditorContainer name="Maintenance" groupBox="0" columnCount="0">
-          <attributeEditorRelation relation="" name="re_maintenance_event_wastewater_structure20160111110603931_fk_wastewater_structure_vw_qgep_wastewater_structure_ws_obj_id"/>
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Maintenance" groupBox="0" columnCount="0">
+          <attributeEditorRelation showLinkButton="1" relation="" showLabel="1" showUnlinkButton="1" name="re_maintenance_event_wastewater_structure20160111110603931_fk_wastewater_structure_vw_qgep_wastewater_structure_ws_obj_id"/>
         </attributeEditorContainer>
-        <attributeEditorContainer name="Wastewater Nodes" groupBox="0" columnCount="0">
-          <attributeEditorRelation relation="" name="wastewater_node-fk_wastewater-structure"/>
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Wastewater Nodes" groupBox="0" columnCount="0">
+          <attributeEditorRelation showLinkButton="1" relation="" showLabel="1" showUnlinkButton="1" name="wastewater_node-fk_wastewater-structure"/>
         </attributeEditorContainer>
-        <attributeEditorContainer name="Files" groupBox="0" columnCount="1">
-          <attributeEditorRelation relation="od_file20160921105557083_object_vw_qgep_wastewater_structure_obj_id" name="od_file20160921105557083_object_vw_qgep_wastewater_structure_obj_id"/>
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Files" groupBox="0" columnCount="1">
+          <attributeEditorRelation showLinkButton="1" relation="od_file20160921105557083_object_vw_qgep_wastewater_structure_obj_id" showLabel="1" showUnlinkButton="1" name="od_file20160921105557083_object_vw_qgep_wastewater_structure_obj_id"/>
         </attributeEditorContainer>
       </attributeEditorForm>
       <widgets>
@@ -11802,7 +12984,7 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer simplifyAlgorithm="0" minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" readOnly="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>vw_wastewater_node20150607121012062</id>
-      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true srid=21781 type=Point table="qgep"."vw_wastewater_node" (situation_geometry) sql=</datasource>
+      <datasource>service='pg_qgep' key='obj_id' estimatedmetadata=true srid=21781 type=Point table="qgep"."vw_wastewater_node" (situation_geometry) sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -11824,6 +13006,17 @@ def my_form_open(dialog, layer, feature):
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
+      <defaults>
+        <default field="obj_id" expression=""/>
+        <default field="backflow_level" expression=""/>
+        <default field="bottom_level" expression=""/>
+        <default field="identifier" expression=""/>
+        <default field="remark" expression=""/>
+        <default field="fk_dataowner" expression=""/>
+        <default field="fk_provider" expression=""/>
+        <default field="last_modification" expression=""/>
+        <default field="fk_wastewater_structure" expression=""/>
+      </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
@@ -11928,6 +13121,17 @@ def my_form_open(dialog, layer, feature):
         <selectedonly on=""/>
       </labelattributes>
       <annotationform>.</annotationform>
+      <aliases>
+        <alias field="obj_id" index="0" name=""/>
+        <alias field="backflow_level" index="1" name=""/>
+        <alias field="bottom_level" index="2" name=""/>
+        <alias field="identifier" index="3" name=""/>
+        <alias field="remark" index="4" name=""/>
+        <alias field="fk_dataowner" index="5" name=""/>
+        <alias field="fk_provider" index="6" name=""/>
+        <alias field="last_modification" index="7" name=""/>
+        <alias field="fk_wastewater_structure" index="8" name=""/>
+      </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions default="0"/>
