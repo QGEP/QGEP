@@ -11,12 +11,12 @@
     <layer-tree-layer expanded="0" checked="Qt::Checked" id="vw_qgep_reach" name="vw_qgep_reach">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-group expanded="1" checked="Qt::Checked" name="Wastewater Structures">
+    <layer-tree-group expanded="0" checked="Qt::Checked" name="Wastewater Structures">
       <customproperties/>
       <layer-tree-layer expanded="1" checked="Qt::Checked" id="od_wastewater_structure" name="od_wastewater_structure">
         <customproperties/>
       </layer-tree-layer>
-      <layer-tree-group expanded="1" checked="Qt::Checked" name="Structure Parts">
+      <layer-tree-group expanded="0" checked="Qt::Checked" name="Structure Parts">
         <customproperties/>
         <layer-tree-layer expanded="1" checked="Qt::Checked" id="vw_access_aid" name="vw_access_aid">
           <customproperties/>
@@ -40,13 +40,22 @@
       <layer-tree-layer expanded="1" checked="Qt::Checked" id="vw_channel_" name="vw_channel">
         <customproperties/>
       </layer-tree-layer>
-      <layer-tree-layer expanded="1" checked="Qt::Checked" id="od_maintenance_event" name="od_maintenance_event">
-        <customproperties/>
-      </layer-tree-layer>
-      <layer-tree-layer expanded="1" checked="Qt::Checked" id="re_maintenance_event_wastewater_structure20160111110603931" name="re_maintenance_event_wastewater_structure">
-        <customproperties/>
-      </layer-tree-layer>
       <layer-tree-layer expanded="1" checked="Qt::Checked" id="od_organisation20160212172933583" name="od_organisation">
+        <customproperties/>
+      </layer-tree-layer>
+    </layer-tree-group>
+    <layer-tree-group expanded="0" checked="Qt::Checked" name="Inspection">
+      <customproperties/>
+      <layer-tree-layer expanded="1" checked="Qt::Checked" id="re_maintenance_event_wastewater_structure" name="re_maintenance_event_wastewater_structure">
+        <customproperties/>
+      </layer-tree-layer>
+      <layer-tree-layer expanded="1" checked="Qt::Checked" id="od_file20160921105557083" name="od_file">
+        <customproperties/>
+      </layer-tree-layer>
+      <layer-tree-layer expanded="1" checked="Qt::Checked" id="vw_qgep_maintenance" name="vw_qgep_maintenance">
+        <customproperties/>
+      </layer-tree-layer>
+      <layer-tree-layer expanded="1" checked="Qt::Checked" id="vw_qgep_damage" name="vw_qgep_damage">
         <customproperties/>
       </layer-tree-layer>
     </layer-tree-group>
@@ -82,7 +91,7 @@
           <customproperties/>
         </layer-tree-layer>
       </layer-tree-group>
-      <layer-tree-group expanded="1" checked="Qt::Checked" name="VL Structure Part">
+      <layer-tree-group expanded="0" checked="Qt::Checked" name="VL Structure Part">
         <customproperties/>
         <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_structure_part_renovation_demand" name="vl_structure_part_renovation_demand">
           <customproperties/>
@@ -205,6 +214,33 @@
           <customproperties/>
         </layer-tree-layer>
       </layer-tree-group>
+      <layer-tree-group expanded="0" checked="Qt::Checked" name="VL Inspection">
+        <customproperties/>
+        <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_damage_channel_channel_damage_code" name="vl_damage_channel_channel_damage_code">
+          <customproperties/>
+        </layer-tree-layer>
+        <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_damage_connection" name="vl_damage_connection">
+          <customproperties/>
+        </layer-tree-layer>
+        <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_damage_manhole_manhole_damage_code" name="vl_damage_manhole_manhole_damage_code">
+          <customproperties/>
+        </layer-tree-layer>
+        <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_damage_manhole_manhole_shaft_area" name="vl_damage_manhole_manhole_shaft_area">
+          <customproperties/>
+        </layer-tree-layer>
+        <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_damage_single_damage_class" name="vl_damage_single_damage_class">
+          <customproperties/>
+        </layer-tree-layer>
+        <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_data_media_kind" name="vl_data_media_kind">
+          <customproperties/>
+        </layer-tree-layer>
+        <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_file_class" name="vl_file_class">
+          <customproperties/>
+        </layer-tree-layer>
+        <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_file_kind" name="vl_file_kind">
+          <customproperties/>
+        </layer-tree-layer>
+      </layer-tree-group>
       <layer-tree-group expanded="0" checked="Qt::Checked" name="Pipe Profile">
         <customproperties/>
         <layer-tree-layer expanded="1" checked="Qt::Checked" id="vl_pipe_profile_profile_type" name="vl_pipe_profile_profile_type">
@@ -233,19 +269,19 @@
     <layer-tree-group expanded="0" checked="Qt::Checked" name="Cadastral Data">
       <customproperties/>
     </layer-tree-group>
-    <layer-tree-group expanded="0" checked="Qt::Checked" name="Others">
-      <customproperties/>
-      <layer-tree-layer expanded="1" checked="Qt::Checked" id="od_file20160921105557083" name="od_file">
-        <customproperties/>
-      </layer-tree-layer>
-    </layer-tree-group>
   </layer-tree-group>
   <relations>
+    <relation referencingLayer="vw_qgep_damage" referencedLayer="vw_qgep_maintenance" id="damage_maintenance_event" name="Damages">
+      <fieldRef referencedField="obj_id" referencingField="fk_examination"/>
+    </relation>
     <relation referencingLayer="od_file20160921105557083" referencedLayer="vw_qgep_wastewater_structure" id="od_file20160921105557083_object_vw_qgep_wastewater_structure_obj_id" name="Pictures">
       <fieldRef referencedField="obj_id" referencingField="object"/>
     </relation>
-    <relation referencingLayer="re_maintenance_event_wastewater_structure20160111110603931" referencedLayer="od_maintenance_event" id="re_maintenance_event_wastewater_structure20160111110603931_fk_maintenance_event_od_maintenance_event_obj_id" name="Wastewater Structures">
+    <relation referencingLayer="re_maintenance_event_wastewater_structure" referencedLayer="vw_qgep_maintenance" id="re_maintenance_wasterwaterstructure_maintenance" name="Wastewater Structures">
       <fieldRef referencedField="obj_id" referencingField="fk_maintenance_event"/>
+    </relation>
+    <relation referencingLayer="re_maintenance_event_wastewater_structure" referencedLayer="vw_qgep_reach" id="re_maintenance_wasterwaterstructure_reach" name="Maintenance events">
+      <fieldRef referencedField="ws_obj_id" referencingField="fk_wastewater_structure"/>
     </relation>
     <relation referencingLayer="vw_qgep_reach" referencedLayer="od_pipe_profile" id="reach-fk_pipe_profile" name="Reaches">
       <fieldRef referencedField="obj_id" referencingField="fk_pipe_profile"/>
@@ -418,7 +454,6 @@
       <item>vw_qgep_reach</item>
       <item>vl_maintenance_event_kind</item>
       <item>vl_maintenance_event_status</item>
-      <item>od_maintenance_event</item>
       <item>vl_access_aid_kind</item>
       <item>vw_access_aid</item>
       <item>vl_backflow_prevention_kind</item>
@@ -445,9 +480,19 @@
       <item>vl_cover_positional_accuracy20151117153235900</item>
       <item>vl_manhole_material20151117174216343</item>
       <item>vl_manhole_surface_inflow20151117174216393</item>
-      <item>re_maintenance_event_wastewater_structure20160111110603931</item>
+      <item>re_maintenance_event_wastewater_structure</item>
       <item>od_organisation20160212172933583</item>
       <item>od_file20160921105557083</item>
+      <item>vw_qgep_maintenance</item>
+      <item>vw_qgep_damage</item>
+      <item>vl_damage_channel_channel_damage_code</item>
+      <item>vl_damage_connection</item>
+      <item>vl_damage_manhole_manhole_damage_code</item>
+      <item>vl_damage_manhole_manhole_shaft_area</item>
+      <item>vl_damage_single_damage_class</item>
+      <item>vl_data_media_kind</item>
+      <item>vl_file_class</item>
+      <item>vl_file_kind</item>
     </custom-order>
   </layer-tree-canvas>
   <legend updateDrawingOrder="true">
@@ -461,13 +506,13 @@
         <legendlayerfile isInOverview="0" layerid="vw_qgep_reach" visible="1"/>
       </filegroup>
     </legendlayer>
-    <legendgroup open="true" checked="Qt::Checked" name="Wastewater Structures">
+    <legendgroup open="false" checked="Qt::Checked" name="Wastewater Structures">
       <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="od_wastewater_structure" showFeatureCount="0">
         <filegroup open="true" hidden="false">
           <legendlayerfile isInOverview="0" layerid="od_wastewater_structure" visible="1"/>
         </filegroup>
       </legendlayer>
-      <legendgroup open="true" checked="Qt::Checked" name="Structure Parts">
+      <legendgroup open="false" checked="Qt::Checked" name="Structure Parts">
         <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="vw_access_aid" showFeatureCount="0">
           <filegroup open="true" hidden="false">
             <legendlayerfile isInOverview="0" layerid="vw_access_aid" visible="1"/>
@@ -504,19 +549,31 @@
           <legendlayerfile isInOverview="0" layerid="vw_channel_" visible="1"/>
         </filegroup>
       </legendlayer>
-      <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="od_maintenance_event" showFeatureCount="0">
-        <filegroup open="true" hidden="false">
-          <legendlayerfile isInOverview="0" layerid="od_maintenance_event" visible="1"/>
-        </filegroup>
-      </legendlayer>
-      <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="re_maintenance_event_wastewater_structure" showFeatureCount="0">
-        <filegroup open="true" hidden="false">
-          <legendlayerfile isInOverview="0" layerid="re_maintenance_event_wastewater_structure20160111110603931" visible="1"/>
-        </filegroup>
-      </legendlayer>
       <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="od_organisation" showFeatureCount="0">
         <filegroup open="true" hidden="false">
           <legendlayerfile isInOverview="0" layerid="od_organisation20160212172933583" visible="1"/>
+        </filegroup>
+      </legendlayer>
+    </legendgroup>
+    <legendgroup open="false" checked="Qt::Checked" name="Inspection">
+      <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="re_maintenance_event_wastewater_structure" showFeatureCount="0">
+        <filegroup open="true" hidden="false">
+          <legendlayerfile isInOverview="0" layerid="re_maintenance_event_wastewater_structure" visible="1"/>
+        </filegroup>
+      </legendlayer>
+      <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="od_file" showFeatureCount="0">
+        <filegroup open="true" hidden="false">
+          <legendlayerfile isInOverview="0" layerid="od_file20160921105557083" visible="1"/>
+        </filegroup>
+      </legendlayer>
+      <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="vw_qgep_maintenance" showFeatureCount="0">
+        <filegroup open="true" hidden="false">
+          <legendlayerfile isInOverview="0" layerid="vw_qgep_maintenance" visible="1"/>
+        </filegroup>
+      </legendlayer>
+      <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="vw_qgep_damage" showFeatureCount="0">
+        <filegroup open="true" hidden="false">
+          <legendlayerfile isInOverview="0" layerid="vw_qgep_damage" visible="1"/>
         </filegroup>
       </legendlayer>
     </legendgroup>
@@ -562,7 +619,7 @@
           </filegroup>
         </legendlayer>
       </legendgroup>
-      <legendgroup open="true" checked="Qt::Checked" name="VL Structure Part">
+      <legendgroup open="false" checked="Qt::Checked" name="VL Structure Part">
         <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="vl_structure_part_renovation_demand" showFeatureCount="0">
           <filegroup open="true" hidden="false">
             <legendlayerfile isInOverview="0" layerid="vl_structure_part_renovation_demand" visible="1"/>
@@ -740,6 +797,48 @@
           </filegroup>
         </legendlayer>
       </legendgroup>
+      <legendgroup open="false" checked="Qt::Checked" name="VL Inspection">
+        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="vl_damage_channel_channel_damage_code" showFeatureCount="0">
+          <filegroup open="true" hidden="false">
+            <legendlayerfile isInOverview="0" layerid="vl_damage_channel_channel_damage_code" visible="1"/>
+          </filegroup>
+        </legendlayer>
+        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="vl_damage_connection" showFeatureCount="0">
+          <filegroup open="true" hidden="false">
+            <legendlayerfile isInOverview="0" layerid="vl_damage_connection" visible="1"/>
+          </filegroup>
+        </legendlayer>
+        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="vl_damage_manhole_manhole_damage_code" showFeatureCount="0">
+          <filegroup open="true" hidden="false">
+            <legendlayerfile isInOverview="0" layerid="vl_damage_manhole_manhole_damage_code" visible="1"/>
+          </filegroup>
+        </legendlayer>
+        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="vl_damage_manhole_manhole_shaft_area" showFeatureCount="0">
+          <filegroup open="true" hidden="false">
+            <legendlayerfile isInOverview="0" layerid="vl_damage_manhole_manhole_shaft_area" visible="1"/>
+          </filegroup>
+        </legendlayer>
+        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="vl_damage_single_damage_class" showFeatureCount="0">
+          <filegroup open="true" hidden="false">
+            <legendlayerfile isInOverview="0" layerid="vl_damage_single_damage_class" visible="1"/>
+          </filegroup>
+        </legendlayer>
+        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="vl_data_media_kind" showFeatureCount="0">
+          <filegroup open="true" hidden="false">
+            <legendlayerfile isInOverview="0" layerid="vl_data_media_kind" visible="1"/>
+          </filegroup>
+        </legendlayer>
+        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="vl_file_class" showFeatureCount="0">
+          <filegroup open="true" hidden="false">
+            <legendlayerfile isInOverview="0" layerid="vl_file_class" visible="1"/>
+          </filegroup>
+        </legendlayer>
+        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="vl_file_kind" showFeatureCount="0">
+          <filegroup open="true" hidden="false">
+            <legendlayerfile isInOverview="0" layerid="vl_file_kind" visible="1"/>
+          </filegroup>
+        </legendlayer>
+      </legendgroup>
       <legendgroup open="false" checked="Qt::Checked" name="Pipe Profile">
         <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="vl_pipe_profile_profile_type" showFeatureCount="0">
           <filegroup open="true" hidden="false">
@@ -773,18 +872,11 @@
       </legendlayer>
     </legendgroup>
     <legendgroup open="false" checked="Qt::Checked" name="Cadastral Data"/>
-    <legendgroup open="false" checked="Qt::Checked" name="Others">
-      <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="od_file" showFeatureCount="0">
-        <filegroup open="true" hidden="false">
-          <legendlayerfile isInOverview="0" layerid="od_file20160921105557083" visible="1"/>
-        </filegroup>
-      </legendlayer>
-    </legendgroup>
   </legend>
   <projectlayers>
     <maplayer minimumScale="100000" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>od_file20160921105557083</id>
-      <datasource>service='pg_qgep' sslmode=allow key='obj_id' table="qgep"."od_file" sql=</datasource>
+      <datasource>service='pg_qgep' key='obj_id' table="qgep"."od_file" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -912,150 +1004,6 @@ def my_form_open(dialog, layer, feature):
 	geom = feature.geometry()
 	control = dialog.findChild(QWidget, "MyLineEdit")
 ]]></editforminitcode>
-      <featformsuppress>0</featformsuppress>
-      <editorlayout>generatedlayout</editorlayout>
-      <widgets/>
-      <conditionalstyles>
-        <rowstyles/>
-        <fieldstyles/>
-      </conditionalstyles>
-    </maplayer>
-    <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
-      <id>od_maintenance_event</id>
-      <datasource>service='pg_qgep' key='obj_id' estimatedmetadata=true table="qgep"."od_maintenance_event" sql=</datasource>
-      <keywordList>
-        <value></value>
-      </keywordList>
-      <layername>od_maintenance_event</layername>
-      <srs>
-        <spatialrefsys>
-          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
-          <srsid>3452</srsid>
-          <srid>4326</srid>
-          <authid>EPSG:4326</authid>
-          <description>WGS 84</description>
-          <projectionacronym>longlat</projectionacronym>
-          <ellipsoidacronym>WGS84</ellipsoidacronym>
-          <geographicflag>true</geographicflag>
-        </spatialrefsys>
-      </srs>
-      <customproperties/>
-      <provider encoding="UTF-8">postgres</provider>
-      <previewExpression>COALESCE("obj_id", '&lt;NULL>')</previewExpression>
-      <vectorjoins/>
-      <layerDependencies/>
-      <expressionfields/>
-      <defaults>
-        <default field="obj_id" expression=""/>
-        <default field="base_data" expression=""/>
-        <default field="cost" expression=""/>
-        <default field="data_details" expression=""/>
-        <default field="duration" expression=""/>
-        <default field="identifier" expression=""/>
-        <default field="kind" expression=""/>
-        <default field="operator" expression=""/>
-        <default field="reason" expression=""/>
-        <default field="remark" expression=""/>
-        <default field="result" expression=""/>
-        <default field="status" expression=""/>
-        <default field="time_point" expression=""/>
-        <default field="last_modification" expression=""/>
-        <default field="fk_dataowner" expression=""/>
-        <default field="fk_provider" expression=""/>
-        <default field="fk_operating_company" expression=""/>
-        <default field="active_zone" expression=""/>
-      </defaults>
-      <map-layer-style-manager current="">
-        <map-layer-style name=""/>
-      </map-layer-style-manager>
-      <edittypes>
-        <edittype widgetv2type="TextEdit" name="obj_id">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="base_data">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="cost">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="data_details">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="duration">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="identifier">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-        </edittype>
-        <edittype widgetv2type="ValueRelation" name="kind">
-          <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_maintenance_event_kind" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="operator">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="reason">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="remark">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="result">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-        </edittype>
-        <edittype widgetv2type="ValueRelation" name="status">
-          <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_maintenance_event_status" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="time_point">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="last_modification">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="fk_dataowner">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="fk_provider">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="fk_operating_company">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="active_zone">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-        </edittype>
-      </edittypes>
-      <annotationform>$HOME</annotationform>
-      <aliases>
-        <alias field="obj_id" index="0" name=""/>
-        <alias field="base_data" index="1" name=""/>
-        <alias field="cost" index="2" name=""/>
-        <alias field="data_details" index="3" name=""/>
-        <alias field="duration" index="4" name=""/>
-        <alias field="identifier" index="5" name=""/>
-        <alias field="kind" index="6" name=""/>
-        <alias field="operator" index="7" name=""/>
-        <alias field="reason" index="8" name=""/>
-        <alias field="remark" index="9" name=""/>
-        <alias field="result" index="10" name=""/>
-        <alias field="status" index="11" name=""/>
-        <alias field="time_point" index="12" name=""/>
-        <alias field="last_modification" index="13" name=""/>
-        <alias field="fk_dataowner" index="14" name=""/>
-        <alias field="fk_provider" index="15" name=""/>
-        <alias field="fk_operating_company" index="16" name=""/>
-        <alias field="active_zone" index="17" name=""/>
-      </aliases>
-      <excludeAttributesWMS/>
-      <excludeAttributesWFS/>
-      <attributeactions default="0"/>
-      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
-        <columns/>
-      </attributetableconfig>
-      <editform>$HOME</editform>
-      <editforminit/>
-      <editforminitcodesource>0</editforminitcodesource>
-      <editforminitfilepath>.</editforminitfilepath>
-      <editforminitcode><![CDATA[]]></editforminitcode>
       <featformsuppress>0</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
       <widgets/>
@@ -1203,7 +1151,6 @@ def my_form_open(dialog, layer, feature):
         <default field="last_modification" expression=""/>
         <default field="fk_dataowner" expression=""/>
         <default field="fk_provider" expression=""/>
-        <default field="old_obj_id" expression=""/>
       </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -1233,9 +1180,6 @@ def my_form_open(dialog, layer, feature):
         <edittype widgetv2type="TextEdit" name="fk_provider">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="old_obj_id">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-        </edittype>
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
@@ -1247,11 +1191,10 @@ def my_form_open(dialog, layer, feature):
         <alias field="last_modification" index="5" name=""/>
         <alias field="fk_dataowner" index="6" name=""/>
         <alias field="fk_provider" index="7" name=""/>
-        <alias field="old_obj_id" index="8" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
-      <attributeactions default="0"/>
+      <attributeactions default="-1"/>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns/>
       </attributetableconfig>
@@ -1322,7 +1265,6 @@ def my_form_open(dialog, layer, feature):
         <default field="_function_hierarchic" expression=""/>
         <default field="_label" expression=""/>
         <default field="fk_main_cover" expression=""/>
-        <default field="old_obj_id" expression=""/>
       </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -1413,9 +1355,6 @@ def my_form_open(dialog, layer, feature):
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="fk_main_cover">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="old_obj_id">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
       </edittypes>
@@ -1685,7 +1624,6 @@ def my_form_open(dialog, layer, feature):
         <alias field="_function_hierarchic" index="26" name=""/>
         <alias field="_label" index="27" name=""/>
         <alias field="fk_main_cover" index="28" name=""/>
-        <alias field="old_obj_id" index="29" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -1707,7 +1645,7 @@ def my_form_open(dialog, layer, feature):
       </conditionalstyles>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
-      <id>re_maintenance_event_wastewater_structure20160111110603931</id>
+      <id>re_maintenance_event_wastewater_structure</id>
       <datasource>service='pg_qgep' key='obj_id' table="qgep"."re_maintenance_event_wastewater_structure" sql=</datasource>
       <shortname>re_maintenance_event_wastewater_structure</shortname>
       <keywordList>
@@ -1726,9 +1664,13 @@ def my_form_open(dialog, layer, feature):
           <geographicflag>true</geographicflag>
         </spatialrefsys>
       </srs>
-      <customproperties/>
+      <customproperties>
+        <property key="embeddedWidgets/count" value="0"/>
+        <property key="variableNames" value="_fields_"/>
+        <property key="variableValues" value=""/>
+      </customproperties>
       <provider encoding="UTF-8">postgres</provider>
-      <previewExpression></previewExpression>
+      <previewExpression>COALESCE("obj_id", '&lt;NULL>')</previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -1744,11 +1686,11 @@ def my_form_open(dialog, layer, feature):
         <edittype widgetv2type="TextEdit" name="obj_id">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="fk_wastewater_structure">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        <edittype widgetv2type="RelationReference" name="fk_wastewater_structure">
+          <widgetv2config OrderByValue="0" fieldEditable="1" AllowAddFeatures="0" ShowForm="1" Relation="re_maintenance_wasterwaterstructure_reach" ReadOnly="1" constraint="" MapIdentification="1" labelOnTop="0" constraintDescription="" notNull="0" AllowNULL="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="fk_maintenance_event">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        <edittype widgetv2type="RelationReference" name="fk_maintenance_event">
+          <widgetv2config OrderByValue="0" fieldEditable="1" AllowAddFeatures="0" ShowForm="1" Relation="re_maintenance_wasterwaterstructure_maintenance" ReadOnly="0" constraint="" MapIdentification="0" labelOnTop="0" constraintDescription="" notNull="0" AllowNULL="0"/>
         </edittype>
       </edittypes>
       <annotationform>.</annotationform>
@@ -1759,15 +1701,36 @@ def my_form_open(dialog, layer, feature):
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
-      <attributeactions default="0"/>
+      <attributeactions default="-1"/>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
-        <columns/>
+        <columns>
+          <column width="-1" hidden="0" type="field" name="obj_id"/>
+          <column width="-1" hidden="0" type="field" name="fk_wastewater_structure"/>
+          <column width="-1" hidden="0" type="field" name="fk_maintenance_event"/>
+          <column width="-1" hidden="1" type="actions"/>
+        </columns>
       </attributetableconfig>
       <editform>.</editform>
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
       <editforminitfilepath>.</editforminitfilepath>
-      <editforminitcode><![CDATA[]]></editforminitcode>
+      <editforminitcode><![CDATA[# -*- coding: utf-8 -*-
+"""
+QGIS forms can have a Python function that is called when the form is
+opened.
+
+Use this function to add extra logic to your forms.
+
+Enter the name of the function in the "Python Init function"
+field.
+An example follows:
+"""
+from qgis.PyQt.QtWidgets import QWidget
+
+def my_form_open(dialog, layer, feature):
+	geom = feature.geometry()
+	control = dialog.findChild(QWidget, "MyLineEdit")
+]]></editforminitcode>
       <featformsuppress>0</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
       <widgets/>
@@ -3313,6 +3276,660 @@ def my_form_open(dialog, layer, feature):
       </conditionalstyles>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
+      <id>vl_damage_channel_channel_damage_code</id>
+      <datasource>service='pg_qgep' key='code' table="qgep"."vl_damage_channel_channel_damage_code" sql=</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>vl_damage_channel_channel_damage_code</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+          <srsid>3452</srsid>
+          <srid>4326</srid>
+          <authid>EPSG:4326</authid>
+          <description>WGS 84</description>
+          <projectionacronym>longlat</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>true</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <customproperties/>
+      <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
+      <vectorjoins/>
+      <layerDependencies/>
+      <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <edittypes>
+        <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="value_en">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="value_de">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="value_fr">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="abbr_en">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="abbr_de">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="abbr_fr">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="active">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="value_ro">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="abbr_ro">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+      </edittypes>
+      <annotationform>.</annotationform>
+      <aliases>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
+      </aliases>
+      <excludeAttributesWMS/>
+      <excludeAttributesWFS/>
+      <attributeactions default="-1"/>
+      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
+        <columns/>
+      </attributetableconfig>
+      <editform>.</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
+      <conditionalstyles>
+        <rowstyles/>
+        <fieldstyles/>
+      </conditionalstyles>
+    </maplayer>
+    <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
+      <id>vl_damage_connection</id>
+      <datasource>service='pg_qgep' key='code' table="qgep"."vl_damage_connection" sql=</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>vl_damage_connection</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+          <srsid>3452</srsid>
+          <srid>4326</srid>
+          <authid>EPSG:4326</authid>
+          <description>WGS 84</description>
+          <projectionacronym>longlat</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>true</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <customproperties/>
+      <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
+      <vectorjoins/>
+      <layerDependencies/>
+      <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <edittypes>
+        <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="value_en">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="value_de">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="value_fr">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="abbr_en">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="abbr_de">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="abbr_fr">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="active">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="value_ro">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="abbr_ro">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+      </edittypes>
+      <annotationform>.</annotationform>
+      <aliases>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
+      </aliases>
+      <excludeAttributesWMS/>
+      <excludeAttributesWFS/>
+      <attributeactions default="-1"/>
+      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="115674336">
+        <columns/>
+      </attributetableconfig>
+      <editform>.</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
+      <conditionalstyles>
+        <rowstyles/>
+        <fieldstyles/>
+      </conditionalstyles>
+    </maplayer>
+    <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
+      <id>vl_damage_manhole_manhole_damage_code</id>
+      <datasource>service='pg_qgep' key='code' table="qgep"."vl_damage_manhole_manhole_damage_code" sql=</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>vl_damage_manhole_manhole_damage_code</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+          <srsid>3452</srsid>
+          <srid>4326</srid>
+          <authid>EPSG:4326</authid>
+          <description>WGS 84</description>
+          <projectionacronym>longlat</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>true</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <customproperties/>
+      <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
+      <vectorjoins/>
+      <layerDependencies/>
+      <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <edittypes>
+        <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="value_en">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="value_de">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="value_fr">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="abbr_en">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="abbr_de">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="abbr_fr">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="active">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="value_ro">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="abbr_ro">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+      </edittypes>
+      <annotationform>.</annotationform>
+      <aliases>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
+      </aliases>
+      <excludeAttributesWMS/>
+      <excludeAttributesWFS/>
+      <attributeactions default="-1"/>
+      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="30">
+        <columns/>
+      </attributetableconfig>
+      <editform>.</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
+      <conditionalstyles>
+        <rowstyles/>
+        <fieldstyles/>
+      </conditionalstyles>
+    </maplayer>
+    <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
+      <id>vl_damage_manhole_manhole_shaft_area</id>
+      <datasource>service='pg_qgep' key='code' table="qgep"."vl_damage_manhole_manhole_shaft_area" sql=</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>vl_damage_manhole_manhole_shaft_area</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+          <srsid>3452</srsid>
+          <srid>4326</srid>
+          <authid>EPSG:4326</authid>
+          <description>WGS 84</description>
+          <projectionacronym>longlat</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>true</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <customproperties/>
+      <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
+      <vectorjoins/>
+      <layerDependencies/>
+      <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <edittypes>
+        <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="value_en">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="value_de">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="value_fr">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="abbr_en">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="abbr_de">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="abbr_fr">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="active">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="value_ro">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="abbr_ro">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+      </edittypes>
+      <annotationform>.</annotationform>
+      <aliases>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
+      </aliases>
+      <excludeAttributesWMS/>
+      <excludeAttributesWFS/>
+      <attributeactions default="-1"/>
+      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="124971000">
+        <columns/>
+      </attributetableconfig>
+      <editform>.</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
+      <conditionalstyles>
+        <rowstyles/>
+        <fieldstyles/>
+      </conditionalstyles>
+    </maplayer>
+    <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
+      <id>vl_damage_single_damage_class</id>
+      <datasource>service='pg_qgep' key='code' table="qgep"."vl_damage_single_damage_class" sql=</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>vl_damage_single_damage_class</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+          <srsid>3452</srsid>
+          <srid>4326</srid>
+          <authid>EPSG:4326</authid>
+          <description>WGS 84</description>
+          <projectionacronym>longlat</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>true</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <customproperties/>
+      <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
+      <vectorjoins/>
+      <layerDependencies/>
+      <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <edittypes>
+        <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="value_en">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="value_de">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="value_fr">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="abbr_en">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="abbr_de">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="abbr_fr">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="active">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="value_ro">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="abbr_ro">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+      </edittypes>
+      <annotationform>.</annotationform>
+      <aliases>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
+      </aliases>
+      <excludeAttributesWMS/>
+      <excludeAttributesWFS/>
+      <attributeactions default="-1"/>
+      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="482295424">
+        <columns/>
+      </attributetableconfig>
+      <editform>.</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
+      <conditionalstyles>
+        <rowstyles/>
+        <fieldstyles/>
+      </conditionalstyles>
+    </maplayer>
+    <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
+      <id>vl_data_media_kind</id>
+      <datasource>service='pg_qgep' key='code' table="qgep"."vl_data_media_kind" sql=</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>vl_data_media_kind</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+          <srsid>3452</srsid>
+          <srid>4326</srid>
+          <authid>EPSG:4326</authid>
+          <description>WGS 84</description>
+          <projectionacronym>longlat</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>true</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <customproperties/>
+      <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
+      <vectorjoins/>
+      <layerDependencies/>
+      <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <edittypes>
+        <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="value_en">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="value_de">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="value_fr">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="abbr_en">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="abbr_de">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="abbr_fr">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="active">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="value_ro">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="abbr_ro">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+      </edittypes>
+      <annotationform>.</annotationform>
+      <aliases>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
+      </aliases>
+      <excludeAttributesWMS/>
+      <excludeAttributesWFS/>
+      <attributeactions default="-1"/>
+      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="117415795">
+        <columns/>
+      </attributetableconfig>
+      <editform>.</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
+      <conditionalstyles>
+        <rowstyles/>
+        <fieldstyles/>
+      </conditionalstyles>
+    </maplayer>
+    <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_discharge_point_relevance</id>
       <datasource>service='pg_qgep' key='code' table="qgep"."vl_discharge_point_relevance" sql=</datasource>
       <keywordList>
@@ -3422,6 +4039,224 @@ def my_form_open(dialog, layer, feature):
       </conditionalstyles>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
+      <id>vl_file_class</id>
+      <datasource>service='pg_qgep' key='code' table="qgep"."vl_file_class" sql=</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>vl_file_class</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+          <srsid>3452</srsid>
+          <srid>4326</srid>
+          <authid>EPSG:4326</authid>
+          <description>WGS 84</description>
+          <projectionacronym>longlat</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>true</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <customproperties/>
+      <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
+      <vectorjoins/>
+      <layerDependencies/>
+      <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <edittypes>
+        <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="value_en">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="value_de">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="value_fr">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="abbr_en">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="abbr_de">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="abbr_fr">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="active">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="value_ro">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="abbr_ro">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+      </edittypes>
+      <annotationform>.</annotationform>
+      <aliases>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
+      </aliases>
+      <excludeAttributesWMS/>
+      <excludeAttributesWFS/>
+      <attributeactions default="-1"/>
+      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="4">
+        <columns/>
+      </attributetableconfig>
+      <editform>.</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
+      <conditionalstyles>
+        <rowstyles/>
+        <fieldstyles/>
+      </conditionalstyles>
+    </maplayer>
+    <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
+      <id>vl_file_kind</id>
+      <datasource>service='pg_qgep' key='code' table="qgep"."vl_file_kind" sql=</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>vl_file_kind</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+          <srsid>3452</srsid>
+          <srid>4326</srid>
+          <authid>EPSG:4326</authid>
+          <description>WGS 84</description>
+          <projectionacronym>longlat</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>true</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <customproperties/>
+      <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
+      <vectorjoins/>
+      <layerDependencies/>
+      <expressionfields/>
+      <defaults>
+        <default field="code" expression=""/>
+        <default field="vsacode" expression=""/>
+        <default field="value_en" expression=""/>
+        <default field="value_de" expression=""/>
+        <default field="value_fr" expression=""/>
+        <default field="abbr_en" expression=""/>
+        <default field="abbr_de" expression=""/>
+        <default field="abbr_fr" expression=""/>
+        <default field="active" expression=""/>
+        <default field="value_ro" expression=""/>
+        <default field="abbr_ro" expression=""/>
+      </defaults>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <edittypes>
+        <edittype widgetv2type="TextEdit" name="code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vsacode">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="value_en">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="value_de">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="value_fr">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="abbr_en">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="abbr_de">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="abbr_fr">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="active">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="value_ro">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="abbr_ro">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+      </edittypes>
+      <annotationform>.</annotationform>
+      <aliases>
+        <alias field="code" index="0" name=""/>
+        <alias field="vsacode" index="1" name=""/>
+        <alias field="value_en" index="2" name=""/>
+        <alias field="value_de" index="3" name=""/>
+        <alias field="value_fr" index="4" name=""/>
+        <alias field="abbr_en" index="5" name=""/>
+        <alias field="abbr_de" index="6" name=""/>
+        <alias field="abbr_fr" index="7" name=""/>
+        <alias field="active" index="8" name=""/>
+        <alias field="value_ro" index="9" name=""/>
+        <alias field="abbr_ro" index="10" name=""/>
+      </aliases>
+      <excludeAttributesWMS/>
+      <excludeAttributesWFS/>
+      <attributeactions default="-1"/>
+      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="115828656">
+        <columns/>
+      </attributetableconfig>
+      <editform>.</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
+      <conditionalstyles>
+        <rowstyles/>
+        <fieldstyles/>
+      </conditionalstyles>
+    </maplayer>
+    <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_maintenance_event_kind</id>
       <datasource>service='pg_qgep' key='code' estimatedmetadata=true table="qgep"."vl_maintenance_event_kind" sql=</datasource>
       <keywordList>
@@ -3513,7 +4348,7 @@ def my_form_open(dialog, layer, feature):
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
-      <attributeactions default="0"/>
+      <attributeactions default="-1"/>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns/>
       </attributetableconfig>
@@ -6786,7 +7621,7 @@ def my_form_open(dialog, layer, feature):
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
-      <attributeactions default="0"/>
+      <attributeactions default="-1"/>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns>
           <column width="-1" hidden="1" type="field" name="obj_id"/>
@@ -7881,6 +8716,507 @@ def my_form_open(dialog, layer, feature):
       <featformsuppress>0</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
       <widgets/>
+      <conditionalstyles>
+        <rowstyles/>
+        <fieldstyles/>
+      </conditionalstyles>
+    </maplayer>
+    <maplayer minimumScale="100000" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
+      <id>vw_qgep_damage</id>
+      <datasource>service='pg_qgep' key='obj_id' table="qgep"."vw_qgep_damage" sql=</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>vw_qgep_damage</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+          <srsid>3452</srsid>
+          <srid>4326</srid>
+          <authid>EPSG:4326</authid>
+          <description>WGS 84</description>
+          <projectionacronym>longlat</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>true</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <customproperties>
+        <property key="embeddedWidgets/count" value="0"/>
+        <property key="variableNames" value="_fields_"/>
+        <property key="variableValues" value=""/>
+      </customproperties>
+      <provider encoding="UTF-8">postgres</provider>
+      <previewExpression>COALESCE("obj_id", '&lt;NULL>')</previewExpression>
+      <vectorjoins/>
+      <layerDependencies/>
+      <expressionfields/>
+      <defaults>
+        <default field="damage_type" expression=""/>
+        <default field="obj_id" expression=""/>
+        <default field="comments" expression=""/>
+        <default field="connection" expression=""/>
+        <default field="damage_begin" expression=""/>
+        <default field="damage_end" expression=""/>
+        <default field="damage_reach" expression=""/>
+        <default field="distance" expression=""/>
+        <default field="quantification1" expression=""/>
+        <default field="quantification2" expression=""/>
+        <default field="single_damage_class" expression=""/>
+        <default field="video_counter" expression=""/>
+        <default field="view_parameters" expression=""/>
+        <default field="last_modification" expression=""/>
+        <default field="fk_dataowner" expression=""/>
+        <default field="fk_provider" expression=""/>
+        <default field="fk_examination" expression=""/>
+        <default field="manhole_damage_code" expression=""/>
+        <default field="manhole_shaft_area" expression=""/>
+        <default field="channel_damage_code" expression=""/>
+      </defaults>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <edittypes>
+        <edittype widgetv2type="TextEdit" name="damage_type">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="obj_id">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="comments">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="connection">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="damage_begin">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="damage_end">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="damage_reach">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="distance">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="quantification1">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="quantification2">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="ValueRelation" name="single_damage_class">
+          <widgetv2config OrderByValue="0" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_damage_single_damage_class" Value="value_fr" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="video_counter">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="view_parameters">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="last_modification">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="fk_dataowner">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="fk_provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="RelationReference" name="fk_examination">
+          <widgetv2config OrderByValue="0" fieldEditable="1" AllowAddFeatures="0" ShowForm="1" Relation="damage_maintenance_event" ReadOnly="0" constraint="" MapIdentification="0" labelOnTop="0" constraintDescription="" notNull="0" AllowNULL="0"/>
+        </edittype>
+        <edittype widgetv2type="ValueRelation" name="manhole_damage_code">
+          <widgetv2config OrderByValue="0" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_damage_manhole_manhole_damage_code" Value="value_fr" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="manhole_shaft_area">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="ValueRelation" name="channel_damage_code">
+          <widgetv2config OrderByValue="0" AllowNull="0" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_damage_channel_channel_damage_code" Value="value_fr" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
+        </edittype>
+      </edittypes>
+      <annotationform>.</annotationform>
+      <aliases>
+        <alias field="damage_type" index="0" name=""/>
+        <alias field="obj_id" index="1" name=""/>
+        <alias field="comments" index="2" name=""/>
+        <alias field="connection" index="3" name=""/>
+        <alias field="damage_begin" index="4" name=""/>
+        <alias field="damage_end" index="5" name=""/>
+        <alias field="damage_reach" index="6" name=""/>
+        <alias field="distance" index="7" name=""/>
+        <alias field="quantification1" index="8" name=""/>
+        <alias field="quantification2" index="9" name=""/>
+        <alias field="single_damage_class" index="10" name=""/>
+        <alias field="video_counter" index="11" name=""/>
+        <alias field="view_parameters" index="12" name=""/>
+        <alias field="last_modification" index="13" name=""/>
+        <alias field="fk_dataowner" index="14" name=""/>
+        <alias field="fk_provider" index="15" name=""/>
+        <alias field="fk_examination" index="16" name=""/>
+        <alias field="manhole_damage_code" index="17" name=""/>
+        <alias field="manhole_shaft_area" index="18" name=""/>
+        <alias field="channel_damage_code" index="19" name=""/>
+      </aliases>
+      <excludeAttributesWMS/>
+      <excludeAttributesWFS/>
+      <attributeactions default="-1"/>
+      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
+        <columns>
+          <column width="-1" hidden="0" type="field" name="damage_type"/>
+          <column width="-1" hidden="0" type="field" name="obj_id"/>
+          <column width="-1" hidden="0" type="field" name="comments"/>
+          <column width="-1" hidden="0" type="field" name="connection"/>
+          <column width="-1" hidden="0" type="field" name="damage_begin"/>
+          <column width="-1" hidden="0" type="field" name="damage_end"/>
+          <column width="-1" hidden="0" type="field" name="damage_reach"/>
+          <column width="-1" hidden="0" type="field" name="distance"/>
+          <column width="-1" hidden="0" type="field" name="quantification1"/>
+          <column width="-1" hidden="0" type="field" name="quantification2"/>
+          <column width="-1" hidden="0" type="field" name="single_damage_class"/>
+          <column width="-1" hidden="0" type="field" name="video_counter"/>
+          <column width="-1" hidden="0" type="field" name="view_parameters"/>
+          <column width="-1" hidden="0" type="field" name="last_modification"/>
+          <column width="-1" hidden="0" type="field" name="fk_dataowner"/>
+          <column width="-1" hidden="0" type="field" name="fk_provider"/>
+          <column width="-1" hidden="0" type="field" name="fk_examination"/>
+          <column width="-1" hidden="0" type="field" name="manhole_damage_code"/>
+          <column width="-1" hidden="0" type="field" name="manhole_shaft_area"/>
+          <column width="-1" hidden="0" type="field" name="channel_damage_code"/>
+          <column width="-1" hidden="1" type="actions"/>
+        </columns>
+      </attributetableconfig>
+      <editform>.</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[# -*- coding: utf-8 -*-
+"""
+QGIS forms can have a Python function that is called when the form is
+opened.
+
+Use this function to add extra logic to your forms.
+
+Enter the name of the function in the "Python Init function"
+field.
+An example follows:
+"""
+from PyQt.QtWidgets import QWidget
+
+def my_form_open(dialog, layer, feature):
+	geom = feature.geometry()
+	control = dialog.findChild(QWidget, "MyLineEdit")
+]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>tablayout</editorlayout>
+      <attributeEditorForm>
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Damages" groupBox="0" columnCount="1">
+          <attributeEditorField showLabel="1" index="1" name="obj_id"/>
+          <attributeEditorField showLabel="1" index="2" name="comments"/>
+          <attributeEditorField showLabel="1" index="10" name="single_damage_class"/>
+          <attributeEditorField showLabel="1" index="7" name="distance"/>
+          <attributeEditorField showLabel="1" index="11" name="video_counter"/>
+          <attributeEditorField showLabel="1" index="19" name="channel_damage_code"/>
+          <attributeEditorField showLabel="1" index="17" name="manhole_damage_code"/>
+          <attributeEditorField showLabel="1" index="8" name="quantification1"/>
+          <attributeEditorField showLabel="1" index="9" name="quantification2"/>
+        </attributeEditorContainer>
+      </attributeEditorForm>
+      <widgets>
+        <widget name="vl_damage_channel_code_value_fr">
+          <config/>
+        </widget>
+      </widgets>
+      <conditionalstyles>
+        <rowstyles/>
+        <fieldstyles/>
+      </conditionalstyles>
+    </maplayer>
+    <maplayer minimumScale="100000" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
+      <id>vw_qgep_maintenance</id>
+      <datasource>service='pg_qgep' key='obj_id' table="qgep"."vw_qgep_maintenance" sql=</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>vw_qgep_maintenance</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+          <srsid>3452</srsid>
+          <srid>4326</srid>
+          <authid>EPSG:4326</authid>
+          <description>WGS 84</description>
+          <projectionacronym>longlat</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>true</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <customproperties>
+        <property key="embeddedWidgets/count" value="0"/>
+        <property key="variableNames" value="_fields_"/>
+        <property key="variableValues" value=""/>
+      </customproperties>
+      <provider encoding="UTF-8">postgres</provider>
+      <previewExpression>COALESCE("obj_id", '&lt;NULL>')</previewExpression>
+      <vectorjoins/>
+      <layerDependencies/>
+      <expressionfields/>
+      <defaults>
+        <default field="maintenance_type" expression=""/>
+        <default field="obj_id" expression=""/>
+        <default field="base_data" expression=""/>
+        <default field="cost" expression=""/>
+        <default field="data_details" expression=""/>
+        <default field="duration" expression=""/>
+        <default field="identifier" expression=""/>
+        <default field="kind" expression=""/>
+        <default field="operator" expression=""/>
+        <default field="reason" expression=""/>
+        <default field="remark" expression=""/>
+        <default field="result" expression=""/>
+        <default field="status" expression=""/>
+        <default field="time_point" expression=""/>
+        <default field="last_modification" expression=""/>
+        <default field="fk_dataowner" expression=""/>
+        <default field="fk_provider" expression=""/>
+        <default field="fk_operating_company" expression=""/>
+        <default field="active_zone" expression=""/>
+        <default field="equipment" expression=""/>
+        <default field="from_point_identifier" expression=""/>
+        <default field="inspected_length" expression=""/>
+        <default field="recording_type" expression=""/>
+        <default field="to_point_identifier" expression=""/>
+        <default field="vehicle" expression=""/>
+        <default field="videonumber" expression=""/>
+        <default field="weather" expression=""/>
+        <default field="fk_reach_point" expression=""/>
+      </defaults>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <edittypes>
+        <edittype widgetv2type="ValueMap" name="maintenance_type">
+          <widgetv2config fieldEditable="0" constraint="" labelOnTop="0" constraintDescription="" notNull="0">
+            <value key="inspection" value="examination"/>
+          </widgetv2config>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="obj_id">
+          <widgetv2config IsMultiline="0" fieldEditable="0" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="base_data">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="cost">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="data_details">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="duration">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="identifier">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="ValueRelation" name="kind">
+          <widgetv2config OrderByValue="0" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_maintenance_event_kind" Value="value_fr" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="operator">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="reason">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="remark">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="result">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="ValueRelation" name="status">
+          <widgetv2config OrderByValue="0" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_maintenance_event_status" Value="value_fr" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="DateTime" name="time_point">
+          <widgetv2config fieldEditable="1" calendar_popup="1" allow_null="1" display_format="yyyy-MM-dd" field_format="yyyy-MM-dd" constraint="" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="last_modification">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="fk_dataowner">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="fk_provider">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="ValueRelation" name="fk_operating_company">
+          <widgetv2config OrderByValue="0" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="obj_id" constraint="" Layer="od_organisation" Value="identifier" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="active_zone">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="equipment">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="from_point_identifier">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="inspected_length">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="recording_type">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="to_point_identifier">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vehicle">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="videonumber">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="weather">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="fk_reach_point">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+      </edittypes>
+      <annotationform>.</annotationform>
+      <aliases>
+        <alias field="maintenance_type" index="0" name=""/>
+        <alias field="obj_id" index="1" name=""/>
+        <alias field="base_data" index="2" name=""/>
+        <alias field="cost" index="3" name=""/>
+        <alias field="data_details" index="4" name=""/>
+        <alias field="duration" index="5" name=""/>
+        <alias field="identifier" index="6" name=""/>
+        <alias field="kind" index="7" name=""/>
+        <alias field="operator" index="8" name=""/>
+        <alias field="reason" index="9" name=""/>
+        <alias field="remark" index="10" name=""/>
+        <alias field="result" index="11" name=""/>
+        <alias field="status" index="12" name=""/>
+        <alias field="time_point" index="13" name=""/>
+        <alias field="last_modification" index="14" name=""/>
+        <alias field="fk_dataowner" index="15" name=""/>
+        <alias field="fk_provider" index="16" name=""/>
+        <alias field="fk_operating_company" index="17" name=""/>
+        <alias field="active_zone" index="18" name=""/>
+        <alias field="equipment" index="19" name=""/>
+        <alias field="from_point_identifier" index="20" name=""/>
+        <alias field="inspected_length" index="21" name=""/>
+        <alias field="recording_type" index="22" name=""/>
+        <alias field="to_point_identifier" index="23" name=""/>
+        <alias field="vehicle" index="24" name=""/>
+        <alias field="videonumber" index="25" name=""/>
+        <alias field="weather" index="26" name=""/>
+        <alias field="fk_reach_point" index="27" name=""/>
+      </aliases>
+      <excludeAttributesWMS/>
+      <excludeAttributesWFS/>
+      <attributeactions default="-1"/>
+      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
+        <columns>
+          <column width="-1" hidden="0" type="field" name="maintenance_type"/>
+          <column width="-1" hidden="0" type="field" name="obj_id"/>
+          <column width="-1" hidden="0" type="field" name="base_data"/>
+          <column width="-1" hidden="0" type="field" name="cost"/>
+          <column width="-1" hidden="0" type="field" name="data_details"/>
+          <column width="-1" hidden="0" type="field" name="duration"/>
+          <column width="-1" hidden="0" type="field" name="identifier"/>
+          <column width="-1" hidden="0" type="field" name="kind"/>
+          <column width="-1" hidden="0" type="field" name="operator"/>
+          <column width="-1" hidden="0" type="field" name="reason"/>
+          <column width="-1" hidden="0" type="field" name="remark"/>
+          <column width="-1" hidden="0" type="field" name="result"/>
+          <column width="-1" hidden="0" type="field" name="status"/>
+          <column width="-1" hidden="0" type="field" name="time_point"/>
+          <column width="-1" hidden="0" type="field" name="last_modification"/>
+          <column width="-1" hidden="0" type="field" name="fk_dataowner"/>
+          <column width="-1" hidden="0" type="field" name="fk_provider"/>
+          <column width="-1" hidden="0" type="field" name="fk_operating_company"/>
+          <column width="-1" hidden="0" type="field" name="active_zone"/>
+          <column width="-1" hidden="0" type="field" name="equipment"/>
+          <column width="-1" hidden="0" type="field" name="from_point_identifier"/>
+          <column width="-1" hidden="0" type="field" name="inspected_length"/>
+          <column width="-1" hidden="0" type="field" name="recording_type"/>
+          <column width="-1" hidden="0" type="field" name="to_point_identifier"/>
+          <column width="-1" hidden="0" type="field" name="vehicle"/>
+          <column width="-1" hidden="0" type="field" name="videonumber"/>
+          <column width="-1" hidden="0" type="field" name="weather"/>
+          <column width="-1" hidden="0" type="field" name="fk_reach_point"/>
+          <column width="-1" hidden="1" type="actions"/>
+        </columns>
+      </attributetableconfig>
+      <editform>.</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[# -*- coding: utf-8 -*-
+"""
+QGIS forms can have a Python function that is called when the form is
+opened.
+
+Use this function to add extra logic to your forms.
+
+Enter the name of the function in the "Python Init function"
+field.
+An example follows:
+"""
+from PyQt.QtWidgets import QWidget
+
+def my_form_open(dialog, layer, feature):
+	geom = feature.geometry()
+	control = dialog.findChild(QWidget, "MyLineEdit")
+]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>tablayout</editorlayout>
+      <attributeEditorForm>
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Maintenance" groupBox="1" columnCount="2">
+          <attributeEditorField showLabel="1" index="1" name="obj_id"/>
+          <attributeEditorField showLabel="1" index="0" name="maintenance_type"/>
+          <attributeEditorField showLabel="1" index="7" name="kind"/>
+          <attributeEditorField showLabel="1" index="8" name="operator"/>
+          <attributeEditorField showLabel="1" index="9" name="reason"/>
+          <attributeEditorField showLabel="1" index="10" name="remark"/>
+          <attributeEditorField showLabel="1" index="11" name="result"/>
+          <attributeEditorField showLabel="1" index="12" name="status"/>
+          <attributeEditorField showLabel="1" index="13" name="time_point"/>
+          <attributeEditorField showLabel="1" index="-1" name="fk_operator_company"/>
+        </attributeEditorContainer>
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Inspection" groupBox="1" columnCount="2">
+          <attributeEditorField showLabel="1" index="21" name="inspected_length"/>
+          <attributeEditorField showLabel="1" index="25" name="videonumber"/>
+          <attributeEditorField showLabel="1" index="-1" name="fs_reach_point"/>
+        </attributeEditorContainer>
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Damages" groupBox="1" columnCount="1">
+          <attributeEditorRelation showLinkButton="1" relation="damage_maintenance_event" showLabel="1" showUnlinkButton="1" name="damage_maintenance_event"/>
+        </attributeEditorContainer>
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Reaches" groupBox="1" columnCount="2">
+          <attributeEditorRelation showLinkButton="1" relation="re_maintenance_wasterwaterstructure_maintenance" showLabel="1" showUnlinkButton="1" name="re_maintenance_wasterwaterstructure_maintenance"/>
+        </attributeEditorContainer>
+      </attributeEditorForm>
+      <widgets>
+        <widget name="damage_maintenance_event">
+          <config/>
+        </widget>
+        <widget name="re_maintenance_wasterwaterstructure_maintenance">
+          <config>
+            <option key="nm-rel" value="re_maintenance_wasterwaterstructure_reach"/>
+          </config>
+        </widget>
+        <widget name="re_maintenance_wastewaterstructure_maintenance">
+          <config>
+            <option key="nm-rel" value="re_maintenance_event_wastewater_structure_fk_wastewater_structure_vw_qgep_reach_obj_id"/>
+          </config>
+        </widget>
+        <widget name="vw_qgep_damage_fs_examination_vw_qgep_maintenance_obj_id">
+          <config/>
+        </widget>
+      </widgets>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -10447,12 +11783,14 @@ def my_form_open(dialog, layer, feature):
         <property key="labeling/shapeSizeY" value="0"/>
         <property key="labeling/shapeTransparency" value="0"/>
         <property key="labeling/shapeType" value="0"/>
+        <property key="labeling/substitutions" value="&lt;substitutions/>"/>
         <property key="labeling/textColorA" value="255"/>
         <property key="labeling/textColorB" value="0"/>
         <property key="labeling/textColorG" value="0"/>
         <property key="labeling/textColorR" value="0"/>
         <property key="labeling/textTransp" value="0"/>
         <property key="labeling/upsidedownLabels" value="0"/>
+        <property key="labeling/useSubstitutions" value="false"/>
         <property key="labeling/wrapChar" value=""/>
         <property key="labeling/xOffset" value="0"/>
         <property key="labeling/yOffset" value="0"/>
@@ -10813,10 +12151,16 @@ def my_form_open(dialog, layer, feature):
           </attributeEditorContainer>
         </attributeEditorContainer>
         <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Maintenance" groupBox="0" columnCount="0">
-          <attributeEditorRelation showLinkButton="1" relation="" showLabel="1" showUnlinkButton="1" name="od_maintenance_event20150530130856307_fk_wastewater_structure_vw_reach20141013202956655_ws_obj_id"/>
+          <attributeEditorRelation showLinkButton="1" relation="re_maintenance_wasterwaterstructure_reach" showLabel="1" showUnlinkButton="1" name="re_maintenance_wasterwaterstructure_reach"/>
         </attributeEditorContainer>
       </attributeEditorForm>
-      <widgets/>
+      <widgets>
+        <widget name="re_maintenance_wasterwaterstructure_reach">
+          <config>
+            <option key="nm-rel" value="re_maintenance_wasterwaterstructure_maintenance"/>
+          </config>
+        </widget>
+      </widgets>
       <conditionalstyles>
         <rowstyles/>
         <fieldstyles/>
@@ -12913,7 +14257,7 @@ def my_form_open(dialog, layer, feature):
           <attributeEditorRelation showLinkButton="1" relation="vw_benching_fk_wastewater_structure_vw_qgep_wastewater_structure_obj_id" showLabel="1" showUnlinkButton="1" name="vw_benching_fk_wastewater_structure_vw_qgep_wastewater_structure_obj_id"/>
         </attributeEditorContainer>
         <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Maintenance" groupBox="0" columnCount="0">
-          <attributeEditorRelation showLinkButton="1" relation="" showLabel="1" showUnlinkButton="1" name="re_maintenance_event_wastewater_structure20160111110603931_fk_wastewater_structure_vw_qgep_wastewater_structure_ws_obj_id"/>
+          <attributeEditorRelation showLinkButton="1" relation="" showLabel="1" showUnlinkButton="1" name="re_maintenance_event_wastewater_structure_fk_wastewater_structure_vw_qgep_wastewater_structure_ws_obj_id"/>
         </attributeEditorContainer>
         <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Wastewater Nodes" groupBox="0" columnCount="0">
           <attributeEditorRelation showLinkButton="1" relation="" showLabel="1" showUnlinkButton="1" name="wastewater_node-fk_wastewater-structure"/>
@@ -12926,9 +14270,9 @@ def my_form_open(dialog, layer, feature):
         <widget name="od_file20160921105557083_object_vw_qgep_wastewater_structure_obj_id">
           <config/>
         </widget>
-        <widget name="re_maintenance_event_wastewater_structure20160111110603931_fk_wastewater_structure_vw_qgep_wastewater_structure_ws_obj_id">
+        <widget name="re_maintenance_event_wastewater_structure_fk_wastewater_structure_vw_qgep_wastewater_structure_ws_obj_id">
           <config>
-            <option key="nm-rel" value="re_maintenance_event_wastewater_structure20160111110603931_fk_maintenance_event_od_maintenance_event_obj_id"/>
+            <option key="nm-rel" value="re_maintenance_event_wastewater_structure_fk_maintenance_event_od_maintenance_event_obj_id"/>
           </config>
         </widget>
         <widget name="vw_access_aid20150507162234295_fk_wastewater_structure_vw_qgep_wastewater_structure20150506155849784_obj_id">
@@ -13173,6 +14517,9 @@ def my_form_open(dialog, layer, feature):
     <WMSSegmentizeFeatureInfoGeometry type="bool">false</WMSSegmentizeFeatureInfoGeometry>
     <WMSContactMail type="QString"></WMSContactMail>
     <WMSImageQuality type="int">90</WMSImageQuality>
+    <wincan2qgep_plugin>
+      <xmlPath type="QString">/home/drouzaud/Documents/data/assainissement/3004/XML</xmlPath>
+    </wincan2qgep_plugin>
     <WMSRestrictedComposers type="QStringList"/>
     <WMSRootName type="QString"></WMSRootName>
     <WMSServiceTitle type="QString"></WMSServiceTitle>
@@ -13202,8 +14549,8 @@ def my_form_open(dialog, layer, feature):
         <value>vw_cover___</value>
         <value>vw_network_node20150607120529398</value>
         <value>vw_network_segment20150607120529381</value>
-        <value>vw_qgep_wastewater_structure</value>
         <value>vw_qgep_reach</value>
+        <value>vw_qgep_wastewater_structure</value>
         <value>vw_wastewater_node20150607121012062</value>
       </LayerSnappingList>
       <LayerSnappingEnabledList type="QStringList">
@@ -13215,8 +14562,8 @@ def my_form_open(dialog, layer, feature):
         <value>disabled</value>
         <value>disabled</value>
       </LayerSnappingEnabledList>
-      <AvoidIntersectionsList type="QStringList"/>
       <SnappingMode type="QString">current_layer</SnappingMode>
+      <AvoidIntersectionsList type="QStringList"/>
       <LayerSnappingToleranceUnitList type="QStringList">
         <value>2</value>
         <value>2</value>
