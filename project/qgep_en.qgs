@@ -274,6 +274,9 @@
     <relation referencingLayer="vw_qgep_damage" referencedLayer="vw_qgep_maintenance" id="damage_maintenance_event" name="Damages">
       <fieldRef referencedField="obj_id" referencingField="fk_examination"/>
     </relation>
+    <relation referencingLayer="od_file20160921105557083" referencedLayer="vw_qgep_damage" id="file_object_damage_obj_id" name="Pictures">
+      <fieldRef referencedField="obj_id" referencingField="object"/>
+    </relation>
     <relation referencingLayer="od_file20160921105557083" referencedLayer="vw_qgep_wastewater_structure" id="od_file20160921105557083_object_vw_qgep_wastewater_structure_obj_id" name="Pictures">
       <fieldRef referencedField="obj_id" referencingField="object"/>
     </relation>
@@ -926,7 +929,7 @@
           <widgetv2config fieldEditable="1" constraint="" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="ExternalResource" name="identifier">
-          <widgetv2config RelativeStorage="1" fieldEditable="1" DocumentViewer="1" FileWidgetButton="1" DocumentViewerWidth="0" constraint="" FileWidget="1" DocumentViewerHeight="0" StorageMode="0" labelOnTop="0" constraintDescription="" notNull="0" FileWidgetFilter=""/>
+          <widgetv2config RelativeStorage="2" fieldEditable="1" DocumentViewer="1" FileWidgetButton="1" DocumentViewerWidth="0" constraint="" FileWidget="1" DefaultRoot="/home/drouzaud/Documents/data/assainissement" DocumentViewerHeight="0" StorageMode="0" labelOnTop="0" constraintDescription="" notNull="0" FileWidgetFilter=""/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="kind">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
@@ -976,8 +979,6 @@
           <column width="-1" hidden="0" type="field" name="path_relative"/>
           <column width="-1" hidden="0" type="field" name="remark"/>
           <column width="-1" hidden="0" type="field" name="last_modification"/>
-          <column width="-1" hidden="0" type="field" name="dataowner"/>
-          <column width="-1" hidden="0" type="field" name="provider"/>
           <column width="-1" hidden="0" type="field" name="fk_dataowner"/>
           <column width="-1" hidden="0" type="field" name="fk_provider"/>
           <column width="-1" hidden="1" type="actions"/>
@@ -8923,8 +8924,14 @@ def my_form_open(dialog, layer, feature):
           <attributeEditorField showLabel="1" index="8" name="quantification1"/>
           <attributeEditorField showLabel="1" index="9" name="quantification2"/>
         </attributeEditorContainer>
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Pictures" groupBox="0" columnCount="1">
+          <attributeEditorRelation showLinkButton="1" relation="file_object_damage_obj_id" showLabel="1" showUnlinkButton="1" name="file_object_damage_obj_id"/>
+        </attributeEditorContainer>
       </attributeEditorForm>
       <widgets>
+        <widget name="file_object_damage_obj_id">
+          <config/>
+        </widget>
         <widget name="vl_damage_channel_code_value_fr">
           <config/>
         </widget>
@@ -14624,11 +14631,11 @@ def my_form_open(dialog, layer, feature):
       <SelectionColorGreenPart type="int">255</SelectionColorGreenPart>
       <CanvasColorBluePart type="int">255</CanvasColorBluePart>
     </Gui>
-    <WFSLayers type="QStringList"/>
-    <WMSServiceAbstract type="QString"></WMSServiceAbstract>
     <Measure>
       <Ellipsoid type="QString">NONE</Ellipsoid>
     </Measure>
+    <WMSServiceAbstract type="QString"></WMSServiceAbstract>
+    <WFSLayers type="QStringList"/>
     <WFSUrl type="QString"></WFSUrl>
     <WMSServiceCapabilities type="bool">false</WMSServiceCapabilities>
     <WMSUseLayerIDs type="bool">false</WMSUseLayerIDs>
