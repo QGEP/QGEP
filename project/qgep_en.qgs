@@ -12299,7 +12299,7 @@ def my_form_open(dialog, layer, feature):
           <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_cover_fastening" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
         <edittype widgetv2type="Range" name="level">
-          <widgetv2config AllowNull="1" fieldEditable="1" Step="10" constraint="&quot;level&quot; IS NOT NULL" Style="SpinBox" labelOnTop="0" constraintDescription="Level must not be NULL" Min="0" notNull="0" Max="4000" Suffix=" m.a.s.l."/>
+          <widgetv2config AllowNull="1" fieldEditable="1" Step="10" constraint="" Style="SpinBox" labelOnTop="0" constraintDescription="Level must not be NULL" Min="0" notNull="0" Max="4000" Suffix=" m.a.s.l."/>
         </edittype>
         <edittype widgetv2type="ValueRelation" name="cover_material">
           <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_cover_material" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
