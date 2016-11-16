@@ -14,6 +14,10 @@ before_install:
   - sudo -E apt-get -yq --no-install-suggests --no-install-recommends --force-yes install postgresql-9.4-postgis-2.2
   - ./scripts/ci/setup_git.sh
 
+install:
+  - pip install psycopg2 --quiet
+  - pip install pyyaml --quiet
+
 before_script:
   - printf "[pg_qgep]\nhost=localhost\ndbname=qgep\nuser=postgres" > ~/.pg_service.conf
   - psql -c 'CREATE DATABASE qgep;' -U postgres
