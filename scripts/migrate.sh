@@ -39,6 +39,8 @@ echo "*** Migrate 14_od_access_aid ***"
 psql "service=pg_qgep user=postgres" -v ON_ERROR_STOP=1 -f ${DIR}/migration/14_od_access_aid.sql
 echo "*** Migrate 17_od_cover ***"
 psql "service=pg_qgep user=postgres" -v ON_ERROR_STOP=1 -f ${DIR}/migration/17_od_cover.sql
+echo "*** Create main covers ***"
+psql "service=pg_qgep user=postgres" -v ON_ERROR_STOP=1 -f ${DIR}/migration/22_main_cover.sql
 echo "*** Migrate 27_od_catchment_area ***"
 psql "service=pg_qgep user=postgres" -v ON_ERROR_STOP=1 -f ${DIR}/migration/27_od_catchment_area.sql
 echo "*** Migrate 50_foreign_keys ***"
@@ -47,4 +49,5 @@ psql "service=pg_qgep user=postgres" -v ON_ERROR_STOP=1 -f ${DIR}/migration/50_f
 psql "service=pg_qgep user=postgres" -v ON_ERROR_STOP=1 -c "VACUUM ANALYZE;"
 psql "service=pg_qgep user=postgres" -v ON_ERROR_STOP=1 -c "SELECT qgep.update_wastewater_structure_label(NULL, true);"
 psql "service=pg_qgep user=postgres" -v ON_ERROR_STOP=1 -c "SELECT qgep.update_wastewater_structure_symbology(NULL, true);"
+psql "service=pg_qgep user=postgres" -v ON_ERROR_STOP=1 -c "SELECT qgep.update_depth(NULL, true);"
 psql "service=pg_qgep user=postgres" -v ON_ERROR_STOP=1 -c "SELECT qgep.create_symbology_triggers();"
