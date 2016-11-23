@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis projectname="" version="2.17.0">
+<qgis projectname="" version="2.18.0">
   <title></title>
   <autotransaction active="1"/>
   <evaluateDefaultValues active="1"/>
@@ -406,6 +406,7 @@
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="territorial_boundaries__municipal_boundary20150211112947357"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_manhole20141013203257827"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_qgep_wastewater_structure"/>
+      <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_wastewater_node20150607121012062"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_reach20141025180333308"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_channel20141024144506339"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="od_catchment_area20140827102410654"/>
@@ -1266,6 +1267,8 @@ def my_form_open(dialog, layer, feature):
         <default field="_function_hierarchic" expression=""/>
         <default field="_label" expression=""/>
         <default field="fk_main_cover" expression=""/>
+        <default field="_depth" expression=""/>
+        <default field="old_obj_id" expression=""/>
       </defaults>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
@@ -1356,6 +1359,12 @@ def my_form_open(dialog, layer, feature):
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="fk_main_cover">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="_depth">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="old_obj_id">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
       </edittypes>
@@ -1625,6 +1634,8 @@ def my_form_open(dialog, layer, feature):
         <alias field="_function_hierarchic" index="26" name=""/>
         <alias field="_label" index="27" name=""/>
         <alias field="fk_main_cover" index="28" name=""/>
+        <alias field="_depth" index="29" name=""/>
+        <alias field="old_obj_id" index="30" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -7671,7 +7682,6 @@ def my_form_open(dialog, layer, feature):
         <default field="obj_id" expression=""/>
         <default field="brand" expression=""/>
         <default field="cover_shape" expression=""/>
-        <default field="depth" expression=""/>
         <default field="diameter" expression=""/>
         <default field="fastening" expression=""/>
         <default field="level" expression=""/>
@@ -7698,9 +7708,6 @@ def my_form_open(dialog, layer, feature):
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="cover_shape">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="depth">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="diameter">
@@ -8016,21 +8023,20 @@ def my_form_open(dialog, layer, feature):
         <alias field="obj_id" index="0" name=""/>
         <alias field="brand" index="1" name=""/>
         <alias field="cover_shape" index="2" name=""/>
-        <alias field="depth" index="3" name=""/>
-        <alias field="diameter" index="4" name=""/>
-        <alias field="fastening" index="5" name=""/>
-        <alias field="level" index="6" name=""/>
-        <alias field="material" index="7" name=""/>
-        <alias field="positional_accuracy" index="8" name=""/>
-        <alias field="sludge_bucket" index="9" name=""/>
-        <alias field="venting" index="10" name=""/>
-        <alias field="identifier" index="11" name=""/>
-        <alias field="remark" index="12" name=""/>
-        <alias field="renovation_demand" index="13" name=""/>
-        <alias field="fk_dataowner" index="14" name=""/>
-        <alias field="fk_provider" index="15" name=""/>
-        <alias field="last_modification" index="16" name=""/>
-        <alias field="fk_wastewater_structure" index="17" name=""/>
+        <alias field="diameter" index="3" name=""/>
+        <alias field="fastening" index="4" name=""/>
+        <alias field="level" index="5" name=""/>
+        <alias field="material" index="6" name=""/>
+        <alias field="positional_accuracy" index="7" name=""/>
+        <alias field="sludge_bucket" index="8" name=""/>
+        <alias field="venting" index="9" name=""/>
+        <alias field="identifier" index="10" name=""/>
+        <alias field="remark" index="11" name=""/>
+        <alias field="renovation_demand" index="12" name=""/>
+        <alias field="fk_dataowner" index="13" name=""/>
+        <alias field="fk_provider" index="14" name=""/>
+        <alias field="last_modification" index="15" name=""/>
+        <alias field="fk_wastewater_structure" index="16" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -12243,7 +12249,7 @@ def my_form_open(dialog, layer, feature):
         <default field="fk_owner" expression=""/>
         <default field="fk_operator" expression=""/>
         <default field="_label" expression=""/>
-        <default field="depth" expression=""/>
+        <default field="_depth" expression=""/>
         <default field="dimension1" expression=""/>
         <default field="dimension2" expression=""/>
         <default field="upper_elevation" expression=""/>
@@ -12405,8 +12411,8 @@ def my_form_open(dialog, layer, feature):
         <edittype widgetv2type="TextEdit" name="_label">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="Range" name="depth">
-          <widgetv2config AllowNull="1" fieldEditable="1" Step="1" constraint="" Style="SpinBox" labelOnTop="0" constraintDescription="" Min="0" notNull="0" Max="5"/>
+        <edittype widgetv2type="TextEdit" name="_depth">
+          <widgetv2config IsMultiline="0" fieldEditable="0" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="Range" name="dimension1">
           <widgetv2config AllowNull="1" fieldEditable="1" Step="1" constraint="" Style="SpinBox" labelOnTop="0" constraintDescription="" Min="0" notNull="0" Max="4000" Suffix=" mm"/>
@@ -13924,8 +13930,8 @@ def my_form_open(dialog, layer, feature):
         <property key="labeling/xOffset" value="0"/>
         <property key="labeling/yOffset" value="0"/>
         <property key="labeling/zIndex" value="0"/>
-        <property key="variableNames" value="_fields_"/>
-        <property key="variableValues" value=""/>
+        <property key="variableNames"/>
+        <property key="variableValues"/>
       </customproperties>
       <blendMode>0</blendMode>
       <featureBlendMode>0</featureBlendMode>
@@ -14022,7 +14028,7 @@ def my_form_open(dialog, layer, feature):
         <alias field="fk_owner" index="36" name=""/>
         <alias field="fk_operator" index="37" name=""/>
         <alias field="_label" index="38" name=""/>
-        <alias field="depth" index="39" name=""/>
+        <alias field="_depth" index="39" name="depth"/>
         <alias field="dimension1" index="40" name=""/>
         <alias field="dimension2" index="41" name=""/>
         <alias field="upper_elevation" index="42" name=""/>
@@ -14109,7 +14115,6 @@ def my_form_open(dialog, layer, feature):
           <column width="-1" hidden="0" type="field" name="fk_owner"/>
           <column width="-1" hidden="0" type="field" name="fk_operator"/>
           <column width="-1" hidden="0" type="field" name="_label"/>
-          <column width="-1" hidden="0" type="field" name="depth"/>
           <column width="-1" hidden="0" type="field" name="dimension1"/>
           <column width="-1" hidden="0" type="field" name="dimension2"/>
           <column width="-1" hidden="0" type="field" name="upper_elevation"/>
@@ -14142,6 +14147,7 @@ def my_form_open(dialog, layer, feature):
           <column width="-1" hidden="0" type="field" name="wn_fk_dataowner"/>
           <column width="-1" hidden="0" type="field" name="wn_fk_provider"/>
           <column width="-1" hidden="1" type="actions"/>
+          <column width="-1" hidden="0" type="field" name="_depth"/>
         </columns>
       </attributetableconfig>
       <editform>$HOME</editform>
@@ -14184,6 +14190,7 @@ def my_form_open(dialog, layer, feature):
         </attributeEditorContainer>
         <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Wastewater Structure" groupBox="0" columnCount="0">
           <attributeEditorField showLabel="1" index="19" name="accessibility"/>
+          <attributeEditorField showLabel="1" index="39" name="_depth"/>
           <attributeEditorField showLabel="1" index="20" name="contract_section"/>
           <attributeEditorField showLabel="1" index="21" name="financing"/>
           <attributeEditorField showLabel="1" index="22" name="gross_costs"/>
@@ -14204,7 +14211,6 @@ def my_form_open(dialog, layer, feature):
           <attributeEditorField showLabel="1" index="0" name="obj_id"/>
         </attributeEditorContainer>
         <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="1" visibilityExpression="&quot;ws_type&quot; = 'manhole'" name="Manhole" groupBox="0" columnCount="1">
-          <attributeEditorField showLabel="1" index="39" name="depth"/>
           <attributeEditorField showLabel="1" index="40" name="dimension1"/>
           <attributeEditorField showLabel="1" index="41" name="dimension2"/>
           <attributeEditorField showLabel="1" index="42" name="upper_elevation"/>
@@ -14217,11 +14223,9 @@ def my_form_open(dialog, layer, feature):
           <attributeEditorField showLabel="1" index="50" name="special_structure_function"/>
           <attributeEditorField showLabel="1" index="51" name="stormwater_tank_arrangement"/>
           <attributeEditorField showLabel="1" index="42" name="upper_elevation"/>
-          <attributeEditorField showLabel="1" index="39" name="depth"/>
           <attributeEditorField showLabel="1" index="60" name="emergency_spillway"/>
         </attributeEditorContainer>
         <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="1" visibilityExpression="&quot;ws_type&quot; = 'discharge_point'" name="Discharge Point" groupBox="0" columnCount="1">
-          <attributeEditorField showLabel="1" index="39" name="depth"/>
           <attributeEditorField showLabel="1" index="60" name="emergency_spillway"/>
           <attributeEditorField showLabel="1" index="52" name="highwater_level"/>
           <attributeEditorField showLabel="1" index="53" name="relevance"/>
