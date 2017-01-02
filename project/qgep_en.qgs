@@ -8814,7 +8814,7 @@ def my_form_open(dialog, layer, feature):
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="ValueRelation" name="single_damage_class">
-          <widgetv2config OrderByValue="0" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_damage_single_damage_class" Value="value_fr" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
+          <widgetv2config OrderByValue="0" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_damage_single_damage_class" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="video_counter">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
@@ -8835,13 +8835,13 @@ def my_form_open(dialog, layer, feature):
           <widgetv2config OrderByValue="0" fieldEditable="1" AllowAddFeatures="0" ShowForm="1" Relation="damage_maintenance_event" ReadOnly="0" constraint="" MapIdentification="0" labelOnTop="0" constraintDescription="" notNull="0" AllowNULL="0"/>
         </edittype>
         <edittype widgetv2type="ValueRelation" name="manhole_damage_code">
-          <widgetv2config OrderByValue="0" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_damage_manhole_manhole_damage_code" Value="value_fr" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
+          <widgetv2config OrderByValue="0" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_damage_manhole_manhole_damage_code" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="manhole_shaft_area">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="ValueRelation" name="channel_damage_code">
-          <widgetv2config OrderByValue="0" AllowNull="0" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_damage_channel_channel_damage_code" Value="value_fr" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
+          <widgetv2config OrderByValue="0" AllowNull="0" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_damage_channel_channel_damage_code" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
       </edittypes>
       <annotationform>.</annotationform>
@@ -9034,7 +9034,7 @@ def my_form_open(dialog, layer, feature):
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="ValueRelation" name="kind">
-          <widgetv2config OrderByValue="0" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_maintenance_event_kind" Value="value_fr" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
+          <widgetv2config OrderByValue="0" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_maintenance_event_kind" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="operator">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
@@ -9049,7 +9049,7 @@ def my_form_open(dialog, layer, feature):
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="ValueRelation" name="status">
-          <widgetv2config OrderByValue="0" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_maintenance_event_status" Value="value_fr" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
+          <widgetv2config OrderByValue="0" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_maintenance_event_status" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
         <edittype widgetv2type="DateTime" name="time_point">
           <widgetv2config fieldEditable="1" calendar_popup="1" allow_null="1" display_format="yyyy-MM-dd" field_format="yyyy-MM-dd" constraint="" labelOnTop="0" constraintDescription="" notNull="0"/>
