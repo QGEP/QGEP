@@ -11,7 +11,7 @@ git:
   submodules: false
 # Use sed to replace the SSH URL with the public URL, then initialize submodules
 before_install:
-  - sudo -E apt-get -yq --no-install-suggests --no-install-recommends --force-yes install postgresql-9.4-postgis-2.2
+  - sudo -E apt-get -yq --no-install-suggests --no-install-recommends --force-yes install postgresql-9.4-postgis-2.3
   - ./scripts/ci/setup_git.sh
 
 install:
