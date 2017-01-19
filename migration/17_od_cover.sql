@@ -54,7 +54,7 @@ WHEN lagegenauigkeit = 2 THEN 3236 --- plusminus_3cm
 WHEN lagegenauigkeit = 3 THEN 3242 --- plusminus_50cm
 WHEN lagegenauigkeit = 4 THEN 5349 --- unknown
 END,
-the_geom,
+ST_Force3D(the_geom),
 CASE
 WHEN schlammeimer = 0 THEN 423 --- inexistent
 WHEN schlammeimer = 1 THEN 3066 --- unknown
