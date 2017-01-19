@@ -268,7 +268,7 @@
     </layer-tree-group>
     <layer-tree-group expanded="0" checked="Qt::Checked" name="Cadastral Data">
       <customproperties/>
-      <layer-tree-layer expanded="1" checked="Qt::Checked" id="OSM20170119204530981" name="OSM">
+      <layer-tree-layer expanded="1" checked="Qt::Checked" id="OSM_CH190320170119205304994" name="OpenStreetMap">
         <customproperties/>
       </layer-tree-layer>
     </layer-tree-group>
@@ -409,6 +409,7 @@
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_reach20141013202956655"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="ownership__realestate_posnumber20150211112947328"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:3857" srcDatumTransform="-1" destDatumTransform="-1" layerid="OSM20170119204530981"/>
+      <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="OSM_CH190320170119205304994"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="od_reach_point20140822215511891"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="territorial_boundaries__municipal_boundary20150211112947357"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_manhole20141013203257827"/>
@@ -504,7 +505,7 @@
       <item>vl_data_media_kind</item>
       <item>vl_file_class</item>
       <item>vl_file_kind</item>
-      <item>OSM20170119204530981</item>
+      <item>OSM_CH190320170119205304994</item>
     </custom-order>
   </layer-tree-canvas>
   <legend updateDrawingOrder="true">
@@ -884,9 +885,9 @@
       </legendlayer>
     </legendgroup>
     <legendgroup open="false" checked="Qt::Checked" name="Cadastral Data">
-      <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="OSM" showFeatureCount="0">
+      <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="OpenStreetMap" showFeatureCount="0">
         <filegroup open="true" hidden="false">
-          <legendlayerfile isInOverview="0" layerid="OSM20170119204530981" visible="1"/>
+          <legendlayerfile isInOverview="0" layerid="OSM_CH190320170119205304994" visible="1"/>
         </filegroup>
       </legendlayer>
     </legendgroup>
@@ -899,21 +900,21 @@
         <xmax>20037508.34278924390673637</xmax>
         <ymax>20037508.34278924390673637</ymax>
       </extent>
-      <id>OSM20170119204530981</id>
-      <datasource>type=xyz&amp;url=http://tile.openstreetmap.org/%7Bz%7D/%7Bx%7D/%7By%7D.png</datasource>
+      <id>OSM_CH190320170119205304994</id>
+      <datasource>type=xyz&amp;url=http://tile.osm.ch/21781/%7Bz%7D/%7Bx%7D/%7By%7D.png</datasource>
       <keywordList>
         <value></value>
       </keywordList>
-      <layername>OSM</layername>
+      <layername>OpenStreetMap</layername>
       <srs>
         <spatialrefsys>
-          <proj4>+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs</proj4>
-          <srsid>3857</srsid>
-          <srid>3857</srid>
-          <authid>EPSG:3857</authid>
-          <description>WGS 84 / Pseudo Mercator</description>
-          <projectionacronym>merc</projectionacronym>
-          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <proj4>+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=600000 +y_0=200000 +ellps=bessel +towgs84=674.4,15.1,405.3,0,0,0,0 +units=m +no_defs</proj4>
+          <srsid>1919</srsid>
+          <srid>21781</srid>
+          <authid>EPSG:21781</authid>
+          <description>CH1903 / LV03</description>
+          <projectionacronym>somerc</projectionacronym>
+          <ellipsoidacronym>bessel</ellipsoidacronym>
           <geographicflag>false</geographicflag>
         </spatialrefsys>
       </srs>
@@ -934,7 +935,7 @@
         </rasterrenderer>
         <brightnesscontrast brightness="0" contrast="0"/>
         <huesaturation colorizeGreen="128" colorizeOn="0" colorizeRed="255" colorizeBlue="128" grayscaleMode="0" saturation="0" colorizeStrength="100"/>
-        <rasterresampler maxOversampling="2" zoomedOutResampler="bilinear" zoomedInResampler="bilinear"/>
+        <rasterresampler maxOversampling="2"/>
       </pipe>
       <blendMode>0</blendMode>
     </maplayer>
