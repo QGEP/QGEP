@@ -268,6 +268,9 @@
     </layer-tree-group>
     <layer-tree-group expanded="0" checked="Qt::Checked" name="Cadastral Data">
       <customproperties/>
+      <layer-tree-layer expanded="1" checked="Qt::Checked" id="OSM20170119204530981" name="OSM">
+        <customproperties/>
+      </layer-tree-layer>
     </layer-tree-group>
   </layer-tree-group>
   <relations>
@@ -405,6 +408,7 @@
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_reach20140925140846596"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_reach20141013202956655"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="ownership__realestate_posnumber20150211112947328"/>
+      <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:3857" srcDatumTransform="-1" destDatumTransform="-1" layerid="OSM20170119204530981"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="od_reach_point20140822215511891"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="territorial_boundaries__municipal_boundary20150211112947357"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_manhole20141013203257827"/>
@@ -500,6 +504,7 @@
       <item>vl_data_media_kind</item>
       <item>vl_file_class</item>
       <item>vl_file_kind</item>
+      <item>OSM20170119204530981</item>
     </custom-order>
   </layer-tree-canvas>
   <legend updateDrawingOrder="true">
@@ -878,9 +883,61 @@
         </filegroup>
       </legendlayer>
     </legendgroup>
-    <legendgroup open="false" checked="Qt::Checked" name="Cadastral Data"/>
+    <legendgroup open="false" checked="Qt::Checked" name="Cadastral Data">
+      <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="OSM" showFeatureCount="0">
+        <filegroup open="true" hidden="false">
+          <legendlayerfile isInOverview="0" layerid="OSM20170119204530981" visible="1"/>
+        </filegroup>
+      </legendlayer>
+    </legendgroup>
   </legend>
   <projectlayers>
+    <maplayer minimumScale="inf" maximumScale="1e+08" type="raster" hasScaleBasedVisibilityFlag="0">
+      <extent>
+        <xmin>-20037508.34278924390673637</xmin>
+        <ymin>-20037508.34278925508260727</ymin>
+        <xmax>20037508.34278924390673637</xmax>
+        <ymax>20037508.34278924390673637</ymax>
+      </extent>
+      <id>OSM20170119204530981</id>
+      <datasource>type=xyz&amp;url=http://tile.openstreetmap.org/%7Bz%7D/%7Bx%7D/%7By%7D.png</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>OSM</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs</proj4>
+          <srsid>3857</srsid>
+          <srid>3857</srid>
+          <authid>EPSG:3857</authid>
+          <description>WGS 84 / Pseudo Mercator</description>
+          <projectionacronym>merc</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <customproperties>
+        <property key="embeddedWidgets/count" value="0"/>
+        <property key="identify/format" value="Undefined"/>
+      </customproperties>
+      <provider>wms</provider>
+      <noData>
+        <noDataList bandNo="1" useSrcNoData="0"/>
+      </noData>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <pipe>
+        <rasterrenderer opacity="1" alphaBand="0" band="1" type="singlebandcolordata">
+          <rasterTransparency/>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeGreen="128" colorizeOn="0" colorizeRed="255" colorizeBlue="128" grayscaleMode="0" saturation="0" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2" zoomedOutResampler="bilinear" zoomedInResampler="bilinear"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
     <maplayer minimumScale="100000" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>od_file20160921105557083</id>
       <datasource>service='pg_qgep' key='obj_id' table="qgep"."od_file" sql=</datasource>
@@ -1068,9 +1125,6 @@ def my_form_open(dialog, layer, feature):
         <edittype widgetv2type="TextEdit" name="fk_provider">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="old_obj_id">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-        </edittype>
       </edittypes>
       <annotationform>.</annotationform>
       <aliases>
@@ -1081,7 +1135,6 @@ def my_form_open(dialog, layer, feature):
         <alias field="last_modification" index="4" name=""/>
         <alias field="fk_dataowner" index="5" name=""/>
         <alias field="fk_provider" index="6" name=""/>
-        <alias field="old_obj_id" index="7" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -1119,7 +1172,6 @@ def my_form_open(dialog, layer, feature):
         <default field="last_modification" expression=""/>
         <default field="fk_dataowner" expression=""/>
         <default field="fk_provider" expression=""/>
-        <default field="old_obj_id" expression=""/>
       </defaults>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
@@ -1175,9 +1227,6 @@ def my_form_open(dialog, layer, feature):
         <edittype widgetv2type="TextEdit" name="fk_provider">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="old_obj_id">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-        </edittype>
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
@@ -1189,7 +1238,6 @@ def my_form_open(dialog, layer, feature):
         <alias field="last_modification" index="5" name=""/>
         <alias field="fk_dataowner" index="6" name=""/>
         <alias field="fk_provider" index="7" name=""/>
-        <alias field="old_obj_id" index="8" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -1218,7 +1266,6 @@ def my_form_open(dialog, layer, feature):
         <default field="last_modification" expression=""/>
         <default field="fk_dataowner" expression=""/>
         <default field="fk_provider" expression=""/>
-        <default field="old_obj_id" expression=""/>
       </defaults>
     </maplayer>
     <maplayer simplifyAlgorithm="0" minimumScale="0" maximumScale="5001" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" readOnly="0" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="1" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
@@ -1336,10 +1383,7 @@ def my_form_open(dialog, layer, feature):
         <edittype widgetv2type="TextEdit" name="fk_main_cover">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="_depth">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="old_obj_id">
+        <edittype widgetv2type="TextEdit" name="_old_obj_id">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
       </edittypes>
@@ -1609,8 +1653,7 @@ def my_form_open(dialog, layer, feature):
         <alias field="_function_hierarchic" index="26" name=""/>
         <alias field="_label" index="27" name=""/>
         <alias field="fk_main_cover" index="28" name=""/>
-        <alias field="_depth" index="29" name=""/>
-        <alias field="old_obj_id" index="30" name=""/>
+        <alias field="_old_obj_id" index="29" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -1660,8 +1703,7 @@ def my_form_open(dialog, layer, feature):
         <default field="_function_hierarchic" expression=""/>
         <default field="_label" expression=""/>
         <default field="fk_main_cover" expression=""/>
-        <default field="_depth" expression=""/>
-        <default field="old_obj_id" expression=""/>
+        <default field="_old_obj_id" expression=""/>
       </defaults>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
@@ -7699,6 +7741,9 @@ def my_form_open(dialog, layer, feature):
         <edittype widgetv2type="TextEdit" name="cover_shape">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="depth">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="diameter">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
@@ -8012,20 +8057,21 @@ def my_form_open(dialog, layer, feature):
         <alias field="obj_id" index="0" name=""/>
         <alias field="brand" index="1" name=""/>
         <alias field="cover_shape" index="2" name=""/>
-        <alias field="diameter" index="3" name=""/>
-        <alias field="fastening" index="4" name=""/>
-        <alias field="level" index="5" name=""/>
-        <alias field="material" index="6" name=""/>
-        <alias field="positional_accuracy" index="7" name=""/>
-        <alias field="sludge_bucket" index="8" name=""/>
-        <alias field="venting" index="9" name=""/>
-        <alias field="identifier" index="10" name=""/>
-        <alias field="remark" index="11" name=""/>
-        <alias field="renovation_demand" index="12" name=""/>
-        <alias field="fk_dataowner" index="13" name=""/>
-        <alias field="fk_provider" index="14" name=""/>
-        <alias field="last_modification" index="15" name=""/>
-        <alias field="fk_wastewater_structure" index="16" name=""/>
+        <alias field="depth" index="3" name=""/>
+        <alias field="diameter" index="4" name=""/>
+        <alias field="fastening" index="5" name=""/>
+        <alias field="level" index="6" name=""/>
+        <alias field="material" index="7" name=""/>
+        <alias field="positional_accuracy" index="8" name=""/>
+        <alias field="sludge_bucket" index="9" name=""/>
+        <alias field="venting" index="10" name=""/>
+        <alias field="identifier" index="11" name=""/>
+        <alias field="remark" index="12" name=""/>
+        <alias field="renovation_demand" index="13" name=""/>
+        <alias field="fk_dataowner" index="14" name=""/>
+        <alias field="fk_provider" index="15" name=""/>
+        <alias field="last_modification" index="16" name=""/>
+        <alias field="fk_wastewater_structure" index="17" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -8085,6 +8131,7 @@ def my_form_open(dialog, layer, feature):
         <default field="obj_id" expression=""/>
         <default field="brand" expression=""/>
         <default field="cover_shape" expression=""/>
+        <default field="depth" expression=""/>
         <default field="diameter" expression=""/>
         <default field="fastening" expression=""/>
         <default field="level" expression=""/>
@@ -12346,8 +12393,8 @@ def my_form_open(dialog, layer, feature):
         <edittype widgetv2type="TextEdit" name="_label">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="_depth">
-          <widgetv2config IsMultiline="0" fieldEditable="0" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        <edittype widgetv2type="TextEdit" name="depth">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="Range" name="dimension1">
           <widgetv2config AllowNull="1" fieldEditable="1" Step="1" constraint="" Style="SpinBox" labelOnTop="0" constraintDescription="" Min="0" notNull="0" Max="4000" Suffix=" mm"/>
@@ -13963,7 +14010,7 @@ def my_form_open(dialog, layer, feature):
         <alias field="fk_owner" index="36" name=""/>
         <alias field="fk_operator" index="37" name=""/>
         <alias field="_label" index="38" name=""/>
-        <alias field="_depth" index="39" name="depth"/>
+        <alias field="depth" index="39" name=""/>
         <alias field="dimension1" index="40" name=""/>
         <alias field="dimension2" index="41" name=""/>
         <alias field="upper_elevation" index="42" name=""/>
@@ -14125,7 +14172,7 @@ def my_form_open(dialog, layer, feature):
         </attributeEditorContainer>
         <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Wastewater Structure" groupBox="0" columnCount="0">
           <attributeEditorField showLabel="1" index="19" name="accessibility"/>
-          <attributeEditorField showLabel="1" index="39" name="_depth"/>
+          <attributeEditorField showLabel="1" index="-1" name="_depth"/>
           <attributeEditorField showLabel="1" index="20" name="contract_section"/>
           <attributeEditorField showLabel="1" index="21" name="financing"/>
           <attributeEditorField showLabel="1" index="22" name="gross_costs"/>
@@ -14305,7 +14352,7 @@ def my_form_open(dialog, layer, feature):
         <default field="fk_owner" expression=""/>
         <default field="fk_operator" expression=""/>
         <default field="_label" expression=""/>
-        <default field="_depth" expression=""/>
+        <default field="depth" expression=""/>
         <default field="dimension1" expression=""/>
         <default field="dimension2" expression=""/>
         <default field="upper_elevation" expression=""/>
