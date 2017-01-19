@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis projectname="" version="2.18.0">
+<qgis projectname="" version="2.18.2">
   <title></title>
   <autotransaction active="1"/>
   <evaluateDefaultValues active="1"/>
@@ -276,6 +276,9 @@
     </relation>
     <relation referencingLayer="od_file20160921105557083" referencedLayer="vw_qgep_damage" id="file_object_damage_obj_id" name="Pictures">
       <fieldRef referencedField="obj_id" referencingField="object"/>
+    </relation>
+    <relation referencingLayer="od_file20160921105557083" referencedLayer="vw_qgep_reach" id="od_file20160921105557083_object_vw_qgep_reach_ws_obj_id" name="Pictures">
+      <fieldRef referencedField="ws_obj_id" referencingField="object"/>
     </relation>
     <relation referencingLayer="od_file20160921105557083" referencedLayer="vw_qgep_wastewater_structure" id="od_file20160921105557083_object_vw_qgep_wastewater_structure_obj_id" name="Pictures">
       <fieldRef referencedField="obj_id" referencingField="object"/>
@@ -12165,6 +12168,9 @@ def my_form_open(dialog, layer, feature):
         </attributeEditorContainer>
         <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Maintenance" groupBox="0" columnCount="0">
           <attributeEditorRelation showLinkButton="1" relation="re_maintenance_wasterwaterstructure_reach" showLabel="1" showUnlinkButton="1" name="re_maintenance_wasterwaterstructure_reach"/>
+        </attributeEditorContainer>
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Files" groupBox="0" columnCount="1">
+          <attributeEditorRelation showLinkButton="1" relation="od_file20160921105557083_object_vw_qgep_reach_ws_obj_id" showLabel="1" showUnlinkButton="1" name="od_file20160921105557083_object_vw_qgep_reach_ws_obj_id"/>
         </attributeEditorContainer>
       </attributeEditorForm>
       <widgets>
