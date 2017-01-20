@@ -11681,7 +11681,7 @@ def my_form_open(dialog, layer, feature):
         <property key="labeling/maxCurvedCharAngleIn" value="20"/>
         <property key="labeling/maxCurvedCharAngleOut" value="-20"/>
         <property key="labeling/maxNumLabels" value="2000"/>
-        <property key="labeling/mergeLines" value="true"/>
+        <property key="labeling/mergeLines" value="false"/>
         <property key="labeling/minFeatureSize" value="12"/>
         <property key="labeling/multilineAlign" value="0"/>
         <property key="labeling/multilineHeight" value="1"/>
