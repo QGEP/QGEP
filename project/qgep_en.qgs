@@ -9299,7 +9299,7 @@ def my_form_open(dialog, layer, feature):
         <ymax>266758.96299999998882413</ymax>
       </extent>
       <id>vw_qgep_reach</id>
-      <datasource>service='pg_qgep' key='obj_id' srid=21781 type=CompoundCurve table="qgep"."vw_qgep_reach" (progression_geometry) sql=</datasource>
+      <datasource>service='pg_qgep' key='obj_id' srid=21781 type=CompoundCurveZ table="qgep"."vw_qgep_reach" (progression_geometry) sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
