@@ -8866,7 +8866,7 @@ def my_form_open(dialog, layer, feature):
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="RelationReference" name="fk_examination">
-          <widgetv2config OrderByValue="0" fieldEditable="1" AllowAddFeatures="0" ShowForm="1" Relation="damage_maintenance_event" ReadOnly="0" constraint="" MapIdentification="0" labelOnTop="0" constraintDescription="" notNull="0" AllowNULL="0"/>
+          <widgetv2config OrderByValue="0" fieldEditable="1" AllowAddFeatures="1" ShowForm="0" Relation="damage_maintenance_event" ReadOnly="0" constraint="" MapIdentification="0" labelOnTop="0" constraintDescription="" notNull="0" AllowNULL="0"/>
         </edittype>
         <edittype widgetv2type="ValueRelation" name="manhole_damage_code">
           <widgetv2config OrderByValue="0" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_damage_manhole_manhole_damage_code" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
@@ -8963,6 +8963,7 @@ def my_form_open(dialog, layer, feature):
           <attributeEditorField showLabel="1" index="17" name="manhole_damage_code"/>
           <attributeEditorField showLabel="1" index="8" name="quantification1"/>
           <attributeEditorField showLabel="1" index="9" name="quantification2"/>
+          <attributeEditorField showLabel="1" index="16" name="fk_examination"/>
         </attributeEditorContainer>
         <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Pictures" groupBox="0" columnCount="1">
           <attributeEditorRelation showLinkButton="1" relation="file_object_damage_obj_id" showLabel="1" showUnlinkButton="1" name="file_object_damage_obj_id"/>
