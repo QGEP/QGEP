@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis projectname="" version="2.18.2">
+<qgis projectname="" version="2.18.1">
   <title></title>
   <autotransaction active="1"/>
   <evaluateDefaultValues active="1"/>
@@ -408,8 +408,8 @@
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_reach20140925140846596"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_reach20141013202956655"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="ownership__realestate_posnumber20150211112947328"/>
-      <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:3857" srcDatumTransform="-1" destDatumTransform="-1" layerid="OSM20170119204530981"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="OSM_CH190320170119205304994"/>
+      <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:3857" srcDatumTransform="-1" destDatumTransform="-1" layerid="OSM20170119204530981"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="od_reach_point20140822215511891"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="territorial_boundaries__municipal_boundary20150211112947357"/>
       <layer_coordinate_transform destAuthId="EPSG:21781" srcAuthId="EPSG:21781" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_manhole20141013203257827"/>
@@ -901,7 +901,7 @@
         <ymax>20037508.34278924390673637</ymax>
       </extent>
       <id>OSM_CH190320170119205304994</id>
-      <datasource>type=xyz&amp;url=http://tile.osm.ch/21781/%7Bz%7D/%7Bx%7D/%7By%7D.png</datasource>
+      <datasource>crs=EPSG:21781&amp;format=&amp;type=xyz&amp;url=http://tile.osm.ch/21781/%7Bz%7D/%7Bx%7D/%7By%7D.png</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -1126,6 +1126,9 @@ def my_form_open(dialog, layer, feature):
         <edittype widgetv2type="TextEdit" name="fk_provider">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="old_obj_id">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
       </edittypes>
       <annotationform>.</annotationform>
       <aliases>
@@ -1136,6 +1139,7 @@ def my_form_open(dialog, layer, feature):
         <alias field="last_modification" index="4" name=""/>
         <alias field="fk_dataowner" index="5" name=""/>
         <alias field="fk_provider" index="6" name=""/>
+        <alias field="old_obj_id" index="7" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -1173,6 +1177,7 @@ def my_form_open(dialog, layer, feature):
         <default field="last_modification" expression=""/>
         <default field="fk_dataowner" expression=""/>
         <default field="fk_provider" expression=""/>
+        <default field="old_obj_id" expression=""/>
       </defaults>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
@@ -1306,9 +1311,6 @@ def my_form_open(dialog, layer, feature):
         <edittype widgetv2type="TextEdit" name="contract_section">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="detail_geometry3d_geometry">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-        </edittype>
         <edittype widgetv2type="TextEdit" name="financing">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
@@ -1384,7 +1386,7 @@ def my_form_open(dialog, layer, feature):
         <edittype widgetv2type="TextEdit" name="fk_main_cover">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="_old_obj_id">
+        <edittype widgetv2type="TextEdit" name="_depth">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
       </edittypes>
@@ -1628,33 +1630,32 @@ def my_form_open(dialog, layer, feature):
         <alias field="obj_id" index="0" name=""/>
         <alias field="accessibility" index="1" name=""/>
         <alias field="contract_section" index="2" name=""/>
-        <alias field="detail_geometry3d_geometry" index="3" name=""/>
-        <alias field="financing" index="4" name=""/>
-        <alias field="gross_costs" index="5" name=""/>
-        <alias field="identifier" index="6" name=""/>
-        <alias field="inspection_interval" index="7" name=""/>
-        <alias field="location_name" index="8" name=""/>
-        <alias field="records" index="9" name=""/>
-        <alias field="remark" index="10" name=""/>
-        <alias field="renovation_necessity" index="11" name=""/>
-        <alias field="replacement_value" index="12" name=""/>
-        <alias field="rv_base_year" index="13" name=""/>
-        <alias field="rv_construction_type" index="14" name=""/>
-        <alias field="status" index="15" name=""/>
-        <alias field="structure_condition" index="16" name=""/>
-        <alias field="subsidies" index="17" name=""/>
-        <alias field="year_of_construction" index="18" name=""/>
-        <alias field="year_of_replacement" index="19" name=""/>
-        <alias field="last_modification" index="20" name=""/>
-        <alias field="fk_dataowner" index="21" name=""/>
-        <alias field="fk_provider" index="22" name=""/>
-        <alias field="fk_owner" index="23" name=""/>
-        <alias field="fk_operator" index="24" name=""/>
-        <alias field="_usage_current" index="25" name=""/>
-        <alias field="_function_hierarchic" index="26" name=""/>
-        <alias field="_label" index="27" name=""/>
-        <alias field="fk_main_cover" index="28" name=""/>
-        <alias field="_old_obj_id" index="29" name=""/>
+        <alias field="financing" index="3" name=""/>
+        <alias field="gross_costs" index="4" name=""/>
+        <alias field="identifier" index="5" name=""/>
+        <alias field="inspection_interval" index="6" name=""/>
+        <alias field="location_name" index="7" name=""/>
+        <alias field="records" index="8" name=""/>
+        <alias field="remark" index="9" name=""/>
+        <alias field="renovation_necessity" index="10" name=""/>
+        <alias field="replacement_value" index="11" name=""/>
+        <alias field="rv_base_year" index="12" name=""/>
+        <alias field="rv_construction_type" index="13" name=""/>
+        <alias field="status" index="14" name=""/>
+        <alias field="structure_condition" index="15" name=""/>
+        <alias field="subsidies" index="16" name=""/>
+        <alias field="year_of_construction" index="17" name=""/>
+        <alias field="year_of_replacement" index="18" name=""/>
+        <alias field="last_modification" index="19" name=""/>
+        <alias field="fk_dataowner" index="20" name=""/>
+        <alias field="fk_provider" index="21" name=""/>
+        <alias field="fk_owner" index="22" name=""/>
+        <alias field="fk_operator" index="23" name=""/>
+        <alias field="_usage_current" index="24" name=""/>
+        <alias field="_function_hierarchic" index="25" name=""/>
+        <alias field="_label" index="26" name=""/>
+        <alias field="fk_main_cover" index="27" name=""/>
+        <alias field="_depth" index="28" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -1678,7 +1679,6 @@ def my_form_open(dialog, layer, feature):
         <default field="obj_id" expression=""/>
         <default field="accessibility" expression=""/>
         <default field="contract_section" expression=""/>
-        <default field="detail_geometry3d_geometry" expression=""/>
         <default field="financing" expression=""/>
         <default field="gross_costs" expression=""/>
         <default field="identifier" expression=""/>
@@ -1704,7 +1704,7 @@ def my_form_open(dialog, layer, feature):
         <default field="_function_hierarchic" expression=""/>
         <default field="_label" expression=""/>
         <default field="fk_main_cover" expression=""/>
-        <default field="_old_obj_id" expression=""/>
+        <default field="_depth" expression=""/>
       </defaults>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
@@ -7542,9 +7542,6 @@ def my_form_open(dialog, layer, feature):
         <edittype widgetv2type="Hidden" name="detail_geometry_geometry">
           <widgetv2config fieldEditable="1" constraint="" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="detail_geometry3d_geometry">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-        </edittype>
         <edittype widgetv2type="ValueRelation" name="financing">
           <widgetv2config OrderByValue="0" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_wastewater_structure_financing" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
@@ -7623,28 +7620,27 @@ def my_form_open(dialog, layer, feature):
         <alias field="accessibility" index="9" name=""/>
         <alias field="contract_section" index="10" name=""/>
         <alias field="detail_geometry_geometry" index="11" name=""/>
-        <alias field="detail_geometry3d_geometry" index="12" name=""/>
-        <alias field="financing" index="13" name=""/>
-        <alias field="gross_costs" index="14" name=""/>
-        <alias field="identifier" index="15" name=""/>
-        <alias field="inspection_interval" index="16" name=""/>
-        <alias field="location_name" index="17" name=""/>
-        <alias field="records" index="18" name=""/>
-        <alias field="remark" index="19" name=""/>
-        <alias field="renovation_necessity" index="20" name=""/>
-        <alias field="replacement_value" index="21" name=""/>
-        <alias field="rv_base_year" index="22" name=""/>
-        <alias field="rv_construction_type" index="23" name=""/>
-        <alias field="status" index="24" name=""/>
-        <alias field="structure_condition" index="25" name=""/>
-        <alias field="subsidies" index="26" name=""/>
-        <alias field="year_of_construction" index="27" name=""/>
-        <alias field="year_of_replacement" index="28" name=""/>
-        <alias field="fk_dataowner" index="29" name=""/>
-        <alias field="fk_provider" index="30" name=""/>
-        <alias field="last_modification" index="31" name=""/>
-        <alias field="fk_owner" index="32" name=""/>
-        <alias field="fk_operator" index="33" name=""/>
+        <alias field="financing" index="12" name=""/>
+        <alias field="gross_costs" index="13" name=""/>
+        <alias field="identifier" index="14" name=""/>
+        <alias field="inspection_interval" index="15" name=""/>
+        <alias field="location_name" index="16" name=""/>
+        <alias field="records" index="17" name=""/>
+        <alias field="remark" index="18" name=""/>
+        <alias field="renovation_necessity" index="19" name=""/>
+        <alias field="replacement_value" index="20" name=""/>
+        <alias field="rv_base_year" index="21" name=""/>
+        <alias field="rv_construction_type" index="22" name=""/>
+        <alias field="status" index="23" name=""/>
+        <alias field="structure_condition" index="24" name=""/>
+        <alias field="subsidies" index="25" name=""/>
+        <alias field="year_of_construction" index="26" name=""/>
+        <alias field="year_of_replacement" index="27" name=""/>
+        <alias field="fk_dataowner" index="28" name=""/>
+        <alias field="fk_provider" index="29" name=""/>
+        <alias field="last_modification" index="30" name=""/>
+        <alias field="fk_owner" index="31" name=""/>
+        <alias field="fk_operator" index="32" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -7681,7 +7677,6 @@ def my_form_open(dialog, layer, feature):
         <default field="accessibility" expression=""/>
         <default field="contract_section" expression=""/>
         <default field="detail_geometry_geometry" expression=""/>
-        <default field="detail_geometry3d_geometry" expression=""/>
         <default field="financing" expression=""/>
         <default field="gross_costs" expression=""/>
         <default field="identifier" expression=""/>
@@ -7740,9 +7735,6 @@ def my_form_open(dialog, layer, feature):
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="cover_shape">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="depth">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="diameter">
@@ -8058,21 +8050,20 @@ def my_form_open(dialog, layer, feature):
         <alias field="obj_id" index="0" name=""/>
         <alias field="brand" index="1" name=""/>
         <alias field="cover_shape" index="2" name=""/>
-        <alias field="depth" index="3" name=""/>
-        <alias field="diameter" index="4" name=""/>
-        <alias field="fastening" index="5" name=""/>
-        <alias field="level" index="6" name=""/>
-        <alias field="material" index="7" name=""/>
-        <alias field="positional_accuracy" index="8" name=""/>
-        <alias field="sludge_bucket" index="9" name=""/>
-        <alias field="venting" index="10" name=""/>
-        <alias field="identifier" index="11" name=""/>
-        <alias field="remark" index="12" name=""/>
-        <alias field="renovation_demand" index="13" name=""/>
-        <alias field="fk_dataowner" index="14" name=""/>
-        <alias field="fk_provider" index="15" name=""/>
-        <alias field="last_modification" index="16" name=""/>
-        <alias field="fk_wastewater_structure" index="17" name=""/>
+        <alias field="diameter" index="3" name=""/>
+        <alias field="fastening" index="4" name=""/>
+        <alias field="level" index="5" name=""/>
+        <alias field="material" index="6" name=""/>
+        <alias field="positional_accuracy" index="7" name=""/>
+        <alias field="sludge_bucket" index="8" name=""/>
+        <alias field="venting" index="9" name=""/>
+        <alias field="identifier" index="10" name=""/>
+        <alias field="remark" index="11" name=""/>
+        <alias field="renovation_demand" index="12" name=""/>
+        <alias field="fk_dataowner" index="13" name=""/>
+        <alias field="fk_provider" index="14" name=""/>
+        <alias field="last_modification" index="15" name=""/>
+        <alias field="fk_wastewater_structure" index="16" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -8132,7 +8123,6 @@ def my_form_open(dialog, layer, feature):
         <default field="obj_id" expression=""/>
         <default field="brand" expression=""/>
         <default field="cover_shape" expression=""/>
-        <default field="depth" expression=""/>
         <default field="diameter" expression=""/>
         <default field="fastening" expression=""/>
         <default field="level" expression=""/>
@@ -8805,12 +8795,19 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties>
         <property key="embeddedWidgets/count" value="0"/>
-        <property key="variableNames" value="_fields_"/>
-        <property key="variableValues" value=""/>
+        <property key="variableNames"/>
+        <property key="variableValues"/>
       </customproperties>
       <provider encoding="UTF-8">postgres</provider>
-      <previewExpression>COALESCE("obj_id", '&lt;NULL>')</previewExpression>
-      <vectorjoins/>
+      <previewExpression>COALESCE( "vl_damage_single_damage_class_value_en", '&lt;NULL>' )</previewExpression>
+      <vectorjoins>
+        <join hasCustomPrefix="1" joinFieldName="code" customPrefix="vl_damage_single_damage_class_" targetFieldName="single_damage_class" memoryCache="1" joinLayerId="vl_damage_single_damage_class">
+          <joinFieldsSubset>
+            <field name="code"/>
+            <field name="value_en"/>
+          </joinFieldsSubset>
+        </join>
+      </vectorjoins>
       <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
@@ -8877,6 +8874,12 @@ def my_form_open(dialog, layer, feature):
         <edittype widgetv2type="ValueRelation" name="channel_damage_code">
           <widgetv2config OrderByValue="0" AllowNull="0" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_damage_channel_channel_damage_code" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vl_damage_single_damage_class_code">
+          <widgetv2config IsMultiline="0" fieldEditable="0" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vl_damage_single_damage_class_value_en">
+          <widgetv2config IsMultiline="0" fieldEditable="0" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
       </edittypes>
       <annotationform>.</annotationform>
       <aliases>
@@ -8900,6 +8903,8 @@ def my_form_open(dialog, layer, feature):
         <alias field="manhole_damage_code" index="17" name=""/>
         <alias field="manhole_shaft_area" index="18" name=""/>
         <alias field="channel_damage_code" index="19" name=""/>
+        <alias field="vl_damage_single_damage_class_code" index="20" name=""/>
+        <alias field="vl_damage_single_damage_class_value_en" index="21" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -8927,6 +8932,8 @@ def my_form_open(dialog, layer, feature):
           <column width="-1" hidden="0" type="field" name="manhole_shaft_area"/>
           <column width="-1" hidden="0" type="field" name="channel_damage_code"/>
           <column width="-1" hidden="1" type="actions"/>
+          <column width="-1" hidden="0" type="field" name="vl_damage_single_damage_class_code"/>
+          <column width="-1" hidden="0" type="field" name="vl_damage_single_damage_class_value_en"/>
         </columns>
       </attributetableconfig>
       <editform>.</editform>
@@ -9002,6 +9009,8 @@ def my_form_open(dialog, layer, feature):
         <default field="manhole_damage_code" expression=""/>
         <default field="manhole_shaft_area" expression=""/>
         <default field="channel_damage_code" expression=""/>
+        <default field="vl_damage_single_damage_class_code" expression=""/>
+        <default field="vl_damage_single_damage_class_value_en" expression=""/>
       </defaults>
     </maplayer>
     <maplayer minimumScale="100000" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
@@ -9025,12 +9034,19 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties>
         <property key="embeddedWidgets/count" value="0"/>
-        <property key="variableNames" value="_fields_"/>
-        <property key="variableValues" value=""/>
+        <property key="variableNames"/>
+        <property key="variableValues"/>
       </customproperties>
       <provider encoding="UTF-8">postgres</provider>
-      <previewExpression>COALESCE("obj_id", '&lt;NULL>')</previewExpression>
-      <vectorjoins/>
+      <previewExpression> format_date("time_point", 'dd.MM.yyyy') || ' ' || "vl_maintenance_event_kind_value_en"</previewExpression>
+      <vectorjoins>
+        <join hasCustomPrefix="1" joinFieldName="code" customPrefix="vl_maintenance_event_kind_" targetFieldName="kind" memoryCache="1" joinLayerId="vl_maintenance_event_kind">
+          <joinFieldsSubset>
+            <field name="code"/>
+            <field name="value_en"/>
+          </joinFieldsSubset>
+        </join>
+      </vectorjoins>
       <layerDependencies/>
       <expressionfields/>
       <map-layer-style-manager current="">
@@ -9123,6 +9139,12 @@ def my_form_open(dialog, layer, feature):
         <edittype widgetv2type="TextEdit" name="fk_reach_point">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="vl_maintenance_event_kind_code">
+          <widgetv2config IsMultiline="0" fieldEditable="0" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="vl_maintenance_event_kind_value_en">
+          <widgetv2config IsMultiline="0" fieldEditable="0" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
       </edittypes>
       <annotationform>.</annotationform>
       <aliases>
@@ -9154,6 +9176,8 @@ def my_form_open(dialog, layer, feature):
         <alias field="videonumber" index="25" name=""/>
         <alias field="weather" index="26" name=""/>
         <alias field="fk_reach_point" index="27" name=""/>
+        <alias field="vl_maintenance_event_kind_code" index="28" name=""/>
+        <alias field="vl_maintenance_event_kind_value_en" index="29" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -9189,6 +9213,8 @@ def my_form_open(dialog, layer, feature):
           <column width="-1" hidden="0" type="field" name="weather"/>
           <column width="-1" hidden="0" type="field" name="fk_reach_point"/>
           <column width="-1" hidden="1" type="actions"/>
+          <column width="-1" hidden="0" type="field" name="vl_maintenance_event_kind_code"/>
+          <column width="-1" hidden="0" type="field" name="vl_maintenance_event_kind_value_en"/>
         </columns>
       </attributetableconfig>
       <editform>.</editform>
@@ -9290,6 +9316,8 @@ def my_form_open(dialog, layer, feature):
         <default field="videonumber" expression=""/>
         <default field="weather" expression=""/>
         <default field="fk_reach_point" expression=""/>
+        <default field="vl_maintenance_event_kind_code" expression=""/>
+        <default field="vl_maintenance_event_kind_value_en" expression=""/>
       </defaults>
     </maplayer>
     <maplayer simplifyAlgorithm="0" minimumScale="100000" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" readOnly="0" geometry="Line" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
@@ -10707,9 +10735,6 @@ def my_form_open(dialog, layer, feature):
         <edittype widgetv2type="ValueRelation" name="material">
           <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_reach_material" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="progression3d_geometry">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-        </edittype>
         <edittype widgetv2type="ValueRelation" name="reliner_material">
           <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_reach_reliner_material" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
@@ -11852,76 +11877,75 @@ def my_form_open(dialog, layer, feature):
         <alias field="length_effective" index="7" name=""/>
         <alias field="slope_per_mill" index="8" name=""/>
         <alias field="material" index="9" name=""/>
-        <alias field="progression3d_geometry" index="10" name=""/>
-        <alias field="reliner_material" index="11" name=""/>
-        <alias field="reliner_nominal_size" index="12" name=""/>
-        <alias field="relining_construction" index="13" name=""/>
-        <alias field="relining_kind" index="14" name=""/>
-        <alias field="ring_stiffness" index="15" name=""/>
-        <alias field="slope_building_plan" index="16" name=""/>
-        <alias field="wall_roughness" index="17" name=""/>
-        <alias field="fk_pipe_profile" index="18" name=""/>
-        <alias field="bedding_encasement" index="19" name=""/>
-        <alias field="function_hierarchic" index="20" name=""/>
-        <alias field="connection_type" index="21" name=""/>
-        <alias field="function_hydraulic" index="22" name=""/>
-        <alias field="jetting_interval" index="23" name=""/>
-        <alias field="pipe_length" index="24" name=""/>
-        <alias field="usage_current" index="25" name=""/>
-        <alias field="usage_planned" index="26" name=""/>
-        <alias field="ws_obj_id" index="27" name=""/>
-        <alias field="accessibility" index="28" name=""/>
-        <alias field="contract_section" index="29" name=""/>
-        <alias field="financing" index="30" name=""/>
-        <alias field="gross_costs" index="31" name=""/>
-        <alias field="inspection_interval" index="32" name=""/>
-        <alias field="location_name" index="33" name=""/>
-        <alias field="records" index="34" name=""/>
-        <alias field="renovation_necessity" index="35" name=""/>
-        <alias field="replacement_value" index="36" name=""/>
-        <alias field="rv_base_year" index="37" name=""/>
-        <alias field="rv_construction_type" index="38" name=""/>
-        <alias field="status" index="39" name=""/>
-        <alias field="structure_condition" index="40" name=""/>
-        <alias field="subsidies" index="41" name=""/>
-        <alias field="year_of_construction" index="42" name=""/>
-        <alias field="year_of_replacement" index="43" name=""/>
-        <alias field="fk_owner" index="44" name=""/>
-        <alias field="fk_operator" index="45" name=""/>
-        <alias field="identifier" index="46" name=""/>
-        <alias field="remark" index="47" name=""/>
-        <alias field="last_modification" index="48" name=""/>
-        <alias field="fk_dataowner" index="49" name=""/>
-        <alias field="fk_provider" index="50" name=""/>
-        <alias field="fk_wastewater_structure" index="51" name=""/>
-        <alias field="rp_from_obj_id" index="52" name=""/>
-        <alias field="rp_from_elevation_accuracy" index="53" name=""/>
-        <alias field="rp_from_identifier" index="54" name=""/>
-        <alias field="rp_from_level" index="55" name=""/>
-        <alias field="rp_from_outlet_shape" index="56" name=""/>
-        <alias field="rp_from_position_of_connection" index="57" name=""/>
-        <alias field="rp_from_remark" index="58" name=""/>
-        <alias field="rp_from_last_modification" index="59" name=""/>
-        <alias field="rp_from_fk_dataowner" index="60" name=""/>
-        <alias field="rp_from_fk_provider" index="61" name=""/>
-        <alias field="rp_from_fk_wastewater_networkelement" index="62" name=""/>
-        <alias field="rp_to_obj_id" index="63" name=""/>
-        <alias field="rp_to_elevation_accuracy" index="64" name=""/>
-        <alias field="rp_to_identifier" index="65" name=""/>
-        <alias field="rp_to_level" index="66" name=""/>
-        <alias field="rp_to_outlet_shape" index="67" name=""/>
-        <alias field="rp_to_position_of_connection" index="68" name=""/>
-        <alias field="rp_to_remark" index="69" name=""/>
-        <alias field="rp_to_last_modification" index="70" name=""/>
-        <alias field="rp_to_fk_dataowner" index="71" name=""/>
-        <alias field="rp_to_fk_provider" index="72" name=""/>
-        <alias field="rp_to_fk_wastewater_networkelement" index="73" name=""/>
-        <alias field="me_obj_id" index="74" name=""/>
-        <alias field="me_active_zone" index="75" name=""/>
-        <alias field="me_identifier" index="76" name=""/>
-        <alias field="material_abbr_en" index="77" name=""/>
-        <alias field="material_abbr_de" index="78" name=""/>
-        <alias field="material_abbr_fr" index="79" name=""/>
+        <alias field="reliner_material" index="10" name=""/>
+        <alias field="reliner_nominal_size" index="11" name=""/>
+        <alias field="relining_construction" index="12" name=""/>
+        <alias field="relining_kind" index="13" name=""/>
+        <alias field="ring_stiffness" index="14" name=""/>
+        <alias field="slope_building_plan" index="15" name=""/>
+        <alias field="wall_roughness" index="16" name=""/>
+        <alias field="fk_pipe_profile" index="17" name=""/>
+        <alias field="bedding_encasement" index="18" name=""/>
+        <alias field="function_hierarchic" index="19" name=""/>
+        <alias field="connection_type" index="20" name=""/>
+        <alias field="function_hydraulic" index="21" name=""/>
+        <alias field="jetting_interval" index="22" name=""/>
+        <alias field="pipe_length" index="23" name=""/>
+        <alias field="usage_current" index="24" name=""/>
+        <alias field="usage_planned" index="25" name=""/>
+        <alias field="ws_obj_id" index="26" name=""/>
+        <alias field="accessibility" index="27" name=""/>
+        <alias field="contract_section" index="28" name=""/>
+        <alias field="financing" index="29" name=""/>
+        <alias field="gross_costs" index="30" name=""/>
+        <alias field="inspection_interval" index="31" name=""/>
+        <alias field="location_name" index="32" name=""/>
+        <alias field="records" index="33" name=""/>
+        <alias field="renovation_necessity" index="34" name=""/>
+        <alias field="replacement_value" index="35" name=""/>
+        <alias field="rv_base_year" index="36" name=""/>
+        <alias field="rv_construction_type" index="37" name=""/>
+        <alias field="status" index="38" name=""/>
+        <alias field="structure_condition" index="39" name=""/>
+        <alias field="subsidies" index="40" name=""/>
+        <alias field="year_of_construction" index="41" name=""/>
+        <alias field="year_of_replacement" index="42" name=""/>
+        <alias field="fk_owner" index="43" name=""/>
+        <alias field="fk_operator" index="44" name=""/>
+        <alias field="identifier" index="45" name=""/>
+        <alias field="remark" index="46" name=""/>
+        <alias field="last_modification" index="47" name=""/>
+        <alias field="fk_dataowner" index="48" name=""/>
+        <alias field="fk_provider" index="49" name=""/>
+        <alias field="fk_wastewater_structure" index="50" name=""/>
+        <alias field="rp_from_obj_id" index="51" name=""/>
+        <alias field="rp_from_elevation_accuracy" index="52" name=""/>
+        <alias field="rp_from_identifier" index="53" name=""/>
+        <alias field="rp_from_level" index="54" name=""/>
+        <alias field="rp_from_outlet_shape" index="55" name=""/>
+        <alias field="rp_from_position_of_connection" index="56" name=""/>
+        <alias field="rp_from_remark" index="57" name=""/>
+        <alias field="rp_from_last_modification" index="58" name=""/>
+        <alias field="rp_from_fk_dataowner" index="59" name=""/>
+        <alias field="rp_from_fk_provider" index="60" name=""/>
+        <alias field="rp_from_fk_wastewater_networkelement" index="61" name=""/>
+        <alias field="rp_to_obj_id" index="62" name=""/>
+        <alias field="rp_to_elevation_accuracy" index="63" name=""/>
+        <alias field="rp_to_identifier" index="64" name=""/>
+        <alias field="rp_to_level" index="65" name=""/>
+        <alias field="rp_to_outlet_shape" index="66" name=""/>
+        <alias field="rp_to_position_of_connection" index="67" name=""/>
+        <alias field="rp_to_remark" index="68" name=""/>
+        <alias field="rp_to_last_modification" index="69" name=""/>
+        <alias field="rp_to_fk_dataowner" index="70" name=""/>
+        <alias field="rp_to_fk_provider" index="71" name=""/>
+        <alias field="rp_to_fk_wastewater_networkelement" index="72" name=""/>
+        <alias field="me_obj_id" index="73" name=""/>
+        <alias field="me_active_zone" index="74" name=""/>
+        <alias field="me_identifier" index="75" name=""/>
+        <alias field="material_abbr_en" index="76" name=""/>
+        <alias field="material_abbr_de" index="77" name=""/>
+        <alias field="material_abbr_fr" index="78" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -12040,17 +12064,17 @@ def my_form_open(dialog, layer, feature):
           <attributeEditorField showLabel="1" index="7" name="length_effective"/>
           <attributeEditorField showLabel="1" index="9" name="material"/>
           <attributeEditorField showLabel="1" index="6" name="inside_coating"/>
-          <attributeEditorField showLabel="1" index="18" name="fk_pipe_profile"/>
+          <attributeEditorField showLabel="1" index="17" name="fk_pipe_profile"/>
           <attributeEditorField showLabel="1" index="-1" name="dataowner"/>
-          <attributeEditorField showLabel="1" index="55" name="rp_from_level"/>
-          <attributeEditorField showLabel="1" index="66" name="rp_to_level"/>
+          <attributeEditorField showLabel="1" index="54" name="rp_from_level"/>
+          <attributeEditorField showLabel="1" index="65" name="rp_to_level"/>
           <attributeEditorField showLabel="1" index="5" name="horizontal_positioning"/>
-          <attributeEditorField showLabel="1" index="20" name="function_hierarchic"/>
-          <attributeEditorField showLabel="1" index="22" name="function_hydraulic"/>
-          <attributeEditorField showLabel="1" index="25" name="usage_current"/>
-          <attributeEditorField showLabel="1" index="39" name="status"/>
-          <attributeEditorField showLabel="1" index="42" name="year_of_construction"/>
-          <attributeEditorField showLabel="1" index="47" name="remark"/>
+          <attributeEditorField showLabel="1" index="19" name="function_hierarchic"/>
+          <attributeEditorField showLabel="1" index="21" name="function_hydraulic"/>
+          <attributeEditorField showLabel="1" index="24" name="usage_current"/>
+          <attributeEditorField showLabel="1" index="38" name="status"/>
+          <attributeEditorField showLabel="1" index="41" name="year_of_construction"/>
+          <attributeEditorField showLabel="1" index="46" name="remark"/>
         </attributeEditorContainer>
         <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Reach" groupBox="0" columnCount="0">
           <attributeEditorField showLabel="1" index="0" name="obj_id"/>
@@ -12064,78 +12088,78 @@ def my_form_open(dialog, layer, feature):
           <attributeEditorField showLabel="1" index="8" name="slope_per_mill"/>
           <attributeEditorField showLabel="1" index="9" name="material"/>
           <attributeEditorField showLabel="1" index="-1" name="progression_3d_geometry"/>
-          <attributeEditorField showLabel="1" index="11" name="reliner_material"/>
-          <attributeEditorField showLabel="1" index="12" name="reliner_nominal_size"/>
-          <attributeEditorField showLabel="1" index="13" name="relining_construction"/>
-          <attributeEditorField showLabel="1" index="14" name="relining_kind"/>
-          <attributeEditorField showLabel="1" index="15" name="ring_stiffness"/>
-          <attributeEditorField showLabel="1" index="16" name="slope_building_plan"/>
-          <attributeEditorField showLabel="1" index="17" name="wall_roughness"/>
-          <attributeEditorField showLabel="1" index="18" name="fk_pipe_profile"/>
+          <attributeEditorField showLabel="1" index="10" name="reliner_material"/>
+          <attributeEditorField showLabel="1" index="11" name="reliner_nominal_size"/>
+          <attributeEditorField showLabel="1" index="12" name="relining_construction"/>
+          <attributeEditorField showLabel="1" index="13" name="relining_kind"/>
+          <attributeEditorField showLabel="1" index="14" name="ring_stiffness"/>
+          <attributeEditorField showLabel="1" index="15" name="slope_building_plan"/>
+          <attributeEditorField showLabel="1" index="16" name="wall_roughness"/>
+          <attributeEditorField showLabel="1" index="17" name="fk_pipe_profile"/>
         </attributeEditorContainer>
         <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Wastewater Networkelement" groupBox="0" columnCount="0">
-          <attributeEditorField showLabel="1" index="46" name="identifier"/>
-          <attributeEditorField showLabel="1" index="47" name="remark"/>
-          <attributeEditorField showLabel="1" index="48" name="last_modification"/>
+          <attributeEditorField showLabel="1" index="45" name="identifier"/>
+          <attributeEditorField showLabel="1" index="46" name="remark"/>
+          <attributeEditorField showLabel="1" index="47" name="last_modification"/>
           <attributeEditorField showLabel="1" index="-1" name="dataowner"/>
           <attributeEditorField showLabel="1" index="-1" name="provider"/>
         </attributeEditorContainer>
         <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Channel" groupBox="0" columnCount="0">
-          <attributeEditorField showLabel="1" index="20" name="function_hierarchic"/>
-          <attributeEditorField showLabel="1" index="21" name="connection_type"/>
-          <attributeEditorField showLabel="1" index="22" name="function_hydraulic"/>
-          <attributeEditorField showLabel="1" index="23" name="jetting_interval"/>
-          <attributeEditorField showLabel="1" index="24" name="pipe_length"/>
-          <attributeEditorField showLabel="1" index="25" name="usage_current"/>
-          <attributeEditorField showLabel="1" index="26" name="usage_planned"/>
+          <attributeEditorField showLabel="1" index="19" name="function_hierarchic"/>
+          <attributeEditorField showLabel="1" index="20" name="connection_type"/>
+          <attributeEditorField showLabel="1" index="21" name="function_hydraulic"/>
+          <attributeEditorField showLabel="1" index="22" name="jetting_interval"/>
+          <attributeEditorField showLabel="1" index="23" name="pipe_length"/>
+          <attributeEditorField showLabel="1" index="24" name="usage_current"/>
+          <attributeEditorField showLabel="1" index="25" name="usage_planned"/>
         </attributeEditorContainer>
         <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Wastewater Structure" groupBox="0" columnCount="0">
-          <attributeEditorField showLabel="1" index="27" name="ws_obj_id"/>
-          <attributeEditorField showLabel="1" index="28" name="accessibility"/>
-          <attributeEditorField showLabel="1" index="29" name="contract_section"/>
-          <attributeEditorField showLabel="1" index="30" name="financing"/>
-          <attributeEditorField showLabel="1" index="31" name="gross_costs"/>
-          <attributeEditorField showLabel="1" index="32" name="inspection_interval"/>
-          <attributeEditorField showLabel="1" index="33" name="location_name"/>
-          <attributeEditorField showLabel="1" index="34" name="records"/>
-          <attributeEditorField showLabel="1" index="35" name="renovation_necessity"/>
-          <attributeEditorField showLabel="1" index="36" name="replacement_value"/>
-          <attributeEditorField showLabel="1" index="37" name="rv_base_year"/>
-          <attributeEditorField showLabel="1" index="38" name="rv_construction_type"/>
-          <attributeEditorField showLabel="1" index="39" name="status"/>
-          <attributeEditorField showLabel="1" index="40" name="structure_condition"/>
-          <attributeEditorField showLabel="1" index="41" name="subsidies"/>
-          <attributeEditorField showLabel="1" index="42" name="year_of_construction"/>
-          <attributeEditorField showLabel="1" index="43" name="year_of_replacement"/>
-          <attributeEditorField showLabel="1" index="44" name="fk_owner"/>
-          <attributeEditorField showLabel="1" index="45" name="fk_operator"/>
+          <attributeEditorField showLabel="1" index="26" name="ws_obj_id"/>
+          <attributeEditorField showLabel="1" index="27" name="accessibility"/>
+          <attributeEditorField showLabel="1" index="28" name="contract_section"/>
+          <attributeEditorField showLabel="1" index="29" name="financing"/>
+          <attributeEditorField showLabel="1" index="30" name="gross_costs"/>
+          <attributeEditorField showLabel="1" index="31" name="inspection_interval"/>
+          <attributeEditorField showLabel="1" index="32" name="location_name"/>
+          <attributeEditorField showLabel="1" index="33" name="records"/>
+          <attributeEditorField showLabel="1" index="34" name="renovation_necessity"/>
+          <attributeEditorField showLabel="1" index="35" name="replacement_value"/>
+          <attributeEditorField showLabel="1" index="36" name="rv_base_year"/>
+          <attributeEditorField showLabel="1" index="37" name="rv_construction_type"/>
+          <attributeEditorField showLabel="1" index="38" name="status"/>
+          <attributeEditorField showLabel="1" index="39" name="structure_condition"/>
+          <attributeEditorField showLabel="1" index="40" name="subsidies"/>
+          <attributeEditorField showLabel="1" index="41" name="year_of_construction"/>
+          <attributeEditorField showLabel="1" index="42" name="year_of_replacement"/>
+          <attributeEditorField showLabel="1" index="43" name="fk_owner"/>
+          <attributeEditorField showLabel="1" index="44" name="fk_operator"/>
         </attributeEditorContainer>
         <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Reach Points" groupBox="0" columnCount="0">
           <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="From" groupBox="1" columnCount="0">
-            <attributeEditorField showLabel="1" index="52" name="rp_from_obj_id"/>
-            <attributeEditorField showLabel="1" index="53" name="rp_from_elevation_accuracy"/>
-            <attributeEditorField showLabel="1" index="54" name="rp_from_identifier"/>
-            <attributeEditorField showLabel="1" index="55" name="rp_from_level"/>
-            <attributeEditorField showLabel="1" index="56" name="rp_from_outlet_shape"/>
-            <attributeEditorField showLabel="1" index="57" name="rp_from_position_of_connection"/>
-            <attributeEditorField showLabel="1" index="58" name="rp_from_remark"/>
-            <attributeEditorField showLabel="1" index="59" name="rp_from_last_modification"/>
+            <attributeEditorField showLabel="1" index="51" name="rp_from_obj_id"/>
+            <attributeEditorField showLabel="1" index="52" name="rp_from_elevation_accuracy"/>
+            <attributeEditorField showLabel="1" index="53" name="rp_from_identifier"/>
+            <attributeEditorField showLabel="1" index="54" name="rp_from_level"/>
+            <attributeEditorField showLabel="1" index="55" name="rp_from_outlet_shape"/>
+            <attributeEditorField showLabel="1" index="56" name="rp_from_position_of_connection"/>
+            <attributeEditorField showLabel="1" index="57" name="rp_from_remark"/>
+            <attributeEditorField showLabel="1" index="58" name="rp_from_last_modification"/>
             <attributeEditorField showLabel="1" index="-1" name="rp_from_dataowner"/>
             <attributeEditorField showLabel="1" index="-1" name="rp_from_provider"/>
-            <attributeEditorField showLabel="1" index="62" name="rp_from_fk_wastewater_networkelement"/>
+            <attributeEditorField showLabel="1" index="61" name="rp_from_fk_wastewater_networkelement"/>
           </attributeEditorContainer>
           <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="To" groupBox="1" columnCount="0">
-            <attributeEditorField showLabel="1" index="63" name="rp_to_obj_id"/>
-            <attributeEditorField showLabel="1" index="64" name="rp_to_elevation_accuracy"/>
-            <attributeEditorField showLabel="1" index="65" name="rp_to_identifier"/>
-            <attributeEditorField showLabel="1" index="66" name="rp_to_level"/>
-            <attributeEditorField showLabel="1" index="67" name="rp_to_outlet_shape"/>
-            <attributeEditorField showLabel="1" index="68" name="rp_to_position_of_connection"/>
-            <attributeEditorField showLabel="1" index="69" name="rp_to_remark"/>
-            <attributeEditorField showLabel="1" index="70" name="rp_to_last_modification"/>
+            <attributeEditorField showLabel="1" index="62" name="rp_to_obj_id"/>
+            <attributeEditorField showLabel="1" index="63" name="rp_to_elevation_accuracy"/>
+            <attributeEditorField showLabel="1" index="64" name="rp_to_identifier"/>
+            <attributeEditorField showLabel="1" index="65" name="rp_to_level"/>
+            <attributeEditorField showLabel="1" index="66" name="rp_to_outlet_shape"/>
+            <attributeEditorField showLabel="1" index="67" name="rp_to_position_of_connection"/>
+            <attributeEditorField showLabel="1" index="68" name="rp_to_remark"/>
+            <attributeEditorField showLabel="1" index="69" name="rp_to_last_modification"/>
             <attributeEditorField showLabel="1" index="-1" name="rp_to_dataowner"/>
             <attributeEditorField showLabel="1" index="-1" name="rp_to_provider"/>
-            <attributeEditorField showLabel="1" index="73" name="rp_to_fk_wastewater_networkelement"/>
+            <attributeEditorField showLabel="1" index="72" name="rp_to_fk_wastewater_networkelement"/>
           </attributeEditorContainer>
         </attributeEditorContainer>
         <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Maintenance" groupBox="0" columnCount="0">
@@ -12167,7 +12191,6 @@ def my_form_open(dialog, layer, feature):
         <default field="length_effective" expression=""/>
         <default field="slope_per_mill" expression=""/>
         <default field="material" expression=""/>
-        <default field="progression3d_geometry" expression=""/>
         <default field="reliner_material" expression=""/>
         <default field="reliner_nominal_size" expression=""/>
         <default field="relining_construction" expression=""/>
@@ -12395,7 +12418,7 @@ def my_form_open(dialog, layer, feature):
         <edittype widgetv2type="TextEdit" name="_label">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="depth">
+        <edittype widgetv2type="TextEdit" name="_depth">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="Range" name="dimension1">
@@ -14012,7 +14035,7 @@ def my_form_open(dialog, layer, feature):
         <alias field="fk_owner" index="36" name=""/>
         <alias field="fk_operator" index="37" name=""/>
         <alias field="_label" index="38" name=""/>
-        <alias field="depth" index="39" name=""/>
+        <alias field="_depth" index="39" name=""/>
         <alias field="dimension1" index="40" name=""/>
         <alias field="dimension2" index="41" name=""/>
         <alias field="upper_elevation" index="42" name=""/>
@@ -14174,7 +14197,7 @@ def my_form_open(dialog, layer, feature):
         </attributeEditorContainer>
         <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Wastewater Structure" groupBox="0" columnCount="0">
           <attributeEditorField showLabel="1" index="19" name="accessibility"/>
-          <attributeEditorField showLabel="1" index="-1" name="_depth"/>
+          <attributeEditorField showLabel="1" index="39" name="_depth"/>
           <attributeEditorField showLabel="1" index="20" name="contract_section"/>
           <attributeEditorField showLabel="1" index="21" name="financing"/>
           <attributeEditorField showLabel="1" index="22" name="gross_costs"/>
@@ -14354,7 +14377,7 @@ def my_form_open(dialog, layer, feature):
         <default field="fk_owner" expression=""/>
         <default field="fk_operator" expression=""/>
         <default field="_label" expression=""/>
-        <default field="depth" expression=""/>
+        <default field="_depth" expression=""/>
         <default field="dimension1" expression=""/>
         <default field="dimension2" expression=""/>
         <default field="upper_elevation" expression=""/>
