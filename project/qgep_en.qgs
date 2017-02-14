@@ -1276,7 +1276,7 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer simplifyAlgorithm="0" minimumScale="0" maximumScale="5001" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" readOnly="0" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="1" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>od_wastewater_structure</id>
-      <datasource>service='pg_qgep' key='obj_id' estimatedmetadata=true srid=21781 type=CurvePolygon table="qgep"."od_wastewater_structure" (detail_geometry_geometry) sql=</datasource>
+      <datasource>service='pg_qgep' key='obj_id' estimatedmetadata=true srid=21781 type=CurvePolygonZ table="qgep"."od_wastewater_structure" (detail_geometry_geometry) sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
