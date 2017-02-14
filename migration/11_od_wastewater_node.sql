@@ -21,7 +21,7 @@ INSERT INTO qgep.od_wastewater_node
 (obj_id, old_obj_id, backflow_level, bottom_level, situation_geometry) 
 SELECT q_wastewater_networkelement.obj_id,
 a_abwasserknoten.obj_id,
-rueckstaukote, sohlenkote, ST_Force3D(the_geom)
+rueckstaukote, sohlenkote, the_geom
 FROM abwasser.siedlungsentwaesserung__abwasserknoten a_abwasserknoten
 LEFT JOIN qgep.od_wastewater_networkelement q_wastewater_networkelement
 ON q_wastewater_networkelement.old_obj_id = a_abwasserknoten.obj_id;
