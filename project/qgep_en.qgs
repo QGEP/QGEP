@@ -8805,6 +8805,8 @@ def my_form_open(dialog, layer, feature):
           <joinFieldsSubset>
             <field name="code"/>
             <field name="value_en"/>
+            <field name="value_de"/>
+            <field name="value_fr"/>
           </joinFieldsSubset>
         </join>
       </vectorjoins>
@@ -9044,6 +9046,8 @@ def my_form_open(dialog, layer, feature):
           <joinFieldsSubset>
             <field name="code"/>
             <field name="value_en"/>
+            <field name="value_de"/>
+            <field name="value_fr"/>
           </joinFieldsSubset>
         </join>
       </vectorjoins>
