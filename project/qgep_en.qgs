@@ -14749,7 +14749,7 @@ def my_form_open(dialog, layer, feature):
     </Measure>
     <QGEP>
       <SpecialStructureLayer type="QString">od_wastewater_structure</SpecialStructureLayer>
-      <GraphNodeLayer type="QString">vw_qgep_reach</GraphNodeLayer>
+      <GraphNodeLayer type="QString">vw_network_node20150607120529398</GraphNodeLayer>
       <GraphEdgeLayer type="QString">vw_network_segment20150607120529381</GraphEdgeLayer>
     </QGEP>
     <WFSUrl type="QString"></WFSUrl>
