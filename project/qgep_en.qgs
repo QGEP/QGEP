@@ -280,6 +280,9 @@
     <relation referencingLayer="od_file20160921105557083" referencedLayer="vw_qgep_damage" id="file_object_damage_obj_id" name="Pictures">
       <fieldRef referencedField="obj_id" referencingField="object"/>
     </relation>
+    <relation referencingLayer="od_file20160921105557083" referencedLayer="vw_qgep_maintenance" id="file_object_maintenance_obj_id" name="Video">
+      <fieldRef referencedField="obj_id" referencingField="object"/>
+    </relation>
     <relation referencingLayer="od_file20160921105557083" referencedLayer="vw_qgep_reach" id="od_file20160921105557083_object_vw_qgep_reach_ws_obj_id" name="Pictures">
       <fieldRef referencedField="ws_obj_id" referencingField="object"/>
     </relation>
@@ -9236,6 +9239,8 @@ def my_form_open(dialog, layer, feature):
           <column width="-1" hidden="1" type="actions"/>
           <column width="-1" hidden="0" type="field" name="vl_maintenance_event_kind_code"/>
           <column width="-1" hidden="0" type="field" name="vl_maintenance_event_kind_value_en"/>
+          <column width="-1" hidden="0" type="field" name="vl_maintenance_event_kind_value_de"/>
+          <column width="-1" hidden="0" type="field" name="vl_maintenance_event_kind_value_fr"/>
         </columns>
       </attributetableconfig>
       <editform>.</editform>
@@ -9279,15 +9284,15 @@ def my_form_open(dialog, layer, feature):
           <attributeEditorField showLabel="1" index="25" name="videonumber"/>
           <attributeEditorField showLabel="1" index="-1" name="fs_reach_point"/>
         </attributeEditorContainer>
-        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Damages" groupBox="1" columnCount="1">
-          <attributeEditorRelation showLinkButton="1" relation="damage_maintenance_event" showLabel="1" showUnlinkButton="1" name="damage_maintenance_event"/>
-        </attributeEditorContainer>
-        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Reaches" groupBox="1" columnCount="2">
-          <attributeEditorRelation showLinkButton="1" relation="re_maintenance_wasterwaterstructure_maintenance" showLabel="1" showUnlinkButton="1" name="re_maintenance_wasterwaterstructure_maintenance"/>
-        </attributeEditorContainer>
+        <attributeEditorRelation showLinkButton="1" relation="file_object_maintenance_obj_id" showLabel="1" showUnlinkButton="1" name="file_object_maintenance_obj_id"/>
+        <attributeEditorRelation showLinkButton="1" relation="damage_maintenance_event" showLabel="1" showUnlinkButton="1" name="damage_maintenance_event"/>
+        <attributeEditorRelation showLinkButton="1" relation="re_maintenance_wasterwaterstructure_maintenance" showLabel="1" showUnlinkButton="1" name="re_maintenance_wasterwaterstructure_maintenance"/>
       </attributeEditorForm>
       <widgets>
         <widget name="damage_maintenance_event">
+          <config/>
+        </widget>
+        <widget name="file_object_maintenance_obj_id">
           <config/>
         </widget>
         <widget name="re_maintenance_wasterwaterstructure_maintenance">
@@ -14742,8 +14747,6 @@ def my_form_open(dialog, layer, feature):
       <SelectionColorGreenPart type="int">255</SelectionColorGreenPart>
       <CanvasColorBluePart type="int">255</CanvasColorBluePart>
     </Gui>
-    <WFSLayers type="QStringList"/>
-    <WMSServiceAbstract type="QString"></WMSServiceAbstract>
     <Measure>
       <Ellipsoid type="QString">NONE</Ellipsoid>
     </Measure>
@@ -14752,6 +14755,8 @@ def my_form_open(dialog, layer, feature):
       <GraphNodeLayer type="QString">vw_network_node20150607120529398</GraphNodeLayer>
       <GraphEdgeLayer type="QString">vw_network_segment20150607120529381</GraphEdgeLayer>
     </QGEP>
+    <WMSServiceAbstract type="QString"></WMSServiceAbstract>
+    <WFSLayers type="QStringList"/>
     <WFSUrl type="QString"></WFSUrl>
     <WMSServiceCapabilities type="bool">false</WMSServiceCapabilities>
     <WMSUseLayerIDs type="bool">false</WMSUseLayerIDs>
