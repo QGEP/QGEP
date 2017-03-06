@@ -359,10 +359,10 @@
   <mapcanvas>
     <units>meters</units>
     <extent>
-      <xmin>745106.29224999994039536</xmin>
-      <ymin>258164.61167499999282882</ymin>
-      <xmax>753476.79774999991059303</xmax>
-      <ymax>266968.58132499997736886</ymax>
+      <xmin>745113.36371156619861722</xmin>
+      <ymin>258199.96898283128393814</ymin>
+      <xmax>753483.8692115661688149</xmax>
+      <ymax>267003.93863283126847818</ymax>
     </extent>
     <rotation>0</rotation>
     <projections>1</projections>
@@ -9284,9 +9284,15 @@ def my_form_open(dialog, layer, feature):
           <attributeEditorField showLabel="1" index="25" name="videonumber"/>
           <attributeEditorField showLabel="1" index="-1" name="fs_reach_point"/>
         </attributeEditorContainer>
-        <attributeEditorRelation showLinkButton="1" relation="file_object_maintenance_obj_id" showLabel="1" showUnlinkButton="1" name="file_object_maintenance_obj_id"/>
-        <attributeEditorRelation showLinkButton="1" relation="damage_maintenance_event" showLabel="1" showUnlinkButton="1" name="damage_maintenance_event"/>
-        <attributeEditorRelation showLinkButton="1" relation="re_maintenance_wasterwaterstructure_maintenance" showLabel="1" showUnlinkButton="1" name="re_maintenance_wasterwaterstructure_maintenance"/>
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Video" groupBox="1" columnCount="2">
+          <attributeEditorRelation showLinkButton="1" relation="file_object_maintenance_obj_id" showLabel="1" showUnlinkButton="1" name="file_object_maintenance_obj_id"/>
+        </attributeEditorContainer>
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Damages" groupBox="1" columnCount="2">
+          <attributeEditorRelation showLinkButton="1" relation="damage_maintenance_event" showLabel="1" showUnlinkButton="1" name="damage_maintenance_event"/>
+        </attributeEditorContainer>
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Reaches" groupBox="1" columnCount="2">
+          <attributeEditorRelation showLinkButton="1" relation="re_maintenance_wasterwaterstructure_maintenance" showLabel="1" showUnlinkButton="1" name="re_maintenance_wasterwaterstructure_maintenance"/>
+        </attributeEditorContainer>
       </attributeEditorForm>
       <widgets>
         <widget name="damage_maintenance_event">
@@ -14747,15 +14753,15 @@ def my_form_open(dialog, layer, feature):
       <SelectionColorGreenPart type="int">255</SelectionColorGreenPart>
       <CanvasColorBluePart type="int">255</CanvasColorBluePart>
     </Gui>
-    <Measure>
-      <Ellipsoid type="QString">NONE</Ellipsoid>
-    </Measure>
     <QGEP>
       <SpecialStructureLayer type="QString">od_wastewater_structure</SpecialStructureLayer>
       <GraphNodeLayer type="QString">vw_network_node20150607120529398</GraphNodeLayer>
       <GraphEdgeLayer type="QString">vw_network_segment20150607120529381</GraphEdgeLayer>
     </QGEP>
     <WMSServiceAbstract type="QString"></WMSServiceAbstract>
+    <Measure>
+      <Ellipsoid type="QString">NONE</Ellipsoid>
+    </Measure>
     <WFSLayers type="QStringList"/>
     <WFSUrl type="QString"></WFSUrl>
     <WMSServiceCapabilities type="bool">false</WMSServiceCapabilities>
