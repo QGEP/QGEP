@@ -359,10 +359,10 @@
   <mapcanvas>
     <units>meters</units>
     <extent>
-      <xmin>745113.36371156619861722</xmin>
-      <ymin>258199.96898283128393814</ymin>
-      <xmax>753483.8692115661688149</xmax>
-      <ymax>267003.93863283126847818</ymax>
+      <xmin>745141.64955783123150468</xmin>
+      <ymin>258221.18336753011681139</ymin>
+      <xmax>753512.15505783120170236</xmax>
+      <ymax>267025.15301753010135144</ymax>
     </extent>
     <rotation>0</rotation>
     <projections>1</projections>
@@ -9278,6 +9278,7 @@ def my_form_open(dialog, layer, feature):
           <attributeEditorField showLabel="1" index="12" name="status"/>
           <attributeEditorField showLabel="1" index="13" name="time_point"/>
           <attributeEditorField showLabel="1" index="-1" name="fk_operator_company"/>
+          <attributeEditorField showLabel="1" index="2" name="base_data"/>
         </attributeEditorContainer>
         <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Inspection" groupBox="1" columnCount="2">
           <attributeEditorField showLabel="1" index="21" name="inspected_length"/>
