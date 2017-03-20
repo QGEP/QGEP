@@ -1,5 +1,5 @@
 # QGEP
-A waste-water application based on QGIS
+A waste-water application based on QGIS in compliance with SIA-405.
 
 QGEP documentation:
 
