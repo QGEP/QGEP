@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis projectname="" version="2.18.3">
+<qgis projectname="" version="2.18.4">
   <title></title>
   <autotransaction active="1"/>
   <evaluateDefaultValues active="1"/>
@@ -359,10 +359,10 @@
   <mapcanvas>
     <units>meters</units>
     <extent>
-      <xmin>745141.64955783123150468</xmin>
-      <ymin>258221.18336753011681139</ymin>
-      <xmax>753512.15505783120170236</xmax>
-      <ymax>267025.15301753010135144</ymax>
+      <xmin>745106.29224999994039536</xmin>
+      <ymin>258165.63292499998351559</ymin>
+      <xmax>753476.79774999991059303</xmax>
+      <ymax>266926.71007500000996515</ymax>
     </extent>
     <rotation>0</rotation>
     <projections>1</projections>
@@ -967,6 +967,7 @@
         <property key="variableValues" value=""/>
       </customproperties>
       <provider encoding="System">postgres</provider>
+      <previewExpression>COALESCE("obj_id", '&lt;NULL>')</previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -1076,7 +1077,6 @@ def my_form_open(dialog, layer, feature):
         <default field="fk_dataowner" expression=""/>
         <default field="fk_provider" expression=""/>
       </defaults>
-      <previewExpression>COALESCE("obj_id", '&lt;NULL>')</previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>od_organisation20160212172933583</id>
@@ -1100,6 +1100,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression>COALESCE( "identifier", '&lt;NULL>' )</previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -1181,7 +1182,6 @@ def my_form_open(dialog, layer, feature):
         <default field="fk_provider" expression=""/>
         <default field="old_obj_id" expression=""/>
       </defaults>
-      <previewExpression>COALESCE( "identifier", '&lt;NULL>' )</previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>od_pipe_profile</id>
@@ -1204,6 +1204,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression>identifier</previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -1235,6 +1236,9 @@ def my_form_open(dialog, layer, feature):
         <edittype widgetv2type="TextEdit" name="fk_provider">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="old_obj_id">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
       </edittypes>
       <annotationform>$HOME</annotationform>
       <aliases>
@@ -1246,6 +1250,7 @@ def my_form_open(dialog, layer, feature):
         <alias field="last_modification" index="5" name=""/>
         <alias field="fk_dataowner" index="6" name=""/>
         <alias field="fk_provider" index="7" name=""/>
+        <alias field="old_obj_id" index="8" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -1274,8 +1279,8 @@ def my_form_open(dialog, layer, feature):
         <default field="last_modification" expression=""/>
         <default field="fk_dataowner" expression=""/>
         <default field="fk_provider" expression=""/>
+        <default field="old_obj_id" expression=""/>
       </defaults>
-      <previewExpression>identifier</previewExpression>
     </maplayer>
     <maplayer simplifyAlgorithm="0" minimumScale="0" maximumScale="5001" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" readOnly="0" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="1" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>od_wastewater_structure</id>
@@ -1297,6 +1302,7 @@ def my_form_open(dialog, layer, feature):
         </spatialrefsys>
       </srs>
       <provider encoding="UTF-16">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -1389,6 +1395,9 @@ def my_form_open(dialog, layer, feature):
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="_depth">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="old_obj_id">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
       </edittypes>
@@ -1658,6 +1667,7 @@ def my_form_open(dialog, layer, feature):
         <alias field="_label" index="26" name=""/>
         <alias field="fk_main_cover" index="27" name=""/>
         <alias field="_depth" index="28" name=""/>
+        <alias field="old_obj_id" index="29" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -1707,8 +1717,8 @@ def my_form_open(dialog, layer, feature):
         <default field="_label" expression=""/>
         <default field="fk_main_cover" expression=""/>
         <default field="_depth" expression=""/>
+        <default field="old_obj_id" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>re_maintenance_event_wastewater_structure</id>
@@ -1736,6 +1746,7 @@ def my_form_open(dialog, layer, feature):
         <property key="variableValues" value=""/>
       </customproperties>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression>COALESCE("obj_id", '&lt;NULL>')</previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -1803,7 +1814,6 @@ def my_form_open(dialog, layer, feature):
         <default field="fk_wastewater_structure" expression=""/>
         <default field="fk_maintenance_event" expression=""/>
       </defaults>
-      <previewExpression>COALESCE("obj_id", '&lt;NULL>')</previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_access_aid_kind</id>
@@ -1826,6 +1836,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -1912,7 +1923,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_backflow_prevention_kind</id>
@@ -1935,6 +1945,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -2021,7 +2032,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_channel_bedding_encasement</id>
@@ -2044,6 +2054,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -2130,7 +2141,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_channel_connection_type</id>
@@ -2153,6 +2163,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -2239,7 +2250,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_channel_function_hierarchic</id>
@@ -2262,6 +2272,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -2353,7 +2364,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_channel_function_hydraulic</id>
@@ -2376,6 +2386,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -2462,7 +2473,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_channel_usage_current</id>
@@ -2485,6 +2495,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -2576,7 +2587,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_channel_usage_planned</id>
@@ -2599,6 +2609,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -2685,7 +2696,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_cover_cover_shape</id>
@@ -2708,6 +2718,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -2794,7 +2805,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_cover_fastening</id>
@@ -2817,6 +2827,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -2903,7 +2914,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_cover_material</id>
@@ -2926,6 +2936,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression>COALESCE("code", '&lt;NULL>')</previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -3012,7 +3023,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression>COALESCE("code", '&lt;NULL>')</previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_cover_positional_accuracy20151117153235900</id>
@@ -3035,6 +3045,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -3121,7 +3132,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_cover_sludge_bucket</id>
@@ -3144,6 +3154,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -3230,7 +3241,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_cover_venting</id>
@@ -3253,6 +3263,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -3339,7 +3350,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_damage_channel_channel_damage_code</id>
@@ -3362,6 +3372,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -3448,7 +3459,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_damage_connection</id>
@@ -3471,6 +3481,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -3557,7 +3568,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_damage_manhole_manhole_damage_code</id>
@@ -3580,6 +3590,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -3666,7 +3677,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_damage_manhole_manhole_shaft_area</id>
@@ -3689,6 +3699,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -3775,7 +3786,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_damage_single_damage_class</id>
@@ -3798,6 +3808,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -3884,7 +3895,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_data_media_kind</id>
@@ -3907,6 +3917,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -3993,7 +4004,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_discharge_point_relevance</id>
@@ -4016,6 +4026,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -4102,7 +4113,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_file_class</id>
@@ -4125,6 +4135,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -4211,7 +4222,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_file_kind</id>
@@ -4234,6 +4244,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -4320,7 +4331,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_maintenance_event_kind</id>
@@ -4343,6 +4353,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -4429,7 +4440,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_maintenance_event_status</id>
@@ -4452,6 +4462,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -4538,7 +4549,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_manhole_function</id>
@@ -4561,6 +4571,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -4647,7 +4658,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_manhole_material20151117174216343</id>
@@ -4670,6 +4680,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -4756,7 +4767,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_manhole_surface_inflow20151117174216393</id>
@@ -4779,6 +4789,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -4865,7 +4876,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_pipe_profile_profile_type</id>
@@ -4888,6 +4898,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -4974,7 +4985,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_reach_elevation_determination</id>
@@ -4997,6 +5007,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -5083,7 +5094,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_reach_horizontal_positioning</id>
@@ -5106,6 +5116,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -5192,7 +5203,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_reach_inside_coating</id>
@@ -5215,6 +5225,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -5301,7 +5312,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_reach_material</id>
@@ -5324,6 +5334,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -5410,7 +5421,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_reach_point_elevation_accuracy</id>
@@ -5433,6 +5443,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -5519,7 +5530,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_reach_point_outlet_shape</id>
@@ -5542,6 +5552,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -5628,7 +5639,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_reach_reliner_material</id>
@@ -5651,6 +5661,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression>COALESCE("code", '&lt;NULL>')</previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -5737,7 +5748,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression>COALESCE("code", '&lt;NULL>')</previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_reach_relining_construction</id>
@@ -5760,6 +5770,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -5846,7 +5857,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_reach_relining_kind</id>
@@ -5869,6 +5879,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -5955,7 +5966,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_special_structure_bypass</id>
@@ -5978,6 +5988,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -6064,7 +6075,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_special_structure_function</id>
@@ -6087,6 +6097,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -6173,7 +6184,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_special_structure_stormwater_tank_arrangement</id>
@@ -6196,6 +6206,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -6282,7 +6293,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_structure_part_renovation_demand</id>
@@ -6309,6 +6319,7 @@ def my_form_open(dialog, layer, feature):
         <property key="variableValues" value=""/>
       </customproperties>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -6422,7 +6433,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_wastewater_structure_accessibility</id>
@@ -6445,6 +6455,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -6531,7 +6542,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_wastewater_structure_financing</id>
@@ -6554,6 +6564,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -6640,7 +6651,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_wastewater_structure_renovation_necessity</id>
@@ -6663,6 +6673,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -6749,7 +6760,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_wastewater_structure_rv_construction_type</id>
@@ -6772,6 +6782,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -6858,7 +6869,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_wastewater_structure_status</id>
@@ -6881,6 +6891,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -6967,7 +6978,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_wastewater_structure_structure_condition</id>
@@ -6990,6 +7000,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -7076,7 +7087,6 @@ def my_form_open(dialog, layer, feature):
         <default field="value_ro" expression=""/>
         <default field="abbr_ro" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="100000" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vw_access_aid</id>
@@ -7103,6 +7113,7 @@ def my_form_open(dialog, layer, feature):
         <property key="variableValues" value=""/>
       </customproperties>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression>COALESCE("obj_id", '&lt;NULL>')</previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -7206,7 +7217,6 @@ def my_form_open(dialog, layer, feature):
         <default field="last_modification" expression=""/>
         <default field="fk_wastewater_structure" expression=""/>
       </defaults>
-      <previewExpression>COALESCE("obj_id", '&lt;NULL>')</previewExpression>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vw_backflow_prevention</id>
@@ -7233,6 +7243,7 @@ def my_form_open(dialog, layer, feature):
         <property key="variableValues" value=""/>
       </customproperties>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression>COALESCE("obj_id", '&lt;NULL>')</previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -7348,7 +7359,6 @@ def my_form_open(dialog, layer, feature):
         <default field="last_modification" expression=""/>
         <default field="fk_wastewater_structure" expression=""/>
       </defaults>
-      <previewExpression>COALESCE("obj_id", '&lt;NULL>')</previewExpression>
     </maplayer>
     <maplayer minimumScale="100000" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vw_benching</id>
@@ -7375,6 +7385,7 @@ def my_form_open(dialog, layer, feature):
         <property key="variableValues" value=""/>
       </customproperties>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression>COALESCE("obj_id", '&lt;NULL>')</previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -7478,7 +7489,6 @@ def my_form_open(dialog, layer, feature):
         <default field="last_modification" expression=""/>
         <default field="fk_wastewater_structure" expression=""/>
       </defaults>
-      <previewExpression>COALESCE("obj_id", '&lt;NULL>')</previewExpression>
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vw_channel_</id>
@@ -7501,6 +7511,7 @@ def my_form_open(dialog, layer, feature):
       </srs>
       <customproperties/>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression>COALESCE( "identifier", "obj_id")</previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -7701,7 +7712,6 @@ def my_form_open(dialog, layer, feature):
         <default field="fk_owner" expression=""/>
         <default field="fk_operator" expression=""/>
       </defaults>
-      <previewExpression>COALESCE( "identifier", "obj_id")</previewExpression>
     </maplayer>
     <maplayer simplifyAlgorithm="0" minimumScale="0" maximumScale="1000" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" readOnly="0" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="1" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>vw_cover___</id>
@@ -7723,6 +7733,7 @@ def my_form_open(dialog, layer, feature):
         </spatialrefsys>
       </srs>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression>COALESCE( "obj_id", '&lt;NULL>' )</previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -8140,7 +8151,6 @@ def my_form_open(dialog, layer, feature):
         <default field="last_modification" expression=""/>
         <default field="fk_wastewater_structure" expression=""/>
       </defaults>
-      <previewExpression>COALESCE( "obj_id", '&lt;NULL>' )</previewExpression>
     </maplayer>
     <maplayer minimumScale="100000" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vw_dryweather_downspout</id>
@@ -8167,6 +8177,7 @@ def my_form_open(dialog, layer, feature):
         <property key="variableValues" value=""/>
       </customproperties>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression>COALESCE("obj_id", '&lt;NULL>')</previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -8270,7 +8281,6 @@ def my_form_open(dialog, layer, feature):
         <default field="last_modification" expression=""/>
         <default field="fk_wastewater_structure" expression=""/>
       </defaults>
-      <previewExpression>COALESCE("obj_id", '&lt;NULL>')</previewExpression>
     </maplayer>
     <maplayer minimumScale="100000" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vw_dryweather_flume</id>
@@ -8297,6 +8307,7 @@ def my_form_open(dialog, layer, feature):
         <property key="variableValues" value=""/>
       </customproperties>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression>COALESCE("obj_id", '&lt;NULL>')</previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -8400,7 +8411,6 @@ def my_form_open(dialog, layer, feature):
         <default field="last_modification" expression=""/>
         <default field="fk_wastewater_structure" expression=""/>
       </defaults>
-      <previewExpression>COALESCE("obj_id", '&lt;NULL>')</previewExpression>
     </maplayer>
     <maplayer simplifyAlgorithm="0" minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" readOnly="0" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>vw_network_node20150607120529398</id>
@@ -8422,6 +8432,7 @@ def my_form_open(dialog, layer, feature):
         </spatialrefsys>
       </srs>
       <provider encoding="UTF-16">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -8574,7 +8585,6 @@ def my_form_open(dialog, layer, feature):
         <default field="description" expression=""/>
         <default field="detail_geometry" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer simplifyAlgorithm="0" minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" readOnly="0" geometry="Line" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>vw_network_segment20150607120529381</id>
@@ -8596,6 +8606,7 @@ def my_form_open(dialog, layer, feature):
         </spatialrefsys>
       </srs>
       <provider encoding="UTF-16">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -8775,7 +8786,6 @@ def my_form_open(dialog, layer, feature):
         <default field="material" expression=""/>
         <default field="detail_geometry" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
     <maplayer minimumScale="100000" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vw_qgep_damage</id>
@@ -8802,6 +8812,7 @@ def my_form_open(dialog, layer, feature):
         <property key="variableValues"/>
       </customproperties>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression>COALESCE( "vl_damage_single_damage_class_value_en", '&lt;NULL>' )</previewExpression>
       <vectorjoins>
         <join hasCustomPrefix="1" joinFieldName="code" customPrefix="vl_damage_single_damage_class_" targetFieldName="single_damage_class" memoryCache="1" joinLayerId="vl_damage_single_damage_class">
           <joinFieldsSubset>
@@ -9026,7 +9037,6 @@ def my_form_open(dialog, layer, feature):
         <default field="vl_damage_single_damage_class_value_de" expression=""/>
         <default field="vl_damage_single_damage_class_value_fr" expression=""/>
       </defaults>
-      <previewExpression>COALESCE( "vl_damage_single_damage_class_value_en", '&lt;NULL>' )</previewExpression>
     </maplayer>
     <maplayer minimumScale="100000" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vw_qgep_maintenance</id>
@@ -9053,6 +9063,7 @@ def my_form_open(dialog, layer, feature):
         <property key="variableValues"/>
       </customproperties>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression> format_date("time_point", 'dd.MM.yyyy') || ' ' || "vl_maintenance_event_kind_value_en"</previewExpression>
       <vectorjoins>
         <join hasCustomPrefix="1" joinFieldName="code" customPrefix="vl_maintenance_event_kind_" targetFieldName="kind" memoryCache="1" joinLayerId="vl_maintenance_event_kind">
           <joinFieldsSubset>
@@ -9354,7 +9365,6 @@ def my_form_open(dialog, layer, feature):
         <default field="vl_maintenance_event_kind_value_de" expression=""/>
         <default field="vl_maintenance_event_kind_value_fr" expression=""/>
       </defaults>
-      <previewExpression> format_date("time_point", 'dd.MM.yyyy') || ' ' || "vl_maintenance_event_kind_value_en"</previewExpression>
     </maplayer>
     <maplayer simplifyAlgorithm="0" minimumScale="100000" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" readOnly="0" geometry="Line" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <extent>
@@ -9382,6 +9392,7 @@ def my_form_open(dialog, layer, feature):
         </spatialrefsys>
       </srs>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression>COALESCE( "obj_id", '&lt;NULL>' )</previewExpression>
       <vectorjoins>
         <join hasCustomPrefix="1" joinFieldName="code" customPrefix="material_" targetFieldName="material" memoryCache="1" joinLayerId="vl_reach_material">
           <joinFieldsSubset>
@@ -10741,13 +10752,13 @@ def my_form_open(dialog, layer, feature):
       </map-layer-style-manager>
       <edittypes>
         <edittype widgetv2type="TextEdit" name="obj_id">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+          <widgetv2config IsMultiline="0" fieldEditable="0" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="Range" name="clear_height">
           <widgetv2config AllowNull="1" fieldEditable="1" Step="100" constraint="" Style="SpinBox" labelOnTop="0" constraintDescription="" Min="0" notNull="0" Max="99999" Suffix=" mm"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="width">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+          <widgetv2config IsMultiline="0" fieldEditable="0" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="Range" name="coefficient_of_friction">
           <widgetv2config AllowNull="1" fieldEditable="1" Step="1" constraint="" Style="SpinBox" labelOnTop="0" constraintDescription="" Min="0" notNull="0" Max="999" Suffix=" m^(1/3)/s"/>
@@ -10819,7 +10830,7 @@ def my_form_open(dialog, layer, feature):
           <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_channel_usage_planned" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="ws_obj_id">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+          <widgetv2config IsMultiline="0" fieldEditable="0" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="ValueRelation" name="accessibility">
           <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_wastewater_structure_accessibility" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
@@ -10879,7 +10890,7 @@ def my_form_open(dialog, layer, feature):
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="remark">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+          <widgetv2config IsMultiline="1" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="DateTime" name="last_modification">
           <widgetv2config fieldEditable="1" calendar_popup="0" allow_null="0" display_format="yyyy-MM-dd" field_format="yyyy-MM-dd" constraint="" labelOnTop="0" constraintDescription="" notNull="0"/>
@@ -10894,7 +10905,7 @@ def my_form_open(dialog, layer, feature):
           <widgetv2config OrderByValue="0" fieldEditable="1" AllowAddFeatures="0" ShowForm="1" Relation="reach-fk_wastewater_structure-channel" ReadOnly="0" constraint="" MapIdentification="0" labelOnTop="0" constraintDescription="" notNull="0" AllowNULL="0"/>
         </edittype>
         <edittype widgetv2type="Hidden" name="rp_from_obj_id">
-          <widgetv2config fieldEditable="1" constraint="" labelOnTop="0" constraintDescription="" notNull="0"/>
+          <widgetv2config fieldEditable="0" constraint="" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="ValueRelation" name="rp_from_elevation_accuracy">
           <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_reach_point_elevation_accuracy" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
@@ -10908,11 +10919,11 @@ def my_form_open(dialog, layer, feature):
         <edittype widgetv2type="ValueRelation" name="rp_from_outlet_shape">
           <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_reach_point_outlet_shape" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="rp_from_position_of_connection">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        <edittype widgetv2type="Range" name="rp_from_position_of_connection">
+          <widgetv2config AllowNull="1" fieldEditable="1" Step="1" constraint="" Style="SpinBox" labelOnTop="0" constraintDescription="" Min="0" notNull="0" Max="12"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="rp_from_remark">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+          <widgetv2config IsMultiline="1" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="DateTime" name="rp_from_last_modification">
           <widgetv2config fieldEditable="1" calendar_popup="0" allow_null="1" display_format="yyyy-MM-dd" field_format="yyyy-MM-dd" constraint="" labelOnTop="0" constraintDescription="" notNull="0"/>
@@ -10927,7 +10938,7 @@ def my_form_open(dialog, layer, feature):
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="Hidden" name="rp_to_obj_id">
-          <widgetv2config fieldEditable="1" constraint="" labelOnTop="0" constraintDescription="" notNull="0"/>
+          <widgetv2config fieldEditable="0" constraint="" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="ValueRelation" name="rp_to_elevation_accuracy">
           <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_reach_point_elevation_accuracy" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
@@ -10941,11 +10952,11 @@ def my_form_open(dialog, layer, feature):
         <edittype widgetv2type="ValueRelation" name="rp_to_outlet_shape">
           <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_reach_point_outlet_shape" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="rp_to_position_of_connection">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        <edittype widgetv2type="Range" name="rp_to_position_of_connection">
+          <widgetv2config AllowNull="1" fieldEditable="1" Step="1" constraint="" Style="SpinBox" labelOnTop="0" constraintDescription="" Min="0" notNull="0" Max="12"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="rp_to_remark">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+          <widgetv2config IsMultiline="1" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="DateTime" name="rp_to_last_modification">
           <widgetv2config fieldEditable="1" calendar_popup="0" allow_null="1" display_format="yyyy-MM-dd" field_format="yyyy-MM-dd" constraint="" labelOnTop="0" constraintDescription="" notNull="0"/>
@@ -11715,7 +11726,7 @@ def my_form_open(dialog, layer, feature):
         <property key="labeling/fitInPolygonOnly" value="false"/>
         <property key="labeling/fontBold" value="false"/>
         <property key="labeling/fontCapitals" value="0"/>
-        <property key="labeling/fontFamily" value="Cantarell"/>
+        <property key="labeling/fontFamily" value="MS Shell Dlg 2"/>
         <property key="labeling/fontItalic" value="false"/>
         <property key="labeling/fontLetterSpacing" value="0"/>
         <property key="labeling/fontLimitPixelSize" value="false"/>
@@ -11746,7 +11757,7 @@ def my_form_open(dialog, layer, feature):
         <property key="labeling/minFeatureSize" value="12"/>
         <property key="labeling/multilineAlign" value="0"/>
         <property key="labeling/multilineHeight" value="1"/>
-        <property key="labeling/namedStyle" value="Regular"/>
+        <property key="labeling/namedStyle" value="Normal"/>
         <property key="labeling/obstacle" value="true"/>
         <property key="labeling/obstacleFactor" value="1"/>
         <property key="labeling/obstacleType" value="0"/>
@@ -11843,8 +11854,8 @@ def my_form_open(dialog, layer, feature):
         <property key="labeling/xOffset" value="0"/>
         <property key="labeling/yOffset" value="0"/>
         <property key="labeling/zIndex" value="0"/>
-        <property key="variableNames" value="_fields_"/>
-        <property key="variableValues" value=""/>
+        <property key="variableNames"/>
+        <property key="variableValues"/>
       </customproperties>
       <blendMode>0</blendMode>
       <featureBlendMode>0</featureBlendMode>
@@ -11999,7 +12010,6 @@ def my_form_open(dialog, layer, feature):
           <column width="-1" hidden="0" type="field" name="length_effective"/>
           <column width="-1" hidden="0" type="field" name="slope_per_mill"/>
           <column width="-1" hidden="0" type="field" name="material"/>
-          <column width="-1" hidden="0" type="field" name="progression3d_geometry"/>
           <column width="-1" hidden="0" type="field" name="reliner_material"/>
           <column width="-1" hidden="0" type="field" name="reliner_nominal_size"/>
           <column width="-1" hidden="0" type="field" name="relining_construction"/>
@@ -12094,87 +12104,93 @@ def my_form_open(dialog, layer, feature):
       <featformsuppress>0</featformsuppress>
       <editorlayout>tablayout</editorlayout>
       <attributeEditorForm>
-        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="General" groupBox="0" columnCount="0">
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="General" groupBox="0" columnCount="2">
+          <attributeEditorField showLabel="1" index="0" name="obj_id"/>
+          <attributeEditorField showLabel="1" index="45" name="identifier"/>
           <attributeEditorField showLabel="1" index="1" name="clear_height"/>
-          <attributeEditorField showLabel="1" index="7" name="length_effective"/>
           <attributeEditorField showLabel="1" index="9" name="material"/>
-          <attributeEditorField showLabel="1" index="6" name="inside_coating"/>
-          <attributeEditorField showLabel="1" index="17" name="fk_pipe_profile"/>
-          <attributeEditorField showLabel="1" index="-1" name="dataowner"/>
-          <attributeEditorField showLabel="1" index="54" name="rp_from_level"/>
-          <attributeEditorField showLabel="1" index="65" name="rp_to_level"/>
+          <attributeEditorField showLabel="1" index="24" name="usage_current"/>
           <attributeEditorField showLabel="1" index="5" name="horizontal_positioning"/>
           <attributeEditorField showLabel="1" index="19" name="function_hierarchic"/>
           <attributeEditorField showLabel="1" index="21" name="function_hydraulic"/>
-          <attributeEditorField showLabel="1" index="24" name="usage_current"/>
           <attributeEditorField showLabel="1" index="38" name="status"/>
           <attributeEditorField showLabel="1" index="41" name="year_of_construction"/>
+          <attributeEditorField showLabel="1" index="43" name="fk_owner"/>
+          <attributeEditorField showLabel="1" index="44" name="fk_operator"/>
+          <attributeEditorField showLabel="1" index="54" name="rp_from_level"/>
+          <attributeEditorField showLabel="1" index="65" name="rp_to_level"/>
+          <attributeEditorField showLabel="1" index="6" name="inside_coating"/>
+          <attributeEditorField showLabel="1" index="17" name="fk_pipe_profile"/>
+          <attributeEditorField showLabel="1" index="-1" name="dataowner"/>
           <attributeEditorField showLabel="1" index="46" name="remark"/>
+          <attributeEditorField showLabel="1" index="7" name="length_effective"/>
         </attributeEditorContainer>
-        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Reach" groupBox="0" columnCount="0">
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Reach" groupBox="0" columnCount="2">
           <attributeEditorField showLabel="1" index="0" name="obj_id"/>
+          <attributeEditorField showLabel="1" index="45" name="identifier"/>
           <attributeEditorField showLabel="1" index="1" name="clear_height"/>
+          <attributeEditorField showLabel="1" index="9" name="material"/>
+          <attributeEditorField showLabel="1" index="17" name="fk_pipe_profile"/>
           <attributeEditorField showLabel="1" index="2" name="width"/>
-          <attributeEditorField showLabel="1" index="3" name="coefficient_of_friction"/>
-          <attributeEditorField showLabel="1" index="4" name="elevation_determination"/>
           <attributeEditorField showLabel="1" index="5" name="horizontal_positioning"/>
+          <attributeEditorField showLabel="1" index="4" name="elevation_determination"/>
+          <attributeEditorField showLabel="1" index="3" name="coefficient_of_friction"/>
+          <attributeEditorField showLabel="1" index="16" name="wall_roughness"/>
           <attributeEditorField showLabel="1" index="6" name="inside_coating"/>
           <attributeEditorField showLabel="1" index="7" name="length_effective"/>
           <attributeEditorField showLabel="1" index="8" name="slope_per_mill"/>
-          <attributeEditorField showLabel="1" index="9" name="material"/>
-          <attributeEditorField showLabel="1" index="-1" name="progression_3d_geometry"/>
+          <attributeEditorField showLabel="1" index="15" name="slope_building_plan"/>
           <attributeEditorField showLabel="1" index="10" name="reliner_material"/>
           <attributeEditorField showLabel="1" index="11" name="reliner_nominal_size"/>
           <attributeEditorField showLabel="1" index="12" name="relining_construction"/>
           <attributeEditorField showLabel="1" index="13" name="relining_kind"/>
+          <attributeEditorField showLabel="1" index="46" name="remark"/>
           <attributeEditorField showLabel="1" index="14" name="ring_stiffness"/>
-          <attributeEditorField showLabel="1" index="15" name="slope_building_plan"/>
-          <attributeEditorField showLabel="1" index="16" name="wall_roughness"/>
-          <attributeEditorField showLabel="1" index="17" name="fk_pipe_profile"/>
+          <attributeEditorField showLabel="1" index="-1" name="progression_3d_geometry"/>
         </attributeEditorContainer>
         <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Wastewater Networkelement" groupBox="0" columnCount="0">
-          <attributeEditorField showLabel="1" index="45" name="identifier"/>
-          <attributeEditorField showLabel="1" index="46" name="remark"/>
           <attributeEditorField showLabel="1" index="47" name="last_modification"/>
           <attributeEditorField showLabel="1" index="-1" name="dataowner"/>
           <attributeEditorField showLabel="1" index="-1" name="provider"/>
         </attributeEditorContainer>
         <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Channel" groupBox="0" columnCount="0">
-          <attributeEditorField showLabel="1" index="19" name="function_hierarchic"/>
-          <attributeEditorField showLabel="1" index="20" name="connection_type"/>
-          <attributeEditorField showLabel="1" index="21" name="function_hydraulic"/>
-          <attributeEditorField showLabel="1" index="22" name="jetting_interval"/>
-          <attributeEditorField showLabel="1" index="23" name="pipe_length"/>
           <attributeEditorField showLabel="1" index="24" name="usage_current"/>
           <attributeEditorField showLabel="1" index="25" name="usage_planned"/>
+          <attributeEditorField showLabel="1" index="19" name="function_hierarchic"/>
+          <attributeEditorField showLabel="1" index="21" name="function_hydraulic"/>
+          <attributeEditorField showLabel="1" index="20" name="connection_type"/>
+          <attributeEditorField showLabel="1" index="22" name="jetting_interval"/>
+          <attributeEditorField showLabel="1" index="23" name="pipe_length"/>
         </attributeEditorContainer>
-        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Wastewater Structure" groupBox="0" columnCount="0">
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Wastewater Structure" groupBox="0" columnCount="2">
           <attributeEditorField showLabel="1" index="26" name="ws_obj_id"/>
+          <attributeEditorField showLabel="1" index="45" name="identifier"/>
           <attributeEditorField showLabel="1" index="27" name="accessibility"/>
-          <attributeEditorField showLabel="1" index="28" name="contract_section"/>
-          <attributeEditorField showLabel="1" index="29" name="financing"/>
-          <attributeEditorField showLabel="1" index="30" name="gross_costs"/>
-          <attributeEditorField showLabel="1" index="31" name="inspection_interval"/>
           <attributeEditorField showLabel="1" index="32" name="location_name"/>
-          <attributeEditorField showLabel="1" index="33" name="records"/>
-          <attributeEditorField showLabel="1" index="34" name="renovation_necessity"/>
-          <attributeEditorField showLabel="1" index="35" name="replacement_value"/>
-          <attributeEditorField showLabel="1" index="36" name="rv_base_year"/>
-          <attributeEditorField showLabel="1" index="37" name="rv_construction_type"/>
-          <attributeEditorField showLabel="1" index="38" name="status"/>
-          <attributeEditorField showLabel="1" index="39" name="structure_condition"/>
-          <attributeEditorField showLabel="1" index="40" name="subsidies"/>
           <attributeEditorField showLabel="1" index="41" name="year_of_construction"/>
+          <attributeEditorField showLabel="1" index="38" name="status"/>
+          <attributeEditorField showLabel="1" index="34" name="renovation_necessity"/>
+          <attributeEditorField showLabel="1" index="39" name="structure_condition"/>
           <attributeEditorField showLabel="1" index="42" name="year_of_replacement"/>
           <attributeEditorField showLabel="1" index="43" name="fk_owner"/>
           <attributeEditorField showLabel="1" index="44" name="fk_operator"/>
+          <attributeEditorField showLabel="1" index="31" name="inspection_interval"/>
+          <attributeEditorField showLabel="1" index="46" name="remark"/>
+          <attributeEditorField showLabel="1" index="28" name="contract_section"/>
+          <attributeEditorField showLabel="1" index="33" name="records"/>
+          <attributeEditorField showLabel="1" index="29" name="financing"/>
+          <attributeEditorField showLabel="1" index="30" name="gross_costs"/>
+          <attributeEditorField showLabel="1" index="35" name="replacement_value"/>
+          <attributeEditorField showLabel="1" index="40" name="subsidies"/>
+          <attributeEditorField showLabel="1" index="36" name="rv_base_year"/>
+          <attributeEditorField showLabel="1" index="37" name="rv_construction_type"/>
         </attributeEditorContainer>
-        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Reach Points" groupBox="0" columnCount="0">
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Reach Points" groupBox="0" columnCount="2">
           <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="From" groupBox="1" columnCount="0">
             <attributeEditorField showLabel="1" index="51" name="rp_from_obj_id"/>
-            <attributeEditorField showLabel="1" index="52" name="rp_from_elevation_accuracy"/>
             <attributeEditorField showLabel="1" index="53" name="rp_from_identifier"/>
             <attributeEditorField showLabel="1" index="54" name="rp_from_level"/>
+            <attributeEditorField showLabel="1" index="52" name="rp_from_elevation_accuracy"/>
             <attributeEditorField showLabel="1" index="55" name="rp_from_outlet_shape"/>
             <attributeEditorField showLabel="1" index="56" name="rp_from_position_of_connection"/>
             <attributeEditorField showLabel="1" index="57" name="rp_from_remark"/>
@@ -12185,9 +12201,9 @@ def my_form_open(dialog, layer, feature):
           </attributeEditorContainer>
           <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="To" groupBox="1" columnCount="0">
             <attributeEditorField showLabel="1" index="62" name="rp_to_obj_id"/>
-            <attributeEditorField showLabel="1" index="63" name="rp_to_elevation_accuracy"/>
             <attributeEditorField showLabel="1" index="64" name="rp_to_identifier"/>
             <attributeEditorField showLabel="1" index="65" name="rp_to_level"/>
+            <attributeEditorField showLabel="1" index="63" name="rp_to_elevation_accuracy"/>
             <attributeEditorField showLabel="1" index="66" name="rp_to_outlet_shape"/>
             <attributeEditorField showLabel="1" index="67" name="rp_to_position_of_connection"/>
             <attributeEditorField showLabel="1" index="68" name="rp_to_remark"/>
@@ -12205,6 +12221,9 @@ def my_form_open(dialog, layer, feature):
         </attributeEditorContainer>
       </attributeEditorForm>
       <widgets>
+        <widget name="od_file20160921105557083_object_vw_qgep_reach_ws_obj_id">
+          <config/>
+        </widget>
         <widget name="re_maintenance_wasterwaterstructure_reach">
           <config>
             <option key="nm-rel" value="re_maintenance_wasterwaterstructure_maintenance"/>
@@ -12296,7 +12315,6 @@ def my_form_open(dialog, layer, feature):
         <default field="material_abbr_de" expression=""/>
         <default field="material_abbr_fr" expression=""/>
       </defaults>
-      <previewExpression>COALESCE( "obj_id", '&lt;NULL>' )</previewExpression>
     </maplayer>
     <maplayer simplifyAlgorithm="0" minimumScale="1" maximumScale="5000" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" readOnly="0" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="1" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <extent>
@@ -12324,6 +12342,7 @@ def my_form_open(dialog, layer, feature):
         </spatialrefsys>
       </srs>
       <provider encoding="UTF-8">postgres</provider>
+      <previewExpression>COALESCE( "identifier", '&lt;NULL>' )</previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -12365,7 +12384,7 @@ def my_form_open(dialog, layer, feature):
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="remark">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+          <widgetv2config IsMultiline="1" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="ValueRelation" name="renovation_demand">
           <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_structure_part_renovation_demand" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
@@ -12415,7 +12434,7 @@ def my_form_open(dialog, layer, feature):
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="ws_remark">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+          <widgetv2config IsMultiline="1" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="ValueRelation" name="renovation_necessity">
           <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_wastewater_structure_renovation_necessity" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
@@ -12451,7 +12470,7 @@ def my_form_open(dialog, layer, feature):
           <widgetv2config OrderByValue="0" fieldEditable="1" AllowAddFeatures="0" ShowForm="0" Relation="vw_qgep_wastewater_structure_fk_operator_od_organisation20160212172933583_obj_id" ReadOnly="0" constraint="" MapIdentification="0" labelOnTop="0" constraintDescription="" notNull="0" AllowNULL="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="_label">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+          <widgetv2config IsMultiline="1" fieldEditable="0" constraint="" UseHtml="0" labelOnTop="1" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="_depth">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
@@ -12535,7 +12554,7 @@ def my_form_open(dialog, layer, feature):
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="wn_obj_id">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+          <widgetv2config IsMultiline="0" fieldEditable="0" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="backflow_level">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
@@ -12547,7 +12566,7 @@ def my_form_open(dialog, layer, feature):
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="wn_remark">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+          <widgetv2config IsMultiline="1" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="wn_last_modification">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
@@ -13844,7 +13863,7 @@ def my_form_open(dialog, layer, feature):
         <property key="labeling/fitInPolygonOnly" value="false"/>
         <property key="labeling/fontBold" value="false"/>
         <property key="labeling/fontCapitals" value="0"/>
-        <property key="labeling/fontFamily" value="Cantarell"/>
+        <property key="labeling/fontFamily" value="MS Shell Dlg 2"/>
         <property key="labeling/fontItalic" value="false"/>
         <property key="labeling/fontLetterSpacing" value="0"/>
         <property key="labeling/fontLimitPixelSize" value="false"/>
@@ -13875,7 +13894,7 @@ def my_form_open(dialog, layer, feature):
         <property key="labeling/minFeatureSize" value="0"/>
         <property key="labeling/multilineAlign" value="0"/>
         <property key="labeling/multilineHeight" value="1"/>
-        <property key="labeling/namedStyle" value="Regular"/>
+        <property key="labeling/namedStyle" value="Normal"/>
         <property key="labeling/obstacle" value="true"/>
         <property key="labeling/obstacleFactor" value="1"/>
         <property key="labeling/obstacleType" value="0"/>
@@ -13978,7 +13997,7 @@ def my_form_open(dialog, layer, feature):
       <blendMode>0</blendMode>
       <featureBlendMode>0</featureBlendMode>
       <layerTransparency>0</layerTransparency>
-      <displayfield>obj_id</displayfield>
+      <displayfield>location_name</displayfield>
       <label>0</label>
       <labelattributes>
         <label fieldname="" text="Label"/>
@@ -14204,96 +14223,109 @@ def my_form_open(dialog, layer, feature):
         <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="General" groupBox="0" columnCount="2">
           <attributeEditorField showLabel="1" index="18" name="identifier"/>
           <attributeEditorField showLabel="1" index="16" name="ws_type"/>
-          <attributeEditorField showLabel="1" index="24" name="location_name"/>
-          <attributeEditorField showLabel="1" index="34" name="year_of_construction"/>
           <attributeEditorField showLabel="1" index="43" name="manhole_function"/>
           <attributeEditorField showLabel="1" index="50" name="special_structure_function"/>
-          <attributeEditorField showLabel="1" index="27" name="renovation_necessity"/>
-          <attributeEditorField showLabel="1" index="5" name="level"/>
-          <attributeEditorField showLabel="1" index="7" name="positional_accuracy"/>
-          <attributeEditorField showLabel="1" index="-1" name="dataowner"/>
-          <attributeEditorField showLabel="1" index="31" name="status"/>
-          <attributeEditorField showLabel="1" index="9" name="venting"/>
-          <attributeEditorField showLabel="1" index="4" name="fastening"/>
           <attributeEditorField showLabel="1" index="40" name="dimension1"/>
           <attributeEditorField showLabel="1" index="41" name="dimension2"/>
+          <attributeEditorField showLabel="1" index="5" name="level"/>
+          <attributeEditorField showLabel="1" index="7" name="positional_accuracy"/>
+          <attributeEditorField showLabel="1" index="31" name="status"/>
+          <attributeEditorField showLabel="1" index="36" name="fk_owner"/>
+          <attributeEditorField showLabel="1" index="24" name="location_name"/>
+          <attributeEditorField showLabel="1" index="34" name="year_of_construction"/>
+          <attributeEditorField showLabel="1" index="27" name="renovation_necessity"/>
+          <attributeEditorField showLabel="1" index="-1" name="dataowner"/>
+          <attributeEditorField showLabel="1" index="9" name="venting"/>
+          <attributeEditorField showLabel="1" index="4" name="fastening"/>
+          <attributeEditorField showLabel="1" index="26" name="ws_remark"/>
+          <attributeEditorField showLabel="1" index="38" name="_label"/>
         </attributeEditorContainer>
-        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Cover" groupBox="0" columnCount="0">
-          <attributeEditorField showLabel="1" index="1" name="brand"/>
-          <attributeEditorField showLabel="1" index="2" name="cover_shape"/>
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Cover" groupBox="0" columnCount="2">
+          <attributeEditorField showLabel="1" index="17" name="co_obj_id"/>
+          <attributeEditorField showLabel="1" index="10" name="co_identifier"/>
           <attributeEditorField showLabel="1" index="3" name="diameter"/>
           <attributeEditorField showLabel="1" index="6" name="cover_material"/>
+          <attributeEditorField showLabel="1" index="5" name="level"/>
+          <attributeEditorField showLabel="1" index="7" name="positional_accuracy"/>
+          <attributeEditorField showLabel="1" index="9" name="venting"/>
+          <attributeEditorField showLabel="1" index="4" name="fastening"/>
           <attributeEditorField showLabel="1" index="8" name="sludge_bucket"/>
-          <attributeEditorField showLabel="1" index="11" name="remark"/>
-          <attributeEditorField showLabel="1" index="12" name="renovation_demand"/>
           <attributeEditorField showLabel="1" index="-1" name="dataowner"/>
           <attributeEditorField showLabel="1" index="-1" name="provider"/>
-          <attributeEditorField showLabel="1" index="17" name="co_obj_id"/>
+          <attributeEditorField showLabel="1" index="12" name="renovation_demand"/>
+          <attributeEditorField showLabel="1" index="11" name="remark"/>
+          <attributeEditorField showLabel="1" index="2" name="cover_shape"/>
+          <attributeEditorField showLabel="1" index="1" name="brand"/>
         </attributeEditorContainer>
-        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Wastewater Structure" groupBox="0" columnCount="0">
+        <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Wastewater Structure" groupBox="0" columnCount="2">
+          <attributeEditorField showLabel="1" index="0" name="obj_id"/>
+          <attributeEditorField showLabel="1" index="18" name="identifier"/>
           <attributeEditorField showLabel="1" index="19" name="accessibility"/>
-          <attributeEditorField showLabel="1" index="39" name="_depth"/>
-          <attributeEditorField showLabel="1" index="20" name="contract_section"/>
-          <attributeEditorField showLabel="1" index="21" name="financing"/>
-          <attributeEditorField showLabel="1" index="22" name="gross_costs"/>
-          <attributeEditorField showLabel="1" index="23" name="inspection_interval"/>
           <attributeEditorField showLabel="1" index="24" name="location_name"/>
-          <attributeEditorField showLabel="1" index="25" name="records"/>
-          <attributeEditorField showLabel="1" index="27" name="renovation_necessity"/>
-          <attributeEditorField showLabel="1" index="28" name="replacement_value"/>
-          <attributeEditorField showLabel="1" index="29" name="rv_base_year"/>
-          <attributeEditorField showLabel="1" index="30" name="rv_construction_type"/>
-          <attributeEditorField showLabel="1" index="31" name="status"/>
-          <attributeEditorField showLabel="1" index="32" name="structure_condition"/>
-          <attributeEditorField showLabel="1" index="33" name="subsidies"/>
           <attributeEditorField showLabel="1" index="34" name="year_of_construction"/>
+          <attributeEditorField showLabel="1" index="31" name="status"/>
+          <attributeEditorField showLabel="1" index="27" name="renovation_necessity"/>
+          <attributeEditorField showLabel="1" index="32" name="structure_condition"/>
           <attributeEditorField showLabel="1" index="35" name="year_of_replacement"/>
           <attributeEditorField showLabel="1" index="36" name="fk_owner"/>
           <attributeEditorField showLabel="1" index="37" name="fk_operator"/>
-          <attributeEditorField showLabel="1" index="0" name="obj_id"/>
+          <attributeEditorField showLabel="1" index="23" name="inspection_interval"/>
+          <attributeEditorField showLabel="1" index="26" name="ws_remark"/>
+          <attributeEditorField showLabel="1" index="20" name="contract_section"/>
+          <attributeEditorField showLabel="1" index="25" name="records"/>
+          <attributeEditorField showLabel="1" index="21" name="financing"/>
+          <attributeEditorField showLabel="1" index="22" name="gross_costs"/>
+          <attributeEditorField showLabel="1" index="28" name="replacement_value"/>
+          <attributeEditorField showLabel="1" index="33" name="subsidies"/>
+          <attributeEditorField showLabel="1" index="29" name="rv_base_year"/>
+          <attributeEditorField showLabel="1" index="30" name="rv_construction_type"/>
+          <attributeEditorField showLabel="1" index="39" name="_depth"/>
         </attributeEditorContainer>
         <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="1" visibilityExpression="&quot;ws_type&quot; = 'manhole'" name="Manhole" groupBox="0" columnCount="1">
+          <attributeEditorField showLabel="1" index="43" name="manhole_function"/>
           <attributeEditorField showLabel="1" index="40" name="dimension1"/>
           <attributeEditorField showLabel="1" index="41" name="dimension2"/>
-          <attributeEditorField showLabel="1" index="42" name="upper_elevation"/>
-          <attributeEditorField showLabel="1" index="43" name="manhole_function"/>
           <attributeEditorField showLabel="1" index="44" name="material"/>
           <attributeEditorField showLabel="1" index="45" name="surface_inflow"/>
+          <attributeEditorField showLabel="1" index="26" name="ws_remark"/>
+          <attributeEditorField showLabel="1" index="42" name="upper_elevation"/>
         </attributeEditorContainer>
         <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="1" visibilityExpression="&quot;ws_type&quot; = 'special_structure'" name="Special Structure" groupBox="0" columnCount="1">
-          <attributeEditorField showLabel="1" index="49" name="bypass"/>
           <attributeEditorField showLabel="1" index="50" name="special_structure_function"/>
-          <attributeEditorField showLabel="1" index="51" name="stormwater_tank_arrangement"/>
-          <attributeEditorField showLabel="1" index="42" name="upper_elevation"/>
+          <attributeEditorField showLabel="1" index="49" name="bypass"/>
           <attributeEditorField showLabel="1" index="60" name="emergency_spillway"/>
+          <attributeEditorField showLabel="1" index="51" name="stormwater_tank_arrangement"/>
+          <attributeEditorField showLabel="1" index="26" name="ws_remark"/>
+          <attributeEditorField showLabel="1" index="42" name="upper_elevation"/>
         </attributeEditorContainer>
         <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="1" visibilityExpression="&quot;ws_type&quot; = 'discharge_point'" name="Discharge Point" groupBox="0" columnCount="1">
-          <attributeEditorField showLabel="1" index="60" name="emergency_spillway"/>
-          <attributeEditorField showLabel="1" index="52" name="highwater_level"/>
-          <attributeEditorField showLabel="1" index="53" name="relevance"/>
           <attributeEditorField showLabel="1" index="54" name="terrain_level"/>
-          <attributeEditorField showLabel="1" index="42" name="upper_elevation"/>
+          <attributeEditorField showLabel="1" index="52" name="highwater_level"/>
           <attributeEditorField showLabel="1" index="55" name="waterlevel_hydraulic"/>
+          <attributeEditorField showLabel="1" index="60" name="emergency_spillway"/>
+          <attributeEditorField showLabel="1" index="53" name="relevance"/>
+          <attributeEditorField showLabel="1" index="42" name="upper_elevation"/>
         </attributeEditorContainer>
         <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="1" visibilityExpression="&quot;ws_type&quot; = 'infiltration_installation'" name="Infiltration Installation" groupBox="0" columnCount="1">
-          <attributeEditorField showLabel="1" index="57" name="defects"/>
+          <attributeEditorField showLabel="1" index="61" name="kind"/>
+          <attributeEditorField showLabel="1" index="40" name="dimension1"/>
+          <attributeEditorField showLabel="1" index="41" name="dimension2"/>
+          <attributeEditorField showLabel="1" index="62" name="labeling"/>
+          <attributeEditorField showLabel="1" index="65" name="watertightness"/>
+          <attributeEditorField showLabel="1" index="64" name="vehicle_access"/>
           <attributeEditorField showLabel="1" index="58" name="distance_to_aquifer"/>
           <attributeEditorField showLabel="1" index="59" name="effective_area"/>
           <attributeEditorField showLabel="1" index="60" name="emergency_spillway"/>
-          <attributeEditorField showLabel="1" index="61" name="kind"/>
-          <attributeEditorField showLabel="1" index="62" name="labeling"/>
           <attributeEditorField showLabel="1" index="63" name="seepage_utilization"/>
-          <attributeEditorField showLabel="1" index="64" name="vehicle_access"/>
-          <attributeEditorField showLabel="1" index="65" name="watertightness"/>
-          <attributeEditorField showLabel="1" index="40" name="dimension1"/>
-          <attributeEditorField showLabel="1" index="41" name="dimension2"/>
+          <attributeEditorField showLabel="1" index="26" name="ws_remark"/>
+          <attributeEditorField showLabel="1" index="57" name="defects"/>
           <attributeEditorField showLabel="1" index="42" name="upper_elevation"/>
         </attributeEditorContainer>
         <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Wastewater Node" groupBox="0" columnCount="0">
           <attributeEditorField showLabel="1" index="66" name="wn_obj_id"/>
-          <attributeEditorField showLabel="1" index="67" name="backflow_level"/>
-          <attributeEditorField showLabel="1" index="68" name="bottom_level"/>
           <attributeEditorField showLabel="1" index="69" name="wn_identifier"/>
+          <attributeEditorField showLabel="1" index="68" name="bottom_level"/>
+          <attributeEditorField showLabel="1" index="67" name="backflow_level"/>
           <attributeEditorField showLabel="1" index="70" name="wn_remark"/>
           <attributeEditorField showLabel="1" index="71" name="wn_last_modification"/>
           <attributeEditorField showLabel="1" index="-1" name="wn_dataowner"/>
@@ -14389,7 +14421,7 @@ def my_form_open(dialog, layer, feature):
         <default field="last_modification" expression=""/>
         <default field="fk_dataowner" expression=""/>
         <default field="fk_provider" expression=""/>
-        <default field="ws_type" expression=""/>
+        <default field="ws_type" expression="'manhole'"/>
         <default field="co_obj_id" expression=""/>
         <default field="identifier" expression=""/>
         <default field="accessibility" expression=""/>
@@ -14448,7 +14480,6 @@ def my_form_open(dialog, layer, feature):
         <default field="wn_fk_dataowner" expression=""/>
         <default field="wn_fk_provider" expression=""/>
       </defaults>
-      <previewExpression>COALESCE( "identifier", '&lt;NULL>' )</previewExpression>
     </maplayer>
     <maplayer simplifyAlgorithm="0" minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" readOnly="0" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>vw_wastewater_node20150607121012062</id>
@@ -14470,6 +14501,7 @@ def my_form_open(dialog, layer, feature):
         </spatialrefsys>
       </srs>
       <provider encoding="UTF-16">postgres</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -14617,7 +14649,6 @@ def my_form_open(dialog, layer, feature):
         <default field="last_modification" expression=""/>
         <default field="fk_wastewater_structure" expression=""/>
       </defaults>
-      <previewExpression></previewExpression>
     </maplayer>
   </projectlayers>
   <properties>
@@ -14742,8 +14773,8 @@ def my_form_open(dialog, layer, feature):
     <WMSContactPosition type="QString"></WMSContactPosition>
     <PositionPrecision>
       <DecimalPlaces type="int">2</DecimalPlaces>
-      <Automatic type="bool">true</Automatic>
-      <DegreeFormat type="QString">D</DegreeFormat>
+      <Automatic type="bool">false</Automatic>
+      <DegreeFormat type="QString">MU</DegreeFormat>
     </PositionPrecision>
     <Gui>
       <SelectionColorBluePart type="int">0</SelectionColorBluePart>
@@ -14759,10 +14790,10 @@ def my_form_open(dialog, layer, feature):
       <GraphNodeLayer type="QString">vw_network_node20150607120529398</GraphNodeLayer>
       <GraphEdgeLayer type="QString">vw_network_segment20150607120529381</GraphEdgeLayer>
     </QGEP>
-    <WMSServiceAbstract type="QString"></WMSServiceAbstract>
     <Measure>
       <Ellipsoid type="QString">NONE</Ellipsoid>
     </Measure>
+    <WMSServiceAbstract type="QString"></WMSServiceAbstract>
     <WFSLayers type="QStringList"/>
     <WFSUrl type="QString"></WFSUrl>
     <WMSServiceCapabilities type="bool">false</WMSServiceCapabilities>
