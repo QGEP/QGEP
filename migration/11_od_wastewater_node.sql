@@ -18,10 +18,19 @@ WHERE qgep.od_wastewater_networkelement.old_obj_id IN (SELECT obj_id FROM abwass
 
 -- 4. einsetzen der daten von siedlungsentwaesserung in qgep.
 INSERT INTO qgep.od_wastewater_node
-(obj_id, old_obj_id, backflow_level, bottom_level, situation_geometry) 
-SELECT q_wastewater_networkelement.obj_id,
-a_abwasserknoten.obj_id,
-rueckstaukote, sohlenkote, the_geom
+(
+  obj_id,
+  old_obj_id, 
+  backflow_level, 
+  bottom_level, 
+  situation_geometry
+) 
+SELECT
+  q_wastewater_networkelement.obj_id,
+  a_abwasserknoten.obj_id,
+  rueckstaukote,
+  sohlenkote,
+  ST_Transform(the_geom, 2056)
 FROM abwasser.siedlungsentwaesserung__abwasserknoten a_abwasserknoten
-LEFT JOIN qgep.od_wastewater_networkelement q_wastewater_networkelement
-ON q_wastewater_networkelement.old_obj_id = a_abwasserknoten.obj_id;
+  LEFT JOIN qgep.od_wastewater_networkelement q_wastewater_networkelement
+  ON q_wastewater_networkelement.old_obj_id = a_abwasserknoten.obj_id;

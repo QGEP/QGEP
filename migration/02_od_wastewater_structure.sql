@@ -31,7 +31,7 @@ SELECT
     WHEN zugaenglichkeit = 3 THEN 3445 --- accessible
   END,
     baulos,
-    ST_Force3D(ST_ForceCurve(the_geom)),
+    ST_Transform(ST_Force3D(ST_ForceCurve(the_geom)) ,2056),
     -- the_geom3D,
     -- CASE WHEN finanzierung = 0 THEN 5510 --- public
     -- WHEN finanzierung = 1 THEN 5511 --- private

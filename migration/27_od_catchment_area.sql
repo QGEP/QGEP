@@ -63,7 +63,7 @@ SELECT
 a_ezg.obj_id,
 abflussbeiwert,
 bezeichnung,
-ST_ForceCurve(ST_MakePolygon( ST_GeometryN( the_geom, 1 ) ) ),
+ST_Transform(ST_ForceCurve(ST_MakePolygon( ST_GeometryN( the_geom, 1 ) ) ), 2056),
 bemerkung,
 ST_Area(ST_GeometryN( the_geom, 1 ))/1000, -- m^2 zu ha
 q_wastewater_networkelement.obj_id,

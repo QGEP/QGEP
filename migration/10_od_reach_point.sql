@@ -31,7 +31,7 @@ SELECT
   END,
   lage_anschluss,
   bemerkung,
-  the_geom,
+  ST_Transform(the_geom, 2056),
   to_timestamp (LETZTE_AENDERUNG, 'DD MM YYYY'),
   org_dataowner.obj_id,
   a_haltungspunkt.obj_id
