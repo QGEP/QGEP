@@ -359,20 +359,20 @@
   <mapcanvas>
     <units>meters</units>
     <extent>
-      <xmin>745106.29224999994039536</xmin>
-      <ymin>258165.63292499998351559</ymin>
-      <xmax>753476.79774999991059303</xmax>
-      <ymax>266926.71007500000996515</ymax>
+      <xmin>2745106.33278019400313497</xmin>
+      <ymin>1258164.55737338005565107</ymin>
+      <xmax>2753476.83829473657533526</xmax>
+      <ymax>1266968.52703891997225583</ymax>
     </extent>
     <rotation>0</rotation>
     <projections>1</projections>
     <destinationsrs>
       <spatialrefsys>
-        <proj4>+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=600000 +y_0=200000 +ellps=bessel +towgs84=674.4,15.1,405.3,0,0,0,0 +units=m +no_defs</proj4>
-        <srsid>1919</srsid>
+        <proj4>+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs</proj4>
+        <srsid>47</srsid>
         <srid>2056</srid>
         <authid>EPSG:2056</authid>
-        <description>CH1903 / LV03</description>
+        <description>CH1903+ / LV95</description>
         <projectionacronym>somerc</projectionacronym>
         <ellipsoidacronym>bessel</ellipsoidacronym>
         <geographicflag>false</geographicflag>
@@ -911,11 +911,11 @@
       <layername>OpenStreetMap</layername>
       <srs>
         <spatialrefsys>
-          <proj4>+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=600000 +y_0=200000 +ellps=bessel +towgs84=674.4,15.1,405.3,0,0,0,0 +units=m +no_defs</proj4>
-          <srsid>1919</srsid>
+          <proj4>+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs</proj4>
+          <srsid>47</srsid>
           <srid>2056</srid>
           <authid>EPSG:2056</authid>
-          <description>CH1903 / LV03</description>
+          <description>CH1903+ / LV95</description>
           <projectionacronym>somerc</projectionacronym>
           <ellipsoidacronym>bessel</ellipsoidacronym>
           <geographicflag>false</geographicflag>
@@ -1286,11 +1286,11 @@ def my_form_open(dialog, layer, feature):
       <layername>od_wastewater_structure</layername>
       <srs>
         <spatialrefsys>
-          <proj4>+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=600000 +y_0=200000 +ellps=bessel +towgs84=674.4,15.1,405.3,0,0,0,0 +units=m +no_defs</proj4>
-          <srsid>1919</srsid>
+          <proj4>+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs</proj4>
+          <srsid>47</srsid>
           <srid>2056</srid>
           <authid>EPSG:2056</authid>
-          <description>CH1903 / LV03</description>
+          <description>CH1903+ / LV95</description>
           <projectionacronym>somerc</projectionacronym>
           <ellipsoidacronym>bessel</ellipsoidacronym>
           <geographicflag>false</geographicflag>
