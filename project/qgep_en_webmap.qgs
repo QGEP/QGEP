@@ -725,7 +725,7 @@
   <projectlayers>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>od_maintenance_event</id>
-      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true table="qgep"."od_maintenance_event" sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true table="qgep_od"."maintenance_event" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -853,7 +853,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>od_organisation20160212172933583</id>
-      <datasource>service='pg_qgep' key='"obj_id"' table="qgep"."od_organisation" sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' table="qgep_od"."organisation" sql=</datasource>
       <shortname>od_organisation</shortname>
       <keywordList>
         <value></value>
@@ -934,7 +934,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>od_pipe_profile</id>
-      <datasource>service='pg_qgep' key='"obj_id"' table="qgep"."od_pipe_profile" sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' table="qgep_od"."pipe_profile" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -1027,7 +1027,7 @@
     </maplayer>
     <maplayer simplifyAlgorithm="0" minimumScale="0" maximumScale="5001" simplifyDrawingHints="1" readOnly="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="1" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>od_wastewater_structure</id>
-      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true srid=21781 type=Polygon table="qgep"."od_wastewater_structure" (detail_geometry_geometry) sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true srid=21781 type=Polygon table="qgep_od"."wastewater_structure" (detail_geometry_geometry) sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -1432,7 +1432,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>re_maintenance_event_wastewater_structure20160111110603931</id>
-      <datasource>service='pg_qgep' key='"obj_id"' table="qgep"."re_maintenance_event_wastewater_structure" sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' table="qgep_od"."re_maintenance_event_wastewater_structure" sql=</datasource>
       <shortname>re_maintenance_event_wastewater_structure</shortname>
       <keywordList>
         <value></value>
@@ -1492,7 +1492,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_access_aid_kind</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_access_aid_kind" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."access_aid_kind" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -1579,7 +1579,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_backflow_prevention_kind</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_backflow_prevention_kind" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."backflow_prevention_kind" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -1666,7 +1666,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_channel_bedding_encasement</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_channel_bedding_encasement" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."channel_bedding_encasement" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -1753,7 +1753,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_channel_connection_type</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_channel_connection_type" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."channel_connection_type" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -1840,7 +1840,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_channel_function_hierarchic</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_channel_function_hierarchic" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."channel_function_hierarchic" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -1931,7 +1931,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_channel_function_hydraulic</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_channel_function_hydraulic" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."channel_function_hydraulic" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -2018,7 +2018,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_channel_usage_current</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_channel_usage_current" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."channel_usage_current" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -2109,7 +2109,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_channel_usage_planned</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_channel_usage_planned" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."channel_usage_planned" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -2196,7 +2196,7 @@
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_cover_cover_shape</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_cover_cover_shape" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."cover_cover_shape" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -2283,7 +2283,7 @@
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_cover_fastening</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_cover_fastening" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."cover_fastening" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -2370,7 +2370,7 @@
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_cover_material</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_cover_material" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."cover_material" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -2457,7 +2457,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_cover_positional_accuracy20151117153235900</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_cover_positional_accuracy" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."cover_positional_accuracy" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -2534,7 +2534,7 @@
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_cover_sludge_bucket</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_cover_sludge_bucket" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."cover_sludge_bucket" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -2621,7 +2621,7 @@
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_cover_venting</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_cover_venting" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."cover_venting" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -2708,7 +2708,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_discharge_point_relevance</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_discharge_point_relevance" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."discharge_point_relevance" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -2795,7 +2795,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_maintenance_event_kind</id>
-      <datasource>service='pg_qgep' key='code' estimatedmetadata=true table="qgep"."vl_maintenance_event_kind" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' estimatedmetadata=true table="qgep_vl"."maintenance_event_kind" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -2882,7 +2882,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_maintenance_event_status</id>
-      <datasource>service='pg_qgep' key='code' estimatedmetadata=true table="qgep"."vl_maintenance_event_status" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' estimatedmetadata=true table="qgep_vl"."maintenance_event_status" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -2969,7 +2969,7 @@
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_manhole_function</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_manhole_function" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."manhole_function" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -3056,7 +3056,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_manhole_material20151117174216343</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_manhole_material" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."manhole_material" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -3133,7 +3133,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_manhole_surface_inflow20151117174216393</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_manhole_surface_inflow" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."manhole_surface_inflow" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -3210,7 +3210,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_pipe_profile_profile_type</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_pipe_profile_profile_type" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."pipe_profile_profile_type" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -3297,7 +3297,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_reach_elevation_determination</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_reach_elevation_determination" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."reach_elevation_determination" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -3384,7 +3384,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_reach_horizontal_positioning</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_reach_horizontal_positioning" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."reach_horizontal_positioning" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -3471,7 +3471,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_reach_inside_coating</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_reach_inside_coating" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."reach_inside_coating" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -3558,7 +3558,7 @@
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_reach_material</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_reach_material" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."reach_material" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -3645,7 +3645,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_reach_point_elevation_accuracy</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_reach_point_elevation_accuracy" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."reach_point_elevation_accuracy" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -3732,7 +3732,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_reach_point_outlet_shape</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_reach_point_outlet_shape" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."reach_point_outlet_shape" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -3819,7 +3819,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_reach_reliner_material</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_reach_reliner_material" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."reach_reliner_material" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -3906,7 +3906,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_reach_relining_construction</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_reach_relining_construction" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."reach_relining_construction" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -3993,7 +3993,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_reach_relining_kind</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_reach_relining_kind" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."reach_relining_kind" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -4080,7 +4080,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_special_structure_bypass</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_special_structure_bypass" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."special_structure_bypass" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -4167,7 +4167,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_special_structure_function</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_special_structure_function" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."special_structure_function" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -4254,7 +4254,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_special_structure_stormwater_tank_arrangement</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_special_structure_stormwater_tank_arrangement" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."special_structure_stormwater_tank_arrangement" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -4341,7 +4341,7 @@
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_structure_part_renovation_demand</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_structure_part_renovation_demand" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."structure_part_renovation_demand" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -4428,7 +4428,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_wastewater_structure_accessibility</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_wastewater_structure_accessibility" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."wastewater_structure_accessibility" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -4515,7 +4515,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_wastewater_structure_financing</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_wastewater_structure_financing" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."wastewater_structure_financing" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -4602,7 +4602,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_wastewater_structure_renovation_necessity</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_wastewater_structure_renovation_necessity" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."wastewater_structure_renovation_necessity" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -4689,7 +4689,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_wastewater_structure_rv_construction_type</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_wastewater_structure_rv_construction_type" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."wastewater_structure_rv_construction_type" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -4776,7 +4776,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_wastewater_structure_status</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_wastewater_structure_status" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."wastewater_structure_status" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -4863,7 +4863,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vl_wastewater_structure_structure_condition</id>
-      <datasource>service='pg_qgep' key='code' table="qgep"."vl_wastewater_structure_structure_condition" sql=</datasource>
+      <datasource>service='pg_qgep' key='code' table="qgep_vl"."wastewater_structure_structure_condition" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -4950,7 +4950,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vw_access_aid</id>
-      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true table="qgep"."vw_access_aid" sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true table="qgep_od"."vw_access_aid" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -5036,7 +5036,7 @@
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vw_backflow_prevention</id>
-      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true table="qgep"."vw_backflow_prevention" sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true table="qgep_od"."vw_backflow_prevention" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -5130,7 +5130,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vw_benching</id>
-      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true table="qgep"."vw_benching" sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true table="qgep_od"."vw_benching" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -5216,7 +5216,7 @@
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vw_channel_</id>
-      <datasource>service='pg_qgep' key='"obj_id"' table="qgep"."vw_channel" sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' table="qgep_od"."vw_channel" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -5405,7 +5405,7 @@
     </maplayer>
     <maplayer simplifyAlgorithm="0" minimumScale="-4.65661e-10" maximumScale="1000" simplifyDrawingHints="0" readOnly="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="1" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>vw_cover___</id>
-      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true srid=21781 type=Point table="qgep"."vw_cover" (situation_geometry) sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true srid=21781 type=Point table="qgep_od"."vw_cover" (situation_geometry) sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -5768,7 +5768,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vw_dryweather_downspout</id>
-      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true table="qgep"."vw_dryweather_downspout" sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true table="qgep_od"."vw_dryweather_downspout" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -5854,7 +5854,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>vw_dryweather_flume</id>
-      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true table="qgep"."vw_dryweather_flume" sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true table="qgep_od"."vw_dryweather_flume" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -5940,7 +5940,7 @@
     </maplayer>
     <maplayer simplifyAlgorithm="0" minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" readOnly="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>vw_network_node20150607120529398</id>
-      <datasource>service='pg_qgep' key='"gid"' estimatedmetadata=true srid=21781 type=Point table="qgep"."vw_network_node" (situation_geometry) sql=</datasource>
+      <datasource>service='pg_qgep' key='"gid"' estimatedmetadata=true srid=21781 type=Point table="qgep_od"."vw_network_node" (situation_geometry) sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -6090,7 +6090,7 @@
     </maplayer>
     <maplayer simplifyAlgorithm="0" minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" readOnly="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Line" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>vw_network_segment20150607120529381</id>
-      <datasource>service='pg_qgep' key='"gid"' estimatedmetadata=true srid=21781 type=LineString table="qgep"."vw_network_segment" (progression_geometry) sql=</datasource>
+      <datasource>service='pg_qgep' key='"gid"' estimatedmetadata=true srid=21781 type=LineString table="qgep_od"."vw_network_segment" (progression_geometry) sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -6255,7 +6255,7 @@
     </maplayer>
     <maplayer simplifyAlgorithm="0" minimumScale="-4.65661e-10" maximumScale="5000" simplifyDrawingHints="0" readOnly="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="1" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>vw_qgep_cover</id>
-      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true srid=21781 type=Point table="qgep"."vw_qgep_cover" (situation_geometry) sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true srid=21781 type=Point table="qgep_od"."vw_qgep_cover" (situation_geometry) sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -8209,7 +8209,7 @@
     </maplayer>
     <maplayer simplifyAlgorithm="0" minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" readOnly="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Line" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>vw_qgep_reach</id>
-      <datasource>service='pg_qgep' key='"obj_id"' srid=21781 type=LineString table="qgep"."vw_qgep_reach" (progression_geometry) sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' srid=21781 type=LineString table="qgep_od"."vw_qgep_reach" (progression_geometry) sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -10954,7 +10954,7 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer simplifyAlgorithm="0" minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" readOnly="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>vw_wastewater_node20150607121012062</id>
-      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true srid=21781 type=Point table="qgep"."vw_wastewater_node" (situation_geometry) sql=</datasource>
+      <datasource>service='pg_qgep' key='"obj_id"' estimatedmetadata=true srid=21781 type=Point table="qgep_od"."vw_wastewater_node" (situation_geometry) sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
