@@ -9421,7 +9421,7 @@ def my_form_open(dialog, layer, feature):
               <edittype widgetv2type="Range" name="length_effective">
                 <widgetv2config AllowNull="1" fieldEditable="1" Step="10" Style="SpinBox" labelOnTop="0" Min="0" Max="30000" Suffix=" m"/>
               </edittype>
-              <edittype widgetv2type="TextEdit" name="slope_per_mill">
+              <edittype widgetv2type="TextEdit" name="_slope_per_mill">
                 <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
               </edittype>
               <edittype widgetv2type="ValueRelation" name="material">
@@ -9457,25 +9457,25 @@ def my_form_open(dialog, layer, feature):
               <edittype widgetv2type="TextEdit" name="bedding_encasement">
                 <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
               </edittype>
-              <edittype widgetv2type="ValueRelation" name="function_hierarchic">
+              <edittype widgetv2type="ValueRelation" name="ch_function_hierarchic">
                 <widgetv2config AllowNull="0" OrderByValue="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_channel_function_hierarchic" Value="value_en" labelOnTop="0" AllowMulti="0"/>
               </edittype>
-              <edittype widgetv2type="ValueRelation" name="connection_type">
+              <edittype widgetv2type="ValueRelation" name="ch_connection_type">
                 <widgetv2config AllowNull="0" OrderByValue="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_channel_connection_type" Value="value_en" labelOnTop="0" AllowMulti="0"/>
               </edittype>
-              <edittype widgetv2type="ValueRelation" name="function_hydraulic">
+              <edittype widgetv2type="ValueRelation" name="ch_function_hydraulic">
                 <widgetv2config AllowNull="0" OrderByValue="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_channel_function_hydraulic" Value="value_en" labelOnTop="0" AllowMulti="0"/>
               </edittype>
-              <edittype widgetv2type="TextEdit" name="jetting_interval">
+              <edittype widgetv2type="TextEdit" name="ch_jetting_interval">
                 <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
               </edittype>
-              <edittype widgetv2type="TextEdit" name="pipe_length">
+              <edittype widgetv2type="TextEdit" name="ch_pipe_length">
                 <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
               </edittype>
-              <edittype widgetv2type="ValueRelation" name="usage_current">
+              <edittype widgetv2type="ValueRelation" name="ch_usage_current">
                 <widgetv2config AllowNull="0" OrderByValue="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_channel_usage_current" Value="value_en" labelOnTop="0" AllowMulti="0"/>
               </edittype>
-              <edittype widgetv2type="ValueRelation" name="usage_planned">
+              <edittype widgetv2type="ValueRelation" name="ch_usage_planned">
                 <widgetv2config AllowNull="0" OrderByValue="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" Layer="vl_channel_usage_planned" Value="value_en" labelOnTop="0" AllowMulti="0"/>
               </edittype>
               <edittype widgetv2type="TextEdit" name="ws_obj_id">
@@ -9642,17 +9642,17 @@ def my_form_open(dialog, layer, feature):
               <rules key="{b3f3f0a1-c8d2-4416-8d68-3de95a17bc02}">
                 <rule scalemaxdenom="2001" filter="width >= 300 and horizontal_positioning = 5378" key="{9e580459-8bfa-4f04-be8f-68986341bd8e}" symbol="0" label="Wide reaches, accurate positioning, scale &lt;=2000"/>
                 <rule scalemaxdenom="2001" filter="width >= 300 and horizontal_positioning &lt;> 5378" key="{a424a253-3ec2-46b0-9b46-a4a4cb732fb7}" symbol="1" label="Wide reaches, inaccurate positioning, scale &lt;=2000"/>
-                <rule scalemaxdenom="2001" filter="(width &lt; 300 OR width IS NULL) AND function_hierarchic IN (5068,5069,5070,5071) AND horizontal_positioning = 5378" key="{dd8104d5-d8fe-4f14-93dc-feb27d310ac3}" symbol="2" label="Narrow main reaches, accurate positioning, scale &lt;=2000"/>
-                <rule scalemaxdenom="2001" filter="(width &lt; 300 OR width IS NULL) AND function_hierarchic IN (5068,5069,5070,5071) AND horizontal_positioning &lt;> 5378" key="{1a35f8ac-80d4-4195-95e4-076f6dbe1ecc}" symbol="3" label="Narrow main reaches, inaccurate positioning, scale &lt;=2000"/>
-                <rule scalemaxdenom="2001" filter="(width &lt; 300 OR width IS NULL) AND function_hierarchic NOT IN (5068,5069,5070,5071) AND horizontal_positioning = 5378" key="{05072394-efd2-4299-abf8-f34a029a23a6}" symbol="4" label="Narrow minor reaches, accurate positioning, scale &lt;=2000"/>
-                <rule scalemaxdenom="2001" filter="(width &lt; 300 OR width IS NULL) AND function_hierarchic NOT IN (5068,5069,5070,5071) AND horizontal_positioning &lt;> 5378" key="{e1b5e5a1-8ad6-447d-9483-c38ab0e189e6}" symbol="5" label="Narrow minor reaches, inaccurate positioning, scale &lt;=2000"/>
+                <rule scalemaxdenom="2001" filter="(width &lt; 300 OR width IS NULL) AND ch_function_hierarchic IN (5068,5069,5070,5071) AND horizontal_positioning = 5378" key="{dd8104d5-d8fe-4f14-93dc-feb27d310ac3}" symbol="2" label="Narrow main reaches, accurate positioning, scale &lt;=2000"/>
+                <rule scalemaxdenom="2001" filter="(width &lt; 300 OR width IS NULL) AND ch_function_hierarchic IN (5068,5069,5070,5071) AND horizontal_positioning &lt;> 5378" key="{1a35f8ac-80d4-4195-95e4-076f6dbe1ecc}" symbol="3" label="Narrow main reaches, inaccurate positioning, scale &lt;=2000"/>
+                <rule scalemaxdenom="2001" filter="(width &lt; 300 OR width IS NULL) AND ch_function_hierarchic NOT IN (5068,5069,5070,5071) AND horizontal_positioning = 5378" key="{05072394-efd2-4299-abf8-f34a029a23a6}" symbol="4" label="Narrow minor reaches, accurate positioning, scale &lt;=2000"/>
+                <rule scalemaxdenom="2001" filter="(width &lt; 300 OR width IS NULL) AND ch_function_hierarchic NOT IN (5068,5069,5070,5071) AND horizontal_positioning &lt;> 5378" key="{e1b5e5a1-8ad6-447d-9483-c38ab0e189e6}" symbol="5" label="Narrow minor reaches, inaccurate positioning, scale &lt;=2000"/>
                 <rule scalemaxdenom="5001" filter="width >= 600 and horizontal_positioning = 5378" key="{37d45500-ee03-4438-8431-1f6c18bc8ac9}" symbol="6" scalemindenom="2001" label="Wide reaches, accurate positioning, scale 2000-5000"/>
                 <rule scalemaxdenom="5001" filter="width >= 600 and horizontal_positioning &lt;> 5378" key="{5085b144-096c-4a99-b901-c48d8ccab0de}" symbol="7" scalemindenom="2001" label="Wide reaches, inaccurate positioning, scale 2000-5000"/>
-                <rule scalemaxdenom="5001" filter="(width &lt; 600 OR width IS NULL) AND function_hierarchic IN (5068,5069,5070,5071) AND horizontal_positioning = 5378" key="{4d7a3723-99a5-420a-b1e6-ff0a12b8ede4}" symbol="8" scalemindenom="2001" label="Narrow main reaches, accurate positioning, scale 1000-3000"/>
-                <rule scalemaxdenom="5001" filter="(width &lt; 600 OR width IS NULL) AND function_hierarchic IN (5068,5069,5070,5071) AND horizontal_positioning &lt;> 5378" key="{551fba99-38e1-4d21-9007-1e1ebba2a1d8}" symbol="9" scalemindenom="2001" label="Narrow main reaches, inaccurate positioning, scale 1000-3000"/>
-                <rule scalemaxdenom="100000" filter="function_hierarchic IN (5068,5069,5070,5071) AND horizontal_positioning = 5378" key="{d0a8418c-2231-46eb-abe3-d840c2c67437}" symbol="10" scalemindenom="5001" label="Main reaches, accurate positioning, scale >5000"/>
-                <rule scalemaxdenom="100000" filter="function_hierarchic IN (5068,5069,5070,5071) AND horizontal_positioning &lt;> 5378" key="{c7db9a9a-3d0f-4ab1-b0d3-301987626cab}" symbol="11" scalemindenom="5001" label="Main reaches, accurate positioning, scale >5000"/>
-                <rule scalemaxdenom="2001" filter="function_hierarchic IS NULL or horizontal_positioning IS NULL" key="{7bf9a846-7dbb-4eed-aa7e-39a4ac741ff1}" symbol="12" label="Missing attributes"/>
+                <rule scalemaxdenom="5001" filter="(width &lt; 600 OR width IS NULL) AND ch_function_hierarchic IN (5068,5069,5070,5071) AND horizontal_positioning = 5378" key="{4d7a3723-99a5-420a-b1e6-ff0a12b8ede4}" symbol="8" scalemindenom="2001" label="Narrow main reaches, accurate positioning, scale 1000-3000"/>
+                <rule scalemaxdenom="5001" filter="(width &lt; 600 OR width IS NULL) AND ch_function_hierarchic IN (5068,5069,5070,5071) AND horizontal_positioning &lt;> 5378" key="{551fba99-38e1-4d21-9007-1e1ebba2a1d8}" symbol="9" scalemindenom="2001" label="Narrow main reaches, inaccurate positioning, scale 1000-3000"/>
+                <rule scalemaxdenom="100000" filter="ch_function_hierarchic IN (5068,5069,5070,5071) AND horizontal_positioning = 5378" key="{d0a8418c-2231-46eb-abe3-d840c2c67437}" symbol="10" scalemindenom="5001" label="Main reaches, accurate positioning, scale >5000"/>
+                <rule scalemaxdenom="100000" filter="ch_function_hierarchic IN (5068,5069,5070,5071) AND horizontal_positioning &lt;> 5378" key="{c7db9a9a-3d0f-4ab1-b0d3-301987626cab}" symbol="11" scalemindenom="5001" label="Main reaches, accurate positioning, scale >5000"/>
+                <rule scalemaxdenom="2001" filter="ch_function_hierarchic IS NULL or horizontal_positioning IS NULL" key="{7bf9a846-7dbb-4eed-aa7e-39a4ac741ff1}" symbol="12" label="Missing attributes"/>
               </rules>
               <symbols>
                 <symbol alpha="1" clip_to_extent="1" type="line" name="0">
@@ -10167,7 +10167,7 @@ def my_form_open(dialog, layer, feature):
                   <layer pass="0" class="SimpleLine" locked="0">
                     <prop k="capstyle" v="flat"/>
                     <prop k="color_dd_active" v="1"/>
-                    <prop k="color_dd_expression" v="CASE &#xa;  WHEN usage_current IN (4514, 4520) THEN '0,0,255,30' &#xa;  WHEN usage_current = 4516 THEN '0,255,0,30' &#xa;  WHEN usage_current = 4518 THEN '0,170,255,30' &#xa;  WHEN usage_current = 4522 THEN '102,0,102,30' &#xa;  WHEN usage_current IN (4524, 4526) THEN '255,0,0,30' &#xa;  ELSE '161,161,161,30' END"/>
+                    <prop k="color_dd_expression" v="CASE &#xa;  WHEN ch_usage_current IN (4514, 4520) THEN '0,0,255,30' &#xa;  WHEN ch_usage_current = 4516 THEN '0,255,0,30' &#xa;  WHEN ch_usage_current = 4518 THEN '0,170,255,30' &#xa;  WHEN ch_usage_current = 4522 THEN '102,0,102,30' &#xa;  WHEN ch_usage_current IN (4524, 4526) THEN '255,0,0,30' &#xa;  ELSE '161,161,161,30' END"/>
                     <prop k="color_dd_field" v=""/>
                     <prop k="color_dd_useexpr" v="1"/>
                     <prop k="customdash" v="5;2"/>
@@ -10357,9 +10357,9 @@ def my_form_open(dialog, layer, feature):
               <property key="labeling/bufferTransp" value="0"/>
               <property key="labeling/centroidInside" value="false"/>
               <property key="labeling/centroidWhole" value="false"/>
-              <property key="labeling/dataDefined/Color" value="1~~1~~CASE&#xa;  WHEN  usage_current IN (4514,4520) THEN '0,0,255,255' &#xa;  WHEN usage_current = 4516 THEN '0,255,0,255'&#xa;  WHEN usage_current = 4518 THEN '0,170,255,255'&#xa;  WHEN usage_current = 4522 THEN '102,0,102,255'&#xa;  WHEN usage_current IN (4524,4526) THEN '255,0,0,255'&#xa;ELSE '161,161,161,255'&#xa;END~~"/>
+              <property key="labeling/dataDefined/Color" value="1~~1~~CASE&#xa;  WHEN  ch_usage_current IN (4514,4520) THEN '0,0,255,255' &#xa;  WHEN ch_usage_current = 4516 THEN '0,255,0,255'&#xa;  WHEN ch_usage_current = 4518 THEN '0,170,255,255'&#xa;  WHEN ch_usage_current = 4522 THEN '102,0,102,255'&#xa;  WHEN ch_usage_current IN (4524,4526) THEN '255,0,0,255'&#xa;ELSE '161,161,161,255'&#xa;END~~"/>
               <property key="labeling/dataDefined/LabelDistance" value="1~~1~~COALESCE(width,0) / 2000.0 + 0.1~~"/>
-              <property key="labeling/dataDefined/Show" value="1~~1~~CASE WHEN $scale &lt;= 1000 THEN 1&#xa;ELSE&#xa; CASE WHEN function_hierarchic IN (5068,5069,5070,5071) THEN 1 ELSE 0 END&#xa;END~~"/>
+              <property key="labeling/dataDefined/Show" value="1~~1~~CASE WHEN $scale &lt;= 1000 THEN 1&#xa;ELSE&#xa; CASE WHEN ch_function_hierarchic IN (5068,5069,5070,5071) THEN 1 ELSE 0 END&#xa;END~~"/>
               <property key="labeling/decimals" value="3"/>
               <property key="labeling/displayAll" value="false"/>
               <property key="labeling/dist" value="0.29999999999999999"/>
@@ -10368,7 +10368,7 @@ def my_form_open(dialog, layer, feature):
               <property key="labeling/distMapUnitMinScale" value="0"/>
               <property key="labeling/drawLabels" value="true"/>
               <property key="labeling/enabled" value="true"/>
-              <property key="labeling/fieldName" value="CONCAT(&#xa;COALESCE(&quot;material_abbr_en&quot;|| ' ',''),&#xa;COALESCE(&quot;width&quot;||' ', ''),&#xa;COALESCE(&quot;length_effective&quot;|| 'm ', ''),&#xa;COALESCE(&quot;slope_per_mill&quot;||'‰','' )&#xa;)"/>
+              <property key="labeling/fieldName" value="CONCAT(&#xa;COALESCE(&quot;material_abbr_en&quot;|| ' ',''),&#xa;COALESCE(&quot;width&quot;||' ', ''),&#xa;COALESCE(&quot;length_effective&quot;|| 'm ', ''),&#xa;COALESCE(&quot;_slope_per_mill&quot;||'‰','' )&#xa;)"/>
               <property key="labeling/fitInPolygonOnly" value="false"/>
               <property key="labeling/fontBold" value="false"/>
               <property key="labeling/fontCapitals" value="0"/>
@@ -10530,7 +10530,7 @@ def my_form_open(dialog, layer, feature):
               <alias field="bedding_encasement" index="19" name=""/>
               <alias field="clear_height" index="1" name=""/>
               <alias field="coefficient_of_friction" index="3" name=""/>
-              <alias field="connection_type" index="21" name=""/>
+              <alias field="ch_connection_type" index="21" name=""/>
               <alias field="contract_section" index="29" name=""/>
               <alias field="elevation_determination" index="4" name=""/>
               <alias field="financing" index="30" name=""/>
@@ -10538,20 +10538,20 @@ def my_form_open(dialog, layer, feature):
               <alias field="fk_owner" index="44" name=""/>
               <alias field="fk_pipe_profile" index="18" name=""/>
               <alias field="fk_wastewater_structure" index="51" name=""/>
-              <alias field="function_hierarchic" index="20" name=""/>
-              <alias field="function_hydraulic" index="22" name=""/>
+              <alias field="ch_function_hierarchic" index="20" name=""/>
+              <alias field="ch_function_hydraulic" index="22" name=""/>
               <alias field="gross_costs" index="31" name=""/>
               <alias field="horizontal_positioning" index="5" name=""/>
               <alias field="identifier" index="46" name=""/>
               <alias field="inside_coating" index="6" name=""/>
               <alias field="inspection_interval" index="32" name=""/>
-              <alias field="jetting_interval" index="23" name=""/>
+              <alias field="ch_jetting_interval" index="23" name=""/>
               <alias field="last_modification" index="48" name=""/>
               <alias field="length_effective" index="7" name=""/>
               <alias field="location_name" index="33" name=""/>
               <alias field="material" index="9" name=""/>
               <alias field="obj_id" index="0" name=""/>
-              <alias field="pipe_length" index="24" name=""/>
+              <alias field="ch_pipe_length" index="24" name=""/>
               <alias field="progression_3d_geometry" index="10" name=""/>
               <alias field="records" index="34" name=""/>
               <alias field="reliner_material" index="11" name=""/>
@@ -10583,12 +10583,12 @@ def my_form_open(dialog, layer, feature):
               <alias field="rv_base_year" index="37" name=""/>
               <alias field="rv_construction_type" index="38" name=""/>
               <alias field="slope_building_plan" index="16" name=""/>
-              <alias field="slope_per_mill" index="8" name=""/>
+              <alias field="_slope_per_mill" index="8" name=""/>
               <alias field="status" index="39" name=""/>
               <alias field="structure_condition" index="40" name=""/>
               <alias field="subsidies" index="41" name=""/>
-              <alias field="usage_current" index="25" name=""/>
-              <alias field="usage_planned" index="26" name=""/>
+              <alias field="ch_usage_current" index="25" name=""/>
+              <alias field="ch_usage_planned" index="26" name=""/>
               <alias field="wall_roughness" index="17" name=""/>
               <alias field="width" index="2" name=""/>
               <alias field="ws_obj_id" index="27" name=""/>
@@ -10632,9 +10632,9 @@ def my_form_open(dialog, layer, feature):
                 <attributeEditorField index="55" name="rp_from_level"/>
                 <attributeEditorField index="66" name="rp_to_level"/>
                 <attributeEditorField index="5" name="horizontal_positioning"/>
-                <attributeEditorField index="20" name="function_hierarchic"/>
-                <attributeEditorField index="22" name="function_hydraulic"/>
-                <attributeEditorField index="25" name="usage_current"/>
+                <attributeEditorField index="20" name="ch_function_hierarchic"/>
+                <attributeEditorField index="22" name="ch_function_hydraulic"/>
+                <attributeEditorField index="25" name="ch_usage_current"/>
                 <attributeEditorField index="39" name="status"/>
                 <attributeEditorField index="42" name="year_of_construction"/>
                 <attributeEditorField index="47" name="remark"/>
@@ -10648,7 +10648,7 @@ def my_form_open(dialog, layer, feature):
                 <attributeEditorField index="5" name="horizontal_positioning"/>
                 <attributeEditorField index="6" name="inside_coating"/>
                 <attributeEditorField index="7" name="length_effective"/>
-                <attributeEditorField index="8" name="slope_per_mill"/>
+                <attributeEditorField index="8" name="_slope_per_mill"/>
                 <attributeEditorField index="9" name="material"/>
                 <attributeEditorField index="10" name="progression_3d_geometry"/>
                 <attributeEditorField index="11" name="reliner_material"/>
@@ -10668,13 +10668,13 @@ def my_form_open(dialog, layer, feature):
                 <attributeEditorField index="-1" name="provider"/>
               </attributeEditorContainer>
               <attributeEditorContainer name="Channel" columnCount="0">
-                <attributeEditorField index="20" name="function_hierarchic"/>
-                <attributeEditorField index="21" name="connection_type"/>
-                <attributeEditorField index="22" name="function_hydraulic"/>
-                <attributeEditorField index="23" name="jetting_interval"/>
-                <attributeEditorField index="24" name="pipe_length"/>
-                <attributeEditorField index="25" name="usage_current"/>
-                <attributeEditorField index="26" name="usage_planned"/>
+                <attributeEditorField index="20" name="ch_function_hierarchic"/>
+                <attributeEditorField index="21" name="ch_connection_type"/>
+                <attributeEditorField index="22" name="ch_function_hydraulic"/>
+                <attributeEditorField index="23" name="ch_jetting_interval"/>
+                <attributeEditorField index="24" name="ch_pipe_length"/>
+                <attributeEditorField index="25" name="ch_usage_current"/>
+                <attributeEditorField index="26" name="ch_usage_planned"/>
               </attributeEditorContainer>
               <attributeEditorContainer name="Wastewater Structure" columnCount="0">
                 <attributeEditorField index="27" name="ws_obj_id"/>
@@ -10763,7 +10763,7 @@ def my_form_open(dialog, layer, feature):
         <edittype widgetv2type="Range" name="length_effective">
           <widgetv2config AllowNull="1" fieldEditable="1" Step="10" constraint="" Style="SpinBox" labelOnTop="0" constraintDescription="" Min="0" notNull="0" Max="30000" Suffix=" m"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="slope_per_mill">
+        <edittype widgetv2type="TextEdit" name="_slope_per_mill">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="ValueRelation" name="material">
@@ -10796,25 +10796,25 @@ def my_form_open(dialog, layer, feature):
         <edittype widgetv2type="TextEdit" name="bedding_encasement">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="ValueRelation" name="function_hierarchic">
+        <edittype widgetv2type="ValueRelation" name="ch_function_hierarchic">
           <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_channel_function_hierarchic" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="ValueRelation" name="connection_type">
+        <edittype widgetv2type="ValueRelation" name="ch_connection_type">
           <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_channel_connection_type" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="ValueRelation" name="function_hydraulic">
+        <edittype widgetv2type="ValueRelation" name="ch_function_hydraulic">
           <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_channel_function_hydraulic" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="jetting_interval">
+        <edittype widgetv2type="TextEdit" name="ch_jetting_interval">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="pipe_length">
+        <edittype widgetv2type="TextEdit" name="ch_pipe_length">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="ValueRelation" name="usage_current">
+        <edittype widgetv2type="ValueRelation" name="ch_usage_current">
           <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_channel_usage_current" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="ValueRelation" name="usage_planned">
+        <edittype widgetv2type="ValueRelation" name="ch_usage_planned">
           <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_channel_usage_planned" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="ws_obj_id">
@@ -10981,24 +10981,24 @@ def my_form_open(dialog, layer, feature):
         <rules key="{b3f3f0a1-c8d2-4416-8d68-3de95a17bc02}">
           <rule scalemaxdenom="2001" filter="width >= 300 and horizontal_positioning = 5378" key="{9e580459-8bfa-4f04-be8f-68986341bd8e}" symbol="0" label="Wide reaches, accurate positioning, scale &lt;=2000"/>
           <rule scalemaxdenom="2001" filter="width >= 300 and horizontal_positioning &lt;> 5378" key="{a424a253-3ec2-46b0-9b46-a4a4cb732fb7}" symbol="1" label="Wide reaches, inaccurate positioning, scale &lt;=2000"/>
-          <rule scalemaxdenom="2001" filter="(width &lt; 300 OR width IS NULL) AND function_hierarchic IN (5068,5069,5070,5071) AND horizontal_positioning = 5378" key="{dd8104d5-d8fe-4f14-93dc-feb27d310ac3}" symbol="2" label="Narrow main reaches, accurate positioning, scale &lt;=2000"/>
-          <rule scalemaxdenom="2001" filter="(width &lt; 300 OR width IS NULL) AND function_hierarchic IN (5068,5069,5070,5071) AND horizontal_positioning &lt;> 5378" key="{1a35f8ac-80d4-4195-95e4-076f6dbe1ecc}" symbol="3" label="Narrow main reaches, inaccurate positioning, scale &lt;=2000"/>
-          <rule scalemaxdenom="2001" filter="(width &lt; 300 OR width IS NULL) AND function_hierarchic NOT IN (5068,5069,5070,5071) AND horizontal_positioning = 5378" key="{05072394-efd2-4299-abf8-f34a029a23a6}" symbol="4" label="Narrow minor reaches, accurate positioning, scale &lt;=2000"/>
-          <rule scalemaxdenom="2001" filter="(width &lt; 300 OR width IS NULL) AND function_hierarchic NOT IN (5068,5069,5070,5071) AND horizontal_positioning &lt;> 5378" key="{e1b5e5a1-8ad6-447d-9483-c38ab0e189e6}" symbol="5" label="Narrow minor reaches, inaccurate positioning, scale &lt;=2000"/>
+          <rule scalemaxdenom="2001" filter="(width &lt; 300 OR width IS NULL) AND ch_function_hierarchic IN (5068,5069,5070,5071) AND horizontal_positioning = 5378" key="{dd8104d5-d8fe-4f14-93dc-feb27d310ac3}" symbol="2" label="Narrow main reaches, accurate positioning, scale &lt;=2000"/>
+          <rule scalemaxdenom="2001" filter="(width &lt; 300 OR width IS NULL) AND ch_function_hierarchic IN (5068,5069,5070,5071) AND horizontal_positioning &lt;> 5378" key="{1a35f8ac-80d4-4195-95e4-076f6dbe1ecc}" symbol="3" label="Narrow main reaches, inaccurate positioning, scale &lt;=2000"/>
+          <rule scalemaxdenom="2001" filter="(width &lt; 300 OR width IS NULL) AND ch_function_hierarchic NOT IN (5068,5069,5070,5071) AND horizontal_positioning = 5378" key="{05072394-efd2-4299-abf8-f34a029a23a6}" symbol="4" label="Narrow minor reaches, accurate positioning, scale &lt;=2000"/>
+          <rule scalemaxdenom="2001" filter="(width &lt; 300 OR width IS NULL) AND ch_function_hierarchic NOT IN (5068,5069,5070,5071) AND horizontal_positioning &lt;> 5378" key="{e1b5e5a1-8ad6-447d-9483-c38ab0e189e6}" symbol="5" label="Narrow minor reaches, inaccurate positioning, scale &lt;=2000"/>
           <rule scalemaxdenom="5001" filter="width >= 600 and horizontal_positioning = 5378" key="{37d45500-ee03-4438-8431-1f6c18bc8ac9}" symbol="6" scalemindenom="2001" label="Wide reaches, accurate positioning, scale 2000-5000"/>
           <rule scalemaxdenom="5001" filter="width >= 600 and horizontal_positioning &lt;> 5378" key="{5085b144-096c-4a99-b901-c48d8ccab0de}" symbol="7" scalemindenom="2001" label="Wide reaches, inaccurate positioning, scale 2000-5000"/>
-          <rule scalemaxdenom="5001" filter="(width &lt; 600 OR width IS NULL) AND function_hierarchic IN (5068,5069,5070,5071) AND horizontal_positioning = 5378" key="{4d7a3723-99a5-420a-b1e6-ff0a12b8ede4}" symbol="8" scalemindenom="2001" label="Narrow main reaches, accurate positioning, scale 1000-3000"/>
-          <rule scalemaxdenom="5001" filter="(width &lt; 600 OR width IS NULL) AND function_hierarchic IN (5068,5069,5070,5071) AND horizontal_positioning &lt;> 5378" key="{551fba99-38e1-4d21-9007-1e1ebba2a1d8}" symbol="9" scalemindenom="2001" label="Narrow main reaches, inaccurate positioning, scale 1000-3000"/>
-          <rule scalemaxdenom="100000" filter="function_hierarchic IN (5068,5069,5070,5071) AND horizontal_positioning = 5378" key="{d0a8418c-2231-46eb-abe3-d840c2c67437}" symbol="10" scalemindenom="5001" label="Main reaches, accurate positioning, scale >5000"/>
-          <rule scalemaxdenom="100000" filter="function_hierarchic IN (5068,5069,5070,5071) AND horizontal_positioning &lt;> 5378" key="{c7db9a9a-3d0f-4ab1-b0d3-301987626cab}" symbol="11" scalemindenom="5001" label="Main reaches, accurate positioning, scale >5000"/>
-          <rule scalemaxdenom="2001" filter="function_hierarchic IS NULL or horizontal_positioning IS NULL" key="{7bf9a846-7dbb-4eed-aa7e-39a4ac741ff1}" symbol="12" label="Missing attributes"/>
+          <rule scalemaxdenom="5001" filter="(width &lt; 600 OR width IS NULL) AND ch_function_hierarchic IN (5068,5069,5070,5071) AND horizontal_positioning = 5378" key="{4d7a3723-99a5-420a-b1e6-ff0a12b8ede4}" symbol="8" scalemindenom="2001" label="Narrow main reaches, accurate positioning, scale 1000-3000"/>
+          <rule scalemaxdenom="5001" filter="(width &lt; 600 OR width IS NULL) AND ch_function_hierarchic IN (5068,5069,5070,5071) AND horizontal_positioning &lt;> 5378" key="{551fba99-38e1-4d21-9007-1e1ebba2a1d8}" symbol="9" scalemindenom="2001" label="Narrow main reaches, inaccurate positioning, scale 1000-3000"/>
+          <rule scalemaxdenom="100000" filter="ch_function_hierarchic IN (5068,5069,5070,5071) AND horizontal_positioning = 5378" key="{d0a8418c-2231-46eb-abe3-d840c2c67437}" symbol="10" scalemindenom="5001" label="Main reaches, accurate positioning, scale >5000"/>
+          <rule scalemaxdenom="100000" filter="ch_function_hierarchic IN (5068,5069,5070,5071) AND horizontal_positioning &lt;> 5378" key="{c7db9a9a-3d0f-4ab1-b0d3-301987626cab}" symbol="11" scalemindenom="5001" label="Main reaches, accurate positioning, scale >5000"/>
+          <rule scalemaxdenom="2001" filter="ch_function_hierarchic IS NULL or horizontal_positioning IS NULL" key="{7bf9a846-7dbb-4eed-aa7e-39a4ac741ff1}" symbol="12" label="Missing attributes"/>
         </rules>
         <symbols>
           <symbol alpha="1" clip_to_extent="1" type="line" name="0">
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="color_dd_active" v="1"/>
-              <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,30' WHEN usage_current = 4516 THEN '0,255,0,30' WHEN usage_current = 4518 THEN '0,170,255,30' WHEN usage_current = 4522 THEN '102,0,102,30' WHEN usage_current IN (4524, 4526) THEN '255,0,0,30' ELSE '161,161,161,30' END"/>
+              <prop k="color_dd_expression" v="CASE WHEN ch_usage_current IN (4514, 4520) THEN '0,0,255,30' WHEN ch_usage_current = 4516 THEN '0,255,0,30' WHEN ch_usage_current = 4518 THEN '0,170,255,30' WHEN ch_usage_current = 4522 THEN '102,0,102,30' WHEN ch_usage_current IN (4524, 4526) THEN '255,0,0,30' ELSE '161,161,161,30' END"/>
               <prop k="color_dd_field" v=""/>
               <prop k="color_dd_useexpr" v="1"/>
               <prop k="customdash" v="5;2"/>
@@ -11031,7 +11031,7 @@ def my_form_open(dialog, layer, feature):
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="color_dd_active" v="1"/>
-              <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN usage_current = 4516 THEN '0,255,0,255' WHEN usage_current = 4518 THEN '0,170,255,255' WHEN usage_current = 4522 THEN '102,0,102,255' WHEN usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_dd_expression" v="CASE WHEN ch_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN ch_usage_current = 4516 THEN '0,255,0,255' WHEN ch_usage_current = 4518 THEN '0,170,255,255' WHEN ch_usage_current = 4522 THEN '102,0,102,255' WHEN ch_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_dd_field" v=""/>
               <prop k="color_dd_useexpr" v="1"/>
               <prop k="customdash" v="5;2"/>
@@ -11064,7 +11064,7 @@ def my_form_open(dialog, layer, feature):
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="color_dd_active" v="1"/>
-              <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN usage_current = 4516 THEN '0,255,0,255' WHEN usage_current = 4518 THEN '0,170,255,255' WHEN usage_current = 4522 THEN '102,0,102,255' WHEN usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_dd_expression" v="CASE WHEN ch_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN ch_usage_current = 4516 THEN '0,255,0,255' WHEN ch_usage_current = 4518 THEN '0,170,255,255' WHEN ch_usage_current = 4522 THEN '102,0,102,255' WHEN ch_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_dd_field" v=""/>
               <prop k="color_dd_useexpr" v="1"/>
               <prop k="customdash" v="5;2"/>
@@ -11099,7 +11099,7 @@ def my_form_open(dialog, layer, feature):
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="color_dd_active" v="1"/>
-              <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,30' WHEN usage_current = 4516 THEN '0,255,0,30' WHEN usage_current = 4518 THEN '0,170,255,30' WHEN usage_current = 4522 THEN '102,0,102,30' WHEN usage_current IN (4524, 4526) THEN '255,0,0,30' ELSE '161,161,161,30' END"/>
+              <prop k="color_dd_expression" v="CASE WHEN ch_usage_current IN (4514, 4520) THEN '0,0,255,30' WHEN ch_usage_current = 4516 THEN '0,255,0,30' WHEN ch_usage_current = 4518 THEN '0,170,255,30' WHEN ch_usage_current = 4522 THEN '102,0,102,30' WHEN ch_usage_current IN (4524, 4526) THEN '255,0,0,30' ELSE '161,161,161,30' END"/>
               <prop k="color_dd_field" v=""/>
               <prop k="color_dd_useexpr" v="1"/>
               <prop k="customdash" v="5;2"/>
@@ -11132,7 +11132,7 @@ def my_form_open(dialog, layer, feature):
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="color_dd_active" v="1"/>
-              <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN usage_current = 4516 THEN '0,255,0,255' WHEN usage_current = 4518 THEN '0,170,255,255' WHEN usage_current = 4522 THEN '102,0,102,255' WHEN usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_dd_expression" v="CASE WHEN ch_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN ch_usage_current = 4516 THEN '0,255,0,255' WHEN ch_usage_current = 4518 THEN '0,170,255,255' WHEN ch_usage_current = 4522 THEN '102,0,102,255' WHEN ch_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_dd_field" v=""/>
               <prop k="color_dd_useexpr" v="1"/>
               <prop k="customdash" v="1.5;1"/>
@@ -11165,7 +11165,7 @@ def my_form_open(dialog, layer, feature):
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="color_dd_active" v="1"/>
-              <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN usage_current = 4516 THEN '0,255,0,255' WHEN usage_current = 4518 THEN '0,170,255,255' WHEN usage_current = 4522 THEN '102,0,102,255' WHEN usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_dd_expression" v="CASE WHEN ch_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN ch_usage_current = 4516 THEN '0,255,0,255' WHEN ch_usage_current = 4518 THEN '0,170,255,255' WHEN ch_usage_current = 4522 THEN '102,0,102,255' WHEN ch_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_dd_field" v=""/>
               <prop k="color_dd_useexpr" v="1"/>
               <prop k="customdash" v="1.5;1"/>
@@ -11200,7 +11200,7 @@ def my_form_open(dialog, layer, feature):
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="color_dd_active" v="1"/>
-              <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN usage_current = 4516 THEN '0,255,0,255' WHEN usage_current = 4518 THEN '0,170,255,255' WHEN usage_current = 4522 THEN '102,0,102,255' WHEN usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_dd_expression" v="CASE WHEN ch_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN ch_usage_current = 4516 THEN '0,255,0,255' WHEN ch_usage_current = 4518 THEN '0,170,255,255' WHEN ch_usage_current = 4522 THEN '102,0,102,255' WHEN ch_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_dd_field" v=""/>
               <prop k="color_dd_useexpr" v="1"/>
               <prop k="customdash" v="5;2"/>
@@ -11231,7 +11231,7 @@ def my_form_open(dialog, layer, feature):
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="color_dd_active" v="1"/>
-              <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN usage_current = 4516 THEN '0,255,0,255' WHEN usage_current = 4518 THEN '0,170,255,255' WHEN usage_current = 4522 THEN '102,0,102,255' WHEN usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_dd_expression" v="CASE WHEN ch_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN ch_usage_current = 4516 THEN '0,255,0,255' WHEN ch_usage_current = 4518 THEN '0,170,255,255' WHEN ch_usage_current = 4522 THEN '102,0,102,255' WHEN ch_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_dd_field" v=""/>
               <prop k="color_dd_useexpr" v="1"/>
               <prop k="customdash" v="1.5;1"/>
@@ -11281,7 +11281,7 @@ def my_form_open(dialog, layer, feature):
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="color_dd_active" v="1"/>
-              <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN usage_current = 4516 THEN '0,255,0,255' WHEN usage_current = 4518 THEN '0,170,255,255' WHEN usage_current = 4522 THEN '102,0,102,255' WHEN usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_dd_expression" v="CASE WHEN ch_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN ch_usage_current = 4516 THEN '0,255,0,255' WHEN ch_usage_current = 4518 THEN '0,170,255,255' WHEN ch_usage_current = 4522 THEN '102,0,102,255' WHEN ch_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_dd_field" v=""/>
               <prop k="color_dd_useexpr" v="1"/>
               <prop k="customdash" v="5;2"/>
@@ -11312,7 +11312,7 @@ def my_form_open(dialog, layer, feature):
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="color_dd_active" v="1"/>
-              <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN usage_current = 4516 THEN '0,255,0,255' WHEN usage_current = 4518 THEN '0,170,255,255' WHEN usage_current = 4522 THEN '102,0,102,255' WHEN usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_dd_expression" v="CASE WHEN ch_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN ch_usage_current = 4516 THEN '0,255,0,255' WHEN ch_usage_current = 4518 THEN '0,170,255,255' WHEN ch_usage_current = 4522 THEN '102,0,102,255' WHEN ch_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_dd_field" v=""/>
               <prop k="color_dd_useexpr" v="1"/>
               <prop k="customdash" v="1.5;1"/>
@@ -11343,7 +11343,7 @@ def my_form_open(dialog, layer, feature):
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="color_dd_active" v="1"/>
-              <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN usage_current = 4516 THEN '0,255,0,255' WHEN usage_current = 4518 THEN '0,170,255,255' WHEN usage_current = 4522 THEN '102,0,102,255' WHEN usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_dd_expression" v="CASE WHEN ch_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN ch_usage_current = 4516 THEN '0,255,0,255' WHEN ch_usage_current = 4518 THEN '0,170,255,255' WHEN ch_usage_current = 4522 THEN '102,0,102,255' WHEN ch_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_dd_field" v=""/>
               <prop k="color_dd_useexpr" v="1"/>
               <prop k="customdash" v="5;2"/>
@@ -11374,7 +11374,7 @@ def my_form_open(dialog, layer, feature):
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="color_dd_active" v="1"/>
-              <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN usage_current = 4516 THEN '0,255,0,255' WHEN usage_current = 4518 THEN '0,170,255,255' WHEN usage_current = 4522 THEN '102,0,102,255' WHEN usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_dd_expression" v="CASE WHEN ch_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN ch_usage_current = 4516 THEN '0,255,0,255' WHEN ch_usage_current = 4518 THEN '0,170,255,255' WHEN ch_usage_current = 4522 THEN '102,0,102,255' WHEN ch_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_dd_field" v=""/>
               <prop k="color_dd_useexpr" v="1"/>
               <prop k="customdash" v="1.5;1"/>
@@ -11405,7 +11405,7 @@ def my_form_open(dialog, layer, feature):
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="color_dd_active" v="1"/>
-              <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,30' WHEN usage_current = 4516 THEN '0,255,0,30' WHEN usage_current = 4518 THEN '0,170,255,30' WHEN usage_current = 4522 THEN '102,0,102,30' WHEN usage_current IN (4524, 4526) THEN '255,0,0,30' ELSE '161,161,161,30' END"/>
+              <prop k="color_dd_expression" v="CASE WHEN ch_usage_current IN (4514, 4520) THEN '0,0,255,30' WHEN ch_usage_current = 4516 THEN '0,255,0,30' WHEN ch_usage_current = 4518 THEN '0,170,255,30' WHEN ch_usage_current = 4522 THEN '102,0,102,30' WHEN ch_usage_current IN (4524, 4526) THEN '255,0,0,30' ELSE '161,161,161,30' END"/>
               <prop k="color_dd_field" v=""/>
               <prop k="color_dd_useexpr" v="1"/>
               <prop k="customdash" v="5;2"/>
@@ -11438,7 +11438,7 @@ def my_form_open(dialog, layer, feature):
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="color_dd_active" v="1"/>
-              <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN usage_current = 4516 THEN '0,255,0,255' WHEN usage_current = 4518 THEN '0,170,255,255' WHEN usage_current = 4522 THEN '102,0,102,255' WHEN usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_dd_expression" v="CASE WHEN ch_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN ch_usage_current = 4516 THEN '0,255,0,255' WHEN ch_usage_current = 4518 THEN '0,170,255,255' WHEN ch_usage_current = 4522 THEN '102,0,102,255' WHEN ch_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_dd_field" v=""/>
               <prop k="color_dd_useexpr" v="1"/>
               <prop k="customdash" v="5;2"/>
@@ -11471,7 +11471,7 @@ def my_form_open(dialog, layer, feature):
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="color_dd_active" v="1"/>
-              <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN usage_current = 4516 THEN '0,255,0,255' WHEN usage_current = 4518 THEN '0,170,255,255' WHEN usage_current = 4522 THEN '102,0,102,255' WHEN usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_dd_expression" v="CASE WHEN ch_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN ch_usage_current = 4516 THEN '0,255,0,255' WHEN ch_usage_current = 4518 THEN '0,170,255,255' WHEN ch_usage_current = 4522 THEN '102,0,102,255' WHEN ch_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_dd_field" v=""/>
               <prop k="color_dd_useexpr" v="1"/>
               <prop k="customdash" v="5;2"/>
@@ -11506,7 +11506,7 @@ def my_form_open(dialog, layer, feature):
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="color_dd_active" v="1"/>
-              <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,30' WHEN usage_current = 4516 THEN '0,255,0,30' WHEN usage_current = 4518 THEN '0,170,255,30' WHEN usage_current = 4522 THEN '102,0,102,30' WHEN usage_current IN (4524, 4526) THEN '255,0,0,30' ELSE '161,161,161,30' END"/>
+              <prop k="color_dd_expression" v="CASE WHEN ch_usage_current IN (4514, 4520) THEN '0,0,255,30' WHEN ch_usage_current = 4516 THEN '0,255,0,30' WHEN ch_usage_current = 4518 THEN '0,170,255,30' WHEN ch_usage_current = 4522 THEN '102,0,102,30' WHEN ch_usage_current IN (4524, 4526) THEN '255,0,0,30' ELSE '161,161,161,30' END"/>
               <prop k="color_dd_field" v=""/>
               <prop k="color_dd_useexpr" v="1"/>
               <prop k="customdash" v="5;2"/>
@@ -11539,7 +11539,7 @@ def my_form_open(dialog, layer, feature):
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="color_dd_active" v="1"/>
-              <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN usage_current = 4516 THEN '0,255,0,255' WHEN usage_current = 4518 THEN '0,170,255,255' WHEN usage_current = 4522 THEN '102,0,102,255' WHEN usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_dd_expression" v="CASE WHEN ch_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN ch_usage_current = 4516 THEN '0,255,0,255' WHEN ch_usage_current = 4518 THEN '0,170,255,255' WHEN ch_usage_current = 4522 THEN '102,0,102,255' WHEN ch_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_dd_field" v=""/>
               <prop k="color_dd_useexpr" v="1"/>
               <prop k="customdash" v="1.5;1"/>
@@ -11572,7 +11572,7 @@ def my_form_open(dialog, layer, feature):
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="color_dd_active" v="1"/>
-              <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN usage_current = 4516 THEN '0,255,0,255' WHEN usage_current = 4518 THEN '0,170,255,255' WHEN usage_current = 4522 THEN '102,0,102,255' WHEN usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_dd_expression" v="CASE WHEN ch_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN ch_usage_current = 4516 THEN '0,255,0,255' WHEN ch_usage_current = 4518 THEN '0,170,255,255' WHEN ch_usage_current = 4522 THEN '102,0,102,255' WHEN ch_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_dd_field" v=""/>
               <prop k="color_dd_useexpr" v="1"/>
               <prop k="customdash" v="1.5;1"/>
@@ -11607,7 +11607,7 @@ def my_form_open(dialog, layer, feature):
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="color_dd_active" v="1"/>
-              <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN usage_current = 4516 THEN '0,255,0,255' WHEN usage_current = 4518 THEN '0,170,255,255' WHEN usage_current = 4522 THEN '102,0,102,255' WHEN usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_dd_expression" v="CASE WHEN ch_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN ch_usage_current = 4516 THEN '0,255,0,255' WHEN ch_usage_current = 4518 THEN '0,170,255,255' WHEN ch_usage_current = 4522 THEN '102,0,102,255' WHEN ch_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_dd_field" v=""/>
               <prop k="color_dd_useexpr" v="1"/>
               <prop k="customdash" v="5;2"/>
@@ -11638,7 +11638,7 @@ def my_form_open(dialog, layer, feature):
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="flat"/>
               <prop k="color_dd_active" v="1"/>
-              <prop k="color_dd_expression" v="CASE WHEN usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN usage_current = 4516 THEN '0,255,0,255' WHEN usage_current = 4518 THEN '0,170,255,255' WHEN usage_current = 4522 THEN '102,0,102,255' WHEN usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_dd_expression" v="CASE WHEN ch_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN ch_usage_current = 4516 THEN '0,255,0,255' WHEN ch_usage_current = 4518 THEN '0,170,255,255' WHEN ch_usage_current = 4522 THEN '102,0,102,255' WHEN ch_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_dd_field" v=""/>
               <prop k="color_dd_useexpr" v="1"/>
               <prop k="customdash" v="1.5;1"/>
@@ -11698,9 +11698,9 @@ def my_form_open(dialog, layer, feature):
         <property key="labeling/bufferTransp" value="0"/>
         <property key="labeling/centroidInside" value="false"/>
         <property key="labeling/centroidWhole" value="false"/>
-        <property key="labeling/dataDefined/Color" value="1~~1~~CASE&#xa;  WHEN  usage_current IN (4514,4520) THEN '0,0,255,255' &#xa;  WHEN usage_current = 4516 THEN '0,255,0,255'&#xa;  WHEN usage_current = 4518 THEN '0,170,255,255'&#xa;  WHEN usage_current = 4522 THEN '102,0,102,255'&#xa;  WHEN usage_current IN (4524,4526) THEN '255,0,0,255'&#xa;ELSE '161,161,161,255'&#xa;END~~"/>
+        <property key="labeling/dataDefined/Color" value="1~~1~~CASE&#xa;  WHEN  ch_usage_current IN (4514,4520) THEN '0,0,255,255' &#xa;  WHEN ch_usage_current = 4516 THEN '0,255,0,255'&#xa;  WHEN ch_usage_current = 4518 THEN '0,170,255,255'&#xa;  WHEN ch_usage_current = 4522 THEN '102,0,102,255'&#xa;  WHEN ch_usage_current IN (4524,4526) THEN '255,0,0,255'&#xa;ELSE '161,161,161,255'&#xa;END~~"/>
         <property key="labeling/dataDefined/LabelDistance" value="1~~1~~COALESCE(width,0) / 2000.0 + 0.1~~"/>
-        <property key="labeling/dataDefined/Show" value="1~~1~~CASE WHEN $scale &lt;= 1000 THEN 1&#xa;ELSE&#xa; CASE WHEN function_hierarchic IN (5068,5069,5070,5071) THEN 1 ELSE 0 END&#xa;END~~"/>
+        <property key="labeling/dataDefined/Show" value="1~~1~~CASE WHEN $scale &lt;= 1000 THEN 1&#xa;ELSE&#xa; CASE WHEN ch_function_hierarchic IN (5068,5069,5070,5071) THEN 1 ELSE 0 END&#xa;END~~"/>
         <property key="labeling/decimals" value="3"/>
         <property key="labeling/displayAll" value="false"/>
         <property key="labeling/dist" value="0.3"/>
@@ -11710,7 +11710,7 @@ def my_form_open(dialog, layer, feature):
         <property key="labeling/distMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="labeling/drawLabels" value="true"/>
         <property key="labeling/enabled" value="true"/>
-        <property key="labeling/fieldName" value="CONCAT(&#xa;COALESCE(&quot;material_abbr_en&quot;|| ' ',''),&#xa;COALESCE(&quot;width&quot;||' ', ''),&#xa;COALESCE(&quot;length_effective&quot;|| 'm ', ''),&#xa;COALESCE(&quot;slope_per_mill&quot;||'‰','' )&#xa;)"/>
+        <property key="labeling/fieldName" value="CONCAT(&#xa;COALESCE(&quot;material_abbr_en&quot;|| ' ',''),&#xa;COALESCE(&quot;width&quot;||' ', ''),&#xa;COALESCE(&quot;length_effective&quot;|| 'm ', ''),&#xa;COALESCE(&quot;_slope_per_mill&quot;||'‰','' )&#xa;)"/>
         <property key="labeling/fitInPolygonOnly" value="false"/>
         <property key="labeling/fontBold" value="false"/>
         <property key="labeling/fontCapitals" value="0"/>
@@ -11909,7 +11909,7 @@ def my_form_open(dialog, layer, feature):
         <alias field="horizontal_positioning" index="5" name=""/>
         <alias field="inside_coating" index="6" name=""/>
         <alias field="length_effective" index="7" name=""/>
-        <alias field="slope_per_mill" index="8" name=""/>
+        <alias field="_slope_per_mill" index="8" name=""/>
         <alias field="material" index="9" name=""/>
         <alias field="reliner_material" index="10" name=""/>
         <alias field="reliner_nominal_size" index="11" name=""/>
@@ -11920,13 +11920,13 @@ def my_form_open(dialog, layer, feature):
         <alias field="wall_roughness" index="16" name=""/>
         <alias field="fk_pipe_profile" index="17" name=""/>
         <alias field="bedding_encasement" index="18" name=""/>
-        <alias field="function_hierarchic" index="19" name=""/>
-        <alias field="connection_type" index="20" name=""/>
-        <alias field="function_hydraulic" index="21" name=""/>
-        <alias field="jetting_interval" index="22" name=""/>
-        <alias field="pipe_length" index="23" name=""/>
-        <alias field="usage_current" index="24" name=""/>
-        <alias field="usage_planned" index="25" name=""/>
+        <alias field="ch_function_hierarchic" index="19" name=""/>
+        <alias field="ch_connection_type" index="20" name=""/>
+        <alias field="ch_function_hydraulic" index="21" name=""/>
+        <alias field="ch_jetting_interval" index="22" name=""/>
+        <alias field="ch_pipe_length" index="23" name=""/>
+        <alias field="ch_usage_current" index="24" name=""/>
+        <alias field="ch_usage_planned" index="25" name=""/>
         <alias field="ws_obj_id" index="26" name=""/>
         <alias field="accessibility" index="27" name=""/>
         <alias field="contract_section" index="28" name=""/>
@@ -11996,7 +11996,7 @@ def my_form_open(dialog, layer, feature):
           <column width="-1" hidden="0" type="field" name="horizontal_positioning"/>
           <column width="-1" hidden="0" type="field" name="inside_coating"/>
           <column width="-1" hidden="0" type="field" name="length_effective"/>
-          <column width="-1" hidden="0" type="field" name="slope_per_mill"/>
+          <column width="-1" hidden="0" type="field" name="_slope_per_mill"/>
           <column width="-1" hidden="0" type="field" name="material"/>
           <column width="-1" hidden="0" type="field" name="reliner_material"/>
           <column width="-1" hidden="0" type="field" name="reliner_nominal_size"/>
@@ -12007,13 +12007,13 @@ def my_form_open(dialog, layer, feature):
           <column width="-1" hidden="0" type="field" name="wall_roughness"/>
           <column width="-1" hidden="0" type="field" name="fk_pipe_profile"/>
           <column width="-1" hidden="0" type="field" name="bedding_encasement"/>
-          <column width="-1" hidden="0" type="field" name="function_hierarchic"/>
-          <column width="-1" hidden="0" type="field" name="connection_type"/>
-          <column width="-1" hidden="0" type="field" name="function_hydraulic"/>
-          <column width="-1" hidden="0" type="field" name="jetting_interval"/>
-          <column width="-1" hidden="0" type="field" name="pipe_length"/>
-          <column width="-1" hidden="0" type="field" name="usage_current"/>
-          <column width="-1" hidden="0" type="field" name="usage_planned"/>
+          <column width="-1" hidden="0" type="field" name="ch_function_hierarchic"/>
+          <column width="-1" hidden="0" type="field" name="ch_connection_type"/>
+          <column width="-1" hidden="0" type="field" name="ch_function_hydraulic"/>
+          <column width="-1" hidden="0" type="field" name="ch_jetting_interval"/>
+          <column width="-1" hidden="0" type="field" name="ch_pipe_length"/>
+          <column width="-1" hidden="0" type="field" name="ch_usage_current"/>
+          <column width="-1" hidden="0" type="field" name="ch_usage_planned"/>
           <column width="-1" hidden="0" type="field" name="ws_obj_id"/>
           <column width="-1" hidden="0" type="field" name="accessibility"/>
           <column width="-1" hidden="0" type="field" name="contract_section"/>
@@ -12097,10 +12097,10 @@ def my_form_open(dialog, layer, feature):
           <attributeEditorField showLabel="1" index="45" name="identifier"/>
           <attributeEditorField showLabel="1" index="1" name="clear_height"/>
           <attributeEditorField showLabel="1" index="9" name="material"/>
-          <attributeEditorField showLabel="1" index="24" name="usage_current"/>
+          <attributeEditorField showLabel="1" index="24" name="ch_usage_current"/>
           <attributeEditorField showLabel="1" index="5" name="horizontal_positioning"/>
-          <attributeEditorField showLabel="1" index="19" name="function_hierarchic"/>
-          <attributeEditorField showLabel="1" index="21" name="function_hydraulic"/>
+          <attributeEditorField showLabel="1" index="19" name="ch_function_hierarchic"/>
+          <attributeEditorField showLabel="1" index="21" name="ch_function_hydraulic"/>
           <attributeEditorField showLabel="1" index="38" name="status"/>
           <attributeEditorField showLabel="1" index="41" name="year_of_construction"/>
           <attributeEditorField showLabel="1" index="43" name="fk_owner"/>
@@ -12126,7 +12126,7 @@ def my_form_open(dialog, layer, feature):
           <attributeEditorField showLabel="1" index="16" name="wall_roughness"/>
           <attributeEditorField showLabel="1" index="6" name="inside_coating"/>
           <attributeEditorField showLabel="1" index="7" name="length_effective"/>
-          <attributeEditorField showLabel="1" index="8" name="slope_per_mill"/>
+          <attributeEditorField showLabel="1" index="8" name="_slope_per_mill"/>
           <attributeEditorField showLabel="1" index="15" name="slope_building_plan"/>
           <attributeEditorField showLabel="1" index="10" name="reliner_material"/>
           <attributeEditorField showLabel="1" index="11" name="reliner_nominal_size"/>
@@ -12142,13 +12142,13 @@ def my_form_open(dialog, layer, feature):
           <attributeEditorField showLabel="1" index="-1" name="provider"/>
         </attributeEditorContainer>
         <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Channel" groupBox="0" columnCount="0">
-          <attributeEditorField showLabel="1" index="24" name="usage_current"/>
-          <attributeEditorField showLabel="1" index="25" name="usage_planned"/>
-          <attributeEditorField showLabel="1" index="19" name="function_hierarchic"/>
-          <attributeEditorField showLabel="1" index="21" name="function_hydraulic"/>
-          <attributeEditorField showLabel="1" index="20" name="connection_type"/>
-          <attributeEditorField showLabel="1" index="22" name="jetting_interval"/>
-          <attributeEditorField showLabel="1" index="23" name="pipe_length"/>
+          <attributeEditorField showLabel="1" index="24" name="ch_usage_current"/>
+          <attributeEditorField showLabel="1" index="25" name="ch_usage_planned"/>
+          <attributeEditorField showLabel="1" index="19" name="ch_function_hierarchic"/>
+          <attributeEditorField showLabel="1" index="21" name="ch_function_hydraulic"/>
+          <attributeEditorField showLabel="1" index="20" name="ch_connection_type"/>
+          <attributeEditorField showLabel="1" index="22" name="ch_jetting_interval"/>
+          <attributeEditorField showLabel="1" index="23" name="ch_pipe_length"/>
         </attributeEditorContainer>
         <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Wastewater Structure" groupBox="0" columnCount="2">
           <attributeEditorField showLabel="1" index="26" name="ws_obj_id"/>
@@ -12231,7 +12231,7 @@ def my_form_open(dialog, layer, feature):
         <default field="horizontal_positioning" expression=""/>
         <default field="inside_coating" expression=""/>
         <default field="length_effective" expression=""/>
-        <default field="slope_per_mill" expression=""/>
+        <default field="_slope_per_mill" expression=""/>
         <default field="material" expression=""/>
         <default field="reliner_material" expression=""/>
         <default field="reliner_nominal_size" expression=""/>
@@ -12242,13 +12242,13 @@ def my_form_open(dialog, layer, feature):
         <default field="wall_roughness" expression=""/>
         <default field="fk_pipe_profile" expression=""/>
         <default field="bedding_encasement" expression=""/>
-        <default field="function_hierarchic" expression=""/>
-        <default field="connection_type" expression=""/>
-        <default field="function_hydraulic" expression=""/>
-        <default field="jetting_interval" expression=""/>
-        <default field="pipe_length" expression=""/>
-        <default field="usage_current" expression=""/>
-        <default field="usage_planned" expression=""/>
+        <default field="ch_function_hierarchic" expression=""/>
+        <default field="ch_connection_type" expression=""/>
+        <default field="ch_function_hydraulic" expression=""/>
+        <default field="ch_jetting_interval" expression=""/>
+        <default field="ch_pipe_length" expression=""/>
+        <default field="ch_usage_current" expression=""/>
+        <default field="ch_usage_planned" expression=""/>
         <default field="ws_obj_id" expression=""/>
         <default field="accessibility" expression=""/>
         <default field="contract_section" expression=""/>
