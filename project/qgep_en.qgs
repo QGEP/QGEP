@@ -12341,40 +12341,40 @@ def my_form_open(dialog, layer, feature):
         <edittype widgetv2type="TextEdit" name="obj_id">
           <widgetv2config IsMultiline="0" fieldEditable="0" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="UniqueValues" name="brand">
+        <edittype widgetv2type="UniqueValues" name="co_brand">
           <widgetv2config fieldEditable="1" constraint="" labelOnTop="0" constraintDescription="" notNull="0" Editable="1"/>
         </edittype>
-        <edittype widgetv2type="ValueRelation" name="cover_shape">
+        <edittype widgetv2type="ValueRelation" name="co_shape">
           <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_cover_cover_shape" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="Range" name="diameter">
+        <edittype widgetv2type="Range" name="co_diameter">
           <widgetv2config AllowNull="1" fieldEditable="1" Step="10" constraint="" Style="SpinBox" labelOnTop="0" constraintDescription="" Min="0" notNull="0" Max="4000" Suffix=" mm"/>
         </edittype>
-        <edittype widgetv2type="ValueRelation" name="fastening">
+        <edittype widgetv2type="ValueRelation" name="co_fastening">
           <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_cover_fastening" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="Range" name="level">
+        <edittype widgetv2type="Range" name="co_level">
           <widgetv2config AllowNull="1" fieldEditable="1" Step="10" constraint="" Style="SpinBox" labelOnTop="0" constraintDescription="Level must not be NULL" Min="0" notNull="0" Max="4000" Suffix=" m.a.s.l."/>
         </edittype>
-        <edittype widgetv2type="ValueRelation" name="cover_material">
+        <edittype widgetv2type="ValueRelation" name="co_material">
           <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_cover_material" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="ValueRelation" name="positional_accuracy">
+        <edittype widgetv2type="ValueRelation" name="co_positional_accuracy">
           <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_cover_positional_accuracy20151117153235900" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="ValueRelation" name="sludge_bucket">
+        <edittype widgetv2type="ValueRelation" name="co_sludge_bucket">
           <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_cover_sludge_bucket" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="ValueRelation" name="venting">
+        <edittype widgetv2type="ValueRelation" name="co_venting">
           <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_cover_venting" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="co_identifier">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="remark">
+        <edittype widgetv2type="TextEdit" name="co_remark">
           <widgetv2config IsMultiline="1" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="ValueRelation" name="renovation_demand">
+        <edittype widgetv2type="ValueRelation" name="co_renovation_demand">
           <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_structure_part_renovation_demand" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
         <edittype widgetv2type="DateTime" name="last_modification">
@@ -12400,61 +12400,61 @@ def my_form_open(dialog, layer, feature):
         <edittype widgetv2type="TextEdit" name="identifier">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="ValueRelation" name="accessibility">
+        <edittype widgetv2type="ValueRelation" name="ws_accessibility">
           <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_wastewater_structure_accessibility" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="contract_section">
+        <edittype widgetv2type="TextEdit" name="ws_contract_section">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="ValueRelation" name="financing">
+        <edittype widgetv2type="ValueRelation" name="ws_financing">
           <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_wastewater_structure_financing" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="Range" name="gross_costs">
+        <edittype widgetv2type="Range" name="ws_gross_costs">
           <widgetv2config AllowNull="1" fieldEditable="1" Step="1" constraint="" Style="SpinBox" labelOnTop="0" constraintDescription="" Min="0" notNull="0" Max="9999999.99" Suffix=" CHF"/>
         </edittype>
-        <edittype widgetv2type="Range" name="inspection_interval">
+        <edittype widgetv2type="Range" name="ws_inspection_interval">
           <widgetv2config AllowNull="1" fieldEditable="1" Step="1" constraint="" Style="SpinBox" labelOnTop="0" constraintDescription="" Min="0" notNull="0" Max="20" Suffix=" years"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="location_name">
+        <edittype widgetv2type="TextEdit" name="ws_location_name">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="records">
+        <edittype widgetv2type="TextEdit" name="ws_records">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="ws_remark">
           <widgetv2config IsMultiline="1" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="ValueRelation" name="renovation_necessity">
+        <edittype widgetv2type="ValueRelation" name="ws_renovation_necessity">
           <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_wastewater_structure_renovation_necessity" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="Range" name="replacement_value">
+        <edittype widgetv2type="Range" name="ws_replacement_value">
           <widgetv2config AllowNull="1" fieldEditable="1" Step="1" constraint="" Style="SpinBox" labelOnTop="0" constraintDescription="" Min="0" notNull="0" Max="9999999.99" Suffix=" CHF"/>
         </edittype>
-        <edittype widgetv2type="Range" name="rv_base_year">
+        <edittype widgetv2type="Range" name="ws_rv_base_year">
           <widgetv2config AllowNull="1" fieldEditable="1" Step="1" constraint="" Style="SpinBox" labelOnTop="0" constraintDescription="" Min="1800" notNull="0" Max="2900"/>
         </edittype>
-        <edittype widgetv2type="ValueRelation" name="rv_construction_type">
+        <edittype widgetv2type="ValueRelation" name="ws_rv_construction_type">
           <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_wastewater_structure_rv_construction_type" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="ValueRelation" name="status">
+        <edittype widgetv2type="ValueRelation" name="ws_status">
           <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_wastewater_structure_status" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="ValueRelation" name="structure_condition">
+        <edittype widgetv2type="ValueRelation" name="ws_structure_condition">
           <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_wastewater_structure_structure_condition" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="Range" name="subsidies">
+        <edittype widgetv2type="Range" name="ws_subsidies">
           <widgetv2config AllowNull="1" fieldEditable="1" Step="1" constraint="" Style="SpinBox" labelOnTop="0" constraintDescription="" Min="0" notNull="0" Max="9999999.99" Suffix=" CHF"/>
         </edittype>
-        <edittype widgetv2type="Range" name="year_of_construction">
+        <edittype widgetv2type="Range" name="ws_year_of_construction">
           <widgetv2config AllowNull="1" fieldEditable="1" Step="1" constraint="" Style="SpinBox" labelOnTop="0" constraintDescription="" Min="1900" notNull="0" Max="2200"/>
         </edittype>
-        <edittype widgetv2type="Range" name="year_of_replacement">
+        <edittype widgetv2type="Range" name="ws_year_of_replacement">
           <widgetv2config AllowNull="1" fieldEditable="1" Step="1" constraint="" Style="SpinBox" labelOnTop="0" constraintDescription="" Min="1900" notNull="0" Max="2200"/>
         </edittype>
-        <edittype widgetv2type="RelationReference" name="fk_owner">
+        <edittype widgetv2type="RelationReference" name="ws_fk_owner">
           <widgetv2config OrderByValue="0" fieldEditable="1" AllowAddFeatures="0" ShowForm="0" Relation="vw_qgep_wastewater_structure_fk_owner_od_organisation20160212172933583_obj_id" ReadOnly="0" constraint="" MapIdentification="0" labelOnTop="0" constraintDescription="" notNull="0" AllowNULL="0"/>
         </edittype>
-        <edittype widgetv2type="RelationReference" name="fk_operator">
+        <edittype widgetv2type="RelationReference" name="ws_fk_operator">
           <widgetv2config OrderByValue="0" fieldEditable="1" AllowAddFeatures="0" ShowForm="0" Relation="vw_qgep_wastewater_structure_fk_operator_od_organisation20160212172933583_obj_id" ReadOnly="0" constraint="" MapIdentification="0" labelOnTop="0" constraintDescription="" notNull="0" AllowNULL="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="_label">
@@ -12472,82 +12472,82 @@ def my_form_open(dialog, layer, feature):
         <edittype widgetv2type="TextEdit" name="upper_elevation">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="ValueRelation" name="manhole_function">
+        <edittype widgetv2type="ValueRelation" name="ma_function">
           <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_manhole_function" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="ValueRelation" name="material">
+        <edittype widgetv2type="ValueRelation" name="ma_material">
           <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_manhole_material20151117174216343" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="ValueRelation" name="surface_inflow">
+        <edittype widgetv2type="ValueRelation" name="ma_surface_inflow">
           <widgetv2config OrderByValue="1" AllowNull="1" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_manhole_surface_inflow20151117174216393" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="Hidden" name="channel_usage_current">
+        <edittype widgetv2type="Hidden" name="_channel_usage_current">
           <widgetv2config fieldEditable="1" constraint="" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="Hidden" name="channel_function_hierarchic">
+        <edittype widgetv2type="Hidden" name="_channel_function_hierarchic">
           <widgetv2config fieldEditable="1" constraint="" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="Hidden" name="manhole_orientation">
+        <edittype widgetv2type="Hidden" name="ma_orientation">
           <widgetv2config fieldEditable="1" constraint="" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="ValueRelation" name="bypass">
+        <edittype widgetv2type="ValueRelation" name="ss_bypass">
           <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_special_structure_bypass" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="ValueRelation" name="special_structure_function">
+        <edittype widgetv2type="ValueRelation" name="ss_function">
           <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_special_structure_function" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="ValueRelation" name="stormwater_tank_arrangement">
+        <edittype widgetv2type="ValueRelation" name="ss_stormwater_tank_arrangement">
           <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_special_structure_stormwater_tank_arrangement" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="Range" name="highwater_level">
+        <edittype widgetv2type="Range" name="dp_highwater_level">
           <widgetv2config AllowNull="1" fieldEditable="1" Step="1" constraint="" Style="SpinBox" labelOnTop="0" constraintDescription="" Min="0" notNull="0" Max="5"/>
         </edittype>
-        <edittype widgetv2type="ValueRelation" name="relevance">
+        <edittype widgetv2type="ValueRelation" name="dp_relevance">
           <widgetv2config OrderByValue="1" AllowNull="0" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="code" constraint="" Layer="vl_discharge_point_relevance" Value="value_en" labelOnTop="0" constraintDescription="" AllowMulti="0" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="Range" name="terrain_level">
+        <edittype widgetv2type="Range" name="dp_terrain_level">
           <widgetv2config AllowNull="1" fieldEditable="1" Step="1" constraint="" Style="SpinBox" labelOnTop="0" constraintDescription="" Min="0" notNull="0" Max="4000" Suffix=" m.a.s.l."/>
         </edittype>
-        <edittype widgetv2type="Range" name="waterlevel_hydraulic">
+        <edittype widgetv2type="Range" name="dp_waterlevel_hydraulic">
           <widgetv2config AllowNull="1" fieldEditable="1" Step="1" constraint="" Style="SpinBox" labelOnTop="0" constraintDescription="" Min="0" notNull="0" Max="5"/>
         </edittype>
-        <edittype widgetv2type="Range" name="absorption_capacity">
+        <edittype widgetv2type="Range" name="ii_absorption_capacity">
           <widgetv2config AllowNull="1" fieldEditable="1" Step="1" constraint="" Style="SpinBox" labelOnTop="0" constraintDescription="" Min="0" notNull="0" Max="5"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="defects">
+        <edittype widgetv2type="TextEdit" name="ii_defects">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="distance_to_aquifer">
+        <edittype widgetv2type="TextEdit" name="ii_distance_to_aquifer">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="effective_area">
+        <edittype widgetv2type="TextEdit" name="ii_effective_area">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="emergency_spillway">
+        <edittype widgetv2type="TextEdit" name="ii_emergency_spillway">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="kind">
+        <edittype widgetv2type="TextEdit" name="ii_kind">
           <widgetv2config IsMultiline="0" fieldEditable="0" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="labeling">
+        <edittype widgetv2type="TextEdit" name="ii_labeling">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="seepage_utilization">
+        <edittype widgetv2type="TextEdit" name="ii_seepage_utilization">
           <widgetv2config IsMultiline="0" fieldEditable="0" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="vehicle_access">
+        <edittype widgetv2type="TextEdit" name="ii_vehicle_access">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="watertightness">
+        <edittype widgetv2type="TextEdit" name="ii_watertightness">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="wn_obj_id">
           <widgetv2config IsMultiline="0" fieldEditable="0" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="backflow_level">
+        <edittype widgetv2type="TextEdit" name="wn_backflow_level">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="bottom_level">
+        <edittype widgetv2type="TextEdit" name="wn_bottom_level">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="wn_identifier">
@@ -12568,28 +12568,28 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <renderer-v2 forceraster="0" symbollevels="0" type="RuleRenderer" enableorderby="0">
         <rules key="{6736e613-3750-466f-8a9f-3310fefc92b3}">
-          <rule scalemaxdenom="5001" filter="manhole_function IN (204,5345,4532,4533,4537,4798,5346) AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{a19553f0-3a86-466a-846c-34647de3eacb}" symbol="0" label="manhole, unknown, drop_structure, venting, jetting_manhole, separating_structure, stormwater_overflow  - main drainage system"/>
-          <rule scalemaxdenom="2001" filter="manhole_function IN (204,5345,4532,4533,4537,4798,5346) AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{18c180f3-844d-49e4-a8ee-e678c834fc08}" symbol="1" label="manhole, unknown, drop_structure, venting, jetting_manhole, separating_structure, stormwater_overflow - minor drainage system"/>
-          <rule scalemaxdenom="5001" filter="ws_type = 'special_structure' AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{24f1a5af-a545-410a-ba4b-d5de029ad835}" symbol="2" label="special structure, unknown, drop_structure, venting, jetting_manhole, separating_structure, stormwater_overflow  - main drainage system"/>
-          <rule scalemaxdenom="2001" filter="ws_type = 'special_structure' AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{bf70dbfc-6c71-4e62-89ae-2d648e0a9fc3}" symbol="3" label="special structure, unknown, drop_structure, venting, jetting_manhole, separating_structure, stormwater_overflow - minor drainage system"/>
-          <rule scalemaxdenom="5001" filter=" manhole_function = 228 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{2287443e-21d4-4c14-8732-f925e912927a}" symbol="4" label="rail_track_gully - main drainage system"/>
-          <rule scalemaxdenom="2001" filter=" manhole_function = 228 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{d23221ad-187f-4682-9458-42a19bd0acd2}" symbol="5" label="rail_track_gully - minor drainage system"/>
-          <rule scalemaxdenom="5001" filter=" manhole_function = 4536 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{830e1f8e-7bae-4271-8e7e-3b2705cf37c2}" symbol="6" label="pump_station - main drainage system"/>
-          <rule scalemaxdenom="2001" filter=" manhole_function = 4536 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{01d58544-e7cb-482f-aa09-2d9bcc914bd0}" symbol="7" label="pump_station - minor drainage system"/>
-          <rule scalemaxdenom="5001" filter=" manhole_function = 1008 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{28f9989c-7e87-4782-8af8-e82e97e48f07}" symbol="8" label="oil_separator - main drainage system"/>
-          <rule scalemaxdenom="2001" filter=" manhole_function = 1008 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{fd59f306-4bb0-45d4-9b8f-6c472fd6f453}" symbol="9" label="oil_separator - minor drainage system"/>
-          <rule scalemaxdenom="5001" filter=" manhole_function = 1008 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{23388bb8-4225-45a4-bff9-9e90282b2e84}" symbol="10" label="floating_material_separator - main drainage system"/>
-          <rule scalemaxdenom="2001" filter=" manhole_function = 1008 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{98bce6a8-b6eb-425a-87e8-1b3bcd4f3458}" symbol="11" label="floating_material_separator - minor drainage system"/>
-          <rule scalemaxdenom="5001" filter=" manhole_function = 3267 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{fbd3e663-5247-4140-8ccb-1bb1eb3377e6}" symbol="12" label="rain_water_manhole - main drainage system"/>
-          <rule scalemaxdenom="2001" filter=" manhole_function = 3267 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{5beea4bb-ddf3-4784-93a9-19961a171224}" symbol="13" label="rain_water_manhole - minor drainage system"/>
-          <rule scalemaxdenom="5001" filter=" manhole_function = 2742 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{9ee5d899-1f95-4c7f-8655-caa89c70a7df}" symbol="14" label="slurry_collector - main drainage system"/>
-          <rule scalemaxdenom="2001" filter=" manhole_function = 2742 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{2abc1c58-4d39-41df-b8b2-1ff6ef069d55}" symbol="15" label="slurry_collector - minor drainage system"/>
-          <rule scalemaxdenom="5001" filter=" manhole_function = 3266 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{17940497-d239-43a6-afee-e6e1b2fe31a5}" symbol="16" label="gully - main drainage system"/>
-          <rule scalemaxdenom="2001" filter=" manhole_function = 3266 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{045b859e-9d9a-4642-9630-3594f7bd745c}" symbol="17" label="gully - minor drainage system"/>
-          <rule scalemaxdenom="5001" filter=" manhole_function = 3472 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{7d42bd8b-f62f-443b-b2ad-56460df5fc6b}" symbol="18" label="drainage_channel - main drainage system"/>
-          <rule scalemaxdenom="2001" filter=" manhole_function = 3472 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{ba077ab0-6fb6-47d8-a5a5-15ade7d1b6a4}" symbol="19" label="drainage_channel - minor drainage system"/>
-          <rule scalemaxdenom="5001" filter=" manhole_function = 5344 AND channel_function_hierarchic IN (5068,5069,5070,5071)" key="{21b6aa82-108b-486c-b974-3b2151ac7d48}" symbol="20" label="other - main drainage system"/>
-          <rule scalemaxdenom="2001" filter=" manhole_function = 5344 AND channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{131efc32-074a-4bfc-8773-4efb43246fea}" symbol="21" label="other - minor drainage system"/>
+          <rule scalemaxdenom="5001" filter="ma_function IN (204,5345,4532,4533,4537,4798,5346) AND _channel_function_hierarchic IN (5068,5069,5070,5071)" key="{a19553f0-3a86-466a-846c-34647de3eacb}" symbol="0" label="manhole, unknown, drop_structure, co_venting, jetting_manhole, separating_structure, stormwater_overflow  - main drainage system"/>
+          <rule scalemaxdenom="2001" filter="ma_function IN (204,5345,4532,4533,4537,4798,5346) AND _channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{18c180f3-844d-49e4-a8ee-e678c834fc08}" symbol="1" label="manhole, unknown, drop_structure, co_venting, jetting_manhole, separating_structure, stormwater_overflow - minor drainage system"/>
+          <rule scalemaxdenom="5001" filter="ws_type = 'special_structure' AND _channel_function_hierarchic IN (5068,5069,5070,5071)" key="{24f1a5af-a545-410a-ba4b-d5de029ad835}" symbol="2" label="special structure, unknown, drop_structure, co_venting, jetting_manhole, separating_structure, stormwater_overflow  - main drainage system"/>
+          <rule scalemaxdenom="2001" filter="ws_type = 'special_structure' AND _channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{bf70dbfc-6c71-4e62-89ae-2d648e0a9fc3}" symbol="3" label="special structure, unknown, drop_structure, co_venting, jetting_manhole, separating_structure, stormwater_overflow - minor drainage system"/>
+          <rule scalemaxdenom="5001" filter=" ma_function = 228 AND _channel_function_hierarchic IN (5068,5069,5070,5071)" key="{2287443e-21d4-4c14-8732-f925e912927a}" symbol="4" label="rail_track_gully - main drainage system"/>
+          <rule scalemaxdenom="2001" filter=" ma_function = 228 AND _channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{d23221ad-187f-4682-9458-42a19bd0acd2}" symbol="5" label="rail_track_gully - minor drainage system"/>
+          <rule scalemaxdenom="5001" filter=" ma_function = 4536 AND _channel_function_hierarchic IN (5068,5069,5070,5071)" key="{830e1f8e-7bae-4271-8e7e-3b2705cf37c2}" symbol="6" label="pump_station - main drainage system"/>
+          <rule scalemaxdenom="2001" filter=" ma_function = 4536 AND _channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{01d58544-e7cb-482f-aa09-2d9bcc914bd0}" symbol="7" label="pump_station - minor drainage system"/>
+          <rule scalemaxdenom="5001" filter=" ma_function = 1008 AND _channel_function_hierarchic IN (5068,5069,5070,5071)" key="{28f9989c-7e87-4782-8af8-e82e97e48f07}" symbol="8" label="oil_separator - main drainage system"/>
+          <rule scalemaxdenom="2001" filter=" ma_function = 1008 AND _channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{fd59f306-4bb0-45d4-9b8f-6c472fd6f453}" symbol="9" label="oil_separator - minor drainage system"/>
+          <rule scalemaxdenom="5001" filter=" ma_function = 1008 AND _channel_function_hierarchic IN (5068,5069,5070,5071)" key="{23388bb8-4225-45a4-bff9-9e90282b2e84}" symbol="10" label="floating_material_separator - main drainage system"/>
+          <rule scalemaxdenom="2001" filter=" ma_function = 1008 AND _channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{98bce6a8-b6eb-425a-87e8-1b3bcd4f3458}" symbol="11" label="floating_material_separator - minor drainage system"/>
+          <rule scalemaxdenom="5001" filter=" ma_function = 3267 AND _channel_function_hierarchic IN (5068,5069,5070,5071)" key="{fbd3e663-5247-4140-8ccb-1bb1eb3377e6}" symbol="12" label="rain_water_manhole - main drainage system"/>
+          <rule scalemaxdenom="2001" filter=" ma_function = 3267 AND _channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{5beea4bb-ddf3-4784-93a9-19961a171224}" symbol="13" label="rain_water_manhole - minor drainage system"/>
+          <rule scalemaxdenom="5001" filter=" ma_function = 2742 AND _channel_function_hierarchic IN (5068,5069,5070,5071)" key="{9ee5d899-1f95-4c7f-8655-caa89c70a7df}" symbol="14" label="slurry_collector - main drainage system"/>
+          <rule scalemaxdenom="2001" filter=" ma_function = 2742 AND _channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{2abc1c58-4d39-41df-b8b2-1ff6ef069d55}" symbol="15" label="slurry_collector - minor drainage system"/>
+          <rule scalemaxdenom="5001" filter=" ma_function = 3266 AND _channel_function_hierarchic IN (5068,5069,5070,5071)" key="{17940497-d239-43a6-afee-e6e1b2fe31a5}" symbol="16" label="gully - main drainage system"/>
+          <rule scalemaxdenom="2001" filter=" ma_function = 3266 AND _channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{045b859e-9d9a-4642-9630-3594f7bd745c}" symbol="17" label="gully - minor drainage system"/>
+          <rule scalemaxdenom="5001" filter=" ma_function = 3472 AND _channel_function_hierarchic IN (5068,5069,5070,5071)" key="{7d42bd8b-f62f-443b-b2ad-56460df5fc6b}" symbol="18" label="drainage_channel - main drainage system"/>
+          <rule scalemaxdenom="2001" filter=" ma_function = 3472 AND _channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{ba077ab0-6fb6-47d8-a5a5-15ade7d1b6a4}" symbol="19" label="drainage_channel - minor drainage system"/>
+          <rule scalemaxdenom="5001" filter=" ma_function = 5344 AND _channel_function_hierarchic IN (5068,5069,5070,5071)" key="{21b6aa82-108b-486c-b974-3b2151ac7d48}" symbol="20" label="other - main drainage system"/>
+          <rule scalemaxdenom="2001" filter=" ma_function = 5344 AND _channel_function_hierarchic NOT IN (5068,5069,5070,5071)" key="{131efc32-074a-4bfc-8773-4efb43246fea}" symbol="21" label="other - minor drainage system"/>
           <rule scalemaxdenom="2001" filter="ELSE" key="{c431ef56-07b8-43fd-87bf-e0c20098ec5f}" symbol="22"/>
         </rules>
         <symbols>
@@ -12598,7 +12598,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="angle" v="0"/>
               <prop k="color" v="255,255,255,255"/>
               <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN _channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN _channel_usage_current = 4516 THEN '0,255,0,255' WHEN _channel_usage_current = 4518 THEN '0,170,255,255' WHEN _channel_usage_current = 4522 THEN '102,0,102,255' WHEN _channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_border_dd_field" v=""/>
               <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
@@ -12632,7 +12632,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="angle" v="0"/>
               <prop k="color" v="255,255,255,255"/>
               <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN _channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN _channel_usage_current = 4516 THEN '0,255,0,255' WHEN _channel_usage_current = 4518 THEN '0,170,255,255' WHEN _channel_usage_current = 4522 THEN '102,0,102,255' WHEN _channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_border_dd_field" v=""/>
               <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
@@ -12666,7 +12666,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="angle" v="0"/>
               <prop k="color" v="255,255,255,255"/>
               <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN _channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN _channel_usage_current = 4516 THEN '0,255,0,255' WHEN _channel_usage_current = 4518 THEN '0,170,255,255' WHEN _channel_usage_current = 4522 THEN '102,0,102,255' WHEN _channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_border_dd_field" v=""/>
               <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
@@ -12698,7 +12698,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="angle" v="0"/>
               <prop k="color" v="255,0,0,255"/>
               <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN _channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN _channel_usage_current = 4516 THEN '0,255,0,255' WHEN _channel_usage_current = 4518 THEN '0,170,255,255' WHEN _channel_usage_current = 4522 THEN '102,0,102,255' WHEN _channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_border_dd_field" v=""/>
               <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
@@ -12730,7 +12730,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="angle" v="0"/>
               <prop k="color" v="255,0,0,255"/>
               <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN _channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN _channel_usage_current = 4516 THEN '0,255,0,255' WHEN _channel_usage_current = 4518 THEN '0,170,255,255' WHEN _channel_usage_current = 4522 THEN '102,0,102,255' WHEN _channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_border_dd_field" v=""/>
               <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
@@ -12764,7 +12764,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="angle" v="0"/>
               <prop k="color" v="255,255,255,255"/>
               <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN _channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN _channel_usage_current = 4516 THEN '0,255,0,255' WHEN _channel_usage_current = 4518 THEN '0,170,255,255' WHEN _channel_usage_current = 4522 THEN '102,0,102,255' WHEN _channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_border_dd_field" v=""/>
               <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
@@ -12796,7 +12796,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="angle" v="0"/>
               <prop k="color" v="255,0,0,255"/>
               <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN _channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN _channel_usage_current = 4516 THEN '0,255,0,255' WHEN _channel_usage_current = 4518 THEN '0,170,255,255' WHEN _channel_usage_current = 4522 THEN '102,0,102,255' WHEN _channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_border_dd_field" v=""/>
               <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
@@ -12828,7 +12828,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="angle" v="0"/>
               <prop k="color" v="255,0,0,255"/>
               <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN _channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN _channel_usage_current = 4516 THEN '0,255,0,255' WHEN _channel_usage_current = 4518 THEN '0,170,255,255' WHEN _channel_usage_current = 4522 THEN '102,0,102,255' WHEN _channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_border_dd_field" v=""/>
               <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
@@ -12862,7 +12862,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="angle" v="0"/>
               <prop k="color" v="255,255,255,255"/>
               <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN _channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN _channel_usage_current = 4516 THEN '0,255,0,255' WHEN _channel_usage_current = 4518 THEN '0,170,255,255' WHEN _channel_usage_current = 4522 THEN '102,0,102,255' WHEN _channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_border_dd_field" v=""/>
               <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
@@ -12896,7 +12896,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="angle" v="0"/>
               <prop k="color" v="255,255,255,255"/>
               <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN _channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN _channel_usage_current = 4516 THEN '0,255,0,255' WHEN _channel_usage_current = 4518 THEN '0,170,255,255' WHEN _channel_usage_current = 4522 THEN '102,0,102,255' WHEN _channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_border_dd_field" v=""/>
               <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
@@ -12930,7 +12930,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="angle" v="0"/>
               <prop k="color" v="215,215,215,255"/>
               <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN _channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN _channel_usage_current = 4516 THEN '0,255,0,255' WHEN _channel_usage_current = 4518 THEN '0,170,255,255' WHEN _channel_usage_current = 4522 THEN '102,0,102,255' WHEN _channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_border_dd_field" v=""/>
               <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
@@ -12964,7 +12964,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="angle" v="0"/>
               <prop k="color" v="215,215,215,255"/>
               <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN _channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN _channel_usage_current = 4516 THEN '0,255,0,255' WHEN _channel_usage_current = 4518 THEN '0,170,255,255' WHEN _channel_usage_current = 4522 THEN '102,0,102,255' WHEN _channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_border_dd_field" v=""/>
               <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
@@ -12998,7 +12998,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="angle" v="0"/>
               <prop k="color" v="215,215,215,255"/>
               <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN _channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN _channel_usage_current = 4516 THEN '0,255,0,255' WHEN _channel_usage_current = 4518 THEN '0,170,255,255' WHEN _channel_usage_current = 4522 THEN '102,0,102,255' WHEN _channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_border_dd_field" v=""/>
               <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
@@ -13032,7 +13032,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="angle" v="0"/>
               <prop k="color" v="215,215,215,255"/>
               <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN _channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN _channel_usage_current = 4516 THEN '0,255,0,255' WHEN _channel_usage_current = 4518 THEN '0,170,255,255' WHEN _channel_usage_current = 4522 THEN '102,0,102,255' WHEN _channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_border_dd_field" v=""/>
               <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
@@ -13066,7 +13066,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="angle" v="0"/>
               <prop k="color" v="255,255,255,255"/>
               <prop k="color_dd_active" v="1"/>
-              <prop k="color_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_dd_expression" v="CASE WHEN _channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN _channel_usage_current = 4516 THEN '0,255,0,255' WHEN _channel_usage_current = 4518 THEN '0,170,255,255' WHEN _channel_usage_current = 4522 THEN '102,0,102,255' WHEN _channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_dd_field" v=""/>
               <prop k="color_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
@@ -13100,7 +13100,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="angle" v="0"/>
               <prop k="color" v="255,255,255,255"/>
               <prop k="color_dd_active" v="1"/>
-              <prop k="color_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_dd_expression" v="CASE WHEN _channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN _channel_usage_current = 4516 THEN '0,255,0,255' WHEN _channel_usage_current = 4518 THEN '0,170,255,255' WHEN _channel_usage_current = 4522 THEN '102,0,102,255' WHEN _channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_dd_field" v=""/>
               <prop k="color_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
@@ -13134,7 +13134,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="angle" v="0"/>
               <prop k="color" v="255,255,255,255"/>
               <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN _channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN _channel_usage_current = 4516 THEN '0,255,0,255' WHEN _channel_usage_current = 4518 THEN '0,170,255,255' WHEN _channel_usage_current = 4522 THEN '102,0,102,255' WHEN _channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_border_dd_field" v=""/>
               <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
@@ -13148,7 +13148,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="outline_width" v="0.35"/>
               <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="outline_width_unit" v="MM"/>
-              <prop k="scale_method" v="diameter"/>
+              <prop k="scale_method" v="co_diameter"/>
               <prop k="size" v="3"/>
               <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="size_unit" v="MM"/>
@@ -13160,7 +13160,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="angle" v="0"/>
               <prop k="color" v="255,255,255,255"/>
               <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN _channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN _channel_usage_current = 4516 THEN '0,255,0,255' WHEN _channel_usage_current = 4518 THEN '0,170,255,255' WHEN _channel_usage_current = 4522 THEN '102,0,102,255' WHEN _channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_border_dd_field" v=""/>
               <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
@@ -13194,7 +13194,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="angle" v="0"/>
               <prop k="color" v="255,255,255,255"/>
               <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN _channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN _channel_usage_current = 4516 THEN '0,255,0,255' WHEN _channel_usage_current = 4518 THEN '0,170,255,255' WHEN _channel_usage_current = 4522 THEN '102,0,102,255' WHEN _channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_border_dd_field" v=""/>
               <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
@@ -13258,7 +13258,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="angle" v="0"/>
               <prop k="color" v="255,255,255,255"/>
               <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN _channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN _channel_usage_current = 4516 THEN '0,255,0,255' WHEN _channel_usage_current = 4518 THEN '0,170,255,255' WHEN _channel_usage_current = 4522 THEN '102,0,102,255' WHEN _channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_border_dd_field" v=""/>
               <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
@@ -13272,7 +13272,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="outline_width" v="0.35"/>
               <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="outline_width_unit" v="MM"/>
-              <prop k="scale_method" v="diameter"/>
+              <prop k="scale_method" v="co_diameter"/>
               <prop k="size" v="3"/>
               <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="size_unit" v="MM"/>
@@ -13284,7 +13284,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="angle" v="90"/>
               <prop k="color" v="255,0,0,255"/>
               <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN _channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN _channel_usage_current = 4516 THEN '0,255,0,255' WHEN _channel_usage_current = 4518 THEN '0,170,255,255' WHEN _channel_usage_current = 4522 THEN '102,0,102,255' WHEN _channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_border_dd_field" v=""/>
               <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
@@ -13316,7 +13316,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="angle" v="90"/>
               <prop k="color" v="255,0,0,255"/>
               <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN _channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN _channel_usage_current = 4516 THEN '0,255,0,255' WHEN _channel_usage_current = 4518 THEN '0,170,255,255' WHEN _channel_usage_current = 4522 THEN '102,0,102,255' WHEN _channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_border_dd_field" v=""/>
               <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
@@ -13348,7 +13348,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="angle" v="0"/>
               <prop k="color" v="255,0,0,255"/>
               <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN _channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN _channel_usage_current = 4516 THEN '0,255,0,255' WHEN _channel_usage_current = 4518 THEN '0,170,255,255' WHEN _channel_usage_current = 4522 THEN '102,0,102,255' WHEN _channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_border_dd_field" v=""/>
               <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
@@ -13382,7 +13382,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="angle" v="90"/>
               <prop k="color" v="255,0,0,255"/>
               <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN _channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN _channel_usage_current = 4516 THEN '0,255,0,255' WHEN _channel_usage_current = 4518 THEN '0,170,255,255' WHEN _channel_usage_current = 4522 THEN '102,0,102,255' WHEN _channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_border_dd_field" v=""/>
               <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
@@ -13414,7 +13414,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="angle" v="90"/>
               <prop k="color" v="255,0,0,255"/>
               <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN _channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN _channel_usage_current = 4516 THEN '0,255,0,255' WHEN _channel_usage_current = 4518 THEN '0,170,255,255' WHEN _channel_usage_current = 4522 THEN '102,0,102,255' WHEN _channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_border_dd_field" v=""/>
               <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
@@ -13446,7 +13446,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="angle" v="0"/>
               <prop k="color" v="255,0,0,255"/>
               <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN _channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN _channel_usage_current = 4516 THEN '0,255,0,255' WHEN _channel_usage_current = 4518 THEN '0,170,255,255' WHEN _channel_usage_current = 4522 THEN '102,0,102,255' WHEN _channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_border_dd_field" v=""/>
               <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
@@ -13480,7 +13480,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="angle" v="0"/>
               <prop k="color" v="255,255,255,255"/>
               <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN _channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN _channel_usage_current = 4516 THEN '0,255,0,255' WHEN _channel_usage_current = 4518 THEN '0,170,255,255' WHEN _channel_usage_current = 4522 THEN '102,0,102,255' WHEN _channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_border_dd_field" v=""/>
               <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
@@ -13512,7 +13512,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="angle" v="0"/>
               <prop k="color" v="255,0,0,255"/>
               <prop k="color_dd_active" v="1"/>
-              <prop k="color_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_dd_expression" v="CASE WHEN _channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN _channel_usage_current = 4516 THEN '0,255,0,255' WHEN _channel_usage_current = 4518 THEN '0,170,255,255' WHEN _channel_usage_current = 4522 THEN '102,0,102,255' WHEN _channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_dd_field" v=""/>
               <prop k="color_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
@@ -13546,7 +13546,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="angle" v="0"/>
               <prop k="color" v="255,255,255,255"/>
               <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN _channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN _channel_usage_current = 4516 THEN '0,255,0,255' WHEN _channel_usage_current = 4518 THEN '0,170,255,255' WHEN _channel_usage_current = 4522 THEN '102,0,102,255' WHEN _channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_border_dd_field" v=""/>
               <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
@@ -13578,7 +13578,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="angle" v="0"/>
               <prop k="color" v="255,0,0,255"/>
               <prop k="color_dd_active" v="1"/>
-              <prop k="color_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_dd_expression" v="CASE WHEN _channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN _channel_usage_current = 4516 THEN '0,255,0,255' WHEN _channel_usage_current = 4518 THEN '0,170,255,255' WHEN _channel_usage_current = 4522 THEN '102,0,102,255' WHEN _channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_dd_field" v=""/>
               <prop k="color_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
@@ -13612,7 +13612,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="angle" v="0"/>
               <prop k="color" v="255,255,255,255"/>
               <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN _channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN _channel_usage_current = 4516 THEN '0,255,0,255' WHEN _channel_usage_current = 4518 THEN '0,170,255,255' WHEN _channel_usage_current = 4522 THEN '102,0,102,255' WHEN _channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_border_dd_field" v=""/>
               <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
@@ -13644,7 +13644,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="angle" v="0"/>
               <prop k="color" v="255,0,0,255"/>
               <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN _channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN _channel_usage_current = 4516 THEN '0,255,0,255' WHEN _channel_usage_current = 4518 THEN '0,170,255,255' WHEN _channel_usage_current = 4522 THEN '102,0,102,255' WHEN _channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_border_dd_field" v=""/>
               <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
@@ -13676,7 +13676,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="angle" v="0"/>
               <prop k="color" v="255,0,0,255"/>
               <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN _channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN _channel_usage_current = 4516 THEN '0,255,0,255' WHEN _channel_usage_current = 4518 THEN '0,170,255,255' WHEN _channel_usage_current = 4522 THEN '102,0,102,255' WHEN _channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_border_dd_field" v=""/>
               <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
@@ -13710,7 +13710,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="angle" v="0"/>
               <prop k="color" v="255,255,255,255"/>
               <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN _channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN _channel_usage_current = 4516 THEN '0,255,0,255' WHEN _channel_usage_current = 4518 THEN '0,170,255,255' WHEN _channel_usage_current = 4522 THEN '102,0,102,255' WHEN _channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_border_dd_field" v=""/>
               <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
@@ -13742,7 +13742,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="angle" v="0"/>
               <prop k="color" v="255,0,0,255"/>
               <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN _channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN _channel_usage_current = 4516 THEN '0,255,0,255' WHEN _channel_usage_current = 4518 THEN '0,170,255,255' WHEN _channel_usage_current = 4522 THEN '102,0,102,255' WHEN _channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_border_dd_field" v=""/>
               <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
@@ -13774,7 +13774,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="angle" v="0"/>
               <prop k="color" v="255,0,0,255"/>
               <prop k="color_border_dd_active" v="1"/>
-              <prop k="color_border_dd_expression" v="CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+              <prop k="color_border_dd_expression" v="CASE WHEN _channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN _channel_usage_current = 4516 THEN '0,255,0,255' WHEN _channel_usage_current = 4518 THEN '0,170,255,255' WHEN _channel_usage_current = 4522 THEN '102,0,102,255' WHEN _channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
               <prop k="color_border_dd_field" v=""/>
               <prop k="color_border_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
@@ -13813,179 +13813,179 @@ def my_form_open(dialog, layer, feature):
           </effect>
         </effect>
       </renderer-v2>
-      <labeling type="simple"/>
+      <ii_labeling type="simple"/>
       <customproperties>
         <property key="embeddedWidgets/count" value="0"/>
-        <property key="labeling" value="pal"/>
-        <property key="labeling/addDirectionSymbol" value="false"/>
-        <property key="labeling/angleOffset" value="0"/>
-        <property key="labeling/blendMode" value="0"/>
-        <property key="labeling/bufferBlendMode" value="0"/>
-        <property key="labeling/bufferColorA" value="255"/>
-        <property key="labeling/bufferColorB" value="255"/>
-        <property key="labeling/bufferColorG" value="255"/>
-        <property key="labeling/bufferColorR" value="255"/>
-        <property key="labeling/bufferDraw" value="true"/>
-        <property key="labeling/bufferJoinStyle" value="64"/>
-        <property key="labeling/bufferNoFill" value="false"/>
-        <property key="labeling/bufferSize" value="1"/>
-        <property key="labeling/bufferSizeInMapUnits" value="false"/>
-        <property key="labeling/bufferSizeMapUnitMaxScale" value="0"/>
-        <property key="labeling/bufferSizeMapUnitMinScale" value="0"/>
-        <property key="labeling/bufferSizeMapUnitScale" value="0,0,0,0,0,0"/>
-        <property key="labeling/bufferTransp" value="0"/>
-        <property key="labeling/centroidInside" value="false"/>
-        <property key="labeling/centroidWhole" value="false"/>
-        <property key="labeling/dataDefined/Color" value="1~~1~~CASE WHEN channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN channel_usage_current = 4516 THEN '0,255,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '102,0,102,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END~~"/>
-        <property key="labeling/dataDefined/Show" value="1~~1~~CASE WHEN  channel_function_hierarchic IN (5068,5069,5070,5071) THEN True END~~"/>
-        <property key="labeling/decimals" value="3"/>
-        <property key="labeling/displayAll" value="false"/>
-        <property key="labeling/dist" value="2"/>
-        <property key="labeling/distInMapUnits" value="false"/>
-        <property key="labeling/distMapUnitMaxScale" value="0"/>
-        <property key="labeling/distMapUnitMinScale" value="0"/>
-        <property key="labeling/distMapUnitScale" value="0,0,0,0,0,0"/>
-        <property key="labeling/drawLabels" value="true"/>
-        <property key="labeling/enabled" value="true"/>
-        <property key="labeling/fieldName" value="CASE WHEN $scale &lt;= 500 THEN _label ELSE  ws_identifier END"/>
-        <property key="labeling/fitInPolygonOnly" value="false"/>
-        <property key="labeling/fontBold" value="false"/>
-        <property key="labeling/fontCapitals" value="0"/>
-        <property key="labeling/fontFamily" value="MS Shell Dlg 2"/>
-        <property key="labeling/fontItalic" value="false"/>
-        <property key="labeling/fontLetterSpacing" value="0"/>
-        <property key="labeling/fontLimitPixelSize" value="false"/>
-        <property key="labeling/fontMaxPixelSize" value="10000"/>
-        <property key="labeling/fontMinPixelSize" value="3"/>
-        <property key="labeling/fontSize" value="7"/>
-        <property key="labeling/fontSizeInMapUnits" value="false"/>
-        <property key="labeling/fontSizeMapUnitMaxScale" value="0"/>
-        <property key="labeling/fontSizeMapUnitMinScale" value="0"/>
-        <property key="labeling/fontSizeMapUnitScale" value="0,0,0,0,0,0"/>
-        <property key="labeling/fontStrikeout" value="false"/>
-        <property key="labeling/fontUnderline" value="false"/>
-        <property key="labeling/fontWeight" value="50"/>
-        <property key="labeling/fontWordSpacing" value="0"/>
-        <property key="labeling/formatNumbers" value="false"/>
-        <property key="labeling/isExpression" value="true"/>
-        <property key="labeling/labelOffsetInMapUnits" value="true"/>
-        <property key="labeling/labelOffsetMapUnitMaxScale" value="0"/>
-        <property key="labeling/labelOffsetMapUnitMinScale" value="0"/>
-        <property key="labeling/labelOffsetMapUnitScale" value="0,0,0,0,0,0"/>
-        <property key="labeling/labelPerPart" value="false"/>
-        <property key="labeling/leftDirectionSymbol" value="&lt;"/>
-        <property key="labeling/limitNumLabels" value="false"/>
-        <property key="labeling/maxCurvedCharAngleIn" value="20"/>
-        <property key="labeling/maxCurvedCharAngleOut" value="-20"/>
-        <property key="labeling/maxNumLabels" value="2000"/>
-        <property key="labeling/mergeLines" value="false"/>
-        <property key="labeling/minFeatureSize" value="0"/>
-        <property key="labeling/multilineAlign" value="0"/>
-        <property key="labeling/multilineHeight" value="1"/>
-        <property key="labeling/namedStyle" value="Normal"/>
-        <property key="labeling/obstacle" value="true"/>
-        <property key="labeling/obstacleFactor" value="1"/>
-        <property key="labeling/obstacleType" value="0"/>
-        <property key="labeling/offsetType" value="0"/>
-        <property key="labeling/placeDirectionSymbol" value="0"/>
-        <property key="labeling/placement" value="0"/>
-        <property key="labeling/placementFlags" value="0"/>
-        <property key="labeling/plussign" value="false"/>
-        <property key="labeling/predefinedPositionOrder" value="TR,TL,BR,BL,R,L,TSR,BSR"/>
-        <property key="labeling/preserveRotation" value="true"/>
-        <property key="labeling/previewBkgrdColor" value="#ffffff"/>
-        <property key="labeling/priority" value="5"/>
-        <property key="labeling/quadOffset" value="4"/>
-        <property key="labeling/repeatDistance" value="0"/>
-        <property key="labeling/repeatDistanceMapUnitMaxScale" value="0"/>
-        <property key="labeling/repeatDistanceMapUnitMinScale" value="0"/>
-        <property key="labeling/repeatDistanceMapUnitScale" value="0,0,0,0,0,0"/>
-        <property key="labeling/repeatDistanceUnit" value="1"/>
-        <property key="labeling/reverseDirectionSymbol" value="false"/>
-        <property key="labeling/rightDirectionSymbol" value=">"/>
-        <property key="labeling/scaleMax" value="1501"/>
-        <property key="labeling/scaleMin" value="1"/>
-        <property key="labeling/scaleVisibility" value="true"/>
-        <property key="labeling/shadowBlendMode" value="6"/>
-        <property key="labeling/shadowColorB" value="0"/>
-        <property key="labeling/shadowColorG" value="0"/>
-        <property key="labeling/shadowColorR" value="0"/>
-        <property key="labeling/shadowDraw" value="false"/>
-        <property key="labeling/shadowOffsetAngle" value="135"/>
-        <property key="labeling/shadowOffsetDist" value="1"/>
-        <property key="labeling/shadowOffsetGlobal" value="true"/>
-        <property key="labeling/shadowOffsetMapUnitMaxScale" value="0"/>
-        <property key="labeling/shadowOffsetMapUnitMinScale" value="0"/>
-        <property key="labeling/shadowOffsetMapUnitScale" value="0,0,0,0,0,0"/>
-        <property key="labeling/shadowOffsetUnits" value="1"/>
-        <property key="labeling/shadowRadius" value="1.5"/>
-        <property key="labeling/shadowRadiusAlphaOnly" value="false"/>
-        <property key="labeling/shadowRadiusMapUnitMaxScale" value="0"/>
-        <property key="labeling/shadowRadiusMapUnitMinScale" value="0"/>
-        <property key="labeling/shadowRadiusMapUnitScale" value="0,0,0,0,0,0"/>
-        <property key="labeling/shadowRadiusUnits" value="1"/>
-        <property key="labeling/shadowScale" value="100"/>
-        <property key="labeling/shadowTransparency" value="30"/>
-        <property key="labeling/shadowUnder" value="0"/>
-        <property key="labeling/shapeBlendMode" value="0"/>
-        <property key="labeling/shapeBorderColorA" value="255"/>
-        <property key="labeling/shapeBorderColorB" value="128"/>
-        <property key="labeling/shapeBorderColorG" value="128"/>
-        <property key="labeling/shapeBorderColorR" value="128"/>
-        <property key="labeling/shapeBorderWidth" value="0"/>
-        <property key="labeling/shapeBorderWidthMapUnitMaxScale" value="0"/>
-        <property key="labeling/shapeBorderWidthMapUnitMinScale" value="0"/>
-        <property key="labeling/shapeBorderWidthMapUnitScale" value="0,0,0,0,0,0"/>
-        <property key="labeling/shapeBorderWidthUnits" value="1"/>
-        <property key="labeling/shapeDraw" value="false"/>
-        <property key="labeling/shapeFillColorA" value="255"/>
-        <property key="labeling/shapeFillColorB" value="255"/>
-        <property key="labeling/shapeFillColorG" value="255"/>
-        <property key="labeling/shapeFillColorR" value="255"/>
-        <property key="labeling/shapeJoinStyle" value="64"/>
-        <property key="labeling/shapeOffsetMapUnitMaxScale" value="0"/>
-        <property key="labeling/shapeOffsetMapUnitMinScale" value="0"/>
-        <property key="labeling/shapeOffsetMapUnitScale" value="0,0,0,0,0,0"/>
-        <property key="labeling/shapeOffsetUnits" value="1"/>
-        <property key="labeling/shapeOffsetX" value="0"/>
-        <property key="labeling/shapeOffsetY" value="0"/>
-        <property key="labeling/shapeRadiiMapUnitMaxScale" value="0"/>
-        <property key="labeling/shapeRadiiMapUnitMinScale" value="0"/>
-        <property key="labeling/shapeRadiiMapUnitScale" value="0,0,0,0,0,0"/>
-        <property key="labeling/shapeRadiiUnits" value="1"/>
-        <property key="labeling/shapeRadiiX" value="0"/>
-        <property key="labeling/shapeRadiiY" value="0"/>
-        <property key="labeling/shapeRotation" value="0"/>
-        <property key="labeling/shapeRotationType" value="0"/>
-        <property key="labeling/shapeSVGFile" value=""/>
-        <property key="labeling/shapeSizeMapUnitMaxScale" value="0"/>
-        <property key="labeling/shapeSizeMapUnitMinScale" value="0"/>
-        <property key="labeling/shapeSizeMapUnitScale" value="0,0,0,0,0,0"/>
-        <property key="labeling/shapeSizeType" value="0"/>
-        <property key="labeling/shapeSizeUnits" value="1"/>
-        <property key="labeling/shapeSizeX" value="0"/>
-        <property key="labeling/shapeSizeY" value="0"/>
-        <property key="labeling/shapeTransparency" value="0"/>
-        <property key="labeling/shapeType" value="0"/>
-        <property key="labeling/substitutions" value="&lt;substitutions/>"/>
-        <property key="labeling/textColorA" value="255"/>
-        <property key="labeling/textColorB" value="0"/>
-        <property key="labeling/textColorG" value="0"/>
-        <property key="labeling/textColorR" value="0"/>
-        <property key="labeling/textTransp" value="0"/>
-        <property key="labeling/upsidedownLabels" value="0"/>
-        <property key="labeling/useSubstitutions" value="false"/>
-        <property key="labeling/wrapChar" value=""/>
-        <property key="labeling/xOffset" value="0"/>
-        <property key="labeling/yOffset" value="0"/>
-        <property key="labeling/zIndex" value="0"/>
+        <property key="ii_labeling" value="pal"/>
+        <property key="ii_labeling/addDirectionSymbol" value="false"/>
+        <property key="ii_labeling/angleOffset" value="0"/>
+        <property key="ii_labeling/blendMode" value="0"/>
+        <property key="ii_labeling/bufferBlendMode" value="0"/>
+        <property key="ii_labeling/bufferColorA" value="255"/>
+        <property key="ii_labeling/bufferColorB" value="255"/>
+        <property key="ii_labeling/bufferColorG" value="255"/>
+        <property key="ii_labeling/bufferColorR" value="255"/>
+        <property key="ii_labeling/bufferDraw" value="true"/>
+        <property key="ii_labeling/bufferJoinStyle" value="64"/>
+        <property key="ii_labeling/bufferNoFill" value="false"/>
+        <property key="ii_labeling/bufferSize" value="1"/>
+        <property key="ii_labeling/bufferSizeInMapUnits" value="false"/>
+        <property key="ii_labeling/bufferSizeMapUnitMaxScale" value="0"/>
+        <property key="ii_labeling/bufferSizeMapUnitMinScale" value="0"/>
+        <property key="ii_labeling/bufferSizeMapUnitScale" value="0,0,0,0,0,0"/>
+        <property key="ii_labeling/bufferTransp" value="0"/>
+        <property key="ii_labeling/centroidInside" value="false"/>
+        <property key="ii_labeling/centroidWhole" value="false"/>
+        <property key="ii_labeling/dataDefined/Color" value="1~~1~~CASE WHEN _channel_usage_current IN (4514, 4520) THEN '0,0,255,255' WHEN _channel_usage_current = 4516 THEN '0,255,0,255' WHEN _channel_usage_current = 4518 THEN '0,170,255,255' WHEN _channel_usage_current = 4522 THEN '102,0,102,255' WHEN _channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END~~"/>
+        <property key="ii_labeling/dataDefined/Show" value="1~~1~~CASE WHEN  _channel_function_hierarchic IN (5068,5069,5070,5071) THEN True END~~"/>
+        <property key="ii_labeling/decimals" value="3"/>
+        <property key="ii_labeling/displayAll" value="false"/>
+        <property key="ii_labeling/dist" value="2"/>
+        <property key="ii_labeling/distInMapUnits" value="false"/>
+        <property key="ii_labeling/distMapUnitMaxScale" value="0"/>
+        <property key="ii_labeling/distMapUnitMinScale" value="0"/>
+        <property key="ii_labeling/distMapUnitScale" value="0,0,0,0,0,0"/>
+        <property key="ii_labeling/drawLabels" value="true"/>
+        <property key="ii_labeling/enabled" value="true"/>
+        <property key="ii_labeling/fieldName" value="CASE WHEN $scale &lt;= 500 THEN _label ELSE  ws_identifier END"/>
+        <property key="ii_labeling/fitInPolygonOnly" value="false"/>
+        <property key="ii_labeling/fontBold" value="false"/>
+        <property key="ii_labeling/fontCapitals" value="0"/>
+        <property key="ii_labeling/fontFamily" value="MS Shell Dlg 2"/>
+        <property key="ii_labeling/fontItalic" value="false"/>
+        <property key="ii_labeling/fontLetterSpacing" value="0"/>
+        <property key="ii_labeling/fontLimitPixelSize" value="false"/>
+        <property key="ii_labeling/fontMaxPixelSize" value="10000"/>
+        <property key="ii_labeling/fontMinPixelSize" value="3"/>
+        <property key="ii_labeling/fontSize" value="7"/>
+        <property key="ii_labeling/fontSizeInMapUnits" value="false"/>
+        <property key="ii_labeling/fontSizeMapUnitMaxScale" value="0"/>
+        <property key="ii_labeling/fontSizeMapUnitMinScale" value="0"/>
+        <property key="ii_labeling/fontSizeMapUnitScale" value="0,0,0,0,0,0"/>
+        <property key="ii_labeling/fontStrikeout" value="false"/>
+        <property key="ii_labeling/fontUnderline" value="false"/>
+        <property key="ii_labeling/fontWeight" value="50"/>
+        <property key="ii_labeling/fontWordSpacing" value="0"/>
+        <property key="ii_labeling/formatNumbers" value="false"/>
+        <property key="ii_labeling/isExpression" value="true"/>
+        <property key="ii_labeling/labelOffsetInMapUnits" value="true"/>
+        <property key="ii_labeling/labelOffsetMapUnitMaxScale" value="0"/>
+        <property key="ii_labeling/labelOffsetMapUnitMinScale" value="0"/>
+        <property key="ii_labeling/labelOffsetMapUnitScale" value="0,0,0,0,0,0"/>
+        <property key="ii_labeling/labelPerPart" value="false"/>
+        <property key="ii_labeling/leftDirectionSymbol" value="&lt;"/>
+        <property key="ii_labeling/limitNumLabels" value="false"/>
+        <property key="ii_labeling/maxCurvedCharAngleIn" value="20"/>
+        <property key="ii_labeling/maxCurvedCharAngleOut" value="-20"/>
+        <property key="ii_labeling/maxNumLabels" value="2000"/>
+        <property key="ii_labeling/mergeLines" value="false"/>
+        <property key="ii_labeling/minFeatureSize" value="0"/>
+        <property key="ii_labeling/multilineAlign" value="0"/>
+        <property key="ii_labeling/multilineHeight" value="1"/>
+        <property key="ii_labeling/namedStyle" value="Normal"/>
+        <property key="ii_labeling/obstacle" value="true"/>
+        <property key="ii_labeling/obstacleFactor" value="1"/>
+        <property key="ii_labeling/obstacleType" value="0"/>
+        <property key="ii_labeling/offsetType" value="0"/>
+        <property key="ii_labeling/placeDirectionSymbol" value="0"/>
+        <property key="ii_labeling/placement" value="0"/>
+        <property key="ii_labeling/placementFlags" value="0"/>
+        <property key="ii_labeling/plussign" value="false"/>
+        <property key="ii_labeling/predefinedPositionOrder" value="TR,TL,BR,BL,R,L,TSR,BSR"/>
+        <property key="ii_labeling/preserveRotation" value="true"/>
+        <property key="ii_labeling/previewBkgrdColor" value="#ffffff"/>
+        <property key="ii_labeling/priority" value="5"/>
+        <property key="ii_labeling/quadOffset" value="4"/>
+        <property key="ii_labeling/repeatDistance" value="0"/>
+        <property key="ii_labeling/repeatDistanceMapUnitMaxScale" value="0"/>
+        <property key="ii_labeling/repeatDistanceMapUnitMinScale" value="0"/>
+        <property key="ii_labeling/repeatDistanceMapUnitScale" value="0,0,0,0,0,0"/>
+        <property key="ii_labeling/repeatDistanceUnit" value="1"/>
+        <property key="ii_labeling/reverseDirectionSymbol" value="false"/>
+        <property key="ii_labeling/rightDirectionSymbol" value=">"/>
+        <property key="ii_labeling/scaleMax" value="1501"/>
+        <property key="ii_labeling/scaleMin" value="1"/>
+        <property key="ii_labeling/scaleVisibility" value="true"/>
+        <property key="ii_labeling/shadowBlendMode" value="6"/>
+        <property key="ii_labeling/shadowColorB" value="0"/>
+        <property key="ii_labeling/shadowColorG" value="0"/>
+        <property key="ii_labeling/shadowColorR" value="0"/>
+        <property key="ii_labeling/shadowDraw" value="false"/>
+        <property key="ii_labeling/shadowOffsetAngle" value="135"/>
+        <property key="ii_labeling/shadowOffsetDist" value="1"/>
+        <property key="ii_labeling/shadowOffsetGlobal" value="true"/>
+        <property key="ii_labeling/shadowOffsetMapUnitMaxScale" value="0"/>
+        <property key="ii_labeling/shadowOffsetMapUnitMinScale" value="0"/>
+        <property key="ii_labeling/shadowOffsetMapUnitScale" value="0,0,0,0,0,0"/>
+        <property key="ii_labeling/shadowOffsetUnits" value="1"/>
+        <property key="ii_labeling/shadowRadius" value="1.5"/>
+        <property key="ii_labeling/shadowRadiusAlphaOnly" value="false"/>
+        <property key="ii_labeling/shadowRadiusMapUnitMaxScale" value="0"/>
+        <property key="ii_labeling/shadowRadiusMapUnitMinScale" value="0"/>
+        <property key="ii_labeling/shadowRadiusMapUnitScale" value="0,0,0,0,0,0"/>
+        <property key="ii_labeling/shadowRadiusUnits" value="1"/>
+        <property key="ii_labeling/shadowScale" value="100"/>
+        <property key="ii_labeling/shadowTransparency" value="30"/>
+        <property key="ii_labeling/shadowUnder" value="0"/>
+        <property key="ii_labeling/shapeBlendMode" value="0"/>
+        <property key="ii_labeling/shapeBorderColorA" value="255"/>
+        <property key="ii_labeling/shapeBorderColorB" value="128"/>
+        <property key="ii_labeling/shapeBorderColorG" value="128"/>
+        <property key="ii_labeling/shapeBorderColorR" value="128"/>
+        <property key="ii_labeling/shapeBorderWidth" value="0"/>
+        <property key="ii_labeling/shapeBorderWidthMapUnitMaxScale" value="0"/>
+        <property key="ii_labeling/shapeBorderWidthMapUnitMinScale" value="0"/>
+        <property key="ii_labeling/shapeBorderWidthMapUnitScale" value="0,0,0,0,0,0"/>
+        <property key="ii_labeling/shapeBorderWidthUnits" value="1"/>
+        <property key="ii_labeling/shapeDraw" value="false"/>
+        <property key="ii_labeling/shapeFillColorA" value="255"/>
+        <property key="ii_labeling/shapeFillColorB" value="255"/>
+        <property key="ii_labeling/shapeFillColorG" value="255"/>
+        <property key="ii_labeling/shapeFillColorR" value="255"/>
+        <property key="ii_labeling/shapeJoinStyle" value="64"/>
+        <property key="ii_labeling/shapeOffsetMapUnitMaxScale" value="0"/>
+        <property key="ii_labeling/shapeOffsetMapUnitMinScale" value="0"/>
+        <property key="ii_labeling/shapeOffsetMapUnitScale" value="0,0,0,0,0,0"/>
+        <property key="ii_labeling/shapeOffsetUnits" value="1"/>
+        <property key="ii_labeling/shapeOffsetX" value="0"/>
+        <property key="ii_labeling/shapeOffsetY" value="0"/>
+        <property key="ii_labeling/shapeRadiiMapUnitMaxScale" value="0"/>
+        <property key="ii_labeling/shapeRadiiMapUnitMinScale" value="0"/>
+        <property key="ii_labeling/shapeRadiiMapUnitScale" value="0,0,0,0,0,0"/>
+        <property key="ii_labeling/shapeRadiiUnits" value="1"/>
+        <property key="ii_labeling/shapeRadiiX" value="0"/>
+        <property key="ii_labeling/shapeRadiiY" value="0"/>
+        <property key="ii_labeling/shapeRotation" value="0"/>
+        <property key="ii_labeling/shapeRotationType" value="0"/>
+        <property key="ii_labeling/shapeSVGFile" value=""/>
+        <property key="ii_labeling/shapeSizeMapUnitMaxScale" value="0"/>
+        <property key="ii_labeling/shapeSizeMapUnitMinScale" value="0"/>
+        <property key="ii_labeling/shapeSizeMapUnitScale" value="0,0,0,0,0,0"/>
+        <property key="ii_labeling/shapeSizeType" value="0"/>
+        <property key="ii_labeling/shapeSizeUnits" value="1"/>
+        <property key="ii_labeling/shapeSizeX" value="0"/>
+        <property key="ii_labeling/shapeSizeY" value="0"/>
+        <property key="ii_labeling/shapeTransparency" value="0"/>
+        <property key="ii_labeling/shapeType" value="0"/>
+        <property key="ii_labeling/substitutions" value="&lt;substitutions/>"/>
+        <property key="ii_labeling/textColorA" value="255"/>
+        <property key="ii_labeling/textColorB" value="0"/>
+        <property key="ii_labeling/textColorG" value="0"/>
+        <property key="ii_labeling/textColorR" value="0"/>
+        <property key="ii_labeling/textTransp" value="0"/>
+        <property key="ii_labeling/upsidedownLabels" value="0"/>
+        <property key="ii_labeling/useSubstitutions" value="false"/>
+        <property key="ii_labeling/wrapChar" value=""/>
+        <property key="ii_labeling/xOffset" value="0"/>
+        <property key="ii_labeling/yOffset" value="0"/>
+        <property key="ii_labeling/zIndex" value="0"/>
         <property key="variableNames"/>
         <property key="variableValues"/>
       </customproperties>
       <blendMode>0</blendMode>
       <featureBlendMode>0</featureBlendMode>
       <layerTransparency>0</layerTransparency>
-      <displayfield>location_name</displayfield>
+      <displayfield>ws_location_name</displayfield>
       <label>0</label>
       <labelattributes>
         <label fieldname="" text="Label"/>
@@ -14027,7 +14027,7 @@ def my_form_open(dialog, layer, feature):
             <prop k="outline_width" v="0"/>
             <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
             <prop k="outline_width_unit" v="MM"/>
-            <prop k="scale_method" v="diameter"/>
+            <prop k="scale_method" v="co_diameter"/>
             <prop k="size" v="2"/>
             <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
             <prop k="size_unit" v="MM"/>
@@ -14039,74 +14039,74 @@ def my_form_open(dialog, layer, feature):
       <annotationform>$HOME</annotationform>
       <aliases>
         <alias field="obj_id" index="0" name=""/>
-        <alias field="brand" index="1" name=""/>
-        <alias field="cover_shape" index="2" name=""/>
-        <alias field="diameter" index="3" name=""/>
-        <alias field="fastening" index="4" name=""/>
-        <alias field="level" index="5" name=""/>
-        <alias field="cover_material" index="6" name=""/>
-        <alias field="positional_accuracy" index="7" name=""/>
-        <alias field="sludge_bucket" index="8" name=""/>
-        <alias field="venting" index="9" name=""/>
+        <alias field="co_brand" index="1" name=""/>
+        <alias field="co_shape" index="2" name=""/>
+        <alias field="co_diameter" index="3" name=""/>
+        <alias field="co_fastening" index="4" name=""/>
+        <alias field="co_level" index="5" name=""/>
+        <alias field="co_material" index="6" name=""/>
+        <alias field="co_positional_accuracy" index="7" name=""/>
+        <alias field="co_sludge_bucket" index="8" name=""/>
+        <alias field="co_venting" index="9" name=""/>
         <alias field="co_identifier" index="10" name=""/>
-        <alias field="remark" index="11" name=""/>
-        <alias field="renovation_demand" index="12" name=""/>
+        <alias field="co_remark" index="11" name=""/>
+        <alias field="co_renovation_demand" index="12" name=""/>
         <alias field="last_modification" index="13" name=""/>
         <alias field="fk_dataowner" index="14" name=""/>
         <alias field="fk_provider" index="15" name=""/>
         <alias field="ws_type" index="16" name=""/>
         <alias field="co_obj_id" index="17" name=""/>
         <alias field="identifier" index="18" name=""/>
-        <alias field="accessibility" index="19" name=""/>
-        <alias field="contract_section" index="20" name=""/>
-        <alias field="financing" index="21" name=""/>
-        <alias field="gross_costs" index="22" name=""/>
-        <alias field="inspection_interval" index="23" name=""/>
-        <alias field="location_name" index="24" name=""/>
-        <alias field="records" index="25" name=""/>
+        <alias field="ws_accessibility" index="19" name=""/>
+        <alias field="ws_contract_section" index="20" name=""/>
+        <alias field="ws_financing" index="21" name=""/>
+        <alias field="ws_gross_costs" index="22" name=""/>
+        <alias field="ws_inspection_interval" index="23" name=""/>
+        <alias field="ws_location_name" index="24" name=""/>
+        <alias field="ws_records" index="25" name=""/>
         <alias field="ws_remark" index="26" name=""/>
-        <alias field="renovation_necessity" index="27" name=""/>
-        <alias field="replacement_value" index="28" name=""/>
-        <alias field="rv_base_year" index="29" name=""/>
-        <alias field="rv_construction_type" index="30" name=""/>
-        <alias field="status" index="31" name=""/>
-        <alias field="structure_condition" index="32" name=""/>
-        <alias field="subsidies" index="33" name=""/>
-        <alias field="year_of_construction" index="34" name=""/>
-        <alias field="year_of_replacement" index="35" name=""/>
-        <alias field="fk_owner" index="36" name=""/>
-        <alias field="fk_operator" index="37" name=""/>
+        <alias field="ws_renovation_necessity" index="27" name=""/>
+        <alias field="ws_replacement_value" index="28" name=""/>
+        <alias field="ws_rv_base_year" index="29" name=""/>
+        <alias field="ws_rv_construction_type" index="30" name=""/>
+        <alias field="ws_status" index="31" name=""/>
+        <alias field="ws_structure_condition" index="32" name=""/>
+        <alias field="ws_subsidies" index="33" name=""/>
+        <alias field="ws_year_of_construction" index="34" name=""/>
+        <alias field="ws_year_of_replacement" index="35" name=""/>
+        <alias field="ws_fk_owner" index="36" name=""/>
+        <alias field="ws_fk_operator" index="37" name=""/>
         <alias field="_label" index="38" name=""/>
         <alias field="_depth" index="39" name=""/>
         <alias field="dimension1" index="40" name=""/>
         <alias field="dimension2" index="41" name=""/>
         <alias field="upper_elevation" index="42" name=""/>
-        <alias field="manhole_function" index="43" name=""/>
-        <alias field="material" index="44" name=""/>
-        <alias field="surface_inflow" index="45" name=""/>
-        <alias field="channel_usage_current" index="46" name=""/>
-        <alias field="channel_function_hierarchic" index="47" name=""/>
-        <alias field="manhole_orientation" index="48" name=""/>
-        <alias field="bypass" index="49" name=""/>
-        <alias field="special_structure_function" index="50" name=""/>
-        <alias field="stormwater_tank_arrangement" index="51" name=""/>
-        <alias field="highwater_level" index="52" name=""/>
-        <alias field="relevance" index="53" name=""/>
-        <alias field="terrain_level" index="54" name=""/>
-        <alias field="waterlevel_hydraulic" index="55" name=""/>
-        <alias field="absorption_capacity" index="56" name=""/>
-        <alias field="defects" index="57" name=""/>
-        <alias field="distance_to_aquifer" index="58" name=""/>
-        <alias field="effective_area" index="59" name=""/>
-        <alias field="emergency_spillway" index="60" name=""/>
-        <alias field="kind" index="61" name=""/>
-        <alias field="labeling" index="62" name=""/>
-        <alias field="seepage_utilization" index="63" name=""/>
-        <alias field="vehicle_access" index="64" name=""/>
-        <alias field="watertightness" index="65" name=""/>
+        <alias field="ma_function" index="43" name=""/>
+        <alias field="ma_material" index="44" name=""/>
+        <alias field="ma_surface_inflow" index="45" name=""/>
+        <alias field="_channel_usage_current" index="46" name=""/>
+        <alias field="_channel_function_hierarchic" index="47" name=""/>
+        <alias field="ma_orientation" index="48" name=""/>
+        <alias field="ss_bypass" index="49" name=""/>
+        <alias field="ss_function" index="50" name=""/>
+        <alias field="ss_stormwater_tank_arrangement" index="51" name=""/>
+        <alias field="dp_highwater_level" index="52" name=""/>
+        <alias field="dp_relevance" index="53" name=""/>
+        <alias field="dp_terrain_level" index="54" name=""/>
+        <alias field="dp_waterlevel_hydraulic" index="55" name=""/>
+        <alias field="ii_absorption_capacity" index="56" name=""/>
+        <alias field="ii_defects" index="57" name=""/>
+        <alias field="ii_distance_to_aquifer" index="58" name=""/>
+        <alias field="ii_effective_area" index="59" name=""/>
+        <alias field="ii_emergency_spillway" index="60" name=""/>
+        <alias field="ii_kind" index="61" name=""/>
+        <alias field="ii_labeling" index="62" name=""/>
+        <alias field="ii_seepage_utilization" index="63" name=""/>
+        <alias field="ii_vehicle_access" index="64" name=""/>
+        <alias field="ii_watertightness" index="65" name=""/>
         <alias field="wn_obj_id" index="66" name=""/>
-        <alias field="backflow_level" index="67" name=""/>
-        <alias field="bottom_level" index="68" name=""/>
+        <alias field="wn_backflow_level" index="67" name=""/>
+        <alias field="wn_bottom_level" index="68" name=""/>
         <alias field="wn_identifier" index="69" name=""/>
         <alias field="wn_remark" index="70" name=""/>
         <alias field="wn_last_modification" index="71" name=""/>
@@ -14122,74 +14122,74 @@ def my_form_open(dialog, layer, feature):
       </attributeactions>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns>
-          <column width="-1" hidden="1" type="field" name="channel_usage_current"/>
-          <column width="-1" hidden="1" type="field" name="channel_function_hierarchic"/>
-          <column width="-1" hidden="1" type="field" name="manhole_orientation"/>
+          <column width="-1" hidden="1" type="field" name="_channel_usage_current"/>
+          <column width="-1" hidden="1" type="field" name="_channel_function_hierarchic"/>
+          <column width="-1" hidden="1" type="field" name="ma_orientation"/>
           <column width="-1" hidden="0" type="field" name="obj_id"/>
-          <column width="-1" hidden="0" type="field" name="brand"/>
-          <column width="-1" hidden="0" type="field" name="cover_shape"/>
-          <column width="-1" hidden="0" type="field" name="diameter"/>
-          <column width="-1" hidden="0" type="field" name="fastening"/>
-          <column width="-1" hidden="0" type="field" name="level"/>
-          <column width="-1" hidden="0" type="field" name="cover_material"/>
-          <column width="-1" hidden="0" type="field" name="positional_accuracy"/>
-          <column width="-1" hidden="0" type="field" name="sludge_bucket"/>
-          <column width="-1" hidden="0" type="field" name="venting"/>
+          <column width="-1" hidden="0" type="field" name="co_brand"/>
+          <column width="-1" hidden="0" type="field" name="co_shape"/>
+          <column width="-1" hidden="0" type="field" name="co_diameter"/>
+          <column width="-1" hidden="0" type="field" name="co_fastening"/>
+          <column width="-1" hidden="0" type="field" name="co_level"/>
+          <column width="-1" hidden="0" type="field" name="co_material"/>
+          <column width="-1" hidden="0" type="field" name="co_positional_accuracy"/>
+          <column width="-1" hidden="0" type="field" name="co_sludge_bucket"/>
+          <column width="-1" hidden="0" type="field" name="co_venting"/>
           <column width="-1" hidden="0" type="field" name="co_identifier"/>
-          <column width="-1" hidden="0" type="field" name="remark"/>
-          <column width="-1" hidden="0" type="field" name="renovation_demand"/>
+          <column width="-1" hidden="0" type="field" name="co_remark"/>
+          <column width="-1" hidden="0" type="field" name="co_renovation_demand"/>
           <column width="-1" hidden="0" type="field" name="last_modification"/>
           <column width="-1" hidden="0" type="field" name="fk_dataowner"/>
           <column width="-1" hidden="0" type="field" name="fk_provider"/>
           <column width="-1" hidden="0" type="field" name="ws_type"/>
           <column width="-1" hidden="0" type="field" name="co_obj_id"/>
           <column width="-1" hidden="0" type="field" name="identifier"/>
-          <column width="-1" hidden="0" type="field" name="accessibility"/>
-          <column width="-1" hidden="0" type="field" name="contract_section"/>
-          <column width="-1" hidden="0" type="field" name="financing"/>
-          <column width="-1" hidden="0" type="field" name="gross_costs"/>
-          <column width="-1" hidden="0" type="field" name="inspection_interval"/>
-          <column width="-1" hidden="0" type="field" name="location_name"/>
-          <column width="-1" hidden="0" type="field" name="records"/>
+          <column width="-1" hidden="0" type="field" name="ws_accessibility"/>
+          <column width="-1" hidden="0" type="field" name="ws_contract_section"/>
+          <column width="-1" hidden="0" type="field" name="ws_financing"/>
+          <column width="-1" hidden="0" type="field" name="ws_gross_costs"/>
+          <column width="-1" hidden="0" type="field" name="ws_inspection_interval"/>
+          <column width="-1" hidden="0" type="field" name="ws_location_name"/>
+          <column width="-1" hidden="0" type="field" name="ws_records"/>
           <column width="-1" hidden="0" type="field" name="ws_remark"/>
-          <column width="-1" hidden="0" type="field" name="renovation_necessity"/>
-          <column width="-1" hidden="0" type="field" name="replacement_value"/>
-          <column width="-1" hidden="0" type="field" name="rv_base_year"/>
-          <column width="-1" hidden="0" type="field" name="rv_construction_type"/>
-          <column width="-1" hidden="0" type="field" name="status"/>
-          <column width="-1" hidden="0" type="field" name="structure_condition"/>
-          <column width="-1" hidden="0" type="field" name="subsidies"/>
-          <column width="-1" hidden="0" type="field" name="year_of_construction"/>
-          <column width="-1" hidden="0" type="field" name="year_of_replacement"/>
-          <column width="-1" hidden="0" type="field" name="fk_owner"/>
-          <column width="-1" hidden="0" type="field" name="fk_operator"/>
+          <column width="-1" hidden="0" type="field" name="ws_renovation_necessity"/>
+          <column width="-1" hidden="0" type="field" name="ws_replacement_value"/>
+          <column width="-1" hidden="0" type="field" name="ws_rv_base_year"/>
+          <column width="-1" hidden="0" type="field" name="ws_rv_construction_type"/>
+          <column width="-1" hidden="0" type="field" name="ws_status"/>
+          <column width="-1" hidden="0" type="field" name="ws_structure_condition"/>
+          <column width="-1" hidden="0" type="field" name="ws_subsidies"/>
+          <column width="-1" hidden="0" type="field" name="ws_year_of_construction"/>
+          <column width="-1" hidden="0" type="field" name="ws_year_of_replacement"/>
+          <column width="-1" hidden="0" type="field" name="ws_fk_owner"/>
+          <column width="-1" hidden="0" type="field" name="ws_fk_operator"/>
           <column width="-1" hidden="0" type="field" name="_label"/>
           <column width="-1" hidden="0" type="field" name="dimension1"/>
           <column width="-1" hidden="0" type="field" name="dimension2"/>
           <column width="-1" hidden="0" type="field" name="upper_elevation"/>
-          <column width="-1" hidden="0" type="field" name="manhole_function"/>
-          <column width="-1" hidden="0" type="field" name="material"/>
-          <column width="-1" hidden="0" type="field" name="surface_inflow"/>
-          <column width="-1" hidden="0" type="field" name="bypass"/>
-          <column width="-1" hidden="0" type="field" name="special_structure_function"/>
-          <column width="-1" hidden="0" type="field" name="stormwater_tank_arrangement"/>
-          <column width="-1" hidden="0" type="field" name="highwater_level"/>
-          <column width="-1" hidden="0" type="field" name="relevance"/>
-          <column width="-1" hidden="0" type="field" name="terrain_level"/>
-          <column width="-1" hidden="0" type="field" name="waterlevel_hydraulic"/>
-          <column width="-1" hidden="0" type="field" name="absorption_capacity"/>
-          <column width="-1" hidden="0" type="field" name="defects"/>
-          <column width="-1" hidden="0" type="field" name="distance_to_aquifer"/>
-          <column width="-1" hidden="0" type="field" name="effective_area"/>
-          <column width="-1" hidden="0" type="field" name="emergency_spillway"/>
-          <column width="-1" hidden="0" type="field" name="kind"/>
-          <column width="-1" hidden="0" type="field" name="labeling"/>
-          <column width="-1" hidden="0" type="field" name="seepage_utilization"/>
-          <column width="-1" hidden="0" type="field" name="vehicle_access"/>
-          <column width="-1" hidden="0" type="field" name="watertightness"/>
+          <column width="-1" hidden="0" type="field" name="ma_function"/>
+          <column width="-1" hidden="0" type="field" name="ma_material"/>
+          <column width="-1" hidden="0" type="field" name="ma_surface_inflow"/>
+          <column width="-1" hidden="0" type="field" name="ss_bypass"/>
+          <column width="-1" hidden="0" type="field" name="ss_function"/>
+          <column width="-1" hidden="0" type="field" name="ss_stormwater_tank_arrangement"/>
+          <column width="-1" hidden="0" type="field" name="dp_highwater_level"/>
+          <column width="-1" hidden="0" type="field" name="dp_relevance"/>
+          <column width="-1" hidden="0" type="field" name="dp_terrain_level"/>
+          <column width="-1" hidden="0" type="field" name="dp_waterlevel_hydraulic"/>
+          <column width="-1" hidden="0" type="field" name="ii_absorption_capacity"/>
+          <column width="-1" hidden="0" type="field" name="ii_defects"/>
+          <column width="-1" hidden="0" type="field" name="ii_distance_to_aquifer"/>
+          <column width="-1" hidden="0" type="field" name="ii_effective_area"/>
+          <column width="-1" hidden="0" type="field" name="ii_emergency_spillway"/>
+          <column width="-1" hidden="0" type="field" name="ii_kind"/>
+          <column width="-1" hidden="0" type="field" name="ii_labeling"/>
+          <column width="-1" hidden="0" type="field" name="ii_seepage_utilization"/>
+          <column width="-1" hidden="0" type="field" name="ii_vehicle_access"/>
+          <column width="-1" hidden="0" type="field" name="ii_watertightness"/>
           <column width="-1" hidden="0" type="field" name="wn_obj_id"/>
-          <column width="-1" hidden="0" type="field" name="backflow_level"/>
-          <column width="-1" hidden="0" type="field" name="bottom_level"/>
+          <column width="-1" hidden="0" type="field" name="wn_backflow_level"/>
+          <column width="-1" hidden="0" type="field" name="wn_bottom_level"/>
           <column width="-1" hidden="0" type="field" name="wn_identifier"/>
           <column width="-1" hidden="0" type="field" name="wn_remark"/>
           <column width="-1" hidden="0" type="field" name="wn_last_modification"/>
@@ -14211,109 +14211,109 @@ def my_form_open(dialog, layer, feature):
         <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="General" groupBox="0" columnCount="2">
           <attributeEditorField showLabel="1" index="18" name="identifier"/>
           <attributeEditorField showLabel="1" index="16" name="ws_type"/>
-          <attributeEditorField showLabel="1" index="43" name="manhole_function"/>
-          <attributeEditorField showLabel="1" index="50" name="special_structure_function"/>
+          <attributeEditorField showLabel="1" index="43" name="ma_function"/>
+          <attributeEditorField showLabel="1" index="50" name="ss_function"/>
           <attributeEditorField showLabel="1" index="40" name="dimension1"/>
           <attributeEditorField showLabel="1" index="41" name="dimension2"/>
-          <attributeEditorField showLabel="1" index="5" name="level"/>
-          <attributeEditorField showLabel="1" index="7" name="positional_accuracy"/>
-          <attributeEditorField showLabel="1" index="31" name="status"/>
-          <attributeEditorField showLabel="1" index="36" name="fk_owner"/>
-          <attributeEditorField showLabel="1" index="24" name="location_name"/>
-          <attributeEditorField showLabel="1" index="34" name="year_of_construction"/>
-          <attributeEditorField showLabel="1" index="27" name="renovation_necessity"/>
+          <attributeEditorField showLabel="1" index="5" name="co_level"/>
+          <attributeEditorField showLabel="1" index="7" name="co_positional_accuracy"/>
+          <attributeEditorField showLabel="1" index="31" name="ws_status"/>
+          <attributeEditorField showLabel="1" index="36" name="ws_fk_owner"/>
+          <attributeEditorField showLabel="1" index="24" name="ws_location_name"/>
+          <attributeEditorField showLabel="1" index="34" name="ws_year_of_construction"/>
+          <attributeEditorField showLabel="1" index="27" name="ws_renovation_necessity"/>
           <attributeEditorField showLabel="1" index="-1" name="dataowner"/>
-          <attributeEditorField showLabel="1" index="9" name="venting"/>
-          <attributeEditorField showLabel="1" index="4" name="fastening"/>
+          <attributeEditorField showLabel="1" index="9" name="co_venting"/>
+          <attributeEditorField showLabel="1" index="4" name="co_fastening"/>
           <attributeEditorField showLabel="1" index="26" name="ws_remark"/>
           <attributeEditorField showLabel="1" index="38" name="_label"/>
         </attributeEditorContainer>
         <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Cover" groupBox="0" columnCount="2">
           <attributeEditorField showLabel="1" index="17" name="co_obj_id"/>
           <attributeEditorField showLabel="1" index="10" name="co_identifier"/>
-          <attributeEditorField showLabel="1" index="3" name="diameter"/>
-          <attributeEditorField showLabel="1" index="6" name="cover_material"/>
-          <attributeEditorField showLabel="1" index="5" name="level"/>
-          <attributeEditorField showLabel="1" index="7" name="positional_accuracy"/>
-          <attributeEditorField showLabel="1" index="9" name="venting"/>
-          <attributeEditorField showLabel="1" index="4" name="fastening"/>
-          <attributeEditorField showLabel="1" index="8" name="sludge_bucket"/>
+          <attributeEditorField showLabel="1" index="3" name="co_diameter"/>
+          <attributeEditorField showLabel="1" index="6" name="co_material"/>
+          <attributeEditorField showLabel="1" index="5" name="co_level"/>
+          <attributeEditorField showLabel="1" index="7" name="co_positional_accuracy"/>
+          <attributeEditorField showLabel="1" index="9" name="co_venting"/>
+          <attributeEditorField showLabel="1" index="4" name="co_fastening"/>
+          <attributeEditorField showLabel="1" index="8" name="co_sludge_bucket"/>
           <attributeEditorField showLabel="1" index="-1" name="dataowner"/>
           <attributeEditorField showLabel="1" index="-1" name="provider"/>
-          <attributeEditorField showLabel="1" index="12" name="renovation_demand"/>
-          <attributeEditorField showLabel="1" index="11" name="remark"/>
-          <attributeEditorField showLabel="1" index="2" name="cover_shape"/>
-          <attributeEditorField showLabel="1" index="1" name="brand"/>
+          <attributeEditorField showLabel="1" index="12" name="co_renovation_demand"/>
+          <attributeEditorField showLabel="1" index="11" name="co_remark"/>
+          <attributeEditorField showLabel="1" index="2" name="co_shape"/>
+          <attributeEditorField showLabel="1" index="1" name="co_brand"/>
         </attributeEditorContainer>
         <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Wastewater Structure" groupBox="0" columnCount="2">
           <attributeEditorField showLabel="1" index="0" name="obj_id"/>
           <attributeEditorField showLabel="1" index="18" name="identifier"/>
-          <attributeEditorField showLabel="1" index="19" name="accessibility"/>
-          <attributeEditorField showLabel="1" index="24" name="location_name"/>
-          <attributeEditorField showLabel="1" index="34" name="year_of_construction"/>
-          <attributeEditorField showLabel="1" index="31" name="status"/>
-          <attributeEditorField showLabel="1" index="27" name="renovation_necessity"/>
-          <attributeEditorField showLabel="1" index="32" name="structure_condition"/>
-          <attributeEditorField showLabel="1" index="35" name="year_of_replacement"/>
-          <attributeEditorField showLabel="1" index="36" name="fk_owner"/>
-          <attributeEditorField showLabel="1" index="37" name="fk_operator"/>
-          <attributeEditorField showLabel="1" index="23" name="inspection_interval"/>
+          <attributeEditorField showLabel="1" index="19" name="ws_accessibility"/>
+          <attributeEditorField showLabel="1" index="24" name="ws_location_name"/>
+          <attributeEditorField showLabel="1" index="34" name="ws_year_of_construction"/>
+          <attributeEditorField showLabel="1" index="31" name="ws_status"/>
+          <attributeEditorField showLabel="1" index="27" name="ws_renovation_necessity"/>
+          <attributeEditorField showLabel="1" index="32" name="ws_structure_condition"/>
+          <attributeEditorField showLabel="1" index="35" name="ws_year_of_replacement"/>
+          <attributeEditorField showLabel="1" index="36" name="ws_fk_owner"/>
+          <attributeEditorField showLabel="1" index="37" name="ws_fk_operator"/>
+          <attributeEditorField showLabel="1" index="23" name="ws_inspection_interval"/>
           <attributeEditorField showLabel="1" index="26" name="ws_remark"/>
-          <attributeEditorField showLabel="1" index="20" name="contract_section"/>
-          <attributeEditorField showLabel="1" index="25" name="records"/>
-          <attributeEditorField showLabel="1" index="21" name="financing"/>
-          <attributeEditorField showLabel="1" index="22" name="gross_costs"/>
-          <attributeEditorField showLabel="1" index="28" name="replacement_value"/>
-          <attributeEditorField showLabel="1" index="33" name="subsidies"/>
-          <attributeEditorField showLabel="1" index="29" name="rv_base_year"/>
-          <attributeEditorField showLabel="1" index="30" name="rv_construction_type"/>
+          <attributeEditorField showLabel="1" index="20" name="ws_contract_section"/>
+          <attributeEditorField showLabel="1" index="25" name="ws_records"/>
+          <attributeEditorField showLabel="1" index="21" name="ws_financing"/>
+          <attributeEditorField showLabel="1" index="22" name="ws_gross_costs"/>
+          <attributeEditorField showLabel="1" index="28" name="ws_replacement_value"/>
+          <attributeEditorField showLabel="1" index="33" name="ws_subsidies"/>
+          <attributeEditorField showLabel="1" index="29" name="ws_rv_base_year"/>
+          <attributeEditorField showLabel="1" index="30" name="ws_rv_construction_type"/>
           <attributeEditorField showLabel="1" index="39" name="_depth"/>
         </attributeEditorContainer>
         <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="1" visibilityExpression="&quot;ws_type&quot; = 'manhole'" name="Manhole" groupBox="0" columnCount="1">
-          <attributeEditorField showLabel="1" index="43" name="manhole_function"/>
+          <attributeEditorField showLabel="1" index="43" name="ma_function"/>
           <attributeEditorField showLabel="1" index="40" name="dimension1"/>
           <attributeEditorField showLabel="1" index="41" name="dimension2"/>
-          <attributeEditorField showLabel="1" index="44" name="material"/>
-          <attributeEditorField showLabel="1" index="45" name="surface_inflow"/>
+          <attributeEditorField showLabel="1" index="44" name="ma_material"/>
+          <attributeEditorField showLabel="1" index="45" name="ma_surface_inflow"/>
           <attributeEditorField showLabel="1" index="26" name="ws_remark"/>
           <attributeEditorField showLabel="1" index="42" name="upper_elevation"/>
         </attributeEditorContainer>
         <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="1" visibilityExpression="&quot;ws_type&quot; = 'special_structure'" name="Special Structure" groupBox="0" columnCount="1">
-          <attributeEditorField showLabel="1" index="50" name="special_structure_function"/>
-          <attributeEditorField showLabel="1" index="49" name="bypass"/>
-          <attributeEditorField showLabel="1" index="60" name="emergency_spillway"/>
-          <attributeEditorField showLabel="1" index="51" name="stormwater_tank_arrangement"/>
+          <attributeEditorField showLabel="1" index="50" name="ss_function"/>
+          <attributeEditorField showLabel="1" index="49" name="ss_bypass"/>
+          <attributeEditorField showLabel="1" index="60" name="ii_emergency_spillway"/>
+          <attributeEditorField showLabel="1" index="51" name="ss_stormwater_tank_arrangement"/>
           <attributeEditorField showLabel="1" index="26" name="ws_remark"/>
           <attributeEditorField showLabel="1" index="42" name="upper_elevation"/>
         </attributeEditorContainer>
         <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="1" visibilityExpression="&quot;ws_type&quot; = 'discharge_point'" name="Discharge Point" groupBox="0" columnCount="1">
-          <attributeEditorField showLabel="1" index="54" name="terrain_level"/>
-          <attributeEditorField showLabel="1" index="52" name="highwater_level"/>
-          <attributeEditorField showLabel="1" index="55" name="waterlevel_hydraulic"/>
-          <attributeEditorField showLabel="1" index="60" name="emergency_spillway"/>
-          <attributeEditorField showLabel="1" index="53" name="relevance"/>
+          <attributeEditorField showLabel="1" index="54" name="dp_terrain_level"/>
+          <attributeEditorField showLabel="1" index="52" name="dp_highwater_level"/>
+          <attributeEditorField showLabel="1" index="55" name="dp_waterlevel_hydraulic"/>
+          <attributeEditorField showLabel="1" index="60" name="ii_emergency_spillway"/>
+          <attributeEditorField showLabel="1" index="53" name="dp_relevance"/>
           <attributeEditorField showLabel="1" index="42" name="upper_elevation"/>
         </attributeEditorContainer>
         <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="1" visibilityExpression="&quot;ws_type&quot; = 'infiltration_installation'" name="Infiltration Installation" groupBox="0" columnCount="1">
-          <attributeEditorField showLabel="1" index="61" name="kind"/>
+          <attributeEditorField showLabel="1" index="61" name="ii_kind"/>
           <attributeEditorField showLabel="1" index="40" name="dimension1"/>
           <attributeEditorField showLabel="1" index="41" name="dimension2"/>
-          <attributeEditorField showLabel="1" index="62" name="labeling"/>
-          <attributeEditorField showLabel="1" index="65" name="watertightness"/>
-          <attributeEditorField showLabel="1" index="64" name="vehicle_access"/>
-          <attributeEditorField showLabel="1" index="58" name="distance_to_aquifer"/>
-          <attributeEditorField showLabel="1" index="59" name="effective_area"/>
-          <attributeEditorField showLabel="1" index="60" name="emergency_spillway"/>
-          <attributeEditorField showLabel="1" index="63" name="seepage_utilization"/>
+          <attributeEditorField showLabel="1" index="62" name="ii_labeling"/>
+          <attributeEditorField showLabel="1" index="65" name="ii_watertightness"/>
+          <attributeEditorField showLabel="1" index="64" name="ii_vehicle_access"/>
+          <attributeEditorField showLabel="1" index="58" name="ii_distance_to_aquifer"/>
+          <attributeEditorField showLabel="1" index="59" name="ii_effective_area"/>
+          <attributeEditorField showLabel="1" index="60" name="ii_emergency_spillway"/>
+          <attributeEditorField showLabel="1" index="63" name="ii_seepage_utilization"/>
           <attributeEditorField showLabel="1" index="26" name="ws_remark"/>
-          <attributeEditorField showLabel="1" index="57" name="defects"/>
+          <attributeEditorField showLabel="1" index="57" name="ii_defects"/>
           <attributeEditorField showLabel="1" index="42" name="upper_elevation"/>
         </attributeEditorContainer>
         <attributeEditorContainer showLabel="1" visibilityExpressionEnabled="0" visibilityExpression="" name="Wastewater Node" groupBox="0" columnCount="0">
           <attributeEditorField showLabel="1" index="66" name="wn_obj_id"/>
           <attributeEditorField showLabel="1" index="69" name="wn_identifier"/>
-          <attributeEditorField showLabel="1" index="68" name="bottom_level"/>
-          <attributeEditorField showLabel="1" index="67" name="backflow_level"/>
+          <attributeEditorField showLabel="1" index="68" name="wn_bottom_level"/>
+          <attributeEditorField showLabel="1" index="67" name="wn_backflow_level"/>
           <attributeEditorField showLabel="1" index="70" name="wn_remark"/>
           <attributeEditorField showLabel="1" index="71" name="wn_last_modification"/>
           <attributeEditorField showLabel="1" index="-1" name="wn_dataowner"/>
@@ -14394,74 +14394,74 @@ def my_form_open(dialog, layer, feature):
       </conditionalstyles>
       <defaults>
         <default field="obj_id" expression=""/>
-        <default field="brand" expression=""/>
-        <default field="cover_shape" expression=""/>
-        <default field="diameter" expression=""/>
-        <default field="fastening" expression=""/>
-        <default field="level" expression=""/>
-        <default field="cover_material" expression=""/>
-        <default field="positional_accuracy" expression=""/>
-        <default field="sludge_bucket" expression=""/>
-        <default field="venting" expression=""/>
+        <default field="co_brand" expression=""/>
+        <default field="co_shape" expression=""/>
+        <default field="co_diameter" expression=""/>
+        <default field="co_fastening" expression=""/>
+        <default field="co_level" expression=""/>
+        <default field="co_material" expression=""/>
+        <default field="co_positional_accuracy" expression=""/>
+        <default field="co_sludge_bucket" expression=""/>
+        <default field="co_venting" expression=""/>
         <default field="co_identifier" expression=""/>
-        <default field="remark" expression=""/>
-        <default field="renovation_demand" expression=""/>
+        <default field="co_remark" expression=""/>
+        <default field="co_renovation_demand" expression=""/>
         <default field="last_modification" expression=""/>
         <default field="fk_dataowner" expression=""/>
         <default field="fk_provider" expression=""/>
         <default field="ws_type" expression="'manhole'"/>
         <default field="co_obj_id" expression=""/>
         <default field="identifier" expression=""/>
-        <default field="accessibility" expression=""/>
-        <default field="contract_section" expression=""/>
-        <default field="financing" expression=""/>
-        <default field="gross_costs" expression=""/>
-        <default field="inspection_interval" expression=""/>
-        <default field="location_name" expression=""/>
-        <default field="records" expression=""/>
+        <default field="ws_accessibility" expression=""/>
+        <default field="ws_contract_section" expression=""/>
+        <default field="ws_financing" expression=""/>
+        <default field="ws_gross_costs" expression=""/>
+        <default field="ws_inspection_interval" expression=""/>
+        <default field="ws_location_name" expression=""/>
+        <default field="ws_records" expression=""/>
         <default field="ws_remark" expression=""/>
-        <default field="renovation_necessity" expression=""/>
-        <default field="replacement_value" expression=""/>
-        <default field="rv_base_year" expression=""/>
-        <default field="rv_construction_type" expression=""/>
-        <default field="status" expression=""/>
-        <default field="structure_condition" expression=""/>
-        <default field="subsidies" expression=""/>
-        <default field="year_of_construction" expression=""/>
-        <default field="year_of_replacement" expression=""/>
-        <default field="fk_owner" expression=""/>
-        <default field="fk_operator" expression=""/>
+        <default field="ws_renovation_necessity" expression=""/>
+        <default field="ws_replacement_value" expression=""/>
+        <default field="ws_rv_base_year" expression=""/>
+        <default field="ws_rv_construction_type" expression=""/>
+        <default field="ws_status" expression=""/>
+        <default field="ws_structure_condition" expression=""/>
+        <default field="ws_subsidies" expression=""/>
+        <default field="ws_year_of_construction" expression=""/>
+        <default field="ws_year_of_replacement" expression=""/>
+        <default field="ws_fk_owner" expression=""/>
+        <default field="ws_fk_operator" expression=""/>
         <default field="_label" expression=""/>
         <default field="_depth" expression=""/>
         <default field="dimension1" expression=""/>
         <default field="dimension2" expression=""/>
         <default field="upper_elevation" expression=""/>
-        <default field="manhole_function" expression=""/>
-        <default field="material" expression=""/>
-        <default field="surface_inflow" expression=""/>
-        <default field="channel_usage_current" expression=""/>
-        <default field="channel_function_hierarchic" expression=""/>
-        <default field="manhole_orientation" expression=""/>
-        <default field="bypass" expression=""/>
-        <default field="special_structure_function" expression=""/>
-        <default field="stormwater_tank_arrangement" expression=""/>
-        <default field="highwater_level" expression=""/>
-        <default field="relevance" expression=""/>
-        <default field="terrain_level" expression=""/>
-        <default field="waterlevel_hydraulic" expression=""/>
-        <default field="absorption_capacity" expression=""/>
-        <default field="defects" expression=""/>
-        <default field="distance_to_aquifer" expression=""/>
-        <default field="effective_area" expression=""/>
-        <default field="emergency_spillway" expression=""/>
-        <default field="kind" expression=""/>
-        <default field="labeling" expression=""/>
-        <default field="seepage_utilization" expression=""/>
-        <default field="vehicle_access" expression=""/>
-        <default field="watertightness" expression=""/>
+        <default field="ma_function" expression=""/>
+        <default field="ma_material" expression=""/>
+        <default field="ma_surface_inflow" expression=""/>
+        <default field="_channel_usage_current" expression=""/>
+        <default field="_channel_function_hierarchic" expression=""/>
+        <default field="ma_orientation" expression=""/>
+        <default field="ss_bypass" expression=""/>
+        <default field="ss_function" expression=""/>
+        <default field="ss_stormwater_tank_arrangement" expression=""/>
+        <default field="dp_highwater_level" expression=""/>
+        <default field="dp_relevance" expression=""/>
+        <default field="dp_terrain_level" expression=""/>
+        <default field="dp_waterlevel_hydraulic" expression=""/>
+        <default field="ii_absorption_capacity" expression=""/>
+        <default field="ii_defects" expression=""/>
+        <default field="ii_distance_to_aquifer" expression=""/>
+        <default field="ii_effective_area" expression=""/>
+        <default field="ii_emergency_spillway" expression=""/>
+        <default field="ii_kind" expression=""/>
+        <default field="ii_labeling" expression=""/>
+        <default field="ii_seepage_utilization" expression=""/>
+        <default field="ii_vehicle_access" expression=""/>
+        <default field="ii_watertightness" expression=""/>
         <default field="wn_obj_id" expression=""/>
-        <default field="backflow_level" expression=""/>
-        <default field="bottom_level" expression=""/>
+        <default field="wn_backflow_level" expression=""/>
+        <default field="wn_bottom_level" expression=""/>
         <default field="wn_identifier" expression=""/>
         <default field="wn_remark" expression=""/>
         <default field="wn_last_modification" expression=""/>
