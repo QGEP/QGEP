@@ -319,6 +319,12 @@
     <relation referencingLayer="vw_dryweather_flume" referencedLayer="vw_qgep_wastewater_structure" id="vw_dryweather_flume_fk_wastewater_structure_vw_qgep_wastewater_structure_obj_id" name="Dryweather Flume">
       <fieldRef referencedField="obj_id" referencingField="fk_wastewater_structure"/>
     </relation>
+    <relation referencingLayer="vw_qgep_reach" referencedLayer="vw_qgep_wastewater_structure" id="vw_qgep_re_rp_from_fk_wastewater_networkelement_vw_qgep_wa_wn_obj_id" name="Reach - Wastewater structure from">
+      <fieldRef referencedField="wn_obj_id" referencingField="rp_from_fk_wastewater_networkelement"/>
+    </relation>
+    <relation referencingLayer="vw_qgep_reach" referencedLayer="vw_qgep_wastewater_structure" id="vw_qgep_re_rp_to_fk_wastewater_networkelement_vw_qgep_wa_wn_obj_id" name="Reach - Wastewater structure to">
+      <fieldRef referencedField="wn_obj_id" referencingField="rp_to_fk_wastewater_networkelement"/>
+    </relation>
     <relation referencingLayer="vw_qgep_reach" referencedLayer="od_organisation20160212172933583" id="vw_qgep_reach_fk_dataowner_od_organisation20160212172933583_obj_id" name="">
       <fieldRef referencedField="obj_id" referencingField="fk_dataowner"/>
     </relation>
@@ -11396,8 +11402,8 @@ def my_form_open(dialog, layer, feature):
         <edittype widgetv2type="TextEdit" name="rp_from_fk_provider">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="rp_from_fk_wastewater_networkelement">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        <edittype widgetv2type="RelationReference" name="rp_from_fk_wastewater_networkelement">
+          <widgetv2config OrderByValue="0" fieldEditable="1" AllowAddFeatures="0" ShowForm="0" Relation="vw_qgep_re_rp_from_fk_wastewater_networkelement_vw_qgep_wa_wn_obj_id" ReadOnly="0" constraint="" MapIdentification="0" labelOnTop="0" constraintDescription="" notNull="0" AllowNULL="0"/>
         </edittype>
         <edittype widgetv2type="Hidden" name="rp_to_obj_id">
           <widgetv2config fieldEditable="0" constraint="" labelOnTop="0" constraintDescription="" notNull="0"/>
@@ -11429,8 +11435,8 @@ def my_form_open(dialog, layer, feature):
         <edittype widgetv2type="TextEdit" name="rp_to_fk_provider">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="rp_to_fk_wastewater_networkelement">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        <edittype widgetv2type="RelationReference" name="rp_to_fk_wastewater_networkelement">
+          <widgetv2config OrderByValue="0" fieldEditable="1" AllowAddFeatures="0" ShowForm="0" Relation="vw_qgep_re_rp_to_fk_wastewater_networkelement_vw_qgep_wa_wn_obj_id" ReadOnly="0" constraint="" MapIdentification="0" labelOnTop="0" constraintDescription="" notNull="0" AllowNULL="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="material_abbr_en">
           <widgetv2config IsMultiline="0" fieldEditable="0" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
@@ -12470,7 +12476,6 @@ def my_form_open(dialog, layer, feature):
           <column width="-1" hidden="0" type="field" name="slope_building_plan"/>
           <column width="-1" hidden="0" type="field" name="wall_roughness"/>
           <column width="-1" hidden="0" type="field" name="fk_pipe_profile"/>
-          <column width="-1" hidden="0" type="field" name="bedding_encasement"/>
           <column width="-1" hidden="0" type="field" name="ch_function_hierarchic"/>
           <column width="-1" hidden="0" type="field" name="ch_connection_type"/>
           <column width="-1" hidden="0" type="field" name="ch_function_hydraulic"/>
@@ -12479,24 +12484,6 @@ def my_form_open(dialog, layer, feature):
           <column width="-1" hidden="0" type="field" name="ch_usage_current"/>
           <column width="-1" hidden="0" type="field" name="ch_usage_planned"/>
           <column width="-1" hidden="0" type="field" name="ws_obj_id"/>
-          <column width="-1" hidden="0" type="field" name="accessibility"/>
-          <column width="-1" hidden="0" type="field" name="contract_section"/>
-          <column width="-1" hidden="0" type="field" name="financing"/>
-          <column width="-1" hidden="0" type="field" name="gross_costs"/>
-          <column width="-1" hidden="0" type="field" name="inspection_interval"/>
-          <column width="-1" hidden="0" type="field" name="location_name"/>
-          <column width="-1" hidden="0" type="field" name="records"/>
-          <column width="-1" hidden="0" type="field" name="renovation_necessity"/>
-          <column width="-1" hidden="0" type="field" name="replacement_value"/>
-          <column width="-1" hidden="0" type="field" name="rv_base_year"/>
-          <column width="-1" hidden="0" type="field" name="rv_construction_type"/>
-          <column width="-1" hidden="0" type="field" name="status"/>
-          <column width="-1" hidden="0" type="field" name="structure_condition"/>
-          <column width="-1" hidden="0" type="field" name="subsidies"/>
-          <column width="-1" hidden="0" type="field" name="year_of_construction"/>
-          <column width="-1" hidden="0" type="field" name="year_of_replacement"/>
-          <column width="-1" hidden="0" type="field" name="fk_owner"/>
-          <column width="-1" hidden="0" type="field" name="fk_operator"/>
           <column width="-1" hidden="0" type="field" name="identifier"/>
           <column width="-1" hidden="0" type="field" name="remark"/>
           <column width="-1" hidden="0" type="field" name="last_modification"/>
@@ -12523,13 +12510,31 @@ def my_form_open(dialog, layer, feature):
           <column width="-1" hidden="0" type="field" name="rp_to_fk_dataowner"/>
           <column width="-1" hidden="0" type="field" name="rp_to_fk_provider"/>
           <column width="-1" hidden="0" type="field" name="rp_to_fk_wastewater_networkelement"/>
-          <column width="-1" hidden="0" type="field" name="me_obj_id"/>
-          <column width="-1" hidden="0" type="field" name="me_active_zone"/>
-          <column width="-1" hidden="0" type="field" name="me_identifier"/>
           <column width="-1" hidden="0" type="field" name="material_abbr_en"/>
           <column width="-1" hidden="0" type="field" name="material_abbr_de"/>
           <column width="-1" hidden="0" type="field" name="material_abbr_fr"/>
           <column width="-1" hidden="1" type="actions"/>
+          <column width="-1" hidden="0" type="field" name="ws_status"/>
+          <column width="-1" hidden="0" type="field" name="ws_fk_owner"/>
+          <column width="-1" hidden="0" type="field" name="ch_bedding_encasement"/>
+          <column width="-1" hidden="0" type="field" name="ws_accessibility"/>
+          <column width="-1" hidden="0" type="field" name="ws_contract_section"/>
+          <column width="-1" hidden="0" type="field" name="ws_financing"/>
+          <column width="-1" hidden="0" type="field" name="ws_gross_costs"/>
+          <column width="-1" hidden="0" type="field" name="ws_identifier"/>
+          <column width="-1" hidden="0" type="field" name="ws_inspection_interval"/>
+          <column width="-1" hidden="0" type="field" name="ws_location_name"/>
+          <column width="-1" hidden="0" type="field" name="ws_records"/>
+          <column width="-1" hidden="0" type="field" name="ws_remark"/>
+          <column width="-1" hidden="0" type="field" name="ws_renovation_necessity"/>
+          <column width="-1" hidden="0" type="field" name="ws_replacement_value"/>
+          <column width="-1" hidden="0" type="field" name="ws_rv_base_year"/>
+          <column width="-1" hidden="0" type="field" name="ws_rv_construction_type"/>
+          <column width="-1" hidden="0" type="field" name="ws_structure_condition"/>
+          <column width="-1" hidden="0" type="field" name="ws_subsidies"/>
+          <column width="-1" hidden="0" type="field" name="ws_year_of_construction"/>
+          <column width="-1" hidden="0" type="field" name="ws_year_of_replacement"/>
+          <column width="-1" hidden="0" type="field" name="ws_fk_operator"/>
         </columns>
       </attributetableconfig>
       <editform>./forms/reach.ui</editform>
@@ -15306,7 +15311,6 @@ def my_form_open(dialog, layer, feature):
     <WMSRestrictedComposers type="QStringList"/>
     <WMSRootName type="QString"></WMSRootName>
     <WMSServiceTitle type="QString"></WMSServiceTitle>
-    <WMSContactPhone type="QString"></WMSContactPhone>
     <PAL>
       <SearchMethod type="int">0</SearchMethod>
       <ShowingShadowRects type="bool">false</ShowingShadowRects>
@@ -15319,6 +15323,7 @@ def my_form_open(dialog, layer, feature):
       <ShowingAllLabels type="bool">false</ShowingAllLabels>
       <DrawOutlineLabels type="bool">true</DrawOutlineLabels>
     </PAL>
+    <WMSContactPhone type="QString"></WMSContactPhone>
     <WFSTLayers>
       <Insert type="QStringList"/>
       <Update type="QStringList"/>
@@ -15424,10 +15429,10 @@ def my_form_open(dialog, layer, feature):
       <GraphNodeLayer type="QString">vw_network_node20150607120529398</GraphNodeLayer>
       <GraphEdgeLayer type="QString">vw_network_segment20150607120529381</GraphEdgeLayer>
     </QGEP>
-    <WMSServiceAbstract type="QString"></WMSServiceAbstract>
     <Measure>
       <Ellipsoid type="QString">NONE</Ellipsoid>
     </Measure>
+    <WMSServiceAbstract type="QString"></WMSServiceAbstract>
     <WFSLayers type="QStringList"/>
     <WFSUrl type="QString"></WFSUrl>
     <WMSServiceCapabilities type="bool">false</WMSServiceCapabilities>
