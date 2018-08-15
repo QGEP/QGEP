@@ -10827,7 +10827,7 @@ def my_form_open(dialog, layer, feature):
               <property key="labeling/centroidWhole" value="false"/>
               <property key="labeling/dataDefined/Color" value="1~~1~~CASE&#xa;  WHEN  ch_usage_current IN (4514,4520) THEN '0,0,255,255' &#xa;  WHEN ch_usage_current = 4516 THEN '0,255,0,255'&#xa;  WHEN ch_usage_current = 4518 THEN '0,170,255,255'&#xa;  WHEN ch_usage_current = 4522 THEN '102,0,102,255'&#xa;  WHEN ch_usage_current IN (4524,4526) THEN '255,0,0,255'&#xa;ELSE '161,161,161,255'&#xa;END~~"/>
               <property key="labeling/dataDefined/LabelDistance" value="1~~1~~COALESCE(width,0) / 2000.0 + 0.1~~"/>
-              <property key="labeling/dataDefined/Show" value="1~~1~~CASE WHEN $scale &lt;= 1000 THEN 1&#xa;ELSE&#xa; CASE WHEN ch_function_hierarchic IN (5068,5069,5070,5071) THEN 1 ELSE 0 END&#xa;END~~"/>
+              <property key="labeling/dataDefined/Show" value="1~~1~~CASE WHEN @map_scale &lt;= 1000 THEN 1&#xa;ELSE&#xa; CASE WHEN ch_function_hierarchic IN (5068,5069,5070,5071) THEN 1 ELSE 0 END&#xa;END~~"/>
               <property key="labeling/decimals" value="3"/>
               <property key="labeling/displayAll" value="false"/>
               <property key="labeling/dist" value="0.29999999999999999"/>
@@ -12165,7 +12165,7 @@ def my_form_open(dialog, layer, feature):
         <property key="labeling/centroidWhole" value="false"/>
         <property key="labeling/dataDefined/Color" value="1~~1~~CASE&#xa;  WHEN  ch_usage_current IN (4514,4520) THEN '0,0,255,255' &#xa;  WHEN ch_usage_current = 4516 THEN '0,255,0,255'&#xa;  WHEN ch_usage_current = 4518 THEN '0,170,255,255'&#xa;  WHEN ch_usage_current = 4522 THEN '102,0,102,255'&#xa;  WHEN ch_usage_current IN (4524,4526) THEN '255,0,0,255'&#xa;ELSE '161,161,161,255'&#xa;END~~"/>
         <property key="labeling/dataDefined/LabelDistance" value="1~~1~~COALESCE(width,0) / 2000.0 + 0.1~~"/>
-        <property key="labeling/dataDefined/Show" value="1~~1~~CASE WHEN $scale &lt;= 1000 THEN 1&#xa;ELSE&#xa; CASE WHEN ch_function_hierarchic IN (5068,5069,5070,5071) THEN 1 ELSE 0 END&#xa;END~~"/>
+        <property key="labeling/dataDefined/Show" value="1~~1~~CASE WHEN @map_scale &lt;= 1000 THEN 1&#xa;ELSE&#xa; CASE WHEN ch_function_hierarchic IN (5068,5069,5070,5071) THEN 1 ELSE 0 END&#xa;END~~"/>
         <property key="labeling/decimals" value="3"/>
         <property key="labeling/displayAll" value="false"/>
         <property key="labeling/dist" value="0.3"/>
@@ -14325,7 +14325,7 @@ def my_form_open(dialog, layer, feature):
         <property key="ii_labeling/distMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="ii_labeling/drawLabels" value="true"/>
         <property key="ii_labeling/enabled" value="true"/>
-        <property key="ii_labeling/fieldName" value="CASE WHEN $scale &lt;= 500 THEN _label ELSE  ws_identifier END"/>
+        <property key="ii_labeling/fieldName" value="CASE WHEN @map_scale &lt;= 500 THEN _label ELSE  identifier END"/>
         <property key="ii_labeling/fitInPolygonOnly" value="false"/>
         <property key="ii_labeling/fontBold" value="false"/>
         <property key="ii_labeling/fontCapitals" value="0"/>
@@ -14484,7 +14484,7 @@ def my_form_open(dialog, layer, feature):
         <property key="labeling/distMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="labeling/drawLabels" value="true"/>
         <property key="labeling/enabled" value="true"/>
-        <property key="labeling/fieldName" value="CASE WHEN $scale &lt;= 500 THEN _label ELSE  ws_identifier END"/>
+        <property key="labeling/fieldName" value="CASE WHEN @map_scale &lt;= 500 THEN _label ELSE  identifier END"/>
         <property key="labeling/fitInPolygonOnly" value="false"/>
         <property key="labeling/fontCapitals" value="0"/>
         <property key="labeling/fontFamily" value=".SF NS Text"/>
