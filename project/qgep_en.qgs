@@ -20188,7 +20188,7 @@ def my_form_open(dialog, layer, feature):
         <property key="ii_labeling/distMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="ii_labeling/drawLabels" value="true"/>
         <property key="ii_labeling/enabled" value="true"/>
-        <property key="ii_labeling/fieldName" value="CASE WHEN @map_scale &lt;= 500 THEN _label ELSE  ws_identifier END"/>
+        <property key="ii_labeling/fieldName" value="CASE WHEN @map_scale &lt;= 500 THEN _label ELSE  identifier END"/>
         <property key="ii_labeling/fitInPolygonOnly" value="false"/>
         <property key="ii_labeling/fontBold" value="false"/>
         <property key="ii_labeling/fontCapitals" value="0"/>
