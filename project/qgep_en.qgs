@@ -17116,7 +17116,7 @@ def my_form_open(dialog, layer, feature):
           <widgetv2config AllowNull="1" fieldEditable="1" Step="1" constraint="" Style="SpinBox" labelOnTop="0" constraintDescription="" Min="0" notNull="0" Max="100"/>
         </edittype>
         <edittype widgetv2type="RelationReference" name="fk_pipe_profile">
-          <widgetv2config OrderByValue="0" fieldEditable="1" AllowAddFeatures="0" ShowForm="0" Relation="reach-fk_pipe_profile" ReadOnly="0" constraint="" MapIdentification="0" labelOnTop="0" constraintDescription="" notNull="0" AllowNULL="1"/>
+          <widgetv2config OrderByValue="0" fieldEditable="1" AllowAddFeatures="1" ShowForm="0" Relation="reach-fk_pipe_profile" ReadOnly="0" constraint="" MapIdentification="0" labelOnTop="0" constraintDescription="" notNull="0" AllowNULL="1"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="identifier">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
