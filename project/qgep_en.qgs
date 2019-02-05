@@ -5,7 +5,7 @@
   <evaluateDefaultValues active="1"/>
   <layer-tree-group expanded="1" checked="Qt::PartiallyChecked" name="">
     <customproperties/>
-    <layer-tree-layer expanded="0" providerKey="postgres" checked="Qt::Checked" id="vw_qgep_wastewater_structure" source="service='pg_qgep' key='obj_id' estimatedmetadata=true srid=2056 type=MultiPoint table=&quot;qgep_od&quot;.&quot;vw_qgep_wastewater_structure&quot; (situation_geometry) sql=" name="vw_qgep_wastewater_structure">
+    <layer-tree-layer expanded="0" providerKey="postgres" checked="Qt::Checked" id="vw_qgep_wastewater_structure" source="service='pg_qgep' key='obj_id' estimatedmetadata=true srid=2056 type=MultiPointZ table=&quot;qgep_od&quot;.&quot;vw_qgep_wastewater_structure&quot; (situation_geometry) sql=" name="vw_qgep_wastewater_structure">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer expanded="0" providerKey="postgres" checked="Qt::Checked" id="vw_qgep_reach" source="service='pg_qgep' key='obj_id' srid=2056 type=CompoundCurveZ table=&quot;qgep_od&quot;.&quot;vw_qgep_reach&quot; (progression_geometry) sql=" name="vw_qgep_reach">
@@ -18606,7 +18606,7 @@ def my_form_open(dialog, layer, feature):
         <default field="rp_from_obj_id" expression=""/>
         <default field="rp_from_elevation_accuracy" expression=""/>
         <default field="rp_from_identifier" expression=""/>
-        <default field="rp_from_level" expression=""/>
+        <default field="rp_from_level" expression="if(z(start_point($geometry))='nan', NULL, z(start_point($geometry)))&#xa;"/>
         <default field="rp_from_outlet_shape" expression=""/>
         <default field="rp_from_position_of_connection" expression=""/>
         <default field="rp_from_remark" expression=""/>
@@ -18617,7 +18617,7 @@ def my_form_open(dialog, layer, feature):
         <default field="rp_to_obj_id" expression=""/>
         <default field="rp_to_elevation_accuracy" expression=""/>
         <default field="rp_to_identifier" expression=""/>
-        <default field="rp_to_level" expression=""/>
+        <default field="rp_to_level" expression="if(z(end_point($geometry))='nan', NULL, z(end_point($geometry)))&#xa;"/>
         <default field="rp_to_outlet_shape" expression=""/>
         <default field="rp_to_position_of_connection" expression=""/>
         <default field="rp_to_remark" expression=""/>
@@ -18639,7 +18639,7 @@ def my_form_open(dialog, layer, feature):
         <ymax>266718.11300000001210719</ymax>
       </extent>
       <id>vw_qgep_wastewater_structure</id>
-      <datasource>service='pg_qgep' key='obj_id' estimatedmetadata=true srid=2056 type=MultiPoint table="qgep_od"."vw_qgep_wastewater_structure" (situation_geometry) sql=</datasource>
+      <datasource>service='pg_qgep' key='obj_id' estimatedmetadata=true srid=2056 type=MultiPointZ table="qgep_od"."vw_qgep_wastewater_structure" (situation_geometry) sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
