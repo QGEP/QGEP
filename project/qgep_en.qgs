@@ -39651,17 +39651,12 @@ def my_form_open(dialog, layer, feature):
       <expressionfields/>
       <attributeactions>
         <defaultAction key="Canvas" value="{7d277e87-4106-4e0f-9750-c8432e21f2ba}"/>
-        <actionsetting action="" icon="" type="0" name="" notificationMessage="" id="{7d277e87-4106-4e0f-9750-c8432e21f2ba}" capture="0" isEnabledOnlyWhenEditable="0" shortTitle="">
+        <actionsetting action="from qgepplugin.gui import forms&#xa;&#xa;import qgepplugin&#xa;&#xa;feature = next( QgsProject.instance().mapLayer('od_wastewater_structure').getFeatures( QgsFeatureRequest().setFilterExpression( 'obj_id = \'{}\''.format( '[% &quot;obj_id&quot; %]' ) ) ) )&#xa;qgepplugin.gui.forms.digitizeDrainageChannel(feature.id(), 'od_wastewater_structure')" id="{889a5036-3bbc-43e4-a051-2f4b9231b32a}" icon="" isEnabledOnlyWhenEditable="0" type="1" capture="0" name="Digitize Drainage Channel" shortTitle="" notificationMessage="">
           <actionScope id="Field"/>
           <actionScope id="Feature"/>
           <actionScope id="Canvas"/>
         </actionsetting>
-        <actionsetting action="from qgepplugin.ui import forms&#xa;&#xa;import qgepplugin&#xa;&#xa;feature = QgsMapLayerRegistry.instance().mapLayer('od_wastewater_structure').getFeatures( QgsFeatureRequest().setFilterExpression( 'obj_id = \'{}\''.format( '[% &quot;obj_id&quot; %]' ) ) ).next()&#xa;qgepplugin.ui.forms.digitizeDrainageChannel(feature.id(), 'od_wastewater_structure')" icon="" type="1" name="Digitize Drainage Channel" notificationMessage="" id="{1091a1d5-b61b-4e2a-8d2a-267dbff023b1}" capture="0" isEnabledOnlyWhenEditable="0" shortTitle="">
-          <actionScope id="Field"/>
-          <actionScope id="Feature"/>
-          <actionScope id="Canvas"/>
-        </actionsetting>
-        <actionsetting action="ws_lyr = QgsMapLayerRegistry.instance().mapLayer('od_wastewater_structure')&#xa;feature = ws_lyr.getFeatures( QgsFeatureRequest().setFilterExpression( 'obj_id = \'{}\''.format( '[% &quot;obj_id&quot; %]' ) ) ).next()&#xa;ws_lyr.startEditing()&#xa;ws_lyr.setSelectedFeatures([feature.id()])&#xa;qgis.utils.iface.setActiveLayer(ws_lyr)&#xa;qgis.utils.iface.actionAddPart().trigger()" icon="" type="1" name="Digitize" notificationMessage="" id="{8e193f4d-566a-4325-8691-ebd093809353}" capture="0" isEnabledOnlyWhenEditable="0" shortTitle="">
+        <actionsetting action="ws_lyr = QgsProject.instance().mapLayer('od_wastewater_structure')&#xa;feature = next( ws_lyr.getFeatures( QgsFeatureRequest().setFilterExpression( 'obj_id = \'{}\''.format( '[% &quot;obj_id&quot; %]' ) ) ) )&#xa;ws_lyr.startEditing()&#xa;ws_lyr.selectByIds([feature.id()])&#xa;qgis.utils.iface.setActiveLayer(ws_lyr)&#xa;qgis.utils.iface.actionAddPart().trigger()" id="{9c7eaa3f-59ff-4cfd-887d-881e0fec3073}" icon="" isEnabledOnlyWhenEditable="0" type="1" capture="0" name="Digitize" shortTitle="" notificationMessage="">
           <actionScope id="Field"/>
           <actionScope id="Feature"/>
           <actionScope id="Canvas"/>
