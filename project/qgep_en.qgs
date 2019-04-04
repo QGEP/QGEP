@@ -36017,7 +36017,7 @@ def my_form_open(dialog, layer, feature):
         <constraint exp_strength="0" notnull_strength="0" constraints="0" field="last_modification" unique_strength="0"/>
         <constraint exp_strength="0" notnull_strength="0" constraints="0" field="fk_dataowner" unique_strength="0"/>
         <constraint exp_strength="0" notnull_strength="0" constraints="0" field="fk_provider" unique_strength="0"/>
-        <constraint exp_strength="0" notnull_strength="0" constraints="0" field="fk_wastewater_structure" unique_strength="0"/>
+        <constraint exp_strength="0" notnull_strength="1" constraints="3" field="fk_wastewater_structure" unique_strength="1"/>
         <constraint exp_strength="0" notnull_strength="0" constraints="0" field="ch_bedding_encasement" unique_strength="0"/>
         <constraint exp_strength="0" notnull_strength="0" constraints="0" field="ch_connection_type" unique_strength="0"/>
         <constraint exp_strength="0" notnull_strength="0" constraints="0" field="ch_jetting_interval" unique_strength="0"/>
@@ -36042,7 +36042,7 @@ def my_form_open(dialog, layer, feature):
         <constraint exp_strength="0" notnull_strength="0" constraints="0" field="ws_year_of_construction" unique_strength="0"/>
         <constraint exp_strength="0" notnull_strength="0" constraints="0" field="ws_year_of_replacement" unique_strength="0"/>
         <constraint exp_strength="0" notnull_strength="0" constraints="0" field="ws_fk_operator" unique_strength="0"/>
-        <constraint exp_strength="0" notnull_strength="0" constraints="0" field="rp_from_obj_id" unique_strength="0"/>
+        <constraint exp_strength="0" notnull_strength="1" unique_strength="1" constraints="3" field="rp_from_obj_id"/>
         <constraint exp_strength="0" notnull_strength="0" constraints="0" field="rp_from_elevation_accuracy" unique_strength="0"/>
         <constraint exp_strength="0" notnull_strength="0" constraints="0" field="rp_from_identifier" unique_strength="0"/>
         <constraint exp_strength="0" notnull_strength="0" constraints="0" field="rp_from_level" unique_strength="0"/>
@@ -36053,7 +36053,7 @@ def my_form_open(dialog, layer, feature):
         <constraint exp_strength="0" notnull_strength="0" constraints="0" field="rp_from_fk_dataowner" unique_strength="0"/>
         <constraint exp_strength="0" notnull_strength="0" constraints="0" field="rp_from_fk_provider" unique_strength="0"/>
         <constraint exp_strength="0" notnull_strength="0" constraints="0" field="rp_from_fk_wastewater_networkelement" unique_strength="0"/>
-        <constraint exp_strength="0" notnull_strength="0" constraints="0" field="rp_to_obj_id" unique_strength="0"/>
+        <constraint exp_strength="0" notnull_strength="1" constraints="3" field="rp_to_obj_id" unique_strength="1"/>
         <constraint exp_strength="0" notnull_strength="0" constraints="0" field="rp_to_elevation_accuracy" unique_strength="0"/>
         <constraint exp_strength="0" notnull_strength="0" constraints="0" field="rp_to_identifier" unique_strength="0"/>
         <constraint exp_strength="0" notnull_strength="0" constraints="0" field="rp_to_level" unique_strength="0"/>
