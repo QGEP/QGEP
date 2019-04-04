@@ -427,7 +427,7 @@
       <fieldRef referencedField="obj_id" referencingField="object"/>
     </relation>
     <relation name="Pictures" referencingLayer="od_file20160921105557083" id="od_file20160921105557083_object_vw_qgep_reach_ws_obj_id" referencedLayer="vw_qgep_reach" strength="Association">
-      <fieldRef referencedField="ws_obj_id" referencingField="object"/>
+      <fieldRef referencedField="fk_wastewater_structure" referencingField="object"/>
     </relation>
     <relation name="Pictures" referencingLayer="od_file20160921105557083" id="od_file20160921105557083_object_vw_qgep_wastewater_structure_obj_id" referencedLayer="vw_qgep_wastewater_structure" strength="Association">
       <fieldRef referencedField="obj_id" referencingField="object"/>
