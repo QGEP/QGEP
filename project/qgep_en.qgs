@@ -363,13 +363,13 @@
       <layer-tree-layer providerKey="postgres" name="vw_wastewater_node" expanded="1" checked="Qt::Unchecked" id="vw_wastewater_node20150607121012062" source="service='pg_qgep' key='obj_id' estimatedmetadata=true srid=2056 type=Point table=&quot;qgep_od&quot;.&quot;vw_wastewater_node&quot; (situation_geometry) sql=">
         <customproperties/>
       </layer-tree-layer>
-      <layer-tree-layer providerKey="postgres" name="vw_overflow_leapingweir" expanded="1" checked="Qt::Checked" id="vw_overflow_leapingweir20180603141619261" source="service='pg_qgep' key='obj_id' table=&quot;qgep_od&quot;.&quot;vw_overflow_leapingweir&quot; sql=">
+      <layer-tree-layer providerKey="postgres" name="vw_leapingweir" expanded="1" checked="Qt::Checked" id="vw_leapingweir20180603141619261" source="service='pg_qgep' key='obj_id' table=&quot;qgep_od&quot;.&quot;vw_leapingweir&quot; sql=">
         <customproperties/>
       </layer-tree-layer>
-      <layer-tree-layer providerKey="postgres" name="vw_overflow_prank_weir" expanded="1" checked="Qt::Checked" id="vw_overflow_prank_weir20180603141619323" source="service='pg_qgep' key='obj_id' table=&quot;qgep_od&quot;.&quot;vw_overflow_prank_weir&quot; sql=">
+      <layer-tree-layer providerKey="postgres" name="vw_prank_weir" expanded="1" checked="Qt::Checked" id="vw_prank_weir20180603141619323" source="service='pg_qgep' key='obj_id' table=&quot;qgep_od&quot;.&quot;vw_prank_weir&quot; sql=">
         <customproperties/>
       </layer-tree-layer>
-      <layer-tree-layer providerKey="postgres" name="vw_overflow_pump" expanded="1" checked="Qt::Checked" id="vw_overflow_pump20180603141532062" source="service='pg_qgep' key='obj_id' table=&quot;qgep_od&quot;.&quot;vw_overflow_pump&quot; sql=">
+      <layer-tree-layer providerKey="postgres" name="vw_pump" expanded="1" checked="Qt::Checked" id="vw_pump20180603141532062" source="service='pg_qgep' key='obj_id' table=&quot;qgep_od&quot;.&quot;vw_pump&quot; sql=">
         <customproperties/>
       </layer-tree-layer>
       <layer-tree-layer providerKey="postgres" name="od_throttle_shut_off_unit" expanded="1" checked="Qt::Checked" id="throttle_shut_off_unit20180603140933091" source="service='pg_qgep' key='obj_id' table=&quot;qgep_od&quot;.&quot;throttle_shut_off_unit&quot; sql=">
@@ -1041,19 +1041,19 @@
           <legendlayerfile isInOverview="0" visible="0" layerid="vw_wastewater_node20150607121012062"/>
         </filegroup>
       </legendlayer>
-      <legendlayer name="vw_overflow_leapingweir" open="true" checked="Qt::Checked" drawingOrder="-1" showFeatureCount="0">
+      <legendlayer name="vw_leapingweir" open="true" checked="Qt::Checked" drawingOrder="-1" showFeatureCount="0">
         <filegroup open="true" hidden="false">
-          <legendlayerfile isInOverview="0" visible="1" layerid="vw_overflow_leapingweir20180603141619261"/>
+          <legendlayerfile isInOverview="0" visible="1" layerid="vw_leapingweir20180603141619261"/>
         </filegroup>
       </legendlayer>
-      <legendlayer name="vw_overflow_prank_weir" open="true" checked="Qt::Checked" drawingOrder="-1" showFeatureCount="0">
+      <legendlayer name="vw_prank_weir" open="true" checked="Qt::Checked" drawingOrder="-1" showFeatureCount="0">
         <filegroup open="true" hidden="false">
-          <legendlayerfile isInOverview="0" visible="1" layerid="vw_overflow_prank_weir20180603141619323"/>
+          <legendlayerfile isInOverview="0" visible="1" layerid="vw_prank_weir20180603141619323"/>
         </filegroup>
       </legendlayer>
-      <legendlayer name="vw_overflow_pump" open="true" checked="Qt::Checked" drawingOrder="-1" showFeatureCount="0">
+      <legendlayer name="vw_pump" open="true" checked="Qt::Checked" drawingOrder="-1" showFeatureCount="0">
         <filegroup open="true" hidden="false">
-          <legendlayerfile isInOverview="0" visible="1" layerid="vw_overflow_pump20180603141532062"/>
+          <legendlayerfile isInOverview="0" visible="1" layerid="vw_pump20180603141532062"/>
         </filegroup>
       </legendlayer>
       <legendlayer name="od_throttle_shut_off_unit" open="true" checked="Qt::Checked" drawingOrder="-1" showFeatureCount="0">
@@ -29339,12 +29339,12 @@ def my_form_open(dialog, layer, feature):
       <mapTip></mapTip>
     </maplayer>
     <maplayer refreshOnNotifyEnabled="0" geometry="No geometry" minScale="1e+8" readOnly="0" autoRefreshTime="0" type="vector" maxScale="0" refreshOnNotifyMessage="" hasScaleBasedVisibilityFlag="0" autoRefreshEnabled="0" styleCategories="AllStyleCategories">
-      <id>vw_overflow_leapingweir20180603141619261</id>
-      <datasource>service='pg_qgep' key='obj_id' table="qgep_od"."vw_overflow_leapingweir" sql=</datasource>
+      <id>vw_leapingweir20180603141619261</id>
+      <datasource>service='pg_qgep' key='obj_id' table="qgep_od"."vw_leapingweir" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
-      <layername>vw_overflow_leapingweir</layername>
+      <layername>vw_leapingweir</layername>
       <srs>
         <spatialrefsys>
           <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
@@ -29878,12 +29878,12 @@ def my_form_open(dialog, layer, feature):
       <mapTip></mapTip>
     </maplayer>
     <maplayer refreshOnNotifyEnabled="0" geometry="No geometry" minScale="1e+8" readOnly="0" autoRefreshTime="0" type="vector" maxScale="0" refreshOnNotifyMessage="" hasScaleBasedVisibilityFlag="0" autoRefreshEnabled="0" styleCategories="AllStyleCategories">
-      <id>vw_overflow_prank_weir20180603141619323</id>
-      <datasource>service='pg_qgep' key='obj_id' table="qgep_od"."vw_overflow_prank_weir" sql=</datasource>
+      <id>vw_prank_weir20180603141619323</id>
+      <datasource>service='pg_qgep' key='obj_id' table="qgep_od"."vw_prank_weir" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
-      <layername>vw_overflow_prank_weir</layername>
+      <layername>vw_prank_weir</layername>
       <srs>
         <spatialrefsys>
           <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
@@ -30459,12 +30459,12 @@ def my_form_open(dialog, layer, feature):
       <mapTip></mapTip>
     </maplayer>
     <maplayer refreshOnNotifyEnabled="0" geometry="No geometry" minScale="1e+8" readOnly="0" autoRefreshTime="0" type="vector" maxScale="0" refreshOnNotifyMessage="" hasScaleBasedVisibilityFlag="0" autoRefreshEnabled="0" styleCategories="AllStyleCategories">
-      <id>vw_overflow_pump20180603141532062</id>
-      <datasource>service='pg_qgep' key='obj_id' table="qgep_od"."vw_overflow_pump" sql=</datasource>
+      <id>vw_pump20180603141532062</id>
+      <datasource>service='pg_qgep' key='obj_id' table="qgep_od"."vw_pump" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
-      <layername>vw_overflow_pump</layername>
+      <layername>vw_pump</layername>
       <srs>
         <spatialrefsys>
           <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
