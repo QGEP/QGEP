@@ -2,4 +2,5 @@
 qgepplugin-*.zip
 plugins.xml
 qgep_en.qgs~
+project/*.ts
 .DS_Store
