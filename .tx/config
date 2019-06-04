@@ -3,7 +3,7 @@ host = https://www.transifex.com
 
 [qgep-project.qgep_ents]
 file_filter = project/qgep_<lang>.ts
-source_file = project/qgep_en.ts
+source_file = project/qgep.ts
 source_lang = en
 type = QT
 

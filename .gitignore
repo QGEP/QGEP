@@ -1,6 +1,6 @@
 *.pyc
 qgepplugin-*.zip
 plugins.xml
-qgep_en.qgs~
+qgep.qgs~
 project/*.ts
 .DS_Store
