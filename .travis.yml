@@ -1,0 +1,19 @@
+language: python
+dist: xenial
+
+python:
+  - 3.6
+  
+install:
+  - pip install -r requirements.txt
+
+jobs:
+  include:
+    - stage: update_ts
+      script:
+        - ./scripts/update_and_push_ts_files.sh
+      if: branch = master
+    - stage: deploy
+      script:
+        - ./scripts/pull_ts.sh
+        - ./scripts/release.sh
