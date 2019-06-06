@@ -15,5 +15,5 @@ jobs:
       if: branch = master
     - stage: deploy
       script:
-        - ./scripts/pull_ts.sh
+        - ./scripts/scripts/pull_ts_and_create_project.sh
         - ./scripts/release.sh
