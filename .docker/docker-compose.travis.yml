@@ -11,7 +11,6 @@ services:
       dockerfile: ./.docker/Dockerfile
     tty: true
     volumes:
-            #      - ${TRAVIS_BUILD_DIR}:/usr/src
-      - /home/mkuhn/dev/qgep/QGEP:/usr/src
+      - ${TRAVIS_BUILD_DIR}:/usr/src
     links:
       - postgres
