@@ -12,8 +12,9 @@ jobs:
     - stage: update_ts
       script:
         - ./scripts/update_and_push_ts_files.sh
-      if: branch = master
+          #      if: branch = master
     - stage: deploy
       script:
-        - ./scripts/scripts/pull_ts_and_create_project.sh
+        - ./scripts/pull_ts_and_create_project.sh
         - ./scripts/release.sh
+          # if: tag IS present
