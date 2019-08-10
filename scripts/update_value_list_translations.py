@@ -6,7 +6,7 @@ from lxml import etree
 
 for lang_file in sys.argv[1:]:
     with open(lang_file) as file:
-        filename = os.path.split(lang)[-1]
+        filename = os.path.split(lang_file)[-1]
         basename, _ = os.path.splitext(filename)
         _, lang_code = basename.split('_')
 
