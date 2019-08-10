@@ -7,3 +7,6 @@ docker-compose -f .docker/docker-compose.travis.yml run qgis /usr/src/scripts/do
 docker-compose -f .docker/docker-compose.travis.yml rm -s -f
 
 tx push -s
+tx pull -a
+./scripts/update_value_list_translations.py project/*_*.ts
+tx push -t
