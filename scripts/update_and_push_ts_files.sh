@@ -8,5 +8,5 @@ docker-compose -f .docker/docker-compose.travis.yml rm -s -f
 
 tx push -s
 tx pull -a
-./scripts/update_value_list_translations.py project/*_*.ts
+python3 ./scripts/update_value_list_translations.py project/*_*.ts
 tx push -t
