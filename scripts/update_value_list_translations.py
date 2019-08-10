@@ -5,6 +5,7 @@ import os
 from lxml import etree
 
 for lang_file in sys.argv[1:]:
+    print('Translating {}'.format(lang_file))
     with open(lang_file) as file:
         filename = os.path.split(lang_file)[-1]
         basename, _ = os.path.splitext(filename)
@@ -18,11 +19,11 @@ for lang_file in sys.argv[1:]:
                 translation = context.find('message').find('translation')
                 if source == 'value_en':
                     translation.text = 'value_{}'.format(lang_code)
+                    translation.attrib.pop('type')
                 elif source == 'abbr_en':
                     translation.text = 'abbr_de'.format(lang_code)
+                    translation.attrib.pop('type')
                 else:
                     print('Value relation widget {} has {} as source field, not translated'.format(name, source))
 
-    tree.write(lang_file)
-
-
+    tree.write(lang_file, xml_declaration=True)
