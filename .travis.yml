@@ -12,7 +12,8 @@ jobs:
     - stage: update_ts
       script:
         - ./scripts/update_and_push_ts_files.sh
-      if: branch = master
+      if: branch = master and type = push
+
     - stage: deploy
       script:
         - ./scripts/pull_ts_and_create_project.sh
@@ -26,3 +27,4 @@ jobs:
           repo: QGEP/QGEP
           tags: true
           branch: master
+      if: tag is present
