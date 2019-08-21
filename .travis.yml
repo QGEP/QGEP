@@ -1,0 +1,30 @@
+language: python
+dist: xenial
+
+python:
+  - 3.7
+  
+install:
+  - pip install -r requirements.txt
+
+jobs:
+  include:
+    - stage: update_ts
+      script:
+        - ./scripts/update_and_push_ts_files.sh
+      if: branch = master and type = push
+
+    - stage: deploy
+      script:
+        - ./scripts/pull_ts_and_create_project.sh
+        - ./scripts/release.sh
+      deploy:
+        provider: releases
+        api_key: $GH_TOKEN
+        skip_cleanup: true
+        file: qgep.zip
+        on:
+          repo: QGEP/QGEP
+          tags: true
+          branch: master
+      if: tag is present
