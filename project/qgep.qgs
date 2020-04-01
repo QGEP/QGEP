@@ -43838,7 +43838,7 @@ def my_form_open(dialog, layer, feature):
       </renderer-v2>
       <labeling type="simple">
         <settings>
-          <text-style fieldName="CASE WHEN @map_scale &lt;= 500 THEN _label ELSE  identifier END" namedStyle="Standard" fontStrikeout="0" fontSize="7" useSubstitutions="0" textOpacity="1" fontLetterSpacing="0" fontSizeUnit="Point" isExpression="1" fontWordSpacing="0" blendMode="0" textColor="0,0,0,255" fontUnderline="0" fontFamily="MS Shell Dlg 2" fontWeight="50" fontSizeMapUnitScale="3x:0,0,0,0,0,0" multilineHeight="1" fontCapitals="0" previewBkgrdColor="#ffffff" fontItalic="0">
+          <text-style fieldName="CASE WHEN @map_scale &lt;= 500 THEN concat(_label, replace(_cover_label,'C',@qgep_cover_prefix), replace(_bottom_label,'B',@qgep_bottom_prefix), replace(_input_label,'I',@qgep_input_prefix), replace(_output_label,'O',@qgep_output_prefix)) ELSE identifier END" namedStyle="Standard" fontStrikeout="0" fontSize="7" useSubstitutions="0" textOpacity="1" fontLetterSpacing="0" fontSizeUnit="Point" isExpression="1" fontWordSpacing="0" blendMode="0" textColor="0,0,0,255" fontUnderline="0" fontFamily="MS Shell Dlg 2" fontWeight="50" fontSizeMapUnitScale="3x:0,0,0,0,0,0" multilineHeight="1" fontCapitals="0" previewBkgrdColor="#ffffff" fontItalic="0">
             <text-buffer bufferSize="1" bufferBlendMode="0" bufferJoinStyle="128" bufferSizeUnits="MM" bufferDraw="0" bufferColor="255,255,255,255" bufferSizeMapUnitScale="3x:0,0,0,0,0,0" bufferNoFill="0" bufferOpacity="1"/>
             <background shapeOffsetY="0" shapeBorderWidth="0" shapeBorderWidthMapUnitScale="3x:0,0,0,0,0,0" shapeJoinStyle="64" shapeSizeMapUnitScale="3x:0,0,0,0,0,0" shapeRotation="0" shapeSizeY="0" shapeRadiiY="0" shapeFillColor="255,255,255,255" shapeOffsetX="0" shapeSizeX="0" shapeRadiiMapUnitScale="3x:0,0,0,0,0,0" shapeOpacity="1" shapeBorderWidthUnit="MM" shapeType="0" shapeRadiiUnit="MM" shapeOffsetMapUnitScale="3x:0,0,0,0,0,0" shapeSVGFile="" shapeRotationType="0" shapeOffsetUnit="MM" shapeBorderColor="128,128,128,255" shapeSizeType="0" shapeSizeUnit="MM" shapeDraw="0" shapeBlendMode="0" shapeRadiiX="0"/>
             <shadow shadowRadiusMapUnitScale="3x:0,0,0,0,0,0" shadowRadiusAlphaOnly="0" shadowOpacity="0.7" shadowOffsetUnit="MM" shadowUnder="0" shadowOffsetAngle="135" shadowColor="0,0,0,255" shadowBlendMode="6" shadowRadius="1.5" shadowOffsetMapUnitScale="3x:0,0,0,0,0,0" shadowOffsetGlobal="1" shadowScale="100" shadowDraw="0" shadowOffsetDist="1" shadowRadiusUnit="MM"/>
@@ -45699,6 +45699,10 @@ def my_form_open(dialog, layer, feature):
           <attributeEditorContainer visibilityExpression="" groupBox="1" showLabel="1" visibilityExpressionEnabled="0" columnCount="2" name="">
             <attributeEditorField showLabel="1" index="14" name="remark"/>
             <attributeEditorField showLabel="1" index="80" name="_label"/>
+            <attributeEditorField showLabel="1" index="80" name="_cover_label"/>
+            <attributeEditorField showLabel="1" index="80" name="_bottom_label"/>
+            <attributeEditorField showLabel="1" index="80" name="_input_label"/>
+            <attributeEditorField showLabel="1" index="80" name="_output_label"/>
             <attributeEditorField showLabel="1" index="24" name="fk_dataowner"/>
             <attributeEditorField showLabel="1" index="25" name="fk_provider"/>
           </attributeEditorContainer>
@@ -46573,8 +46577,18 @@ def my_form_open(dialog, layer, feature):
       <DistanceUnits type="QString">meters</DistanceUnits>
     </Measurement>
     <Variables>
-      <variableValues type="QStringList"/>
-      <variableNames type="QStringList"/>
+      <variableNames type="QStringList">
+        <value>qgep_cover_prefix</value>
+        <value>qgep_bottom_prefix</value>
+        <value>qgep_input_prefix</value>
+        <value>qgep_output_prefix</value>
+      </variableNames>
+      <variableValues type="QStringList">
+        <value>C</value>
+        <value>B</value>
+        <value>I</value>
+        <value>O</value>
+      </variableValues>
     </Variables>
     <Paths>
       <Absolute type="bool">false</Absolute>
