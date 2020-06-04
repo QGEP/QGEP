@@ -1,7 +1,7 @@
-FROM ubuntu:19.04
+FROM ubuntu:20.04
 
 RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
+RUN DEBIAN_FRONTEND=noninteractive apt install --no-install-recommends -y \
     qgis \
     xvfb \
     iputils-ping \
