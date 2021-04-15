@@ -27,3 +27,8 @@ jobs:
           export TRAVIS_BUILD_DIR=$(pwd)
           pip install transifex-client
           ./scripts/pull_ts_and_create_project.sh
+      - uses: actions/upload-artifact@v2
+        with:
+          name: project
+          path: project/
+
