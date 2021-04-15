@@ -1,0 +1,29 @@
+name: 🧪 Create Translated Project
+
+on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'     
+        required: true
+        default: 'warning'
+      tags:
+        description: 'Test scenario tags'
+  push:
+    branches:
+      - project_update
+
+jobs:
+  # Run unit tests
+  translate_project:
+    runs-on: ubuntu-20.04
+    env:
+      TX_TOKEN: ${{ secrets.TX_TOKEN }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pull translations and build project
+        run: |
+          export TRAVIS_BUILD_DIR=$(pwd)
+          pip install transifex-client
+          ./scripts/pull_ts_and_create_project.sh
