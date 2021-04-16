@@ -19,10 +19,16 @@ for lang_file in sys.argv[1:]:
                 translation = context.find('message').find('translation')
                 if source == 'value_en':
                     translation.text = 'value_{}'.format(lang_code)
-                    translation.attrib.pop('type')
+                    try:
+                        translation.attrib.pop('type')
+                    except KeyError:
+                        pass
                 elif source == 'abbr_en':
-                    translation.text = 'abbr_de'.format(lang_code)
-                    translation.attrib.pop('type')
+                    translation.text = 'abbr_{}'.format(lang_code)
+                    try:
+                        translation.attrib.pop('type')
+                    except KeyError:
+                        pass
                 else:
                     print('Value relation widget {} has {} as source field, not translated'.format(name, source))
 
