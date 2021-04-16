@@ -34052,7 +34052,7 @@ def my_form_open(dialog, layer, feature):
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <defaults>
-        <default applyOnUpdate="0" expression="" field="obj_id"/>
+        <default applyOnUpdate="0" expression="obj_id" field="obj_id"/>
         <default applyOnUpdate="0" expression="" field="gross_costs"/>
         <default applyOnUpdate="0" expression="" field="kind"/>
         <default applyOnUpdate="0" expression="" field="year_of_replacement"/>
@@ -34399,7 +34399,7 @@ def my_form_open(dialog, layer, feature):
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <defaults>
-        <default applyOnUpdate="0" expression="" field="obj_id"/>
+        <default applyOnUpdate="0" expression="obj_id" field="obj_id"/>
         <default applyOnUpdate="0" expression="" field="kind"/>
         <default applyOnUpdate="0" expression="" field="identifier"/>
         <default applyOnUpdate="0" expression="" field="remark"/>
@@ -35906,7 +35906,7 @@ def my_form_open(dialog, layer, feature):
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <defaults>
-        <default applyOnUpdate="0" expression="" field="obj_id"/>
+        <default applyOnUpdate="0" expression="obj_id" field="obj_id"/>
         <default applyOnUpdate="0" expression="" field="brand"/>
         <default applyOnUpdate="0" expression="" field="cover_shape"/>
         <default applyOnUpdate="0" expression="" field="diameter"/>
@@ -36282,7 +36282,7 @@ def my_form_open(dialog, layer, feature):
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <defaults>
-        <default applyOnUpdate="0" expression="" field="obj_id"/>
+        <default applyOnUpdate="0" expression="obj_id" field="obj_id"/>
         <default applyOnUpdate="0" expression="" field="diameter"/>
         <default applyOnUpdate="0" expression="" field="identifier"/>
         <default applyOnUpdate="0" expression="" field="remark"/>
@@ -36603,7 +36603,7 @@ def my_form_open(dialog, layer, feature):
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <defaults>
-        <default applyOnUpdate="0" expression="" field="obj_id"/>
+        <default applyOnUpdate="0" expression="obj_id" field="obj_id"/>
         <default applyOnUpdate="0" expression="" field="material"/>
         <default applyOnUpdate="0" expression="" field="identifier"/>
         <default applyOnUpdate="0" expression="" field="remark"/>
@@ -50439,7 +50439,7 @@ def my_form_open(dialog, layer, feature):
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <defaults>
-        <default applyOnUpdate="0" expression="" field="obj_id"/>
+        <default applyOnUpdate="0" expression="obj_id" field="obj_id"/>
         <default applyOnUpdate="0" expression="" field="backflow_level"/>
         <default applyOnUpdate="0" expression="" field="bottom_level"/>
         <default applyOnUpdate="0" expression="" field="fk_hydr_geometry"/>
