@@ -8,7 +8,7 @@ printf "[pg_qgep]\nhost=postgres\nport=5432\ndbname=gis\nuser=docker\npassword=d
 
 DATAMODEL_VERSION=$(cat ${DIR}/../../datamodel_version.txt)
 
-wget https://github.com/QGEP/datamodel/releases/download/${DATAMODEL_VERSION}/qgep_v${DATAMODEL_VERSION}_structure_with_value_lists.sql
+wget https://github.com/QGEP/datamodel/releases/download/${DATAMODEL_VERSION}/qgep_${DATAMODEL_VERSION}_structure_with_value_lists.sql
 
 set -e
 echo "Wait a moment while the database is being loaded"
