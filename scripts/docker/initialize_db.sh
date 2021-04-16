@@ -18,7 +18,7 @@ do
   sleep 1
 done
 echo ""
-psql "service=pg_qgep" -f qgep_v${DATAMODEL_VERSION}_structure_with_value_lists.sql
+psql "service=pg_qgep" -f qgep_${DATAMODEL_VERSION}_structure_with_value_lists.sql
 psql "service=pg_qgep" -c "REFRESH MATERIALIZED VIEW qgep_od.vw_network_node;"
 psql "service=pg_qgep" -c "REFRESH MATERIALIZED VIEW qgep_od.vw_network_segment;"
 
