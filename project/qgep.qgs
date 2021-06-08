@@ -484,14 +484,14 @@
   </layer-tree-group>
   <snapping-settings enabled="1" intersection-snapping="0" mode="3" tolerance="0" type="3" unit="2">
     <individual-layer-settings>
-      <layer-setting enabled="0" id="vw_qgep_reach" tolerance="0" type="2" units="2"></layer-setting>
-      <layer-setting enabled="0" id="vw_network_node20150607120529398" tolerance="0" type="2" units="2"></layer-setting>
       <layer-setting enabled="1" id="catchment_area_c7208cec_d8c1_4845_8361_b1ecedf7aabd" tolerance="5" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="vw_cover___" tolerance="0" type="2" units="2"></layer-setting>
-      <layer-setting enabled="0" id="od_wastewater_structure" tolerance="0" type="2" units="2"></layer-setting>
+      <layer-setting enabled="0" id="vw_qgep_reach" tolerance="0" type="2" units="2"></layer-setting>
       <layer-setting enabled="0" id="vw_wastewater_node20150607121012062" tolerance="0" type="2" units="2"></layer-setting>
-      <layer-setting enabled="1" id="vw_individual_surface_fa4c8711_d370_49ce_80f9_577576fbc1cb" tolerance="5" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="od_wastewater_structure" tolerance="0" type="2" units="2"></layer-setting>
       <layer-setting enabled="0" id="vw_network_segment20150607120529381" tolerance="0" type="2" units="2"></layer-setting>
+      <layer-setting enabled="0" id="vw_network_node20150607120529398" tolerance="0" type="2" units="2"></layer-setting>
+      <layer-setting enabled="0" id="vw_cover___" tolerance="0" type="2" units="2"></layer-setting>
+      <layer-setting enabled="1" id="vw_individual_surface_fa4c8711_d370_49ce_80f9_577576fbc1cb" tolerance="5" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="vw_qgep_wastewater_structure" tolerance="0" type="2" units="2"></layer-setting>
     </individual-layer-settings>
   </snapping-settings>
@@ -608,10 +608,10 @@
   <mapcanvas annotationsVisible="1" name="theMapCanvas">
     <units>meters</units>
     <extent>
-      <xmin>2748113.35458567645400763</xmin>
-      <ymin>1264455.66696517751552165</ymin>
-      <xmax>2750438.67408570554107428</xmax>
-      <ymax>1265120.04396518156863749</ymax>
+      <xmin>2748707.38440862204879522</xmin>
+      <ymin>1264303.26758990925736725</ymin>
+      <xmax>2751032.70390865113586187</xmax>
+      <ymax>1264967.64458991750143468</ymax>
     </extent>
     <rotation>0</rotation>
     <destinationsrs>
@@ -1357,7 +1357,7 @@
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -1436,7 +1436,7 @@
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -2006,7 +2006,13 @@
       </DiagramLayerSettings>
       <geometryOptions geometryPrecision="0" removeDuplicateNodes="1">
         <activeChecks></activeChecks>
-        <checkConfiguration></checkConfiguration>
+        <checkConfiguration type="Map">
+          <Option name="QgsGeometryGapCheck" type="Map">
+            <Option name="allowedGapsBuffer" type="double" value="0"></Option>
+            <Option name="allowedGapsEnabled" type="bool" value="false"></Option>
+            <Option name="allowedGapsLayer" type="QString" value=""></Option>
+          </Option>
+        </checkConfiguration>
       </geometryOptions>
       <fieldConfiguration>
         <field name="obj_id">
@@ -2464,35 +2470,81 @@
           </editWidget>
         </field>
         <field name="fk_wastewater_networkelement_rw_current">
-          <editWidget type="TextEdit">
+          <editWidget type="ValueRelation">
             <config>
               <Option type="Map">
-                <Option name="IsMultiline" type="bool" value="false"></Option>
-                <Option name="UseHtml" type="bool" value="false"></Option>
+                <Option name="AllowMulti" type="bool" value="false"></Option>
+                <Option name="AllowNull" type="bool" value="true"></Option>
+                <Option name="FilterExpression" type="QString" value=""></Option>
+                <Option name="Key" type="QString" value="obj_id"></Option>
+                <Option name="Layer" type="QString" value="vw_wastewater_node20150607121012062"></Option>
+                <Option name="LayerName" type="QString" value="vw_wastewater_node"></Option>
+                <Option name="LayerProviderName" type="QString" value="postgres"></Option>
+                <Option name="LayerSource" type="QString" value="service='pg_qgep' key='obj_id' estimatedmetadata=true srid=2056 type=PointZ checkPrimaryKeyUnicity='1' table=&quot;qgep_od&quot;.&quot;vw_wastewater_node&quot; (situation_geometry) sql="></Option>
+                <Option name="NofColumns" type="int" value="1"></Option>
+                <Option name="OrderByValue" type="bool" value="true"></Option>
+                <Option name="UseCompleter" type="bool" value="true"></Option>
+                <Option name="Value" type="QString" value="identifier"></Option>
               </Option>
             </config>
           </editWidget>
         </field>
         <field name="fk_wastewater_networkelement_rw_planned">
-          <editWidget type="TextEdit">
+          <editWidget type="ValueRelation">
             <config>
-              <Option></Option>
+              <Option type="Map">
+                <Option name="AllowMulti" type="bool" value="false"></Option>
+                <Option name="AllowNull" type="bool" value="true"></Option>
+                <Option name="FilterExpression" type="QString" value=""></Option>
+                <Option name="Key" type="QString" value="obj_id"></Option>
+                <Option name="Layer" type="QString" value="vw_wastewater_node20150607121012062"></Option>
+                <Option name="LayerName" type="QString" value="vw_wastewater_node"></Option>
+                <Option name="LayerProviderName" type="QString" value="postgres"></Option>
+                <Option name="LayerSource" type="QString" value="service='pg_qgep' key='obj_id' estimatedmetadata=true srid=2056 type=PointZ checkPrimaryKeyUnicity='1' table=&quot;qgep_od&quot;.&quot;vw_wastewater_node&quot; (situation_geometry) sql="></Option>
+                <Option name="NofColumns" type="int" value="1"></Option>
+                <Option name="OrderByValue" type="bool" value="true"></Option>
+                <Option name="UseCompleter" type="bool" value="true"></Option>
+                <Option name="Value" type="QString" value="identifier"></Option>
+              </Option>
             </config>
           </editWidget>
         </field>
         <field name="fk_wastewater_networkelement_ww_planned">
-          <editWidget type="TextEdit">
+          <editWidget type="ValueRelation">
             <config>
-              <Option></Option>
+              <Option type="Map">
+                <Option name="AllowMulti" type="bool" value="false"></Option>
+                <Option name="AllowNull" type="bool" value="true"></Option>
+                <Option name="FilterExpression" type="QString" value=""></Option>
+                <Option name="Key" type="QString" value="obj_id"></Option>
+                <Option name="Layer" type="QString" value="vw_wastewater_node20150607121012062"></Option>
+                <Option name="LayerName" type="QString" value="vw_wastewater_node"></Option>
+                <Option name="LayerProviderName" type="QString" value="postgres"></Option>
+                <Option name="LayerSource" type="QString" value="service='pg_qgep' key='obj_id' estimatedmetadata=true srid=2056 type=PointZ checkPrimaryKeyUnicity='1' table=&quot;qgep_od&quot;.&quot;vw_wastewater_node&quot; (situation_geometry) sql="></Option>
+                <Option name="NofColumns" type="int" value="1"></Option>
+                <Option name="OrderByValue" type="bool" value="true"></Option>
+                <Option name="UseCompleter" type="bool" value="true"></Option>
+                <Option name="Value" type="QString" value="identifier"></Option>
+              </Option>
             </config>
           </editWidget>
         </field>
         <field name="fk_wastewater_networkelement_ww_current">
-          <editWidget type="TextEdit">
+          <editWidget type="ValueRelation">
             <config>
               <Option type="Map">
-                <Option name="IsMultiline" type="bool" value="false"></Option>
-                <Option name="UseHtml" type="bool" value="false"></Option>
+                <Option name="AllowMulti" type="bool" value="false"></Option>
+                <Option name="AllowNull" type="bool" value="true"></Option>
+                <Option name="FilterExpression" type="QString" value=""></Option>
+                <Option name="Key" type="QString" value="obj_id"></Option>
+                <Option name="Layer" type="QString" value="vw_wastewater_node20150607121012062"></Option>
+                <Option name="LayerName" type="QString" value="vw_wastewater_node"></Option>
+                <Option name="LayerProviderName" type="QString" value="postgres"></Option>
+                <Option name="LayerSource" type="QString" value="service='pg_qgep' key='obj_id' estimatedmetadata=true srid=2056 type=PointZ checkPrimaryKeyUnicity='1' table=&quot;qgep_od&quot;.&quot;vw_wastewater_node&quot; (situation_geometry) sql="></Option>
+                <Option name="NofColumns" type="int" value="1"></Option>
+                <Option name="OrderByValue" type="bool" value="true"></Option>
+                <Option name="UseCompleter" type="bool" value="true"></Option>
+                <Option name="Value" type="QString" value="identifier"></Option>
               </Option>
             </config>
           </editWidget>
@@ -2892,7 +2944,7 @@ def my_form_open(dialog, layer, feature):
         <field labelOnTop="0" name="waste_water_production_planned"></field>
       </labelOnTop>
       <widgets></widgets>
-      <previewExpression>obj_id</previewExpression>
+      <previewExpression>"obj_id"</previewExpression>
       <mapTip></mapTip>
     </maplayer>
     <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+08" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector" wkbType="NoGeometry">
@@ -2912,7 +2964,7 @@ def my_form_open(dialog, layer, feature):
           <description></description>
           <projectionacronym></projectionacronym>
           <ellipsoidacronym></ellipsoidacronym>
-          <geographicflag>true</geographicflag>
+          <geographicflag>false</geographicflag>
         </spatialrefsys>
       </srs>
       <resourceMetadata>
@@ -2935,7 +2987,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -3159,7 +3211,7 @@ def my_form_open(dialog, layer, feature):
           <description></description>
           <projectionacronym></projectionacronym>
           <ellipsoidacronym></ellipsoidacronym>
-          <geographicflag>true</geographicflag>
+          <geographicflag>false</geographicflag>
         </spatialrefsys>
       </srs>
       <resourceMetadata>
@@ -3182,7 +3234,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -3406,7 +3458,7 @@ def my_form_open(dialog, layer, feature):
           <description></description>
           <projectionacronym></projectionacronym>
           <ellipsoidacronym></ellipsoidacronym>
-          <geographicflag>true</geographicflag>
+          <geographicflag>false</geographicflag>
         </spatialrefsys>
       </srs>
       <resourceMetadata>
@@ -3429,7 +3481,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -3653,7 +3705,7 @@ def my_form_open(dialog, layer, feature):
           <description></description>
           <projectionacronym></projectionacronym>
           <ellipsoidacronym></ellipsoidacronym>
-          <geographicflag>true</geographicflag>
+          <geographicflag>false</geographicflag>
         </spatialrefsys>
       </srs>
       <resourceMetadata>
@@ -3676,7 +3728,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -3900,7 +3952,7 @@ def my_form_open(dialog, layer, feature):
           <description></description>
           <projectionacronym></projectionacronym>
           <ellipsoidacronym></ellipsoidacronym>
-          <geographicflag>true</geographicflag>
+          <geographicflag>false</geographicflag>
         </spatialrefsys>
       </srs>
       <resourceMetadata>
@@ -3923,7 +3975,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -4147,7 +4199,7 @@ def my_form_open(dialog, layer, feature):
           <description></description>
           <projectionacronym></projectionacronym>
           <ellipsoidacronym></ellipsoidacronym>
-          <geographicflag>true</geographicflag>
+          <geographicflag>false</geographicflag>
         </spatialrefsys>
       </srs>
       <resourceMetadata>
@@ -4170,7 +4222,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -4394,7 +4446,7 @@ def my_form_open(dialog, layer, feature):
           <description></description>
           <projectionacronym></projectionacronym>
           <ellipsoidacronym></ellipsoidacronym>
-          <geographicflag>true</geographicflag>
+          <geographicflag>false</geographicflag>
         </spatialrefsys>
       </srs>
       <resourceMetadata>
@@ -4417,7 +4469,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -4641,7 +4693,7 @@ def my_form_open(dialog, layer, feature):
           <description></description>
           <projectionacronym></projectionacronym>
           <ellipsoidacronym></ellipsoidacronym>
-          <geographicflag>true</geographicflag>
+          <geographicflag>false</geographicflag>
         </spatialrefsys>
       </srs>
       <resourceMetadata>
@@ -4664,7 +4716,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -4911,7 +4963,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -5193,7 +5245,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -5475,7 +5527,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -5734,7 +5786,7 @@ def my_form_open(dialog, layer, feature):
           <description></description>
           <projectionacronym></projectionacronym>
           <ellipsoidacronym></ellipsoidacronym>
-          <geographicflag>true</geographicflag>
+          <geographicflag>false</geographicflag>
         </spatialrefsys>
       </srs>
       <resourceMetadata>
@@ -5766,7 +5818,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent>
@@ -6043,7 +6095,7 @@ def my_form_open(dialog, layer, feature):
           <description></description>
           <projectionacronym></projectionacronym>
           <ellipsoidacronym></ellipsoidacronym>
-          <geographicflag>true</geographicflag>
+          <geographicflag>false</geographicflag>
         </spatialrefsys>
       </srs>
       <resourceMetadata>
@@ -6075,7 +6127,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent>
@@ -6348,7 +6400,7 @@ def my_form_open(dialog, layer, feature):
           <description></description>
           <projectionacronym></projectionacronym>
           <ellipsoidacronym></ellipsoidacronym>
-          <geographicflag>true</geographicflag>
+          <geographicflag>false</geographicflag>
         </spatialrefsys>
       </srs>
       <resourceMetadata>
@@ -6380,7 +6432,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent>
@@ -6719,7 +6771,7 @@ def my_form_open(dialog, layer, feature):
           <description></description>
           <projectionacronym></projectionacronym>
           <ellipsoidacronym></ellipsoidacronym>
-          <geographicflag>true</geographicflag>
+          <geographicflag>false</geographicflag>
         </spatialrefsys>
       </srs>
       <resourceMetadata>
@@ -6751,7 +6803,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent>
@@ -6781,6 +6833,7 @@ def my_form_open(dialog, layer, feature):
       </flags>
       <customproperties>
         <property key="dualview/previewExpressions">
+          <value>COALESCE( "identifier", '&lt;NULL&gt;' )</value>
           <value>COALESCE( "identifier", '&lt;NULL&gt;' )</value>
           <value>COALESCE( "identifier", '&lt;NULL&gt;' )</value>
           <value>COALESCE( "identifier", '&lt;NULL&gt;' )</value>
@@ -7415,7 +7468,7 @@ def my_form_open(dialog, layer, feature):
           <description></description>
           <projectionacronym></projectionacronym>
           <ellipsoidacronym></ellipsoidacronym>
-          <geographicflag>true</geographicflag>
+          <geographicflag>false</geographicflag>
         </spatialrefsys>
       </srs>
       <resourceMetadata>
@@ -7438,7 +7491,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -7662,7 +7715,7 @@ def my_form_open(dialog, layer, feature):
           <description></description>
           <projectionacronym></projectionacronym>
           <ellipsoidacronym></ellipsoidacronym>
-          <geographicflag>true</geographicflag>
+          <geographicflag>false</geographicflag>
         </spatialrefsys>
       </srs>
       <resourceMetadata>
@@ -7685,7 +7738,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -7907,7 +7960,7 @@ def my_form_open(dialog, layer, feature):
           <description></description>
           <projectionacronym></projectionacronym>
           <ellipsoidacronym></ellipsoidacronym>
-          <geographicflag>true</geographicflag>
+          <geographicflag>false</geographicflag>
         </spatialrefsys>
       </srs>
       <resourceMetadata>
@@ -7930,7 +7983,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -8152,7 +8205,7 @@ def my_form_open(dialog, layer, feature):
           <description></description>
           <projectionacronym></projectionacronym>
           <ellipsoidacronym></ellipsoidacronym>
-          <geographicflag>true</geographicflag>
+          <geographicflag>false</geographicflag>
         </spatialrefsys>
       </srs>
       <resourceMetadata>
@@ -8175,7 +8228,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -8397,7 +8450,7 @@ def my_form_open(dialog, layer, feature):
           <description></description>
           <projectionacronym></projectionacronym>
           <ellipsoidacronym></ellipsoidacronym>
-          <geographicflag>true</geographicflag>
+          <geographicflag>false</geographicflag>
         </spatialrefsys>
       </srs>
       <resourceMetadata>
@@ -8420,7 +8473,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -8644,7 +8697,7 @@ def my_form_open(dialog, layer, feature):
           <description></description>
           <projectionacronym></projectionacronym>
           <ellipsoidacronym></ellipsoidacronym>
-          <geographicflag>true</geographicflag>
+          <geographicflag>false</geographicflag>
         </spatialrefsys>
       </srs>
       <resourceMetadata>
@@ -8676,7 +8729,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent>
@@ -8969,7 +9022,7 @@ def my_form_open(dialog, layer, feature):
           <description></description>
           <projectionacronym></projectionacronym>
           <ellipsoidacronym></ellipsoidacronym>
-          <geographicflag>true</geographicflag>
+          <geographicflag>false</geographicflag>
         </spatialrefsys>
       </srs>
       <resourceMetadata>
@@ -8992,7 +9045,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -9239,7 +9292,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -9521,7 +9574,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -9838,7 +9891,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -10120,7 +10173,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -10402,7 +10455,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -10684,7 +10737,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -10966,7 +11019,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -11248,7 +11301,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -11530,7 +11583,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -11739,7 +11792,9 @@ def my_form_open(dialog, layer, feature):
         <constraint desc="" exp="" field="fk_data_media"></constraint>
       </constraintExpressions>
       <expressionfields></expressionfields>
-      <attributeactions></attributeactions>
+      <attributeactions>
+        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"></defaultAction>
+      </attributeactions>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="&quot;class&quot;" sortOrder="0">
         <columns>
           <column hidden="0" name="obj_id" type="field" width="130"></column>
@@ -11840,7 +11895,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent>
@@ -12163,7 +12218,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent>
@@ -13200,7 +13255,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -13482,7 +13537,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -13773,7 +13828,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent>
@@ -14105,7 +14160,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -14387,7 +14442,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -14671,7 +14726,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -14953,7 +15008,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -15235,7 +15290,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -15517,7 +15572,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -15799,7 +15854,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -16081,7 +16136,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -16363,7 +16418,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -16645,7 +16700,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -16927,7 +16982,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -17197,6 +17252,15 @@ def my_form_open(dialog, layer, feature):
         <type></type>
         <title></title>
         <abstract></abstract>
+        <contact>
+          <name></name>
+          <organization></organization>
+          <position></position>
+          <voice></voice>
+          <fax></fax>
+          <email></email>
+          <role></role>
+        </contact>
         <links></links>
         <fees></fees>
         <encoding></encoding>
@@ -17210,10 +17274,18 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
-        <extent></extent>
+        <extent>
+          <spatial crs="" dimensions="2" maxx="0" maxy="0" maxz="0" minx="0" miny="0" minz="0"></spatial>
+          <temporal>
+            <period>
+              <start></start>
+              <end></end>
+            </period>
+          </temporal>
+        </extent>
       </resourceMetadata>
       <provider encoding="UTF-8">postgres</provider>
       <vectorjoins></vectorjoins>
@@ -17255,13 +17327,14 @@ def my_form_open(dialog, layer, feature):
           <editWidget type="RelationReference">
             <config>
               <Option type="Map">
-                <Option name="AllowAddFeatures" type="QString" value="0"></Option>
-                <Option name="AllowNULL" type="QString" value="0"></Option>
-                <Option name="MapIdentification" type="QString" value="1"></Option>
-                <Option name="OrderByValue" type="QString" value="0"></Option>
-                <Option name="ReadOnly" type="QString" value="1"></Option>
+                <Option name="AllowAddFeatures" type="bool" value="false"></Option>
+                <Option name="AllowNULL" type="bool" value="false"></Option>
+                <Option name="MapIdentification" type="bool" value="true"></Option>
+                <Option name="OrderByValue" type="bool" value="false"></Option>
+                <Option name="ReadOnly" type="bool" value="true"></Option>
                 <Option name="Relation" type="QString" value="re_maintenance_wasterwaterstructure_reach"></Option>
-                <Option name="ShowForm" type="QString" value="1"></Option>
+                <Option name="ShowForm" type="bool" value="true"></Option>
+                <Option name="ShowOpenFormButton" type="bool" value="true"></Option>
               </Option>
             </config>
           </editWidget>
@@ -17270,13 +17343,14 @@ def my_form_open(dialog, layer, feature):
           <editWidget type="RelationReference">
             <config>
               <Option type="Map">
-                <Option name="AllowAddFeatures" type="QString" value="0"></Option>
-                <Option name="AllowNULL" type="QString" value="0"></Option>
-                <Option name="MapIdentification" type="QString" value="0"></Option>
-                <Option name="OrderByValue" type="QString" value="0"></Option>
-                <Option name="ReadOnly" type="QString" value="0"></Option>
+                <Option name="AllowAddFeatures" type="bool" value="false"></Option>
+                <Option name="AllowNULL" type="bool" value="false"></Option>
+                <Option name="MapIdentification" type="bool" value="false"></Option>
+                <Option name="OrderByValue" type="bool" value="false"></Option>
+                <Option name="ReadOnly" type="bool" value="false"></Option>
                 <Option name="Relation" type="QString" value="re_maintenance_wasterwaterstructure_maintenance"></Option>
-                <Option name="ShowForm" type="QString" value="1"></Option>
+                <Option name="ShowForm" type="bool" value="true"></Option>
+                <Option name="ShowOpenFormButton" type="bool" value="true"></Option>
               </Option>
             </config>
           </editWidget>
@@ -17305,7 +17379,9 @@ def my_form_open(dialog, layer, feature):
         <constraint desc="" exp="" field="fk_maintenance_event"></constraint>
       </constraintExpressions>
       <expressionfields></expressionfields>
-      <attributeactions></attributeactions>
+      <attributeactions>
+        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"></defaultAction>
+      </attributeactions>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns>
           <column hidden="0" name="obj_id" type="field" width="-1"></column>
@@ -17341,9 +17417,22 @@ def my_form_open(dialog, layer, feature):
 	control = dialog.findChild(QWidget, "MyLineEdit")
 </editforminitcode>
       <featformsuppress>0</featformsuppress>
-      <editorlayout>generatedlayout</editorlayout>
-      <editable></editable>
-      <labelOnTop></labelOnTop>
+      <editorlayout>tablayout</editorlayout>
+      <attributeEditorForm>
+        <attributeEditorField index="0" name="obj_id" showLabel="1"></attributeEditorField>
+        <attributeEditorField index="2" name="fk_maintenance_event" showLabel="1"></attributeEditorField>
+        <attributeEditorField index="1" name="fk_wastewater_structure" showLabel="1"></attributeEditorField>
+      </attributeEditorForm>
+      <editable>
+        <field editable="1" name="fk_maintenance_event"></field>
+        <field editable="1" name="fk_wastewater_structure"></field>
+        <field editable="1" name="obj_id"></field>
+      </editable>
+      <labelOnTop>
+        <field labelOnTop="0" name="fk_maintenance_event"></field>
+        <field labelOnTop="0" name="fk_wastewater_structure"></field>
+        <field labelOnTop="0" name="obj_id"></field>
+      </labelOnTop>
       <widgets></widgets>
       <previewExpression>COALESCE("obj_id", '&lt;NULL&gt;')</previewExpression>
       <mapTip></mapTip>
@@ -17388,7 +17477,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -17714,7 +17803,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent>
@@ -18288,7 +18377,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -18570,7 +18659,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -18852,7 +18941,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -19134,7 +19223,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -19416,7 +19505,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -19698,7 +19787,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -19980,7 +20069,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -20262,7 +20351,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -20544,7 +20633,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -20826,7 +20915,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -21122,7 +21211,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -21404,7 +21493,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -21700,7 +21789,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -21982,7 +22071,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -22299,7 +22388,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -22616,7 +22705,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -22933,7 +23022,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -23250,7 +23339,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -23567,7 +23656,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -23884,7 +23973,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -24166,7 +24255,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -24448,7 +24537,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -24730,7 +24819,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -25012,7 +25101,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -25294,7 +25383,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -25576,7 +25665,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -25858,7 +25947,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -26140,7 +26229,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -26422,7 +26511,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -26704,7 +26793,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -26986,7 +27075,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -27268,7 +27357,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -27550,7 +27639,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -27832,7 +27921,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -28114,7 +28203,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -28396,7 +28485,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -28678,7 +28767,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -28960,7 +29049,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -29242,7 +29331,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -29524,7 +29613,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -29806,7 +29895,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -30088,7 +30177,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -30370,7 +30459,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -30652,7 +30741,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -30934,7 +31023,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -31216,7 +31305,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -31498,7 +31587,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -31811,7 +31900,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -32093,7 +32182,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -32375,7 +32464,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -32657,7 +32746,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -32939,7 +33028,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -33221,7 +33310,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -33512,7 +33601,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent>
@@ -33834,7 +33923,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent>
@@ -34047,7 +34136,7 @@ def my_form_open(dialog, layer, feature):
       <excludeAttributesWMS></excludeAttributesWMS>
       <excludeAttributesWFS></excludeAttributesWFS>
       <defaults>
-        <default applyOnUpdate="0" expression="obj_id" field="obj_id"></default>
+        <default applyOnUpdate="0" expression="" field="obj_id"></default>
         <default applyOnUpdate="0" expression="" field="gross_costs"></default>
         <default applyOnUpdate="0" expression="" field="kind"></default>
         <default applyOnUpdate="0" expression="" field="year_of_replacement"></default>
@@ -34234,7 +34323,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent>
@@ -34394,7 +34483,7 @@ def my_form_open(dialog, layer, feature):
       <excludeAttributesWMS></excludeAttributesWMS>
       <excludeAttributesWFS></excludeAttributesWFS>
       <defaults>
-        <default applyOnUpdate="0" expression="obj_id" field="obj_id"></default>
+        <default applyOnUpdate="0" expression="" field="obj_id"></default>
         <default applyOnUpdate="0" expression="" field="kind"></default>
         <default applyOnUpdate="0" expression="" field="identifier"></default>
         <default applyOnUpdate="0" expression="" field="remark"></default>
@@ -34555,7 +34644,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent>
@@ -35901,7 +35990,7 @@ def my_form_open(dialog, layer, feature):
       <excludeAttributesWMS></excludeAttributesWMS>
       <excludeAttributesWFS></excludeAttributesWFS>
       <defaults>
-        <default applyOnUpdate="0" expression="obj_id" field="obj_id"></default>
+        <default applyOnUpdate="0" expression="" field="obj_id"></default>
         <default applyOnUpdate="0" expression="" field="brand"></default>
         <default applyOnUpdate="0" expression="" field="cover_shape"></default>
         <default applyOnUpdate="0" expression="" field="diameter"></default>
@@ -36119,7 +36208,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent>
@@ -36277,7 +36366,7 @@ def my_form_open(dialog, layer, feature):
       <excludeAttributesWMS></excludeAttributesWMS>
       <excludeAttributesWFS></excludeAttributesWFS>
       <defaults>
-        <default applyOnUpdate="0" expression="obj_id" field="obj_id"></default>
+        <default applyOnUpdate="0" expression="" field="obj_id"></default>
         <default applyOnUpdate="0" expression="" field="diameter"></default>
         <default applyOnUpdate="0" expression="" field="identifier"></default>
         <default applyOnUpdate="0" expression="" field="remark"></default>
@@ -36438,7 +36527,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent>
@@ -36598,7 +36687,7 @@ def my_form_open(dialog, layer, feature):
       <excludeAttributesWMS></excludeAttributesWMS>
       <excludeAttributesWFS></excludeAttributesWFS>
       <defaults>
-        <default applyOnUpdate="0" expression="obj_id" field="obj_id"></default>
+        <default applyOnUpdate="0" expression="" field="obj_id"></default>
         <default applyOnUpdate="0" expression="" field="material"></default>
         <default applyOnUpdate="0" expression="" field="identifier"></default>
         <default applyOnUpdate="0" expression="" field="remark"></default>
@@ -37105,7 +37194,13 @@ def my_form_open(dialog, layer, feature):
       </DiagramLayerSettings>
       <geometryOptions geometryPrecision="0" removeDuplicateNodes="1">
         <activeChecks></activeChecks>
-        <checkConfiguration></checkConfiguration>
+        <checkConfiguration type="Map">
+          <Option name="QgsGeometryGapCheck" type="Map">
+            <Option name="allowedGapsBuffer" type="double" value="0"></Option>
+            <Option name="allowedGapsEnabled" type="bool" value="false"></Option>
+            <Option name="allowedGapsLayer" type="QString" value=""></Option>
+          </Option>
+        </checkConfiguration>
       </geometryOptions>
       <fieldConfiguration>
         <field name="obj_id">
@@ -37230,11 +37325,21 @@ def my_form_open(dialog, layer, feature):
           </editWidget>
         </field>
         <field name="fk_wastewater_networkelement">
-          <editWidget type="TextEdit">
+          <editWidget type="ValueRelation">
             <config>
               <Option type="Map">
-                <Option name="IsMultiline" type="bool" value="false"></Option>
-                <Option name="UseHtml" type="bool" value="false"></Option>
+                <Option name="AllowMulti" type="bool" value="false"></Option>
+                <Option name="AllowNull" type="bool" value="true"></Option>
+                <Option name="FilterExpression" type="QString" value=""></Option>
+                <Option name="Key" type="QString" value="obj_id"></Option>
+                <Option name="Layer" type="QString" value="vw_wastewater_node20150607121012062"></Option>
+                <Option name="LayerName" type="QString" value="vw_wastewater_node"></Option>
+                <Option name="LayerProviderName" type="QString" value="postgres"></Option>
+                <Option name="LayerSource" type="QString" value="service='pg_qgep' key='obj_id' estimatedmetadata=true srid=2056 type=PointZ checkPrimaryKeyUnicity='1' table=&quot;qgep_od&quot;.&quot;vw_wastewater_node&quot; (situation_geometry) sql="></Option>
+                <Option name="NofColumns" type="int" value="1"></Option>
+                <Option name="OrderByValue" type="bool" value="true"></Option>
+                <Option name="UseCompleter" type="bool" value="true"></Option>
+                <Option name="Value" type="QString" value="identifier"></Option>
               </Option>
             </config>
           </editWidget>
@@ -37242,7 +37347,10 @@ def my_form_open(dialog, layer, feature):
         <field name="fk_owner">
           <editWidget type="TextEdit">
             <config>
-              <Option></Option>
+              <Option type="Map">
+                <Option name="IsMultiline" type="bool" value="false"></Option>
+                <Option name="UseHtml" type="bool" value="false"></Option>
+              </Option>
             </config>
           </editWidget>
         </field>
@@ -37412,7 +37520,7 @@ def my_form_open(dialog, layer, feature):
         <field labelOnTop="0" name="sewer_infiltration_water_production"></field>
       </labelOnTop>
       <widgets></widgets>
-      <previewExpression>obj_id</previewExpression>
+      <previewExpression>"obj_id"</previewExpression>
       <mapTip></mapTip>
     </maplayer>
     <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+08" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector" wkbType="NoGeometry">
@@ -37464,7 +37572,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent>
@@ -37517,10 +37625,11 @@ def my_form_open(dialog, layer, feature):
           <editWidget type="Range">
             <config>
               <Option type="Map">
-                <Option name="AllowNull" type="QString" value="1"></Option>
-                <Option name="Max" type="QString" value="30000"></Option>
-                <Option name="Min" type="QString" value="0"></Option>
-                <Option name="Step" type="QString" value="0.1"></Option>
+                <Option name="AllowNull" type="bool" value="true"></Option>
+                <Option name="Max" type="double" value="30000"></Option>
+                <Option name="Min" type="double" value="0"></Option>
+                <Option name="Precision" type="int" value="2"></Option>
+                <Option name="Step" type="double" value="0.1"></Option>
                 <Option name="Style" type="QString" value="SpinBox"></Option>
                 <Option name="Suffix" type="QString" value="m"></Option>
               </Option>
@@ -37533,13 +37642,12 @@ def my_form_open(dialog, layer, feature):
               <Option type="Map">
                 <Option name="AllowMulti" type="bool" value="false"></Option>
                 <Option name="AllowNull" type="bool" value="true"></Option>
-                <Option name="Description" type="QString" value=""></Option>
                 <Option name="FilterExpression" type="QString" value=""></Option>
                 <Option name="Key" type="QString" value="code"></Option>
                 <Option name="Layer" type="QString" value="leapingweir_opening_shape20180603142255161"></Option>
                 <Option name="LayerName" type="QString" value="vl_leapingweir_opening_shape"></Option>
                 <Option name="LayerProviderName" type="QString" value="postgres"></Option>
-                <Option name="LayerSource" type="QString" value="service='pg_qgep' key='code' checkPrimaryKeyUnicity='1' table=&quot;qgep_vl&quot;.&quot;leapingweir_opening_shape&quot;"></Option>
+                <Option name="LayerSource" type="QString" value="service='pg_qgep' key='code' checkPrimaryKeyUnicity='1' table=&quot;qgep_vl&quot;.&quot;leapingweir_opening_shape&quot; sql="></Option>
                 <Option name="NofColumns" type="int" value="1"></Option>
                 <Option name="OrderByValue" type="bool" value="true"></Option>
                 <Option name="UseCompleter" type="bool" value="false"></Option>
@@ -37589,6 +37697,9 @@ def my_form_open(dialog, layer, feature):
                 <Option name="FilterExpression" type="QString" value=""></Option>
                 <Option name="Key" type="QString" value="code"></Option>
                 <Option name="Layer" type="QString" value="overflow_adjustability20180603142254646"></Option>
+                <Option name="LayerName" type="QString" value="vl_overflow_adjustability"></Option>
+                <Option name="LayerProviderName" type="QString" value="postgres"></Option>
+                <Option name="LayerSource" type="QString" value="service='pg_qgep' key='code' checkPrimaryKeyUnicity='1' table=&quot;qgep_vl&quot;.&quot;overflow_adjustability&quot; sql="></Option>
                 <Option name="NofColumns" type="int" value="1"></Option>
                 <Option name="OrderByValue" type="bool" value="true"></Option>
                 <Option name="UseCompleter" type="bool" value="false"></Option>
@@ -37613,13 +37724,12 @@ def my_form_open(dialog, layer, feature):
               <Option type="Map">
                 <Option name="AllowMulti" type="bool" value="false"></Option>
                 <Option name="AllowNull" type="bool" value="true"></Option>
-                <Option name="Description" type="QString" value=""></Option>
                 <Option name="FilterExpression" type="QString" value=""></Option>
                 <Option name="Key" type="QString" value="code"></Option>
                 <Option name="Layer" type="QString" value="overflow_control20180603142254490"></Option>
                 <Option name="LayerName" type="QString" value="vl_overflow_control"></Option>
                 <Option name="LayerProviderName" type="QString" value="postgres"></Option>
-                <Option name="LayerSource" type="QString" value="service='pg_qgep' key='code' checkPrimaryKeyUnicity='1' table=&quot;qgep_vl&quot;.&quot;overflow_control&quot;"></Option>
+                <Option name="LayerSource" type="QString" value="service='pg_qgep' key='code' checkPrimaryKeyUnicity='1' table=&quot;qgep_vl&quot;.&quot;overflow_control&quot; sql="></Option>
                 <Option name="NofColumns" type="int" value="1"></Option>
                 <Option name="OrderByValue" type="bool" value="true"></Option>
                 <Option name="UseCompleter" type="bool" value="false"></Option>
@@ -37713,6 +37823,9 @@ def my_form_open(dialog, layer, feature):
                 <Option name="FilterExpression" type="QString" value=""></Option>
                 <Option name="Key" type="QString" value="code"></Option>
                 <Option name="Layer" type="QString" value="overflow_signal_transmission20180603142254396"></Option>
+                <Option name="LayerName" type="QString" value="vl_overflow_signal_transmission"></Option>
+                <Option name="LayerProviderName" type="QString" value="postgres"></Option>
+                <Option name="LayerSource" type="QString" value="service='pg_qgep' key='code' checkPrimaryKeyUnicity='1' table=&quot;qgep_vl&quot;.&quot;overflow_signal_transmission&quot; sql="></Option>
                 <Option name="NofColumns" type="int" value="1"></Option>
                 <Option name="OrderByValue" type="bool" value="true"></Option>
                 <Option name="UseCompleter" type="bool" value="false"></Option>
@@ -37981,20 +38094,24 @@ def my_form_open(dialog, layer, feature):
         <attributeEditorField index="11" name="identifier" showLabel="1"></attributeEditorField>
         <attributeEditorField index="0" name="obj_id" showLabel="1"></attributeEditorField>
         <attributeEditorField index="9" name="function" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="2" name="opening_shape" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="1" name="length" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="3" name="width" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="12" name="qon_dim" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="13" name="remark" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="5" name="adjustability" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="7" name="control" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="14" name="signal_transmission" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="8" name="discharge_point" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="10" name="gross_costs" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="15" name="subsidies" showLabel="1"></attributeEditorField>
         <attributeEditorField index="19" name="fk_wastewater_node" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="20" name="fk_overflow_to" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="21" name="fk_overflow_characteristic" showLabel="1"></attributeEditorField>
+        <attributeEditorContainer columnCount="1" groupBox="0" name="Hydraulic" showLabel="1" visibilityExpression="" visibilityExpressionEnabled="0">
+          <attributeEditorField index="12" name="qon_dim" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="2" name="opening_shape" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="1" name="length" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="3" name="width" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="20" name="fk_overflow_to" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="21" name="fk_overflow_characteristic" showLabel="1"></attributeEditorField>
+        </attributeEditorContainer>
+        <attributeEditorContainer columnCount="1" groupBox="0" name="Others" showLabel="1" visibilityExpression="" visibilityExpressionEnabled="0">
+          <attributeEditorField index="5" name="adjustability" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="7" name="control" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="14" name="signal_transmission" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="8" name="discharge_point" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="13" name="remark" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="10" name="gross_costs" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="15" name="subsidies" showLabel="1"></attributeEditorField>
+        </attributeEditorContainer>
       </attributeEditorForm>
       <editable>
         <field editable="1" name="actuation"></field>
@@ -39005,7 +39122,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent>
@@ -39105,13 +39222,12 @@ def my_form_open(dialog, layer, feature):
               <Option type="Map">
                 <Option name="AllowMulti" type="bool" value="false"></Option>
                 <Option name="AllowNull" type="bool" value="true"></Option>
-                <Option name="Description" type="QString" value=""></Option>
                 <Option name="FilterExpression" type="QString" value=""></Option>
                 <Option name="Key" type="QString" value="code"></Option>
                 <Option name="Layer" type="QString" value="prank_weir_weir_edge20180603142254911"></Option>
                 <Option name="LayerName" type="QString" value="vl_prank_weir_weir_edge"></Option>
                 <Option name="LayerProviderName" type="QString" value="postgres"></Option>
-                <Option name="LayerSource" type="QString" value="service='pg_qgep' key='code' checkPrimaryKeyUnicity='1' table=&quot;qgep_vl&quot;.&quot;prank_weir_weir_edge&quot;"></Option>
+                <Option name="LayerSource" type="QString" value="service='pg_qgep' key='code' checkPrimaryKeyUnicity='1' table=&quot;qgep_vl&quot;.&quot;prank_weir_weir_edge&quot; sql="></Option>
                 <Option name="NofColumns" type="int" value="1"></Option>
                 <Option name="OrderByValue" type="bool" value="true"></Option>
                 <Option name="UseCompleter" type="bool" value="false"></Option>
@@ -39126,13 +39242,12 @@ def my_form_open(dialog, layer, feature):
               <Option type="Map">
                 <Option name="AllowMulti" type="bool" value="false"></Option>
                 <Option name="AllowNull" type="bool" value="true"></Option>
-                <Option name="Description" type="QString" value=""></Option>
                 <Option name="FilterExpression" type="QString" value=""></Option>
                 <Option name="Key" type="QString" value="code"></Option>
                 <Option name="Layer" type="QString" value="prank_weir_weir_kind20180603142254942"></Option>
                 <Option name="LayerName" type="QString" value="vl_prank_weir_weir_kind"></Option>
                 <Option name="LayerProviderName" type="QString" value="postgres"></Option>
-                <Option name="LayerSource" type="QString" value="service='pg_qgep' key='code' checkPrimaryKeyUnicity='1' table=&quot;qgep_vl&quot;.&quot;prank_weir_weir_kind&quot;"></Option>
+                <Option name="LayerSource" type="QString" value="service='pg_qgep' key='code' checkPrimaryKeyUnicity='1' table=&quot;qgep_vl&quot;.&quot;prank_weir_weir_kind&quot; sql="></Option>
                 <Option name="NofColumns" type="int" value="1"></Option>
                 <Option name="OrderByValue" type="bool" value="true"></Option>
                 <Option name="UseCompleter" type="bool" value="false"></Option>
@@ -39168,13 +39283,12 @@ def my_form_open(dialog, layer, feature):
               <Option type="Map">
                 <Option name="AllowMulti" type="bool" value="false"></Option>
                 <Option name="AllowNull" type="bool" value="true"></Option>
-                <Option name="Description" type="QString" value=""></Option>
                 <Option name="FilterExpression" type="QString" value=""></Option>
                 <Option name="Key" type="QString" value="code"></Option>
                 <Option name="Layer" type="QString" value="overflow_adjustability20180603142254646"></Option>
                 <Option name="LayerName" type="QString" value="vl_overflow_adjustability"></Option>
                 <Option name="LayerProviderName" type="QString" value="postgres"></Option>
-                <Option name="LayerSource" type="QString" value="service='pg_qgep' key='code' checkPrimaryKeyUnicity='1' table=&quot;qgep_vl&quot;.&quot;overflow_adjustability&quot;"></Option>
+                <Option name="LayerSource" type="QString" value="service='pg_qgep' key='code' checkPrimaryKeyUnicity='1' table=&quot;qgep_vl&quot;.&quot;overflow_adjustability&quot; sql="></Option>
                 <Option name="NofColumns" type="int" value="1"></Option>
                 <Option name="OrderByValue" type="bool" value="true"></Option>
                 <Option name="UseCompleter" type="bool" value="false"></Option>
@@ -39199,13 +39313,12 @@ def my_form_open(dialog, layer, feature):
               <Option type="Map">
                 <Option name="AllowMulti" type="bool" value="false"></Option>
                 <Option name="AllowNull" type="bool" value="true"></Option>
-                <Option name="Description" type="QString" value=""></Option>
                 <Option name="FilterExpression" type="QString" value=""></Option>
                 <Option name="Key" type="QString" value="code"></Option>
                 <Option name="Layer" type="QString" value="overflow_control20180603142254490"></Option>
                 <Option name="LayerName" type="QString" value="vl_overflow_control"></Option>
                 <Option name="LayerProviderName" type="QString" value="postgres"></Option>
-                <Option name="LayerSource" type="QString" value="service='pg_qgep' key='code' checkPrimaryKeyUnicity='1' table=&quot;qgep_vl&quot;.&quot;overflow_control&quot;"></Option>
+                <Option name="LayerSource" type="QString" value="service='pg_qgep' key='code' checkPrimaryKeyUnicity='1' table=&quot;qgep_vl&quot;.&quot;overflow_control&quot; sql="></Option>
                 <Option name="NofColumns" type="int" value="1"></Option>
                 <Option name="OrderByValue" type="bool" value="true"></Option>
                 <Option name="UseCompleter" type="bool" value="false"></Option>
@@ -39303,6 +39416,9 @@ def my_form_open(dialog, layer, feature):
                 <Option name="FilterExpression" type="QString" value=""></Option>
                 <Option name="Key" type="QString" value="code"></Option>
                 <Option name="Layer" type="QString" value="overflow_signal_transmission20180603142254396"></Option>
+                <Option name="LayerName" type="QString" value="vl_overflow_signal_transmission"></Option>
+                <Option name="LayerProviderName" type="QString" value="postgres"></Option>
+                <Option name="LayerSource" type="QString" value="service='pg_qgep' key='code' checkPrimaryKeyUnicity='1' table=&quot;qgep_vl&quot;.&quot;overflow_signal_transmission&quot; sql="></Option>
                 <Option name="NofColumns" type="int" value="1"></Option>
                 <Option name="OrderByValue" type="bool" value="true"></Option>
                 <Option name="UseCompleter" type="bool" value="false"></Option>
@@ -39362,8 +39478,8 @@ def my_form_open(dialog, layer, feature):
           <editWidget type="TextEdit">
             <config>
               <Option type="Map">
-                <Option name="IsMultiline" type="QString" value="0"></Option>
-                <Option name="UseHtml" type="QString" value="0"></Option>
+                <Option name="IsMultiline" type="bool" value="false"></Option>
+                <Option name="UseHtml" type="bool" value="false"></Option>
               </Option>
             </config>
           </editWidget>
@@ -39372,8 +39488,8 @@ def my_form_open(dialog, layer, feature):
           <editWidget type="TextEdit">
             <config>
               <Option type="Map">
-                <Option name="IsMultiline" type="QString" value="0"></Option>
-                <Option name="UseHtml" type="QString" value="0"></Option>
+                <Option name="IsMultiline" type="bool" value="false"></Option>
+                <Option name="UseHtml" type="bool" value="false"></Option>
               </Option>
             </config>
           </editWidget>
@@ -39581,22 +39697,26 @@ def my_form_open(dialog, layer, feature):
         <attributeEditorField index="13" name="identifier" showLabel="1"></attributeEditorField>
         <attributeEditorField index="0" name="obj_id" showLabel="1"></attributeEditorField>
         <attributeEditorField index="11" name="function" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="5" name="weir_kind" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="4" name="weir_edge" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="2" name="level_max" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="3" name="level_min" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="1" name="hydraulic_overflow_length" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="14" name="qon_dim" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="15" name="remark" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="7" name="adjustability" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="9" name="control" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="16" name="signal_transmission" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="10" name="discharge_point" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="12" name="gross_costs" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="17" name="subsidies" showLabel="1"></attributeEditorField>
         <attributeEditorField index="21" name="fk_wastewater_node" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="22" name="fk_overflow_to" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="23" name="fk_overflow_characteristic" showLabel="1"></attributeEditorField>
+        <attributeEditorContainer columnCount="1" groupBox="0" name="Hydraulic" showLabel="1" visibilityExpression="" visibilityExpressionEnabled="0">
+          <attributeEditorField index="14" name="qon_dim" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="2" name="level_max" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="3" name="level_min" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="1" name="hydraulic_overflow_length" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="4" name="weir_edge" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="5" name="weir_kind" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="22" name="fk_overflow_to" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="23" name="fk_overflow_characteristic" showLabel="1"></attributeEditorField>
+        </attributeEditorContainer>
+        <attributeEditorContainer columnCount="1" groupBox="0" name="Others" showLabel="1" visibilityExpression="" visibilityExpressionEnabled="0">
+          <attributeEditorField index="7" name="adjustability" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="9" name="control" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="16" name="signal_transmission" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="10" name="discharge_point" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="15" name="remark" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="12" name="gross_costs" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="17" name="subsidies" showLabel="1"></attributeEditorField>
+        </attributeEditorContainer>
       </attributeEditorForm>
       <editable>
         <field editable="1" name="actuation"></field>
@@ -39705,7 +39825,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent>
@@ -40368,28 +40488,32 @@ def my_form_open(dialog, layer, feature):
         <attributeEditorField index="17" name="identifier" showLabel="1"></attributeEditorField>
         <attributeEditorField index="0" name="obj_id" showLabel="1"></attributeEditorField>
         <attributeEditorField index="15" name="function" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="18" name="qon_dim" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="5" name="pump_flow_max_single" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="6" name="pump_flow_min_single" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="2" name="operating_point" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="1" name="contruction_type" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="4" name="placement_of_pump" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="3" name="placement_of_actuation" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="10" name="actuation" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="7" name="start_level" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="8" name="stop_level" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="9" name="usage_current" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="11" name="adjustability" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="13" name="control" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="20" name="signal_transmission" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="14" name="discharge_point" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="12" name="brand" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="19" name="remark" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="16" name="gross_costs" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="21" name="subsidies" showLabel="1"></attributeEditorField>
         <attributeEditorField index="25" name="fk_wastewater_node" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="26" name="fk_overflow_to" showLabel="1"></attributeEditorField>
-        <attributeEditorField index="27" name="fk_overflow_characteristic" showLabel="1"></attributeEditorField>
+        <attributeEditorContainer columnCount="1" groupBox="1" name="Hydraulic" showLabel="1" visibilityExpression="" visibilityExpressionEnabled="0">
+          <attributeEditorField index="18" name="qon_dim" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="2" name="operating_point" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="5" name="pump_flow_max_single" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="6" name="pump_flow_min_single" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="7" name="start_level" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="8" name="stop_level" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="26" name="fk_overflow_to" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="27" name="fk_overflow_characteristic" showLabel="1"></attributeEditorField>
+        </attributeEditorContainer>
+        <attributeEditorContainer columnCount="1" groupBox="1" name="Other" showLabel="1" visibilityExpression="" visibilityExpressionEnabled="0">
+          <attributeEditorField index="1" name="contruction_type" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="4" name="placement_of_pump" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="3" name="placement_of_actuation" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="10" name="actuation" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="9" name="usage_current" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="11" name="adjustability" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="13" name="control" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="20" name="signal_transmission" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="14" name="discharge_point" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="12" name="brand" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="19" name="remark" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="16" name="gross_costs" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="21" name="subsidies" showLabel="1"></attributeEditorField>
+        </attributeEditorContainer>
       </attributeEditorForm>
       <editable>
         <field editable="1" name="actuation"></field>
@@ -40504,7 +40628,7 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -41059,6 +41183,15 @@ def my_form_open(dialog, layer, feature):
         <type></type>
         <title></title>
         <abstract></abstract>
+        <contact>
+          <name></name>
+          <organization></organization>
+          <position></position>
+          <voice></voice>
+          <fax></fax>
+          <email></email>
+          <role></role>
+        </contact>
         <links></links>
         <fees></fees>
         <encoding></encoding>
@@ -41072,10 +41205,18 @@ def my_form_open(dialog, layer, feature):
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
-        <extent></extent>
+        <extent>
+          <spatial crs="" dimensions="2" maxx="0" maxy="0" maxz="0" minx="0" miny="0" minz="0"></spatial>
+          <temporal>
+            <period>
+              <start></start>
+              <end></end>
+            </period>
+          </temporal>
+        </extent>
       </resourceMetadata>
       <provider encoding="UTF-8">postgres</provider>
       <vectorjoins>
@@ -41102,6 +41243,7 @@ def my_form_open(dialog, layer, feature):
         <Searchable>1</Searchable>
       </flags>
       <customproperties>
+        <property key="dualview/previewExpressions" value="concat(format_date(&quot;time_point&quot;, 'yyyy.MM.dd'),' - ',represent_value(&quot;kind&quot;) ,' - ', &quot;identifier&quot; )"></property>
         <property key="embeddedWidgets/count" value="0"></property>
         <property key="variableNames"></property>
         <property key="variableValues"></property>
@@ -41112,7 +41254,7 @@ def my_form_open(dialog, layer, feature):
       </geometryOptions>
       <fieldConfiguration>
         <field name="maintenance_event_type">
-          <editWidget type="">
+          <editWidget type="Enumeration">
             <config>
               <Option></Option>
             </config>
@@ -41325,8 +41467,8 @@ def my_form_open(dialog, layer, feature):
           <editWidget type="TextEdit">
             <config>
               <Option type="Map">
-                <Option name="IsMultiline" type="QString" value="0"></Option>
-                <Option name="UseHtml" type="QString" value="0"></Option>
+                <Option name="IsMultiline" type="bool" value="false"></Option>
+                <Option name="UseHtml" type="bool" value="false"></Option>
               </Option>
             </config>
           </editWidget>
@@ -41335,8 +41477,8 @@ def my_form_open(dialog, layer, feature):
           <editWidget type="TextEdit">
             <config>
               <Option type="Map">
-                <Option name="IsMultiline" type="QString" value="0"></Option>
-                <Option name="UseHtml" type="QString" value="0"></Option>
+                <Option name="IsMultiline" type="bool" value="false"></Option>
+                <Option name="UseHtml" type="bool" value="false"></Option>
               </Option>
             </config>
           </editWidget>
@@ -41345,10 +41487,11 @@ def my_form_open(dialog, layer, feature):
           <editWidget type="Range">
             <config>
               <Option type="Map">
-                <Option name="AllowNull" type="QString" value="1"></Option>
-                <Option name="Max" type="QString" value="30000"></Option>
-                <Option name="Min" type="QString" value="0"></Option>
-                <Option name="Step" type="QString" value="1"></Option>
+                <Option name="AllowNull" type="bool" value="true"></Option>
+                <Option name="Max" type="double" value="30000"></Option>
+                <Option name="Min" type="double" value="0"></Option>
+                <Option name="Precision" type="int" value="2"></Option>
+                <Option name="Step" type="double" value="1"></Option>
                 <Option name="Style" type="QString" value="SpinBox"></Option>
               </Option>
             </config>
@@ -41358,13 +41501,17 @@ def my_form_open(dialog, layer, feature):
           <editWidget type="ValueRelation">
             <config>
               <Option type="Map">
-                <Option name="AllowMulti" type="QString" value="0"></Option>
-                <Option name="AllowNull" type="QString" value="0"></Option>
+                <Option name="AllowMulti" type="bool" value="false"></Option>
+                <Option name="AllowNull" type="bool" value="false"></Option>
                 <Option name="FilterExpression" type="QString" value=""></Option>
                 <Option name="Key" type="QString" value="code"></Option>
                 <Option name="Layer" type="QString" value="examination_recording_type20180530223541868"></Option>
-                <Option name="OrderByValue" type="QString" value="1"></Option>
-                <Option name="UseCompleter" type="QString" value="0"></Option>
+                <Option name="LayerName" type="QString" value="vl_examination_recording_type"></Option>
+                <Option name="LayerProviderName" type="QString" value="postgres"></Option>
+                <Option name="LayerSource" type="QString" value="service='pg_qgep' key='code' checkPrimaryKeyUnicity='1' table=&quot;qgep_vl&quot;.&quot;examination_recording_type&quot; sql="></Option>
+                <Option name="NofColumns" type="int" value="1"></Option>
+                <Option name="OrderByValue" type="bool" value="true"></Option>
+                <Option name="UseCompleter" type="bool" value="false"></Option>
                 <Option name="Value" type="QString" value="value_en"></Option>
               </Option>
             </config>
@@ -41374,8 +41521,8 @@ def my_form_open(dialog, layer, feature):
           <editWidget type="TextEdit">
             <config>
               <Option type="Map">
-                <Option name="IsMultiline" type="QString" value="0"></Option>
-                <Option name="UseHtml" type="QString" value="0"></Option>
+                <Option name="IsMultiline" type="bool" value="false"></Option>
+                <Option name="UseHtml" type="bool" value="false"></Option>
               </Option>
             </config>
           </editWidget>
@@ -41384,8 +41531,8 @@ def my_form_open(dialog, layer, feature):
           <editWidget type="TextEdit">
             <config>
               <Option type="Map">
-                <Option name="IsMultiline" type="QString" value="0"></Option>
-                <Option name="UseHtml" type="QString" value="0"></Option>
+                <Option name="IsMultiline" type="bool" value="false"></Option>
+                <Option name="UseHtml" type="bool" value="false"></Option>
               </Option>
             </config>
           </editWidget>
@@ -41394,8 +41541,8 @@ def my_form_open(dialog, layer, feature):
           <editWidget type="TextEdit">
             <config>
               <Option type="Map">
-                <Option name="IsMultiline" type="QString" value="0"></Option>
-                <Option name="UseHtml" type="QString" value="0"></Option>
+                <Option name="IsMultiline" type="bool" value="false"></Option>
+                <Option name="UseHtml" type="bool" value="false"></Option>
               </Option>
             </config>
           </editWidget>
@@ -41404,13 +41551,17 @@ def my_form_open(dialog, layer, feature):
           <editWidget type="ValueRelation">
             <config>
               <Option type="Map">
-                <Option name="AllowMulti" type="QString" value="0"></Option>
-                <Option name="AllowNull" type="QString" value="0"></Option>
+                <Option name="AllowMulti" type="bool" value="false"></Option>
+                <Option name="AllowNull" type="bool" value="false"></Option>
                 <Option name="FilterExpression" type="QString" value=""></Option>
                 <Option name="Key" type="QString" value="code"></Option>
                 <Option name="Layer" type="QString" value="examination_weather20180530223541774"></Option>
-                <Option name="OrderByValue" type="QString" value="1"></Option>
-                <Option name="UseCompleter" type="QString" value="0"></Option>
+                <Option name="LayerName" type="QString" value="vl_examination_weather"></Option>
+                <Option name="LayerProviderName" type="QString" value="postgres"></Option>
+                <Option name="LayerSource" type="QString" value="service='pg_qgep' key='code' checkPrimaryKeyUnicity='1' table=&quot;qgep_vl&quot;.&quot;examination_weather&quot; sql="></Option>
+                <Option name="NofColumns" type="int" value="1"></Option>
+                <Option name="OrderByValue" type="bool" value="true"></Option>
+                <Option name="UseCompleter" type="bool" value="false"></Option>
                 <Option name="Value" type="QString" value="value_en"></Option>
               </Option>
             </config>
@@ -41420,8 +41571,8 @@ def my_form_open(dialog, layer, feature):
           <editWidget type="TextEdit">
             <config>
               <Option type="Map">
-                <Option name="IsMultiline" type="QString" value="0"></Option>
-                <Option name="UseHtml" type="QString" value="0"></Option>
+                <Option name="IsMultiline" type="bool" value="false"></Option>
+                <Option name="UseHtml" type="bool" value="false"></Option>
               </Option>
             </config>
           </editWidget>
@@ -41606,10 +41757,11 @@ def my_form_open(dialog, layer, feature):
         <constraint desc="" exp="" field="vl_maintenance_event_kind_value_fr"></constraint>
       </constraintExpressions>
       <expressionfields></expressionfields>
-      <attributeactions></attributeactions>
+      <attributeactions>
+        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"></defaultAction>
+      </attributeactions>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns>
-          <column hidden="0" name="maintenance_type" type="field" width="-1"></column>
           <column hidden="0" name="obj_id" type="field" width="-1"></column>
           <column hidden="0" name="base_data" type="field" width="-1"></column>
           <column hidden="0" name="cost" type="field" width="-1"></column>
@@ -41642,6 +41794,7 @@ def my_form_open(dialog, layer, feature):
           <column hidden="0" name="vl_maintenance_event_kind_value_en" type="field" width="-1"></column>
           <column hidden="0" name="vl_maintenance_event_kind_value_de" type="field" width="-1"></column>
           <column hidden="0" name="vl_maintenance_event_kind_value_fr" type="field" width="-1"></column>
+          <column hidden="0" name="maintenance_event_type" type="field" width="-1"></column>
         </columns>
       </attributetableconfig>
       <conditionalstyles>
@@ -41689,7 +41842,13 @@ def my_form_open(dialog, layer, feature):
         <attributeEditorContainer columnCount="2" groupBox="1" name="Inspection" showLabel="1" visibilityExpression=" &quot;kind&quot; = 4564" visibilityExpressionEnabled="1">
           <attributeEditorField index="21" name="inspected_length" showLabel="1"></attributeEditorField>
           <attributeEditorField index="25" name="videonumber" showLabel="1"></attributeEditorField>
-          <attributeEditorField index="-1" name="fs_reach_point" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="20" name="from_point_identifier" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="23" name="to_point_identifier" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="27" name="fk_reach_point" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="22" name="recording_type" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="19" name="equipment" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="24" name="vehicle" showLabel="1"></attributeEditorField>
+          <attributeEditorField index="26" name="weather" showLabel="1"></attributeEditorField>
         </attributeEditorContainer>
         <attributeEditorContainer columnCount="2" groupBox="1" name="Video" showLabel="1" visibilityExpression="" visibilityExpressionEnabled="0">
           <attributeEditorRelation name="file_object_maintenance_obj_id" relation="file_object_maintenance_obj_id" showLabel="1" showLinkButton="1" showUnlinkButton="1"></attributeEditorRelation>
@@ -41698,17 +41857,89 @@ def my_form_open(dialog, layer, feature):
           <attributeEditorRelation name="damage_maintenance_event" relation="damage_maintenance_event" showLabel="1" showLinkButton="1" showUnlinkButton="1"></attributeEditorRelation>
         </attributeEditorContainer>
       </attributeEditorForm>
-      <editable></editable>
-      <labelOnTop></labelOnTop>
+      <editable>
+        <field editable="1" name="active_zone"></field>
+        <field editable="1" name="base_data"></field>
+        <field editable="1" name="cost"></field>
+        <field editable="1" name="data_details"></field>
+        <field editable="1" name="duration"></field>
+        <field editable="1" name="equipment"></field>
+        <field editable="1" name="fk_dataowner"></field>
+        <field editable="1" name="fk_operating_company"></field>
+        <field editable="1" name="fk_provider"></field>
+        <field editable="1" name="fk_reach_point"></field>
+        <field editable="1" name="from_point_identifier"></field>
+        <field editable="1" name="identifier"></field>
+        <field editable="1" name="inspected_length"></field>
+        <field editable="1" name="kind"></field>
+        <field editable="1" name="last_modification"></field>
+        <field editable="1" name="maintenance_event_type"></field>
+        <field editable="1" name="obj_id"></field>
+        <field editable="1" name="operator"></field>
+        <field editable="1" name="reason"></field>
+        <field editable="1" name="recording_type"></field>
+        <field editable="1" name="remark"></field>
+        <field editable="1" name="result"></field>
+        <field editable="1" name="status"></field>
+        <field editable="1" name="time_point"></field>
+        <field editable="1" name="to_point_identifier"></field>
+        <field editable="1" name="vehicle"></field>
+        <field editable="1" name="videonumber"></field>
+        <field editable="0" name="vl_maintenance_event_kind_code"></field>
+        <field editable="0" name="vl_maintenance_event_kind_value_de"></field>
+        <field editable="0" name="vl_maintenance_event_kind_value_en"></field>
+        <field editable="0" name="vl_maintenance_event_kind_value_fr"></field>
+        <field editable="1" name="weather"></field>
+      </editable>
+      <labelOnTop>
+        <field labelOnTop="0" name="active_zone"></field>
+        <field labelOnTop="0" name="base_data"></field>
+        <field labelOnTop="0" name="cost"></field>
+        <field labelOnTop="0" name="data_details"></field>
+        <field labelOnTop="0" name="duration"></field>
+        <field labelOnTop="0" name="equipment"></field>
+        <field labelOnTop="0" name="fk_dataowner"></field>
+        <field labelOnTop="0" name="fk_operating_company"></field>
+        <field labelOnTop="0" name="fk_provider"></field>
+        <field labelOnTop="0" name="fk_reach_point"></field>
+        <field labelOnTop="0" name="from_point_identifier"></field>
+        <field labelOnTop="0" name="identifier"></field>
+        <field labelOnTop="0" name="inspected_length"></field>
+        <field labelOnTop="0" name="kind"></field>
+        <field labelOnTop="0" name="last_modification"></field>
+        <field labelOnTop="0" name="maintenance_event_type"></field>
+        <field labelOnTop="0" name="obj_id"></field>
+        <field labelOnTop="0" name="operator"></field>
+        <field labelOnTop="0" name="reason"></field>
+        <field labelOnTop="0" name="recording_type"></field>
+        <field labelOnTop="0" name="remark"></field>
+        <field labelOnTop="0" name="result"></field>
+        <field labelOnTop="0" name="status"></field>
+        <field labelOnTop="0" name="time_point"></field>
+        <field labelOnTop="0" name="to_point_identifier"></field>
+        <field labelOnTop="0" name="vehicle"></field>
+        <field labelOnTop="0" name="videonumber"></field>
+        <field labelOnTop="0" name="vl_maintenance_event_kind_code"></field>
+        <field labelOnTop="0" name="vl_maintenance_event_kind_value_de"></field>
+        <field labelOnTop="0" name="vl_maintenance_event_kind_value_en"></field>
+        <field labelOnTop="0" name="vl_maintenance_event_kind_value_fr"></field>
+        <field labelOnTop="0" name="weather"></field>
+      </labelOnTop>
       <widgets>
         <widget name="damage_maintenance_event">
-          <config></config>
+          <config type="Map">
+            <Option name="nm-rel" type="QString" value=""></Option>
+          </config>
         </widget>
         <widget name="file_object_maintenance_obj_id">
-          <config></config>
+          <config type="Map">
+            <Option name="nm-rel" type="QString" value=""></Option>
+          </config>
         </widget>
         <widget name="re_maintenance_wasterwaterstructure_maintenance">
-          <config></config>
+          <config type="Map">
+            <Option name="nm-rel" type="QString" value=""></Option>
+          </config>
         </widget>
         <widget name="re_maintenance_wastewaterstructure_maintenance">
           <config></config>
@@ -41717,7 +41948,7 @@ def my_form_open(dialog, layer, feature):
           <config></config>
         </widget>
       </widgets>
-      <previewExpression> format_date("time_point", 'dd.MM.yyyy') || ' ' || "vl_maintenance_event_kind_value_en"</previewExpression>
+      <previewExpression>concat(format_date("time_point", 'yyyy.MM.dd'),' - ',represent_value("kind") ,' - ', "identifier" )</previewExpression>
       <mapTip></mapTip>
     </maplayer>
     <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Line" hasScaleBasedVisibilityFlag="0" labelsEnabled="1" maxScale="100000" minScale="1e+08" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" type="vector" wkbType="CompoundCurveZ">
@@ -44196,6 +44427,7 @@ def my_form_open(dialog, layer, feature):
         </settings>
       </labeling>
       <customproperties>
+        <property key="dualview/previewExpressions" value="COALESCE( &quot;identifier&quot;, '&lt;NULL>' )"></property>
         <property key="embeddedWidgets/count" value="0"></property>
         <property key="variableNames"></property>
         <property key="variableValues"></property>
@@ -45907,7 +46139,7 @@ def my_form_open(dialog, layer, feature):
             <attributeEditorField index="75" name="rp_to_remark" showLabel="1"></attributeEditorField>
           </attributeEditorContainer>
         </attributeEditorContainer>
-        <attributeEditorContainer columnCount="0" groupBox="0" name="Maintenance" showLabel="1" visibilityExpression="" visibilityExpressionEnabled="0">
+        <attributeEditorContainer columnCount="1" groupBox="0" name="Maintenance" showLabel="1" visibilityExpression="" visibilityExpressionEnabled="0">
           <attributeEditorRelation name="re_maintenance_wasterwaterstructure_reach" relation="re_maintenance_wasterwaterstructure_reach" showLabel="1" showLinkButton="1" showUnlinkButton="1"></attributeEditorRelation>
         </attributeEditorContainer>
         <attributeEditorContainer columnCount="1" groupBox="0" name="Files" showLabel="1" visibilityExpression="" visibilityExpressionEnabled="0">
@@ -46094,11 +46326,11 @@ def my_form_open(dialog, layer, feature):
         </widget>
         <widget name="re_maintenance_wasterwaterstructure_reach">
           <config type="Map">
-            <Option name="nm-rel" type="QString" value=""></Option>
+            <Option name="nm-rel" type="QString" value="re_maintenance_wasterwaterstructure_maintenance"></Option>
           </config>
         </widget>
       </widgets>
-      <previewExpression>COALESCE( "obj_id", '&lt;NULL&gt;' )</previewExpression>
+      <previewExpression>COALESCE( "identifier", '&lt;NULL&gt;' )</previewExpression>
       <mapTip></mapTip>
     </maplayer>
     <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Point" hasScaleBasedVisibilityFlag="1" labelsEnabled="1" maxScale="1" minScale="5000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="0" simplifyDrawingTol="1" simplifyLocal="0" simplifyMaxScale="1" styleCategories="AllStyleCategories" type="vector" wkbType="Point">
@@ -47858,6 +48090,7 @@ def my_form_open(dialog, layer, feature):
           <value>COALESCE( "identifier", '&lt;NULL&gt;' )</value>
           <value>COALESCE( "identifier", '&lt;NULL&gt;' )</value>
           <value>COALESCE( "identifier", '&lt;NULL&gt;' )</value>
+          <value>COALESCE( "identifier", '&lt;NULL&gt;' )</value>
         </property>
         <property key="embeddedWidgets/count" value="0"></property>
         <property key="ii_labeling" value="pal"></property>
@@ -49593,12 +49826,12 @@ def my_form_open(dialog, layer, feature):
       <expressionfields></expressionfields>
       <attributeactions>
         <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"></defaultAction>
-        <actionsetting action="from qgepplugin.gui import forms&#xA;&#xA;import qgepplugin&#xA;&#xA;feature = next( QgsProject.instance().mapLayer('od_wastewater_structure').getFeatures( QgsFeatureRequest().setFilterExpression( 'obj_id = \'{}\''.format( '[% &quot;obj_id&quot; %]' ) ) ) )&#xA;qgepplugin.gui.forms.digitizeDrainageChannel(feature.id(), 'od_wastewater_structure')" capture="0" icon="" id="{897ff85f-f788-4d2e-b950-914faba46331}" isEnabledOnlyWhenEditable="0" name="Digitize Drainage Channel" notificationMessage="" shortTitle="" type="1">
+        <actionsetting action="from qgepplugin.gui import forms&#xA;&#xA;import qgepplugin&#xA;&#xA;feature = next( QgsProject.instance().mapLayer('od_wastewater_structure').getFeatures( QgsFeatureRequest().setFilterExpression( 'obj_id = \'{}\''.format( '[% &quot;obj_id&quot; %]' ) ) ) )&#xA;qgepplugin.gui.forms.digitizeDrainageChannel(feature.id(), 'od_wastewater_structure')" capture="0" icon="" id="{e9461a14-d5d6-44ef-9cbf-331b92b0286a}" isEnabledOnlyWhenEditable="0" name="Digitize Drainage Channel" notificationMessage="" shortTitle="" type="1">
           <actionScope id="Field"></actionScope>
           <actionScope id="Feature"></actionScope>
           <actionScope id="Canvas"></actionScope>
         </actionsetting>
-        <actionsetting action="ws_lyr = QgsProject.instance().mapLayer('od_wastewater_structure')&#xA;feature = next( ws_lyr.getFeatures( QgsFeatureRequest().setFilterExpression( 'obj_id = \'{}\''.format( '[% &quot;obj_id&quot; %]' ) ) ) )&#xA;ws_lyr.startEditing()&#xA;ws_lyr.selectByIds([feature.id()])&#xA;qgis.utils.iface.setActiveLayer(ws_lyr)&#xA;qgis.utils.iface.actionAddPart().trigger()" capture="0" icon="" id="{bb7a7048-746b-42d4-90c6-234510f18da2}" isEnabledOnlyWhenEditable="0" name="Digitize" notificationMessage="" shortTitle="" type="1">
+        <actionsetting action="ws_lyr = QgsProject.instance().mapLayer('od_wastewater_structure')&#xA;feature = next( ws_lyr.getFeatures( QgsFeatureRequest().setFilterExpression( 'obj_id = \'{}\''.format( '[% &quot;obj_id&quot; %]' ) ) ) )&#xA;ws_lyr.startEditing()&#xA;ws_lyr.selectByIds([feature.id()])&#xA;qgis.utils.iface.setActiveLayer(ws_lyr)&#xA;qgis.utils.iface.actionAddPart().trigger()" capture="0" icon="" id="{f446be68-64d5-4533-8a0c-f3889a436639}" isEnabledOnlyWhenEditable="0" name="Digitize" notificationMessage="" shortTitle="" type="1">
           <actionScope id="Field"></actionScope>
           <actionScope id="Feature"></actionScope>
           <actionScope id="Canvas"></actionScope>
@@ -50054,7 +50287,7 @@ def my_form_open(dialog, layer, feature):
         </widget>
         <widget name="re_maintenance_event_wastewater_structure_fk_wastewater_structure_vw_qgep_wastewater_structure_obj_id">
           <config type="Map">
-            <Option name="nm-rel" type="QString" value=""></Option>
+            <Option name="nm-rel" type="QString" value="re_maintenance_wasterwaterstructure_maintenance"></Option>
           </config>
         </widget>
         <widget name="re_maintenance_event_wastewater_structure_fk_wastewater_structure_vw_qgep_wastewater_structure_ws_obj_id">
@@ -50259,6 +50492,7 @@ def my_form_open(dialog, layer, feature):
           <value>COALESCE( "obj_id", '&lt;NULL&gt;' )</value>
           <value>COALESCE( "obj_id", '&lt;NULL&gt;' )</value>
           <value>COALESCE( "obj_id", '&lt;NULL&gt;' )</value>
+          <value>COALESCE( "obj_id", '&lt;NULL&gt;' )</value>
         </property>
         <property key="embeddedWidgets/count" value="0"></property>
         <property key="variableNames"></property>
@@ -50428,7 +50662,7 @@ def my_form_open(dialog, layer, feature):
       <excludeAttributesWMS></excludeAttributesWMS>
       <excludeAttributesWFS></excludeAttributesWFS>
       <defaults>
-        <default applyOnUpdate="0" expression="obj_id" field="obj_id"></default>
+        <default applyOnUpdate="0" expression="" field="obj_id"></default>
         <default applyOnUpdate="0" expression="" field="backflow_level"></default>
         <default applyOnUpdate="0" expression="" field="bottom_level"></default>
         <default applyOnUpdate="0" expression="" field="fk_hydr_geometry"></default>
