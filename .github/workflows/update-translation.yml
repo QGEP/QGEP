@@ -1,0 +1,23 @@
+name: Update translations
+
+on:
+  push:
+    branches:
+      - master
+
+
+jobs:
+  build:
+    name: Create release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: install requirements
+        run: pip install -r requirements.txt
+
+      - name: package
+        run: |
+          ./scripts/update_and_push_ts_files.sh
