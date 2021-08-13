@@ -18,8 +18,8 @@ jobs:
 
       - name: package
         run: |
-          - ./scripts/pull_ts_and_create_project.sh
-          - ./scripts/release.sh
+          ./scripts/pull_ts_and_create_project.sh
+          ./scripts/release.sh
 
       - name: Upload Release Asset
         id: upload-release-asset
