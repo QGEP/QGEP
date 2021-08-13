@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Create release
+    name: Update translataions
     runs-on: ubuntu-latest
 
     steps:
