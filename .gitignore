@@ -7,3 +7,4 @@ project/*.ts
 project/*.qm
 qgep.zip
 .DS_Store
+.idea

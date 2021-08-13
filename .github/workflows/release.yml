@@ -1,0 +1,33 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    name: Create release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: install requirements
+        run: pip install -r requirements.txt
+
+      - name: package
+        run: |
+          - ./scripts/pull_ts_and_create_project.sh
+          - ./scripts/release.sh
+
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: qgep.zip
+          asset_name: qgep-${{ github.event.release.tag_name }}.zip
+          asset_content_type: application/zip
