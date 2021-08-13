@@ -11,6 +11,9 @@ jobs:
     name: Update translataions
     runs-on: ubuntu-latest
 
+    env:
+      TX_TOKEN: ${{ secrets.TX_TOKEN }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
