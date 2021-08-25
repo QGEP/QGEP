@@ -18,6 +18,7 @@ jobs:
 
       - name: package
         run: |
+          export QGEP_SOURCE_DIR=$(pwd)
           ./scripts/pull_ts_and_create_project.sh
           ./scripts/release.sh
 
