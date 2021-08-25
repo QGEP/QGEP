@@ -8,6 +8,8 @@ jobs:
   build:
     name: Create release
     runs-on: ubuntu-latest
+    env:
+      TX_TOKEN: ${{ secrets.TX_TOKEN }}
 
     steps:
       - name: Checkout code
