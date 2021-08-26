@@ -1,8 +1,7 @@
-FROM ubuntu:20.04
+FROM opengisch/qgis:stable
 
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt install --no-install-recommends -y \
-    qgis \
     xvfb \
     iputils-ping \
     postgresql-client \
