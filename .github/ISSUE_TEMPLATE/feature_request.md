@@ -71,7 +71,7 @@ _Add a detailed timeline_
 
 - [ ] Warranty period : to be adressed
 
-### Versions of related softwares
+### Related softwares versions
 
 - QGIS version: 
 - Database model version: 
