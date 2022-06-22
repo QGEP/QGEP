@@ -83,7 +83,7 @@ Public issues links :
 Helpdesk issues links : 
 - …
 
-### Dates de réalisation
+### Realisation dates
 
 - Tender reception date : 
 - Tender validation date : 
