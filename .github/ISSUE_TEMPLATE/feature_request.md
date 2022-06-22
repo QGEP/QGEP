@@ -110,4 +110,3 @@ Conclusions from applicant, users or admins group
 - Future prospects:
 
 - Invoice date: 
-- Payment date:
