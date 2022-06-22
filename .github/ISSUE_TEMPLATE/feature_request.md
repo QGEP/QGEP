@@ -52,7 +52,7 @@ Feasibility, options, alternatives and technical specificities
 _Mutualisation and possible impacts with other projects (QGIS, QWAT, QGEP)_
 
 
-## Cahier des charges et offres ( Developer)
+## Specification and offers ( Developer )
 Not shared on Github.
 
 ### Specifications
