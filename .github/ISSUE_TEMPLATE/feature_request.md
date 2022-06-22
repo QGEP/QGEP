@@ -94,7 +94,7 @@ Documentation links
 - User manual : 
 - Administrator manual :
 
-## Development and intégration
+## Development and integration
 
 Link and comments from the developer about the product
 
