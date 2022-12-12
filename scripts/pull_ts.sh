@@ -1,5 +1,5 @@
 #!/bin/bash
 
-tx pull -a
+./tx pull -a
 
 
