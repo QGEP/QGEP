@@ -15,10 +15,10 @@ jobs:
       - name: Pull translations and build project
         run: |
           export QGEP_SOURCE_DIR=$(pwd)
-          pip install transifex-client
+          curl -OL https://github.com/transifex/cli/releases/download/v1.3.1/tx-linux-amd64.tar.gz
+          tar -xvzf tx-linux-amd64.tar.gz
           ./scripts/pull_ts_and_create_project.sh
       - uses: actions/upload-artifact@v2
         with:
           name: project
           path: project/
-
