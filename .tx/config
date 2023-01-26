@@ -1,7 +1,7 @@
 [main]
 host = https://www.transifex.com
 
-[qgep-project.qgep_ents]
+[o:qgep:p:qgep-project:r:qgep_ents]
 file_filter = project/qgep_<lang>.ts
 source_file = project/qgep.ts
 source_lang = en

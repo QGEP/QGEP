@@ -4,10 +4,11 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch:
 
 jobs:
   build:
-    name: Update translataions
+    name: Update translations
     runs-on: ubuntu-latest
 
     env:
