@@ -15,8 +15,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install Transifex v.3 dependencies
+      - name: Install Python + Transifex v.3 dependencies
         run: |
+          # Python
+          pip install -r requirements.txt
+          # Go (Transifex)
           curl -OL https://github.com/transifex/cli/releases/download/v1.3.1/tx-linux-amd64.tar.gz
           tar -xvzf tx-linux-amd64.tar.gz
 
