@@ -4,15 +4,11 @@ on:
   push:
     branches:
       - master
-  workflow_dispatch:
 
 jobs:
   build:
     name: Update translations
     runs-on: ubuntu-latest
-
-    env:
-      TX_TOKEN: ${{ secrets.TX_TOKEN }}
 
     steps:
       - name: Checkout code
@@ -26,6 +22,8 @@ jobs:
           curl -OL https://github.com/transifex/cli/releases/download/v1.3.1/tx-linux-amd64.tar.gz
           tar -xvzf tx-linux-amd64.tar.gz
 
-      - name: package
+      - name: Update translations
+        env:
+          TOK: ${{ secrets.TX_TOKEN }}
         run: |
-          ./scripts/update_and_push_ts_files.sh
+          TX_TOKEN=TOK ./scripts/update_and_push_ts_files.sh
